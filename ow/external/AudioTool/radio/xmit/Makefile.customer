@@ -1,0 +1,57 @@
+#
+# @(#)Makefile.customer	1.2	92/06/30 SMI
+#
+
+#
+# Makefile for xmit
+#
+
+include ../../Makefile.config
+
+PROGRAM		= xmit
+
+GSRCS		= xmit.G
+SOURCES		= xmit_ui.c xmit.c
+
+HEADERS		= xmit_on.mask.icon xmit_off.icon xmit_off.mask.icon \
+		  xmit_ui.h xmit_on.icon
+
+INFO		= xmit.info
+
+OBJECTS		= ${SOURCES:%.c=%.o}
+
+CFLAGS		= -O
+LDFLAGS		= 
+
+CPPFLAGS	+= -I../../../include -I../libradio -I$(OPENWINHOME)/include \
+		   -I$(GUIDEHOME)/include ${SYSDEFINES}
+
+LDLIBS		= -L../libradio -lradio -L../../../lib -laudio \
+		  -L$(GUIDEHOME)/lib -lguidexv \
+		  -L$(OPENWINHOME)/lib -lxview -lolgx -lX11 ${SYSLIBS} -lm
+
+all: $(GUIDEHOME) ${PROGRAM}
+
+${PROGRAM}: ${OBJECTS}
+	${CC} -o $@ ${LDFLAGS} ${OBJECTS} ${LDLIBS}
+
+$(GUIDEHOME):
+	@if [ "$(GUIDEHOME)" = "not-set" -o ! -d $(GUIDEHOME) ]; then \
+		echo "You must have Devguide installed and GUIDEHOME set to build this program." ; \
+		false ;\
+	fi
+
+clean:
+	${RM} ${PROGRAM} ${OBJECTS} core
+
+install: ${PROGRAM}
+	${CP} ${PROGRAM} ${DESTDIR}/bin/${PROGRAM}
+	${CHMOD} 755 ${DESTDIR}/bin/${PROGRAM}
+
+# Uncomment the following lines if you want to re-generate the
+# _ui.[ch] files with gxv.
+
+#%_ui.h: %.G
+#	gxv $<
+#%_ui.c: %_ui.h
+#	touch $@

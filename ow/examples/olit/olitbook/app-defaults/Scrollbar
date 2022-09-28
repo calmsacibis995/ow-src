@@ -1,0 +1,26 @@
+scrollbar*scrollbar.height:     200
+scrollbar*scrollbar.sliderMax:  200
+scrollbar*verify.label:         Verify
+scrollbar*verify.mnemonic:      V
+scrollbar*menuTitle:            Scrollbar
+scrollbar*hereToTopLabel:       Here to Top
+scrollbar*topToHereLabel:       Top to Here
+scrollbar*previousLabel:        Previous
+scrollbar*hereToTopMnemonic:    H
+scrollbar*topToHereMnemonic:    T
+scrollbar*previousMnemonic:     P
+!
+scrollbar2*scrollbar.width:              200
+scrollbar2*scrollbar.sliderMax:          200
+scrollbar2*scrollbar.orientation:        horizontal
+scrollbar2*scrollbar.proportionLength:   20
+scrollbar2*scrollbar.granularity:        10
+scrollbar2*verify.label:                 Verify
+scrollbar2*verify.mnemonic:              V
+scrollbar2*menuTitle:                    Scrollbar
+scrollbar2*hereToLeftLabel:              Here to Left
+scrollbar2*leftToHereLabel:              Left to Here
+scrollbar2*previousLabel:                Previous
+scrollbar2*hereToLeftMnemonic:           H
+scrollbar2*leftToHereMnemonic:           L
+scrollbar2*previousMnemonic:             P

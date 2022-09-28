@@ -1,0 +1,332 @@
+#################################################
+## 	binder.info     June 2 
+## Written by James Brook
+## edited for OWV3.0.1 October 29, 1991
+#################################################
+#################################################
+##      OpenWindows Version 3 FCS
+#################################################
+###########################################
+#Base Frame Objects
+###########################################
+#####################50###########################
+
+#:BinderFrame:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+
+:BinderPanel:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+Binder
+
+Using Binder, you can bind icons, colors,
+applications, open methods, and print methods
+to files.
+
+Because DeskSet applications come with a
+default set of bindings, it is not necessary to
+use Binder. You may, however, want to use Binder
+to customize your DeskSet Environment, modifying
+entries in your personal user data base.
+
+:SaveButton:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+Save
+
+Click SELECT on Save to save your changes to the 
+Binder data base.
+
+:UndoButton:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+Undo
+
+Click SELECT on Undo to undo the last operation.
+
+Undo-able operations are those made with the New, 
+Duplicate, and Delete buttons.
+
+#####################50###########################
+:ViewButton:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+View
+
+Use the View button to determine which entries you
+want to display.
+
+All Entries		Displays all private, 
+			system, and network 
+			entries.
+
+Shared Entries		Displays all system and 
+			network entries.
+
+Personal Entries	Displays only your 
+			private user entries.
+
+#####################50###########################
+
+:PropsButton:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+Props
+
+Displays an entry's icon or file type properties.
+
+Icon		Shows the information used to
+		display and operate on files.
+
+File Types	Shows the set of files bound to 
+		the icons, colors, and 
+		applications defined in the Icon
+		properties window.
+
+#
+#Icon scrolling list
+##########################
+:IconEntries:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+Binder Entries
+
+This scrolling list displays the bindings stored
+in the Binder's network, system, and private user
+data bases.
+
+:NewButton:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+New
+
+Click SELECT on New to create a new Binder
+entry.
+
+:DuplicateButton:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+Duplicate
+
+Click SELECT on Duplicate to copy a user, system,
+or network Binder entry to your personal user
+data base.
+
+:DeleteButton:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+Delete
+
+Click SELECT on Delete to remove a Binder entry
+from your personal user data base.
+
+#################################
+# Objects on Props Sheets
+#################################
+#####################50###########################
+#Props Frame
+#############################
+#:PropsFrame:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+
+#Props Panel
+:PropsPanel:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+Properties window
+
+Use the Properties window to set the Icon
+properties and File Type properties for a Binder
+entry.
+
+Click SELECT on + to expand the window to display
+the full set of properties.
+
+Click SELECT on - to shrink the window to its
+smaller, default size.
+
+:PropsCategory:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+Category:
+
+Click SELECT on either the Icon or File Types
+setting.
+
+Icon		Shows the information used to
+		display and operate on files.
+
+File Types	Shows the set of files bound to
+		icons, colors, and applications.
+
+###########################################################
+#This includes the icon image itself and the icon text item.
+###########################################################
+:Icon:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+Icon:
+
+Shows the current Binder icon and its name. You 
+can change the name in the text field.
+
+
+
+:ImageFile:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+Image File:
+
+Displays the location of the icon bound to the 
+current Binder entry.
+
+#####################50###########################
+:MaskFile:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+Mask File:
+
+Displays the location of an icon color mask.
+
+#This includes the foreground color text item and the color chip 
+#next to it.
+
+:ForegrColor:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+Foregr Color:
+
+Foreground color is the color that the icon is
+drawn with. If no value is given here, the
+foreground color is black.
+
+#####################50###########################
+
+#This includes the background color text item and the color chip #next to it.
+
+:BackgrColor:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+Backgr Color:
+
+Background color is the color of the icon. If no
+value is given here, the background color is
+white.
+
+#This is the "..." button next to the Foregr color text item used to
+#launch the colorchooser.
+
+:ForegrButton:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+
+Click SELECT on this button to start Color 
+Chooser.
+
+#####################50###########################
+#This is the "..." button next to the Backgr Color text item used to
+#launch the colorchooser.
+
+:BackgrButton:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+
+Click SELECT on this button to start Color 
+Chooser.
+
+:Application:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+Application:
+
+Defines the application started when the file 
+defined by the current binding is opened.
+
+:PrintMethod:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+Print Method:
+
+Defines how a file is printed. If no print method
+is specified, the default print method of the 
+application is used.
+
+#####################50###########################
+:ApplyButton:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+Apply
+
+Click SELECT on Apply to apply your changes to
+the current binder entry.
+
+:ResetButton:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+Reset
+
+Click SELECT on Reset to revert back to the
+previous settings.
+
+:PlusButton:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
++
+
+Click SELECT on + to expand the window to display
+the full set of properties.
+
+#####################50###########################
+:MinusButton:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+-
+
+Click SELECT on - to shrink the window to its
+smaller, default size.
+
+############################
+#Scrolling list of files bound to the selected icon.
+################
+:FileEntries:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+
+Each entry in this scrolling list defines how a
+file, or group of files, is recognized.
+
+Each class of files is bound to the icon
+properties of the current Binder entry.
+
+:Pattern:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+Pattern:
+
+Use this field to change the name of a File Type 
+entry.
+
+#####################50###########################
+:PropsNewButton:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+New
+
+Click SELECT on New to create a new File Type 
+entry.
+
+:CutButton:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+Cut
+
+Click SELECT on Cut to remove the currently
+selected File Type entry from the current Binder 
+entry and move it to the clipboard.
+
+#####################50###########################
+:CopyButton:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+Copy
+
+Click SELECT on Copy to copy the currently
+selected File Type entry to the clipboard.
+
+:PasteButton:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+Paste
+
+Click SELECT on Paste to add the File Type entry
+that is on the clipboard to the current Binder
+entry.
+
+:PropsDeleteButton:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+Delete
+
+Click SELECT on Delete to remove the File Type
+from the current Binder entry.
+
+:Identify:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+Identify:
+
+Determines how the current class of files is
+recognized.
+
+A class of files is recognized by name or
+by content:
+
+by Name		Files are recognized by the 
+		pattern in the Pattern field.
+
+by Content	Files are recognized by matching
+		file contents instead of the name.
+
+#####################50###########################
+:TagOffset:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+Tag Offset:
+
+Determines the starting position in the file
+where the contents are to be matched.
+
+The default value is 0, the first character of
+the file.
+
+:TagType:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+Tag Type:
+
+Determines the type of value to be matched in
+the file contents: Byte, Short, Long, or String.
+
+#####################50###########################
+:TagValue:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+Tag Value:
+
+Determines what to look for in the file contents.
+This value must be of the type defined in the Data
+Type setting.
+
+:TagMask:$OPENWINHOME/bin/helpopen handbooks/binder.handbook
+Tag Mask:
+
+An optional field you can use to define a mask
+value for Byte, Short, or Long data types.

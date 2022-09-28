@@ -1,0 +1,33 @@
+#!/bin/sh
+awk '
+BEGIN {
+	number = 1
+}
+
+/^domain/ {
+	print $0
+	continue
+}
+
+/^#/ {
+	if (comments != "")
+		comments = comments "\n" $0
+	else
+		comments = $0
+	continue
+}
+
+/^msgid/ {
+	msgid = $0
+	continue
+}
+
+/^msgstr/ {
+	if (msg_str[msgid] != "")
+		printf("%s\n# DUP MSGID: %s\n", comments, msgid)
+	else
+		printf("%s\n%s\n%s\n", comments, msgid, $0)
+	msg_str[msgid] = $0
+	comments = ""
+}	
+' $*

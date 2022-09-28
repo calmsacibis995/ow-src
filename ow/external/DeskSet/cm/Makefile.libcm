@@ -1,0 +1,132 @@
+#
+# @(#)Makefile.libcm 1.7 92/10/21 Copyr 1991 Sun Microsystems, Inc.
+#
+# All Rights Reserved
+#
+
+SOURCES.c 	=  \
+	abbcache.c \
+	agent.c \
+	agent_xdr.c \
+	appt.c \
+	convert2-4.c \
+	convert4-2.c \
+	convert3-4.c \
+	convert4-3.c \
+	timeops.c \
+	table.c \
+	getdate.c \
+	misc.c \
+	rtable2_clnt.c \
+	rtable3_clnt.c \
+	rtable4_clnt.c \
+	rtable2_xdr.c \
+	rtable3_xdr.c \
+	rtable4_xdr.c \
+	util.c
+
+SOURCES.h = \
+	abbcache.h \
+	agent.h \
+	appt.h \
+	convert2-4.h \
+	convert3-4.h \
+	convert4-2.h \
+	convert4-3.h \
+	datefield.h \
+	gettext.h \
+	misc.h \
+	rtable2.h \
+	rtable3.h \
+	rtable4.h \
+	timeops.h \
+	table.h \
+	util.h
+
+LIBRARY		= libcm
+PROJECTDIR	= ..
+CFLAGS		+=
+
+.KEEP_STATE:
+
+default:	all
+
+include ${PROJECTDIR}/Makefile.master.new
+
+all:	$(LIBRARY.a)
+
+agent.h : agent.x
+	rpcgen -h agent.x -o agent.h
+
+agent_xdr.c : agent.x rtable4.x
+	rpcgen -c agent.x -o agent_xdr.tmp
+	cat agent_xdr.tmp | awk '{ print }  /rpc\.h/ { printf ("#include \"rtable4.h\"\n"); }' > agent_xdr.c
+	rm agent_xdr.tmp
+
+agent_xdr.o : agent_xdr.c rtable4.x
+	$(COMPILE.c) agent_xdr.c
+
+appt.h : rtable4.x
+	rpcgen -h rtable4.x -o appt.h
+
+rtable2_tbl.i: rtable2.x
+	rpcgen -t rtable2.x -o rtable2_tbl.i
+
+rtable2.h: rtable2.x
+	rpcgen -h rtable2.x -o rtable2.h
+
+rtable2_xdr.c : rtable2.x
+	rpcgen -c rtable2.x -o rtable2_xdr.c
+
+rtable3_tbl.i: rtable3.x
+	rpcgen -t rtable3.x -o rtable3_tbl.i
+
+rtable3.h : rtable3.x
+	rpcgen -h rtable3.x -o rtable3.h
+
+rtable3_xdr.c : rtable3.x
+	rpcgen -c rtable3.x -o rtable3_xdr.c
+
+rtable3_xdr.o : rtable3_xdr.c
+	$(COMPILE.c) rtable3_xdr.c
+
+rtable4_tbl.i: rtable4.x
+	rpcgen -t rtable4.x -o rtable4_tbl.i
+
+rtable4.h : rtable4.x
+	rpcgen -h rtable4.x -o rtable4.h
+ 
+rtable4_xdr.c : rtable4.x
+	rpcgen -c rtable4.x -o rtable4_xdr.c
+ 
+rtable2_clnt.c : rtable2.x
+	rpcgen -l rtable2.x -o rtable2_clnt.tmp
+	cat rtable2_clnt.tmp | sed "s/clnt_call/my_clnt_call/g" | sed "s/CLIENT \*/void \*/g" > rtable2_clnt.c
+	rm rtable2_clnt.tmp
+ 
+rtable3_clnt.c : rtable3.x
+	rpcgen -l rtable3.x -o rtable3_clnt.tmp
+	cat rtable3_clnt.tmp | sed "s/clnt_call/my_clnt_call/g" | sed "s/CLIENT \*/void \*/g" > rtable3_clnt.c
+	rm rtable3_clnt.tmp
+ 
+rtable4_clnt.c : rtable4.x
+	rpcgen -l rtable4.x -o rtable4_clnt.tmp
+	cat rtable4_clnt.tmp | sed "s/clnt_call/my_clnt_call/g" | sed "s/CLIENT \*/void \*/g" > rtable4_clnt.c
+	rm rtable4_clnt.tmp
+ 
+rtable2_clnt.o : rtable2_clnt.c
+	$(COMPILE.c) rtable2_clnt.c
+ 
+rtable3_clnt.o : rtable3_clnt.c
+	$(COMPILE.c) rtable3_clnt.c
+ 
+rtable2.o : rtable4.h rtable2.h rtable2_tbl.i
+	$(COMPILE.c) rtable2.c
+ 
+rtable3.o : rtable3.h rtable4.h rtable3_tbl.i
+	$(COMPILE.c) rtable3.c
+ 
+rtable4.o : rtable4.h rtable4_tbl.i
+	$(COMPILE.c) rtable4.c
+
+.INIT: 	$(SOURCES.h)

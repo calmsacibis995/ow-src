@@ -1,0 +1,4 @@
+Draw*canvas.background: white
+Draw*canvas.foreground: black
+Draw*canvas.borderWidth: 1
+Draw*canvas.width: 300

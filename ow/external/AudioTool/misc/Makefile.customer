@@ -1,0 +1,28 @@
+#
+# @(#)Makefile.customer	1.1	92/06/25 SMI
+#
+
+#
+# Makefile for audio demo programs
+#
+
+include Makefile.config
+
+SUBDIRS		= gaintool soundtool radio
+
+all: subdirs
+
+install	:= MAKETARGET = install
+clean := MAKETARGET = clean
+
+install: subdirs
+clean: subdirs
+
+subdirs:
+	@for i in . ${SUBDIRS} ; do \
+	(if [ "x$$i" != "x." ] ; then \
+	    cd $$i; \
+	    echo "----["`pwd`"]----"; \
+	    ${MAKE} ${MAKETARGET} ; \
+	 fi \
+	) done

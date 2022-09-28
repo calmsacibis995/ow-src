@@ -1,0 +1,193 @@
+DESCRIPTION
+
+	The DropTarget widget provides a visual icon to the user that Drag&Drop 
+	operations can be performed on an application.   The DropTarget can be used as 
+	the "source" of a 'drag' and/or the "destination"(dropsite) of a 'drop'.
+	The default appearance of the DropTarget widget follows the OPEN LOOK
+	specification for a DropTarget.
+
+	The DropTarget widget provides a higher-level API to the OLIT Drag&Drop  
+	Utility function library, allowing part of the Drag&Drop functionality to be 
+	programmed via resources and callback routines.  Although the widget handles 
+	much of the work involved in setting up the dropsite and initiating a drag, 
+	it is still up to the application to implement the actual data transfer using 
+	the Xt Selection mechanism following the ICCCM.  For more information on the 
+	overall Drag&Drop mechanism in OpenWindows, see the OpenWindows Desktop 
+	Integration Guide.
+
+	The DropTarget has 2 states (controlled by XtNfull resource):
+		.Full:   data is available - DropTarget can act as SOURCE
+		.Empty:  no data is available - DropTarget cannot act as SOURCE
+	It is up to the application to control the "state" of the DropTarget based
+	on the application's use of Drag&Drop.
+
+	For more detailed information on Drag&Drop and the DropTarget Widget, 
+	see the following Sections in the OPEN LOOK Intrinsics Toolkit Widget Set 
+	Reference Manual:
+		.DropTarget
+		.Drag and Drop Functions
+
+
+EXAMPLE CODE
+
+The following code was written to Create the example DropTarget Widget shown 
+in the Table :
+
+/***************************************************************************/
+#include <X11/Intrinsic.h>
+#include <X11/StringDefs.h>
+#include <Xol/OpenLook.h>
+#include <Xol/DropTarget.h>
+#include <Xol/ControlAre.h>
+
+static void
+DropTargetCB(Widget w, XtPointer clientData, OlDropTargetCallbackStruct *dnd)
+{
+    switch (dnd->reason) {
+	/* SOURCE of DRAG */
+        case OL_REASON_DND_OWNSELECTION: {
+            printf("DropTarget: acting as SOURCE of D&D operation...\n");
+
+	    /*************************************************
+	     * At this point the "owner" portion of an Xt Selection
+	     * transaction must be implemented.  It is important to
+	     * first allocate the transient dnd atom and then call
+	     * OlDnDOwnSelection() (instead of XtOwnSelection())...
+	     *
+	     * Atom atom = OlDnDAllocTransientAtom(dnd->widget);
+	     * XtVaSetValues(dnd->widget, XtNselectionAtom, atom, NULL);
+	     *
+	     * OlDnDOwnSelection(dnd->widget, atom, dnd->time,
+	     *		(XtConvertSelectionProc)yourConvertSelectionCB,
+	     *		(XtLoseSelectionProc)yourLostSelectionCB,
+	     *		(XtSelectionDoneProc)yourSelectionDoneCB,
+	     *		(OlDnDTransactionStateCallback)yourStateCB,
+	     * 		(XtPointer)NULL);
+	     **************************************************/		
+		
+            }
+            break;
+
+	/* DESTINATION of DROP */
+        case OL_REASON_DND_TRIGGER: { 
+            printf("DropTarget: Received DROP!\n");
+
+	    /**************************************************
+	     * At this point the "requestor" portion of an Xt
+	     * Selection transaction must be implemented....
+	     * (most common to first request conversion of TARGETS
+	     *  here a la ICCCM);  Call XtGetSelectionValues()
+	     ****************************************************/
+            }
+            break;
+
+        default:
+            break;
+
+    } /* switch */
+}
+
+main(int argc, char **argv)
+{
+	XtAppContext app;
+	Widget toplevel, panel, droptarget;
+
+	OlToolkitInitialize(NULL);
+	toplevel = XtAppInitialize(&app, "Test", 
+				(XrmOptionDescRec *)NULL,
+				(Cardinal)0, (int *)&argc, argv,
+				(String *)NULL, (ArgList)NULL, 0);
+
+	panel = XtVaCreateManagedWidget("panel",
+				controlAreaWidgetClass,
+				toplevel,
+				NULL);
+
+	droptarget = XtVaCreateManagedWidget("primitiveexample",
+                        dropTargetWidgetClass,
+                        panel,
+                        XtNfull,(XtArgVal)TRUE,
+                        XtNdndMoveCursor,
+                          (XtArgVal)OlGetMoveDocDragCursor(toplevel),
+                        XtNdndCopyCursor,
+                          (XtArgVal)OlGetDupeDocDragCursor(toplevel),
+                        XtNdndAcceptCursor,
+                          (XtArgVal)OlGetDupeDocDropCursor(toplevel),
+                        XtNdndRejectCursor,
+                          (XtArgVal)OlGetDupeDocNoDropCursor(toplevel),
+                        NULL);
+
+	XtAddCallback(droptarget, XtNdndTriggerCallback, DropTargetCB, NULL);
+	XtAddCallback(droptarget, XtNownSelectionCallback, DropTargetCB, NULL);
+
+	XtRealizeWidget(toplevel);
+
+	XtAppMainLoop(app);
+
+}
+/**********************************END Example********************************/
+
+
+
+RESOURCES
+
+Core (SuperClass) Resources
+--------------
+Name            		Type            Default         	Access
+----            		----            -------         	-------
+ XtNx               		Position        0               	SGI
+ XtNy               		Position        0               	SGI
+ XtNwidth           		Dimension       <Calculated>    	SG
+ XtNheight          		Dimension       <Calculated>    	SG
+ XtNborderWidth     		Dimension       0               	SGI
+ XtNsensitive       		Boolean         True            	GIO
+ XtNancestorSensitive		Boolean         True            	G
+ XtNscreen          		Screen *        parent's        	GI
+ XtNdepth           		Cardinal        parent's        	GI
+ XtNcolormap        		Colormap        parent's        	GI
+ XtNbackground      		Pixel           parent's        	SGID
+ XtNbackgroundPixmap		Pixmap          XtUnspecifiedPixmap     SGI
+ XtNborderColor     		Pixel           XtDefaultForeground     SGI
+ XtNborderPixmap    		Pixmap          XtUnspecifiedPixmap     SGI
+ XtNmappedWhenMananaged		Boolean         True            	SGI
+ XtNdestroyCallback 		XtCallbackList  NULL            	SGIO
+
+Primitive (SuperClass) Resources
+-------------------        
+ XtNaccelerator     		String          NULL            	Unused
+ XtNacceleratorText 		String          NULL            	Unused
+ XtNconsumeEvent    		Callback        NULL            	SGIO
+ XtNfont            		OlFont          XtDefaultFont   	SGI
+ XtNfontColor       		Pixel   XtDefaultForeground     	SGI
+ XtNforeground      		Pixel   XtDefaultForeground     	SGI
+ XtNinputFocusColor 		Pixel           "Red"           	SGI
+ XtNmnemonic        		OlRChar         NULL            	SGI
+ XtNreferenceName   		String          NULL            	SGI
+ XtNreferenceWidget 		Widget          NULL            	SGI
+ XtNtextFormat      		OlStrRep        OL_SB_STR_REP   	GI
+ XtNtraversalOn     		Boolean         True            	SGI
+ XtNuserData        		XtPointer       NULL            	SGI
+
+Pixmap (SuperClass) Resources
+-----------------------------
+XtNpixmap			Pixmap		open look specified	SGI
+XtNrecomputeSize		Boolean		FALSE			SGI
+
+DropTarget Resources
+--------------------
+XtNbusyPixmap			Pixmap		stippled pixmap		SGI
+XtNdndAnimateCallback		XtCallbackList	NULL			SGI
+XtNdndAcceptCursor		Cursor		NULL			SGI
+XtNdndCopyCursor		Cursor		openlook copy cursor	SGI
+XtNdndMoveCursor		Cursor		openlook move cursor	SGI
+XtNdndPreviewHints		OlDnDSitePreviewHints 
+						OlDnDSitePreviewNone	SGI
+XtNdndPreviewCallback		XtCallbackList	NULL			SGI
+XtNfull				Boolean		FALSE			SGI
+XtNownSelectionCallback		XtCallbackList	NULL			SGI
+XtNselectionAtom		Atom		NULL			SGI
+
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+
+

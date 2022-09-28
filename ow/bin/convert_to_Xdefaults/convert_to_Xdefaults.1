@@ -1,0 +1,74 @@
+
+convert_to_Xdefaults(1)              USER COMMAND      convert_to_Xdefaults(1)
+
+NAME
+     convert_to_Xdefaults - converts a SunView defaults file to Xdefaults format
+
+SYNOPSIS
+     convert_to_Xdefaults filename
+
+AVAILABILITY
+     This command is available with the XView software distribution.
+
+DESCRIPTION
+     convert_to_Xdefaults is a shell script which uses sed(1) scripts 
+     to convert SunView defaults to X Window (Xdefaults) defaults.  
+     convert_to_xview reads "filename" scanning for SunView defaults
+     and converts them to their equivalent Xdefaults for XView.  Defaults
+     that are no longer supported or are not recognized as standard
+     SunView defaults are commented out with a '!' (exclamation-point) at
+     the beginnning of the default entry.  The output of conversion
+     is directed to standard output (stdout).  The default name for
+     your "defaults" file for XView should be ".Xdefaults" and should
+     be located in your $HOME directory.
+     
+     SAMPLES:
+     
+     A SunView1 defaults entries ...
+	
+	/Text/Auto_indent       	"True"
+	/Text/Extras_menu_filename      "/home/blinky/bob/.text_extras_menu"
+	/Scrollbar/Thickness		"20"
+	/Mail/Set/folder		"/home/blinky/bob/mail_folder"
+	/Text/Multi_click_timeout	"100"
+	
+     ...is converted to the Xdefault...
+     
+        Text.AutoIndent:        	True
+        Text.ExtrasMenuFilename:        /home/blinky/bob/.text_extras_menu
+        !/Scrollbar/Thickness		"20"
+        !/Mail/Set/folder		"/home/blinky/bob/mail_folder"
+        !OpenWindows.MultiClickTimeout:(now in tenths of seconds rather than millisecs)  100
+
+
+     Note that the /Scrollbar/Thickness and /Mail/Set/folder entries
+     were NOT converted (a '! was inserted to comment them out).  These
+     entries should be removed from your Xdefaults since they are not
+     read and are not valid. However, notice that 
+     /Text/Multi_click_timeout was converted to 
+     OpenWindows.MultiClickTimeout but is commented out.  The comment
+     after the '!' ("now in tenths of seconds") instructes you that
+     the value of this entry is now in tenths of seconds.  You should
+     apply the needed change to the value and remove both the comments
+     and the '!'.
+     
+EXAMPLES 
+
+     Run the script on you SunView1 defaults file...
+
+	% convert_to_Xdefaults $HOME/.defaults > $HOME/.Xdefaults
+
+     Now go in and edit the resulting file (output of conversion now
+     in $HOME/.Xdefaults) and remove any unconverted entries or
+     make modifications described in comments inserted and then
+     remove the comments and the '!'.     
+     
+FILES
+     $OPENWINHOME/bin/xview/convert_to_Xdefaults
+     
+     Where $OPENWINHOME is the installation/mount point for OpenWindows.
+
+SEE ALSO
+     sunview(1), sed(1), textedit(1), vi(1)
+
+convert_to_Xdefaults(1)              USER COMMAND       convert_to_Xdefaults(1)

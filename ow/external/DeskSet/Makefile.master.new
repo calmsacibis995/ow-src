@@ -1,0 +1,709 @@
+#								-*-makefile-*-
+# @(#)Makefile.master.new 3.66 - 95/02/10 SMI; Copyright (c) 1990 by Sun Microsystems, Inc.
+#
+# This file is meant to be included in each Makefile associated with
+# a particular project.  The following parameters should be defined
+# by the including Makefile, as appropriate:
+#
+#	PROJECTDIR	Top-level project directory
+#	LIBRARY		Target library (ie libmail)
+#	LIBVERSION	Version number for library (ie ".0.1")
+#	PROGRAM		Target program (ie mailtool)
+#	SOURCES.G	GUIDE Intermediate Languages
+#	SOURCES.c	C code 
+#	SOURCES_SA.c	C code for .sa portion of dynamic libs
+#	SOURCES.icon	Icon files	
+#	SOURCES.h	Include files
+#	SOURCES.l	Lex files
+#	SOURCES.sh	Shell scripts
+#	SOURCES.ps	Postscript files			
+#	SOURCES.y	Yacc files
+#	SOURCES.pkg	SVR4 package files			
+# 	SOURCES.man	man page
+#	SOURCES.misc	misc					
+#	SOURCES.info	Info file	
+#	SOURCES.map	Map file for reordering.
+#	SOURCES.types	ToolTalk types file
+#	SOURCES.tpl	Template files used with mailtool
+#	SOURCES.pub	Public sources for share/src/{PUBLICDIR}
+#	MANSECT		man page section
+#	LDLIBS		Additional libraries to load with
+
+#
+# Switch build environment based on OS.  Automatically switches
+# for 4.1.x or 5.X builds.  Override with:
+#
+# setenv TARGET_SYS SUNOS	-> SunOS 4.1.1 build
+# setenv TARGET_SYS SVR4	-> SunOS 5.0 build
+# setenv TARGET_SYS XFP         -> Sundae 5.0 build & 493
+#
+# Use $TARG_SYS for OS dependent variables
+#
+TARG_SYS:sh = \
+ (					\
+   case ${TARGET_SYS}			\
+   in ?*) echo ${TARGET_SYS};		\
+          exit 0;;			\
+   esac;				\
+   UNAME=` uname -r 2>/dev/null` ||.;	\
+   case $UNAME in			\
+   '') echo SUNOS;;			\
+   4.*) echo SUNOS;;			\
+   *)  echo XFP;;			\
+   esac					\
+ )
+
+#
+# Get system architecture
+#
+ARCH:sh         = set `uname -m`;\
+		  case $1 in sun4*) echo sun4;; *) echo $1;; esac
+
+# Solaris 2.0 bundles OpenWindows with the environment and
+# locates it in /usr/openwin. When compiling under 5.0, either
+# don't set OPENWINHOME, or make sure that it is set to
+# /usr/openwin so that LD_RUN_PATH (-R) is correct. If OpenWindows
+# is located somewhere else, then make a link from /usr/openwin to
+# that location before compiling.
+#
+# For our nightly builds, and for testing, you can set the environment
+# variable ADD_RUN_PATH to be another library to be *pre-pended* to
+# -R/usr/openwin/lib.  This variable *must* end in a ":" for the 
+# concatenation to work properly.  Kludge.
+WIN_HOME:sh = \
+ (					\
+   case ${OPENWINHOME}			\
+   in ?*) echo ${OPENWINHOME};;		\
+       *) echo "/usr/openwin";;		\
+   esac;				\
+ )
+
+DS_HOME	= /usr/deskset
+
+# Derived parameters.
+
+SOURCES += \
+	$(SOURCES.h) \
+	$(SOURCES.G) \
+	$(SOURCES.l) \
+	$(SOURCES.y) \
+	$(SOURCES.c) \
+	$(SOURCES.icon) \
+	$(SOURCES.ps) \
+	$(SOURCES.cps) \
+	$(SOURCES.psw) \
+	$(SOURCES.sh) \
+	$(SOURCES.misc) \
+	$(SOURCES.man) \
+	$(SOURCES.info) \
+	$(SOURCES.map.arch) \
+	$(SOURCES.types) \
+	$(SOURCES.tpl) \
+	$(SOURCES.pub) \
+	$(SOURCES.pkg)
+
+SOURCES.map.arch = $(SOURCES.map)-$(ARCH) 
+
+TARGETS.c = \
+	$(SOURCES.G:%.G=%_ui.c) \
+	$(STUBS.G:%.G=%_stubs.c) \
+	$(SOURCES.l:%.l=%.c) \
+	$(SOURCES.y:%.y=%.c)
+
+TARGETS.h = \
+	$(SOURCES.G:%.G=%_ui.h) \
+	$(SOURCES.psw:%.psw=%_dps.h) \
+	$(SOURCES.cps:%.cps=%.h)
+
+TARGETS.other = \
+	$(SOURCES.G:%.G=%.info)
+
+TARGETS.sh = \
+	$(SOURCES.sh:%.sh=%)
+
+TARGETS = \
+	$(TARGETS.other) \
+	$(TARGETS.sh) \
+	$(TARGETS.h) \
+	$(TARGETS.c)
+
+ARCHDIR		= $(ARCH)-$(TARG_SYS)
+ARCHDIR.g 	= $(ARCHDIR)-g
+ARCHDIR.xf 	= $(ARCHDIR)-xf
+ARCHDIR.xa	= $(ARCHDIR)-xa
+ARCHDIR.pic 	= $(ARCHDIR)-pic
+ARCHDIR.pic-g 	= $(ARCHDIR)-pic-g
+
+OBJECTS = \
+	$(SOURCES.c:%.c=$(ARCHDIR)/%.o) \
+	$(TARGETS.c:%.c=$(ARCHDIR)/%.o)
+
+OBJECTS.g = \
+	$(SOURCES.c:%.c=$(ARCHDIR.g)/%.o) \
+	$(TARGETS.c:%.c=$(ARCHDIR.g)/%.o)
+
+OBJECTS.xf = \
+	$(SOURCES.c:%.c=$(ARCHDIR.xf)/%.o) \
+	$(TARGETS.c:%.c=$(ARCHDIR.xf)/%.o)
+
+OBJECTS.xa = \
+	$(SOURCES.c:%.c=$(ARCHDIR.xa)/%.o) \
+	$(TARGETS.c:%.c=$(ARCHDIR.xa)/%.o)
+
+OBJECTS.pic = \
+	$(SOURCES.c:%.c=$(ARCHDIR.pic)/%.o) \
+	$(TARGETS.c:%.c=$(ARCHDIR.pic)/%.o)
+
+OBJECTS.pic-g = \
+	$(SOURCES.c:%.c=$(ARCHDIR.pic-g)/%.o) \
+	$(TARGETS.c:%.c=$(ARCHDIR.pic-g)/%.o)
+
+OBJECTS_SA = $(SOURCES_SA.c:%.c=$(ARCHDIR)/%.o)
+OBJECTS_SA.g = $(SOURCES_SA.c:%.c=$(ARCHDIR.g)/%.o)
+OBJECTS_SA.xf = $(SOURCES_SA.c:%.c=$(ARCHDIR.xf)/%.o)
+OBJECTS_SA.xa = $(SOURCES_SA.c:%.c=$(ARCHDIR.xa)/%.o)
+
+#
+# Installation destination directories
+#
+DESTDIR:sh = echo ${DESTDIR:-${OPENWINHOME:?"Neither DESTDIR nor OPENWINHOME is set"}}
+
+#
+# By default binaries have huge .comment sections.  We replace this with
+# the following line to save disk space. (see mcs)
+# OWVERSION is defined in Makefile and passed to us on the command line
+#
+COMMENT_STRING  = ${OWVERSION} `date +'%e %B %Y'`
+
+DESTDIR.bin	= $(DESTDIR)/bin
+DESTDIR.sh	= $(DESTDIR.bin)
+DESTDIR.lib	= $(DESTDIR)/lib
+DESTDIR.include = $(DESTDIR)/include
+DESTDIR.man	= $(DESTDIR)/share/man/man$(MANSECT)
+DESTDIR.info	= $(DESTDIR.lib)/locale/C/help
+DESTDIR.ps	= 
+DESTDIR.icon	= $(DESTDIR.include)/images
+DESTDIR.tpl	= $(DESTDIR)/share/xnews/client/templates
+DESTDIR.pub	= $(DESTDIR)/share/src/$(PUBLICDIR)
+# Not sure where we want .po files to go.  Pick a place for now
+DESTDIR.po	= $(DESTDIR.lib)/locale/C/LC_MESSAGES
+DESTDIR.tt	= $(DESTDIR)/share/etc/tt
+
+PROGRAM.g 	= $(PROGRAM)-g
+PROGRAM.xf 	= $(PROGRAM)-xf
+PROGRAM.xa	= $(PROGRAM)-xa
+PROGRAM.pure	= $(PROGRAM)-pure
+PROGRAM.reorder	= $(PROGRAM)-reorder
+
+LIBRARY.a	= $(LIBRARY).a
+LIBRARY.sa	= $(LIBRARY).sa$(LIBVERSION)
+LIBRARY.so	= $(LIBRARY).so$(LIBVERSION)
+LIBRARIES	= $(LIBRARY.a) $(LIBRARY.sa) $(LIBRARY.so)
+# If we have a version number then we make symlinks to non-versioned lib name
+LIBLINKS = $(LIBRARY).sa $(LIBRARY).so
+
+#
+# OS dependent stuff
+#
+SUNOS_RANLIB 	= ranlib
+SVR4_RANLIB	= true
+XFP_RANLIB	= true
+RANLIB 		= $($(TARG_SYS)_RANLIB)
+
+SUNOS_CPPFLAGS 	+= -DSUNOS41
+SVR4_CPPFLAGS 	+= -DSVR4 -DSYSV -DKYBDACC -DFILECHOOSER
+XFP_CPPFLAGS	+= $(SVR4_CPPFLAGS) -DOW_I18N
+
+SUNOS_CFLAGS	+=
+SVR4_CFLAGS	+= -xstrconst
+XFP_CFLAGS	+= $(SVR4_CFLAGS)
+
+SUNOS_LDFLAGS	+=
+SVR4_LDFLAGS 	+= -i -R$(ADD_RUN_PATH)/usr/openwin/lib
+XFP_LDFLAGS 	+= $(SVR4_LDFLAGS)
+
+SUNOS_LDLIBS 	+= -lce
+SVR4_LDLIBS 	+= -lsocket -lnsl -lintl -ldl
+XFP_LDLIBS 	+= -lw $(SVR4_LDLIBS)
+
+# For building dynamic libraries
+SUNOS_LIB_LDFLAGS 	+= 
+SVR4_LIB_LDFLAGS 	+= -G -z text -z defs -h $(LIBRARY.so) -R$(ADD_RUN_PATH)/usr/openwin/lib -L$(WIN_HOME)/lib -L$(XW_HOME)/lib
+XFP_LIB_LDFLAGS		+= $(SVR4_LIB_LDFLAGS)
+LIB_LDFLAGS		+= $($(TARG_SYS)_LIB_LDFLAGS)
+
+SUNOS_PICFLAGS 	= -pic
+SVR4_PICFLAGS 	= -K pic
+XFP_PICFLAGS	= $(SVR4_PICFLAGS)
+PICFLAGS 	= $($(TARG_SYS)_PICFLAGS)
+
+SUNOS_CC 	= /usr/dist/local/sun4/lang/SC1.0/acc
+SVR4_CC 	= cc
+XFP_CC 		= $(SVR4_CC)
+CC 		= $($(TARG_SYS)_CC)
+
+# Make sure we pick up the SVr4 install.  This means you can't do an install
+# in 4.x
+INSTALL		= /usr/sbin/install
+
+PURIFY		= $(PURIFYHOME)/purify
+G2C 		= $(GUIDEHOME)/bin/gxv
+XGETTEXT	= /usr/bin/xgettext
+XGETTEXT_OPTS	= -j -n -c STRING_EXTRACTION -p $(DESTDIR.po) -m "" -
+
+TT_TYPE_COMP    = $(XW_HOME)/bin/tt_type_comp
+CE_DB_MERGE     = LD_LIBRARY_PATH=$(DESTDIR)/lib:$(XW_HOME)/lib:$$LD_LIBRARY_PATH $(DESTDIR)/bin/ce_db_merge
+PSWRAP		= PATH="$${WIN_HOME}/bin:$${XW_HOME}/bin:$${PATH}" ; export PATH ; pswrap
+
+# Compiler flags.
+
+CFLAGS		+= -xF
+CPPFLAGS	+= $($(TARG_SYS)_CPPFLAGS) -I$(PROJECTDIR)/libdeskset -I$(WIN_HOME)/include -I$(XW_HOME)/include
+LDFLAGS		+= $($(TARG_SYS)_LDFLAGS) -L$(PROJECTDIR)/libdeskset -L$(WIN_HOME)/lib -L$(XW_HOME)/lib
+LDLIBS		+= $($(TARG_SYS)_LDLIBS) -ldeskset -lxview -lolgx -lX11 
+LINTFLAGS	+= -b
+G2CFLAGS	+= -s -n -g
+
+
+# Standard targets.
+
+.PRECIOUS: $(LIBRARY.a)
+.KEEP_STATE:
+
+# The target "all" must be defined by the tool's own makefile.  master_all is
+# here so our first rule is a decent default
+master_all: $(TARGETS) $(PROGRAM) $(LIBRARY)
+objects: $(SOURCES.c) $(TARGETS.c) $(TARGETS.h) $(OBJECTS)
+sources: $(SOURCES)
+targets: $(SOURCES) $(TARGETS)
+
+$(SOURCES.map.arch) : $(SOURCES.map) 
+	@if [ "x$(SOURCES.map)" != "x" ] ; then \
+		sed -e 's/ARCHDIR/$(ARCHDIR)/' $(SOURCES.map) > $@ ; \
+	fi
+
+# A dependancy of the form: $(ARCHDIR)/foo: $(ARCHDIR) ...
+# will always re-build foo.  (Because there's no way to tell make that
+# we're only interested in the existance of $(ARCHDIR), not it's timestamp.)
+# We do want $(ARCHDIR) to be created automatically, but we don't want to
+# duplicate all of the built-in so that we can add a test-and-create step
+# at the beginning.  And we want to eliminate the unnecessary re-builds.
+# So we create a bogus empty file in the $(ARCHDIR*) directories and make
+# other targets dependant on it instead of on the directory itself.
+
+# Create subdirectory for .o's if they aren't there
+$(ARCHDIR) $(ARCHDIR.g) $(ARCHDIR.xf) $(ARCHDIR.xa) $(ARCHDIR.pic) $(ARCHDIR.pic-g) :
+	if [ ! -d $@     ]; then mkdir $@;	fi
+	if [ ! -f $@/... ]; then touch $@/...;	fi
+
+$(ARCHDIR)/... $(ARCHDIR.g)/... $(ARCHDIR.xf)/... $(ARCHDIR.xa)/... \
+$(ARCHDIR.pic)/... $(ARCHDIR.pic-g)/... :
+	if [ ! -d `dirname $@`  ]; then mkdir `dirname $@`;	fi
+	if [ ! -f $@		]; then touch $@;		fi
+
+
+#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# psw targets
+#
+%_dps.c: %.psw
+	$(CC) -E -Xs -C $(CPPFLAGS) $< | ( $(PSWRAP) -a -h $*_dps.h -o $*_dps.c )
+%_dps.h: %.psw
+	touch $@
+
+#
+# Compile .c's into .o's
+#
+$(ARCHDIR)/%.o: %.c
+	$(CC) -c -O $(CFLAGS) $(CPPFLAGS) $< -o $@
+
+$(ARCHDIR.g)/%.o: %.c
+	$(CC) -c -g $(CFLAGS) $(CPPFLAGS) $< -o $@
+
+$(ARCHDIR.xf)/%.o: %.c
+	$(CC) -c -O -xF $(CFLAGS) $(CPPFLAGS) $< -o $@
+
+$(ARCHDIR.xa)/%.o: %.c
+	$(CC) -c -O -xa $(CFLAGS) $(CPPFLAGS) $< -o $@
+
+$(ARCHDIR.pic)/%.o: %.c
+	$(CC) -c -O $(PICFLAGS) $(CFLAGS) $(CPPFLAGS) $< -o $@
+
+$(ARCHDIR.pic-g)/%.o: %.c
+	$(CC) -c -g $(PICFLAGS) $(CFLAGS) $(CPPFLAGS) $< -o $@
+
+#
+# Link .o's into executables.  The executables reside in ARCHDIR. POST_LINK
+# lets tool specific makefiles do processing after the link -- mailtool
+# inserts build time/date for example.
+#
+$(ARCHDIR)/$(PROGRAM): $(ARCHDIR)/... $(SOURCES) $(TARGETS) $(OBJECTS)
+	$(LINK.c) $(OBJECTS) $(LDLIBS) -o $@
+	@$(POST_LINK)
+
+$(ARCHDIR.g)/$(PROGRAM.g): $(ARCHDIR.g)/... $(SOURCES) $(TARGETS) $(OBJECTS.g)
+	$(LINK.c) $(OBJECTS.g) $(LDLIBS) -o $@
+	@$(POST_LINK)
+
+$(ARCHDIR.xf)/$(PROGRAM.xf): $(ARCHDIR.xf)/... $(SOURCES) $(TARGETS) \
+				$(OBJECTS.xf)
+	$(LINK.c) $(OBJECTS.xf) $(LDLIBS) -o $@
+	@$(POST_LINK)
+
+$(ARCHDIR.xa)/$(PROGRAM.xa): $(ARCHDIR.xa)/... $(SOURCES) $(TARGETS) \
+				$(OBJECTS.xa)
+	$(LINK.c) -xa $(OBJECTS.xa) $(LDLIBS) -o $@
+	@$(POST_LINK)
+
+$(ARCHDIR.xf)/$(PROGRAM.reorder): $(ARCHDIR.xf)/... $(SOURCES) $(TARGETS) \
+				  $(OBJECTS.xf) 
+	$(LINK.c) -M $(SOURCES.map) $(OBJECTS.xf) $(LDLIBS) -o $@
+	@$(POST_LINK)
+
+$(ARCHDIR.g)/$(PROGRAM.pure): $(ARCHDIR.g)/... $(SOURCES) $(TARGETS) \
+				$(OBJECTS.g) 
+	$(PURIFY) $(LINK.c) $(OBJECTS.g) $(LDLIBS) -o $@
+	@$(POST_LINK)
+
+#
+# Convenience targets for building programs.  We create a symbolic link
+# to the executable to make it easier to get to.
+#
+$(PROGRAM): $(ARCHDIR)/$$@
+	rm -f $@; ln -s $(ARCHDIR)/$@ .
+
+$(PROGRAM.g) $(PROGRAM.pure): $(ARCHDIR.g)/$$@
+	rm -f $@; ln -s $(ARCHDIR.g)/$@ .
+
+$(PROGRAM.xf) $(PROGRAM.reorder): $(ARCHDIR.xf)/$$@
+	rm -f $@; ln -s $(ARCHDIR.xf)/$@ .
+
+$(PROGRAM.xa): $(ARCHDIR.xa)/$$@
+	rm -f $@; ln -s $(ARCHDIR.xa)/$@ .
+
+# More convenience targets
+debug g:	$(PROGRAM.g)
+xf:		$(PROGRAM.xf)
+xa:		$(PROGRAM.xa)
+reorder:	$(PROGRAM.reorder)
+purify pure:	$(PROGRAM.pure)
+
+#
+# Archive .o's into static library. 
+#
+$(ARCHDIR)/$(LIBRARY.a): $(ARCHDIR)/... $(OBJECTS) $(OBJECTS_SA)
+	ar ruv $@ $(OBJECTS) $(OBJECTS_SA)
+	$(RANLIB) $@
+
+$(ARCHDIR.g)/$(LIBRARY.a): $(ARCHDIR.g)/... $(OBJECTS.g) $(OBJECTS_SA.g)
+	ar ruv $@ $(OBJECTS.g) $(OBJECTS_SA.g)
+	$(RANLIB) $@
+
+$(ARCHDIR.xf)/$(LIBRARY.a): $(ARCHDIR.xf)/... $(OBJECTS.xf) $(OBJECTS_SA.xf)
+	ar ruv $@ $(OBJECTS.xf) $(OBJECTS_SA.xf)
+	$(RANLIB) $@
+
+$(ARCHDIR.xa)/$(LIBRARY.a): $(ARCHDIR.xa)/... $(OBJECTS.xa) $(OBJECTS_SA.xa)
+	ar ruv $@ $(OBJECTS.xa) $(OBJECTS_SA.xa)
+	$(RANLIB) $@
+
+#
+# Link .o's into .so library.  Place a symbolic link in the directory
+# where the .a and .sa live so we can find all the libs in one spot
+#
+$(ARCHDIR.pic)/$(LIBRARY.so): $(ARCHDIR.pic)/... $(OBJECTS.pic)
+	$(CC) $(LIB_LDFLAGS) $(OBJECTS.pic) -o $@
+	rm -f $(ARCHDIR)/$(LIBRARY.so); \
+	ln -s ../$(ARCHDIR.pic)/$(LIBRARY.so) $(ARCHDIR);\
+
+$(ARCHDIR.pic-g)/$(LIBRARY.so): $(ARCHDIR.pic-g)/... $(OBJECTS.pic-g)
+	$(CC) $(LIB_LDFLAGS) $(OBJECTS.pic-g) -o $@
+	rm -f $(ARCHDIR.g)/$(LIBRARY.so); \
+	ln -s ../$(ARCHDIR.pic-g)/$(LIBRARY.so) $(ARCHDIR.g);\
+
+#
+# Archive .o's into .sa portion of a dynamic library
+#
+$(ARCHDIR)/$(LIBRARY.sa): $(ARCHDIR) $(OBJECTS_SA)
+	ar rv $@ $(OBJECTS_SA)
+	$(RANLIB) $@
+
+$(ARCHDIR.g)/$(LIBRARY.sa): $(ARCHDIR.g) $(OBJECTS_SA.g)
+	ar rv $@ $(OBJECTS_SA.g)
+	$(RANLIB) $@
+
+$(ARCHDIR.xa)/$(LIBRARY.sa): $(ARCHDIR.xa) $(OBJECTS_SA.xa)
+	ar rv $@ $(OBJECTS_SA.xa)
+	$(RANLIB) $@
+
+#
+# Convenience targets for libraries.  We place a symbolic link to the
+# library in the current directory for convenience.
+#
+$(LIBRARY.a): $(ARCHDIR)/$(LIBRARY.a)
+	rm -f $(LIBRARY.a); ln -s $? .
+$(LIBRARY.a)-g: $(ARCHDIR.g)/$(LIBRARY.a)
+	rm -f $(LIBRARY.a); ln -s $? .
+$(LIBRARY.a)-xf: $(ARCHDIR.xf)/$(LIBRARY.a)
+	rm -f $(LIBRARY.a); ln -s $? .
+$(LIBRARY.a)-xa: $(ARCHDIR.xa)/$(LIBRARY.a)
+	rm -f $(LIBRARY.a); ln -s $? .
+
+$(LIBRARY.sa): $(ARCHDIR)/$(LIBRARY.sa)
+	rm -f $(LIBRARY.sa); ln -s $? .
+$(LIBRARY.sa)-g: $(ARCHDIR.g)/$(LIBRARY.sa)
+	rm -f $(LIBRARY.sa); ln -s $? .
+$(LIBRARY.sa)-xa: $(ARCHDIR.xa)/$(LIBRARY.sa)
+	rm -f $(LIBRARY.sa); ln -s $? .
+
+$(LIBRARY.so): $(ARCHDIR.pic)/$(LIBRARY.so)
+	rm -f $(LIBRARY.so); ln -s $? .
+	if [ X$(LIBVERSION) != X ]; then \
+		rm -f $(LIBRARY).so; \
+		ln -s $? $(LIBRARY).so; \
+	fi
+
+$(LIBRARY.so)-g: $(ARCHDIR.pic-g)/$(LIBRARY.so)
+	rm -f $(LIBRARY.so); ln -s $? .
+	if [ X$(LIBVERSION) != X ]; then \
+		rm -f $(LIBRARY).so; \
+		ln -s $? $(LIBRARY).so; \
+	fi
+
+#
+# Target for compiling Tool Talk types file into a Classing Engine file
+#
+# XXX dipol 10/7/92: This is no longer needed since tooltalk now uses
+# straight XDR. We should remove this after the code handoff.
+#
+$(PROGRAM).types.ce: $(SOURCES.types)
+	$(TT_TYPE_COMP) $(SOURCES.types)
+
+#
+# Installation.  Tool's individual makefile must define the target "install"
+# For example:
+#
+# install: install_reorder_bins install_info install_man
+#
+
+# Install "normal" (non-reordered) binary
+install_normal_bins:: $(ARCHDIR)/$(PROGRAM)
+	-@echo "$(ARCHDIR)/$(PROGRAM): Replacing .comment section"; \
+	mcs -d $(ARCHDIR)/$(PROGRAM); \
+	mcs -a "$(PROGRAM) $(COMMENT_STRING)" $(ARCHDIR)/$(PROGRAM); \
+	rm -f $(DESTDIR.bin)/$(PROGRAM); \
+	$(INSTALL) -m 755 -f $(DESTDIR.bin) $(ARCHDIR)/$(PROGRAM)
+
+# Install reordered binary.
+install_reorder_bins:: $(ARCHDIR.xf)/$(PROGRAM.reorder)
+	-@echo "$(ARCHDIR.xf)/$(PROGRAM): Replacing .comment section"; \
+	mcs -d $(ARCHDIR.xf)/$(PROGRAM); \
+	mcs -a "$(PROGRAM) $(COMMENT_STRING)" $(ARCHDIR.xf)/$(PROGRAM); \
+	rm -f $(DESTDIR.bin)/$(PROGRAM); \
+	$(INSTALL) -m 755 -f $(DESTDIR.bin) $(ARCHDIR.xf)/$(PROGRAM.reorder); \
+	echo "Renaming $(PROGRAM.reorder) to $(PROGRAM)"; \
+	mv -f $(DESTDIR.bin)/$(PROGRAM.reorder) $(DESTDIR.bin)/$(PROGRAM)
+
+# Install libraries
+install_libs:: install_lib_bins install_lib_links
+
+# Install library binaries
+install_lib_bins:: $(ARCHDIR)/$(LIBRARY.a) $(ARCHDIR)/$(LIBRARY.sa) \
+			$(ARCHDIR.pic)/$(LIBRARY.so)
+	-@for i in $(LIBRARIES); do \
+		rm -f $(DESTDIR.lib)/$$i; \
+		if [ -f $(ARCHDIR.pic)/$$i ]; then \
+			echo "$(ARCHDIR.pic)/$$i: Replacing .comment section"; \
+			mcs -d $(ARCHDIR.pic)/$$i; \
+			mcs -a "$$i $(COMMENT_STRING)" $(ARCHDIR.pic)/$$i; \
+			$(INSTALL) -m 755 -f $(DESTDIR.lib) $(ARCHDIR.pic)/$$i; \
+		elif [ -f $(ARCHDIR)/$$i ]; then \
+			$(INSTALL) -m 755 -f $(DESTDIR.lib) $(ARCHDIR)/$$i; \
+		fi; \
+	done;
+
+# If there is a version number create a symbolic link so we can access
+# the library through a name without version numbers.
+install_lib_links:: 
+	-@if [ X$(LIBVERSION) != X ]; then \
+	for i in $(LIBLINKS); do \
+		if [ -f $(DESTDIR.lib)/$$i$(LIBVERSION) ]; then \
+			rm -f $(DESTDIR.lib)/$$i; \
+			echo "ln -s ./$$i$(LIBVERSION) $(DESTDIR.lib)/$$i"; \
+			ln -s ./$$i$(LIBVERSION) $(DESTDIR.lib)/$$i; \
+		fi; \
+	done; \
+	fi;
+
+# Install shell scripts
+install_scripts:: $(SOURCES.sh)
+	-@if [ ! -d $(DESTDIR.sh) ]; then \
+		mkdir -p $(DESTDIR.sh); \
+	fi
+	-@for i in $(SOURCES.sh); do \
+		rm -f $(DESTDIR.sh)/$$i; \
+		$(INSTALL) -m 755 -f $(DESTDIR.sh) $$i; \
+	done
+
+# Install postscript files
+install_ps:: $(SOURCES.ps)
+	-@if [ ! -d $(DESTDIR.ps) ]; then \
+		mkdir -p $(DESTDIR.ps); \
+	fi
+	-@for i in $(SOURCES.ps); do \
+		rm -f $(DESTDIR.ps)/$$i; \
+		$(INSTALL) -m 644 -f $(DESTDIR.ps) $$i; \
+	done
+
+# Install template files (used with mailtool)
+install_tpl:: $(SOURCES.tpl)
+	-@if [ ! -d $(DESTDIR.tpl) ]; then \
+		mkdir -p $(DESTDIR.tpl); \
+	fi
+	-@for i in $(SOURCES.tpl); do \
+		rm -f $(DESTDIR.tpl)/$$i; \
+		$(INSTALL) -m 644 -f $(DESTDIR.tpl) $$i; \
+	done
+
+# Install info help files
+install_info:: $(SOURCES.info)
+	-@if [ ! -d $(DESTDIR.info) ]; then \
+		mkdir -p $(DESTDIR.info); \
+	fi
+	-@for i in $(SOURCES.info); do \
+		rm -f $(DESTDIR.info)/$$i; \
+		$(INSTALL) -m 644 -f $(DESTDIR.info) $$i; \
+	done
+
+# Install man pages
+install_man:: $(SOURCES.man)
+	@if [ ! -d $(DESTDIR.man) ]; then \
+		mkdir -p $(DESTDIR.man); \
+	fi
+	for i in $(SOURCES.man); do \
+		rm -f $(DESTDIR.man)/$$i; \
+		$(INSTALL) -m 644 -f $(DESTDIR.man) $$i; \
+	done
+
+# Compile types file and merge it into tooltalk database
+install_tt_types:: $(SOURCES.types)
+	-@echo "Merging ToolTalk types into $(DESTDIR.tt)/types.xdr"; \
+	if [ ! -d $(DESTDIR.tt) ]; then \
+		mkdir -p $(DESTDIR.tt); \
+	fi
+	OPENWINHOME=$(DESTDIR);export OPENWINHOME; \
+	LD_LIBRARY_PATH=${WIN_HOME}/lib; export LD_LIBRARY_PATH; \
+	$(TT_TYPE_COMP) -d network $(SOURCES.types)
+
+# Install icon files
+install_icons:: $(SOURCES.icon)
+	-@if [ ! -d $(DESTDIR.icon) ]; then \
+		mkdir -p $(DESTDIR.icon); \
+	fi
+	-@for i in $(SOURCES.icon); do \
+		rm -f $(DESTDIR.icon)/$$i; \
+		$(INSTALL) -m 644 -f $(DESTDIR.icon) $$i; \
+	done
+
+# Install public include
+install_public_h:: $(SOURCES.public.h)
+	-@if [ ! -d $(DESTDIR.public.h) ]; then \
+		mkdir -p $(DESTDIR.public.h); \
+	fi
+	-@for i in $(SOURCES.public.h); do \
+		rm -f $(DESTDIR.public.h)/$$i; \
+		$(INSTALL) -m 644 -f $(DESTDIR.public.h) $$i; \
+	done
+
+# Install public demo source
+install_public_source:: $(SOURCES.pub)
+	-@if [ ! -d $(DESTDIR.pub) ]; then \
+		mkdir -p $(DESTDIR.pub); \
+	fi
+	-@for i in $(SOURCES.pub); do \
+		rm -f $(DESTDIR.pub)/$$i; \
+		$(INSTALL) -m 644 -f $(DESTDIR.pub) $$i; \
+	done
+
+#
+# String extraction.
+#
+strings_single_domain: $(SOURCES.c)
+	-@echo "Extracting strings:"; \
+	for i in $(TEXTDOMAIN) ; do \
+		rm -f $(DESTDIR.po)/$$i.po; \
+		echo "#" >$(DESTDIR.po)/$$i.po; \
+		echo "domain \"$$i\"" >> $(DESTDIR.po)/$$i.po; \
+	done; \
+	for i in $(SOURCES.c) ; do \
+		echo "$$i"; \
+		$(COMPILE.c) -E -C $$i | $(XGETTEXT) -d $(TEXTDOMAIN) $(XGETTEXT_OPTS); \
+	done
+
+strings_multi_domain: $(SOURCES.c)
+	-@echo "Extracting strings:"; \
+	for i in $(TEXTDOMAIN) ; do \
+		rm -f $(DESTDIR.po)/$$i.po; \
+	done; \
+	for i in $(SOURCES.c) ; do \
+		echo "$$i"; \
+		$(COMPILE.c) -E -C -DXGETTEXT $$i | $(XGETTEXT) $(XGETTEXT_OPTS); \
+	done
+
+saber_src: $(SOURCES) $(TARGETS) $(OBJECTS)
+	#load $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) $(TARGET_ARCH) $(SOURCES.c) $(SOURCES.c) $(TARGETS.c) $(LDLIBS)
+
+saber_obj: $(OBJECTS) 
+	#load $(CFLAGS) $(LDFLAGS) $(TARGET_ARCH) $(OBJECTS) $(LDLIBS)
+
+lint:
+	$(LINT.c) $(SOURCES.c)
+
+tags: $(SOURCES.c)
+	ctags -w $(SOURCES.c)
+
+etags: $(SOURCES.c)
+	etags -w $(SOURCES.c)
+
+master_clean:
+	-if [ $(PROGRAM) ]; then \
+		rm -f $(PROGRAM) $(PROGRAM.xf) $(PROGRAM.g) \
+		       $(PROGRAM.reorder)  $(PROGRAM.pure); \
+	fi
+	-rm -f core *.o *% *~ tags TAGS *.BAK errs *.ce
+	-rm -rf $(ARCHDIR) $(ARCHDIR.g) $(ARCHDIR.xf) $(ARCHDIR.pic) \
+		$(ARCHDIR.pic-g)
+
+master_clobber: master_clean
+	sccs clean
+
+FORCE:

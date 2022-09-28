@@ -1,0 +1,109 @@
+DESCRIPTION
+
+	The StaticText widget provides a way to present an uneditable block of text.
+	There are a number of layout controls the application can specify for
+	a StaticText widget:
+		. Word wrapping - automatically wrap text that is too long to fit
+		. Text clipping - if not wrapped, text that is too long to fit in
+				  width and height will be clipped
+		. Space stripping - strip out all leading & trailing spaces
+		
+	StaticText can also be selected for copy and paste operations (works the
+	same as other OLIT textual object selection).
+
+	For more detailed information on the StaticText Widget, see the following
+	Sections in the OPEN LOOK Intrinsics Toolkit Widget Set Reference Manual:
+		. StaticText
+
+EXAMPLE CODE
+
+The following code could be used to Create the example StaticText Widget shown 
+in the Table (All color specific code has been removed for simplification):
+
+/*********************************************************************************/
+#include <X11/Intrinsic.h>
+#include <X11/StringDefs.h>
+#include <Xol/OpenLook.h>
+#include <Xol/StaticText.h>
+#include <Xol/ControlAre.h>
+
+static char string[] = "I cannot be edited.\nBut Go ahead and try...\nMake my day!";
+
+main(argc, argv)
+int argc;
+char **argv;
+{
+	Widget toplevel, text, controlarea;
+	XtAppContext app;
+
+	OlToolkitInitialize(NULL);
+	toplevel = XtAppInitialize(&app, "Test", 
+				(XrmOptionDescRec *)NULL,
+				(Cardinal)0, (int *)&argc, argv,
+				(String *)NULL, (ArgList)NULL, 0);
+
+	controlarea = XtVaCreateManagedWidget("controls",
+			controlAreaWidgetClass,
+			toplevel, 
+			NULL);
+
+
+	text = XtVaCreateManagedWidget("statictext",
+			staticTextWidgetClass, 
+			controlarea,
+			XtNstring,		(XtArgVal)string,
+			XtNrecomputeSize,	(XtArgVal)False,
+			XtNwidth,		(XtArgVal)200,
+			XtNheight,		(XtArgVal)140,
+			XtNalignment,		(XtArgVal)OL_CENTER,
+			XtNgravity,		(XtArgVal)CenterGravity,
+			NULL);
+
+	XtRealizeWidget(toplevel);
+
+	XtAppMainLoop(app);
+
+}
+/****************************END EXAMPLE****************************/
+			
+
+RESOURCES
+_______________________________________________________________________________________________
+
+Resource Name		Type		Default		Brief Description
+_______________________________________________________________________________________________
+
+XtNaccelerator		String		NULL		String which defines accelerator key
+XtNacceleratorText	String		Dynamic		string to be displayed as accelerator
+XtNalignment		OlDefine	OL_LEFT		text alignment
+XtNancestorSensitive	Boolean		TRUE		Will immediate parent receive events?
+XtNbackground		Pixel		White		background color of widget
+XtNbackgroundPixmap	Pixmap		(none)		pixmap used for tiling the background
+XtNborderColor		Pixel		Black		border color of widget
+XtNborderPixmap		Pixmap		(none)		pixmap used for tiling the border
+XtNborderWidth		Dimension	0		width of widget's border in pixels
+XtNconsumeEvent		XtCallbackList	NULL		called when event occur
+XtNdepth		int		(parent's)	number of bits used for each pixel
+XtNdestroyCallback	XtCallbackList	NULL		routines called when widget destroyed
+XtNfont			XFontStruct*	(OPENLOOK font)	pointer to font used to display text
+XtNfontColor		Pixel		Black		text font's color
+XtNforeground		Pixel		Black		foreground color of widget
+XtNgravity		OlDefine	WestGravity	controls use of extra space in widget
+XtNheight		Dimension	(calculated)	height of widget's window in pixels
+XtNinputFocusColor	Pixel		Red		color of input focus indicator
+XtNlineSpace		int		0		space in pixels between lines of text
+XtNmappedWhenManaged	Boolean		TRUE		will widget be mapped when managed?
+XtNmnemonic		Usigned char	NULL		key used to activate widget
+XtNrecomputeSize	Boolean		TRUE		should widget calculate size ?
+XtNreferenceName	String		NULL		see manpage		
+XtNreferenceWidget	Widget		NULL		see manpage
+XtNsensitive		Boolean		TRUE		will widget receive input events?
+XtNstring		String		NULL		ptr to string used for source text
+XtNstrip		Boolean		TRUE		strip out leading/trailing spaces?
+XtNtraversalOn		Boolean		TRUE		is mouseless turned "on" for widget?
+XtNuserData		XtPointer	NULL		storage for user defined data
+XtNwidth		Dimension	(calculated)	width of widget's window in pixels
+XtNwrap			Boolean		TRUE		wrap text too long to fit in width?
+XtNx			Position	0		x coord of widget's upper left corner
+XtNy			Position	0		y coord of widget's uuper left corner
+

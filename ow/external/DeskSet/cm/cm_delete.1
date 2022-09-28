@@ -1,0 +1,214 @@
+.\" Copyright (c) 1994 - Sun Microsystems, Inc.
+.TH cm_delete 1 "9 March 1992"
+.IX "cm_delete" "" "\f3cm_delete\f1(1) \(em delete calendar appointments from command line" ""
+.IX "calendar" "delete" "Calendar Manager" "delete calendar appointments \(em \f3cm_delete\f1(1)"
+.SH NAME
+cm_delete \- delete appointments from Calendar Manager database
+.SH SYNOPSIS
+.B cm_delete 
+[
+.BI -c \ calendar
+] [
+.BI -d \ date
+] [
+.BI -v \ view
+]
+.SH DESCRIPTION
+.LP
+The
+.B cm_delete
+utility is a tty interface to Calendar Manager
+.BR cm (1).
+It can be used to delete appointments from the cm
+database via the RPC daemon
+.BR rpc.cmsd (1).
+Appointments are deleted one at a time.  Each of the components of an
+appointment is specified using one of the command line flags followed
+by the desired value.  The current list of appointments for the
+specified date (see date, view options) is displayed, numbered sequentially
+starting with 1.  User is prompted for the number to delete.
+Once an appointment
+is deleted, the list of remaining appointments is redisplayed.  At this point
+the user may specify another number, or just <return> to quit.
+.SH OPTIONS
+.TP 10
+.BI \-c " calendar"
+The name of the target
+calendar.  Calendar names take the form
+"user@host", where the user is a user's login
+name and the host is the host machine name.
+An example is "felix@cat".  If no target
+calendar is specified, calendar defaults to
+the current user at the current host machine.
+.TP
+.BI \-d " date"
+The deletion date for the appointment.  The
+date is specified using the form "mm/dd/yy",
+although certain other references such as
+"today", "Tuesday", "tomorrow", etc. are
+correctly calculated.  If no date is
+specified, date defaults to today's date.
+.TP
+.BI \-v " view"
+View span.  This controls the span of
+time to display.  The user may specify "day",
+"week", or "month".  The "day" view displays
+all appointments for the given date (see -d
+option above).  The "week" view displays the
+full week which contains the given date,
+starting with Sunday.  The "month" view
+displays the entire month which contains the
+given date, starting with the first of the
+month. The default view is "day".
+
+.SH USAGE
+.LP
+The various components of an appointment are specified using
+command line flags followed by the desired value.  Values
+may have embedded spaces, punctuation, etc., although
+quotes may be needed around strings which contain certain
+characters to protect them from interpretation by the local
+shell (e.g. /bin/csh).  An argument is taken to begin at
+the first space after a flag and to continue until the
+first "-" after a space.
+.SH EXAMPLE
+.LP 2
+The simplest form of
+.B cm_delete
+has no arguments:
+.RS
+.ft B
+.sp 2
+.nf
+example% cm_delete
+Appointments for Tuesday September 25, 1990:
+        1) Appointment
+        2) 10:30am-10:45am Morning Tea
+        3) 2:00pm-3:00pm Staff meeting
+        4) 4:30pm-5:30pm Phone home
+Item to delete (number)? 2
+
+Appointments for Tuesday September 25, 1990:
+        1) Appointment
+        2) 2:00pm-3:00pm Staff meeting
+        3) 4:30pm-5:30pm Phone home
+
+Item to delete (number)?
+
+
+example%
+.fi
+.ft R
+.RE
+
+.LP 2
+To delete at a specific date:
+.RS
+.ft B
+.sp 2
+.nf
+example% cm_delete -d 09/26/90
+Appointments for Wednesday September 26, 1990:
+        1) 11:00am-12:00pm Appointment
+        2) 11:30am-12:30pm Group Lunch
+        3) 4:00pm-5:00pm Tech Interview
+
+Item to delete (number)? 1
+
+Appointments for Wednesday September 26, 1990:
+        1) 11:30am-12:30pm Group Lunch
+        2) 4:00pm-5:00pm Tech Interview
+
+Item to delete (number)?
+
+
+example%
+.fi
+.ft R
+.RE
+
+.LP 2
+To delete from a specific target calendar:
+.RS
+.ft B
+.sp 2
+.nf
+example% cm_delete -c felix@cat
+Appointments for Tuesday September 25, 1990:
+        1) Appointment
+        2) 10:15am-10:30am Coffee
+        3) 11:15am-11:30am Doughnuts
+        4) 2:00pm-2:15pm Coffee
+        5) 3:30pm-3:45pm Snack
+        6) 4:30pm-4:45pm Coffee
+
+Item to delete (number)? 5
+
+Appointments for Tuesday September 25, 1990:
+        1) Appointment
+        2) 10:15am-10:30am Coffee
+        3) 11:15am-11:30am Doughnuts
+        4) 2:00pm-2:15pm Coffee
+        5) 4:30pm-4:45pm Coffee
+
+Item to delete (number)?
+
+
+example%
+.fi
+.ft R
+.RE
+
+.LP 2
+To delete multiple appointments:
+.RS
+.ft B
+.sp 2
+.nf
+example% cm_delete
+Appointments for Tuesday September 25, 1990:
+        1) Appointment
+        2) 10:15am-10:30am Coffee
+        3) 11:15am-11:30am Doughnuts
+        4) 2:00pm-2:15pm Coffee
+        5) 3:30pm-3:45pm Snack
+        6) 4:30pm-4:45pm Coffee
+
+Item to delete (number)? 5
+
+Appointments for Tuesday September 25, 1990:
+        1) Appointment
+        2) 10:15am-10:30am Coffee
+        3) 11:15am-11:30am Doughnuts
+        4) 2:00pm-2:15pm Coffee
+        5) 4:30pm-4:45pm Coffee
+
+Item to delete (number)? 3
+
+Appointments for Tuesday September 25, 1990:
+        1) Appointment
+        2) 10:15am-10:30am Coffee
+        3) 2:00pm-2:15pm Coffee
+        4) 4:30pm-4:45pm Coffee
+
+Item to delete (number)?
+
+
+example%
+.fi
+.ft R
+.RE
+
+.SH FILES
+.TP 10
+.PD 0
+.B /usr/spool/calendar/callog.username
+.TP
+.BR "/usr/etc/rpc.cmsd " or " $OPENWINHOME/rpc.cmsd"
+.PD
+.SH SEE ALSO
+.BR rpc.cmsd (1),
+.BR cm_insert (1),
+.BR cm_lookup (1),
+.BR cm (1)
+

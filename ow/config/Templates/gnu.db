@@ -1,0 +1,35 @@
+#
+# @(#)gnu.db	1.1	92/12/03
+#
+
+#
+# Clients and other executables
+# =============================
+# name          location    Buildtype
+# ----          --------    ---------
+olbiff		bin	    debug
+olitsampler	bin	    debug
+olittable	bin	    debug
+olmh		bin	    debug
+xmh		bin	    debug
+xterm		bin	    debug
+
+#
+# User/client libraries
+# =====================
+# name    location  Buildtype Linktype
+# ----    --------  --------- --------
+
+Xaw	  lib       debug
+Xol	  lib       debug
+Xt	  lib       debug
+
+X11        lib       nobuild   -L${OWNIGHTLY}/lib,-lX11
+Xau        lib       nobuild   -L${OWNIGHTLY}/lib,-lXau
+Xdmcp      lib       nobuild   -L${OWNIGHTLY}/lib,-lXdmcp
+Xext       lib	     nobuild   -L${OWNIGHTLY}/lib,-lXext
+Xinput     lib	     nobuild   -L${OWNIGHTLY}/lib,-lXinput
+Xmu        lib       nobuild   -L${OWNIGHTLY}/lib,-lXmu
+
+
+include <${SOURCEDIR}/config/Templates/nobuild.db>

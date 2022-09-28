@@ -1,0 +1,54 @@
+
+ptype Sun_MA_textedit
+{
+start "olit_tt";
+per_session 5;
+handle:
+/*     
+ *
+ * Optional extra arguments for these requests:
+ *            in    string      title
+ *            in    messageID   text
+ */
+/* content display */
+session Display (in ISO_Latin_1 text) => start;
+session Display (in ISO_Latin_1 text, in title text) => start;
+session Display (in ISO_Latin_1 text, in messageID text) => start;
+session Display (in ISO_Latin_1 text, in messageID text, in title text) => start;
+
+/* content compose */
+session Edit (out ISO_Latin_1 text) => start;
+session Edit (out ISO_Latin_1 text, in title text) => start;
+session Edit (out ISO_Latin_1 text, in messageID text) => start;
+session Edit (out ISO_Latin_1 text, in messageID text, in title text) => start;
+
+/* content edits */
+session Edit (inout ISO_Latin_1 text) => start;
+session Edit (inout ISO_Latin_1 text, in title text) => start;
+session Edit (inout ISO_Latin_1 text, in messageID text) => start;
+session Edit (inout ISO_Latin_1 text, in messageID text, in title text) => start;
+
+/*
+ * Optional extra arguments for these requests:
+ *            in    string    title
+ *            in    messageID   text
+ */
+
+/* file display */
+file Display (in ISO_Latin_1 text) => start;
+file Display (in ISO_Latin_1 text, in title text) => start;
+file Display (in ISO_Latin_1 text, in messageID text) => start;
+file Display (in ISO_Latin_1 text, in messageID text, in title text) => start;
+
+/* file compose */
+file Edit (out ISO_Latin_1 text) => start;
+file Edit (out ISO_Latin_1 text, in title text) => start;
+file Edit (out ISO_Latin_1 text, in messageID text) => start;
+file Edit (out ISO_Latin_1 text, in messageID text, in title text) => start;
+
+/* file edits */
+file Edit (inout ISO_Latin_1 text) => start;
+file Edit (inout ISO_Latin_1 text, in title text) => start;
+file Edit (inout ISO_Latin_1 text, in messageID text) => start;
+file Edit (inout ISO_Latin_1 text, in messageID text, in title text) => start;
+};

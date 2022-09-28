@@ -1,0 +1,1979 @@
+##################################################
+#	cm.info		July 11, 1991
+##################################################
+##################################################
+#	OpenWindows Version 3 FCS rev'd by James Brook
+#	Revised for OWV3.0.1 27 October 1991 by James Brook
+#	Edited for s493 22 October 1992 by Mary Hamilton
+#	  - chged AddBcc to Addbcc
+#	  - flagged Addcc to be chged to Addbcc when
+#	    keyword is chged in code
+#	6 Nov. 1992	revised for new AE and MB replacement
+##################################################
+
+######################50##########################
+:CommandPanel:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#The cm control area around the buttons.
+Control Area
+
+These buttons control Calendar Manager:
+
+View	Changes the view of the calendar (day,
+	week, month, or year).
+
+Edit	Edits appointments or calendar properties.
+
+Browse	Provides access to other calendars.
+
+Print	Prints calendar information.
+
+Prev	Moves to the previous viewing unit (day,
+	week, month, or year).
+
+Today	Returns your calendar to today.
+
+Next	Moves to the next viewing unit (day,
+	week, month, or year).
+
+##################################################
+#	View menu
+##################################################
+:ViewButton:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#The View button
+View
+
+You can view the calendar, appointments, and
+To Do list by:
+
+- Day
+- Week
+- Month
+- Year
+
+Use these commands to change time zones, find 
+an appointment, or display a specific date:
+
+Time Zone	Select another time zone from 
+		the submenu.
+
+Find		Displays the Find window, where 
+		you can search for appointments.
+
+Go To		Displays the Go To Date window, 
+		where you can change your calendar
+		to display any date.
+
+######################50##########################
+:ViewDay:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#View -> Day menu item
+Day
+
+Displays the calendar information for one day.  
+Provides the most complete display of
+appointments.
+
+To see an appointment list or To Do list, 
+choose an option from the submenu:
+
+Appt List	Displays a list of appointments
+		for the day.
+
+ToDo List	Displays a list of things to do
+		for the day.
+
+##########This_Line_Is_50_Characters_Long#########
+
+:ViewWeek:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#View -> Week menu item.
+Week
+
+Displays the calendar information for a week. 
+
+Includes descriptions of appointments for the
+week and a chart showing allocated blocks of time.
+
+To see an appointment list or To Do list, choose 
+an option from the submenu:
+
+Appt List	Displays a list of appointments
+		for the week.
+
+ToDo List	Displays a list of things to do
+		for the week.
+
+:ViewMonth:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#View -> Month menu item.
+Month
+
+Displays the calendar information for a month.
+
+Shows as many appointments as possible at one
+time.
+
+To see an appointment list or To Do list, choose 
+an option from the submenu:
+
+Appt List	Displays a list of appointments
+		for the month.
+
+ToDo List	Displays a list of things to do
+		for the month.
+
+
+:ViewYear:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#View -> Year menu item.
+Year
+
+Displays the calendar for an entire year.  
+
+This view does not show any appointment 
+information--it shows only the layout of the
+days and months in a year.
+
+To see an appointment list or To Do list, choose 
+an option from the submenu:
+
+Appt List	Displays a list of appointments
+		for the year.
+
+ToDo List	Displays a list of things to do
+		for the year.
+
+:EditTimeZone:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#View -> Time Zone menu item.
+Time Zone
+
+You can choose another time zone from the
+submenu.
+
+:Find:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#View -> Find menu item.
+Find
+
+Displays the Find window, where you can search
+for appointments by specifying a search text
+and period.
+
+Keyboard shortcut: Meta-F
+
+##########This_Line_Is_50_Characters_Long#########
+:Goto:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#View -> Go To menu item.
+Go To
+
+Displays the Go To Date window, where you can 
+change your calendar to display any date.
+
+:GotoHelp:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#View -> Go To|Go To Date popup panel background.
+Go To Date
+
+Use this window to change your calendar to 
+display any date.
+
+Type a date (mm/dd/yy format) on the line and 
+click SELECT on the Go To button.  The current 
+view changes to display the specified date.
+
+:GotoDateHelp:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#View -> Go To|Go To Date Date: text field
+Date:
+
+Type a date (mm/dd/yy format) on the line and 
+click SELECT on the Go To button.  The current 
+view changes to display the specified date.
+
+:GotoAppt:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#View -> Go To|Go To Date Go To button
+Go To
+
+Click SELECT on Go To to change the 
+calendar view to the specified date.
+
+##########This_Line_Is_50_Characters_Long#########
+##################################################
+#	Edit menu
+##################################################
+
+:EditButton:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#The Edit button
+Edit
+
+Use these commands to edit appointments and 
+customize your calendar:
+
+Appointment	Displays the Appointment Editor
+		window.
+
+Properties	Displays the Properties window.
+
+:EditAppointment:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Edit -> Appointment menu item.
+Appointment
+
+Displays the Appointment Editor window, where
+you can change the appointments on the currently
+selected day.
+
+Keyboard shortcut: Meta-O
+
+##########This_Line_Is_50_Characters_Long#########
+:EditProperties:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Edit -> Properties menu item.
+Properties
+
+Displays the Properties window, where you can
+customize:
+
+- Editor Defaults
+- Display Settings
+- Access List and Permissions
+- Printer Settings
+- Date Format
+
+Keyboard shortcut:  Meta-I
+
+##########This_Line_Is_50_Characters_Long#########
+##################################################
+#	Browse menu
+##################################################
+
+:BrowseButton:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#The Browse button.
+Browse 
+
+Use these commands to look at other users'
+calendars:
+
+Show Multiple Calendars	Displays the Multiple
+			Calendars window, where
+			you can view overlaid 
+			calendars of several
+			other users, schedule
+			appointments, send mail,
+			and open another window
+			from which you can add 
+			users to the Browse menu.
+
+Show Calendar		Displays the Show Calendar
+			window, in which you can
+			type a user name
+			(user@machine), then 
+			click SELECT on the Show
+			button to display the
+			specified calendar.
+
+Setup Menu		Displays the Setup Menu
+			window, where you can 
+			add and remove users
+			from the Browse menu.
+			You can also edit 
+			Browse menu entries or 
+			sort them alphabetically.
+
+<Other choices>		User names you add in 
+			the Setup Menu window. 
+			Choose an entry to view 
+			the calendar for that 
+			user.
+
+
+##########This_Line_Is_50_Characters_Long#########
+:ManyBrowse:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Browse -> Show Multiple Calendars menu item.
+Show Multiple Calendars
+
+Displays the Multiple Calendars window, in which 
+you can view overlaid calendars of several other 
+users, schedule appointments, send mail, and open 
+another window from which you can add users to the 
+Browse menu.
+
+:SingleBrowse:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Browse -> Show Calendar menu item.
+Show Calendar
+
+Displays the Show Calendar window, in which you 
+can type a user name (user@machine), then click 
+SELECT on Show to display the specified calendar.
+
+:BrowseList:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Browse -> Setup Menu menu item.
+Setup Menu
+
+Displays the Setup Menu window, in which you can 
+add and remove users from the Browse menu.
+You can also edit Browse menu entries or 
+sort them alphabetically.
+
+##########This_Line_Is_50_Characters_Long#########
+:BrowseCalendar:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Browse -> user calendars menu items.
+<name@machine> Choices
+
+Choose an entry to view the calendar for that
+user.
+
+To return to your own calendar, choose your
+calendar name.
+
+You can add and delete users from this list in
+the Setup Menu window.
+
+##################################################
+#	Print menu
+##################################################
+##########This_Line_Is_50_Characters_Long#########
+
+:PrintButton:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#The Print button.
+Print
+
+Prints the view, the appointment list, or the
+To Do list for:
+
+- Day
+- Week
+- Month
+- Year
+
+You can change your default printer options in
+the Properties window.
+
+:PrintCurrent:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Print -> Current View menu item.
+Current View
+
+Prints the calendar you are viewing.
+
+Keyboard shortcut:  Meta-P
+
+:PrintDay:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Print -> Day menu item.
+Print Day
+
+Choose from the submenu to print:
+
+- Day View
+- Appt List
+- To Do List
+
+:PrintWeek:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Print -> Week menu item.
+Week
+
+Choose from the submenu to print:
+
+- Week View
+- Appt List
+- To Do List
+
+
+:PrintMonth:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Print -> Month menu item.
+Month
+
+Choose from the submenu to print:
+
+- Month View
+- Appt List
+- To Do List
+
+:PrintYear:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Print -> Year menu item.
+Year
+
+Yr View (Std)	Prints Year view in format close
+		to on-screen display.
+
+Yr View (Alt)	Prints Year view in linear format.
+
+Appt List	Prints the appointment list for
+		the selected day, week, month,
+		or year.
+
+To Do List	Prints the To Do list for the
+		selected day, week, month, or
+		year.
+
+##########This_Line_Is_50_Characters_Long#########
+:PrintYearStd:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Print -> Year -> Yr View (Std) menu item.
+Yr View (Std)
+
+Prints the Year view in standard format
+resembling on-screen display.
+
+:PrintYearAlt:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Print -> Year -> Yr View (Alt) menu item.
+Yr View (Alt)
+
+Prints the Year view in alternate, linear format.  
+
+:PrintAppt:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Print -> Day/Week/Month/Year -> Appt List menu items.
+Appt List
+
+Prints the appointment list for the selected day, 
+week, month, or year.
+
+:PrintTodo:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Print -> Day/Week/Month/Year -> To Do List menu items.
+To Do List
+
+Prints the To Do list for the selected day, week,
+month, or year.
+
+##########This_Line_Is_50_Characters_Long#########
+
+##################################################
+#	Prev, Today, and Next buttons
+##################################################
+
+:PrevButton:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Prev button
+Prev
+
+Click SELECT on Prev to display the previous unit
+of time.  
+
+If you are in a week view, it displays the 
+previous week; if in a month view, the previous
+month, and so on.
+
+:TodayButton:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Today button
+Today
+
+Click SELECT on Today to change the calendar
+display to the current day.
+
+:NextButton:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Next button
+Next
+
+Click SELECT on Next to display the next unit 
+of time.  
+
+If you are in a week view, it displays the next 
+week; if in a month view, the next month, and 
+so on.
+
+##########This_Line_Is_50_Characters_Long#########
+###############################################
+# View types
+################################################
+:YearView:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Select View -> Year, then help on the calendar displayed.
+Year View
+
+This view displays the current year in a common 
+calendar format.  
+
+Double-clicking on a month in this view switches
+the display to the month format, displaying the 
+information for the month that you clicked on. 
+
+Alternately, you may select the month to
+view by choosing Month from the View menu.
+
+:MonthView:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Select View -> Month, then help on the calendar displayed.
+Month View
+
+This view displays the current month in a format
+that allows you to see all of the appointments 
+for that month. 
+
+Resizing the window scales the view as 
+appropriate, letting you see more appointments
+on a given day.
+
+Double-clicking on a day in this view opens the
+Appointment Editor.
+
+Clicking on one of the date numbers in 
+this view displays the week view for that date.
+
+##########This_Line_Is_50_Characters_Long#########
+:WeekView:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Select View -> Week, then help on the calendar displayed.
+Week View
+
+This view displays the current week in two ways:
+
+- The text of all appointments for that week
+  (in a series of lists).
+- A graphical picture of the allocated 
+  time blocks (to make it easy to see free 
+  blocks of time).
+
+Resizing the window resizes the display.
+
+Clicking on one of the date numbers in 
+this view displays the day view for that date.
+
+:DayView:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Select View -> Day, then help on the calendar displayed.
+Day View
+
+This view provides the most complete listing of
+the appointments on any given day.  
+
+Resizing the window resizes the display.
+
+################################################
+# Appointment editor window
+################################################
+
+:DateField:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Appointment Editor (AE) Date: field.
+Date:
+
+Enter the date of the appointment in this field.
+
+You can change the format of the Date field in
+the Calendar Manager's Date Format Properties 
+window.
+
+##########This_Line_Is_50_Characters_Long#########
+:ApptTime:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#AE Start: label, field, abbr menu button, menu items.
+Start:
+
+Enter the starting time of the appointment 
+in this field. 
+
+Enter a whole number for an appointment that
+starts on the hour. For other times, use the
+format:
+	
+	HH:MM     (example =  4:23)
+
+You may leave the time blank. 
+
+Press MENU to choose from a submenu of times in
+15-minute intervals.
+
+Day Boundaries on the Display settings Properties 
+window determines the starting and ending times 
+on the submenu.
+
+:ApptTimeUnit:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#AE Start field am/pm.
+AM/PM
+
+Specify AM or PM for the starting time of the
+appointment.
+
+:ApptDuration:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#AE Stop: label, field, abbr menu button, menu items.
+Stop:
+
+Enter the ending time of the appointment in this 
+field. 
+
+Or press MENU on the menu button to choose from
+a submenu of times in 15-minute intervals.
+
+Day Boundaries on the Display settings Properties 
+window determines the starting and ending times 
+on the submenu.
+
+:ApptDurationUnit:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#AE Stop field am/pm.
+AM/PM
+
+Specify AM or PM for the ending time of the
+appointment.
+
+##########This_Line_Is_50_Characters_Long#########
+:UnitMenu:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#AE Alarm unit menu items.
+Mins/Hrs/Days
+
+Choose the units of time for the alarm.
+
+:RepeatStyle:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#AE Repeat: label, abbr menu button.
+Repeat:
+
+Press MENU over the abbreviated menu button to 
+choose a setting for how often the appointment 
+repeats.  
+
+"One Time" means the appointment occurs only once.
+The other values specify frequency.
+Use "Repeat Every" to customize the repeat interval.
+
+##########This_Line_Is_50_Characters_Long#########
+:RepeatUnit:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#AE Repeat menu items.
+Repeat Interval
+
+One Time		Do not repeat appointment.
+
+Daily			Repeat seven days a week.
+
+Weekly			Repeat at the same time 
+			every week.	
+
+Every Two Weeks		Repeat at the same time 
+			every other week.
+
+Monthly by Date		Repeat on the same-numbered
+			day of every month.  For 
+			example, the 6th of each 
+			month.
+
+Monthly by Weekday	Repeat on the same 
+			weekday each month.  For
+			example, the second Tues.
+			of each month.
+
+Yearly			Repeat on the same date
+			each year.
+
+Monday thru Friday	Repeat five days a week.
+
+Mon, Wed, Fri		Repeat Mon, Wed, and Fri.
+
+Tues, Thurs		Repeat Tues and Thurs
+
+Repeat Every		Displays the Repeat Every
+			window, from which you 
+			can customize the repeat
+			interval.
+
+##########This_Line_Is_50_Characters_Long#########
+:RepeatTimes:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#AE For: label, abbr menu button, text field, and units.
+For:
+
+If an appointment repeats, use this field to
+specify how many times it should repeat.
+
+Or press MENU on the button to choose a
+number. 
+
+If an appointment does not repeat, this item is
+dimmed.
+
+:PrivacyMenu:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#AE Privacy: label, abbr menu button, and menu items.
+Privacy:
+
+Use the Privacy setting to set up appointments 
+that you don't want others to see when they 
+browse your calendar.
+
+The options are:
+
+Show Time and Text	No privacy.
+
+Show Time Only		Time will be blocked out
+			on your calendar, but
+			the appointment contents 
+			will be private.
+
+Show Nothing		Complete privacy.
+
+##########This_Line_Is_50_Characters_Long#########
+:ReminderToggle:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#AE Alarm Beep, Flash, PopUp, and Mail buttons.
+Alarm:
+
+Specifies which reminders you want for this 
+appointment. Choose all the reminder styles you 
+want:
+
+Beep	Causes the computer to beep.
+
+Flash	Causes the Calendar Manager to flash.
+
+PopUp	Displays an appointment notice.
+
+Mail	Sends mail to a user or distribution
+	list.
+
+Use the text field and menu button to set how far
+in advance you want the reminder.
+
+##########This_Line_Is_50_Characters_Long#########
+:BeepAdvance:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#AE Alarm: Beep text field, abbrev. menu button, and units.
+Beep
+
+The amount of time in advance of the appointment 
+that you would like the beeper to go off. 
+
+This item is active only when Beep is selected.
+
+Use the button menu to choose minutes, hours, or
+days.
+
+:FlashAdvance:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#AE Alarm: Flash text field, abbrev. menu button, and units.
+Flash
+
+The amount of time in advance of the appointment 
+that you would like the flash to go off. 
+
+This item is active only when Flash is selected.
+
+Use the button menu to choose minutes, hours, or
+days.
+
+:OpenAdvance:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#AE Alarm: text field, popup abbrev. menu button, and units.
+PopUp
+
+The amount of time in advance of the appointment 
+that you would like the reminder notice to be 
+displayed. 
+
+This item is active only when Popup is selected.
+
+Use the button menu to choose minutes, hours, or
+days.
+
+:MailAdvance:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#AE Alarm: Mail text field, abbrev. menu button, and units.
+Mail
+
+The amount of time in advance of the appointment 
+that you would like the mail to be sent.
+
+This item is active only when Mail is selected.
+
+Use the button menu to choose minutes, hours, or
+days.
+
+:MailAddress:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#AE Mail To: label and text field.
+Mail To:
+
+Where to send the reminder.  
+
+This may be either an individual mail address 
+or a mail alias.  
+
+This item is active only when Mail is selected.
+
+##########This_Line_Is_50_Characters_Long#########
+###############################################
+# Properties pop-up window
+###############################################
+
+:PropsPanel:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Edit -> Properties|CM Properties panel background.
+Calendar Manager Properties
+
+Set options to customize your Calendar Manager.
+
+Press MENU on the Category menu button to
+choose from these categories:
+
+- Editor Defaults
+- Display Settings
+- Access List and Permissions
+- Printer Settings
+- Date Format
+
+##########This_Line_Is_50_Characters_Long#########
+:DefaultReminder:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+Alarm:
+
+Click SELECT on each reminder that will appear in
+the Appointment Editor window.  
+
+To return Alarm settings to the Defaults, click
+SELECT on the Defaults button. 
+
+:Mailto:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+Mail To:
+
+Enter the users to receive mail when you use the
+Mail Alarm.
+
+##########This_Line_Is_50_Characters_Long#########
+:ReminderPropsToggle:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+Alarm:
+
+Specifies which reminders you want to appear in
+the Appointment Editor by default.  
+
+Choose all the reminder styles you want:
+
+Beep	Causes the computer to beep.
+
+Flash	Causes the Calendar Manager to flash.
+
+PopUp	Displays an appointment notice.
+
+Mail	Sends mail to a user or distribution
+	list.
+
+
+###############################################
+# Access List and Permissions - Properties
+###############################################
+#######################50#########################
+
+:DefaultAccessLevel:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Edit -> Properties|Access List and Permissions Property window; 
+#Permissions field
+Permissions
+
+Click SELECT to set the permissions for the
+selected user:
+
+Browse	User can look at your appointments.
+
+Insert	User can add items to your calendar.
+
+Delete	User can delete items from your calendar.
+
+NOTE: By default, the "world" (all users on your
+network) has permission to browse your calendar.
+
+#######################50#########################
+:GroupAccessList:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Edit -> Properties|Access List and Permissions Property window;
+#User Name scrolling list
+List Box
+
+To add a user who will have access to your
+calendar: 
+
+1. Enter the name with the form "login@host" in
+   the User Name text field.
+
+2. Select the proper permissions (Browse, Insert,
+   Delete).
+
+3. Click SELECT on Add Name.
+
+4. Click SELECT on Apply.
+
+   
+To delete a user from the list:
+
+1. Select the name in the scrolling list.
+
+2. Click SELECT on Remove.
+
+3. Click SELECT on Apply.
+
+NOTE: By default, the "world" (all users on your
+network) has permission to browse your calendar.
+
+##########This_Line_Is_50_Characters_Long#########
+:GAUserName:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+User Name:
+
+Type in a user's name that you want to add to the 
+Browse menu.  
+
+Make sure the permissions are set the way you
+want them, then press Return or click on Add Name 
+to add the user name to the Browse menu.
+
+:GAAddName:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+Add Name
+
+After typing in a user's name that you want to
+add to the Browse menu, make sure the permissions 
+are set the way you want them, then click on 
+Add Name to add the user name to the Browse menu.
+
+:GARemove:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+Remove
+
+Click SELECT on a name or names in the Browse
+menu, then click on Remove to remove the selected
+names from the Browse menu.
+
+:GASortList:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+Sort List
+
+Click on Sort List to sort the Browse menu 
+alphabetically.
+
+:DefaultAccessAdd:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Access list scrolling list MENU mouse button item
+Add Name
+
+Adds the selected name to the list.
+
+:DefaultAccessDelete:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Access list scrolling list MENU mouse button item
+Delete Selected.
+
+Deletes the selected name from the list.
+
+###############################################
+# Day Boundaries and View - Properties
+###############################################
+##########This_Line_Is_50_Characters_Long#########
+:Location:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Edit -> Properties|Display Settings Property window;
+#User Calendar Location text field.
+User Calendar Location:
+
+Specify the machine on which your calendar file
+is located.  Your calendar may be located on a 
+machine other than your local one to facilitate
+regular backups.
+
+:DefaultDay:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Edit -> Properties|Display Settings Property window;
+#Day Boundaries label
+Day Boundaries:
+
+Specify the beginning and end of the day for
+the Week and Day views of the calendar by
+dragging SELECT on the Begin and End sliders.
+
+:DefaultDayBegin:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Edit -> Properties|Display Settings Property window;
+#Begin: label, slider, and display
+Begin:
+
+Specify the beginning of the day for the Week and
+Day views of the calendar by dragging SELECT on
+the Begin slider.
+
+Appointments before this time will not appear on
+the Day view of your calendar.
+
+#######################50########################
+:DefaultDayEnd:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Edit -> Properties|Display Settings Property window;
+#End: label, slider, and display
+End:
+
+Specify the end of the day for the Week and Day
+views of the calendar by dragging SELECT on the
+End slider.
+
+Appointments after this time will not appear on
+the Day view of your calendar.
+
+:DefaultView:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Edit -> Properties|Display Settings Property window;
+#Hour Display: label and settings
+Hour Display:
+
+Choose either 12 Hour (shows "am" and "pm") or
+24 Hour (military time).
+
+:DefaultDisp:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Edit -> Properties|Display Settings Property window;
+#Default View: label and settings
+Default View:
+
+Defines the default view for Calendar Manager.
+
+When the calendar opens, it will show the Year,
+Month, Week, or Day view, depending on your
+selection.
+
+:DefaultCal:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Edit -> Properties|Display Settings Property window;
+#Initial Calendar View: label and text field
+Default Calendar:
+
+Specify the default calendar you want to display.
+
+###############################################
+# Browser Calendars - Properties
+###############################################
+#######################50########################
+
+:DefaultApply:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Edit -> Properties|Display Settings Property window;
+#Apply button
+Apply
+
+Click SELECT on Apply to save the values you set
+in this category.
+
+Once you click on Apply, you cannot restore
+the previous values unless you re-enter them.
+
+:DefaultReset:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Edit -> Properties|Display Settings Property window;
+#Reset button
+Reset
+
+Restores values that you changed since last
+clicking SELECT on Apply.
+
+Once you click on Apply, you cannot restore
+the previous values unless you re-enter them.
+
+:DefaultDefaults:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Edit -> Properties|Display Settings Property window;
+#Defaults button
+Defaults
+
+Sets the values for this category to their
+defaults.
+
+##########This_Line_Is_50_Characters_Long#########
+#############################################
+#  Printer Settings
+##############################################
+
+#######################50########################
+:DestChoice:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Edit -> Properties|Printer Settings Property window;
+#Destination: label and settings
+Destination:
+
+Choose where the printer output will go: 
+
+Printer	Sends output directly to a printer.
+
+File	Writes output to a PostScript file.
+
+:PrinterName:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Edit -> Properties|Printer Settings Property window; 
+#Printer: label and text field (only if Destination is set to Printer)
+Printer:
+Enter the name of the printer you want to use.
+
+:Option:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Edit -> Properties|Printer Settings Property window; 
+#Options: label and text field (only if Destination is set to Printer)
+Options:
+
+You can enter operating system print command
+options here.
+
+The default is -h, which means the burst page is
+not printed. Delete this option if you want the
+burst page printed.
+
+#######################50########################
+:FileName:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Edit -> Properties|Printer Settings Property window; 
+#File: label and text field (only if Destination is set to File)
+File:
+
+Enter the name of the file you want to use to 
+store the output.
+
+:FileDir:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Edit -> Properties|Printer Settings Property window; 
+#Directory: label and text field (only if Destination is set to File)
+Directory:
+
+Enter the name of the directory you want to use
+to store the file.
+
+:OutputWidth:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Edit -> Properties|Printer Settings Property window;
+#Width: label and text field
+Width:
+
+Enter the width (in inches) of the printed image.
+
+:OutputHeight:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Edit -> Properties|Printer Settings Property window;
+#Height: label and text field
+Height:
+
+Enter the height (in inches) of the printed image.
+
+:PositionGroup:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Edit -> Properties|Printer Settings Property window;
+#Position: label
+Position:
+
+Set left and bottom margins.
+
+:LeftOffset:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Edit -> Properties|Printer Settings Property window;
+#Inches from left text field and label
+Position: __ Inches from left
+
+Enter the offset (in inches) from the left side 
+of the page. This is the left margin.
+
+#######################50########################
+:BottomOffset:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Edit -> Properties|Printer Settings Property window;
+#Inches from bottom text field and label
+Position: __ Inches from bottom
+
+Enter the offset (in inches) from the bottom edge
+of the page. This is the bottom margin.
+
+:NumberOfItems:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Edit -> Properties|Printer Settings Property window;
+#Units: label, text field, and buttons
+Units:
+
+Enter the number of units to print. Or click
+SELECT on the up or down arrow.
+
+The "unit" is the calendar view selected for 
+printing: when a Day view is printed, the unit is
+"days," and so on.
+
+:NumberOfPages:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Edit -> Properties|Printer Settings Property window;
+#Copies: label, text field, and buttons
+Copies:
+
+Enter the number of copies you want of each page.
+
+Or click SELECT on the up or down arrow.
+
+:meo:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Edit -> Properties|Printer Settings Property window;
+#Privacy Type: label and settings
+Privacy Type:
+
+Choose whether to print private appointments:
+
+Time and Text	If Time and Text is selected,
+		Calendar Manager prints all 
+		appointments designated Show
+		Time and Text in the Appointment
+		Editor.
+
+Time Only	If Time Only is selected,
+		Calendar Manager prints all
+		appointments designated Show
+		Time Only in the Appointment
+		Editor.
+
+Nothing		If Nothing is selected, Calendar
+		Manager prints all appointments
+		designated Show Nothing in the
+		Appointment Editor.
+
+Use the privacy settings either alone or in 
+combination.  
+
+For example, if all three privacy settings are 
+selected, Calendar Manager will print all 
+appointments.  If Time and Text and Time Only 
+are selected, Calendar Manager prints all 
+appointments with Show Time and Text and Show 
+Time Only privacy settings; it will not print 
+the appointments designated Show Nothing.
+
+#################################################
+ Date Format Settings
+#
+#################################################
+
+:DateOrder:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Edit -> Properties|Date Format Property window;
+#Date Ordering: label and settings.
+Date Ordering:
+
+Choose the order in which month, day, and year
+will appear in date fields.
+
+Click SELECT on Apply to make changes take
+effect immediately.
+
+:DateSep:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Edit -> Properties|Date Format Property window;
+#Date Separator: label and settings.
+Date Separator:
+
+Choose what will separate each element in dates.
+
+Click SELECT on Apply to make changes take effect
+immediately.
+
+##########This_Line_Is_50_Characters_Long#########
+######################################
+# Help entries for the Reminder popup
+######################################
+#######################50########################
+:ReminderPopup:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#The reminder notice that pops up to remind you of an appointment.
+Reminder
+
+This is your reminder for an appointment.
+
+:DayPR:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#View -> Day -> any menu item
+Day
+
+Displays the day view or appointment or To Do 
+list for the selected day.
+
+#######################50########################
+:WeekPR:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#View -> Week -> Week View menu item
+Week
+
+Displays the week view or appointment or To Do 
+list for the selected week.
+
+:MoPR:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#View -> Month -> Month View menu item
+Month
+
+Displays the month view or appointment or To Do 
+list for the selected month.
+
+:YrPR:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#View -> Year -> Year View menu item
+Year
+
+Displays the year view or appointment or To Do 
+list for the selected year.
+
+:AlistHelp:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#The appointment list pop-up.
+Appointment List
+
+Displays all of your appointments for a 
+particular day, week or month.
+
+:BrPanel:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Browse -> Multiple Calendars|panel background
+Multiple Calendars window
+
+Schedule	Use to schedule appointments for
+		many users at once.
+
+Mail		Use to send mail to a user or
+		distribution list.
+
+Goto		Use to display different weeks
+		in the Multiple Calendars chart.
+
+Setup Menu	Display to add and delete users'
+		calendars in the Browse menu.
+
+##########This_Line_Is_50_Characters_Long#########
+:BrGoto:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Browse -> Multiple Calendars|Go To button
+Go To:
+
+Press MENU to choose the calendar to be displayed:
+
+- Entry
+- Prev Week
+- This Week
+- Next Week
+- Prev Month
+- Next Month
+
+Entry refers to the date entered in the text
+field. (Date format is set in the Properties
+window.)
+
+:dateStr:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Browse -> Multiple Calendars|Go To text field
+Go to specific date:
+
+To display another calendar, you can enter a date
+here and then click SELECT on the Goto button.
+
+(Date format is set in the Properties window.)
+
+:SchedButton:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Browse -> Multiple Calendars|Schedule button
+Schedule
+
+Allows you to schedule appointments for many
+users at once.
+
+##########This_Line_Is_50_Characters_Long#########
+:MailButton:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Browse -> Multiple Calendars|Mail button
+Mail
+
+Opens the Compose Message window, where you
+can compose and send a mail message about
+appointments.
+
+:CalBusy:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Browse -> Multiple Calendars|Busy symbol and text
+Busy Calendar
+
+The busy symbol beside a user's calendar means 
+that calendar is busy at the time selected.
+
+##########This_Line_Is_50_Characters_Long#########
+:BrBox:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Browse -> Multiple Calendars|scrolling list
+Calendar List
+
+Shows the names of the calendars to browse. 
+
+Enter the names of calendars you want to see.
+They must be in the format "login@host."
+Example:
+
+	otter@river
+
+To add a name to the list:
+
+1. Click SELECT on Setup Menu. 
+   The Setup Menu window opens.
+
+2. Type the name in the User Name text field.
+
+3. Click SELECT on Add Name.
+
+The calendar names are not verified until you try
+to browse a calendar. 
+
+If you are running DNS or NIS and want to browse
+a calendar outside of your domain, specify its
+name with the format: "login@host.domain."
+
+##########This_Line_Is_50_Characters_Long#########
+:BrCanvas:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Browse -> Multiple Calendars|overlay chart
+Multiple Calendars Chart
+
+This chart shows the appointments scheduled 
+for the calendars selected in the Browse List.
+
+Different shades of gray indicate the numbers 
+of appointments scheduled at the times displayed.
+
+The darker the gray, the more appointments have
+already been scheduled. White shows open time
+slots.
+
+Use this chart to find a time when several
+calendars are free for a new appointment. If
+there is no white space, indicating an open time,
+click on a light gray time. A busy symbol will
+appear in the Browse List, showing who is
+busy at that time.
+
+Once you have identified an open time, click on
+Schedule to open the Appointment Editor window. 
+You can set up the appointment in that window.
+
+##########This_Line_Is_50_Characters_Long#########
+#
+#1/21/93:  I can't figure out what BeepUnit, FlashUnit, 
+#OpenUnit, and MailUnit are attached to.
+#
+:BeepUnit:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#AE Alarm: Beep abbrev. menu button and units.
+Beep
+
+Choose minutes, hours, or days from the button
+menu.
+ 
+:FlashUnit:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#AE Alarm: Flash abbrev. menu button and units.
+Flash
+
+Choose minutes, hours, or days from the button
+menu.
+
+:OpenUnit:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#AE Alarm: PopUp abbrev. menu button and units.
+PopUp
+
+Choose minutes, hours, or days from the button
+menu.
+
+:MailUnit:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#AE Alarm: Mailabbrev. menu button and units.
+Mail
+
+Choose minutes, hours, or days from the button
+menu.
+
+##################################################
+# Compose Window
+#
+##################################################
+##########This_Line_Is_50_Characters_Long#########
+:HeaderButton:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Browse -> Multiple Calendars -> Mail|Compose Message window Header button
+Header
+
+Use the Header menu to add or delete the Bcc
+(blind carbon copy) field.
+
+:DeleteBcc:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Browse -> Multiple Calendars -> Mail|Compose Message window;
+#Header menu item toggle
+Delete Bcc:
+
+Deletes the Bcc (blind carbon copy) line from the
+header.
+
+:Addbcc:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Browse -> Multiple Calendars -> Mail|Compose Message window;
+#Header menu item toggle
+Add Bcc:
+
+Adds a Bcc (blind carbon copy) line to the header.
+
+##########This_Line_Is_50_Characters_Long#########
+:DeliverButton:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Browse -> Multiple Calendars -> Mail|Compose Message window;
+#Deliver button
+Deliver
+
+Delivers mail to the addresses specified on the
+To, Cc, and Bcc lines.
+
+Deliver has these options:
+
+- Quit window
+- Close window
+- Clear message
+- Leave message intact
+
+:DeliverTakedown:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Browse -> Multiple Calendars -> Mail|Compose Message window;
+#Deliver button Quit window menu item
+Quit window
+
+Mails the message and dismisses the Compose
+Message window.
+
+:DeliverClose:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Browse -> Multiple Calendars -> Mail|Compose Message window;
+#Deliver button Close window menu item
+Close window
+
+Mails the message and closes the Compose Message
+window to an icon.
+
+:DeliverClearItem:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Browse -> Multiple Calendars -> Mail|Compose Message window;
+#Deliver button Clear message menu item
+Clear message
+
+Mails the message and clears the Compose Message
+window for re-use.
+
+:DeliverLeaveMessageItem:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Browse -> Multiple Calendars -> Mail|Compose Message window;
+#Deliver button Leave message intact menu item
+Leave message intact  
+
+Mails the message and leaves the message in the
+Compose Message window.
+
+:MailHelp:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Browse -> Multiple Calendars -> Mail|Compose Message window;
+#Compose Message window header panel background
+Compose Message window
+
+Use this window to compose and send messages
+about Calendar Manager appointments.
+
+:IncludeButton:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Browse -> Multiple Calendars -> Mail|Compose Message window;
+#Include button
+Include
+
+Adds Calendar Manager template, which you can 
+fill out with the appropriate date and time.
+
+##########This_Line_Is_50_Characters_Long#########
+:ClearButton:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Browse -> Multiple Calendars -> Mail|Compose Message window; 
+#Clear button
+Clear
+
+Clears the contents of the Compose Message window.
+
+:CompSubj:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Browse -> Multiple Calendars -> Mail|Compose Message window;
+#Subject: label and text field 
+Subject:
+
+Enter a short description of your message.
+
+:ToField:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Browse -> Multiple Calendars -> Mail|Compose Message window;
+#To: label and text field 
+To:
+
+Enter the addresses of the people you want 
+to send the message to.
+
+Separate multiple addresses with commas or spaces.
+
+Calendar Manager automatically fills in the
+addresses for calendars you have selected
+in the Multiple Calendars window.
+
+:Composecc:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Browse -> Multiple Calendars -> Mail|Compose Message window;
+#Cc: label and text field 
+Cc:
+
+Enter the addresses of the people you want 
+to send a carbon copy of the message to.
+
+Separate multiple addresses by commas or spaces.
+
+
+:ComposeBcc:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Browse -> Multiple Calendars -> Mail|Compose Message window;
+#Bcc: label and text field
+Bcc:
+
+Enter the addresses of the people you want
+to send a blind carbon copy of the message to.
+
+Separate multiple addresses by commas or spaces.
+
+#........#.........#.........#.........#.........#
+##########This_Line_Is_50_Characters_Long#########
+##################################################
+# Browser editor
+#
+##################################################
+
+:EdPanel:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#AE panel background.
+Appointment Editor
+
+Use the Appointment Editor for inserting,
+changing, or deleting an appointment.
+
+:mbInButton:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#AE Insert button.
+Insert
+
+Adds an appointment to the calendars
+selected in the Multiple Calendars window.
+
+:mbDelButton:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#AE Delete button.
+Delete
+
+Deletes an appointment from the calendars
+selected in the Multiple Calendars window.
+
+##########This_Line_Is_50_Characters_Long#########
+:mbChButton:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#AE Change button.
+Change
+
+Changes attributes of an appointment you 
+selected in the Appointments list.
+
+:EdClearButton:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#AE Reset button.
+Reset
+
+Resets the Appointment Editor to default values.
+
+:TodoHelp:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#The To Do list pop-up.
+To Do List
+
+Shows a To Do list for a particular day, week, 
+or month.
+
+When you've completed an item on your To Do
+list, you can click SELECT in the check box
+preceding the item and Calendar Manager
+will display a check mark.
+
+:BrApptTodoToggle:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#AE Appointment/To Do settings.
+Appt/ToDo
+
+Switches between viewing an appointment 
+list and a To Do list in the Appointment
+Editor window.
+
+##########This_Line_Is_50_Characters_Long#########
+:BrAppointmentList:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#AE Appointments scrolling list.
+Appointments List
+
+These are the appointments for the day being 
+viewed. 
+
+Click SELECT on an appointment in the list to 
+select or deselect it
+
+:WhatField:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#AE What: text fields.
+What:
+
+Type information about the appointment in this 
+field.
+
+After you insert the appointment, the calendar 
+view will display the "What" information at the
+time of the appointment.
+
+##########This_Line_Is_50_Characters_Long#########
+:CalList:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#AE Calendars/Insert Access scrolling list
+Calendars Insert Access
+
+Use this list to schedule, change, or delete
+an appointment for a group of calendars.
+
+This list shows the calendars you selected
+in the Multiple Calendars window. To add other
+calendars to the list, select them in the
+Multiple Calendars window. 
+
+If you have insert access to a calendar, Y (Yes)
+appears after its name. 
+
+Click SELECT on a calendar in the list to select 
+or deselect it.
+
+When you insert, delete, or change an
+appointment, that affects all selected
+calendars. 
+
+When you select an appointment from the 
+Appointments list, the Calendars list changes
+to show who is scheduled for that appointment.
+
+You can insert, delete, or change appointments
+only on calendars for which you have insert 
+access.
+
+To get insert access, ask the person whose
+calendar it is to give you access by changing
+the permissions in their Access List and
+Permissions Properties window.
+
+##################################################
+# Find window
+#
+##################################################
+##########This_Line_Is_50_Characters_Long#########
+:FindHelp:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#View -> Find|Find popup panel background
+Find window
+
+Use the Find window to search for appointments
+by specifying a search text (Match Appt) and
+period (Months).
+
+You may search forward (Find Forward) or backward
+(Find Backward) in time. Specifying the number of
+months is optional.
+
+The search is not case-sensitive.
+
+:FindAppt:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#View -> Find|Find window Match Appt label and text field
+Match Appt:
+
+Enter some text for the appointment you want 
+to find. You can use just part of the text for
+an appointment.  
+
+Example: Enter "document" to find "Document
+Draft Review Meeting."
+
+The search attempts to match the text regardless
+of case. 
+
+:FindMonths:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#View -> Find|Find window Months label, text field, and buttons
+Months:
+
+Enter the number of months forward or backward 
+that you want the search to cover. Or click
+SELECT on the up or down arrow.
+
+Specifying the number of months is optional.
+
+##########This_Line_Is_50_Characters_Long#########
+:FindFwd:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#View -> Find|Find window Find Forward button
+Find Forward 
+
+Searches for the text specified in Match Appt,
+looking forward the number of months specified
+in Months.
+
+:FindBack:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#View -> Find|Find window Find Backward button
+Find Backward 
+
+Searches for the text specified in Match Appt,
+looking backward the number of months specified
+in Months.
+
+:Display:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Edit -> Properties|CM Properties window Category: label, menu button,
+#and item displayed.  
+Category:
+ 
+Press MENU on the Category menu button to
+choose from these categories:
+
+- Editor Defaults
+- Display Settings
+- Access List and Permissions
+- Printer Settings
+- Date Format
+
+You can edit only one set of properties at a
+time.
+
+The Properties window changes when you choose a
+new item from the Category menu.  
+
+##########This_Line_Is_50_Characters_Long#########
+:RepeatHelp:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#AE Repeat -> Repeat Every|Repeat Every popup panel background.
+Repeat Every
+
+Use the Repeat Every window to customize the 
+interval for which you want to repeat an 
+appointment.
+
+:Repeatinterval:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#AE Repeat -> Repeat Every|Repeat Every panel text, text field
+#abbr menu button and units (not menu items)
+Repeat Interval
+
+Type in a number and hold down MENU to choose the 
+units for your customized repeat interval.  
+
+:RepeatApply:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#AE Repeat -> Repeat Every|Repeat Every Apply button
+Apply
+
+Click SELECT on Apply to make the changes take 
+effect.
+
+:RepeatUnitMenu:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#AE Repeat -> Repeat Every|Repeat Every popup abbr menu items.
+Repeat Units
+
+Choose days, weeks, or months for the customized
+repeat interval.
+
+##########This_Line_Is_50_Characters_Long#########
+:BlPanel:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Browse -> Setup Menu popup panel background.
+Setup Menu
+
+Use the Setup Menu window to add user names to 
+the Browse menu.  You can remove or change names 
+or sort the list.  Use the Multiple Calendars 
+window to browse other calendars.
+
+:BlUserName:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Browse -> Setup Menu popup User Name: text label and field.
+User Name:
+
+Type in a user's name that you want to add to the
+Browse menu.
+
+:BlList:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Browse -> Setup Menu popup Browse menu
+Browse Menu
+
+The Browse Menu is a list of users whose 
+calendars you want to view.  You can add,
+remove, change names, or sort the list.
+Use the Show Multiple Calendars window to browse
+other calendars.
+
+NOTE: By default, the "world" (all users on your
+network) has permission to browse your calendar.
+
+:BlAdd:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Browse -> Setup Menu popup Add Name button
+Add Name
+
+After typing in a user's name, click on 
+Add Name to add the user name to the Browse menu.
+
+:BlChange:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Browse -> Setup Manu popup Change button
+Change
+
+Click SELECT on a user name in the Browse menu.
+The name appears in the User Name field.  Edit
+the entry in the User Name field as necessary, 
+then click on Change to make the changes take 
+effect.
+
+:BlRemove:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Browse -> Setup Manu popup Remove button
+Remove
+
+Click SELECT on a user name in the Browse menu.
+Click on Remove to remove the user name from the
+Browse menu.
+
+:BlSort:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+Sort List
+#Browse -> Setup Manu popup Sort List button
+
+Click on Sort List to sort the Browse menu 
+alphabetically.
+
+:SetupMenu:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Browse -> Show Multiple Calendars|Multiple Calendars Setup Menu button.
+Setup Menu
+
+Use the Setup Menu window to add user names to 
+the Browse menu.  You can remove or change names 
+or sort the list.  Use the Show Multiple 
+Calendars window to browse other calendars.
+
+:DnDTarget:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#AE drag and drop target
+Drag and Drop Target
+
+Use the drag and drop target to automatically 
+schedule appointments on your calendar.
+
+Drag mail headers from Mail Tool of messages 
+that contain calendar-formatted appointments
+and drop them on the Appointment Editor drag and 
+drop target.
+
+##########This_Line_Is_50_Characters_Long#########
+:tempbr:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+Show Calendar
+#Browse -> Show Calendar|Show Calendar popup panel background.
+
+Use the Show Calendar window to display a single
+user's calendar.
+
+Type a user name (user@machine), then 
+click SELECT on the Show button to display the
+specified calendar.
+
+:ShowCalname:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Browse -> Show Calendar|Show Calendar popup User Name text and field.
+Show Calendar User Name
+
+Type in a user name to specify the calendar you 
+want to display.
+
+Click on Show to display the specified calendar.
+
+:ShowCalbutt:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Browse -> Show Calendar|Show Calendar popup Show button.
+Show
+
+Click on Show to display the specified calendar.
+
+##########This_Line_Is_50_Characters_Long#########
+:MaePanel:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Mini-Appointment Editor panel background
+Appointment Editor
+
+Use the Appointment Editor to add or modify an 
+appointment attachment.
+
+:MaeDnDTarget:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Mini-Appointment Editor drag and drop target
+Drag and Drop Target
+
+Use the drag and drop target to display 
+appointments on the Appointment Editor.
+
+Drag either a mail message containing a 
+calendar-formatted appointment or an 
+attachment created with this Appointment 
+Editor and drop it on the drop target.  The 
+appointment is displayed in the Appointment 
+Editor.  
+
+Once an appointment is displayed in the 
+Appointment Editor, you can easily insert it 
+into Mail Tool's Compose window:
+
+  Hold down SELECT over the drop target and 
+  drag the appointment OUT of the Appointment 
+  Editor either into the text pane of a mail 
+  message or to the Attachments window of a 
+  mail message.
+
+If you drag the appointment into the Compose
+Window text pane, the appointment is formatted
+for you to see.
+
+If you drag the appointment into the Compose
+Window Attachments window, the appointment
+becomes attached to the mail message.
+
+##########This_Line_Is_50_Characters_Long#########
+:MaeDateField:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Mini-Appointment Editor Date: field.
+Date:
+
+Enter the date of the appointment in this field.
+
+You can change the format of the Date field in
+Calendar Manager's Date Format Properties window.
+
+:MaeApptTime:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Mini-Appointment Editor Start: label, field, abbr menu button, menu items.
+Start:
+
+Enter the starting time of the appointment 
+in this field. 
+
+Enter a whole number for an appointment that
+starts on the hour. For other times, use the
+format:
+	
+	HH:MM     (example =  4:23)
+
+You may leave the time blank. 
+
+Press MENU on the menu button to choose from 
+a submenu of times in 15-minute intervals.
+
+Day Boundaries on Calendar Manager's Display 
+Settings Properties window determines the 
+starting and ending times on the submenu.
+
+##########This_Line_Is_50_Characters_Long#########
+:MaeApptDuration:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Mini-Appointment Editor Stop: label, field, abbr menu button, menu items.
+Stop:
+
+Enter the ending time of the appointment in this 
+field. 
+
+Or press MENU on the menu button to choose from
+a submenu of times in 15-minute intervals.
+
+Day Boundaries on Calendar Manager's Display 
+Settings Properties window determines the 
+starting and ending times on the submenu.
+
+:MaeWhatField:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Mini-Appointment Editor What: text fields.
+What:
+
+Type information about the appointment in this 
+field.
+
+##########This_Line_Is_50_Characters_Long#########
+:MaeAttachButton:$OPENWINHOME/bin/helpopen handbooks/cm.handbook
+#Mini-Appointment Editor Attach button
+Attach
+
+Add or modify the appointment attachment.
+

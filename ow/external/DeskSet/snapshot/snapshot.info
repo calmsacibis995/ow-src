@@ -1,0 +1,257 @@
+
+##################################################
+#  snapshot.info    Feb. 14	Hypertext links
+##################################################
+##################################################
+#      Open Windows Version 3  FCS Rev'd by James Brook, 1 July 1991
+#	helpopen path changed 11 July
+# 	Edited for OWV3.0.1 30 October 1991
+##################################################
+
+######################50##########################
+:Load:$OPENWINHOME/bin/helpopen handbooks/snapshot.handbook
+Load
+
+Displays a window where you can specify the
+snapshot file (or other raster file) to be loaded
+for viewing.
+
+You can also load GIF format files--but these
+can be saved only in raster format.
+
+:Save:$OPENWINHOME/bin/helpopen handbooks/snapshot.handbook
+Save
+
+Displays a window where you can specify where
+the snapshot file is to be saved.
+
+Note that GIF format files can be saved only
+in raster format.
+		
+######################50##########################
+:LoadSaveDirectory:$OPENWINHOME/bin/helpopen handbooks/snapshot.handbook
+Directory:
+
+Name of the directory where Snapshot will store 
+the output or retrieve a file.
+
+1. Enter the directory you want. The default is 
+your current working directory.
+
+2. Enter the file name at File.
+
+3. Click SELECT on the Load or Save button.
+
+Note that GIF format files can be saved only
+in raster format.
+
+:LoadSaveFile:$OPENWINHOME/bin/helpopen handbooks/snapshot.handbook
+File:
+
+Name of the file Snapshot will store or retrieve.
+
+Enter the file name you want. The default is
+"snapshot.rs." 
+
+Click SELECT on the Load or Save button.
+
+Note that GIF format files can be saved only
+in raster format.
+
+:LoadSaveBut:$OPENWINHOME/bin/helpopen handbooks/snapshot.handbook
+Load/Save
+
+Once you have specified the directory and file
+names, click SELECT on the Load or Save button
+(toggles depending on operation you have chosen).
+
+######################50##########################
+:SourceDrag:$OPENWINHOME/bin/helpopen handbooks/snapshot.handbook
+Drag and Drop Target
+
+Drag and drop files here to and from Snapshot and
+other tools.
+
+:SelfTimer:$OPENWINHOME/bin/helpopen handbooks/snapshot.handbook
+Snap Delay:
+ 
+Choose the number of seconds Snapshot delays
+before taking the picture. Counting starts
+the moment you click to start the snap.
+
+Between the time you start the snap and the 
+time the snap is actually taken, you can pop up 
+menus, move windows, and otherwise adjust the
+screen for the picture.
+
+Snap Delay is automatically set to 8 seconds if
+you choose Hide Window During Capture.
+
+:TimerBell:$OPENWINHOME/bin/helpopen handbooks/snapshot.handbook
+Beep During Countdown
+
+If you chose Snap Delay, you can choose to have
+your workstation beep every second until the
+snap is taken. 
+
+:Hide:$OPENWINHOME/bin/helpopen handbooks/snapshot.handbook
+Hide Snapshot During Capture
+
+When Hide is chosen, all windows associated
+with Snapshot disappear while the picture is
+being taken. These include the base window, the
+View window, and the Load/Save window. The
+windows reappear after the snap.
+
+When Hide is not chosen, the Snapshot windows
+remain visible all the time.
+
+Snap Delay is automatically set to 8 seconds if
+you choose Hide Window During Capture. You
+cannot change the timer in this case.
+
+######################50##########################
+:SnapType:$OPENWINHOME/bin/helpopen handbooks/snapshot.handbook
+Snap Type:
+
+Choose one of these options:
+
+Window	Picture of the window in which you click
+	SELECT. Click on the frame to include it.
+
+Region	Picture of the region you specify by
+	dragging SELECT.
+	Click ADJUST to take the picture.  
+	Click MENU to cancel Snap Region.
+
+Screen	Picture of the entire screen.
+
+:Snap:$OPENWINHOME/bin/helpopen handbooks/snapshot.handbook
+Snap
+
+Click SELECT on Snap to take snapshots.
+
+:View:$OPENWINHOME/bin/helpopen handbooks/snapshot.handbook
+View
+
+Displays the snapshot currently in memory. 
+
+If there is no snapshot in memory, then you
+must load a snapshot, raster, or GIF file.
+
+
+######################50##########################
+:Print:$OPENWINHOME/bin/helpopen handbooks/snapshot.handbook
+Print
+
+Press MENU to display and choose from:
+
+Print Snap	Prints snapshot or other raster
+		file using pre-set print options.
+
+Options		Displays Print Options window,
+		where you can set options and
+		print snapshot or other raster
+		file.
+
+
+:PrintSnap:$OPENWINHOME/bin/helpopen handbooks/snapshot.handbook
+Print Snap
+
+Prints snapshot (or other file) using pre-set
+print options.
+
+:PrintOpt:$OPENWINHOME/bin/helpopen handbooks/snapshot.handbook
+Options
+
+Displays a window in which you set or change the
+print options.
+
+######################50##########################
+:Destination:$OPENWINHOME/bin/helpopen handbooks/snapshot.handbook
+Destination:
+
+Choose where you want the output of Print to go: 
+Printer or File. 
+
+:Printer:$OPENWINHOME/bin/helpopen handbooks/snapshot.handbook
+Printer:
+
+Enter the name of the printer where you want to
+print the snapshot.  
+
+:PrintFile:$OPENWINHOME/bin/helpopen handbooks/snapshot.handbook
+Directory:
+File:
+
+Enter the directory and file name where you want 
+to store the output of Print.
+
+:Orientation:$OPENWINHOME/bin/helpopen handbooks/snapshot.handbook
+Orientation:
+
+Choose how you want the picture printed:
+ 
+Upright		Vertical on the printed page 
+
+Sideways	Horizontal on the printed page
+
+:Position:$OPENWINHOME/bin/helpopen handbooks/snapshot.handbook
+Position:
+
+Specify how big you want the margins to be:
+
+Center		Centers the image in the middle
+		of the page.
+
+Specify		Allows you to enter absolute
+	 	measurements for the margins.
+
+######################50##########################
+:Appearance:$OPENWINHOME/bin/helpopen handbooks/snapshot.handbook
+Scale to:
+
+Actual Size  Prints the image actual size.
+	     Printer image sizes might be a 
+	     little different from screen image
+	     sizes due to different resolutions.
+	     Aspect ratio is always preserved.
+
+Width	     Scales the image to the specified
+	     width, preserving aspect ratio.
+
+Height	     Scales the image to the specified
+	     height, preserving aspect ratio.
+
+Both	     Scales the image to the specified
+	     width and height. Does not
+	     preserve the original aspect ratio.
+
+:Double:$OPENWINHOME/bin/helpopen handbooks/snapshot.handbook
+Double Size:
+
+Lets you double the size of the printed picture:
+
+No	Prints the picture the same size as the 
+	stored image.
+
+Yes 	When the file is printed, doubles every
+	bit in the image in both the x and y 
+	dimensions--essentially doubling the 
+	size of the image. Overrides other
+	scaling options.
+
+:Mono:$OPENWINHOME/bin/helpopen handbooks/snapshot.handbook
+Monochrome Printer
+
+Produces a monochrome raster file instead of a
+colored one for faster printing on monochrome
+printers.
+
+:PrintBut:$OPENWINHOME/bin/helpopen handbooks/snapshot.handbook
+Print
+
+Sends the raster file to the destination
+specified by print options.
+
+######################50##########################

@@ -1,0 +1,127 @@
+#
+# @(#)command	1.7 91/01/08
+#
+
+#
+# Copyright (c) 1987 by Sun Microsystems, Inc.
+#
+
+#
+#	If DELIVERABLE	== deliverable then build a deliverable executable
+#	In the same way, if TOOL == tool, build a tool version of the command.
+#
+
+#
+#	Preconditions			Defined in:
+#		COMMAND			Makefile
+#		DELIVERABLE		Makefile
+#		TOOL			Makefile
+#		SOURCES			Makefile
+#		HEADERS			Makefile
+#		OBJECTS			Makefile
+#		LIBRARIES		Makefile
+#
+#		DIR.*			config/Compiler/*
+#		INSTALL.directory
+
+
+COMMAND.name			= ${DIR.targetarch}/${COMMAND}
+COMMAND.installed		= ${INSTALL.directory}/${COMMAND}
+TOOL.installed			= ${INSTALL.tool.directory}/${COMMAND}
+OBJECTS.command			= ${OBJECTS:%=${DIR.targetarch}/%}
+
+SOURCES.lint			= ${SOURCES:.c=.lo}
+
+optimized: ${DELIVERABLE}
+
+all::		installtool ${DELIVERABLE}
+
+tool:		checkiftoolbuild
+deliverable:	checkifdeliverablebuild
+
+checkiftoolbuild:	build${TOOL}
+checkifdeliverablebuild:build${DELIVERABLE}
+
+build:
+buildtool:		${COMMAND.name}  ${MAKE.tool.target}
+builddeliverable:	${COMMAND.name}  ${MAKE.all.target}
+
+clean:  ${MAKE.clean.target}
+	@${RM} ${OBJECTS}
+	@${RM} ${SOURCES.lint}
+
+clobber: clean ${MAKE.clobber.target}
+	@${RM} ${FILES.junk} ${FILES.clobber} ${TOOL.name} ${COMMAND.name} ${DERIVEDFILES}
+
+installtool:	checkiftoolinstall
+install:	checkiftoolinstall
+
+checkiftoolinstall:          inst${TOOL}
+checkifdeliverableinstall:   inst${DELIVERABLE}
+
+inst:
+insttool:		        ${TOOL.installed}    ${MAKE.installtool.target}
+instdeliverable:	DESTDIR ${COMMAND.installed} ${MAKE.install.target} ${MAKE.source.target}
+
+
+${COMMAND.name}: ${DIR.targetarch} ${OBJECTS.command}
+	${LINK.c} -o $@  ${OBJECTS.command} ${LIBRARIES} ${SYSLIBS} ${STDSYSLIBS}
+
+${DIR.targetarch}/%.o: ${DIR.targetarch} %.c ${HEADERS}
+	${COMPILE.c} -o $@ $<
+
+${DIR.targetarch} :
+	@if [ \! -d $@ ] ; then \
+		${DINSTALL} $@ ; \
+	fi 
+
+
+
+${COMMAND.installed} : ${COMMAND.name}
+	@if [ "x${INSTALL.directory}" = "x" ] ; then \
+		: ; \
+	elif [ "x${INSTALL.directory}" = "x." ] ; then \
+		: ; \
+	else \
+		if [ ! -d ${INSTALL.directory} ] ; then \
+			${DINSTALL} ${INSTALL.directory}; \
+		fi ;\
+		${ECHO} ${COMMAND.name} "	=>" ${INSTALL.directory} ; \
+		${BINSTALL} ${COMMAND.name} ${INSTALL.directory} ; \
+	fi
+
+${TOOL.installed}: ${COMMAND.name}
+	@if [ "x${INSTALL.tool.directory}" = "x" ] ; then \
+		: ; \
+	elif [ "x${INSTALL.tool.directory}" = "x." ] ; then \
+		: ; \
+	else \
+		if [ ! -d ${INSTALL.tool.directory} ] ; then \
+			${DINSTALL} ${INSTALL.tool.directory}; \
+		fi ;\
+		${ECHO} ${COMMAND.name} "	=>" ${INSTALL.tool.directory}; \
+		${BINSTALL} ${COMMAND.name} ${INSTALL.tool.directory}/${COMMAND} ; \
+	fi
+
+.c.lo:
+	-${LINT} ${LINTFLAGS} $< >/tmp/$@ 2>&1
+	@if [ -s /tmp/$@ ] ; then \
+		${MV} /tmp/$@ . ; \
+		${ECHO} $@ has problems passing lint ; \
+	fi
+
+
+${SOURCES.lint}: ${SOURCES}
+
+lint:		${SOURCES} ${HEADERS}
+		${LINT} ${LINTFLAGS} ${SOURCES} ${COMMAND.lint} -lc
+
+checkmakefile:
+	@echo "DELIVERABLE=	${DELIVERABLE}"
+	@echo "TOOL=		${TOOL}"
+	@echo "OBJECTS=		${OBJECTS}"
+
+.PRECIOUS: ${COMMAND.name} ${TOOL.name}
+
+.SUFFIXES: .lo 
+

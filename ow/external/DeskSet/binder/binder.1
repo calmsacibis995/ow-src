@@ -1,0 +1,95 @@
+.\" Copyright (c) 1994 - Sun Microsystems, Inc.
+.TH binder 1 "10 March 1992"
+.IX "binder" "" "\f3binder\f1(1) \(em modify deskset bindings database" ""
+.SH NAME
+binder \- modify deskset bindings database
+.SH SYNOPSIS
+.B binder
+[
+.BR \-user \ | -system \ | -network
+]
+.SH AVAILABILITY
+This command is available with the OpenWindows 
+environment.
+.SH DESCRIPTION
+.B binder
+is an OpenWindows XView tool that
+allows the user to bind applications, icons, colors, print methods,
+and open methods to files.  A binding is a logical connection between
+file types and
+elements such as file types, applications to be invoked when a file
+is opened, print scripts, or icons that the File Manager, Print Tool,
+Mail Tool, and other DeskSet applications use to display and operate on files.
+.LP
+The binder displays all the bindings stored in three different
+Classing Engine databases:  a
+network database, a system database, and a private user database.
+These
+are the Classing Engine databases used by all applications in the DeskSet
+Environment to determine how to display, print, and open any file.
+You cannot modify a system or network binding unless you are root.
+.LP
+The three Classing Engine databases are located in:
+.BR $OPENWINHOME/lib/cetables/cetables ,
+.br
+.BR /etc/cetables/cetables ,
+and
+.br
+.BR $HOME/.cetables/cetables ,
+respectively.
+.br
+By doing this, users may customize their working
+environment without affecting others.
+.LP
+Applications that use the bindings database in OpenWindows
+are:
+.LP
+.PD 0
+.BR filemgr (1)
+.br
+.BR binder (1)
+.br
+.BR imagetool (1)
+.br
+.BR printtool (1)
+.br
+.BR mailtool (1)
+.LP
+.SH OPTIONS
+.LP
+.TP 10
+.B -user
+Modify your private database bindings.
+This is the default mode.
+.TP
+.B -system
+Modify the system database bindings.
+You must be root to start the binder with this
+option.
+.TP
+.B -network
+Modify the network database bindings.
+You must have root access on the OpenWindows server workstation.
+.SH FILES
+.PD 0
+.B $OPENWINHOME/lib/cetables/cetables
+.br
+.B /etc/cetables/cetables
+.br
+.B $HOME/.cetables/cetables
+.SH BUGS
+.LP
+Changing your bindings will not automatically
+update all those tools that read the bindings
+database.
+Each tool will have to be quit and restarted
+for the new bindings to take effect.
+.SH SEE ALSO
+.BR filemgr (1),
+.BR ce_db_build (1),
+.BR ce_db_merge (1)
+.br
+OpenWindows user documentation
+.br
+"About Binder" in the Help Handbook available through the
+Help option on the Workspace menu.

@@ -1,0 +1,1916 @@
+#################################################
+#	mailtool.info	26 October 1991 rev'd by James Brook
+#	@(#)mailtool.info	2.33 - 91/07/23
+##################################################
+#	OpenWindows Version 3.0.1  
+#	helpopen path changed 11 July 1991
+#	modified for 493 beta 1.2 11 February 1993 by M. Hamilton
+#################################
+#	File Button Menu
+#################################
+:FileButton:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+File 
+
+Provides these options:
+
+Load In-Box 	Opens your In-Box to view 
+		incoming mail.
+
+Print		Prints selected messages.
+
+Save Changes	Saves changes made to the In-Box
+		or a mail file.
+
+Done 		Saves changes and closes Mail
+		Tool.
+
+Mail Files 	Opens the Mail Files window.
+ 
+##########This_Line_Is_50_Characters_Long#########
+:OpenIntray:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Load In-Box 
+
+Displays the contents of your system mail box.  
+
+The In-Box contains all new incoming messages 
+as well as any messages you have read but have 
+not deleted or moved. 
+
+If you are currently viewing a mail file other 
+than your In-Box, Mail Tool will save all 
+changes made to the current mail file before 
+opening your In-Box.
+
+Keyboard shortcut: Meta-O
+
+:PrintItem:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Print
+
+Prints all selected messages.
+
+You can change the way Mail Tool prints messages
+in the Properties window.
+
+Keyboard shortcut: Meta-P
+
+##########This_Line_Is_50_Characters_Long#########
+:CommitChanges:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Save Changes 
+
+Saves all changes made to the current mail file 
+or In-Box.  
+
+Save Changes discards all messages in the 
+Undelete list. 
+
+Keyboard shortcut: Meta-S
+
+##########This_Line_Is_50_Characters_Long#########
+:Done:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Done 
+
+Saves all changes made to the current mail file 
+or In-Box and closes Mail Tool to an icon.  
+
+When you open the icon, Mail Tool re-opens the 
+In-Box.
+
+:FileListShow:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Mail Files
+
+Opens the Mail Files window, where you can
+create, delete, rename, add messages to, and view
+mail files.
+
+#################################
+#	View Button Menu
+#################################
+##########This_Line_Is_50_Characters_Long#########
+:ViewButton:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+View
+
+Provides these options:
+
+Messages 	Views selected messages.
+
+Previous	Views the previous message.
+
+Next 		Views the next message.
+
+Sort By		Sorts the current mail file.
+
+Find 		Finds messages by sender,
+		recipients, or subject.
+
+##########This_Line_Is_50_Characters_Long#########
+:ViewMessages:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Messages
+
+Displays selected messages with these options:
+
+Abbreviated Header	Strips unwanted header
+			fields from the messages
+			you view.  
+
+Full Header		Displays the selected
+			messages with all header
+			fields.
+
+:ViewAbbrev:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Abbreviated Header
+
+Strips unwanted header fields from the messages
+you view.  
+
+Specify these fields in the Properties window.
+
+:ViewFull:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Full Header
+
+Displays the selected messages with all header
+fields.
+
+:PreviousItem:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Previous
+
+Selects and displays the previous message in your
+mail file or In-Box.
+
+##########This_Line_Is_50_Characters_Long#########
+:NextItem:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Next
+
+Selects and displays the next message in your mail
+file or In-Box.
+
+:SortBy:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Sort By
+
+Sorts messages in the current mail file with
+these options:
+
+Time and Date	By time, day, and date of receipt
+
+Sender		Alphabetically by name of sender
+
+Subject		Alphabetically by subject
+
+Size		By size, from smallest to largest
+
+Status		By "read" status: 
+		read messages first, 
+		unread messages next, and 
+		new messages last
+
+Message Number	By number
+
+##########This_Line_Is_50_Characters_Long#########
+:SortDate:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Time and Date
+
+Sorts mail messages by time, day, and date of 
+receipt. The most recent message appears at
+bottom.
+
+:SortSender:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Sender
+
+Sorts mail messages alphabetically by name of
+sender.
+
+:SortSubject:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Subject
+
+Sorts mail messages alphabetically by subject.
+
+:SortSize:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Size
+
+Sorts mail messages by size, from smallest to
+largest.
+
+:SortStatus:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Status
+
+Sorts mail messages by "read" status: 
+read messages first, unread messages next, and 
+new messages last.
+
+:SortMsgno:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Message Number
+
+Sorts messages by number.
+
+##########This_Line_Is_50_Characters_Long#########
+:SelectItem:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Find
+
+Displays a window that allows you to find and 
+select mail messages based on the sender,
+recipients, or subject.
+
+Keyboard shortcut: Meta-F
+
+#################################
+#	Edit Button Menu
+#################################
+##########This_Line_Is_50_Characters_Long#########
+:EditButton:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Edit
+
+Provides these options:
+
+Cut 		Cuts selected messages to the 
+		clipboard.
+
+Copy 		Copies selected messages to 
+		the clipboard.
+
+Delete		Removes selected messages from 
+		the mail file or In-Box.
+
+Undelete 	Recovers deleted messages.
+
+Properties 	Displays the Header Window
+		Properties window, from which
+		you can open other property
+		windows.
+
+##########This_Line_Is_50_Characters_Long#########
+:CutItem:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Cut
+
+Cuts selected messages to the clipboard. 
+
+You can then paste the messages into another 
+text window. 
+
+Cutting deletes messages from the In-Box or mail
+file. You can recover deleted messages by
+choosing Undelete.
+
+Keyboard shortcut: Meta-X
+
+:CopyItem:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Copy
+
+Copies selected messages to the clipboard. 
+
+You can then paste the messages into another 
+text window.
+
+Keyboard shortcut: Meta-C
+
+##########This_Line_Is_50_Characters_Long#########
+:DeleteItem:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Delete
+
+Deletes selected messages. Delete does not affect
+the contents of the clipboard. 
+
+You can recover deleted messages by choosing 
+Undelete. See the help for Undelete.
+
+##########This_Line_Is_50_Characters_Long#########
+:UndeletePullright:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Undelete
+
+Recovers messages you have deleted since the last
+time you saved changes to current mail file or
+In-Box.
+
+Undelete has these options:
+
+Last 		Recovers the last message
+		deleted.
+
+From List	Displays the list of deleted 
+		messages, from which you can 
+		select messages to undelete.
+
+:UndeleteLastItem:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Last
+
+Recovers the last message deleted.
+
+:UndeleteList:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+From List	
+
+Displays the list of deleted messages. Select
+messages from this list that you want to
+undelete.
+
+##########This_Line_Is_50_Characters_Long#########
+
+:UndeleteMsgs:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Deleted Messages List
+
+Use this list of deleted messages to select the
+messages you would like to recover. 
+
+Select the messages and click on Undelete to
+recover them.
+
+:Undelete:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Undelete
+
+After selecting one or more messages in the
+list of deleted messages, click Undelete to 
+recover them.
+
+##########This_Line_Is_50_Characters_Long#########
+:PropsItem:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Properties
+
+Displays the Properties window, where you can
+change Mail Tool properties for these categories:
+
+- Header Window
+- Message Window
+- Compose Window
+- Mail Filing
+- Template
+- Alias
+- Expert
+
+Keyboard shortcut: Meta-I
+
+#################################
+#	Compose Button Menu
+#################################
+##########This_Line_Is_50_Characters_Long#########
+:ComposeButton:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Compose
+
+Provides these options: 
+
+New 		Opens the Compose window with
+		empty To and Cc fields.
+
+Reply 		Opens the Compose window with the
+		To and Cc fields filled in
+		appropriately for your reply.
+
+Forward		Opens the Compose window with the
+		currently selected message
+		included in the new message body. 
+
+Vacation	Choose Vacation -> Start/Change
+		to open the Vacation Setup
+		window to compose an automatic
+		reply to in-coming mail.
+
+New, Reply, and Forward all display the 
+Compose window.
+ 
+:ComposePullright:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+New
+
+Opens the Compose window with empty To and Cc
+fields. 
+
+Keyboard shortcut: Meta-N
+
+##########This_Line_Is_50_Characters_Long#########
+:ReplyPullright:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Reply
+
+Opens the Compose window with the To and Cc 
+fields filled in appropriately for your reply. 
+
+Press MENU on Reply to display additional
+options:
+
+To Sender		Replies to sender.
+
+To All			Replies to sender and
+			other recipients.
+
+To Sender, Include	Replies to sender and
+			includes a copy of the
+			sender's message.
+
+To All, Include		Replies to sender and
+			other recipients and
+			includes a copy of the
+			sender's message.
+
+##########This_Line_Is_50_Characters_Long#########
+:ForwardPullright:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Forward
+
+Opens the Compose window with the currently 
+selected message included in the new message
+body. 
+
+You can add your own note before forwarding the 
+included message. 
+
+:ReplySenderItem:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+To Sender
+
+Opens the Compose window. The To field contains
+the address of the sender of the selected
+message.
+
+:ReplyAllItem:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+To All
+
+Opens the Compose window. The To and Cc fields
+contain addresses for:
+
+- The sender of the selected message
+- All the people on the To and Cc lists of the
+	selected message 
+    
+##########This_Line_Is_50_Characters_Long#########
+:ReplySenderIncludeItem:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+To Sender, Include 
+
+Opens the Compose window. The To field contains
+the address of the sender of the selected
+message.
+
+The window also contains the included message.
+
+:ReplyAllIncludeItem:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+To All, Include 
+
+Opens the Compose window. The To and Cc fields
+contain addresses for:
+
+- The sender of the selected message
+- All the people on the To and Cc lists 
+    of the selected message
+
+The window also contains the included message.
+
+##########This_Line_Is_50_Characters_Long#########
+:VacationMenu:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Vacation 
+
+Provides these options:
+
+Start/Change	Opens the Vacation Setup
+		window where you can compose or
+		edit an automatic reply to
+		in-coming mail.
+
+Stop		Stops sending out the automatic
+		reply to in-coming mail.
+
+:VacationStart:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Start/Change
+
+Displays a window in which you can compose and 
+modify the vacation message. 
+
+Mail Tool will respond to incoming mail with 
+this message.
+
+:VacationStop:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Stop 
+
+Stops Mail Tool from sending the vacation message
+in response to incoming mail.
+
+##########This_Line_Is_50_Characters_Long#########
+:VacationPopupStart:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Start
+
+After composing your message in the Vacation 
+Setup window, click SELECT on Start to have Mail
+Tool automatically reply to incoming mail with
+your message.
+
+:VacationPopupChange:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Change
+
+Mail Tool automatically replies to incoming mail 
+with the above message. If you want to change 
+the message, edit it and then click SELECT on
+Change.
+
+#################################
+#	Message Header Window
+#################################
+:MailFile:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+#Mail File: text field only
+Mail File 
+
+A mail file is a file that contains one or 
+more mail messages. Create a mail file when
+you want to save groups of messages.
+
+To create a mail file, enter its name and then 
+move or copy a mail message to this new file
+name.
+
+##########This_Line_Is_50_Characters_Long#########
+:MailFileMenu:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+#Mail File label and abbr menu button
+Mail File Menu
+
+The Mail File menu lists all your current mail 
+files.
+
+A mail file is a file that contains one or more
+mail messages.
+
+:RecentFiles:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+#Items on Move, Copy, Load menus
+<filenames>
+
+This is a list of mail files that you have
+recently used.
+
+:MailFilesButon:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+# MailFiles custom button
+MailFiles
+
+Opens the Mail Files window, where you can
+create, delete, rename, add messages to, and view
+mail files.
+
+:MessageList:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+#Main Header Window (message headers)
+Message List
+
+This is a list of all messages in the current 
+mail file or In-Box. Each line contains the 
+following information:
+
+- Message status
+- Message number
+- Address of the sender
+- Day, date, and time the message was sent
+- Size of the message in number of 
+   lines/characters
+- Subject
+
+Message Status
+
+(N) New:    The message has come in since the
+            last time you saved changes.
+
+(U) Unread: You have saved changes but have not
+            read the message. 
+
+    Blank:  You have read the message.
+
+A diamond in the status field indicates that this
+message contains attachments.
+
+An arrow in the status field indicates that the
+message is "active", and is currently being
+displayed in a View window.
+
+:MoveItem:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+#Header Window Move pane menu item
+Move
+
+Adds the selected messages to the mail file
+you choose from the Move submenu. That menu 
+lists the most recently used mail files as well 
+as any files you set up in the Properties window.
+
+Moving a message deletes it from the Header 
+window. 
+
+#################################
+#	Find Messages Popup
+#################################
+##########This_Line_Is_50_Characters_Long#########
+:SelectBySender:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+From:
+
+Enter the user name of the sender for the message
+you want to find. Capitalization is ignored.
+
+:SelectByToCc:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+To/Cc:
+
+Enter text that is in either the To or Cc field
+for the message you want to find. Either an email
+address, mail alias, or just part of the
+name will do.
+
+Examples:	
+
+  trout@stream	all.trout@stream  trout	
+
+Capitalization is ignored.
+
+##########This_Line_Is_50_Characters_Long#########
+:SelectByTo:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+To:
+
+Enter text that is in the To field for the 
+message you want to find. Either an email
+address, mail alias, or just part of the
+name will do.
+
+Examples:	
+
+  trout@stream	all.trout@stream  trout	
+
+Capitalization is ignored.
+
+:SelectByCc:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Cc:
+
+Enter text that is in the Cc field for the 
+message you want to find. Either an email
+address, mail alias, or just part of the
+name will do.
+
+Examples:	
+
+  trout@stream	all.trout@stream  trout	
+
+Capitalization is ignored.
+
+##########This_Line_Is_50_Characters_Long#########
+:SelectBySubject:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Subject:
+
+Enter text that is in the Subject field of the
+message you want to find. Capitalization is
+ignored.
+
+:FindForwardButton:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Find Forward
+
+After entering text in the Find fields, click 
+SELECT on Find Forward to locate the next 
+message that matches the text.
+
+:FindBackwardButton:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Find Backward
+
+After entering text in the Find fields, click 
+SELECT on Find Backward to locate the previous 
+message that matches the text.
+
+:SelectButton:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Select All
+
+After entering text in Find fields, click SELECT 
+on Select All to select all messages that match 
+the text.
+
+##########This_Line_Is_50_Characters_Long#########
+:ClearButton:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Clear
+
+Remove all text from the text fields in the
+Find Messages window.
+
+#################################
+#	Properties
+#################################
+#--------------------------------
+#	Header Window 
+#--------------------------------
+:PropsRetrieveinterval:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Retrieve Every: __ Seconds
+
+Sets how often (in seconds) Mail Tool checks for
+new mail. 
+
+Type the number of seconds in the text field.
+Or click SELECT on the up or down arrow.
+
+Click SELECT on Apply to make your changes
+take effect.
+
+:PropsBell:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Signal With: __ Beeps
+
+Sets the number of times your computer beeps
+when new mail arrives. 
+
+Type the number of beeps in the text field.
+Or click SELECT on the up or down arrow.
+
+Click SELECT on Apply to make your changes
+take effect.
+
+#######################50#########################
+:PropsFlash:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Signal With: __ Flashes
+
+Sets the number of times the Mail Tool window or 
+icon flashes when new mail arrives.
+
+Type the number of flashes in the text field.
+Or click SELECT on the up or down arrow.
+
+Click SELECT on Apply to make your changes
+take effect.
+
+:PropsHeaderlines:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Display: __ Headers
+
+Shows the number of message headers displayed in 
+the Header Window when you start Mail Tool. You
+can scroll through the list to display the other
+headers.
+
+Type the number of headers that you want to
+display. Or click SELECT on the up or down arrow.
+
+Click SELECT on Apply to make your changes
+take effect.
+
+A large number increases the size of your Mail
+Tool window. 
+
+A smaller number may require more scrolling
+through headers.
+
+#######################50#########################
+:PropsToolcols:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Display __ Characters wide
+
+The width (in text characters) of all of the
+Mail Tool panes and windows.
+
+Type in a new number or click SELECT on the
+up or down arrow.
+
+Click SELECT on Apply to make your changes
+take effect.
+
+:PropsAutoretrieve:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Automatically display headers
+
+Sets Mail Tool to display headers for new
+messages in the Header window.
+
+If this option is disabled, you must explicitly
+request new messages by choosing either
+File -> Load In-Box or Save Changes.
+
+Click SELECT on Apply to make your changes
+take effect.
+
+:PropsShowto:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Show "To: recipient" when mail is from me
+
+If a message in the Header window is from you,
+Mail Tool will show the recipient's name instead
+of yours, with this option selected.
+
+Click SELECT on Apply to make your changes
+take effect.
+
+#######################50#########################
+:PropsCustombuttons:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Custom Buttons:
+
+Specify the commands to appear in the
+control area below the menu buttons.
+
+The default commands are:
+
+Command:	Related Menu:
+
+Done		File
+Next		View
+Delete		Edit
+Reply		Compose
+
+You can change those commands to others you use
+more often.
+
+1. Click SELECT on the custom button you want 
+   to change.
+
+2. Press MENU to choose a command from the
+   Command menu button.
+
+3. If you want the button to have a different
+   label, edit the Label text field. 
+
+4. Click SELECT on Apply.
+
+Be careful when you change a button's label. You
+could end up with a label that says "Print" on 
+a button that deletes messages.
+
+#######################50#########################
+:PropsCommandbuttons:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Command:
+
+Shows which command is in effect for the selected
+custom button.
+
+Press MENU on the menu button to choose another
+command.
+
+Click SELECT on Apply to make your changes
+take effect.
+
+#######################50#########################
+:PropsLabelbuttons:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Label:
+
+Shows the label for the selected custom button.
+
+Edit the text in the text field to change the
+label for a custom button. You can use as many
+characters as you like, but a long label changes
+the width of the button in the Header window.
+
+Click SELECT on Apply to make your changes
+take effect.
+
+#--------------------------------
+#	Message Window 
+#--------------------------------
+:PropsPopuplines:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Display: __ Lines of Text
+
+Shows the number of lines displayed in the View
+Message and Compose windows.
+
+Type the number of lines you want in these
+windows. Or click SELECT on the up or down arrow.
+
+To make this change take effect, click SELECT
+on Apply, and then quit and restart Mail Tool.
+
+##########This_Line_Is_50_Characters_Long#########
+:PropsPrint:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Print Script
+
+Mail Tool executes this script when you choose
+Print from the File menu.
+
+The default print script depends on the
+operating system you are using.
+
+##########This_Line_Is_50_Characters_Long#########
+:PropsHideList:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Hide:
+
+The typical header fields that appear in the View 
+Message window are From, To, Subject, and Cc.
+
+The header fields in this scrolling list are NOT
+displayed when you view your messages. 
+
+Sometimes you want additional information such
+as "return-path." To get that information to
+appear with the message, you need to delete
+that entry from the "Hide" list.
+
+To delete an entry, click SELECT on the header
+you want to delete, and then click SELECT on the
+Delete button.
+
+To change an entry, click SELECT on the header
+you want to change, make the change on the line
+after Header Field, and then click SELECT on the 
+Change button.
+
+If you want to have fewer headers appear with
+messages, add those headers to the Hide list.
+
+To add a header to the list, type the header on
+the line after Header Field and click SELECT 
+on Add.
+
+Click SELECT on Apply to make your changes
+take effect.
+
+##########This_Line_Is_50_Characters_Long#########
+#--------------------------------
+#	Compose Window 
+#--------------------------------
+:PropsIndentprefix:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Included Text Marker:
+
+Shows the characters that precede each line of 
+a text message you include in your message.
+
+The default is > . The > appears at the start
+of each line when you choose Include Indented
+in the Compose Window. For example:
+
+	>This is what a short
+	>indented message would
+	>look like.
+
+In the text field, type the characters you want
+to use for indented messages.
+
+Click SELECT on Apply to make your changes take 
+effect.
+
+##########This_Line_Is_50_Characters_Long#########
+:PropsRecord:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Logged Messages File:
+
+Specifies where outgoing mail is recorded.
+
+When you select the Log box in the Compose
+window, your outgoing mail is recorded in this
+file.
+
+To record mail in a different file, type the
+new file name on the line after 
+Logged Messages File. Use a full path name, 
+with no abbreviations (such as ~).
+
+Click SELECT on Apply to make your changes take
+effect.
+
+:PropsLogallmessages:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Log all messages
+
+Choose this option when you want all your
+outgoing mail messages recorded in the logged
+messages file.
+
+##########This_Line_Is_50_Characters_Long#########
+:PropsExpert:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Request confirmations
+
+Sets Mail Tool to ask for confirmation before 
+performing irreversible actions.
+
+Click SELECT on Apply to make your changes
+take effect.
+
+:PropsShowAttach:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Show attachment list
+
+If you seldom use attachments, you can turn off
+the display of the Attachments pane in the
+Compose window.
+
+Click SELECT on Apply to make your changes
+take effect.
+
+##########This_Line_Is_50_Characters_Long#########
+:PropsCustomList:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Custom Fields:
+
+Provides a way to add, change, or delete the
+headers that appear on the Header menu in the 
+Compose window.
+
+Mail Tool provides three default headers for
+composing messages: 
+
+- To 
+- Subject 
+- Cc
+
+(Bcc is available from the Header button menu.)
+
+If you want to add a custom header:
+
+1. Type its name in the Header Field line.
+
+2. If you want a default value for the header,
+   type it in the Default Value text field.
+
+   For example, to receive a "return receipt" when
+   a message is successfully delivered, create 
+   the custom header "Return-Receipt-To and use
+   your own email address as the header value.
+
+3. Press MENU to choose Before or After from the
+   Add button menu.
+
+   This adds the header to the list of Custom
+   Fields. 
+
+4. When the scrolling list contains all of the 
+   headers you want, click SELECT on Apply. 
+
+To add your custom header to a message, choose it
+from the Header menu in the Compose window.
+
+To change a custom header field:
+
+1. In the Custom Fields scrolling list, click 
+   SELECT on the name of the header you want
+   to change.
+
+2. Edit the contents of the Header Field and 
+   Default Value text fields.
+
+3. Click SELECT on Change.
+
+4. Click SELECT on Apply.
+
+To delete a custom field:
+
+1. In the Custom Fields scrolling list, click 
+   SELECT on the name of the header you want
+   to delete.
+
+2. Click SELECT on Delete.
+
+3. Click SELECT on Apply.
+
+#--------------------------------
+#	Mail Filing 
+#--------------------------------
+##########This_Line_Is_50_Characters_Long#########
+:PropsFolder:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Mail File Directory:
+
+Sets the directory where you keep your mail files. 
+
+Type the name of the directory you want to use
+for all your mail files.
+
+Click SELECT on Apply to make your changes
+take effect.
+
+If the directory you specify here does not start 
+with a slash (/), Mail Tool prefixes the name 
+with your home directory.
+
+Do not use ~ to specify your home directory 
+in this field.
+
+##########This_Line_Is_50_Characters_Long#########
+:PropsFilemenusize:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Display Up To: __ Files in Menus
+
+Sets the maximum number of entries on the Move, 
+Copy, and Load menus for Mail File.
+
+Type the number of entries you want. Or click
+SELECT on the up or down arrow.
+
+Click SELECT on Apply to make your changes
+take effect.
+
+As you use mail files, Mail Tool adds them to
+the Move, Copy, and Load menus until it reaches
+the number of entries you specify here.
+
+When you use more than the specified number of
+mail files, Mail Tool revises the list to contain
+the most recently used mail files, up to the
+maximum number.
+
+##########This_Line_Is_50_Characters_Long#########
+:PropsMenuList:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Move, Copy, Load Menus:
+
+Shows the list of files that always appear on the
+Move, Copy, and Load menus.
+
+To add a mail file to the list:
+
+1. Type the name of the mail file in the
+   Permanent File text field.
+
+2. Press MENU to choose Before or After from the
+   Add button menu. This adds the mail file to
+   the menus.
+
+3. Click SELECT on Apply.
+
+To remove a mail file from the list:
+
+1. In the scrolling list, click SELECT on the file
+   you want to remove.
+
+2. Click SELECT on Delete.
+
+3. Click SELECT on Apply.
+
+To change an entry:
+
+1. In the scrolling list, click SELECT on the file
+   you want to change.
+
+2. Type the name of the new file in the Permanent
+   File text field.
+
+3. Click SELECT on Change.
+
+4. Click SELECT on Apply.
+
+#--------------------------------
+#	Add/Change/Delete 
+#--------------------------------
+##########This_Line_Is_50_Characters_Long#########
+:PropsAddChangeDelete:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Scrolling list manipulation:
+
+The are three buttons to the left of the
+scrolling list are used to add, change
+or remove entries.
+
+The Add button takes the entry in the
+text fields below the scrolling list,
+and inserts it into the list.
+
+The Change button replaces the currently
+selected entry with the contents of the
+text field.
+
+The Delete button deletes the currently
+selected entry.
+
+#--------------------------------
+#	Template 
+#--------------------------------
+##########This_Line_Is_50_Characters_Long#########
+:PropsTemplatesList:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Templates:
+
+Use this scrolling list to define message
+templates. 
+
+Each template is a file that you create outside
+of Mail Tool, using Text Editor, vi, or other
+ASCII editor. 
+
+You can include the template in a message by
+choosing it from the Templates submenu of the
+Include menu in the Compose window.
+
+To set up a template:
+
+1. Create the file, using a text editor.
+
+2. Enter a name for the template in the Name 
+   text field. 
+
+   This name will appear on the Templates menu 
+   in the Compose window. 
+
+3. In the File text field, type the path for the
+   file you want to use as a template. 
+
+4. Choose Before or After from the Add button
+   menu.
+
+   This adds the template to the list.
+
+5. When you have added all the templates you want,
+   click SELECT on Apply. 
+
+To change a template entry:
+
+1. In the Templates scrolling list, click SELECT
+   on the template you want to change.
+
+2. Type the new values in the Name and File 
+   text fields.
+
+3. Click SELECT on Change.
+
+4. Click SELECT on Apply.
+
+To delete a template name:
+
+1. In the Templates scrolling list, click SELECT 
+   on the name you want to delete. 
+
+2. Click SELECT on Delete.
+
+3. Click SELECT on Apply. 
+
+#--------------------------------
+#	Alias 
+#--------------------------------
+##########This_Line_Is_50_Characters_Long#########
+:PropsAliasList:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Aliases:
+
+- Shows the current list of aliases
+- Lets you set up new aliases
+
+An alias is an email distribution list for more
+than one address. Instead of having to type all
+the addresses for a message, you can use an
+alias.
+
+To create an alias:
+
+1. Type the name for the alias in the Alias text
+   field.
+
+2. Type the email address for each person on the
+   distribution in the Addresses text field.
+
+   Separate the addresses with commas or spaces:
+
+	dante@inferno, inanna@underworld
+
+3. Click SELECT on Add.
+
+   This adds the new alias to the Aliases 
+   scrolling list.
+
+4. Click SELECT on Apply.
+
+To use the alias, type the name of the alias in
+the To, Cc, or Bcc line of the Compose window.
+
+To change an alias:
+
+1. In the Aliases scrolling list, click SELECT 
+   on the alias you want to change.
+
+2. Edit the entries in the Alias and Addresses 
+   text fields.
+
+3. Click SELECT on Change.
+
+4. Click SELECT on Apply.
+
+To delete an alias:
+
+1. In the Aliases scrolling list, click SELECT 
+   on the alias you want to delete. 
+
+2. Click SELECT on Delete.
+
+3. Click SELECT on Apply.
+
+#--------------------------------
+#	Expert 
+#--------------------------------
+##########################50######################
+:Metoo:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Include me when I "Reply To All" (metoo)
+
+With this option set, you will receive a copy
+of the reply when you "Reply To All."
+
+Setting the "metoo" option renders ineffective
+the "allnet" option.
+
+Please see the help for "Ignore host name in
+address (allnet)." 
+
+:Allnet:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Ignore host name in address (allnet)
+
+This option affects how addresses are handled in
+the To and Cc fields of the Compose window when
+you "Reply To All." Setting "allnet" has no
+effect if "metoo" has been set.
+
+With "allnet" set and "metoo" not set, Mail Tool
+treats any address containing your login as your
+address.  
+
+If both "metoo" and "allnet" are not set, then
+only the address of type "login@machine" is
+treated as your address.
+
+##########################50######################
+:Ttlock:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Use network aware mail file locking
+
+Use this option if you run Mail Tool from more 
+than one machine at once or if you access your 
+mail files over the network.
+
+This option uses tooltalk to coordinate the 
+Mail Tools.
+
+Mail Tool can only change this option when first
+opening a mail file.
+
+If you change this option when a mail file is open,
+you have these options:
+
+	Save the current mail file and reopen it, 
+	making the new locking technique take 
+	effect immediately.
+
+	Continue editing the current mail file.
+	The new locking technique takes effect
+	the next time you open a mail file.
+
+	Abort the Apply operation and return to 
+	editing the property window.
+
+##########################50######################
+#--------------------------------
+#	General Property controls
+#--------------------------------
+:PropsCategory:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Category:
+
+Press MENU to display and choose from a menu of
+types of properties for Mail Tool:
+
+- Header Window
+- Message Window
+- Compose Window
+- Mail Filing
+- Template
+- Alias
+- Expert
+  
+The Properties window changes to display 
+options for each of these categories.
+
+##########This_Line_Is_50_Characters_Long#########
+:PropsApply:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Apply
+
+Saves the currently displayed settings. The 
+new properties take effect immediately in most 
+cases. 
+
+In a few cases, you must quit and restart
+Mail Tool before the new settings take effect.
+
+:PropsReset:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Reset
+
+Resets the currently displayed properties to the
+values they had after the last time you clicked
+on Apply.
+
+#--------------------------------
+#	Compose Window Fields
+#--------------------------------
+:ComposeTo:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+To:
+
+Enter the addresses of the people you want to 
+send the message to. Separate multiple 
+addresses by commas or spaces:
+
+    casey@thebat, stars@night
+
+:ComposeSubject:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Subject:
+
+Enter a short description of your message. 
+
+##########This_Line_Is_50_Characters_Long#########
+:ComposeCc:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Cc:
+
+Enter the addresses of the people to whom you 
+want to send a carbon copy of the message.
+
+Separate multiple addresses by commas or spaces:
+
+    otter@ptreyes, luna@moonbeam
+
+:ComposeBcc:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Bcc:
+
+Enter the addresses of the people to whom you 
+want to send a blind carbon copy of the message. 
+
+Other recipients of the message do not see who 
+received a blind carbon copy.
+
+Separate multiple addresses by commas or spaces:
+
+    dante@inferno, orpheus@underworld
+
+#--------------------------------
+#	Include Button Menu
+#--------------------------------
+##########This_Line_Is_50_Characters_Long#########
+:IncludeButton:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Include
+
+Include has these options:
+
+Bracketed		Copies selected messages
+			into the Compose window,
+			bracketing each message 
+			with lines that indicate 
+			Begin Included Message
+			and End Included Message.
+
+Indented		Copies selected messages
+			into the Compose window,
+			prefixing each line with
+			the > character.  Change 
+			the default indent prefix 
+			character in the Compose
+			Window properties window.
+
+Templates		Inserts your templates
+			into the Compose window.
+
+Hide/Show Attachments	Hides the Attachments
+			pane if it is displayed.
+			Or displays a hidden 
+			Attachments pane.
+
+##########This_Line_Is_50_Characters_Long#########
+:IncludeBracketedItem:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Bracketed
+
+Copies the currently selected messages into the 
+body of the message you are composing. 
+
+Mail Tool brackets the included messages with 
+special lines indicating Begin Included Message
+and End Included Message.
+
+:IncludeIndentedItem:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Indented
+
+Copies the currently selected messages into the
+body of the message you are composing. 
+
+Mail Tool indents each line of the included 
+message, prefixing it with >. (You can change
+that character in the Properties window.)
+ 
+##########This_Line_Is_50_Characters_Long#########
+:TemplateMenu:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Templates
+
+Inserts templates for standardized messages.
+
+Each template is a file that you create outside 
+of Mail Tool, using a text editor. You can include
+the file in a Mail Tool message after you define
+its template properties in the Properties window.
+
+:IncludeAtachments:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Hide/Show Attachments
+
+Hides the Attachments pane if it is displayed.
+Or displays a hidden Attachments pane. 
+
+The Attachments pane is displayed by default.
+You can change that in the Properties window.
+
+#--------------------------------
+#	Deliver Button Menu
+#--------------------------------
+##########This_Line_Is_50_Characters_Long#########
+:DeliverButton:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Deliver
+
+Mails the message you have composed.
+
+Deliver has these options:
+
+Quit window		Mails the message you
+			have composed and
+			dismisses the Compose
+			window.
+
+Close window		Mails the message you
+			have composed and closes
+			the Compose window to an
+			icon.
+
+Clear message		Mails the message and
+			clears the Compose
+			window for re-use.
+
+Leave message intact	Mails the message and
+			leaves a copy in the 
+			Compose window.
+
+##########This_Line_Is_50_Characters_Long#########
+:DeliverTakedown:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Quit window
+
+Mails the message you have composed and dismisses 
+the Compose window.
+
+:DeliverClose:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Close window
+
+Mails the message you have composed and closes
+the Compose window to an icon.
+
+:DeliverClearItem:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Clear message
+
+Mails the message and clears the Compose window
+for re-use.
+
+##########This_Line_Is_50_Characters_Long#########
+:DeliverLeaveMessageItem:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Leave message intact
+
+Mails the message and leaves a copy in the 
+Compose window.
+
+#--------------------------------
+#	Clear Button
+#--------------------------------
+:ClearHelpButton:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Clear
+
+Clears the contents of the Compose window
+but does not send the message.
+
+#--------------------------------
+#	Attach Button Menu
+#--------------------------------
+:AttachButton:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Attach
+
+Provides these options:
+
+Voice		Starts Audio Tool for creating
+		an audio attachment.
+
+Appt		Starts the Mini Appointment Editor 
+		for creating appointment 
+		attachments.
+
+##########This_Line_Is_50_Characters_Long#########
+:PullRightVoice:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Voice
+
+Starts Audio Tool (if it's available on your
+system). 
+
+In Audio Tool, you can record a message and add 
+it as an attachment to the current mail message. 
+
+To add a recorded message, drag it from Audio 
+Tool and drop it onto the Attachments pane in
+the Compose window.
+
+Pre-recorded audio files can be dragged from
+File Manager to the Attachments pane.
+
+##########This_Line_Is_50_Characters_Long#########
+:PullRightAE:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Appt
+
+Starts the Mini Appointment Editor
+
+In the Mini Appointment Editor, you can create 
+an appointment and add it as an attachment to the
+current mail message. 
+
+To add an appointment, drag it from the Mini 
+Appointment Editor's drop target and drop it 
+onto the Attachments pane in the Compose window, 
+or select Attach on the Mini Appointment Editor 
+to attach the current appointment.
+
+#--------------------------------
+#	Log Check Box
+#--------------------------------
+:ComposeRecord:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Log
+
+Click SELECT on this box to record a copy of the 
+message you are composing. 
+
+When you deliver the message, a copy is saved
+in the file specified in the Properties window.
+
+#--------------------------------
+#	Header Button Menu
+#--------------------------------
+##########This_Line_Is_50_Characters_Long#########
+:Headers:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Header
+
+Use the Header menu to add and delete message
+header fields, including the custom fields you set
+up in the Properties window.
+
+You can also open the Alias Properties window
+from the Header menu.
+
+:ToggleFieldItem:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+# All Header menu items
+Add/Delete Header
+
+This option toggles to let you add or delete
+header fields.
+
+#--------------------------------
+#	Mail Files Window
+#--------------------------------
+##########This_Line_Is_50_Characters_Long#########
+:FileListName:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Name:
+
+Shows the name of the current mail file. 
+Any action, such as Saving or Loading, uses
+the current mail file.
+
+To select another mail file, click on its 
+file name in the list box. Or type the name
+in the text field after Name.
+:FileListSave:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Save
+
+Adds the selected messages to the current mail 
+file with these options:
+
+Move Message into Mail File
+
+Puts a copy in the mail file and deletes it
+from Header window.
+
+Copy Message into Mail File
+
+Puts a copy in the mail file and leaves it in
+the Header window.
+
+Be sure you have selected one or more messages
+in the Header window before you click on Save.
+
+##########This_Line_Is_50_Characters_Long#########
+:FileListMove:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Move Message into Mail File
+
+Puts a copy in the mail file and deletes it from
+Header window.
+
+:FileListCopy:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Copy into Mail File
+
+Puts a copy in the mail file and leaves it in 
+the Header window.
+ 
+:FileListLoad:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Load
+
+Loads the selected mail file into the Header
+window, displaying all the messages in that
+file.
+
+Load has these options:
+
+Mail File	Loads the selected mail file.
+
+In-Box		Loads the In-Box.
+
+:FileListLoadFile:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Mail File
+
+Loads the selected mail file.
+
+##########This_Line_Is_50_Characters_Long#########
+:FileListLoadInbox:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+In-Box
+
+Loads the In-Box.
+
+:FileListCreate:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Create
+
+Creates a new mail file or mail file
+subdirectory.
+
+To create a new file or subdirectory:
+
+1. Type the name of the new mail file or mail
+   directory after Name. For a directory,
+   use the complete path.
+
+2. Choose Mail File (or Directory) from the
+   Create menu.
+
+:FileListCreateFile:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Mail File
+
+To create a new file:
+
+1. Type the name of the new mail file after
+   Name.
+
+2. Choose Mail File from the Create menu.
+
+
+##########This_Line_Is_50_Characters_Long#########
+:FileListCreateDir:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Directory
+
+To create a new subdirectory:
+
+1. Type the name of the new mail directory after
+   Name. Use the complete path.
+
+2. Choose Directory from the Create menu.
+
+:FileListEdit:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Edit
+
+Provides these options for editing the current 
+Mail File:
+
+Delete	Deletes the file and its name.
+
+Empty	Removes the contents of the file,
+	but keeps the name in the Mail Files
+	list.
+	
+Rename	Renames the file.
+
+:FileListDelete:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Delete
+
+Deletes the file and its name.
+
+##########This_Line_Is_50_Characters_Long#########
+:FileListEmpty:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Empty
+
+Removes the contents of the file, but keeps the
+name in the Mail Files list.
+
+:FileListRename:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Rename
+
+Renames the file.
+
+:FileListList:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+# File -> Mail Files popup scrolling list
+Mail Files List
+
+Shows all of your mail files, including the
+In-Box and any subdirectories you have set up.
+
+The icon for subdirectories is a small file
+folder. The icon for regular mail files is
+a small mailbox.
+
+Double-click on a subdirectory to open it and
+display the mail files it contains.
+
+Click on a mail file to select it from the
+list. You can select only one file at a
+time.
+
+##########This_Line_Is_50_Characters_Long#########
+:FolderMenu:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+# Mail File menu items
+Menu of Mail Files
+
+Shows all your mail files.
+
+Choose an item from the menu to make it the
+current mail file. 
+
+Click SELECT on Move, Copy, or Load 
+to add messages to the current mail file or
+load a different mail file.
+
+#--------------------------------
+#	Mail File Buttons
+#--------------------------------
+:MoveAccel:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Move
+
+Adds the selected messages to the current mail
+file. Moving a message deletes it from the Header
+window.
+
+You can also move messages into any of the mail
+files on the Move menu. That menu lists the
+most recently used mail files as well as any files
+you set up in the Properties window.
+
+:CopyAccel:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Copy
+
+Copies the selected messages to the file
+specified in the Mail File text field.
+
+You can also copy into any of the mail files on
+the Copy menu. That menu lists the most 
+recently used mail files as well as any files you
+set up in the Properties window.
+
+##########This_Line_Is_50_Characters_Long#########
+:LoadAccel:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Load
+
+Loads the current mail file into the Header
+window, displaying all the messages in that file.
+
+You can also load messages from any of the mail
+files on the Load menu. That menu lists the
+most recently used mail files as well as any
+files you set up in the Properties window.
+
+#--------------------------------
+#	Attachments Panel
+#--------------------------------
+:FileAttach:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+File
+
+File has these options:
+
+Add		Displays a window in which you
+		specify the directory and name of
+		the file you want to attach to
+		the mail message.
+
+Open		Opens the selected attachment.
+
+Save As		Displays a window in which you 
+		specify where to save the
+		selected attachments.
+
+##########This_Line_Is_50_Characters_Long#########
+:AddAttach:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Add
+
+Displays a window in which you specify the
+directory and choose the file you want to attach
+to the mail message.
+
+:OpenAttach:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Open
+
+Opens the selected attachment.
+
+:ExportAttach:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Save As
+
+Display a window in which you specify where
+to save the selected attachments.
+
+:EditAttach:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Edit
+
+Edit has these options:
+
+Delete		Deletes the selected attachments 
+		from the mail message.
+
+Undelete	Recovers the last deleted 
+		attachment.  Select Undelete 
+		multiple times to recover more 
+		than one deleted attachment.
+
+Rename		Displays a window where you can
+		rename attachments.
+
+Select All 	Selects all attachments.
+
+:DeleteAttach:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Delete
+
+Deletes the selected attachments from the mail 
+message.
+
+:UndeleteAttach:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Undelete
+
+Recovers the last deleted attachment.
+Select Undelete multiple times to recover more 
+than one deleted attachment.
+
+##########This_Line_Is_50_Characters_Long#########
+:RenameAttach:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Rename
+
+Displays a window in which you specify a new name 
+for the selected attachment.
+
+:RenameAttachName:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Name:
+
+Type the new name for the selected attachment.
+
+The name cannot contain a slash (/). The
+slash indicates a directory, not a file.
+
+Click SELECT on the Rename button.
+
+:RenameAttachButton:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Rename
+
+Click on this button to apply the new name
+to the selected attachment.
+
+##########This_Line_Is_50_Characters_Long#########
+:SelectAttach:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Select All
+
+Click on this button to select all the 
+attachments.
+
+:AttachCanvas:$OPENWINHOME/bin/helpopen handbooks/mail.handbook
+Attachments pane
+
+Drag and drop file icons here to attach them
+to your mail message.
+
+You can also attach files by using the File
+button.

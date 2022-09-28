@@ -1,0 +1,315 @@
+DESCRIPTION
+
+	The PopupWindowShell widget provides a method for creating an OPEN LOOK 
+	Property Window and provides a simple interface for populating this window 
+	with controls.  
+
+	The PopupWindow widget is comprised of the following widget components (some are optional):
+		PopupWindowShell		(created automatically)
+		the Upper ControlArea		(created automatically as child of Popup shell)
+		the Lower ControlArea		(created automatically as child of Popup shell)
+		popup window menu		(created automatically)
+		Settings menu 			(conditional)
+		Apply Button 			(conditional)
+		Reset Button 			(conditional)
+		Reset to Factory Button 	(conditional)
+		Set Defaults button 		(conditional)
+		Footer				(optional)
+
+	The PopupWindowShell widget has several callbacks associated with various 
+	actions of a Property window (i.e. apply, reset, etc).  For each of these 
+	callbacks specified when the PopupWindowShell is created, the corresponding 
+	Button will automatically be created in the lower control area.
+
+	If the application uses the PopupWindowShell as a command window then the
+	application is reponsible for adding the necessary control objects (buttons,
+	TextFields, etc) to create the desired functionality.  
+
+	NOTE: Because the PopupWindowShell uses ControlArea widgets for it's panes,
+	widgets contained inside a PopupWindowShell will not get resized if the overall
+	window is resized.  If your application requires dynamic sizing behavior, use
+	a TransientShell widget instead to build your own popup (XtNwinType=OL_WT_CMD).
+
+	For more detailed information on the PopupWindowShell Widget, see the following
+	Sections in the OPEN LOOK Intrinsics Toolkit Widget Set Reference Manual:
+		. PopupWindowShell
+		. Shell Resources
+
+
+EXAMPLE CODE
+
+The following code could be used to Create the example PopupWindowShell Widget shown 
+in the Table (All color specific code has been removed for simplification):
+
+/**************************************************************************************/
+#include <X11/Intrinsic.h>
+#include <X11/StringDefs.h>
+#include <Xol/OpenLook.h>
+#include <Xol/PopupWindo.h>
+
+#include <Xol/Caption.h>
+#include <Xol/TextField.h>
+#include <Xol/OblongButt.h>
+#include <Xol/StaticText.h>
+#include <Xol/ControlAre.h>
+
+#define MAXFILENAME	24
+
+/**********************************************************************
+ * CreateFileSelectionPopup: function used to create a simple Popup Window
+ * which prompts the user for a filename and provides both "Load" and
+ * "Cancel" buttons.
+ * This function returns a handle to the newly created PopupWindow widget.
+ ************************************************************************/
+Widget
+CreateFileSelectionPopup(name, parent)
+char *name;
+Widget parent;
+{
+	Widget popupshell, upper_control, lower_control, footer, 
+		loadbutton, filename_caption, filename_text, error_text;
+	void loadCB();
+
+	/*
+	 * Create PopupWindowShell
+	 */
+	popupshell = XtVaCreatePopupShell(name,
+				popupWindowShellWidgetClass,
+				parent,
+				XtNpushpin,	(XtArgVal)OL_OUT,
+				XtNresizeCorners,(XtArgVal)False,
+				NULL);
+
+	/*
+	 * Get handles of lower, upper control areas & footer
+	 */
+	XtVaGetValues (popupshell,
+				XtNupperControlArea, &upper_control,
+				XtNlowerControlArea, &lower_control,
+				XtNfooterPanel,      &footer,
+				NULL);
+
+	/*
+	 * Set Resources on lower control so that it will
+	 * space the buttons on one horizontal line 
+	 */
+	XtVaSetValues(lower_control,
+				XtNlayoutType,	(XtArgVal)OL_FIXEDROWS,
+				XtNmeasure,	(XtArgVal)  1,
+				XtNhSpace,	(XtArgVal) 57,
+				XtNhPad,  	(XtArgVal) 48,
+				XtNvPad,  	(XtArgVal) 16,
+				NULL);
+	
+	/*
+	 * Create Caption for filename TextField 
+	 */
+	filename_caption = XtVaCreateManagedWidget("caption",
+				captionWidgetClass, 
+				upper_control,
+				XtNlabel,	(XtArgVal)"Filename:",
+				NULL);
+
+	/*
+	 * Create TextField as child of caption
+	 */
+	filename_text = XtVaCreateManagedWidget("filename",
+				textFieldWidgetClass, 
+				filename_caption,
+				XtNmaximumSize,	(XtArgVal)MAXFILENAME,
+				NULL);
+
+	XtAddCallback(filename_text, XtNverification, loadCB, filename_text);
+
+	/* Create "Load" button and register its select callback
+	 * NOte: we pass in the filename_text widget as clientData to
+	 * callback so the filename string can be accessed 
+	 */ 
+	loadbutton = XtVaCreateManagedWidget("Load...", 
+				oblongButtonWidgetClass,
+				lower_control,
+				XtNdefault,	(XtArgVal)True,
+				NULL);
+
+	XtAddCallback(loadbutton, XtNselect, loadCB, (Widget)filename_text);
+
+	/*
+	 * Create "Cancel" button (no callback)
+	 */
+	XtVaCreateManagedWidget("Cancel", 
+				oblongButtonWidgetClass,
+				lower_control,
+				NULL);
+
+	/*
+	 * Create text for error messages
+	 */
+	error_text = XtVaCreateManagedWidget("errors",
+				staticTextWidgetClass,
+				footer,
+				XtNstring,	(XtArgVal)"No File Loaded",
+				XtNgravity,	(XtArgVal)WestGravity,
+				NULL);
+
+	XtVaSetValues(loadbutton,
+				XtNuserData,	(XtArgVal)error_text,
+				NULL);
+
+	XtVaSetValues(filename_text,
+				XtNuserData,	(XtArgVal)error_text,
+				NULL);
+
+
+	return(popupshell);
+}
+/************************************************************************
+ * loadCB: routine called when "Load" button is pressed in popup window.
+ * The filename_text widget is passed in as clientData.
+ ************************************************************************/
+void loadCB(w,clientData,callData)
+Widget w;
+XtPointer clientData, callData;
+{
+	char *filename;
+	Widget errortext;
+	Widget textfield = (Widget)clientData;
+
+	/* Get filename string from filename_text widget */
+	XtVaGetValues(textfield,
+				XtNstring,	&filename,
+				XtNuserData,	&errortext,
+				NULL);
+
+	/* actual code to load the file and deal with any
+	 * error conditions (which I'm too lazy to do for this
+	 * example) would go here 
+	 */
+	XtVaSetValues(errortext,
+				XtNstring,	strcat(filename," Loaded."),
+				NULL);
+
+	
+}
+/************************************************************************/
+/* popupCB: routine called when popupbutton is pressed - it then pops up
+ * the popup window passed in as clientData.
+ **********************************************************************/
+void popupCB(w,clientData,callData)
+Widget w;
+XtPointer clientData, callData;
+{
+	XtPopup(clientData,XtGrabNone);
+}
+/********************************************************************/
+
+main(argc, argv)
+int argc;
+char **argv;
+{
+	Widget toplevel, controlarea, popupbutton, filepopup;
+	XtAppContext app;
+
+	OlToolkitInitialize(NULL);
+	toplevel = XtAppInitialize(&app, "Test", 
+				(XrmOptionDescRec *)NULL,
+				(Cardinal)0, (int *)&argc, argv,
+				(String *)NULL, (ArgList)NULL, 0);
+
+	controlarea = XtVaCreateManagedWidget("controls", 
+				controlAreaWidgetClass,
+				toplevel, 
+				NULL);
+
+	popupbutton = XtVaCreateManagedWidget("popupbutton",
+				oblongButtonWidgetClass,
+				controlarea,
+				XtNlabel,	(XtArgVal)"Popup Window..",
+				XtNaccelerator,	(XtArgVal)"<F4>",
+				XtNacceleratorText,(XtArgVal)"F4",
+				NULL);
+
+	filepopup = CreateFileSelectionPopup("fileselection", popupbutton); 
+ 
+ 	/* 
+	 * Add callback to popup button now that we have 
+	 * filepopup widget ID. 
+	 */
+	XtAddCallback(popupbutton, XtNselect, popupCB, filepopup);
+
+
+	XtRealizeWidget(toplevel);
+	XtAppMainLoop(app);
+
+}
+/*****************************END EXAMPLE****************************/
+
+
+	
+
+RESOURCES
+_______________________________________________________________________________________________
+Resource Name		Type		Default		Brief Description
+_______________________________________________________________________________________________
+
+PopupWindowShell Resource Set:
+
+XtNallowShellResize	Boolean		TRUE		is shell allowed to resize itself?
+XtNancestorSensitive	Boolean		TRUE		Will immediate parent receive events?
+XtNapply		XtCallbackList	NULL		"Apply" button callback routine
+XtNapplyButton		Widget		NULL		handle to "Apply" button widget 
+XtNbackground		Pixel		White		background color of widget
+XtNbackgroundPixmap	Pixmap		(none)		pixmap used for tiling the background
+XtNborderColor		Pixel		Black		border color of widget
+XtNborderPixmap		Pixmap		(none)		pixmap used for tiling the border
+XtNborderWidth		Dimension	0		size in pixels of window border
+XtNconsumeEvent		XtCallbackList	NULL		called when event occurs
+XtNcreatePopupChildProc			NULL		ptr to ftn called before shell is mapped
+XtNdepth		int		(parent's)	number of bits used for each pixel
+XtNdestroyCallback	XtCallbackList	NULL		routines called when widget is destroyed
+XtNfooterPanel		Widget		(none)		handle to footer component of popup
+XtNgeometry             String      	NULL            can specify size, position of popup
+XtNheight		Dimension	(calculated)	height of widget's window in pixels
+XtNheightInc            int          	-1              progression of preferred height values
+XtNinput          	Boolean      	FALSE           controls type of input focus 
+XtNlowerControlArea	Widget		(none)		handle to lower controlarea widget
+XtNmaxAspectX           Position    	-1              range of max aspect ratio allowed for width
+XtNminAspectX           Position   	-1              range of min aspect ratio allowed for width
+XtNmaxHeight            Dimension   	OL_IGNORE       maximum height of shell window
+XtNmaxWidth             Dimension    	OL_IGNORE       maximum width of shell window
+XtNmaxAspectY           Position     	-1              range of max aspect ratio allowed for height
+XtNminAspectY           Position      	-1              range of min aspect ratio allowed for height
+XtNminHeight            Dimension     	OL_IGNORE       minimum height of shell window
+XtNminWidth             Dimension      	OL_IGNORE       minimum width of shell window
+XtNpopdownCallback	XtCallbackList	NULL		proc called immed. after shell is unmapped
+XtNpopupCallback	XtCallbackList	NULL		proc called immed. before shell is mapped
+XtNpushpin       	OLDefine        OL_OUT		state of pushpin when shell is mapped
+XtNreset		XtCallbackList	NULL		"Reset" button callback routine
+XtNresetButton		Widget		NULL		handle to "Reset" button widget
+XtNresetFactory		XtCallbackList	NULL		"Reset Factory" button callback routine
+XtNresetFactoryButton	Widget		NULL		handle to "Reset Factory" button widget
+XtNresizeCorners	Boolean		TRUE		should popup window have resize corners?
+XtNsaveUnder		Boolean		FALSE		should server attempt save-under?
+XtNsensitive		Boolean		TRUE		will widget receive input events?
+XtNsetDefaults		XtCallbackList	NULL		"Set Defaults" button callback routine
+XtNsetDefaultsButton	Widget		NULL		handle to "Reset" button widget
+XtNtitle         	String         	(widget name)   string used for title in popup
+XtNupperControlArea	Widget		(none)		handle to upper controlarea widget
+XtNuserData		XtPointer	NULL		storage for user defined data
+XtNverify		XtCallbackList	NULL		callback invoked when popup is pulled down
+XtNwidth		Dimension	(calculated)	width of widget's window in pixels
+XtNwidthInc		int		-1		progression of preferred width values
+XtNx			Position	0		x coord of widget's upper left corner
+XtNy			Position	0		y coord of widget's uuper left corner
+
+Upper & Lower ControlArea Resource Set:
+
+XtNalignCaptions	Boolean		FALSE		align all captions (right justified)?
+XtNcenter		Boolean		FALSE		center each child widget in column?
+XtNhPad			Dimension	4		size in pixels of margin on sides 
+XtNhSpace		Dimension	4		space in pixels between columns
+XtNlayoutType		OlDefine	OL_FIXEDROWS	layout policy of child widgets
+XtNmeasure		int		1		* number of rows/cols or fixed hgt/wth
+XtNsameSize		OlDefine	OL_COLUMNS	which children are forced to same width
+XtNuserData		XtPointer	NULL		storage for user defined data
+XtNvPad			Dimension	4		size in pixels of top/bottom margins
+XtNvSpace		Dimension	4		space in pixels between rows

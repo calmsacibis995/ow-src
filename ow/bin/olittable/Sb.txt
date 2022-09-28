@@ -1,0 +1,95 @@
+DESCRIPTION
+
+	The Scrollbar widget provides an object which can be used to implement
+	scrolling behavior on other widgets.  It is typically not used alone
+	(it is automatically created if specified in the ScrolledWindow, Text, and
+	ScrollingList widgets).
+
+	The Scrollbar consists of two Anchors, an Elevator, a Cable, a Proportion
+	Indicator, a Menu, and optionally a Page Indicator.  It can be positioned either
+	horizontally or vertically around the object which requires scrolling.
+
+	For more detailed information on the Scrollbar Widget, see the following
+	Section in the OPEN LOOK Intrinsics Toolkit Widget Set Reference Manual:
+		. Scrollbar
+
+
+EXAMPLE CODE
+
+The following code could be used to Create the example Scrollbar Widget shown 
+in the Table (All color specific code has been removed for simplification):
+
+/**************************************************************************/
+#include <X11/Intrinsic.h>
+#include <X11/StringDefs.h>
+#include <Xol/OpenLook.h>
+#include <Xol/Scrollbar.h>
+
+/*** Create a Scrollbar (not really useful alone, but what the heck...) ***/
+Widget scrollbar = XtVaCreateManagedWidget("scrollbar", 
+						scrollbarWidgetClass, 
+						parent,
+						XtNsliderMin,	(XtArgVal)0,
+						XtNsliderMax,	(XtArgVal)150,
+						NULL);
+
+/******************************END EXAMPLE*********************************/
+
+
+
+RESOURCES
+_______________________________________________________________________________________________
+Resource Name		Type		Default		Brief Description
+_______________________________________________________________________________________________
+
+Scrollbar Resource Set:
+
+XtNaccelerator		String		NULL		String which defines accelerator key
+XtNacceleratorText	String		Dynamic		string to be displayed as accelerator
+XtNancestorSensitive	Boolean		TRUE		Will immediate parent receive events?
+XtNbackground		Pixel		White		background color of widget
+XtNbackgroundPixmap	Pixmap		(none)		pixmap used for tiling the background
+XtNconsumeEvent		XtCallbackList	NULL		called when event occurs
+XtNcurrentPage		int		1		*see OLIT Widget Set Reference Manual
+XtNdepth		int		(parent's)	number of bits used for each pixel
+XtNdestroyCallback	XtCallbackList	NULL		routines called when widget is destroyed
+XtNdragCBType		OlDefine	OL_CONTINUOUS	frequency of XtNsliderMoved callbacks
+XtNforeground		Pixel		Black		foreground color of widget
+XtNgranularity		int		1		number of pixels elevator moves on click
+XtNheight		Dimension	(calculated)	height of widget's window in pixels
+XtNinitialDelay		int		500		time in millisec's between click & action
+XtNinputFocusColor	Pixel		Red		color of input focus indicator
+XtNmappedWhenManaged	Boolean		TRUE		will widget be mapped when managed?
+XtNmenuPane		Widget		(none)		widget where menuitems are attached
+XtNmnemonic		Usigned char	NULL		key used to activate widget
+XtNorientation		OlDefine	OL_VERTICAL	orientation of scrollbar
+XtNproportionLength	int		(variable)	size of proportion indicator
+XtNreferenceName	String		NULL		see manpage		
+XtNreferenceWidget	Widget		NULL		see manpage
+XtNrepeatRate		int		100		time in millisec's between hold actions
+XtNsensitive		Boolean		TRUE		will widget receive input events?
+XtNshowPage		OlDefine	OL_NONE		*see OLIT Widget Set Reference Manual
+XtNsliderMax		int		100		maximum length in pixels of content
+XtNsliderMin		int		0		minimum length in pixels of content
+XtNsliderMoved		XtCallbackList	NULL		procs called when scrollbar manipulated
+XtNsliderValue		int		0		current position of elevator
+XtNstopPosition		OlDefine	OL_ALL		disposition of dragbox at dragend
+XtNtraversalOn		Boolean		TRUE		is mouseless turned "on" for widget?
+XtNuserData		XtPointer	NULL		storage for user defined data
+XtNwidth		Dimension	(calculated)	width of widget's window in pixels
+XtNx			Position	0		x coord of widget's upper left corner
+XtNy			Position	0		y coord of widget's uuper left corner
+
+Scrollbar Menu Resource Set:
+
+XtNcenter		Boolean		TRUE		should children be centered in column?
+XtNhPad			Dimension	4		size in pixels of margin on sides 
+XtNhSpace		Dimension	4		space in pixels between columns
+XtNlayoutType		OlDefine	OL_FIXEDROWS	layout policy of child widgets
+XtNmeasure		int		1		* number of rows/cols or fixed hgt/wth
+XtNpushpin		OLDefine	OL_NONE		is there a pushpin in the menu?	
+XtNpushpinDefault	Boolean		FALSE		is pushpin 'default' item?
+XtNsameSize		OlDefine	OL_COLUMNS	which children are forced to same width
+XtNtitle		String		"Scrollbar"	string used for title in menu
+XtNvPad			Dimension	4		size in pixels of top/bottom margins
+XtNvSpace		Dimension	4		space in pixels between rows

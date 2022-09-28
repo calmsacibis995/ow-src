@@ -1,0 +1,195 @@
+ptype Sun_Imagetool_Sun_Raster {
+    start "$OPENWINHOME/bin/imagetool -tooltalk";
+    per_session 5;
+  handle:
+/*
+ * Session declarations. 
+ */
+
+/*
+ * Display for Sun Raster media type
+ */
+
+    session Display (in Sun_Raster rasterdata) => start;
+    session Display (in Sun_Raster rasterdata, in title text) => start;
+    session Display (in Sun_Raster rasterdata, in messageID text) => start;
+    session Display (in Sun_Raster rasterdata, in messageID text, in title text) => start;
+
+    file Display (in Sun_Raster rasterdata) => start;
+    file Display (in Sun_Raster rasterdata, in title text) => start;
+    file Display (in Sun_Raster rasterdata, in messageID text) => start;
+    file Display (in Sun_Raster rasterdata, in messageID text, in title text) => start;
+
+ };
+
+ptype Sun_Imagetool_PhotoCD {
+    start "$OPENWINHOME/bin/imagetool -tooltalk";
+    per_session 5;
+  handle:
+/*
+ * Session declarations. 
+ */
+
+/*
+ * Display for Sun Raster media type
+ */
+
+    session Display (in PhotoCD rasterdata) => start;
+    session Display (in PhotoCD rasterdata, in title text) => start;
+    session Display (in PhotoCD rasterdata, in messageID text) => start;
+    session Display (in PhotoCD rasterdata, in messageID text, in title text) => start;
+
+    file Display (in PhotoCD rasterdata) => start;
+    file Display (in PhotoCD rasterdata, in title text) => start;
+    file Display (in PhotoCD rasterdata, in messageID text) => start;
+    file Display (in PhotoCD rasterdata, in messageID text, in title text) => start;
+
+  };
+
+ptype Sun_Imagetool_PostScript {
+    start "$OPENWINHOME/bin/imagetool -tooltalk";
+    per_session 5;
+  handle:
+
+/*
+ * Display for PostScript media type
+ */
+
+    session Display (in PostScript text) => start;
+    session Display (in PostScript text, in title text) => start;
+    session Display (in PostScript text, in messageID text) => start;
+    session Display (in PostScript text, in messageID text, in title text) => start;
+	
+    file Display (in PostScript text) => start;
+    file Display (in PostScript text, in title text) => start;
+    file Display (in PostScript text, in messageID text) => start;
+    file Display (in PostScript text, in messageID text, in title text) => start;
+
+  };
+
+ptype Sun_Imagetool_GIF {
+    start "$OPENWINHOME/bin/imagetool -tooltalk";
+    per_session 5;
+  handle:
+
+/* 
+ * Display for GIF media type
+ */
+
+    session Display (in GIF rasterdata) => start;
+    session Display (in GIF rasterdata, in title text) => start;
+    session Display (in GIF rasterdata, in messageID text) => start;
+    session Display (in GIF rasterdata, in messageID text, in title text) => start;
+
+    file Display (in GIF rasterdata) => start;
+    file Display (in GIF rasterdata, in title text) => start;
+    file Display (in GIF rasterdata, in messageID text) => start;
+    file Display (in GIF rasterdata, in messageID text, in title text) => start;
+
+  };
+
+ptype Sun_Imagetool_TIFF {
+    start "$OPENWINHOME/bin/imagetool -tooltalk";
+    per_session 5;
+  handle:
+
+/* 
+ * Display for TIFF media type
+ */
+
+    session Display (in TIFF rasterdata) => start;
+    session Display (in TIFF rasterdata, in title text) => start;
+    session Display (in TIFF rasterdata, in messageID text) => start;
+    session Display (in TIFF rasterdata, in messageID text, in title text) => start;
+
+    file Display (in TIFF rasterdata) => start;
+    file Display (in TIFF rasterdata, in title text) => start;
+    file Display (in TIFF rasterdata, in messageID text) => start;
+    file Display (in TIFF rasterdata, in messageID text, in title text) => start;
+
+  };
+
+ptype Sun_Imagetool_JPEG {
+    start "$OPENWINHOME/bin/imagetool -tooltalk";
+    per_session 5;
+  handle:
+
+/*
+ * Display for JPEG medai type
+ */
+
+    session Display (in JPEG rasterdata) => start;
+    session Display (in JPEG rasterdata, in title text) => start;
+    session Display (in JPEG rasterdata, in messageID text) => start;
+    session Display (in JPEG rasterdata, in messageID text, in title text) => start;
+
+    file Display (in JPEG rasterdata) => start;
+    file Display (in JPEG rasterdata, in title text) => start;
+    file Display (in JPEG rasterdata, in messageID text) => start;
+    file Display (in JPEG rasterdata, in messageID text, in title text) => start;
+
+  };
+
+ptype Sun_Imagetool_XPM {
+    start "$OPENWINHOME/bin/imagetool -tooltalk";
+    per_session 5;
+  handle:
+
+/* 
+ * Display for XPM media type
+ */
+
+    session Display (in XPM rasterdata) => start;
+    session Display (in XPM rasterdata, in title text) => start;
+    session Display (in XPM rasterdata, in messageID text) => start;
+    session Display (in XPM rasterdata, in messageID text, in title text) => start;
+
+    file Display (in XPM rasterdata) => start;
+    file Display (in XPM rasterdata, in title text) => start;
+    file Display (in XPM rasterdata, in messageID text) => start;
+    file Display (in XPM rasterdata, in messageID text, in title text) => start;
+
+  };
+
+ptype Sun_Imagetool_EPS {
+    start "$OPENWINHOME/bin/imagetool -tooltalk";
+    per_session 5;
+  handle:
+
+/* 
+ * Display for EPS media type
+ */
+
+    session Display (in EPS text) => start;
+    session Display (in EPS text, in title text) => start;
+    session Display (in EPS text, in messageID text) => start;
+    session Display (in EPS text, in messageID text, in title text) => start;
+
+    file Display (in EPS text) => start;
+    file Display (in EPS text, in title text) => start;
+    file Display (in EPS text, in messageID text) => start;
+    file Display (in EPS text, in messageID text, in title text) => start;
+
+  };
+
+ptype Sun_Imagetool_XBM {
+    start "$OPENWINHOME/bin/imagetool -tooltalk";
+    per_session 5;
+  handle:
+
+/* 
+ * Display for XBM media type
+ */
+
+    session Display (in XBM rasterdata) => start;
+    session Display (in XBM rasterdata, in title text) => start;
+    session Display (in XBM rasterdata, in messageID text) => start;
+    session Display (in XBM rasterdata, in messageID text, in title text) => start;
+
+    file Display (in XBM rasterdata) => start;
+    file Display (in XBM rasterdata, in title text) => start;
+    file Display (in XBM rasterdata, in messageID text) => start;
+    file Display (in XBM rasterdata, in messageID text, in title text) => start;
+
+  };
+

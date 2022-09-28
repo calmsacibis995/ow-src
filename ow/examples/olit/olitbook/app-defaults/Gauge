@@ -1,0 +1,35 @@
+gauge*slider.height:            100
+gauge*slider.sliderMax:         100
+gauge*slider.maxLabel:          100
+gauge*slider.minLabel:          0
+gauge*slider.tickUnit:          slidervalue
+gauge*slider.ticks:             20
+gauge*gauge.height:             140
+gauge*gauge.sliderMax:          212
+gauge*gauge.sliderMin:          32
+gauge*gauge.sliderValue:        32
+gauge*gauge.maxLabel:           212
+gauge*gauge.minLabel:           32
+gauge*gauge.tickUnit:           slidervalue
+gauge*gauge.ticks:              20
+!
+gauge2*orientation:              horizontal
+gauge2*control.layoutType:       fixedcols
+gauge2*control.measure:          1
+gauge2*control.sameSize:         none
+gauge2*slider.width:             100
+gauge2*slider.sliderMax:         100
+gauge2*slider.maxLabel:          100
+gauge2*slider.minLabel:          0
+gauge2*slider.tickUnit:          slidervalue
+gauge2*slider.ticks:             20
+gauge2*slider.endBoxes:          FALSE
+gauge2*gauge.width:              180
+gauge2*gauge.sliderMax:          212
+gauge2*gauge.sliderMin:          32
+gauge2*gauge.sliderValue:        32
+gauge2*gauge.maxLabel:           212
+gauge2*gauge.minLabel:           32
+gauge2*gauge.tickUnit:           slidervalue
+gauge2*gauge.ticks:              10
+

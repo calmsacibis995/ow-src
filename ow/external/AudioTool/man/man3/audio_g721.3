@@ -1,0 +1,122 @@
+.\" @(#)audio_g721.3	1.10	92/12/09 SMI
+.ds Dc 12/09/92
+.TH AUDIO_G721 3 "\*(Dc" ""  "Audio Library"
+.SH NAME
+g721_encode g721_decode g721_init_state
+\-
+.SM CCITT
+.SM G.721
+audio compression and decompression.
+.SH SYNOPSIS
+.nf
+.B #include <multimedia/libaudio.h>
+.LP
+\fBint g721_encode(in_buf, in_size, header, out_buf, out_size, state_ptr)\fP
+.B void *in_buf;
+.B int in_size;
+.B Audio_hdr *header;
+.B char *out_buf;
+.B int *out_size;
+.B struct audio_g72x_state *state_ptr;
+.LP
+\fBint g721_decode(in_buf, in_size, header, out_buf, out_size, state_ptr)\fP
+.B char *in_buf;
+.B int size;
+.B Audio_hdr *header;
+.B void *out_buf;
+.B int *out_size;
+.B struct audio_g72x_state *state_ptr;
+.LP
+.B void g721_init_state(state_ptr)
+.B struct audio_g72x_state *state_ptr;
+.fi
+.SH DESCRIPTION
+.LP
+These routines implement the 
+.SM CCITT
+.SM G.721
+standard for encoding 8-bit \(*m-law or \s-1A\s0-law coded or
+16-bit linear \s-1PCM\s0 audio data as 4-bit
+Adaptive Differential Pulse Coded Modulated 
+.SM (ADPCM)
+data.
+They provide 32 Kbps coding for 8KHz audio data with little degradation
+in sound quality.
+The encode and decode routines use a \fBaudio_g72x_state\fP structure to store
+state information between calls.
+An \fBaudio_g72x_state\fP structure must be initialized by calling
+\fBg721_init_state(\|)\fP.
+This routine should also be used whenever there is a discontinuity in the
+compressed data stream (for instance, if one input/output file is closed and
+another is opened for decoding/encoding).
+.LP
+The \fBg721_encode(\|)\fP function encodes \fIsize\fP bytes of input
+data from the buffer pointed by \fIin_buf\fP.
+The encoding type of the input data is given in the \fIheader\fP structure.
+The compressed
+.SM ADPCM
+data is returned in 
+.IR out_buf,
+whose length (in bytes) is returned in
+.IR out_size .
+.IR state_ptr
+points to the
+.B audio_g72x_state
+structure for preserving encoding state.
+The first 4-bit code is returned in the least significant nibble of the first
+byte in the output buffer,
+while the succeeding code is packed into the high order nibble.
+In the event that the total number of nibbles in
+.IR out_buf
+is odd, the last unpairable nibble is saved in the state structure
+until the next invocation of
+.B g721_encode(\|)
+- at which time it is packed with the code from the first value in the
+new input buffer.
+The output buffer specified by \fIout_buf\fP must then contain at least
+(\fIin_size\fP + 1) / 2 bytes for \(*m-law or \s-1A\s0-law input data and
+(\fIin_size\fP / 2) + 1) / 2 bytes for linear \s-1PCM\s0 input data
+to accomodate the encoded output.
+.LP
+After the entire input signal is processed, the remaining state structure
+should be flushed by calling \fBg721_encode(\|)\fP one more time with
+the \fIin_size\fP argument set to zero.
+\fIout_buf\fP should refer to a valid output buffer to which up to one
+byte of data may be written.
+If data is returned, the final nibble of encoded data was paired
+with zero, which is harmless when decoded.
+.LP
+The \fBg721_decode(\|)\fP function expands 4-bit \s-1ADPCM\s0 data into 16-bit
+linear \s-1PCM\s0 or 8-bit \(*m-law or \s-1A\s0-law format.
+\fIin_buf\fP specifies the address of a buffer containing \fIin_size\fP
+bytes of \s-1ADPCM\s0 data.
+The data type of the decoded data is specified in the \fIheader\fP structure.
+Decoded data is stored in the buffer whose address is given by \fIout_buf\fP.
+The number of decoded samples (not bytes!) is returned in \fIout_size\fP.
+The output buffer must contain enough room to store (2 * \fIsize\fP) samples.
+.IR state_ptr
+points to the
+.B audio_g72x_state
+structure for preserving decoding state.
+.LP
+.SH RETURN VALUE
+.LP
+.B g721_encode(\|)
+and
+.B g721_decode(\|)
+return the audio error codes or AUDIO_SUCCESS.
+.LP
+.SH SEE ALSO
+.LP
+.B audio_g711(3), audio_g723(3).
+.LP
+.SH NOTES
+.LP
+These routines comprise an implementation of the 
+.SM CCITT
+.SM G.721
+.SM ADPCM
+encoding algorithm.
+This implementation has passed the test vectors furnished by
+.SM CCITT
+(Dec. 20, 1988) for \(*m-law and \s-1A\s0-law data.

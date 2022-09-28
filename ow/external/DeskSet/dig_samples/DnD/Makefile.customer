@@ -1,0 +1,31 @@
+#
+#######################################################################
+#
+
+SRC		+= main.c owner.c requestor.c
+HDR		+= dnd.h
+OBJ		+= $(SRC:%.c=%.o)
+
+INCLUDE		+= -I${OPENWINHOME}/include
+
+#CFLAGS		+= -g -DDEBUG
+CFLAGS		+= ${INCLUDE}
+
+LDFLAGS		+= -L${OPENWINHOME}/lib -R${OPENWINHOME}/lib
+
+LIBS		+= -lXol -lXt -lX11 -ltt
+
+PROGRAM		= dnd
+
+.KEEP_STATE:
+
+$(PROGRAM):	$(OBJ)
+		$(CC) -o $(PROGRAM) $(OBJ) $(CFLAGS) $(LDFLAGS) $(LIBS)
+
+clean:
+		rm -f core $(PROGRAM) $(OBJ)
+
+.INIT: $(SRC) $(HDR)
+
+# End makefile
+#######################################################################

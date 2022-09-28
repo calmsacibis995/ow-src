@@ -1,0 +1,49 @@
+#!/bin/sh -
+#
+# Copyright (c) 1980 Regents of the University of California.
+# All rights reserved.  The Berkeley software License Agreement
+# specifies the terms and conditions for redistribution.
+#
+#	@(#)makewhatis	1.5 93/08/17	SMI; from UCB 5.3 3/29/86
+#
+# This version includes special handling for the X11/NeWS man pages.
+
+trap "rm -f /tmp/windexx.$$ /tmp/windex$$; exit 1" 1 2 13 15
+MANDIR=${1-/usr/man}
+rm -f /tmp/windexx.$$ /tmp/windex$$
+if test ! -d $MANDIR ; then exit 0 ; fi
+cd $MANDIR
+top=`pwd`
+for i in man1 man2 man3 man4 man5 man6 man7 man8 mann manl
+do
+	if [ -d $i ] ; then
+		cd $i
+	 	if test "`echo *.*`" != "*.*" ; then
+			/usr/lib/getNAME *.*
+		fi
+		cd $top
+	fi
+done >/tmp/windexx.$$
+sed  </tmp/windexx.$$ >/tmp/windex$$ \
+	-e 's/\\-/-/' \
+	-e 's/\\\*-/-/' \
+	-e 's/ VAX-11//' \
+	-e 's/\\f[PRIB0123]//g' \
+	-e 's/\\s[-+0-9]*//g' \
+	-e 's/.TH [^ ]* \([^ 	]*\).*	\([^-]*\)/\2(\1)	/' \
+	-e 's/	 /	/g' \
+	-e 's/^\. //' \
+	-e 's/^\.B //' \
+	-e 's/ \.SM //g' \
+	-e 's/ \.SB //g' \
+	-e 's/^\.LP //g' \
+	-e 's/ \.I //g' \
+	-e 's/ \.IX .*//' \
+	-e 's/ \.\\".*//' \
+	-e 's/\\\*(Ps/PostScript/' \
+	-e 's/\\\*(Sd/NeWS/'
+/usr/bin/expand -24,28,32,36,40,44,48,52,56,60,64,68,72,76,80,84,88,92,96,100 \
+	/tmp/windex$$ | sort | /usr/bin/unexpand -a > windex
+chmod 644 windex >/dev/null 2>&1
+rm -f /tmp/windexx.$$ /tmp/windex$$
+exit 0

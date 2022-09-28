@@ -1,0 +1,1477 @@
+
+#################################################
+#       calctool.info   16 July 1991
+#################################################
+#	OpenWindows Version 3.2 rev'd 30 Jan 1993
+#	helpopen path changed 15 July 1991
+# 	Edited for OWV3.0.1 30 October 1991
+#################################################
+
+########################50########################
+:DISP:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Calculator display
+
+The bottom of the display shows the current mode
+of operation for:
+
+Number base 		BIN (binary), OCT (octal),
+			DEC (decimal), or HEX
+	     	 	(hexadecimal)
+
+Trigonometric base	DEG (degrees), GRAD
+			(gradients),or RAD
+			(radians)
+
+Display type		ENG (engineering), FIX
+			(fixed point), or SCI
+			(scientific)
+
+Mode			BASIC, FINANCIAL,
+			LOGICAL, or SCIENTIFIC
+
+At certain times, the following may also be
+displayed:
+
+HYP 	(hyperbolic mode is set)
+INV 	(inverse mode is set)
+
+These pertain only to trigonometrical
+calculations.
+
+When the calculator needs to be "cleared,"
+"CLR" will be displayed.
+
+The display also shows the current mathematical 
+operation and function when this operation 
+requires other input to be complete.
+
+########################50########################
+
+:canvas:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+General Help
+
+Precision: All calculations are correct to the
+number of digits of accuracy specified. Very 
+large or very small results will cause an error.
+
+Cut/Paste to other windows: The Caculator
+display works with the Cut and Paste function keys
+to paste numbers in other windows.
+
+Keyboard equivalents: For every mouse selection,
+there is an equivalent keystroke. Click on the 
+Keys button to display those keystrokes.
+
+Error condition: If an error condition occurs,
+you must clear the calculator. 
+
+#################################################
+#       top row of keys
+#################################################
+
+:D   :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Hex D (decimal 13)
+
+Keyboard equivalent:   d
+  
+Enters the hexadecimal value d in the display. 
+
+Available only when the current base is
+hexadecimal.
+
+:E   :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Hex E (decimal 14)
+  
+Keyboard equivalent:   e
+  
+Enters the hexadecimal value e in the display.
+
+Available only when the current base is
+hexadecimal.
+
+:F   :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Hex F (decimal 15)
+  
+Keyboard equivalent:   f
+  
+Enters the hexadecimal value f in the display.
+ 
+Available only when the current base is
+hexadecimal.
+
+:Clr :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Clr
+
+Clears the display.
+ 
+Keyboard equivalent:   Delete
+  
+This clears the value currently displayed.
+
+:Int :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Int
+
+Integer portion
+
+Keyboard equivalent:   Control-i
+
+Returns the integer portion of the current 
+displayed value.
+
+:Frac:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Frac
+
+Fractional portion
+
+Keyboard equivalent:   Control-f
+
+Returns the fractional portion of the current 
+displayed value.
+
+:Base:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Base
+
+Changes numeric base.
+ 
+Keyboard equivalent:   B
+
+Initially the numeric base is decimal. You can
+change the base to binary, octal, or hexadecimal.
+
+Press MENU on Base to show the available settings.
+Choose a value from the menu to change to a new 
+numeric base. 
+
+Depending on that base, various keys on the
+calculator will be dimmed to show that they
+are disabled.
+
+Alternatively, you can use the keyboard to set
+the numeric base: Type B, followed by 
+b, o, d, or h to indicate the new base setting:
+
+b	binary
+o	octal
+d	decimal
+h	hexadecimal
+
+########################50########################
+:Disp:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Disp
+
+Changes the type of numeric display.
+
+Keyboard equivalent:   D
+
+Initially the numeric display is fixed-point 
+notation to an accuracy of two decimal places. 
+You can change this to engineering or scientific
+display.
+
+Press MENU on Disp to show the available settings.
+Choose a value from the menu to change to a new
+numeric display.  
+
+The calculator display (plus the memory registers,
+if they are showing) will be redrawn using the 
+new notation.
+
+Alternatively, you can use the keyboard to set
+the numeric display: Type D, followed by
+e, f, or s to indicate the new display setting:
+
+e	engineering
+f	fixed-point
+s	scientific
+	
+
+#################################################
+#       2nd row of keys
+#################################################
+########################50########################
+
+:A   :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Hex A (decimal 10)
+
+Keyboard equivalent:   a
+
+Enters the hexadecimal value a in the display.  
+
+Available only when the current base is
+hexadecimal.
+
+:B   :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Hex B (decimal 11)
+
+Keyboard equivalent:   b
+
+Enters the hexadecimal value b in the display. 
+ 
+Available only when the current base is
+hexadecimal.
+
+:C   :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Hex C (decimal 12)
+
+Keyboard equivalent:   c
+ 
+Enters the hexadecimal value c in the display.
+
+Available only when the current base is
+hexadecimal.
+
+:Bsp :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Bsp
+
+Erases characters one at a time.
+ 
+Keyboard equivalent:   Back Space
+ 
+This removes the right-most character of the 
+displayed value and recalculates the value of 
+the display. 
+
+Internal accuracy is lost with this operation.
+
+:Abs :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Abs
+
+Absolute value.
+
+Keyboard equivalent:   Control-u
+
+Returns the absolute value of the current 
+displayed value.
+
+:+/- :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
++/-
+
+Change sign.
+
+Keyboard equivalent:   C
+
+Changes the arithmetic sign of the current 
+displayed value or the exponent being entered.
+
+:Keys:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Keys
+
+Toggles button labels.
+
+Keyboard equivalent:   k
+
+Toggles the labels on the calctool keys,
+alternating between the mouse and keyboard 
+equivalents.
+
+:Mode:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Mode
+
+Changes the calculator mode.
+
+Keyboard equivalent:   M
+
+By default, the initial calculator mode is Basic. 
+
+Press MENU on Mode to display and choose the
+other available modes:
+
+- Financial
+- Logical
+- Scientific
+
+
+If you choose one of these modes, a window with
+extra buttons is displayed.
+ 
+Alternatively, you can set the calculator mode
+using the keyboard. Type M, followed by n, s, or b
+to indicate the new calculator mode.
+
+b	Basic
+f	Financial
+l	Logical
+s	Scientific
+
+
+########################50########################
+#################################################
+#       3nd row of keys
+#################################################
+:7   :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Numeric 7
+
+Keyboard equivalent:   7
+
+This key is inactive in binary base.
+
+:8   :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Numeric 8
+
+Keyboard equivalent:   8
+
+This key is inactive in binary or octal base.
+
+:9   :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Numeric 9
+
+Keyboard equivalent:   9
+
+This key is inactive in binary or octal base.
+
+
+:X   :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+X
+
+Multiplication
+ 
+Keyboard equivalent:   x or *
+ 
+This key takes the last number entered and 
+multiplies it by the next number entered.
+
+:1/x :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+1/x
+
+Reciprocal
+
+Keyboard equivalent:   r
+
+Returns the value 1 divided by the current 
+displayed value.
+
+:x^2 :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+x^2
+
+Keyboard equivalent:   @
+ 
+Returns the square of the current displayed value.
+
+:Acc :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Acc
+
+Accuracy 
+
+Keyboard equivalent:   A
+
+Sets the accuracy of both the display and the 
+memory registers. 
+
+Press MENU to display a menu of levels of 
+accuracy. Choose a level from the menu to set 
+the precision for the display and registers.
+
+
+########################50########################
+:Mem.:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Mem
+
+Displays a memory register window.
+
+Keyboard equivalent:   m
+
+Click SELECT on Mem to display a window showing
+the values of the ten memory registers in the 
+current base, to the current accuracy.
+
+Alternatively, you can click SELECT on Mem, 
+and then click on a digit from 0 - 9.
+
+#################################################
+#       4th row of keys
+#################################################
+
+:4   :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Numeric 4
+  
+Keyboard equivalent:   4
+
+This key is inactive in binary base.
+
+:5   :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Numeric 5
+
+Keyboard equivalent:   5
+
+This key is inactive in binary base.
+
+:6   :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Numeric 6
+
+Keyboard equivalent:   6
+  
+This key is inactive in binary base.
+
+:/   :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+/
+
+Division
+  
+Keyboard equivalent:   /
+  
+This key takes the last number entered and 
+divides it by the next number entered.
+
+:%   :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+%
+
+Percentage
+
+Keyboard equivalent:   %
+
+Takes the last number entered and calculates a 
+percentage using the next number entered. 
+
+Example:
+
+        200 % 20 = (returns 40)
+
+The calculator is multiplying (200*20)*0.01.
+
+########################50########################
+:Sqrt:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Sqrt
+
+Square root
+
+Keyboard equivalent:   s
+
+Calculates the square root of the current 
+displayed value.
+
+:Con :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Con
+
+Constant n
+
+Keyboard equivalent:   #
+
+Press MENU on Con to show the available constants.
+Choose a constant from the menu to enter its value
+in the display.
+
+Alternatively, if you know the number of a 
+constant, you can click SELECT on Con, then 
+on a digit from 0 - 9 to indicate the constant 
+you want to enter.
+
+To add new constants or alter existing ones,
+choose "Enter Constant" from the menu. This
+displays a window in which you type the number,
+description, and value of the constant.  
+
+Click SELECT on "Enter Constant" to store the new
+constant in the .calctoolrc file. 
+
+########################50########################
+:Fun :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Fun
+
+Menu of defined functions
+  
+Keyboard equivalent:   F
+  
+Press MENU on this key to display a menu of 
+functions you have defined. Choose a function from
+the menu to execute it. The result will show in
+the display.
+  
+To add new functions or alter existing ones, 
+choose "Enter Function" from the menu. This
+displays a window in which you type the number,
+description, and value of the function.
+
+Click SELECT on "New Function" to store the new
+function in the .calctoolrc file. 
+ 
+For the function value, type the keyboard strokes 
+that calculate your function. For example, to
+calculate sine(90), type the Value:
+  
+        90 \\s
+  
+When you type the function value, use \\ to 
+represent the Control key even though KEYS shows 
+the keyboard equivalent of the Control key as 
+the character ^ .  
+ 
+When you know the number of the function you
+want, you can click SELECT on Fun, then on the 
+function's number.
+
+########################50########################
+#################################################
+#       5th row of keys
+#################################################
+:1   :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Numeric 1
+
+Keyboard equivalent:   1
+
+:2   :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Numeric 2
+
+Keyboard equivalent:   2
+
+This key is inactive in binary base.
+:3   :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Numeric 3
+
+Keyboard equivalent:   3
+
+This key is inactive in binary base.
+:-   :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+-
+
+Subtraction
+
+Keyboard equivalent:   -
+
+This operation takes the last number entered and 
+subtracts from it the next number entered.
+
+:(   :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+(
+
+Left parenthesis
+
+Keyboard equivalent:   (
+
+Allows you to group together a set of 
+calculations. Use with the right parenthesis. 
+
+Example:
+
+        2 * ( 3 + 4 ) = 14
+
+contrasted with:
+
+        2 * 3 + 4 = 10
+:)   :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+)
+
+Right parenthesis
+
+Keyboard equivalent:   )
+
+Allows you to group together a set of 
+calculations. Use with the left parenthesis. 
+
+Example:
+
+        2 * ( 3 + 4 ) = 14
+
+contrasted with:                    
+
+        2 * 3 + 4 = 10
+
+########################50########################
+:Rcl :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Rcl
+
+Retrieves a memory register.
+
+Keyboard equivalent:   R
+
+Press MENU on Rcl to display a menu of available 
+registers. Choose a register from the menu to 
+retrieve its value.
+
+When you know the number of the register you 
+want, you can click SELECT on Rcl, then on the 
+register's number (a digit from 0 to 9).
+
+:Sto :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Sto
+
+Stores a value in a memory register.
+
+Keyboard equivalent:   S
+
+Press MENU to display a menu of all registers.  
+Choose a register from the menu to store the 
+displayed value.
+
+Alternately, click SELECT on Sto, then on a digit
+in the range 0 to 9 to indicate the memory 
+register in which to store the displayed value.
+
+
+#################################################
+#       6th row of keys
+#################################################
+########################50########################
+:0   :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Numeric 0
+
+Keyboard equivalent:   0
+:.   :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+.
+
+Numeric point
+
+Keyboard equivalent:   .
+ 
+Starts the fractional part of a numeric entry.
+:=   :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+=
+
+Calculates a result.
+
+Keyboard equivalent:   = or Return
+
+Displays the result of the current calculation in 
+the current base.
+
+:+   :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
++
+
+Addition
+
+Keyboard equivalent:   +
+
+Takes the last number entered and adds it to the 
+next number entered.
+
+:Exp :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Exp
+
+Enters an exponential number.
+ 
+Keyboard equivalent:   E
+ 
+Starts exponential input. Any numbers typed from 
+now on are the exponent. If you haven't entered a 
+mantissa, the calculator uses a mantissa of 1.0.
+
+:Asc.:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Asc
+
+ASCII value
+
+Keyboard equivalent:   Control-a
+
+Displays a window in which you type a character 
+whose ASCII value you want. Enter the character
+and click SELECT on the ASCII button in the window.  
+
+The calculator displays the ASCII value in the 
+current number base. (You can change the base.)
+
+########################50########################
+:Exch:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Exch
+
+Register exchange
+
+Keyboard equivalent:   X
+
+Press MENU to display the menu of available 
+registers. You can exchange the contents of a 
+register with the current displayed value.
+
+Alternatively, click SELECT on Exch, then on a 
+digit from 0 - 9 to indicate which register you 
+want to exchange with the current display.
+
+Until you store a value in a register, it has the 
+value 0.00. You can also fill a register by 
+editing the .calctoolrc file.
+
+:Quit:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Quit
+
+Quits the calculator.
+
+Keyboard equivalent:   q or Q
+
+Quits the calculator without asking for your
+confirmation.
+
+: <  :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+<
+
+Left shift n
+
+Keyboard equivalent:   <
+
+Use this key to shift the displayed binary value 
+a designated number of places to the left. Click 
+SELECT on the key, then on a digit in the range 
+0 to f to indicate how many places to shift.
+#
+: >  :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+>
+
+Right shift n
+
+Keyboard equivalent:   >
+
+Use this key to shift the displayed binary value 
+a designated number of places to the right. 
+Click SELECT on the key, then on a digit in the 
+range 0 to f to indicate how many places to shift.
+#
+:&16 :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+&16
+
+Get a 16-bit unsigned integer.
+
+Keyboard equivalent:   ]
+
+This is a logical function that truncates the 
+given number and returns a 16-bit unsigned 
+integer.
+
+:&32 :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+&32
+
+Get a 32-bit unsigned integer.
+
+Keyboard equivalent:   [
+
+This is a logical function that truncates the 
+given number and returns a 32-bit unsigned 
+integer.
+
+:Or  :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Or
+
+Logical OR
+
+Keyboard equivalent:   |
+
+This key performs a logical OR operation on the 
+last number entered and the next number entered, 
+treating both numbers as unsigned long integers.
+
+:And :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+And
+
+Logical AND
+
+Keyboard equivalent:   &
+
+This key performs a logical AND operation on the 
+last number entered and the next number entered, 
+treating both numbers as unsigned long integers.
+
+:Not :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Not
+
+Logical NOT
+
+Keyboard equivalent:   ~
+
+This key performs a logical NOT operation on the 
+current displayed value.
+
+:Xor :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Xor
+
+Logical XOR
+
+Keyboard equivalent:   ^
+
+This key takes the last number entered and the 
+next number entered, and performs a logical XOR 
+operation on them, treating both numbers as 
+unsigned long integers.
+#
+:Xnor:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Xnor
+
+Logical XNOR
+
+Keyboard equivalent:   n
+
+This key takes the last number entered and the 
+next number entered, and performs a logical XNOR 
+operation on them, treating both numbers as 
+unsigned long integers.
+#
+########################50########################
+:Trig:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Trig
+
+Sets trigonometric mode.
+
+Keyboard equivalent:   T
+
+Initially the trigonometric display type is 
+degrees. You can change this to gradients or
+radians.
+
+Press MENU on Trig to show the available settings.
+Choose a value from the menu to set the new 
+trigonometric display type.
+
+Alternatively, you can use the keyboard to set the
+trigonometric display type. 
+
+Type T, followed by d, g, or r to indicate the 
+new trigonometric display setting:
+
+d	degrees
+g	gradients
+r	radians
+
+
+:Hyp :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Hyp
+
+Hyperbolic flag
+
+Keyboard equivalent:   h
+  
+This key is a toggle that sets and unsets the 
+hyperbolic function flag. That flag affects 
+Sin, Cos, and Tan trigonometric functions.
+
+########################50########################
+:Inv :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Inv
+
+Inverse function flag
+ 
+Keyboard equivalent:   i
+ 
+This key is a toggle for setting or unsetting 
+the inverse function flag. This flag affects Sin, 
+Cos, and Tan trigonometric functions.
+
+:e^x :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+e^x
+
+e to the x power
+ 
+Keyboard equivalent:   {
+ 
+Returns e raised to the power of the current 
+displayed value.
+
+:10^x:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+10^x
+
+10 to the x power
+ 
+Keyboard equivalent:   }
+ 
+Returns 10 raised to the power of the current 
+displayed value.
+
+:y^x :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+y^x
+
+y to the power of x
+ 
+Keyboard equivalent:   y
+ 
+Takes the last number entered and raises it to 
+the power of the next number entered.  
+
+Example:
+ 
+        2 Y 3 = (returns 8)
+
+:Cos :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Cos
+
+Cosine function
+ 
+Keyboard equivalent:   Control-c
+ 
+Returns the trigonometric cosine, arc cosine, 
+hyperbolic cosine, or inverse hyperbolic cosine
+of the current displayed value, depending on the 
+settings of the Hyp and Inv flags. 
+
+The result appears in the current trigonometric 
+unit (degrees, radians, or gradients).
+
+:Ln  :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Ln
+
+Natural log
+ 
+Keyboard equivalent:   N
+ 
+Returns the natural logarithm of the current 
+displayed value.
+
+:Log :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Log
+
+Base 10 log
+ 
+Keyboard equivalent:   G
+ 
+Returns the base 10 logarithm of the current 
+displayed value.
+
+:Rand:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Rand
+
+Random number
+
+Keyboard equivalent:   ?
+
+Generates a random number in the range 0.0 to 1.0 
+and enters it into the calculator display.
+
+:Sin :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Sin
+
+Sine function
+
+Keyboard equivalent:   Control-s
+
+Returns the trigonometric sine, arc sine, 
+hyperbolic sine, or inverse hyperbolic sine of 
+the current displayed value, depending on the 
+settings of the Hyp and Inv flags. 
+
+The result appears in the current trigonometric 
+unit (degrees, radians, or gradients).
+
+:x!  :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+x!
+
+Factorial
+  
+Keyboard equivalent:   !
+ 
+Returns the factorial of the current displayed 
+value. This will only work for positive integer 
+values.
+
+:Tan :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Tan
+
+Tangent function
+
+Keyboard equivalent:   Control-t
+
+Returns the trigonometric tangent, arc tangent, 
+hyperbolic tangent, or inverse hyperbolic tangent 
+of the current displayed value, depending on the 
+settings of the Hyp and Inv flags. 
+
+The result appears in the current trigonometric 
+unit (degrees, radians, or gradients).
+
+########################50########################
+:Ctrm:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Ctrm
+
+Compounding term
+
+Keyboard equivalent:   Control-t
+
+Computes the number of compounding periods it 
+will take an investment of present value pv to 
+grow to a future value of fv, earning a fixed 
+interest rate int per compounding period.
+
+Memory register usage:
+
+   Register 0 - int (periodic interest rate)
+   Register 1 - fv  (future value)
+   Register 2 - pv  (present value)
+
+Example:
+
+You have just deposited $8,000 in an account 
+that pays an annual interest rate of 9%, 
+compounded monthly. You want to determine how 
+long it will take to double you investment.
+
+   Register 0 - 0.0075 (interest rate = 9% / 12)
+   Register 1 - 16000  (future value).
+   Register 2 - 8000   (present value).
+
+Pressing SELECT on Ctrm returns 92.77, which 
+tells you that it would take 92.77 months, or 
+almost eight years, to double your $8,000.
+
+:Ddb :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Ddb
+
+Double-declining depreciation
+
+Keyboard equivalent:   Control-d
+
+Computes the depreciation allowance on an asset 
+for a specified period of time, using the 
+double-declining balance method.
+
+Memory register usage:
+
+   Register 0 - cost    (amount paid for asset)
+   Register 1 - salvage (value of asset at end 
+			 of its life)
+   Register 2 - life    (useful life of the asset)
+   Register 3 - period  (time period for 
+			 depreciation allowance)
+
+Example:
+
+You have just purchased an office machine for
+$8,000. The useful life of this machine is 
+six years. The salvage value after six years 
+is $900. 
+
+To compute the depreciate expense for 
+the fourth year, using the double-declining 
+balance method.
+
+Memory register usage:
+
+   Register 0 - 8000     (amount paid for asset)
+   Register 1 - 900      (value of asset at end 
+			  of its life)
+   Register 2 - 6        (useful life of the 
+			  asset)
+   Register 3 - 4        (time period for 
+			  depreciation allowance)
+
+Pressing SELECT on Ddb returns 790.12, which 
+tells you that the depreciation expense for the 
+fourth year will be $790.12.
+
+:Fv  :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Fv
+
+Future value
+
+Keyboard equivalent:   v
+
+This calculation determines the future value of 
+an investment. It computes the future value based 
+on a series of equal payments, each of amount pmt,
+earning periodic interest rate int, over the 
+number of payment periods in term.
+
+Memory register usage:
+
+   Register 0 - pmt (periodic payment)
+   Register 1 - int (periodic interest rate)
+   Register 2 - n   (number of periods)
+
+Example:
+
+You plan to deposit $4,000 each year for the next 
+20 years into a bank account. The account is 
+paying 8% interest, compounded annually. 
+Interest is paid on the last day of each year. 
+
+You want to compute the value of your account 
+in 20 years. You make each year's contribution 
+on the last day of the year.
+
+Memory register usage:
+
+   Register 0 - 4000 (periodic payment)
+   Register 1 - 0.08 (periodic interest rate 
+		      is 8%)
+   Register 2 - 20   (number of periods)
+
+Clicking SELECT on Fv returns 183047.86, the value 
+of your account in dollars at the end of 20 years.
+
+:Pmt :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Pmt
+
+Periodic payment
+
+Keyboard equivalent:   P
+
+Computes the amount of the periodic payment 
+of a loan. Most installment loans are computed 
+like ordinary annuities, in that payments are 
+made at the end of each payment period.
+
+Memory register usage:
+
+   Register 0 - prin (principal)
+   Register 1 - int  (periodic interest rate)
+   Register 2 - n    (term)
+
+Example:
+
+You are considering taking out a $120,000 mortgage
+for 30 years at an annual interest rate of 11.0%. 
+You want to determine your monthly repayment.
+
+Memory register usage:
+
+   Register 0 - 120000  (principal).
+   Register 1 - 0.00916 (periodic interest rate
+			 is 11.0% / 12)
+   Register 2 - 360     (term - 30 x 12)
+
+Clicking SELECT on Pmt returns 1142.06, the value 
+in dollars of your monthly repayment.
+
+:Pv  :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Pv
+
+Present value
+
+Keyboard equivalent:   p
+
+Determines the present value of an investment. It 
+computes the present value based on a series of 
+equal payments, each of amount pmt, discounted at 
+periodic interest rate int, over the number of
+periods in term.
+
+Memory register usage:
+
+   Register 0 - pmt (periodic payment)
+   Register 1 - int (periodic interest rate)
+   Register 2 - n   (term)
+
+Example:
+
+You have just won a million dollars. The prize 
+is awarded in 20 annual payments of $50,000 each 
+(a total of $1,000,000 over 20 years). Annual 
+payments are received at the end of each year. 
+
+You are given the option of receiving a single 
+lump-sum payment of $400,000 instead of the 
+million dollars annuity. You want to find out 
+which option is worth more in today's dollars.
+
+If you were to accept the annual payments of 
+$50,000, you assume that you would invest the 
+money at a rate of 9%, compounded annually.
+
+Memory register usage:
+ 
+   Register 0 - 50000 (periodic payment).
+   Register 1 - 0.09  (periodic interest rate 
+			is 9%)
+   Register 2 - 20    (term)
+
+Clicking SELECT on Pv returns a value of 
+456427.28, which tells you that the $1,000,000 
+paid over 20 years is worth $456,427.28 in
+present dollars. 
+
+Based on your assumptions, the lump-sum
+payment of $400,000 is worth less than the 
+million-dollar ordinary annuity, in present 
+dollars (before taxes).
+
+:Rate:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Rate
+
+Periodic interest rate
+
+Keyboard equivalent:   Control-r
+
+Returns the periodic interest necessary for a 
+present value of pv to grow to a future value of 
+fv over the number of compounding periods in term.
+
+Memory register usage:
+
+   Register 0 - fv (future value).
+   Register 1 - pv (present value).
+   Register 2 - n  (term).
+
+Example:
+
+You have invested $20,000 in a bond. The bond 
+matures in five years, and has a maturity value
+of $30,000. Interest is compounded monthly. You 
+want to determine the periodic interest rate for 
+this investment.
+
+Memory register usage:
+
+   Register 0 - 30000 (future value)
+   Register 1 - 20000 (present value)
+   Register 2 - 60    (term - 5 x 12)
+
+Clicking SELECT on Rate returns .00678, which 
+tells you that the periodic (monthly) interest 
+rate is 0.678%, under 1% per month.
+
+To determine the annual rate, multiply the above 
+formula by 12, which yields a result of 8.14%.
+
+:Sln :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Sln
+
+Straight-line depreciation
+
+Keyboard equivalent:   Control-s
+
+Computes the straight-line depreciation of an 
+asset for one period. 
+
+The straight-line method of depreciation divides 
+the depreciable cost (cost - salvage) evenly over 
+the useful life of an asset. The useful life is 
+the number of periods (typically years) over 
+which an asset is depreciated.
+
+Memory register usage:
+
+   Register 0 - cost     (cost of the asset)
+   Register 1 - salvage  (salvage value of the 
+			  asset)
+   Register 2 - life     (useful life of the 
+			  asset)
+
+Example:
+
+You have purchased an office machine for $8,000. 
+The useful life of this machine is six years, 
+and the salvage value in eight years will be 
+$900. You want to compute yearly depreciation 
+expense, using the straight-line method.
+
+Memory register usage:
+
+   Register 0 - 8000     (cost of the asset)
+   Register 1 - 900      (salvage value of the 
+			  asset)
+   Register 2 - 6        (useful life of the 
+			  asset)
+
+Clicking SELECT on Sln returns 1183.33, the yearly 
+dollar depreciation allowance.
+
+########################50########################
+:Syd :$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Syd
+
+Sum-of-the years'-digits depreciation
+
+Keyboard equivalent:   Control-y
+
+Returns the sum-of-the-years'-digits depreciation 
+for a specified period.
+
+The sum-of-the-years'-digits method of 
+depreciation accelerates the rate of depreciation,
+so that more depreciation expense occurs in
+earlier periods than in later ones. 
+
+The depreciable cost is the actual cost minus 
+salvage value. The useful life is the number of 
+periods (typically years) over which an asset is 
+depreciated.
+
+Memory register usage:
+
+   Register 0 - cost     (cost of the asset)
+   Register 1 - salvage  (salvage value of 
+			  the asset)
+   Register 2 - life     (useful life of the 
+			  asset)
+   Register 3 - period   (period for which 
+			 depreciation is computed)
+
+Example:
+
+You have just purchased an office machine for 
+$8,000. The useful life of this machine is six 
+years, and the salvage value after eight years 
+will be $900. 
+
+You want to compute the depreciation expense for 
+the fourth year, using the sum-of-the-years'-
+digits method.
+
+Memory register usage:
+
+   Register 0 - 8000    (cost of the asset)
+   Register 1 - 900     (salvage value of 
+	  		 the asset)
+   Register 2 - 6       (useful life of the 
+			 asset)
+   Register 3 - 4       (period for which 
+			 depreciation is computed)
+
+Clicking SELECT on Syd returns 1014.29, the dollar 
+depreciation allowance for the fourth year.
+
+:Term:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Term
+
+Payment period
+
+Keyboard equivalent:   T
+
+Returns the number of payment periods in the term 
+of an ordinary annuity necessary to accumulate a
+future value of fv, earning a periodic interest 
+rate of int. Each payment is equal to amount pmt.
+
+Memory register usage:
+
+   Register 0 - pmt (periodic payment)
+   Register 1 - fv  (future value)
+   Register 2 - int (periodic interest rate)
+
+Example:
+
+You deposit $1,800 at the end of each year into 
+a bank account. Your account earns 11% a year, 
+compounded annually. You want to determine how 
+long it will take to accumulate $120,000.
+
+Memory register usage:
+
+   Register 0 - 1800    (periodic payment)
+   Register 1 - 120000  (future value)
+   Register 2 - 0.11    (periodic interest rate 
+			 is 11%)
+
+Clicking SELECT on Term returns 20.32, the number
+of years it will take to accumulate $120,000 in 
+your account.
+
+#
+#  New help attributes for v3.0.
+#	Props
+#########################50#######################
+:AppearanceChoice:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Appearance:
+
+On monochrome monitors, Calculator buttons can
+have only the 2D-look.
+
+On color monitors, Calculator buttons can have
+either the 2D-look or 3D-look.
+
+:ApplyButton:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Apply
+
+Click SELECT on Apply to set the changes you have
+made in the Properties window.
+
+:DefaultButton:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Save as Defaults
+
+Click SELECT on Save as Defaults to store the
+current Properties window settings as the default.
+
+These settings will take effect the next time
+you start Calculator.
+
+:DisplayChoice:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Display:
+
+Choose "monochrome" to change color display to
+black-and-white display. (This works only with a
+color monitor.)
+
+#########################50#######################
+:AscButton:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Get ASCII value
+
+Click SELECT on this button to get the ASCII
+value of the entered character.
+
+:AscFrame:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+
+Displays the ASCII window, which allows you to
+get the ASCII value of any character.
+
+:AscPanel:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+ASCII Value Window
+
+Use this window to get the ASCII value of a
+character.
+
+:AscText:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+ASCII Character
+
+Enter the character you want the ASCII value of.
+
+#########################50#######################
+:ConFunConButton:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Enter Constant
+
+Click SELECT on this button to create the new
+constant.
+
+:ConFunDescription:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Constant Description
+
+Enter a short description of the constant or
+function.
+
+:ConFunFunButton:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Enter Function
+
+Click SELECT on this button to create the new
+function.
+
+:ConFunFrame:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Change the settings in this window to create a
+new constant or function.
+
+:ConFunNumber:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Constant or Function Number
+
+Enter the number of the constant or function
+you wish to create.  The number must be 
+between 0 and 9.
+
+:ConFunPanel:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Constant or Function Window
+
+Change the settings in this window to create a
+new constant or function.
+
+:ConFunValue:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Constant or Function Value
+
+Enter the value of the new constant or function.
+
+#########################50#######################
+:Props:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Properties
+
+Displays the Properties window, which allows you
+to change settings to customize the calculator.
+
+:PropertyFrame:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+
+Change settings in this window to customize the
+calculator.
+
+:PropertyPanel:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Calculator Properties Window
+
+Change settings in this window to customize the
+calculator.
+
+#########################50#######################
+:ResetButton:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Reset
+
+Click SELECT on Reset to restore the previous
+settings in the Properties window.
+
+:StyleChoice:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Style:
+
+Calculator buttons can be arranged to suit either 
+a left-handed or a right-handed person.
+
+:MemCanvas:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+Memory Registers
+
+This window displays the values of the memory registers.
+
+#########################50#######################
+:MemFrame:$OPENWINHOME/bin/helpopen handbooks/calc.handbook
+

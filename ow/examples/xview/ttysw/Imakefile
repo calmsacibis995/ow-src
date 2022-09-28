@@ -1,0 +1,32 @@
+#
+# @(#)Imakefile 1.5 90/06/21 SMI
+#
+# Imakefile for ttysw
+#
+# LIBRARY_DEST is the location of the XView libraries
+# HEADER_DEST is the location of the XView header files
+# LIBDIR is the directory containing the X11 library (libX11.a)
+#
+
+LIBRARY_DEST=/home/xview/usr/lib
+HEADER_DEST=/home/xview/usr/include
+
+LIBDIR=/home/X11/lib
+LDFLAGS=-L$(LIBRARY_DEST) -L$(LIBDIR) -lxview -lX11
+INCLUDES= -I.. -I$(HEADER_DEST) -I$(TOP) -DSTANDALONE
+
+# Uncomment the following line to use libxvol.a and libxvin.a
+#
+#LDFLAGS=-L$(LIBRARY_DEST) -L$(LIBDIR) -lxvol -lxvin -lX11
+
+TARG1=sample_tty textsw_to_ttysw xv_termsw 
+TARG2=ttycurses
+TARGETS=$(TARG1) $(TARG2)
+
+all: $(TARGETS)
+
+${TARG1}: $$@.c $$@.o 
+	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $@.o
+
+${TARG2}: $$@.c $$@.o
+	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $@.o -lcurses -ltermlib

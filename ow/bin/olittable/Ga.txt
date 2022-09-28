@@ -1,0 +1,196 @@
+DESCRIPTION
+
+	The Gauge widget provides an object which can display a read-only numeric
+	value graphically.  The Gauge Widget can have either a horizontal or vertical
+	orientation, tickmarks and labels for its minimum and maximum values.
+
+	For more detailed information on the Gauge Widget, see the following
+	Section in the OPEN LOOK Intrinsics Toolkit Widget Set Reference Manual:
+		. Gauge
+		. Gauge Functions
+
+
+EXAMPLE CODE
+
+The following code could be used to Create the example Gauge Widget shown 
+in the Table (All color specific code has been removed for simplification):
+
+/**************************************************************************************/
+#include <X11/Intrinsic.h>
+#include <X11/StringDefs.h>
+#include <Xol/OpenLook.h>
+#include <Xol/Gauge.h>
+#include <Xol/Menu.h>
+#include <Xol/OblongButt.h>
+
+#include <Xol/ControlAre.h>
+
+#define INCREMENT	2
+#define	INTERVAL	500
+
+#define OFF	0
+#define ON	1
+
+int current_value = 0;
+int state = ON;
+XtIntervalId timerID;
+
+/***********************************************************
+ * moveGauge: timer routine used to increment the value of
+ *		the Gauge....
+ **********************************************************/
+void
+moveGauge(w, id)
+Widget w;
+XtIntervalId id;
+{
+	if (current_value < 100)
+		current_value = current_value + INCREMENT;
+	else
+		current_value = 0;
+
+	XtVaSetValues(w,
+			XtNsliderValue,(XtArgVal)current_value,
+			NULL);
+	/*
+	 * Since timers are removed after they go off, re-install
+	 * it.
+	 */
+	timerID = XtAppAddTimeOut(XtWidgetToApplicationContext(w), INTERVAL,
+		moveGauge, w);
+} 
+/*************************************************************
+ * toggleMode: Callback called when popupmenu item is
+ *		selected to toggle the mode of the Gauge...
+ *************************************************************/
+void
+toggleMode(w, clientData,callData)
+Widget w;
+XtPointer clientData, callData;
+{
+	if (state == ON)
+		{
+		XtRemoveTimeOut(timerID);
+		state = OFF;
+		XtVaSetValues(w,
+				XtNlabel,	(XtArgVal)"TurnON",
+				NULL);
+		}
+	else
+		{
+		state = ON;
+		timerID = XtAppAddTimeOut(XtWidgetToApplicationContext(w),
+			INTERVAL, moveGauge, clientData);
+		XtVaSetValues(w,
+				XtNlabel,	(XtArgVal)"TurnOFF",
+				NULL);
+		}
+
+}	
+/*******************************************************************/
+main(argc, argv)
+int argc;
+char **argv;
+{
+	Widget toplevel, controlarea, gauge, 
+		menu, menupane, toggle;
+	XtAppContext app;
+
+	OlToolkitInitialize(NULL);
+	toplevel = XtAppInitialize(&app, "Test", 
+				(XrmOptionDescRec *)NULL,
+				(Cardinal)0, (int *)&argc, argv,
+				(String *)NULL, (ArgList)NULL, 0);
+
+	controlarea = XtVaCreateManagedWidget("controls",
+				controlAreaWidgetClass,
+				toplevel, 
+				NULL);
+
+	/*
+	 * Create Gauge...doesn't really do anything since
+	 * it cannot be manipulated by the user and is useful
+	 * for displaying numeric values visually.
+	 */
+	gauge = XtVaCreateManagedWidget("gauge", 
+				gaugeWidgetClass, 
+				controlarea,
+				XtNx,		(XtArgVal)22,
+				XtNy,		(XtArgVal)34,
+				XtNorientation,	(XtArgVal)OL_HORIZONTAL,
+				XtNwidth,	(XtArgVal)100,
+				XtNsliderValue,	(XtArgVal)0,
+				XtNtickUnit,	(XtArgVal)OL_PERCENT,
+				XtNticks,	(XtArgVal)5,
+				NULL); 
+
+	timerID = XtAppAddTimeOut(XtWidgetToApplicationContext(gauge), INTERVAL,
+		moveGauge, gauge);
+
+	/*
+	 * Build PopupMenu so user can toggle Mode of Gauge
+	 * (and stop/start the timer)
+	 */
+	menu = XtVaCreatePopupShell("menu",
+				menuShellWidgetClass,
+				gauge,
+				XtNtitle,	(XtArgVal)"Gauge Mode",
+				NULL);
+
+	XtVaGetValues(menu,
+				XtNmenuPane,	&menupane,
+				NULL);
+
+	toggle = XtVaCreateManagedWidget("Stop",
+				oblongButtonWidgetClass,
+				menupane,
+				NULL);
+
+	XtAddCallback(toggle, XtNselect, toggleMode, gauge);
+	
+	XtRealizeWidget(toplevel);
+	XtAppMainLoop(app);
+
+}
+/********************************END EXAMPLE******************************/
+
+
+
+
+RESOURCES
+_______________________________________________________________________________________________
+Resource Name		Type		Default		Brief Description
+_______________________________________________________________________________________________
+
+XtNaccelerator		String		NULL		String which defines accelerator key
+XtNacceleratorText	String		Dynamic		string to be displayed as accelerator
+XtNancestorSensitive	Boolean		TRUE		Will immediate parent receive events?
+XtNbackground		Pixel		White		background color of widget
+XtNbackgroundPixmap	Pixmap		(none)		pixmap used for tiling the background
+XtNconsumeEvent		XtCallbackList	NULL		called when event occurs
+XtNdestroyCallback	XtCallbackList	NULL		routines called when widget is destroyed
+XtNfont			XFontStruct*	OPEN LOOK font	font used to draw Gauge labels
+XtNfontColor		Pixel		foreground	color used to render font
+XtNforeground		Pixel		Black		foreground color of widget
+XtNgranularity		int		1		number of pixels elevator moves on click
+XtNinputFocusColor	Pixel		Red		color of input focus indicator
+XtNmappedWhenManaged	Boolean		TRUE		will widget be mapped when managed?
+XtNminLabel		String		NULL		string used for minimum Gauge label
+XtNmaxLabel		String		NULL		string used for maximum Gauge label
+XtNmnemonic		Usigned char	NULL		key used to activate widget
+XtNorientation		OlDefine	OL_VERTICAL	orientation of slider
+XtNrecomputeSize	Boolean		FALSE		should Gauge resize itself for ticks/etc?
+XtNreferenceName	String		NULL		see manpage		
+XtNreferenceWidget	Widget		NULL		see manpage
+XtNsensitive		Boolean		TRUE		will widget receive input events?
+XtNsliderMax		int		100		maximum length in pixels of content
+XtNsliderMin		int		0		minimum length in pixels of content
+XtNsliderValue		int		0		current position of elevator
+XtNspan			Dimension	OL_IGNORE	preferred length of Gauge if recomputeSize=T
+XtNticks		int		0		interval between tick marks
+XtNtickUnit		OlDefine	OL_NONE		Gauge's tick mark policy
+XtNtraversalOn		Boolean		TRUE		is mouseless turned "on" for widget?
+XtNuserData		XtPointer	NULL		storage for user defined data
+XtNwidth		Dimension	(calculated)	width of widget's window in pixels
+XtNx			Position	0		x coord of widget's upper left corner
+XtNy			Position	0		y coord of widget's uuper left corner

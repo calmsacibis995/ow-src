@@ -1,0 +1,66 @@
+.\" @(#)24to8.1 23.3 90/05/07;
+.\" Copyright (c) 1994 - Sun Microsystems, Inc
+.TH 24to8 1 "10 March 1992"
+.IX "*" "" "\f324to8\f1(1) \(em converts Sun rasterfiles to 8-bit format" ""
+.IX "color" "converting" "color" "converting Sun rasterfiles to 8-bit format \(em \f324to8\f1(1)"
+.SH NAME
+24to8 \- convert a 24- or 32-bit rasterfile to an 8 bit
+rasterfile suitable for X11
+.SH SYNOPSIS
+.TP 7
+.B 24to8
+[
+.B \-v
+] [
+.B \-q
+] [
+.B \-large
+] [
+.I inrasf
+|
+\-
+] [
+.I outrasf
+]
+.SH DESCRIPTION
+.B 24to8
+takes as input a 24- or 32-bit Sun
+rasterfile
+and reduces the depth of the
+image, from truecolor to 8 bit colormapped index color.
+.B 24to8
+uses Floyd/Steinberg dithering to achieve high quality images.  By default, 
+this filter assumes that the color cube in the static colormap is of the form 
+5x5x5 (5 reds, 5 greens, and 5 blues).
+.sp
+If both filenames are missing, the source rasterfile is read from stdin
+and the output rasterfile is written to stdout.  If there is only one
+filename, then it is interpreted as the input rasterfile.  To have a
+named output rasterfile and still read the input rasterfile from stdin,
+use a dash (-) in place of the input filename. 
+.sp
+.B 24to8 
+interprets the input rasterfile as a packed 24-bit BGR format or an
+unpacked 32-bit XBGR-format; the standard Sun
+ordering for the red, green, and blue channels.  This is the opposite
+of older versions of this program, which used the RGB or XBGR
+format.  Older image files with the RGB format should be passed 
+through the 
+.BR redxblue (1)
+filter prior to dithering with
+.BR 24to8 .
+.sp
+.SH OPTIONS
+.TP 5
+.B \-v
+Verbose mode will print information as it processes the image.  (The
+default is to be silent.)
+.TP 5
+.B \-q
+Query (prints list of options)
+.TP 5
+.B \-large
+Dithers into a static colormap with a large color cube of the
+form 5x9x5.  
+.SH "SEE ALSO"
+.BR redxblue (1)

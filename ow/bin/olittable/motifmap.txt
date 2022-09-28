@@ -1,0 +1,145 @@
+  OVERVIEW
+
+  Since Motif and OLIT are both Intrinsics-based toolkits, they share many common
+  widget types.  However, because each toolkit uses slightly different widget naming
+  conventions it is not always obvious which widgets are similar in each of the toolkits.
+
+  The table below shows which OPEN LOOK widget (or set of widgets) can be used in place
+  of each Motif widget.  In some cases where there does not exist a 1 to 1 mapping, it
+  is necessary to build the equivalent widget using multiple OPEN LOOK widgets.  In
+  this case, the list of OPEN LOOK widgets is nested to show the widget heirarchy:
+
+	i.e.  to build the Motif "Command" widget, the equivalent OPEN LOOK widget tree
+		would look like the following:
+				     RubberTile 
+					|
+			--------------------------------
+		      /           |           |         \
+		StaticText  ScrollingList  TextField  ControlArea
+							  \
+						     OblongButton(s)
+
+
+  IMPORTANT NOTE:  This table does NOT imply that the Widget Resource Sets and the
+  exact widget functionality are the same between the Motif widgets and their
+  equivalent OPEN LOOK widgets.   This table shows the CLOSEST match.  In order to
+  get specific information on particular OPEN LOOK widget Resource Sets and widget
+  behavior, see the Information Windows (brought up by pressing the Widget Buttons in
+  the Periodic Table) AND consult the OPEN LOOK Intrinsics Toolkit Widget Set Reference
+  Manual.  
+
+________________________________________________________________________________________
+
+  MOTIF WIDGET/GADGET	= OPEN LOOK WIDGET(S)/GADGET	FORMULA NOTES
+________________________________________________________________________________________
+
+  XmArrowButton		=  OblongButton + Image  	Create XImage containing arrow &
+  XmArrowButtonGadget	=     				attach as XtNlabelImage resource.
+
+----------------------------------------------------------------------------------------
+  XmBulletinBoard	=  BulletinBoard
+
+----------------------------------------------------------------------------------------
+  XmCascadeButton	=  MenuButton
+  XmCascadeButtonGadget	=  MenuButtonGadget
+
+----------------------------------------------------------------------------------------
+  XmCommand		=  RubberTile 
+			      + StaticText		(command label)
+			      + ScrollingList		(previous commands)  
+			      + TextField		(command)
+			      + ControlArea		(button box)
+				  +OblongButtons	(selection buttons)
+
+----------------------------------------------------------------------------------------
+  XmDialogShell		=  PopupWindowShell OR TransientShell
+
+----------------------------------------------------------------------------------------
+  XmDrawingArea		=  DrawArea			
+
+----------------------------------------------------------------------------------------
+  XmDrawnButton		=  OblongButton + XImage 	Create XImage and attach  
+							as XtNlabelImage resource.
+
+----------------------------------------------------------------------------------------
+  XmFileSelectionBox	=  FileChooser 
+
+----------------------------------------------------------------------------------------
+  XmForm		=  Form
+
+----------------------------------------------------------------------------------------
+  XmFrame		=  *no equivalent*
+
+----------------------------------------------------------------------------------------
+  XmLabel		=  StaticText
+  XmLabelGadget		=  *no equivalent*
+
+----------------------------------------------------------------------------------------
+  XmList/ScrolledList	=  ScrollingList
+
+----------------------------------------------------------------------------------------
+  XmMainWindow		= RubberTile					
+			     + ControlArea		(MenuBar)	 
+			         + MenuButton(s)	(cascadeButtons)
+			     + BulletinBoard OR
+			       RubberTile 		(WorkArea)
+
+----------------------------------------------------------------------------------------
+  XmMenuShell		=  MenuShell
+
+----------------------------------------------------------------------------------------
+  XmMessageBox		=  Notice
+
+----------------------------------------------------------------------------------------
+  OptionsMenu		=  ControlArea
+			      + Caption		 	(label)
+			          + AbbrevMenuButton	(menu) 
+			      + StaticText	 	(current selection)
+
+----------------------------------------------------------------------------------------
+  XmPanedWindow		=  *no equivalent*
+
+----------------------------------------------------------------------------------------
+  XmPushButton		=  OblongButton
+  XmPushButtonGadget	=  OblongButtonGadget
+
+----------------------------------------------------------------------------------------
+  RadioBox		=  Exclusives
+
+----------------------------------------------------------------------------------------
+  XmRowColumn		=  ControlArea
+
+----------------------------------------------------------------------------------------
+  XmScale		=  Slider
+
+----------------------------------------------------------------------------------------
+  XmScrollbar		=  ScrollBar
+
+----------------------------------------------------------------------------------------
+  XmScrolledWindow	=  ScrolledWindow
+
+----------------------------------------------------------------------------------------
+  XmSelectionBox	=  RubberTile 
+			      + StaticText 		(item label) 
+			      + ScrollingList		(items)  
+			      + StaticText		(selection label)  
+			      + TextLine		(selection)
+			      + ControlArea		(button box)
+				  +OblongButtons	(selection buttons)
+
+----------------------------------------------------------------------------------------
+  XmSeparator		=  DrawingArea or Stub				
+  XmSeparatorGadget	=  *no equivalent*
+							
+----------------------------------------------------------------------------------------
+  XmText/ScrolledText	=  TextEdit 			(full-scale texteditor)
+
+----------------------------------------------------------------------------------------
+  XmTextField		=  TextLine
+
+----------------------------------------------------------------------------------------
+  XmToggleButton	=  CheckBox
+  XmToggleButtonGadget	=  *no equivalent*
+
+----------------------------------------------------------------------------------------
+

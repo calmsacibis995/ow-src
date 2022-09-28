@@ -1,0 +1,10 @@
+# SUNWowrqd (OpenWindows required package) preremove script.
+
+(   # Run in a subshell to isolate any directory changes if we later expand this
+    # script.
+
+    rm -f $BASEDIR/openwin/lib/openwin-menu-demo
+)
+
+exit 0
+

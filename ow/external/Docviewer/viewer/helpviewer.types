@@ -1,0 +1,18 @@
+ptype Sun_DeskSet_helpviewer {
+	start		"helpviewer -tooltalk -depth x -visual y -lc_basiclocale z";
+	per_session	256;
+};
+
+otype Sun_DeskSet_Object_helpviewer {
+	handle:
+		launch(in string locale, in int depth, in int visual) => Sun_DeskSet_helpviewer session start;
+		status(in string status_string) => Sun_DeskSet_helpviewer session;
+		dispatch_data(in string sel_name) => Sun_DeskSet_helpviewer session;
+		move(in int xpos, in int ypos, in int width, in int height, in int position) => Sun_DeskSet_helpviewer session;
+		quit(void) => Sun_DeskSet_helpviewer session;
+		hide(void) => Sun_DeskSet_helpviewer session;
+		expose(void) => Sun_DeskSet_helpviewer session;
+		retrieve_data(in string sel_name) => Sun_DeskSet_helpviewer session;
+		departing(void) => Sun_DeskSet_helpviewer session;
+		view_file(in string filename) => Sun_DeskSet_helpviewer session start;
+};

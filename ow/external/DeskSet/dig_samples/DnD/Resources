@@ -1,0 +1,19 @@
+AsciiEdit.base.orientation: vertical
+AsciiEdit.base.control.orientation: horizontal
+AsciiEdit.base.control.weight: 0
+
+AsciiEdit.base.control.file.weight: 1
+AsciiEdit.base.control.drop_target.weight: 0
+AsciiEdit.base.control.blank.weight: 0
+
+AsciiEdit.base.control.blank.strip: false
+AsciiEdit.base.control.blank.string: \    \
+
+AsciiEdit.base.scrolledwin.weight: 1
+
+AsciiEdit.base.scrolledwin.forceHorizontalSB: False
+AsciiEdit.base.scrolledwin.forceVerticalSB: True
+AsciiEdit.base.scrolledwin.textedit.charsVisible: 80
+AsciiEdit.base.scrolledwin.textedit.linesVisible: 60
+AsciiEdit.title: Drag and Drop sample
+AsciiEdit*font: lucidasans

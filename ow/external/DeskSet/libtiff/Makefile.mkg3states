@@ -1,0 +1,29 @@
+#
+# @(#)Makefile.template	3.3 05 Aug 1992 Copyright (c) 1987-1990 Sun Microsystems, Inc.
+# All Rights Reserved
+#
+
+SOURCES.c	= mkg3states.c
+SOURCES.h	= t4.h prototypes.h
+PROGRAM		= mkg3states
+PROJECTDIR	= ..
+
+MANSECT   	= 1
+
+.KEEP_STATE:
+
+default:	all
+
+include ${PROJECTDIR}/Makefile.master.new
+LDFLAGS =
+LDLIBS = 
+
+CPPFLAGS += -DUSE_VARARGS=0 -DUSE_PROTOTYPES=1
+
+all:	$(PROGRAM) g3states.h
+
+g3states.h:	$(PROGRAM) $(SOURCES.c) $(SOURCES.h)
+	./mkg3states > g3states.h
+
+clean:	master_clean
+

@@ -1,0 +1,102 @@
+#	Copyright (c) 1990-92 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)prototype	1.15 96/09/24 (c) Sun Microsystems, Inc.
+#
+#  OPEN LOOK online user man pages
+
+i pkginfo
+i copyright=../copyright
+i depend=../depend
+
+!HOME=../openwin/share/man
+
+d none openwin 0775 root bin
+s none openwin/man=./share/man
+d none openwin/share 0775 root bin
+d none openwin/share/man 0775 root bin
+
+
+!search            $HOME/man1
+d none openwin/share/man/man1 0775 root bin
+f none openwin/share/man/man1/24to8.1			0444 bin bin 
+f none openwin/share/man/man1/ab_admin.1		0444 bin bin
+f none openwin/share/man/man1/answerbook.1		0444 bin bin
+f none openwin/share/man/man1/audiocontrol.1		0444 bin bin
+f none openwin/share/man/man1/audiotool.1		0444 bin bin
+f none openwin/share/man/man1/binder.1			0444 bin bin
+f none openwin/share/man/man1/calctool.1		0444 bin bin
+f none openwin/share/man/man1/ce_db_build.1		0444 bin bin
+f none openwin/share/man/man1/ce_db_merge.1		0444 bin bin
+f none openwin/share/man/man1/clock.1			0444 bin bin
+f none openwin/share/man/man1/cm.1			0444 bin bin
+f none openwin/share/man/man1/cm_delete.1		0444 bin bin
+f none openwin/share/man/man1/cm_insert.1		0444 bin bin
+f none openwin/share/man/man1/cm_lookup.1		0444 bin bin
+f none openwin/share/man/man1/cmdtool.1			0444 bin bin
+f none openwin/share/man/man1/colorchooser.1		0444 bin bin
+f none openwin/share/man/man1/convert_to_Xdefaults.1	0444 bin bin
+f none openwin/share/man/man1/convert_to_xview.1	0444 bin bin
+f none openwin/share/man/man1/digestp.1			0444 bin bin
+f none openwin/share/man/man1/docviewer.1		0444 bin bin
+f none openwin/share/man/man1/ds_server_init.1		0444 bin bin
+f none openwin/share/man/man1/dsdm.1			0444 bin bin
+f none openwin/share/man/man1/filemgr.1			0444 bin bin
+f none openwin/share/man/man1/filep.1			0444 bin bin
+f none openwin/share/man/man1/filofaxp.1		0444 bin bin 
+f none openwin/share/man/man1/fixframe.1		0444 bin bin
+f none openwin/share/man/man1/fixinterleaf.1		0444 bin bin
+f none openwin/share/man/man1/fmgc.1			0444 bin bin
+f none openwin/share/man/man1/franklinp.1		0444 bin bin
+f none openwin/share/man/man1/format_floppy.1		0444 bin bin
+f none openwin/share/man/man1/helpopen.1		0444 bin bin
+f none openwin/share/man/man1/helpviewer.1		0444 bin bin
+f none openwin/share/man/man1/iconedit.1		0444 bin bin
+f none openwin/share/man/man1/imagetool.1		0444 bin bin
+f none openwin/share/man/man1/locale_env.1		0444 bin bin
+f none openwin/share/man/man1/mailp.1			0444 bin bin
+f none openwin/share/man/man1/mailprint.1		0444 bin bin
+f none openwin/share/man/man1/mailtool.1		0444 bin bin
+f none openwin/share/man/man1/mp.1			0444 bin bin
+f none openwin/share/man/man1/navigator.1		0444 bin bin
+f none openwin/share/man/man1/newsp.1			0444 bin bin
+f none openwin/share/man/man1/olwm.1			0444 bin bin
+f none openwin/share/man/man1/olwmslave.1		0444 bin bin
+f none openwin/share/man/man1/openwin.1			0444 bin bin
+f none openwin/share/man/man1/owplaces.1		0444 bin bin
+f none openwin/share/man/man1/pageview.1		0444 bin bin
+f none openwin/share/man/man1/perfmeter.1		0444 bin bin
+f none openwin/share/man/man1/printtool.1		0444 bin bin
+f none openwin/share/man/man1/props.1			0444 bin bin
+f none openwin/share/man/man1/rash.1			0444 bin bin
+f none openwin/share/man/man1/shelltool.1		0444 bin bin
+f none openwin/share/man/man1/snapshot.1		0444 bin bin
+f none openwin/share/man/man1/tapetool.1		0444 bin bin
+f none openwin/share/man/man1/textedit.1		0444 bin bin
+f none openwin/share/man/man1/textedit_filters.1	0444 bin bin
+f none openwin/share/man/man1/timemanp.1		0444 bin bin
+f none openwin/share/man/man1/timesysp.1		0444 bin bin
+f none openwin/share/man/man1/toolwait.1		0444 bin bin
+f none openwin/share/man/man1/viewprint.1		0444 bin bin
+f none openwin/share/man/man1/vkbd.1			0444 bin bin
+f none openwin/share/man/man1/xv_get_sel.1		0444 bin bin
+
+!search            $HOME/man4
+d none openwin/share/man/man4 			0775 root bin
+f none openwin/share/man/man4/ab_cardcatalog.4 	0444 bin bin
+f none openwin/share/man/man4/ab_library.4 	0444 bin bin
+
+!search            $HOME/man6
+d none openwin/share/man/man6 			0775 root bin
+f none openwin/share/man/man6/fish_props.6 	0444 root bin
+f none openwin/share/man/man6/olbiff.6 		0444 bin bin
+f none openwin/share/man/man6/olitsampler.6 	0444 bin bin
+f none openwin/share/man/man6/olittable.6 	0444 bin bin
+f none openwin/share/man/man6/olmh.6 		0444 bin bin
+f none openwin/share/man/man6/realxfishdb.6 	0444 bin bin
+f none openwin/share/man/man6/spider.6 		0444 bin bin
+
+
+!search            $HOME/man7
+d none openwin/share/man/man7 		0775 root bin
+f none openwin/share/man/man7/xview.7 	0444 bin bin

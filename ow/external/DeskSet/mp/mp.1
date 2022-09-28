@@ -1,0 +1,342 @@
+.\" Copyright (c) 1994 - Sun Microsystems, Inc.
+.TH mp 1 "14 June 1993"
+.IX "mp" "" "\f3mp\f1(1) \(em PostScript printer program" ""
+.IX "PostScript" "printing" "PostScript" "printing program \(em \f3mp\f1(1)"
+.ds Ps P\s-2OST\s+2S\s-2CRIPT\s+2
+.SH NAME
+mp \- PostScript pretty printer
+.SH SYNOPSIS
+.B mp
+[
+.B \-A4
+] [
+.B \-C
+] [
+.B \-F
+] [
+.B \-L
+.I localename
+] [
+.B \-PS
+] [
+.B \-US
+] [
+.B \-a
+] [
+.B \-c
+.I chars
+] [
+.B \-d
+] [
+.B \-e
+] [
+.B \-ff
+] [
+.B \-fp
+] [
+.B \-l
+] [
+.B \-m
+] [
+.B \-o
+] [
+.B \-p
+.I prologue
+] [
+.B \-s
+.I subject
+] [
+.B \-tm
+] [
+.B \-ts
+] [
+.B \-v
+] [
+.B \-w
+.I words
+] [
+.B \-?
+] [
+.IR filename .\|.\|.
+]
+.SH DESCRIPTION
+The
+.B mp
+program reads each
+.I filename
+in sequence and generates a prettified version of the contents in
+\*(Ps format, sent to standard output.
+If no filename argument is provided,
+.B mp
+reads the standard input.
+If the standard input is a terminal, input is terminated by an
+.SM EOF
+signal, usually
+.SM Ctrl-D\s0.
+.LP
+Mail items, news articles, ordinary ASCII files, complete mail folders,
+and digests are all acceptable input formats for
+.BR mp .
+The output format includes grayscale lozenges containing banner information
+at the top and bottom of every page.
+.LP
+The program is conveniently used in conjunction with the print button of the
+.BR mailtool (1)
+program, or the
+.I pipe
+command provided by
+.BR mail (1).
+Add the following two lines to your \fB.mailrc\fP
+file:
+.br
+.in +1.0i
+.nf
+\fBset printmail='mp | lp'
+set cmd="mp | lp &"\fP
+.fi
+.in -1.0i
+.LP
+Source the \fB.mailrc\fP file, and you are ready to use \fBmp\fP.
+For printing ordinary ASCII files, the following alias (to be placed in your
+\fB.cshrc\fP file) may also prove useful:
+.br
+.in +1.0i
+.nf
+\fBalias print 'mp -o -s "\\!*" <\\!* | lp'\fP
+.fi
+.in -1.0i
+.SH OPTIONS
+.TP
+.B \-A4
+Use A4 paper size (8.5 x 11.4 inches).
+.TP
+.B \-C
+Instead of using "\\nFrom" to denote the start of new mail messages,
+.B mp
+will look for (and use) the value of the Content-Length: mail header. If the
+Content-Length doesn't take you to the next "\\nFrom", then it's wrong, and
+.B mp
+falls back to looking for the next "\\nFrom" in the mail folder.
+.TP
+.B \-F
+Instead of printing who the mail article is for, the top header will
+contain who the mail article is from. A useful option for people with
+their own personal printer.
+.TP
+.BI \-L " localename"
+Provide the locale of the file to be printed. If this command line option is
+not present, then
+.B mp
+looks for the
+.I MP_LANG
+environment variable. If that is not present, then the
+.I LANG
+environment variable is used. If none of these options are present, then
+.B mp
+tries to determine the locale it is running in, and if it cannot, then it
+assumes it is running in the C locale, otherwise a prologue file
+specific to the given locale is prepended to the output. This is to provide
+I18N level 4 (multibyte) printing.
+.TP
+.B \-PS
+If the mail or digest message just has PostScript as the text of the message,
+then this is normally just passed straight through. Specifying this option,
+causes PostScript to be printed as text.
+.TP
+.B \-US
+Use US paper size (8.5 x 11 inches).
+This is the default paper size.
+.TP
+.B \-a
+Format the file as a news article.
+The top banner contains the text:
+"Article from \fInewsgroup\fP", where \fInewsgroup\fP\fP
+is the first news group found on the Newsgroups: line.
+.TP
+.BI \-c " chars"
+The maximum number of characters to extract from the gecos field of the users
+\fB/etc/passwd\fP entry. The default is 18.
+.TP
+.B \-d
+Format the file as a digest.
+.TP
+.B \-e
+Assume the ELM mail frontend intermediate file format. Used when printing
+messages from within ELM (using the "p" command), especially for printing
+tagged messages. This option must be specified in your ELM option setup.
+.TP
+.B \-ff
+Format the file for use with a Filofax personal organiser.
+.TP
+.B \-fp
+Format the file for use with a Franklin Planner personal organiser.
+.TP
+.B \-l
+Format output in landscape mode.
+Two pages of text will be printed per sheet of paper.
+.TP
+.B \-m
+Format the file as a mail folder, printing multiple messages.
+.TP
+.B \-o
+Format the file as an ordinary ASCII file.
+.TP
+.BI \-p " prologue"
+Employ the file
+.I prologue
+as the \*(Ps prologue file,
+overriding any previously defined file names.
+.TP
+.BI \-s " subject"
+Use
+.I " subject"
+as the new subject for the printout. If you are printing ordinary ASCII
+files which have been specified on the command line, the the subject will
+default to the name of each of these files.
+.TP
+.B \-tm
+Format the file for use with the Time Manager personal organiser.
+.TP
+.B \-ts
+format the file for use with the Time/System International personal organiser.
+.TP
+.B \-v
+Print the version number of this release of
+.IR mp .
+.TP
+.BI \-w " words"
+The maximum number of words to extract from the gecos field of the users
+.I /etc/passwd
+entry. The default is 3.
+.TP
+.B \-?
+Print the usage line for
+.B mp
+(note that the
+.B ?
+character must be escaped if using
+.BR csh (1)).
+.SH "ENVIRONMENT VARIABLES"
+The
+.B mp
+prologue file is determined by first looking for the environment variable
+.IR MP_PROLOGUE ,
+which specifies the directory where
+.B mp
+prologue files are to be found.
+If
+.I MP_PROLOGUE
+is not found, then the default directory is assumed
+.RI ( $OPENWINHOME/share/xnews/client/mp ).
+.LP
+.B mp
+also checks for the
+.I MP_LANG
+and
+.I LANG
+environment variables. If present, then a prologue file called
+.RI ( $OPENWINHOME/lib/locale/<localename>/print/prolog.ps )
+is prepended to the output to be printed.
+.SH "SUPPLIED PROLOGUE FILES"
+The following prologue files are provided:
+.RS
+.TP
+.I mp.pro.ps
+Used by default
+.TP
+.I mp.pro.ff.ps
+Used if the
+.B \-ff
+option is in effect
+.TP
+.I mp.pro.fp.ps
+Used if the
+.B \-fp
+option is in effect
+.TP
+.I mp.pro.tm.ps
+Used if the
+.B \-tm
+option is in effect
+.TP
+.I mp.pro.ts.ps
+Used if the
+.B \-ts
+option is in effect
+.TP
+.I mp.pro.alt.ps
+An alternative modification of the default prologue file which outputs the
+page number in the right corner of the bottom banner.
+.RE
+.SH FILES
+.TP
+.B .cshrc
+initialization file for
+.BR csh (1)
+.TP
+.B .mailrc
+initialization file for
+.BR mail (1)
+.TP
+.B $OPENWINHOME/bin/mp
+executable
+.TP
+.B $OPENWINHOME/share/xnews/client/mp/mp.pro.ps
+\*(Ps prologue for mail printing
+.TP
+.B $OPENWINHOME/share/xnews/client/mp/mp.pro.l.ps
+\*(Ps prologue for landscape format
+.TP
+.B $OPENWINHOME/share/xnews/client/mp/mp.pro.alt.ps
+alternative "default" \*(Ps prologue, inserts page
+numbers in the bottom right corner of each page
+.TP
+.B $OPENWINHOME/share/xnews/client/mp/mp.pro.ff.ps
+\*(Ps prologue for Filofax format
+.TP
+.B LIBDIR/mp.pro.fp.ps
+\*(Ps prologue for Franklin Planner format.
+.TP
+.B $OPENWINHOME/share/xnews/client/mp/mp.pro.tm.ps
+\*(Ps prologue for Time Manager format
+.TP
+.B $OPENWINHOME/share/xnews/client/mp/mp.pro.ts.ps
+\*(Ps prologue for Time/System International
+format.
+.SH "SEE ALSO"
+.BR mail (1),
+.BR mailtool (1),
+.SH AUTHORS
+Original version by Steve Holden.
+.LP
+Converted to C, modified and maintained by Rich Burridge, SunSoft Inc,
+Mountain View.
+.LP
+Original modified to handle net news articles and MH mail by Bruno Pillard, Chorus Systemes, France.
+.LP
+Handling of mail digests added by Dave Glowacki of Public Works Computer Services, St Paul, MN.
+.LP
+Manual page revised by Rick Rodgers, UCSF School of Pharmacy, San Francisco.
+.LP
+Support for Personal Organiser printing style added by Douglas Buchanan,
+Sun Microsystems Europe.
+.LP
+Substantial modifications to header parsing by Jeremy Webber,
+Computer Science Department, University of Adelaide, Australia.
+.LP
+Support for printing multiple files and subject line filename print for
+ordinary ASCII files added by Sam Manoharan, Edinburgh University.
+.LP
+Support for landscape mode written by Michael Tuciarone.
+.LP
+Revision of the \*(Ps structuring and the way that the prologue files
+are handled was included by Johan Vromans.
+.LP
+New style \*(Ps prologue files by John Macdonald.
+.LP
+Support for the ISO8859 character set by Bertrand DeCouty.
+.LP
+.nf
+Rich Burridge.  MAIL: richb@Eng.Sun.COM
+.fi
+.\" end of man page

@@ -1,0 +1,166 @@
+.\" Copyright (c) 1994 - Sun Microsystems, Inc.
+.TH audiocontrol 1 "17 Nov 1992"
+.IX "audiocontrol" "" "\f3audiocontrol\f1(1) \(em audio control tool" ""
+.IX "OpenWindows" "audio" "OpenWindows" "audio control tool \(em \f3audiocontrol\f1(1)"
+.SH NAME
+audiocontrol \- audio control panel
+.SH SYNOPSIS
+.B audiocontrol
+[
+.B \-d
+.I device
+] [
+.I generic-tool-arguments
+]
+.SH DESCRIPTION
+.LP
+.B "Audio Control"
+is an OpenWindows DeskSet application that controls and configures the
+workstation audio device.
+By default,
+.B "Audio Control"
+operates on
+.BR /dev/audio ,
+though the
+.SB AUDIODEV
+environment variable can be used to override this default.
+An alternate audio device name may be entered on the command line using the
+.B \-d
+option.
+.LP
+Operations performed by the
+.B "Audio Control"
+control panel affect all audio programs using the specified device;
+for instance, adjusting the
+.I Play Volume
+instantly changes the output gain, regardless of which program is playing
+audio data.  Further,
+.B "Audio Control"
+detects audio state changes made by other programs,
+and updates its display accordingly, so that it stays synchronized
+with the current device configuration.
+.LP
+In addition to command line initiation,
+.B "Audio Control"
+may be started via the ToolTalk Media Exchange Protocol.
+.BR "Audio Tool" ,
+for instance, invokes
+.B "Audio Control"
+for volume and audio port control.
+.LP
+.B "Audio Control"
+demonstrates an important principle involved in the integration of
+audio in the desktop environment: by enabling global control of important
+audio characteristics, it is not necessary for every application to
+provide an interface for these parameters.  For instance, since the
+audio output can be set from the control panel, it is not strictly
+necessary that output applications contain output port controls themselves.
+However, such applications may detect that the audio output port has been
+changed, and take appropriate action.
+.SH "Play Control Panel"
+.IP "Output Port"
+This selector redirects audio output.  There is a selector for each
+available output port provided by your hardware configuration.
+Normally, the available output ports include
+.I Speaker
+and
+.IR Headphone .
+Some systems also support
+.IR "Line Out" .
+If a control is present but inactivated (greyed-out), this indicates
+that the corresponding port is supported, but is unavailable; this
+can happen, for instance, when the audio device detects that a
+headset has not been plugged into the headphone jack.
+Note that some devices allow multiple output ports to be enabled simultaneously.
+.IP "Play Volume"
+This slider adjusts the output volume.
+Volume levels between 0 and 100 may be selected, where 0 represents
+infinite attenuation and 100 is maximum gain.
+.IP "Play Balance"
+This slider adjusts the left/right balance.  This control does not appear
+if the audio device does not support stereo balance control.
+.IP "Mute"
+This button is used to enable and disable audio output muting.
+Note that muting output has no effect on audio input recording.
+.IP "Record..."
+This button brings up the Record Control Panel.
+.SH "Record Control Panel"
+.IP "Input Port"
+This control selects the audio input port.  There is a selector for each
+available input port provided by your hardware configuration.
+On many systems, only the
+.I Microphone
+port is available,
+although some systems also support
+.IR "Line In" .
+If a control is present but inactivated (greyed-out), this indicates
+that the corresponding port is supported, but is unavailable; this
+can happen, for instance, when the audio device detects that a
+microphone has not been plugged into the microphone input jack.
+In general, input ports are mutually exclusive; that is, audio signals
+on multiple inputs are not mixed.
+.IP "Record Volume"
+This slider adjusts the recording volume level in the range 0 to 100.
+.IP "Record Balance"
+This slider adjusts the left/right balance.  This control does not appear
+if the audio device does not support stereo balance control.
+.IP "Auto-Adjust"
+Clicking this button starts an automatic recording level adjustment
+procedure.  The input data is scanned to determine its loudness and
+the record volume is adjusted to achieve an optimal signal level.
+Once the input signal appears to be properly calibrated for several seconds,
+the panel will reset to a normal operating state.  All input audio data
+is discarded during the automatic adjustment procedure.
+.IP
+A display gauge indicates the overall input level.  If you have connected
+a microphone to the audio input jack, then you may adjust the recording
+level for your speaking voice by pressing the
+.I "Auto-Adjust"
+button and then speaking normally into the microphone until the adjustment
+process is finished.  If you have connected a CD-player or other audio source,
+you can adjust the
+.I "Monitor Volume"
+to hear the audio data that is being used to calibrate the recording level.
+.IP "Monitor Volume"
+This slider adjusts the monitor gain level in the range 0 to 100.
+Monitor gain controls the amount of audio input signal that is
+fed through to the output port.  For instance, if an audio source
+(such as a radio or CD-player) is connected directly to the input port,
+the input signal may be monitored through the selected output port
+by adjusting this slider. Note that there may be
+audible feedback (a high-pitched whine) if a microphone is connected to 
+the workstation and the monitor volume is set greater than zero.
+.SH "Audio Device Status Panel"
+.LP
+.B "Audio Control"
+includes an audio status panel that shows the current state
+of the audio device.  This panel can be useful for debugging
+audio applications and determining whether applications are locking
+out the audio device by holding it open.
+Selecting ``Status...'' from the panel menu or pressing the
+.SB PROPS
+(L3) key brings up the status panel.
+.IP "Update"
+When the
+.I Update
+selector is set to
+.IR "Status Change" ,
+the audio device status is updated only when a
+.SB SIGPOLL
+signal is delivered to
+.B "Audio Control"
+(see
+.BR audio (7)).
+Because of this, the
+.I Active
+and 
+.I Samples
+indicators are not necessarily kept up-to-date.
+This mode is useful for application debugging in order to see exactly
+when audio device status changes are being reported.
+When the
+.I Continuous
+mode is selected, the status is continually updated.
+.SH SEE ALSO
+.BR audiotool (1),
+.BR audio (7)

@@ -1,0 +1,34 @@
+#
+# 
+#
+
+
+SOURCES.c = \
+	libpgm1.c 	\
+	libpgm2.c 
+
+SOURCES.h = \
+	pgm.h		\
+	libpgm.h 	\
+	../ppm/ppm.h 	\
+	../pbm/pbm.h 	
+
+LIBRARY = libpgm
+LIBVERSION =
+PROJECTDIR = ../..
+
+CPPFLAGS += -I../ -I../ppm -I../pbm
+
+default: all
+
+include $(PROJECTDIR)/Makefile.master.new
+LDFLAGS =
+LDLIBS  =
+
+all:	$(LIBRARY.a) 
+
+install: 
+
+clean:	master_clean
+
+.INIT: $(SOURCES.h)

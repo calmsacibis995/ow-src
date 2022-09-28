@@ -1,0 +1,272 @@
+DESCRIPTION
+
+	The FileChooser widget allows the end-user to traverse directories (folders),
+	view the files and subdirectories (folders) in them, and to select files.
+
+	Typically, an application uses a popup window FileChooser, though it may
+	use a file chooser panel embedded in a multi-category property sheet, hence 
+	the 2 widgets classes for the OLIT file chooser implementation:
+		. FileChooserWidget
+		. FileChooserShellWidget
+
+	The OLIT FileChooserShell widget class implements the OPEN LOOK filechooser 
+	user interface Object as specified in the functional specification currently 
+	being developed by the SunSoft Human Interface Team.  However, the
+	FileChooser widget is highly customizable via many configurable resources
+	(See "RESOURCES" section below).
+
+	The look and feel of this widget has 3 variants depending on the operation it 
+	is intended to perform:
+		.Open
+		.Save
+		.Save As
+
+	For more detailed information on the FileChooser Widget, see the following
+	Sections in the OPEN LOOK Intrinsics Toolkit Widget Set Reference Manual:
+		. FileChooser
+		. FileChooserShell
+
+EXAMPLE CODE
+
+The following code was written to Create the example FileChooserShell Widget shown 
+in the Table:
+/**************************************************************************************/
+#include <X11/StringDefs.h>
+#include <Xol/OpenLook.h>
+#include <Xol/ControlAre.h>
+#include <Xol/MenuButton.h>
+#include <Xol/OblongButt.h>
+#include <Xol/FileChSh.h>
+
+/*
+ * Popup FileChooserShell
+ */
+static void
+popupCB(Widget wid, XtPointer client_data, XtPointer call_data)
+{
+   const Widget shellw = (Widget)client_data;
+
+   XtPopup(shellw, XtGrabNone);
+} 
+
+main(argc, argv)
+int argc;
+char **argv;
+{
+	XtAppContext app;
+	Widget toplevel, panel, filebutton, filemenu_pane,
+	       open_button, save_button, saveas_button,
+	       open_filech, save_filech, saveas_filech;
+
+	OlToolkitInitialize(NULL);
+	toplevel = XtAppInitialize(&app, "Test", 
+				(XrmOptionDescRec *)NULL,
+				(Cardinal)0, (int *)&argc, argv,
+				(String *)NULL, (ArgList)NULL, 0);
+
+	 /* create a menubutton with the following menu items: "Open",
+	 * "Save", and "Save As" per the OL Spec.
+	 */ 
+        panel = XtVaCreateManagedWidget("panel", 
+				controlAreaWidgetClass,
+				toplevel,
+				NULL);
+
+        filebutton = XtVaCreateManagedWidget("filebutton",
+                                menuButtonWidgetClass,
+                                panel,
+                                XtNlabel,       "File",
+                                NULL);
+
+        XtVaGetValues(filebutton, XtNmenuPane, &filemenu_pane, NULL);
+ 
+        /*
+         * Open
+         */
+        open_button = XtVaCreateManagedWidget("open_button", 
+				oblongButtonWidgetClass,
+				filemenu_pane,
+                        	XtNlabel,       "Open...",
+                		NULL);
+
+        open_filech = XtVaCreatePopupShell("filechoosershell",
+                                fileChooserShellWidgetClass,
+                                open_button,
+                                NULL, NULL);
+
+	XtAddCallback(open_button, XtNselect, popupCB, 
+				(XtPointer) open_filech);
+ 
+        /*
+         * Save
+         */
+        save_button = XtVaCreateManagedWidget("save_button", 
+				oblongButtonWidgetClass,
+				filemenu_pane,
+                        	XtNlabel,       "Save...",
+                		NULL);
+
+        save_filech = XtVaCreatePopupShell("filechoosershell", 
+                                fileChooserShellWidgetClass, 
+                                save_button,
+				XtNoperation,	(XtArgVal)OL_SAVE,
+                                NULL); 
+
+	XtAddCallback(save_button, XtNselect, popupCB, 
+				(XtPointer) save_filech);
+
+        /*
+         * Save As
+         */
+        saveas_button = XtVaCreateManagedWidget("saveas_button",
+				oblongButtonWidgetClass,
+				filemenu_pane,
+				XtNlabel,       "Save As...",
+				NULL);
+
+        saveas_filech = XtVaCreatePopupShell("filechoosershell",  
+                                fileChooserShellWidgetClass,  
+                                saveas_button,
+				XtNoperation,	(XtArgVal)OL_SAVE_AS,
+                                NULL);  
+
+	XtAddCallback(saveas_button, XtNselect, popupCB, 
+				(XtPointer)saveas_filech);
+
+	XtRealizeWidget(toplevel);
+
+	XtAppMainLoop(app);
+
+}
+/**********************************END Example********************************/
+
+
+RESOURCES
+
+
+Core Resources
+--------------
+Name            		Type            Default         	Access
+----            		----            -------         	-------
+ XtNx               		Position        0               	SGI
+ XtNy               		Position        0               	SGI
+ XtNwidth           		Dimension       <Calculated>    	SG
+ XtNheight          		Dimension       <Calculated>    	SG
+ XtNborderWidth     		Dimension       0               	SGI
+ XtNsensitive       		Boolean         True            	GIO
+ XtNancestorSensitive		Boolean         True            	G
+ XtNscreen          		Screen *        parent's        	GI
+ XtNdepth           		Cardinal        parent's        	GI
+ XtNcolormap        		Colormap        parent's        	GI
+ XtNbackground      		Pixel           parent's        	SGID
+ XtNbackgroundPixmap		Pixmap          XtUnspecifiedPixmap     SGI
+ XtNborderColor     		Pixel           XtDefaultForeground     SGI
+ XtNborderPixmap    		Pixmap          XtUnspecifiedPixmap     SGI
+ XtNmappedWhenMananaged		Boolean         True            	SGI
+ XtNdestroyCallback 		XtCallbackList  NULL            	SGIO
+
+Composite Resources
+-------------------
+ XtNchildren        		WidgetList      NULL             	G
+ XtNinsertPosition  		Function        NULL            	SGI
+ XtNnumChildren     		Cardinal        0                	G
+
+FileChooser Resources
+---------------------
+ XtNtextFormat      		OlStrRep        _OlGetDefaultTextFormat  GI
+ XtNfont            		OlFont          XtDefaultFont   	SGI
+ XtNfontColor       		Pixel           XtDefaultForeground     SGI
+ XtNforeground      		Pixel           XtDefaultForeground     SGI
+ XtNscale           		int             (shell's scale)         SGI
+				       		or OL_DEFAULT_POINT_SIZE
+ XtNoperation       		OlDefine        OL_OPEN                  GI
+ XtNcurrentFolder   		String          .                       SGI
+ XtNlastDocumentName		String          NULL                    SGI
+ XtNlistVisibleItemMinCount	Cardinal        3                        GI
+ XtNlistVisibleItemCount	Cardinal        10                       GI
+ XtNshowGlyphs      		Boolean         TRUE                    SGI
+ XtNfollowSymlinks  		Boolean         TRUE                    SGI
+ XtNnoTypeInAcceleration	Boolean         FALSE                   SGI
+ XtNallowIncrementalSearch	Boolean         TRUE                    SGI
+ XtNopenFolderCallback		XtCallbackList  NULL                    SGIO
+ XtNinputDocumentCallback	XtCallbackList  NULL                    SGIO
+ XtNoutputDocumentCallback	XtCallbackList  NULL                    SGIO
+ XtNfilterString    		String          NULL                    SGI
+ XtNfilterProc      		XtCallbackProc  NULL                    O
+ XtNshowInactive    		Boolean         TRUE                    SGI
+ XtNhideDotFiles    		Boolean         TRUE                    SGI
+ XtNhomeFolder      		String          (home of uid)           SGI
+ XtNapplicationFoldersMaxCount	Cardinal        5                        GI
+ XtNapplicationFolder		OlFolderList    NULL                    SGI
+ XtNuserFoldersMaxCount		Cardinal        5                        GI
+ XtNuserFolders			OlFolderList    NULL                    SGI
+ XtNhistoryFoldersMinCount	Cardinal        3                        GI
+ XtNhistoryFoldersMaxCount	Cardinal        15                       GI
+ XtNhistoryFolders  		OlFolderList    NULL                     G
+ XtNcomparisonFunc  		OlComparisonFunc (string case-insensitive ascending)
+							    		SGI
+ XtNexpandTilde     		Boolean         TRUE                    SGI
+ XtNsubstituteShellVariables	Boolean         TRUE                    SGI
+ XtNgotoHomeAccelerator		String          NULL                    SGI
+ XtNopenFolderAccelerator	String          NULL                    SGI
+ XtNcancelAccelerator		String          NULL                    SGI
+ XtNopenAccelerator 		String          NULL                    SGI
+ XtNsaveAccelerator 		String          NULL                    SGI
+ XtNsaveAsAccelerator		String          NULL                    SGI
+ XtNincludeAccelerator		String          NULL                    SGI
+ XtNcommandAccelerator		String          NULL                    SGI
+ XtNgotoHomeMnemonic		OlMnemonic      `\0'                    SGI
+ XtNopenFolderMnemonic		OlMnemonic      `\0'                    SGI
+ XtNcancelMnemonic  		OlMnemonic      `\0'                    SGI
+ XtNopenMnemonic    		OlMnemonic      `\0'                    SGI
+ XtNsaveMnemonic    		OlMnemonic      `\0'                    SGI
+ XtNsaveAsMnemonic  		OlMnemonic      `\0'                    SGI
+ XtNincludeMnemonic 		OlMnemonic      `\0'                    SGI
+ XtNcommandMnemonic 		OlMnemonic      `\0'                    SGI
+ XtNextensionName   		String          NULL                     GI
+ XtNextensionClass  		WidgetClass     (formWidgetClass)        GI
+ XtNextensionWidget 		Widget          NULL                     G
+ XtNgotoPromptWidget		Widget          (toolkit)                G
+ XtNgotoButtonWidget		Widget          (toolkit)                G
+ XtNgotoMenuWidget  		Widget          (toolkit)                G
+ XtNgotoHomeButtonWidget	Widget          (toolkit)                G
+ XtNgotoTypeInWidget		Widget          (toolkit)                G
+ XtNcurrentFolderLabelWidget	Widget          (toolkit)                G
+ XtNcurrentFolderWidget		Widget          (toolkit)                G
+ XtNlistPromptWidget		Widget          (toolkit)                G
+ XtNdocumentListWidget		Widget          (toolkit)                G
+ XtNdocumentNameLabelWidget	Widget          (toolkit)                G
+ XtNdocumentNameTypeInWidget	Widget          (toolkit)                G
+ XtNopenButtonWidget		Widget          (toolkit)                G
+ XtNcancelButtonWidget		Widget          (toolkit)                G
+ XtNcommandButtonWidget		Widget          (toolkit)                G
+ XtNlistChoiceCallback		XtCallbackList  NULL                    SGIO
+ XtNfolderOpenedCallback	XtCallbackList  NULL                    SGIO
+ XtNcancelCallback		XtCallbackList  NULL                    SGIO
+ XtNgotoPromptString		OlStr           "Type in the path to the 
+						folder and press Return."SGI
+ XtNgotoLabel			OlStr           "Go To"                 SGI
+ XtNgotoHomeLabel		 OlStr           "Home"                 SGI
+ XtNcurrentFolderLabelString	OlStr           "Current Folder:"       SGI
+ XtNopenPromptString		OlStr           "Select a document or 
+						folder and click %."	SGI
+ XtNfolderPromptString		OlStr           "Select a folder and 
+						click %."		SGI
+ XtNdocumentPromptString	OlStr           "Select a document and 
+						click %."		SGI
+ XtNcommandPromptString		OlStr           "Select a document and 
+						click % or a folder and 
+						click %." 		SGI
+ XtNgoUpOneFolderLabel		OlStr           "...Go up one folder..." SGI
+ XtNopenFolderLabel 		OlStr           "Open Folder"           SGI
+ XtNcancelLabel     		OlStr           "Cancel"                SGI
+ XtNopenLabel      		OlStr           "Open"                  SGI
+ XtNsaveLabel       		OlStr           "Save"                  SGI
+ XtNsaveAsLabel     		OlStr           "Save As"               SGI
+ XtNincludeLabel    		OlStr           "Include"               SGI
+ XtNcommandLabel    		OlStr           "Command"               SGI
+ XtNdefaultDocumentName		OlStr           "Untitled1"             SGI
+ XtNdefaultDocumentSuffix	OlStr           ".1"                    SGI
+
+---------------------------------------------------------------------------
+---------------------------------------------------------------------------

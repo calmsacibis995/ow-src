@@ -1,0 +1,94 @@
+#	Copyright (c) 1990-92 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)prototype	1.7 94/11/02 (c) Sun Microsystems, Inc.
+#
+#  OPEN LOOK demo programs
+
+i pkginfo
+i postinstall
+i preremove
+i copyright=../copyright
+i depend
+
+!HOME=../openwin
+
+d none openwin				0775 root bin
+
+!search       $HOME/bin
+d none openwin/bin			0775 root bin
+f none openwin/bin/convert_to_xview	0775 root bin
+
+!search       $HOME/demo
+d none openwin/demo			0775 root bin
+f none openwin/demo/fish_props		0775 root bin
+f none openwin/demo/olbiff		0775 root bin
+f none openwin/demo/olitsampler		0775 root bin
+f none openwin/demo/olittable		0775 root bin
+f none openwin/demo/olmh		0775 root bin
+f none openwin/demo/realxfishdb		0775 root bin
+f none openwin/demo/spider		0775 root bin
+
+!search  $HOME/lib
+d none openwin/lib 0775 root bin
+!search  $HOME/lib/locale
+d none openwin/lib/locale 0775 root bin
+!search  $HOME/lib/locale/C
+d none openwin/lib/locale/C 0775 root bin
+
+!search  $HOME/lib/locale/C/help
+d none openwin/lib/locale/C/help 0775 root bin
+f none openwin/lib/locale/C/help/olitsampler.info 0664 root bin
+f none openwin/lib/locale/C/help/spider.info 0664 root bin
+
+!search  $HOME/lib/locale/C/help/olittable
+d none openwin/lib/locale/C/help/olittable 0775 root bin
+f none openwin/lib/locale/C/help/olittable/Ab-G.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/Bb.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/Ca.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/Cb.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/Cp.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/Da.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/Dt.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/Ex.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/F.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/Fc.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/Fe.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/Fic.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/Fn.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/Fnc.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/Fp.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/Ga.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/M.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/Mb-G.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/Mb.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/N.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/Ne.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/Nf.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/Ob-G.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/Pw.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/Rb.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/Rt.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/S.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/Sb.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/Sd.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/Sl.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/St.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/Sw.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/Te.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/Tf.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/Tl.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/motif.map.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/motifmap.txt 0664 root bin
+f none openwin/lib/locale/C/help/olittable/writeup.txt 0664 root bin
+
+
+!search  $HOME/lib/locale/C/help/spider
+d none openwin/lib/locale/C/help/spider 0775 root bin
+f none openwin/lib/locale/C/help/spider/doc.controls 0664 root bin
+f none openwin/lib/locale/C/help/spider/doc.examples 0664 root bin
+f none openwin/lib/locale/C/help/spider/doc.intro 0664 root bin
+f none openwin/lib/locale/C/help/spider/doc.misc 0664 root bin
+f none openwin/lib/locale/C/help/spider/doc.rules 0664 root bin
+f none openwin/lib/locale/C/help/spider/doc.summary 0664 root bin
+

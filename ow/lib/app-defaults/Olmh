@@ -1,0 +1,250 @@
+!       "@(#)Olmh	1.7    94/02/17 bin/olmh SMI"        /* OLIT */
+!
+! System application defaults file for the OpenWindows OLIT demo olmh program.
+! This file should be installed in $OPENWINHOME/lib/locale/C/app-defaults/Olmh
+!
+
+!
+!        Copyright (C) 1989, 1993  Sun Microsystems, Inc
+!                       All rights reserved.
+!               Notice of copyright on this source code
+!               product does not indicate publication.
+!
+! RESTRICTED RIGHTS LEGEND: Use, duplication, or disclosure by
+! the U.S. Government is subject to restrictions as set forth
+! in subparagraph (c)(1)(ii) of the Rights in Technical Data
+! and Computer Software Clause at DFARS 252.227-7013 (Oct. 1988)
+! and FAR 52.227-19 (c) (June 1987).
+!
+! This file is a product of Sun Microsystems, Inc. and is
+! provided for unrestricted use provided that this legend is
+! included on all media and as a part of the software
+! program in whole or part.  Users may copy or modify this
+! file without charge, but are not authorized to license or
+! distribute it to anyone else except as part of a product or
+! program developed by the user.
+!
+! THIS FILE IS PROVIDED AS IS WITH NO WARRANTIES OF ANY KIND
+! INCLUDING THE WARRANTIES OF DESIGN, MERCHANTIBILITY AND
+! FITNESS FOR A PARTICULAR PURPOSE, OR ARISING FROM A COURSE
+! OF DEALING, USAGE OR TRADE PRACTICE.
+!
+! This file is provided with no support and without any
+! obligation on the part of Sun Microsystems, Inc. to assist
+! in its use, correction, modification or enhancement.
+!
+! SUN MICROSYSTEMS, INC. SHALL HAVE NO LIABILITY WITH RESPECT
+! TO THE INFRINGEMENT OF COPYRIGHTS, TRADE SECRETS OR ANY
+! PATENTS BY THIS FILE OR ANY PART THEREOF.
+!
+! In no event will Sun Microsystems, Inc. be liable for any
+! lost revenue or profits or other special, indirect and
+! consequential damages, even if Sun has been advised of the
+! possibility of such damages.
+!
+!    Sun Microsystems, Inc., 2550 Garcia Avenue,
+!    Mountain View, California 94043.
+!
+
+!
+! L10N centers: please uncomment the next line
+!Olitsampler.imStatusStyle:     imDisplaysInClient
+!Olitsampler.imPreeditStyle: 	onTheSpot
+
+/* AppDefaultsVersion should only be defined in the site-wide file */
+Olmh.AppDefaultsVersion:	1
+Olmh.Banner:			olmh   OpenWindows  V3.4
+
+Olmh.Geometry:			635x770
+Olmh.ReplyInsertFilter:		cat
+!Xmh*ShapeStyle:		Oval
+!Xmh*Command.BorderWidth:	1
+!Xmh*MenuButton.BorderWidth:	1
+Olmh*toc*cursor:		left_ptr
+Olmh*toc*wrapMode:		wrapoff
+Olmh*toc*editType:		textread
+Olmh*toc*traversalOn:		false
+Olmh*TextEdit*Font:		-b&h-lucidatypewriter-medium-r-*-*-*-120-*-*-*-*-iso8859-1
+Olmh*Background:	wheat
+Olmh*tocPercentage:	33
+Olmh*toc*Translations:		#augment\n\
+	<Btn1Motion>: OlAction()\n
+Olmh*view*editType:		textread
+
+! These specify that we want our menus to be pinnable
+Olmh*menuBox*pushpin:		out
+Olmh*folders*pushpin:		out
+
+! These specify the default menu items
+Olmh*open.default:		True
+Olmh*inc.default:		True
+Olmh*compose.default:		True
+
+Olmh*menuBox.folderButton.Label:	Folder
+Olmh*menuBox.tocButton.Label:		Table of Contents
+Olmh*menuBox.messageButton.Label:	Message
+Olmh*menuBox.sequenceButton.Label:	Sequence
+Olmh*menuBox.viewButton.Label:		View
+Olmh*menuBox.optionButton.Label:	Options
+Olmh*SimpleMenu*SmeLine.Height:		20
+	
+Olmh*close.Label:		Close Window
+Olmh*compose.Label:		Compose Message
+Olmh*open.Label:		Open Folder
+Olmh*openInNew.Label:		Open Folder in New Window
+Olmh*create.Label:		Create Folder
+Olmh*folderButton*delete.Label:	Delete Folder
+Olmh*folderButton*delete.background:	green
+Olmh*inc.Label:			Incorporate New Mail
+Olmh*next.Label:		View Next Message
+Olmh*prev.Label:		View Previous
+Olmh*delete.Label:		Delete
+Olmh*move.Label:		Move
+Olmh*copy.Label:		Copy
+Olmh*unmark.Label:		UnMark
+Olmh*viewNew.Label:		View In New
+Olmh*reply.Label:		Reply
+Olmh*forward.Label:		Forward
+Olmh*useAsComp.Label:		Use as Composition
+Olmh*commit.Label:		Commit Changes
+Olmh*print.Label:		Print
+Olmh*pack.Label:		Pack Folder
+Olmh*sort.Label:		Sort Folder
+Olmh*rescan.Label:		Rescan Folder
+Olmh*reverse.Label:		Read in Reverse
+Olmh*pick.Label:		Pick
+Olmh*openSeq.Label:		Open Sequence
+Olmh*addToSeq.Label:		Add to Sequence
+Olmh*removeFromSeq.Label:	Remove from Sequence
+Olmh*deleteSeq.Label:		Delete Sequence
+Olmh*edit.Label:		Edit Message
+Olmh*save.Label:		Save Message
+Olmh*send.Label:		Send
+Olmh*reset.Label:		New Headers
+
+Olmh*inc.accelerator:		m<I>
+Olmh*inc.acceleratorText:	Meta+I
+Olmh*commit.accelerator:	m<C>
+Olmh*commit.acceleratorText:	Meta+C
+Olmh*pack.accelerator:		m<P>
+Olmh*pack.acceleratorText:	Meta+P
+Olmh*sort.accelerator:		m<S>
+Olmh*sort.acceleratorText:	Meta+S
+Olmh*rescan.accelerator:	m<R>
+Olmh*rescan.acceleratorText:	Meta+R
+
+Olmh*next.accelerator:		m<space>
+Olmh*next.acceleratorText:	Meta+space
+Olmh*prev.accelerator:		m<p>
+Olmh*forward.accelerator:	m<f>
+Olmh*reply.accelerator:		m<r>
+Olmh*unmark.accelerator:	m<u>
+Olmh*move.accelerator:		m<m>
+Olmh*copy.accelerator:		m<c>
+Olmh*messageButton*delete.accelerator:	m<d>
+
+Xmh.notice.BorderWidth:		2
+Xmh.confirm.Dialog.yes.Label:	Yes
+Xmh.confirm.Dialog.no.Label:	No
+Xmh.prompt.Dialog.okay.Label:	Okay
+Xmh.prompt.Dialog.cancel.Label:	Cancel
+Xmh.error.Dialog.OK.Label:	Acknowledged
+
+Xmh*toc.rightMargin:		0
+Xmh*toc.scrollVertical:		WhenNeeded
+Xmh*view.scrollVertical:	Always
+Xmh*view.scrollHorizontal:	WhenNeeded
+Xmh*view.autoFill:		True
+Xmh*comp.scrollVertical:	Always
+Xmh*comp.scrollHorizontal:	WhenNeeded
+Xmh*comp.autoFill:		True
+
+!Xmh*sequenceButton.Translations: #override\n\
+!<Btn2Up>:XtMenuPopdown()notify()XmhOpenSequence()unhighlight()\n\
+!<Btn3Up>:XtMenuPopdown()XmhPushSequence()notify()XmhAddToSequence()XmhPopSequence()unhighlight()\n\
+!<BtnUp>:XtMenuPopdown()notify()unhighlight()\n
+
+Olmh*folders*OblongButton.Translations:#override\n\
+<Btn3Up>:OlAction()XmhSetCurrentFolder()XmhOpenFolder()\n\
+
+Olmh*folders*OblongButton.Translations:#override\n\
+<Btn1Down>,<Btn1Up>:OlAction()XmhSetCurrentFolder()\n\
+<Btn1Down>:OlAction()\n\
+<Btn2Down>,<Btn2Up>:OlAction()XmhSetCurrentFolder()XmhOpenFolder()\n\
+<Btn2Down>:OlAction()\n
+
+!Olmh*folders*MenuButton.Translations:#override\n\
+!<Btn3Up>:XmhPushFolder()XmhSetCurrentFolder()XmhMarkMove()XmhPopFolder()reset()\n\
+!<BtnDown>:set()XmhPopupFolderMenu()\n\
+!<BtnUp>:XmhSetCurrentFolder()reset()\n\
+!<LeaveWindow>:reset()XmhLeaveFolderButton()\n
+
+Xmh*folders*SimpleMenu.Translations:#override\n\
+<Btn2Up>:XtMenuPopdown()notify()XmhOpenFolder()unhighlight()\n\
+<Btn3Up>:XtMenuPopdown()XmhPushFolder()notify()XmhMarkMove()XmhPopFolder()unhighlight()\n\
+<BtnUp>:XtMenuPopdown()notify()unhighlight()\n
+
+!Xmh*toc.Translations: #override\n\
+!	<Btn2Down>: select-start()\n\
+!	<Btn2Up>:select-end(PRIMARY)XmhViewNextMessage()\n\
+!	Ctrl<Key>R:	no-op(RingBell)\n\
+!	Ctrl<Key>S:	no-op(RingBell)\n
+
+!Xmh*toc.Accelerators: #override\n\
+!	:Ctrl<Key>V:	next-page()\n\
+!	:Meta<Key>V:	previous-page()\n
+!Xmh*view.Accelerators: #override\n\
+!	:Ctrl<Key>v:	next-page()\n\
+!	:Meta<Key>v:	previous-page()\n
+
+!Xmh*tocMenu.Accelerators: #override\n\
+!	:Meta<Key>I:	XmhIncorporateNewMail()\n\
+!	:Meta<Key>C: 	XmhCommitChanges()\n\
+!	:Meta<Key>R:	XmhForceRescan()\n\
+!	:Meta<Key>P:	XmhPackFolder()\n\
+!	:Meta<Key>S:	XmhSortFolder()\n
+
+!Xmh*messageMenu.Accelerators: #override\n\
+!	 Meta<Key>space: XmhViewNextMessage()\n\
+!	:Meta<Key>c:	XmhMarkCopy()\n\
+!	:Meta<Key>d:	XmhMarkDelete()\n\
+!	:Meta<Key>f:	XmhForward()\n\
+!	:Meta<Key>m:	XmhMarkMove()\n\
+!	:Meta<Key>n:	XmhViewNextMessage()\n\
+!	:Meta<Key>p:	XmhViewPreviousMessage()\n\
+!	:Meta<Key>r:	XmhReply()\n\
+!	:Meta<Key>u:	XmhUnmark()\n
+
+Olmh*viewButtons.close.Translations:#override\n\
+	<Btn1Down>,<Btn1Up>:	XmhCloseView()\n
+Olmh*viewButtons.reply.Translations:#override\n\
+	<Btn1Down>,<Btn1Up>:	XmhViewReply()\n
+Olmh*viewButtons.forward.Translations:#override\n\
+	<Btn1Down>,<Btn1Up>:	XmhViewForward()\n
+Olmh*viewButtons.useAsComp.Translations:#override\n\
+	<Btn1Down>,<Btn1Up>:	XmhViewUseAsComposition()\n
+Olmh*viewButtons.edit.Translations:#override\n\
+	<Btn1Down>,<Btn1Up>:	XmhEditView()\n
+Olmh*viewButtons.save.Translations:#override\n\
+	<Btn1Down>,<Btn1Up>:	XmhSaveView()\n
+Olmh*viewButtons.print.Translations:#override\n\
+	<Btn1Down>,<Btn1Up>:	XmhPrintView()\n
+
+Olmh*compButtons.close.Translations:#override\n\
+	<Btn1Down>,<Btn1Up>:	OlAction()XmhCloseView()\n\
+	<Btn1Down>:		OlAction()\n
+Olmh*compButtons.send.Translations:#override\n\
+	<Btn1Down>,<Btn1Up>:	OlAction()XmhSend()\n\
+	<Btn1Down>:		OlAction()\n
+Olmh*compButtons.reset.Translations:#override\n\
+	<Btn1Down>,<Btn1Up>:	OlAction()XmhResetCompose()\n\
+	<Btn1Down>:		OlAction()\n
+Olmh*compButtons.compose.Translations:#override\n\
+	<Btn1Down>,<Btn1Up>:	OlAction()XmhComposeMessage()\n\
+	<Btn1Down>:		OlAction()\n
+Olmh*compButtons.save.Translations:#override\n\
+	<Btn1Down>,<Btn1Up>:	OlAction()XmhSave()\n\
+	<Btn1Down>:		OlAction()\n
+Olmh*compButtons.insert.Translations:#override\n\
+	<Btn1Down>,<Btn1Up>:	OlAction()XmhInsert()\n\
+	<Btn1Down>:		OlAction()\n

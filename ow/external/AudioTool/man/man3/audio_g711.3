@@ -1,0 +1,140 @@
+.\"@(#)audio_g711.3	1.2	92/04/20 SMI"
+.ds Dc 04/20/92
+.TH AUDIO_G711 3 "\*(Dc" "" "Audio Library"
+.SH NAME
+audio_u2c,
+audio_u2s,
+audio_u2l,
+audio_c2u,
+audio_s2u,
+audio_l2u,
+audio_a2c,
+audio_a2s,
+audio_a2l,
+audio_c2a,
+audio_s2a,
+audio_l2a,
+audio_a2u,
+audio_u2a
+\- \(*m-law, \s-1A\s0-law and linear data conversions
+.SH SYNOPSIS
+.nf
+.B #include <multimedia/libaudio.h>
+.LP
+.B char audio_u2c(ulaw)
+.B unsigned char ulaw;
+.LP
+.B short audio_u2s(ulaw)
+.B unsigned char ulaw;
+.LP
+.B long audio_u2l(ulaw)
+.B unsigned char ulaw;
+.LP
+.B unsigned char audio_c2u(pcm)
+.B char pcm;
+.LP
+.B unsigned char audio_s2u(pcm)
+.B short pcm;
+.LP
+.B unsigned char audio_l2u(pcm)
+.B long pcm;
+.LP
+.B char audio_a2c(alaw)
+.B unsigned char alaw;
+.LP
+.B short audio_a2s(alaw)
+.B unsigned char alaw;
+.LP
+.B long audio_a2l(alaw)
+.B unsigned char alaw;
+.LP
+.B unsigned char audio_c2a(pcm)
+.B char pcm;
+.LP
+.B unsigned char audio_s2a(pcm)
+.B short pcm;
+.LP
+.B unsigned char audio_l2a(pcm)
+.B long pcm;
+.LP
+.B unsigned char audio_a2u(alaw)
+.B unsigned char alaw;
+.LP
+.B unsigned char audio_u2a(ulaw)
+.B unsigned char ulaw;
+.fi
+.SH DESCRIPTION
+These macros are designed to make conversions between the 8-bit \(*m-law, \s-1A\s0-law
+and 8-, 16- 32-bit linear Pulse Code Modulated (\s-1PCM\s0) values
+as defined in the \s-1CCITT G.711\s0 standards.
+The \(*m-law and \s-1A\s0-law compandings allow linear data to be compressed
+to 8 bits.
+All the conversions are implemented with lookup tables for fast operations.
+The \(*m-law and \s-1A\s0-law data have 14-bit and 13-bit dynamic ranges respectively.
+Only the most significant bits in the 16- or 32-bit linear \s-1PCM\s0
+values are used for compression and decompression.
+.LP
+The \(*m-law and \s-1A\s0-law transfer functions result in a nearly
+linear relationship to
+.SM PCM
+at low amplitudes and a logarithmic relationship at high amplitudes.
+Thus, it is not reasonable to perform arithmetic operations
+(such as would be performed on
+.SM PCM
+data) directly on the encoded data.
+For instance, to sum two \(*m-law or \s-1A\s0-law values,
+the following lines of code
+will give very different answers:
+.ft B
+.nf
+	wrong = (ulaw1 + ulaw2);
+	right = audio_s2u(audio_u2s(ulaw1) + audio_u2s(ulaw2));
+
+	wrong = (alaw1 + alaw2);
+	right = audio_s2a(audio_a2s(alaw1) + audio_a2s(alaw2));
+.fi
+.ft R
+.LP
+.BR audio_u2c(\|) ,
+.BR audio_u2s(\|) ,
+and
+.B audio_u2l(\|)
+convert \(*m-law data to
+.SM PCM
+signed integers of 8, 16, or 32 bits.
+.BR audio_a2c(\|) ,
+.BR audio_a2s(\|) ,
+and
+.B audio_a2l(\|)
+convert \s-1A\s0-law data to
+.SM PCM
+signed integers of 8, 16, or 32 bits.
+Since \(*m-law and \s-1A\s0-law data represents approximately 13 bits of precision
+to begin with, the
+conversion to 8-bit integers loses precision, while the conversion to 32-bit 
+integers is provided merely as a convenience.
+.LP
+.BR audio_c2u(\|) ,
+.BR audio_s2u(\|) ,
+.BR audio_l2u(\|) ,
+.BR audio_c2a(\|) ,
+.BR audio_s2a(\|) ,
+and
+.B audio_l2a(\|)
+convert 8-, 16-, and 32-bit
+.SM PCM
+signed integers to their \(*m-law or \s-1A\s0-law encoded form.
+.LP
+.BR audio_a2u(\|) ,
+and
+.B audio_u2a(\|)
+do the conversions between \(*m-law and \s-1A\s0-law data.
+Both \(*m-law and \s-1A\s0-law data are 8-bit wide.
+These conversions do not have advantages in compression or arithmetic
+operations.
+They are used when an audio file is recorded in one form and played in
+the other form.
+.SH SEE ALSO
+.BR audio_convert(3) ,
+.BR audio_g721(3) ,
+.B audio_g723(3).

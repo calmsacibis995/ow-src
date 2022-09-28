@@ -1,0 +1,84 @@
+.\" Copyright (c) 1994 - Sun Microsystems, Inc.
+.TH fmgc 1 "5 January 1993"
+.IX "fmgc" "" "\f3fmgc\f1(1) \(em clean up files left by \f3filemgr\f1 \(em \f3fmgc\f1(1)"
+.SH NAME
+fmgc \- a program to garbage collect a users ~/.fm directory hierarchy
+.SH SYNOPSIS
+.B fmgc
+[
+.B \-l 
+.I limit
+] [ 
+.B \-u 
+.I username 
+] [ 
+.B \-v 
+] [
+.B \-V
+] [ 
+.B \-? 
+] [
+directory .\|.\|.]
+.SH DESCRIPTION
+.PP
+.B fmgc 
+is a program to garbage collect a users ~/.fm directory hierarchy. This
+hierarchy of files is created by the
+.B filemgr
+program to store information on directories visited by the user (including the
+position of each file icon if the user moves a file). It is possible that over
+time, the size of this file hierarchy could grow considerably. This program
+is used to help the user maintain this. It will remove directory information
+relating to the oldest used directories until a limit is reached.
+.PP
+It uses information stored in the users ~/.desksetdefaults file to generate
+a list of directories to be excluded from this pruning. This list will contain
+the directories for the users saved window positions plus any directories on
+the users goto list. It is also possible to include additional directories on
+the
+.B fmgc
+command line.
+.SH OPTIONS
+.TP
+.BI \-l " limit"
+This is the limit (in bytes) for the garbage collection.
+.B fmgc
+will continue to prune the ~/.fm hierarchy until this limit is reached. If
+not given, then the limit is set to 1.5 megabytes.
+.TP
+.BI \-u " username"
+The name of the user that will have their ~/.fm directory hierarchy garbage
+collected. If not given, then
+.B fmgc
+will use the programs effective uid.
+.TP
+.B \-v
+This will display the current version number of
+.BR fmgc .
+.TP
+.B \-V
+Be verbose. Output messages stating what's happening.
+.TP
+.B \-?
+This will display a list of command line options which can be passed to
+.BR fmgc .
+.sp .5
+.SH SEE ALSO
+.PP
+.BR filemgr (1),
+.sp .5
+.SH FILES
+.TP
+.B $HOME/.fm
+This directory contains directory state, icon positional and file status
+information saved by the
+.B filemgr
+program.
+.TP
+.B $HOME/.desksetdefaults
+This file contains the state of the DeskSet tools in X resource format.
+.B fmgc
+reads various X resources pertaining to the
+.B filemgr
+program from this file.
+.PD

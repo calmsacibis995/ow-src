@@ -1,0 +1,106 @@
+#
+# @(#)Makefile.customer 1.5 92/11/30 SMI
+#
+# Can override this on the command line or change DESTDIR here.
+DESTDIR= $(OPENWINHOME)
+#
+# To change where the include files come from, change INCLUDE.
+INCLUDE = ${DESTDIR}/include
+#
+# For debugging, change "-O" to "-g" for DBX, and add -g for NO_OPT_DBX
+DBX= -O
+NO_OPT_DBX=
+#
+# For debugging, add in the flag -Bstatic to LDFLAGS.
+LDFLAGS= -L${DESTDIR}/lib
+#
+# To change where the binary is installed, change BINDIR.
+BINDIR= ${DESTDIR}/demo/xview
+#
+# To change where the doc files have been installed, change DOCDIR.
+DOCDIR=${DESTDIR}/share/help/spider
+
+#
+#If you are building on SUNOS 4.x change OSTYPE to SUNOS41.
+#
+
+OSTYPE          = SUNOS5
+
+#
+# If you want to compile for debugging, change "-O" to "-g"
+#
+
+CFLAGS_SUNOS41  = -I${INCLUDE} -O
+CFLAGS_SUNOS5   = -I${INCLUDE} -DSVR4 -O
+CFLAGS          = $(CFLAGS_$(OSTYPE))
+
+MANSECT= n
+MANDIR= ${DESTDIR}/share/man/man${MANSECT}
+CTAGS= tags -w
+CC= cc
+RM= rm -f
+INSTALL= install -m
+
+LIBS=	-lxview -lolgx -lX11
+
+CFILES=  \
+	events.c gfx.c movelog.c spider.c util.c version.c windows.c \
+	xv_stubs.c xv_ui.c
+
+OBJS=  \
+	events.o gfx.o movelog.o spider.o util.o version.o windows.o \
+	xv_stubs.o xv_ui.o
+HDRS= \
+	copyright.h defs.h globals.h xv_ui.h
+
+IMAGES= face.bm rank.bm spider.bm suit.bm
+
+MISC = Makefile README
+
+CMDS= spider
+HDRSALL= ${HDRS}
+CFILESALL=  ${CFILES}
+SRCSALL=$(CFILESALL) $(HDRSALL) $(MISC)
+DEFINES = -DXVIEW -DHELPDIR="\"${DOCDIR}\""
+
+.KEEP_STATE:
+
+all::   ${CMDS}
+
+.c.o:
+	${CC} $(DEFINES) $(CFLAGS) $(DBX) -c $<
+
+# do not use the optimizer on this file
+util.o: util.c defs.h globals.h
+	${CC} $(DEFINES) $(CFLAGS) $(NO_OPT_DBX) -c $<
+
+version.o: version.c
+	${CC} -DDATE="\"`date`\"" $(DEFINES) $(CFLAGS) $(DBX) -c $<
+
+gfx.o:          gfx.c defs.h globals.h rank.bm face.bm suit.bm
+spider.o:       spider.c defs.h globals.h
+events.o:       events.c defs.h globals.h
+windows.o:      windows.c defs.h globals.h
+movelog.o:      movelog.c defs.h globals.h
+xv_ui.o:        xv_ui.c xv_ui.h defs.h globals.h spider.bm
+xv_stubs.o:     xv_stubs.c xv_ui.h defs.h globals.h
+
+spider: ${OBJS}
+	${CC} ${LDFLAGS} ${DBX} ${OBJS} ${LIBS} -o $@ 
+
+install: ${CMDS} install.bin 
+
+install.bin:
+	-@if [ ! -d ${BINDIR} ]; then mkdir ${BINDIR}; fi
+	-for i in ${CMDS} ; do \
+		if [ -f ${BINDIR}/$$i ]; then \
+			${RM} ${BINDIR}/$$i; \
+		fi; \
+		${INSTALL} 755 $$i ${BINDIR}/$$i; \
+	done
+
+clean:
+	${RM} $(CMDS) *.o *% core *.BAK
+
+tags:	$(CFILESALL)
+	${CTAGS} $(CFILESALL);

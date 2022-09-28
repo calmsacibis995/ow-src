@@ -1,0 +1,52 @@
+#ifndef	_XOL_BITMAPS_FCGOUP_XBM
+#define	_XOL_BITMAPS_FCGOUP_XBM
+
+#pragma ident	"@(#)fcgoup.xbm	1.3    92/10/14 include/Xolbitmaps SMI"    /* OLIT	493	*/
+
+/*
+ *	Copyright (C) 1992  Sun Microsystems, Inc
+ *			All rights reserved.
+ *		Notice of copyright on this source code
+ *		product does not indicate publication.
+ *
+ * RESTRICTED RIGHTS LEGEND: Use, duplication, or disclosure by
+ * the U.S. Government is subject to restrictions as set forth
+ * in subparagraph (c)(1)(ii) of the Rights in Technical Data
+ * and Computer Software Clause at DFARS 252.227-7013 (Oct. 1988)
+ * and FAR 52.227-19 (c) (June 1987).
+ *
+ *	Sun Microsystems, Inc., 2550 Garcia Avenue,
+ *	Mountain View, California 94043.
+ *
+ */
+
+
+/**************************************************************************
+ *
+ *	File chooser panel scrolling list "go-up one folder" glyph
+ *		
+ **************************************************************************/
+
+
+#ifdef	__cplusplus
+extern "C" {
+#endif
+
+
+#define	fcgoup_width		16
+#define	fcgoup_height		16
+
+static unsigned char	fcgoup_bits[] = {
+	0x80, 0x01, 0xc0, 0x03, 0xe0, 0x07, 0xf0, 0x0f, 0xf8, 0x1f, 0xfc, 0x3f,
+	0xfe, 0x7f, 0xe0, 0x07, 0xe0, 0x07, 0xe0, 0x07, 0xe0, 0x07, 0xe0, 0x07,
+	0xe0, 0x07, 0xe0, 0x07, 0xe0, 0x07, 0xe0, 0x07
+};
+
+
+#ifdef	__cplusplus
+}
+#endif
+
+
+/* end of fcgoup.xbm */
+#endif	/* _XOL_BITMAPS_FCGOUP_XBM */

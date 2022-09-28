@@ -1,0 +1,161 @@
+.\" @(#)owplaces.1 1.1 91/02/22
+.\" Copyright (c) 1994 - Sun Microsystems, Inc.
+.TH owplaces 1 "7 January 1991"
+.IX "owplaces" "" "\f3owplaces\f1(1) \(em X client listing utility" ""
+.IX "OpenWindows" "client" "OpenWindows" "client listing utility \(em \f3owplaces\f1(1)"
+.SH NAME
+owplaces \- list client applications running on a display
+.SH SYNOPSIS
+.B owplaces
+[
+.B \-display
+.I displaystring
+] [
+.B \-timeout
+.I nseconds
+] 
+.br
+	[
+.B \-single
+|
+.B \-multi
+|
+.B \-pointer
+]
+.br
+	[
+.B \-all
+|
+.B \-local
+|
+.B \-remote
+|
+.B \-host
+.I hostname
+] 
+.br
+	[
+.B \-script
+] [
+.B \-output
+.I filename
+] [
+.B \-ampersand
+] [
+.B \-tw
+]
+.br
+	[
+.B \-silent
+]
+.SH DESCRIPTION
+.LP
+.B owplaces
+is a tool to list the command lines for the selected clients.
+The output is geared towards use in a startup script such
+as 
+.B $HOME/.openwin-init
+.
+.SH OPTIONS
+.LP
+The basic options are as follows:
+.TP 15
+.BI "\-display " string
+Specify the name of the display to manage.  Overrides the 
+.SB DISPLAY
+environment variable, if any.
+.TP
+.BI "\-timeout " nsecs
+Specifies the time to wait for a reply for those clients that
+are updating their command lines.  Default is 30 seconds.
+.\" ========================================================================
+.SH MODE OPTIONS
+.LP
+Options that control which clients are printed:
+.TP 15
+.BI "\-single"
+Search only the default screen of the specified display for clients.
+.TP
+.BI "\-multi"
+Search all screens of the specified display for clients.
+This is the default.
+.TP
+.BI "\-pointer"
+Print only the client selected by clicking the mouse in the
+desired window.
+.\" ========================================================================
+.SH CLIENT MACHINE FILTER OPTIONS
+.LP
+Options to filter clients based on host machine
+(as specified by the WM_CLIENT_MACHINE property):
+.TP 15
+.BI "\-all"
+Print clients on all hosts.  This is the default.
+.TP
+.BI "\-local"
+Print clients local to this machine only.
+.TP
+.BI "\-remote"
+Print clients that are remote to this machine.
+.TP
+.BI "\-host " hostname
+Print clients from 
+.I hostname 
+only.
+.\" ========================================================================
+.SH INITIALIZATION SCRIPT OPTIONS
+.LP
+Options useful to producing shell scripts:
+.TP 15
+.BI "\-script"
+Instead of printing command lines, output will be a Bourne shell
+script suitable for use as an initialization file.  The script
+can handle multiple screens if
+.B \-multi
+is also specified.
+.TP
+.BI "\-output " filename
+Directs output to
+.I filename
+instead of stdout.  
+If
+.I filename
+exists, it is renamed as
+.I filename\fB.BAK\fP.
+.TP
+.BI "\-ampersand"
+Appends an ampersand character (&) to end of each command line.
+This is implied if
+.B \-script
+is used.
+.TP
+.BI "\-tw"
+Prepends the command 
+.BR toolwait (1) 
+to each client.  The
+.B \-ampersand
+option has no affect if this option is specified.
+.TP
+.BI "\-silent"
+Suppress error messages.
+.\" ========================================================================
+.SH EXAMPLES
+.LP
+To create a 
+.B $HOME/.openwin-init 
+startup script just as
+.BR olwm (1)
+does for "Save Workspace":
+.RS
+.ft B
+.sp .5
+.nf
+example% owplaces -multi -script -output $HOME/.openwin-init
+.fi
+.ft R
+.RE
+.\" ========================================================================
+.SH "SEE ALSO"
+.BR olwm (1),
+.BR xlsclients (1),
+.BR toolwait (1)

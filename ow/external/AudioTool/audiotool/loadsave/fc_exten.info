@@ -1,0 +1,211 @@
+# @(#)fc_exten.info 1.7	93/02/25 SMI
+#
+#
+#
+#
+#
+:fc_exten-format_menu
+The Format selector allows you to specify the
+audio data format to be used in saving the data.
+This may be used to rewrite a file in a different
+format.  Note that the Save operation will take
+somewhat longer when a data format transformation
+is specified.
+
+Select "Current Format" to store the data without
+changing its format.  Select "New Format..." to
+bring up the Audio Format configuration panel.
+
+The File Size displayed below indicates the amount
+of storage required to save the current file using
+the specified audio format and compression.
+#
+:fc_exten-compress_menu
+The Compress selector allows you to choose an
+audio compression method to be used in saving the
+data.  When data is stored using a compressed data
+format, there will be some loss of sound quality.
+Note that the Save operation will take somewhat
+longer when a data compression is specified.
+
+The Compression options are:
+
+None:
+    Store the data in the format specified in
+    the Format field.
+
+4-bit G.721 ADPCM:
+    Store the data using the CCITT 4-bit ADPCM
+    compression algorithm.
+
+3-bit G.723 ADPCM:
+    Store the data using the CCITT 3-bit ADPCM
+    compression algorithm.  This compression is
+    usually acceptable for voice data, but may
+    introduce distortion in music.
+
+File Size is updated to indicate the amount of
+storage required to save the current file using
+the specified audio format and compression.
+#
+:fc_exten-controls
+The Format and Compression selectors may be used
+to specify the audio data format used to write out
+the current file.
+
+File Size indicates the amount of storage required
+to save the current file using the specified audio
+format and compression.
+#
+:fc_exten-format_button
+The Format selector allows you to specify the
+audio data format to be used in saving the data.
+This may be used to rewrite a file in a different
+format.  Note that the Save operation will take
+somewhat longer when a data format transformation
+is specified.
+
+Select "Current Format" to store the data without
+changing its format.  Select "New Format..." to
+bring up the Audio Format configuration panel.
+
+File Size is updated to indicate the amount of
+storage required to save the current file using
+the specified audio format and compression.
+#
+:fc_exten-format_msg
+The Format selector allows you to specify the
+audio data format to be used in saving the data.
+This may be used to rewrite a file in a different
+format.  Note that the Save operation will take
+somewhat longer when a data format transformation
+is specified.
+
+Select "Current Format" to store the data without
+changing its format.  Select "New Format..." to
+bring up the Audio Format configuration panel.
+
+File Size is updated to indicate the amount of
+storage required to save the current file using
+the specified audio format and compression.
+#
+:fc_exten-format
+The Format selector allows you to specify the
+audio data format to be used in saving the data.
+This may be used to rewrite a file in a different
+format.  Note that the Save operation will take
+somewhat longer when a data format transformation
+is specified.
+
+Select "Current Format" to store the data without
+changing its format.  Select "New Format..." to
+bring up the Audio Format configuration panel.
+
+File Size is updated to indicate the amount of
+storage required to save the current file using
+the specified audio format and compression.
+#
+:fc_exten-compress_button
+The Compress selector allows you to choose an
+audio compression method to be used in saving the
+data.  When data is stored using a compressed data
+format, there will be some loss of sound quality.
+Note that the Save operation will take somewhat
+longer when a data compression is specified.
+
+The Compression options are:
+
+None:
+    Store the data in the format specified in
+    the Format field.
+
+4-bit G.721 ADPCM:
+    Store the data using the CCITT 4-bit ADPCM
+    compression algorithm.
+
+3-bit G.723 ADPCM:
+    Store the data using the CCITT 3-bit ADPCM
+    compression algorithm.  This compression is
+    usually acceptable for voice data, but may
+    introduce distortion in music.
+
+File Size is updated to indicate the amount of
+storage required to save the current file using
+the specified audio format and compression.
+#
+:fc_exten-compress_msg
+The Compress selector allows you to choose an
+audio compression method to be used in saving the
+data.  When data is stored using a compressed data
+format, there will be some loss of sound quality.
+Note that the Save operation will take somewhat
+longer when a data compression is specified.
+
+The Compression options are:
+
+None:
+    Store the data in the format specified in
+    the Format field.
+
+4-bit G.721 ADPCM:
+    Store the data using the CCITT 4-bit ADPCM
+    compression algorithm.
+
+3-bit G.723 ADPCM:
+    Store the data using the CCITT 3-bit ADPCM
+    compression algorithm.  This compression is
+    usually acceptable for voice data, but may
+    introduce distortion in music.
+
+File Size is updated to indicate the amount of
+storage required to save the current file using
+the specified audio format and compression.
+#
+:fc_exten-compression
+The Compress selector allows you to choose an
+audio compression method to be used in saving the
+data.  When data is stored using a compressed data
+format, there will be some loss of sound quality.
+Note that the Save operation will take somewhat
+longer when a data compression is specified.
+
+The Compression options are:
+
+None:
+    Store the data in the format specified in
+    the Format field.
+
+4-bit G.721 ADPCM:
+    Store the data using the CCITT 4-bit ADPCM
+    compression algorithm.
+
+3-bit G.723 ADPCM:
+    Store the data using the CCITT 3-bit ADPCM
+    compression algorithm.  This compression is
+    usually acceptable for voice data, but may
+    introduce distortion in music.
+
+File Size is updated to indicate the amount of
+storage required to save the current file using
+the specified audio format and compression.
+#
+:fc_exten-size_msg
+File Size indicates the amount of storage required
+to save the current file using the specified audio
+format and compression.  The amount of available
+space in currently selected directory is displayed
+in parentheses.
+#
+:fc_exten-file_size
+File Size indicates the amount of storage required
+to save the current file using the specified audio
+format and compression.  The amount of available
+space in currently selected directory is displayed
+in parentheses.
+#
+:fc_exten-show_files
+This switch controls the file display.  When "All
+Files" is selected, all files and directories in
+the current directory are displayed.  When "Audio
+Files" is selected, only audio files and
+directories are displayed.

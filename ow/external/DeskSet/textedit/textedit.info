@@ -1,0 +1,144 @@
+##################################################
+#	textedit.info   19 June 1991    
+##################################################
+##################################################
+#	OpenWindows Version 3.2 helpopen path changed 27 January 
+##################################################
+#########################50#######################
+:File:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+File
+
+Provides a menu of File options for saving the 
+contents of the text window:
+
+Open    	Displays a window that lets you
+ 	        load a file. You can either type
+		a path name or select a file or
+		folder from the list.
+
+Save 		Saves the contents of the current
+		file to the specified path and
+		file name.
+
+Save As 	Displays a window that lets you
+		type in a path, or select a
+		in which to save the current
+		file. You can specify a file
+		name by typing it in the 
+		Save As:___ field.
+
+Include  	Displays a window that lets you
+		type in a path, or select files
+         	or folders from the list that
+		you want to include.
+
+Empty Document 	Clears the text window without
+		saving the contents.
+
+#########################50#######################
+:View:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+View
+
+Provides ways to change the position of the cursor
+and the way lines are wrapped:
+
+Select Line at Number	Displays a window where
+			you type the number of the
+			line that you want to go
+                        to.
+
+What Line Number?	Displays a notice telling 
+			you the number of the
+			line corresponding to the
+			selected text.
+
+Show Caret at Top 	Moves the line containing
+			the caret to the top of 
+			the window.
+
+Change Line Wrap 	Provides a menu of Line 
+			Wrap options. 
+
+The default is the Select Line at Number option,
+or the most recently selected option on the menu.
+
+#########################50#######################
+:Edit:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Edit
+
+Provides a menu of the following Edit options:
+
+Again 	Re-executes the most recent sequence
+	of editing operations, except for Undo.
+
+Undo 	Provides a choice of undoing the most 
+	recent editing operation or undoing all 
+	edits since you opened the window or last 
+	saved its contents.
+
+Copy 	Copies the selected text onto the 
+	clipboard, overwriting the clipboard's 
+	previous contents.
+
+Paste 	Inserts the contents of the clipboard
+	into the text window, beginning at the
+	caret.
+
+Cut 	Deletes the selected text and copies it
+	onto the clipboard, overwriting the 
+	clipboard's previous contents. 
+
+The default is the Again option, or the most 
+recently selected option on the menu.
+
+#########################50#######################
+:Find:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Find
+
+Provides a menu of options for finding and 
+replacing text:
+
+Find and Replace    Displays a Find and Replace
+		    window. This lets you define
+  		    the text you want to search
+		    for and the text you want to
+  		    replace it with.
+
+Find Selection	    Lets you search forward or
+	            backward for selected text.
+
+Find Marked Text    Displays a Find Marked Text
+		    window for finding text
+		    bounded by specified 
+		    delimiters. You can search
+		    forward or backward.
+
+Replace |>field<|   Provides a menu of search
+		    options (Expand, Next, and
+		    Previous).
+
+:Panel:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Text Editor Control Panel
+
+Use these controls to create and edit text files.
+
+See the help messages for the individual buttons
+and the Drag and Drop Target.
+
+#########################50#######################
+:SourceDrag:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Drag and Drop Target
+
+This box is where you drop a file icon when you
+want to load the file into Text Editor.
+
+Press SELECT on an icon to drag it from File
+Manager to the Text Editor Drop Target. 
+
+When you have an active file in Text Editor,
+you can drag the icon from this box to another 
+program and process it.
+  
+For example, you can drag from Text Editor to 
+Print Tool and print the file.
+

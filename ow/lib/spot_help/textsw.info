@@ -1,0 +1,672 @@
+
+##################################################
+#	textsw.info   May 2	bug fixes	
+#                     Sep 22    fixed xview link bug
+#                               bug ID 1088636
+##################################################
+##################################################
+#	Rev'd and edited by Rob Patten for OW 3.2 Feb 2, '93
+##################################################
+
+:textsw:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Text window
+
+This window is a text window. It supports 
+text-editing keyboard and menu commands. 
+
+To set the editing caret, position the mouse 
+pointer and click SELECT. To move the caret, 
+use the arrow keys on the right keypad.
+
+To select text, click SELECT at the beginning 
+of the text, then click ADJUST at the end. 
+
+You can copy or cut the selected text using 
+the Copy and Cut keys on the left keypad. With 
+the Paste key, you can then paste the text 
+elsewhere in this or another text window.
+
+Copy, Cut, and Paste are available on the 
+Text Editor menu, along with many other 
+options.  To pop up that menu, click MENU 
+in the text window.
+
+##################################################
+#	File menu	
+##################################################
+
+:mfilecmds:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+File 
+ 
+Provides options for opening files and saving the
+contents of the text window.
+
+Open
+   For choosing the file you want to open.
+
+Save
+   For saving to the file currently associated
+   with this window.
+
+Save as
+   For saving the window contents in a new file. 
+
+Include
+   For including the contents of a specified file,
+   beginning at the location of the caret.
+
+Empty Document
+   For clearing the text window without saving
+   its contents.
+
+Defaults to Save Current File or the most
+recently selected option on the menu.
+
+##################################################
+:mloadfile:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Open
+
+Displays a window from which you choose the file
+you want to open.
+ 
+In the Open window, click on Open to open the 
+specified file, replacing the text window's
+current contents. 
+
+Keyboard shortcut:  Meta-O
+
+#:loadfile:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+#Load File
+
+#Click on this button to load the specified
+#text file into Text Editor.  This replaces
+#any text that was in the Text Editor window.
+
+:msavefile:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Save 
+
+Saves the contents of the text window to the
+current file, creating a backup version of the
+file named filename% .
+
+If there is no current file, Save displays a
+window in which you can specify the name and
+location of the file to be written.
+
+If you want to save the contents of the text
+window to a different file, use Save as.
+
+##################################################
+:mstorefile:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Save as
+
+Displays a window from which you choose the
+folder (directory) and name of a file for saving
+the contents of the text window.
+
+Keyboard shortcut:  Meta-S
+
+#
+:mincludefile:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Include 
+
+Displays a window from which you choose the 
+folder (directory) and name of the file you want
+to include in the text window, beginning at the
+caret.
+
+#
+:memptydoc:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Empty Document 
+
+Clears the text window without saving its
+contents.
+
+#
+:hiddenfileschoice:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Hidden Files
+
+Click SELECT on Show to include hidden (dot)
+files in the scrolling list that displays the
+contents of the current folder.
+
+Click SELECT on Hide to exclude hidden files from
+the scrolling list.
+
+##################################################
+#:storefile:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+#Store as New File
+
+#Click on this button to save the contents of
+#the Text Editor window as a text file, using 
+#the directory and file name you specify.  
+
+#:includefile:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+#Include File
+
+#Click on this button to add the contents of
+#the specified file to the text in the Text
+#Editor window.
+
+#The new text is added at the insert point.
+
+#:dirstring:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+#Directory
+
+#Type the path of the directory for the file you
+#want to include.
+
+#:includestring:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+#File
+
+#Type the name of the file you want to include.
+
+#:loadstring:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+#Directory
+
+#Type the path of the directory for the file you 
+#want to load.
+
+#:loadpanel:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+#File
+
+#Type the name of the file you want to load.
+
+#:storestring:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+#Directory
+
+#Type the path of the directory for the file you 
+#want to store.
+
+#:storepanel:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+#File
+
+#Type the name of the file you want to store.
+##################################################
+
+
+##################################################
+#	Edit menu	
+##################################################
+
+:meditcmds:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Edit 
+
+Provides a menu of Edit options including 
+Copy, Cut, Paste, Undo, and others.
+
+Defaults to Again or the most
+recently selected option on the menu.
+
+:meditagain:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Again 
+
+Re-executes the most recent sequence
+of editing operations, except for Undo.
+
+Keyboard shortcut:  Meta-A 
+
+:meditundo:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Undo 
+
+Provides a choice of undoing the most recent 
+editing operation or undoing all edits since you 
+opened the window or last saved its contents.
+
+Defaults to Undo Last Edit or the most
+recently selected option on the menu.
+
+
+:mundolast:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Undo Last Edit 
+
+Reverses the effects of the most recent editing 
+operation unless you have saved your file.
+
+Selecting Undo Last Edit again reverses the
+second most recent editing operation, and so on.
+
+Keyboard shortcut:  Meta-U 
+
+:mundoall:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Undo All Edits 
+
+Eliminates all text changes made since the window
+was started or since you last saved its contents. 
+
+:meditcopy:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Copy 
+
+Copies the selected text onto the clipboard, 
+overwriting the clipboard's previous contents.
+
+Keyboard shortcut:  Meta-C 
+
+:meditpaste:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Paste 
+
+Inserts the contents of the clipboard
+into the text window, beginning at the
+caret.
+
+Keyboard shortcut:  Meta-V 
+
+:meditcut:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Cut 
+
+Deletes the selected text and copies it onto
+the clipboard, overwriting the clipboard's 
+previous contents. 
+
+Keyboard shortcut:  Meta-X 
+
+
+##################################################
+#	View menu	
+##################################################
+
+:mdisplaycmds:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+View 
+
+Provides ways to change the position of the
+cursor and the way lines are wrapped.
+
+Defaults to Select Line at Number
+or most recently selected option on the menu.
+
+:mselectline:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Select Line at Number 
+
+Pops up a window in which you type the number of
+the line you want to go to.
+
+Click on Select Line at Number to scroll the 
+window's contents to the "nth" line, where 
+"n" is the integer you typed. 
+
+:selectline:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Select Line at Number
+
+Click on this button to scroll through the 
+window's contents to the "nth" line, where 
+"n" is the integer you typed for Line Number.
+
+:linenumber:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Line Nubmer
+
+Type the number of the line you want to
+scroll to.  The line number must be an
+integer.
+
+:mwhatline:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+What Line Number? 
+
+Pops up a notice telling you the number
+of the line containing the selected text.
+
+:mshowcaret:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Show Caret at Top
+
+Moves the line containing the
+caret to the top of the window.
+
+:mchangelinewrap:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Change Line Wrap 
+
+Provides a menu of Line Wrap options. 
+
+These options determine where line breaks occur: 
+between characters, words, or not at all.
+
+:mwrapchars:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Wrap at Character
+
+Causes line breaks to occur between characters.
+
+:mwrapwords:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Wrap at Word
+
+Causes line breaks to occur between words.
+
+:mcliplines:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Clip Lines 
+
+Causes lines not to wrap. 
+
+That is, you can type lines wider than the 
+width of the window, but the text beyond the 
+right margin does not appear in the window.
+
+To see the hidden text, resize the window or 
+choose another Line Wrap option from View.
+
+
+##################################################
+#	Find menu	
+##################################################
+
+:mfindcmds:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Find 
+
+Provides a menu of options for finding and 
+replacing text.  
+
+:mfindreplace:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Find and Replace 
+
+Pops up a Find and Replace window. 
+
+If you select a block of text before choosing this
+option, the Find and Replace window contains the 
+selected text as the word or phrase to search for.
+
+:searchpanel:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Find and Replace 
+
+In the text field to the right of Find, enter the 
+word or phrase you want to find.
+
+In the text field to the right of Replace, enter 
+the word or phrase you want to replace it with
+
+Click on the button for the action you want:
+
+-Find
+-Replace
+-Find then Replace
+-Replace then Find
+-Replace All
+
+:findstring:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Search text field
+ 
+Enter the word or phrase you want to find.
+
+:replacestring:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Replace text field
+
+Enter the word or phrase you want to substitute
+for the word or phrase in the Find text field.
+
+:find:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Find
+
+Searches forward for the next occurrence of the 
+Find text.
+
+Provides the option to search backward.
+
+Keyboard shortcut:  Find key
+
+:mdirforward:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Forward 
+
+Searches forward for the next occurrence of the 
+Find text.
+
+Keyboard shortcut:  Find key
+
+:mdirbackward:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Backward 
+
+Searches backward for the next occurrence of the 
+Find text.
+
+Keyboard shortcut:  Shift-Find 
+
+:replace:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Replace
+
+Replaces the selected word or phrase with the 
+Replace text.
+
+:findreplace:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Find then Replace
+
+Searches for the next occurrence of the Find text.
+Replaces it with the Replace text.
+
+:replacefind:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Replace then Find
+
+Replaces the currently selected text with the 
+Replace text, then searches for the next occurrence of the Find text.
+
+:replaceall:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Replace All
+
+Replaces all occurrences of the Find text 
+with the Replace text.
+
+
+:wrap:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+All Text/To End
+
+Selects the next search mode.
+
+All Text:  when the search arrives at one end of 
+	   the text, it continues to the other 
+	   end.
+
+To End:    when the search arrives at the end of
+	   the text, it stops.
+
+:mfindselcmds:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Find Selection 
+
+Provides the option to search forward or backward
+for the selected text.
+
+:mfindforward:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Forward 
+
+Searches forward for the next occurrence of the
+selected text. 
+
+Keyboard shortcut:  Find key 
+
+:mfindbackward:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Backward 
+
+Searches backward for the next occurrence of the 
+selected text. 
+
+Keyboard shortcut:  Shift-Find 
+
+:mfindtext:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Find Marked Text 
+
+Pops up a Find Marked Text window for finding 
+text bounded by specified delimiters.
+
+:fieldpanel:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Find Marked Text 
+
+Click left on the delimiter pair to search for,
+then on the Backward, Expand, or Forward
+
+
+:fieldchoice:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Delimiter option
+
+Specifies the selected delimiter pair that is used 
+for searching.
+
+
+:findpair:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Find Pair
+
+Searches for a pair of matched delimiters.
+
+:findpairchoice:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Forward/Backward/Expand
+
+Directs the search for delimiters, using the 
+current insertion point as the start of the search.
+
+:insertpair:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Insert Pair
+
+Surrounds the selected text with delimiters.
+
+:removepair:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Remove Pair
+
+Deletes a matched pair of delimiters from the 
+selected text.
+
+
+:mselfieldcmds:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Replace |>field<| 
+
+Provides a menu of search
+options (Expand, Next, and Previous).
+
+:mselexpand:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Expand 
+
+Searches for a field contained by
+delimiters.
+
+Selects the field in pending-delete.
+
+:mselnext:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Next 
+
+Searches for the next field. 
+Selects the field in pending-delete.
+
+Keyboard shortcut:  Control-Tab
+
+:mselprevious:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Previous 
+
+Searches for the previous field.
+Selects the field in pending-delete.
+
+Keyboard shortcut:  Shift-Control-Tab 
+
+
+####################################################
+#	Pop-up Term Pane Menu	
+####################################################
+:mhistory:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+History
+
+Provides options to modify the log of
+all the commands typed in the window.
+
+:mmode:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Mode
+
+Determines whether the history log is
+editable or read only.
+
+:mstorelog:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Store log as new file
+
+Saves the current history log to a file.
+
+Pops up a window in which you type the
+directory and file name.
+
+:mclearlog:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Clear log
+
+
+Clears the current history log.
+
+:medit:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Edit 
+
+Pressing MENU provides a menu of Edit options:
+Again, Undo, Copy, Paste, and Cut.
+
+:meditor:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+File Editor
+
+Determines whether or not a text editor pane
+is part of the window.
+
+:meneditor:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Enable Editing
+
+Lets you edit text anywhere in the window, 
+the same as in a Text Editor window.
+
+:mdiseditor:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Disable Editing 
+
+Lets you edit the current command line only.
+
+:mextras:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Extras 
+
+Provides a menu of Extra options for text 
+formatting, capitalization, and other operations.
+
+:extrasmenu:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Extras menu
+
+Provides these options:
+
+Format			Reformats long lines
+			into physical lines
+			of 72 characters or
+			less.
+
+Capitalize		Capitalizes selected
+			text.  Choose the type
+			of capitals from the
+			submenu.	
+
+Shift Lines		Inserts or removes a
+			Tab character at the
+			beginning of each line
+			of selected text.
+
+Pretty-print C		Uses the UNIX indent
+			command to format C
+			program listings.
+
+Insert Brackets		Inserts brackets around
+			the selected text.  
+			Choose the type of
+			bracket from the submenu.
+
+Remove Brackets		Deletes brackets from
+			the selected text.  
+			Choose the type of
+			bracket from the submenu.
+
+
+
+
+########################################
+#   Term Pane Menu
+########################################
+
+:menscroll:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Enable Scrolling
+
+Provides the window with a scroll bar
+and full text-editing capabilities 
+throughout the window if editing is
+enabled, or only at the command line
+if editing is disabled.
+
+:mdisscroll:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+Disable Scrolling
+
+Eliminates the scroll bar and many
+text-editing capabilities. 
+
+This is needed by some applications.  
+Normally you do not use this option.
+
+
+
+:mundocmds:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+
+:mdirection:$OPENWINHOME/bin/helpopen handbooks/textedit.handbook
+

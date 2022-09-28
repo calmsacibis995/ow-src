@@ -1,0 +1,12 @@
+Bulletinboard*minimize.x:       0
+Bulletinboard*minimize.y:       0
+Bulletinboard*grow.x:           150
+Bulletinboard*grow.y:           0
+Bulletinboard*shrink.x:         0
+Bulletinboard*shrink.y:         45
+Bulletinboard*maximize.x:       150
+Bulletinboard*maximize.y:       45
+Bulletinboard*maximize.label:	Maximize
+Bulletinboard*minimize.label:	Minimize
+Bulletinboard*grow.label:	Grow
+Bulletinboard*shrink.label:	Shrink

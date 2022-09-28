@@ -1,0 +1,12 @@
+#ident  "@(#)default	1.2	90/05/15 SMI"	/* SVr4.0  1.5.2.1	*/ 
+mail=
+instance=unique
+partial=nocheck
+runlevel=nocheck
+idepend=nocheck
+rdepend=nocheck
+space=nocheck
+setuid=nocheck
+conflict=nocheck
+action=nocheck
+basedir=default

@@ -1,0 +1,222 @@
+.\" Copyright (c) 1994 - Sun Microsystems, Inc.
+.TH rash 1 "9 Nov 1990
+.IX "rash" "" "\f3rash\f1(1) \(em rasterfile to PostScript translator" ""
+.IX "PostScript" "converting" "PostScript" "converting rasterfiles \(em \f3rash\f1(1)"
+.IX "images" "raster" "images" "rasterfile conversion utility \(em \f3rash\f1(1)"
+.ds %% %\h'-0.12m'%\h'-0.1m'
+.SH NAME
+rash \- Sun Raster to PostScript translator
+.SH SYNOPSIS
+.B rash
+[
+.B \-2
+] [ 
+.BI \- n x m
+] [
+.B \-s 
+.I width height
+[ [
+.B \-H 
+.I height
+] 
+.if n .ti +.5i
+[
+.B \-S 
+.I height
+] [
+.B \-W 
+.I width
+] 
+.if t .ti +.3i
+[
+.B \-l 
+.I xpos ypos
+] 
+.if n .ti +.5i
+[
+.B \-c 
+.I xpos ypos
+] [ 
+.B \-R 
+.I angle
+] [
+.B \-e
+] [
+.B \-i
+] [ 
+.B \-m
+] 
+.if n .ti +.5i
+[
+.B \-n
+] [
+.B \-p 
+.I prolog
+] 
+.if t .ti +.3i
+[
+.B \-r
+] [
+.BI \-w wrapper
+] [
+.I filename...
+]
+...
+.SH DESCRIPTION
+.B rash 
+converts a Sun Raster file into a PostScript file, using a
+PostScript "wrapper" to surround the raster input.  By default, it
+creates a color PostScript file if given a color image and a
+monochrome PostScript file if given a monochrome image.
+.LP 
+By default, 
+.B rash 
+centers the image on the page and
+orient and scale it to fill up as much of the printable area as
+possible while preserving the image's aspect ratio.
+.LP
+All the options regarding the size of the raster file take a number
+followed by a unit, where a unit is one of
+.BR in , 
+.BR cm .
+.BR mm ", or"
+.BR point .
+measurements and units can be combined; it is possible to have a length of
+"1 in .5 cm", for example.  The default measurement unit is points.
+.LP
+.B rash 
+is most often used with the 
+.B PreLimn 
+filter manager, part of the
+.B NeWSprint 
+package.
+.SH OPTIONS
+.TP 1.0i
+.B \-2
+Scale the image by a factor of 2. Each pixel in the
+rasterfile is printed as 4 pixels (2 x 2) on the output device.
+.TP 1.0i
+.BI \- n x m
+Scale the image by a factor of 
+.I n
+in the horizontal direction and 
+.I m
+in the vertical direction.  If only one number is specified, both dimensions
+are scaled evenly.  
+.TP 1.0i
+.BI \-s " width height"
+Scale the image to the specified width and height.  This option does not preserve
+the original raster's aspect ratio. 
+.TP 1.0i
+.BI \-H " height"
+Scale the image (preserving aspect ratio) to the specified height.
+.TP 1.0i
+.BI \-S " height"
+Same as 
+.B \-H.
+.TP 1.0i
+.BI \-W " width"
+Scale the image (preserving aspect ratio) to the specified width.
+.TP 1.0i
+.BI \-l " xpos ypos"
+Locate the lower left corner of the image 
+.IR xpos " and  " ypos 
+units in the
+x and y direction.  The origin is at the lower left corner of the page.
+.TP 1.0i
+.BI \-c " xpos ypos"
+Locate the center of the image 
+.IR xpos " and  " ypos 
+units from the center of the page.
+.TP 1.0i 
+.BI \-R " angle"
+Rotate the image to the specified angle, in degrees.  (Probably most
+useful with the 
+.B \-c
+option.)
+.TP 1.0i
+.B \-e
+Output Encapsulated PostScript (EPSF). The
+.BR \-c ,
+.BR \-2 ,
+.B \-
+.I n  
+.B x
+.IR m, 
+and
+.B \-i 
+options are illegal when producing EPSF, the
+.B \-n
+option is ignored, and a size argument (one of 
+.BR \-s ,
+.BR \-H , 
+.BR \-S ,
+or 
+.BR \-W )
+is required.
+.TP 1.0i
+.B \-i
+Reduce the scale, if necessary, to an integral number of pixels output
+for each pixel input.  This can improve output quality in some
+situations, notably when printing a screen dump which includes icons.
+.TP 1.0i 
+.B \-m
+If the input is a color rasterfile, convert it to 8-bit gray scale.
+.bp
+.TP 1.0i
+.B \-n
+Do not output a 
+.B showpage 
+command at the end of the file, for PostScript files that will be imported
+into other documents. 
+If you are converting a rasterfile to PostScript for inclusion in
+another document, the
+.B \-e
+option (EPSF) may be a better idea.
+.TP 1.0i
+.B \-p 
+.I prolog
+Output the PostScript to the specified file rather than to the standard output.
+.TP 1.0i
+.B \-r
+Print in landscape mode  
+.TP 1.0i
+.B \-w 
+.I wrapper
+Use the specified file as the PostScript wrapper.
+.RE
+.LP
+.SH WARNINGS
+If you are
+sending a color rasterfile to a PostScript printer that does not
+implement the 
+.B colorimage 
+operator, you should override printing in
+color by using the  
+.B \-m
+option.
+.LP
+Sun Raster format uses 1 for black values and 0 for white.  PostScript uses the
+reverse values. 
+.B rash 
+converts all values to PostScript equivalents.
+.SH SEE ALSO
+.BR rasterfile (5),
+.LP
+.I PostScript Language Reference Manual
+.br
+.I PostScript Document Structuring Conventions
+.br
+.I Encapsulated PostScript Files
+.br
+.I PreLimn User's Guide
+.br
+.I NeWSprint Installation and Administration Guide
+.br
+.SH BUGS
+.B rash
+may not output "true" EPSF; it relies on the wrapper file for the
+proper structuring.
+
+
+

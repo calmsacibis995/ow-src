@@ -1,0 +1,650 @@
+#####################################################
+# @(#)navigator.info [10/93 Beta] 
+# @(#)navigator.info	1.29 06/29/93 Copyright 1991-1993 Sun Microsystems, Inc.
+#####################################################
+
+##################################################
+# Edited by caseyc 06/15/93
+##################################################
+
+
+######################################################
+# Spot help for the main panel buttons: View,
+# Modify Library, and New Bookmark.                            ######################################################
+#
+##########This_Line_Is_50_Characters_Long#########
+#
+
+:view_button:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+View
+
+To display a document in the Viewer, first click 
+SELECT on its title in either the Contents, 
+Documents Found, or Bookmarks in Library list.
+
+Then click SELECT on the View button to 
+display the chosen document in the Viewer.
+
+#
+##########This_Line_Is_50_Characters_Long#########
+#
+
+:browse_button:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Modify Library
+
+To see or modify the contents of the Library,
+click SELECT on the Modify Library button.
+
+The Modify Library browser will appear. Select or
+deselect AnswerBook titles for your Library.
+
+#
+##########This_Line_Is_50_Characters_Long#########
+#
+:new_bookmark_button:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+New Bookmark
+
+Click SELECT on the New Bookmark button to
+create a bookmark for the page currently
+displayed in  the Viewer. (You must be
+viewing a document to create a new bookmark.)
+
+The New Bookmark window will appear. You can
+edit its title and write a comment.
+
+#
+##########This_Line_Is_50_Characters_Long#########
+#
+:toc_location:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Location Pane
+
+The Location pane shows "where you are" in the
+Library.
+
+Double-click SELECT on any bold entry to expand
+its contents in the Contents pane below.
+
+#
+#######################################
+# Spot help for Modify Library browser. #
+#######################################
+##########This_Line_Is_50_Characters_Long#########
+
+#
+:browser:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Modify Library browser
+
+Browse and select/deselect AnswerBooks in the
+Modify Library browser.
+
+Each checkmark indicates an AnswerBook that is
+part of your current Library.
+
+Click SELECT on each AnswerBook title you want
+to include in the Library. Click SELECT on the 
+title again to deselect it.
+
+#
+:browser_list:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Browser Contents
+
+The Modify Library browser lists AnswerBooks
+that are available to you on your system or
+network.
+
+Each checkmark indicates an AnswerBook that is
+currently included in your Library.
+
+Click SELECT on each AnswerBook title you want
+to include in the Library. Click SELECT on the 
+title again to deselect it.
+
+#
+:browser_apply_button:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Apply
+
+Click SELECT on Apply to save the contents of
+your Library (your AnswerBook selections and 
+deselections).
+
+#
+:browser_reset_button:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Reset
+
+Click SELECT on Reset to revert to the previous 
+contents of your Library, before you modified it.
+
+#
+###########################################
+# Spot help for New Bookmark popup window #
+###########################################
+##########This_Line_Is_50_Characters_Long#########
+#
+:bmnew:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+New Bookmark window
+
+The New Bookmark window has two editable text
+fields: the bookmark title and the Comment for
+pane.
+
+You can change the default title in the title 
+field and write a comment in the Comment
+pane.
+
+When finished, click SELECT on the Create
+button to create and store the new bookmark
+and comment.
+
+#
+:bmnew_title:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Bookmark for (title)
+
+You can change the bookmark title in the
+field marked "Bookmark for."
+
+When you're ready, click SELECT on the
+Create button to save the bookmark.
+
+
+#
+:bmnew_comment:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Bookmark comment pane
+
+Type or edit your comment and then click SELECT
+on the Create button to save the comment.
+
+#
+:bmnew_create_button:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Create button
+
+Click SELECT on the Create button when you're
+ready to save your bookmark.
+
+##############################################################
+# Spot help for main window background for the 3 major modes #
+##############################################################
+#
+##########This_Line_Is_50_Characters_Long#########
+#
+:mode_toc:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Contents mode
+
+Contents mode shows library and its table
+of contents, including the AnswerBooks you browse
+and open.
+
+The Location pane shows "where you are" in the
+Library, that is, the document you currently have
+open in the Library.
+
+Double-click SELECT on any bold-face heading in 
+the Contents pane to see its subheadings.
+
+Double-click SELECT on any light-face heading in
+the Contents pane to display the first page of
+the document in the Viewer.
+
+#
+##########This_Line_Is_50_Characters_Long#########
+#
+:mode_search:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Search mode
+
+Search mode provides quick answers to your
+queries.
+
+To begin a search, type a word or phrase in
+the pane marked "Search Library For."
+
+Then press Return, or click SELECT on the
+Start Search button.
+
+Titles of documents matching your search
+phrase appear in the Documents Found pane,
+with the most relevant documents listed first.
+
+To display a found document in the Viewer,
+click SELECT on its title and then click
+SELECT on the View button. Or simple
+double-click SELECT on its title.
+
+
+##########This_Line_Is_50_Characters_Long#########
+
+:mode_bookmark:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Bookmarks mode
+
+In the Bookmarks mode, you can view, edit,
+delete, and create bookmarks.
+
+Bookmark titles are displayed in the Existing
+Bookmarks pane.
+
+To see a bookmark comment in the "Comment for"
+pane, click SELECT on a bookmark title.
+
+To display a bookmarked page in the Viewer,
+click SELECT on a bookmark title and then click
+SELECT on the View button.
+
+To edit a bookmark, double-click SELECT on the
+bookmark title in the Library pane, make changes
+in the "Comment for" field and pane, press Return,
+and click SELECT on the Save Changes button.
+
+To delete a bookmark, click SELECT on its title
+in the Bookmarks in Library pane, and then click
+SELECT on the Delete Bookmark button.
+
+To mark the current Viewer page, click SELECT
+on the New Bookmark button.
+
+##########This_Line_Is_50_Characters_Long#########
+
+:mode_toc1:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Contents mode
+
+The Contents mode shows the table of contents
+of the Library or of any document you may have
+opened in the Library.
+
+Click SELECT on any entry in the Location pane
+to display its contents in the Contents pane.
+
+Double-click SELECT on any bold-face heading in 
+the Contents pane to see its subheadings.
+
+Double-click SELECT on any light-face heading in
+the Contents pane to display the first page of
+the document in the Viewer.
+
+:mode_search1:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Search mode
+
+The Search mode gives you quick answers to your
+searches for topics or phrases.
+
+To begin a search:
+
+Type a word or phrase in the "Search Library
+For" window. Press Return or click SELECT
+on the Start Search button.
+
+Titles of documents matching the search phrase
+appear in the Documents Found pane, with the most
+relevant documents listed first.
+
+To display a document in the Viewer, click 
+SELECT on its title and then click SELECT
+on the View button.
+
+
+##########This_Line_Is_50_Characters_Long#########
+#
+:mode_bookmark1:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Bookmarks mode
+
+In the Bookmarks mode, you can view, edit, delete,
+and create bookmarks. You can also choose marked
+pages for display in the Viewer and printing.
+
+Bookmark titles are displayed in the Existing
+Bookmarks list.
+
+To display a bookmark comment in the Comment
+pane, click SELECT on a bookmark title.
+
+To display a bookmarked page in the Viewer,
+click SELECT on a bookmark title and then click
+SELECT on the View button.
+
+To edit a bookmark, click SELECT on its title in
+the Bookmarks in Library pane to edit the text in
+of its title and comment.
+
+To delete a bookmark, click SELECT on its title
+in the Bookmarks in Library pane, and then click
+SELECT on the Delete Bookmark button. You cannot
+undelete a bookmark.
+
+When you click SELECT on the New Bookmark
+button, it always bookmarks the current Viewer
+page.
+
+#
+
+##########################################
+# Spot help for the mode select buttons: #
+# differs depending on the current mode  #
+##########################################
+##########This_Line_Is_50_Characters_Long#########
+#
+:mode_button_toc:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Contents
+
+Click SELECT on the Contents setting to
+see the current table of contents.
+
+Click SELECT on the Search setting to search for 
+and retrieve documents matching your queries.
+
+Click SELECT on the Bookmarks setting to view, 
+edit, delete, and create bookmarks, as well as to 
+display marked pages in the Viewer.
+
+##########This_Line_Is_50_Characters_Long#########
+#
+:mode_button_search:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Search
+
+Click SELECT on the Contents setting to
+see the Library's table of contents.
+
+Click SELECT on the Search setting to search for 
+and retrieve documents that match your search
+requests.
+
+Click SELECT on the Bookmarks setting to view, 
+edit, delete, and create bookmarks, and to 
+use your bookmarks to access marked pages
+in the Viewer.
+
+##########This_Line_Is_50_Characters_Long#########
+#
+:mode_button_bookmark:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Bookmarks
+
+Click SELECT on the Contents setting to
+see the collection table of contents.
+
+Click SELECT on the Search setting to search for 
+and retrieve documents matching your queries.
+
+Click SELECT on the Bookmarks setting to view, 
+edit, delete, and create bookmarks, as well as
+to display marked pages in the Viewer.
+
+
+#########################################################
+# TOC-mode spot help: contents list. #
+#########################################################
+##########This_Line_Is_50_Characters_Long#########
+#
+:toc_ancestor:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Location
+
+This scrolling list shows "where you are" in the
+Library.
+
+Double-click SELECT on any bold entry to expand
+its contents in the Contents pane below.
+
+
+#
+:toc_contents:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Contents
+
+This scrolling list shows the table of contents
+for the last entry in the Location pane.
+
+Click SELECT on any entry in the Location pane
+to display its contents in the Contents pane.
+
+Double-click SELECT on any bold-face heading in 
+Contents to see its subheadings.
+
+Double-click SELECT on any light-face heading in
+the Contents pane to display the first page of
+the document in the Viewer.
+
+
+##########This_Line_Is_50_Characters_Long#########
+#########################
+# Search-mode spot help #
+#########################
+:search_querywin:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Search Library For pane
+
+Begin a search by typing a word or phrase in
+the "Search Library For" pane. You can use
+special characters to enhance searching
+(for information on advanced searching,
+click SELECT on the More button in this window).
+
+Press Return at the end of the search phrase.
+Or click SELECT on the Start Search button.
+
+Answers appear in the Documents Found pane
+below.
+
+
+##########This_Line_Is_50_Characters_Long#########
+#
+:search_full_button:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Start Search
+
+Click SELECT on the Start Search button to begin
+a search of books in the Library.
+
+
+##########This_Line_Is_50_Characters_Long#########
+#
+:search_history_button:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Previous Searches
+
+Click SELECT on the Previous Searches button to
+see the search phrases you have already used.
+
+You can copy-and-paste these phrases into the
+Search For window for reuse or editing.
+
+##########This_Line_Is_50_Characters_Long#########
+#
+:search_props_button:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Search Settings
+
+Click SELECT on the Search Settings button to
+open the window where you can set these search
+options: 
+
+- Search Library by (to scope the search)
+- Sort Findings by  (to sort search results)
+- Limit Findings to (to increase or decrease the
+		     number of search findings)
+
+#
+##########This_Line_Is_50_Characters_Long#########
+:search_hitlist:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Documents Found
+
+This scrolling list shows the titles of the
+books, chapters, sections, subsections, and pages
+found in answer to your search phrase.
+
+The documents are listed in order of relevance,
+with the most relevant first.
+
+To display a document in the Viewer, click SELECT
+on its title, and then click SELECT on the
+View button.
+
+#############################################
+# Spot help for Search history popup window #
+#############################################
+##########This_Line_Is_50_Characters_Long#########
+#
+:search_history:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Previous Searches window
+
+The Previous Searches window lists the search
+phrases you have already used, with the most 
+recent at bottom.
+
+You can reuse a search phrase by copying and
+pasting it into the Search For window.
+
+
+#########################################
+# Spot help for Search Settings sheet #
+#########################################
+#
+##########This_Line_Is_50_Characters_Long#########
+:search_props:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Search Settings window
+
+In the Search Settings window, you can set
+the following options to search more selectively.
+
+Search Library by:
+		
+	Text and Titles searches through all 
+	text and titles; Titles Only searches 
+	through just the text of titles/headings
+	of books, chapters, sections, and
+	subsections.
+
+Sort Findings by: 
+
+	Relevance Only sorts all findings in 
+	order of relevance; Relevance and Book
+	sorts findings book by book in order of
+	relevance.
+
+Limit Findings to: 
+
+	Click up or down on the arrow buttons to
+	increase or decrease the number of 
+	findings returned by your search.
+	
+Click SELECT on Apply to set the search options.
+
+Click SELECT on Reset to revert to previous
+settings.
+
+##########This_Line_Is_50_Characters_Long#########
+#
+:search_props_scope_toggle:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Search Library by 
+
+Text and Titles searches through all text and
+titles.
+
+Titles Only searches through just the
+titles/headings of books, chapters, sections,
+and subsections.
+
+Click SELECT on your choice.
+
+Click SELECT on Apply to set search options.
+
+Click SELECT on Reset to revert to previous
+settings.
+
+#
+:search_props_scope_list:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Sort Findings by 
+
+Relevance Only sorts all findings in 
+order of relevance.
+
+Relevance and Book sorts findings book by
+book in order of relevance.
+
+Click SELECT on your choice.
+
+Click SELECT on Apply to set search options.
+
+Or click SELECT on Reset to revert to previous
+settings.
+
+##########This_Line_Is_50_Characters_Long#########
+#
+:search_props_titles_toggle:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Limit findings to 
+
+Click up or down on the arrow buttons to
+increase or decrease the number of findings
+returned by your search.
+	
+Click SELECT on Apply to set the search options.
+
+Click SELECT on Reset to revert to previous
+settings.
+
+##########This_Line_Is_50_Characters_Long#########
+#
+:search_props_apply_button:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Apply
+
+Click SELECT on Apply to set your search options.
+
+
+#
+:search_props_reset_button:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Reset
+
+Click SELECT on Reset to revert to previous
+search settings.
+
+
+###########################
+# Bookmark-mode spot help #
+###########################
+##########This_Line_Is_50_Characters_Long#########
+#
+:bookmark_list:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Bookmarks in Library
+
+The Bookmarks in Library scrolling list shows the
+titles of the bookmarks you have created.
+
+To display a bookmark comment, click SELECT on the
+bookmark's title.
+
+To display a bookmarked page in the Viewer, click
+SELECT on the bookmark's title and then click
+SELECT on the View button. Or double-click SELECT
+on the bookmark title.
+
+#
+:bookmark_comment:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Comment for pane
+
+The "Comment for" pane is a text window
+for displaying and editing your bookmark
+comments (annotations).
+
+You can type, copy, cut, and paste a comment
+in the Comment pane.
+
+#
+:bookmark_title:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Comment for (title)
+
+When you create or select a bookmark, the
+"Comment for" field lists the location of the
+bookmark. You can edit this field just as you
+can edit the text in the Comment pane below.
+
+#
+##########This_Line_Is_50_Characters_Long#########
+#
+:bookmark_delete_button:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Delete Bookmark
+
+To delete a bookmark, click SELECT on its title
+in the Bookmarks in Library list.
+
+Then click SELECT on the Delete Bookmark button.
+You cannot undelete a bookmark.
+
+#
+##########This_Line_Is_50_Characters_Long#########
+#
+:bookmark_save_button:$OPENWINHOME/bin/helpopen handbooks/ab.handbook
+Save Changes
+
+To save any changes you make to the bookmark in
+the Comment field or pane, click SELECT on the 
+Save Changes button. 
+

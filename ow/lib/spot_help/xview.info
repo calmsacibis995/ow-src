@@ -1,0 +1,403 @@
+
+###################################################
+#	xview.info   May 2	bug fixes
+###################################################
+#	Revised for OpenWindows 3.2 Jan 1993, R. Patten
+###################################################
+#  scrollbar elements
+###################################################
+########################50########################
+
+:scrollbarSplitView:$OPENWINHOME/bin/helpopen handbooks/desktop.intro.handbook
+Split View 
+
+Choose Split View to create two separate 
+scrollable views of the same document. 
+
+You can choose this item more than once to create
+additional views.
+
+:scrollbarJoinViews:$OPENWINHOME/bin/helpopen handbooks/desktop.intro.handbook
+Join Views 
+
+Choose Join Views to rejoin parts of a text
+window broken by Split View.
+
+
+:scrollbarBottom:$OPENWINHOME/bin/helpopen handbooks/desktop.intro.handbook
+Scrollbar Bottom Cable Anchor
+
+Click SELECT on the cable anchor to scroll to the 
+end of the data displayed in the pane.
+
+Press or click MENU anywhere in the scrollbar to
+display the scrollbar menu.
+
+#
+########################50########################
+:scrollbarTop:$OPENWINHOME/bin/helpopen handbooks/desktop.intro.handbook
+Scrollbar Top Cable Anchor
+
+Click SELECT on the cable anchor to scroll to the 
+beginning of the data displayed in the pane.
+
+Press or click MENU anywhere in the scrollbar to
+display the scrollbar menu.
+
+#
+:scrollbarLineForward:$OPENWINHOME/bin/helpopen handbooks/desktop.intro.handbook
+Scrollbar Down arrow
+
+Use the down arrow button on the scrollbar
+elevator to change the view on the data that is
+displayed in the pane. 
+
+Click SELECT to scroll the contents of the pane 
+forward in the document one unit. 
+
+Press SELECT to repeatedly scroll the contents 
+of the pane.
+
+Press or click MENU anywhere in the scrollbar 
+to display the scrollbar menu.
+
+#
+:scrollbarLineBackward:$OPENWINHOME/bin/helpopen handbooks/desktop.intro.handbook
+Scrollbar Up Arrow
+
+Use the up arrow button on the scrollbar
+elevator to change the view on the data that is
+displayed in the pane. 
+
+Click SELECT to scroll the contents of the pane 
+backward in the document one unit.
+
+Press SELECT to repeatedly scroll the contents 
+of the pane.
+
+Press or click MENU anywhere in the scrollbar to
+display the scrollbar menu.
+
+#
+########################50########################
+:scrollbarDrag:$OPENWINHOME/bin/helpopen handbooks/desktop.intro.handbook
+Scrollbar Drag Area
+
+The drag area is the box between the two arrows.
+
+Use the drag area of the scrollbar elevator to
+move to an arbitrary location in the data:
+
+Move the pointer to the drag area and press
+SELECT: the drag area highlights.  
+
+Drag the pointer to move the view in the pane 
+forward or backward in the data. (The pointer 
+can be moved anywhere, but remains constrained to
+the drag area until you release SELECT.)
+
+Press or click MENU anywhere in the scrollbar to
+display the scrollbar menu.
+
+#
+:scrollbarPageForward:$OPENWINHOME/bin/helpopen handbooks/desktop.intro.handbook
+Scrollbar Cable
+
+Click SELECT in this part of the cable to page
+forward--scroll the pane forward an amount equal
+to its size.
+
+The length of the scrollbar cable represents the
+total size of the data from the application. The
+position of the elevator on the cable shows the
+location of the pane contents in the total data.
+
+The dark area of the scrollbar cable shows the
+portion of the  data that is currently visible in
+the pane. If the cable is mostly dark, most of the
+file is visible. If the dark area of the cable is
+small, the file is large relative to the size of
+the pane.
+
+Press or click MENU anywhere in the scrollbar to
+display the scrollbar menu.
+
+########################50########################
+#
+:scrollbarPageBackward:$OPENWINHOME/bin/helpopen handbooks/desktop.intro.handbook
+Scrollbar Cable
+
+Click SELECT in this part of the cable to page
+backward--to scroll the pane backward an amount
+equal to its size.
+
+The length of the scrollbar cable represents the
+total size of the data from the application.  The
+position of the elevator on the cable shows the
+location of the pane contents in the total data.
+
+The dark area of the scrollbar cable shows the
+portion of the  data that is currently visible in
+the pane. If the cable is mostly dark, most of the
+file is visible. If the dark area of the cable is
+small, the file is large relative to the size of
+the pane.
+
+Press or click MENU anywhere in the scrollbar to
+display the scrollbar menu.
+
+################################################
+#  pushpin 
+#  elements of Help and Properties windows
+##################################################
+########################50########################
+#
+:helpMagnifyingGlass:$OPENWINHOME/bin/helpopen handbooks/desktop.intro.handbook
+Help Magnifying Glass
+	
+The magnifying glass shows the object at the
+pointer position when you pressed the Help key.  
+
+To change the view in the magnifying glass and
+display help for a new object, move the pointer
+to another object and press the Help key again.
+
+#
+:menuPushpin:$OPENWINHOME/bin/helpopen handbooks/desktop.intro.handbook
+Pushpin
+	
+Pins up frequently used menus and pop-up windows
+so you can use them for more than one command.  
+
+To pin up a menu, press MENU and drag the pointer
+to the pushpin. When the pin pops into the hole,
+release MENU.  
+
+To pin up a pop-up window, click SELECT on the
+pushpin.
+
+#
+########################50########################
+:scrollbarMenu:$OPENWINHOME/bin/helpopen handbooks/desktop.intro.handbook
+Scrollbar Menu
+	
+Use these commands to change the view on the data
+that is displayed in a scrollable pane:  
+
+Here to top	Scrolls the line at the pointer
+		location to the top of pane
+		(with vertical scrollbar).
+
+Here to left	Scrolls the line at the pointer
+		location to the left of pane
+		(with horizontal scrollbar).
+
+Top to here	Scrolls the line at the top of
+		the pane to the pointer location
+		(with vertical scrollbar).
+
+Left to here	Scrolls the line at the left of
+		the pane to the pointer location
+		(with horizontal scrollbar).
+
+Previous	Undoes the last scrolling action
+		and restores the previous view in
+		the pane.
+
+Split View	Splits window into two scrollable
+		panes. Toggles to Join Views.
+
+Join Views	Rejoins split panes created with
+		Split View.
+
+
+#
+:scrollbarHereToTop:$OPENWINHOME/bin/helpopen handbooks/desktop.intro.handbook
+Here to top
+	
+Scrolls the line at the pointer location to the 
+top of the pane.
+
+#
+:scrollbarHereToLeft:$OPENWINHOME/bin/helpopen handbooks/desktop.intro.handbook
+Here to left
+	
+Scrolls the line at the pointer location to the
+left of the pane.
+
+########################50########################
+#
+:scrollbarTopToHere:$OPENWINHOME/bin/helpopen handbooks/desktop.intro.handbook
+Top to here
+	
+Scrolls the line at the top of the pane to the
+pointer location.
+
+#
+:scrollbarLeftToHere:$OPENWINHOME/bin/helpopen handbooks/desktop.intro.handbook
+Left to here
+	
+Scrolls the line at the left of the pane to the 
+pointer location.
+
+#
+:scrollbarPrevious:$OPENWINHOME/bin/helpopen handbooks/desktop.intro.handbook
+Previous
+	
+Undoes the last scrolling action and restores
+the previous view in the pane.
+
+#
+:menu:$OPENWINHOME/bin/helpopen handbooks/desktop.intro.handbook
+Menu
+	
+No help is available for this item.
+
+#
+:panel:$OPENWINHOME/bin/helpopen handbooks/desktop.intro.handbook
+Panel
+
+No help is available for this panel.
+	
+#
+########################50########################
+:ttysw:$OPENWINHOME/bin/helpopen handbooks/desktop.intro.handbook
+Terminal Emulator Window
+
+This window is a command interpreter that accepts
+operating system commands. 
+
+	
+#
+:notice:$OPENWINHOME/bin/helpopen handbooks/desktop.intro.handbook
+Notice Window
+
+Appears when the system needs your immediate
+attention. A notice requires you to respond to
+its message.  
+
+Blocks input to the application until you click
+on one of the notice's buttons. The button with
+the double outline is the default.
+
+Keyboard Accelerator: press Return.
+
+#
+########################50########################
+:helpWindow:$OPENWINHOME/bin/helpopen handbooks/desktop.intro.handbook
+Help Window
+	
+The help window displays help for the object
+under the pointer. 
+
+To dismiss a Help window:
+
+Move the pointer to the pushpin and click SELECT.
+
+##################################################
+# Objects in File Chooser Windows
+# Open, Open As, Save, Save As, Include
+##################################################
+:file_chooser
+
+Use the controls in this window to open and save
+files.  For help on a specific object in this 
+window, move the pointer over that object and 
+press the Help key. 
+
+#
+:file_chooser_goto_menu
+Go To Button
+
+Click SELECT on this button to list the contents
+of the folder named in the Go To text field.
+
+Press MENU on this button to display and choose
+from a list of the most recently read folders.
+ 
+The folder you choose becomes the current folder
+and its contents appear in the scrolling list.
+ 
+#
+:file_chooser_goto_path
+Go To Text Field
+ 
+Type the path to a folder on this line and press 
+the Return key to display the folder's contents in
+the scrolling list. 
+ 
+You can also display a folder's contents by
+clicking SELECT on its name in the scrolling list
+and then clicking SELECT on the Open button.
+
+Double-clicking SELECT on the folder's name
+also displays its contents.
+ 
+#
+########################50########################
+:file_chooser_current_folder
+Current Folder
+ 
+This is the name of the folder whose contents are
+displayed in the scrolling list.
+
+You can display the contents of a different folder
+by typing the path to the folder in the Go To text
+field and pressing the Return key or double-
+clicking on the folder's name in the scrolling
+list.
+
+As a shortcut to navigating to a previously 
+opened folder, you can choose a folder name
+from the Go To menu.
+
+#
+:file_chooser_file_list
+
+This scrolling list displays the contents of the 
+current folder.
+
+Files that are dimmed cannot be used by the 
+application that launched this window.
+
+#
+:file_chooser_document_name
+Save or Save As Text Field
+
+This is where you type the name you want to use
+for the document to be saved.
+
+After you type the document's name, click Save
+and the document will be written to the current
+folder.
+
+#
+########################50########################
+:file_chooser_open_button
+Open Button
+ 
+Click SELECT on this button to open the file or
+folder you have selected in the scrolling list.
+ 
+You can also open a file or folder by
+double-clicking SELECT on its name.
+
+#
+:file_chooser_save_button
+Save Button
+
+Click SELECT on this button to save the document
+using the name specified in the Save or Save As
+text field.  The document is written to the 
+current folder.
+
+#
+:file_chooser_cancel_button
+Cancel Button
+
+Click SELECT on this button to dismiss this
+window.
+
+#
+########################50########################
+

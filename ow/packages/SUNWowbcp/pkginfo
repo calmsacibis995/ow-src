@@ -1,0 +1,19 @@
+#       Copyright (c) 1990-92 Sun Microsystems, Inc.
+#               All Rights Reserved
+#
+#       @(#)@(#)pkginfo	1.99 97/06/23 (c) Sun Microsystems, Inc.
+
+PKG="SUNWowbcp"
+NAME="OpenWindows binary compatibility"
+ARCH="sparc"
+VERSION=3.4.54,REV=0.97.06.23
+CATEGORY="system"
+PRODNAME="OpenWindows"
+PRODVERS="3.4.0"
+DESC="Support files, programs, and libraries for OpenWindows Binary Compatibility"
+VENDOR="Sun Microsystems, Inc."
+HOTLINE="Please contact your local service provider"
+EMAIL=""
+MAXINST="1000"
+BASEDIR="/"
+SUNW_PKGTYPE="usr"

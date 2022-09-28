@@ -1,0 +1,21 @@
+#
+# @(#)depend	1.1	97/01/15 SMI
+#
+
+#	Copyright (c) 1990-97 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)depend	1.1	97/01/15 (c) Sun Microsystems, Inc.
+
+P SUNWcar	Core Architecture,  (Root)
+P SUNWkvm	Core Architecture,  (Kvm)
+P SUNWcsr	Core Solaris,  (Root)
+P SUNWcsu	Core Solaris,  (Usr)
+P SUNWcsd	Core Solaris Devices
+P SUNWolaud	OpenLook Audio Applications
+P SUNWoldst	OpenLook deskset tools
+P SUNWoldte	Openlook desktop environment
+P SUNWolinc	OpenLook include files
+P SUNWolrte	OpenLook toolkits runtime environment
+P SUNWxwplt	X Windows platform software
+

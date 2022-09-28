@@ -1,0 +1,114 @@
+DESCRIPTION
+
+	The OblongButton Widget/Gadget provides a basic OPEN LOOK Button which has
+	a 'Push Button' behavior. OblongButton widgets can be used alone or as a choice 
+	item in a menu.
+	
+	For more detailed information on the OblongButton Widget, see the following
+	Section in the OPEN LOOK Intrinsics Toolkit Widget Set Reference Manual:
+		. OblongButton
+
+
+EXAMPLE CODE
+
+The following function could be used to Create the example OblongButton Widget shown 
+in the Table (All color specific code has been removed for simplification),
+This example demonstrates how to implement a Mouselesss accelerator for an Oblongbutton:
+
+/**************************************************************************************/
+#include <X11/Intrinsic.h>
+#include <X11/StringDefs.h>
+#include <Xol/OpenLook.h>
+#include <Xol/OblongButt.h>
+
+#include <Xol/ControlAre.h>
+
+/*****************************************************************
+ * buttonCB: routine called when button is pushed.
+ *****************************************************************/
+void
+buttonCB(w, clientData,callData)
+Widget w;
+XtPointer clientData, callData;
+{
+	printf("Button Pressed.\n");
+}
+/*****************************************************************/
+	
+main(argc, argv)
+int argc;
+char **argv;
+{
+	Widget toplevel, controlarea, pushbutton;
+	XtAppContext app;
+
+	OlToolkitInitialize(NULL);
+	toplevel = XtAppInitialize(&app, "Test", 
+				(XrmOptionDescRec *)NULL,
+				(Cardinal)0, (int *)&argc, argv,
+				(String *)NULL, (ArgList)NULL, 0);
+
+	controlarea = XtVaCreateManagedWidget("controls", 
+				controlAreaWidgetClass,
+				toplevel, 
+				NULL);
+
+	/* 
+	 * Create Push button and add select callback 
+	 */
+	pushbutton = XtVaCreateManagedWidget("pushbutton",
+					oblongButtonWidgetClass,
+					controlarea,
+					XtNlabel,	(XtArgVal)"Push Me",
+					/* Add Mouseless activator */
+					XtNaccelerator,	(XtArgVal)"<F3>",
+					XtNacceleratorText,(XtArgVal)"F3",
+					NULL);
+	XtAddCallback(pushbutton, XtNselect, buttonCB, NULL);	
+
+	XtRealizeWidget(toplevel);
+	XtAppMainLoop(app);
+
+}
+/****************************END EXAMPLE**************************/
+
+
+RESOURCES
+_______________________________________________________________________________________________
+Resource Name		Type		Default		Brief Description
+_______________________________________________________________________________________________
+
+XtNaccelerator		String		NULL		String which defines accelerator key
+XtNacceleratorText	String		Dynamic		string to be displayed as accelerator
+XtNancestorSensitive	Boolean		TRUE		Will immediate parent receive events?
+XtNbackground		Pixel		White		background color of widget
+XtNbackgroundPixmap	Pixmap		(none)		pixmap used for tiling the background
+XtNbusy			Boolean		FALSE		should button indicate "busy"?
+XtNconsumeEvent		XtCallbackList	NULL		called when event occurs
+XtNdefault		Boolean		FALSE		draw border indicating default selection?
+XtNdepth		int		(parent's)	number of bits used for each pixel
+XtNdestroyCallback	XtCallbackList	NULL		routines called when widget is destroyed
+XtNfont			XFontStruct *	(OPENLOOK font)	font used to display Caption's label
+XtNfontColor		Pixel		Black		label font's color
+XtNforeground		Pixel		Black		foreground color of widget
+XtNheight		Dimension	(calculated)	height of widget's window in pixels
+XtNinputFocusColor	Pixel		Red		color of input focus indicator
+XtNlabel		String		(class name)	string used as widget's label
+XtNlabelImage		XImage *	NULL		pointer to image used for label
+XtNlabelJustify		OlDefine	OL_LEFT		justification of label in Widget
+XtNlabelTile		Boolean		FALSE		tile label pixmap/image ?
+XtNlabelType		int		OL_STRING	use string or image for label ?
+XtNmappedWhenManaged	Boolean		TRUE		will widget be mapped when managed?
+XtNmnemonic		Usigned char	NULL		key used to activate widget
+XtNrecomputeSize	Boolean		TRUE		should widget calculate size ?
+XtNreferenceName	String		NULL		see manpage		
+XtNreferenceWidget	Widget		NULL		see manpage
+XtNselect		XtCallbackList	NULL		routine called when button's selected
+XtNsensitive		Boolean		TRUE		will widget receive input events?
+XtNtraversalOn		Boolean		TRUE		is mouseless turned "on" for widget?
+XtNuserData		XtPointer	NULL		storage for user defined data
+XtNwidth		Dimension	(calculated)	width of widget's window in pixels
+XtNx			Position	0		x coord of widget's upper left corner
+XtNy			Position	0		y coord of widget's uuper left corner
+
+	

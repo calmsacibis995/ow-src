@@ -1,0 +1,175 @@
+DESCRIPTION
+
+	The DrawArea widget provides a window on which an application can render 
+	images using Xlib calls.  Because the DrawArea is subclassed from the 
+	BulletinBoard, it can also contain children placed at x,y positions.  This 
+	allows the application to combine graphical drawing along with widgets, which 
+	can make combining text with drawings simpler (i.e. StaticText widgets can be used 
+	for labels and text, instead of calling Xlib text drawing routines).
+
+	The DrawArea widget can be created with a non-default depth, visual, and 
+	colormap, by setting the appropriate resources, XtNdepth, XtNvisual, and 
+	XtNcolormap.  This can be extremely useful if an application requires a 24 bit 
+	canvas, but wishes the rest of the application to use an 8 bit visual. 
+
+
+	For more detailed and complete information on the DrawArea Widget, see the following
+	Sections in the OPEN LOOK Intrinsics Toolkit Widget Set Reference Manual:
+		. DrawArea
+
+
+EXAMPLE CODE
+
+The following code could be used to Create the DrawArea which is popped 
+up in the table example. 
+
+/*********************************************************************************/
+#include <X11/Intrinsic.h>
+#include <X11/StringDefs.h>
+#include <Xol/OpenLook.h>
+#include <Xol/DrawArea.h>
+
+#include <Xol/StaticText.h>
+
+#define   BORDERWIDTH   8   /* Width of Rectangle Border */
+#define   MARGIN	60  /* Margin offset of Rectangle from edge of DrawArea */
+
+/*********************************
+ * Expose Callback for DrawArea
+ ********************************/
+static void
+ExposeCB(widget, closure, calldata)
+Widget widget;
+caddr_t closure;
+OlDrawAreaCallbackStruct *calldata;
+{
+	static Boolean gotGC = False;
+	static GC gc[2];
+	Window win = XtWindow(widget);
+	Display *display = XtDisplay(widget);
+	/*
+	 * Draw in Window
+	 */
+
+	if (!gotGC) {
+		XtGCMask mask;
+		XGCValues values;
+		Pixel fg, bg;
+		/*
+	 	 * Get GC
+		 */
+		XtVaGetValues(widget, 
+					XtNforeground, &fg, 
+					XtNbackground, &bg,
+					NULL);
+		mask = (XtGCMask)(GCForeground | GCBackground | GCLineWidth);
+		values.line_width = BORDERWIDTH;
+		values.foreground = fg;
+		values.background = bg;
+		gc[0] = XtGetGC(widget,mask,&values);
+		values.foreground = bg;
+		values.background = fg;
+		gc[1] = XtGetGC(widget,mask,&values);
+
+		gotGC = True;
+	}
+	/*
+	 * Draw...
+	 */
+	XClearArea(display, win, 0, 0, calldata->width, calldata->height, False);
+	XFillRectangle(display,win,gc[1], MARGIN, MARGIN, 
+		(calldata->width)-(2*MARGIN), (calldata->height)-(2*MARGIN));
+	XDrawRectangle(display,win,gc[0], MARGIN, MARGIN, 
+		(calldata->width)-(2*MARGIN), (calldata->height)-(2*MARGIN));
+
+}
+/********************************
+ * Resize Callback for DrawArea
+ ********************************/
+static void
+ResizeCB(widget, closure, calldata)
+Widget widget;
+caddr_t closure;
+OlDrawAreaCallbackStruct *calldata;
+{
+
+  printf("DrawArea was resized to %d by %d\n", calldata->width, calldata->height);
+}
+
+/********************************************************************************/
+main(argc, argv)
+int argc;
+char **argv;
+{
+	Widget toplevel, drawarea;
+	XtAppContext app;
+
+	toplevel = XtAppInitialize(&app, "Test", 
+				(XrmOptionDescRec *)NULL,
+				(Cardinal)0, (int *)&argc, argv,
+				(String *)NULL, (ArgList)NULL, 0);
+
+	/*
+	 * Create DrawArea with a StaticText label...
+	 */
+	drawarea = XtVaCreateManagedWidget("drawarea",
+				drawAreaWidgetClass,
+				toplevel,
+				/* So widget will use our height & width...*/
+				XtNlayout,	OL_IGNORE, 
+				XtNheight,	220,
+				XtNwidth,	300,
+				NULL);
+
+	XtAddCallback(drawarea, XtNexposeCallback, ExposeCB, (XtPointer)NULL);
+	XtAddCallback(drawarea, XtNresizeCallback, ResizeCB, (XtPointer)NULL);
+
+
+	XtVaCreateManagedWidget("label",
+				staticTextWidgetClass,
+				drawarea,
+				XtNstring,	(XtArgVal)"This DrawArea contains a Box...",
+				XtNx,		8,
+				XtNy,		8,
+				NULL);
+
+	XtRealizeWidget(toplevel);
+	XtAppMainLoop(app);
+
+}
+/*******************************END EXAMPLE******************************/
+
+
+
+RESOURCES
+_______________________________________________________________________________________________
+
+Resource Name		Type		Default		Brief Description
+_______________________________________________________________________________________________
+
+XtNancestorSensitive	Boolean		TRUE		Will immediate parent receive events?
+XtNbackground		Pixel		White		background color of widget
+XtNbackgroundPixmap	Pixmap		(none)		pixmap used for tiling the background
+XtNborderColor		Pixel		Black		border color of widget
+XtNborderPixmap		Pixmap		(none)		pixmap used for tiling border
+XtNborderWidth		Dimension	0		width of widget's border in pixels
+XtNcolormap		Colormap	(parent's)	colormap used to interpret pixels drawn
+XtNconsumeEvent		XtCallbackList	NULL		called when event occurs
+XtNdepth		int		(parent's)	number of bits used for each pixel
+XtNdestroyCallback	XtCallbackList	NULL		routines called when widget is destroyed
+XtNexposeCallback	XtCallbackList	NULL		routines called when widget is exposed
+XtNgraphicsExposeCallback XtCallbackList NULL		routines called on graphics expose event
+XtNheight		Dimension	(calculated)	height of widget's window in pixels
+XtNinputFocusColor	Pixel		Red		color of input focus indicator widget
+XtNlayout		OlDefine	OL_MINIMIZE	sizing policy for widget
+XtNmappedWhenManaged	Boolean		TRUE		will widget be mapped when managed?
+XtNresizeCallback	XtCallbackList	NULL		routines called when widget is resized
+XtNsensitive		Boolean		TRUE		will widget receive input events?
+XtNuserData		XtPointer	NULL		storage for user defined data
+XtNvisual		Visual*		(parent's)	visual used to create widget's window
+XtNwidth		Dimension	(calculated)	width of widget's window in pixels
+XtNx			Position	0		x coord of widget's upper left corner
+XtNy			Position	0		y coord of widget's uuper left corner
+
+	
+	

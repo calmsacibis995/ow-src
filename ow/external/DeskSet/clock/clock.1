@@ -1,0 +1,446 @@
+.\" Copyright (c) 1994 - Sun Microsystems, Inc.
+.TH clock 1 "24 March 1992"
+.IX "clock" "" "\f3clock\f1(1) \(em desktop clock program" ""
+.IX "OpenWindows" "clock" "OpenWindows" "clock program \(em \f3clock\f1(1)"
+.SH NAME
+clock \- display the time in an icon or window
+.SH SYNOPSIS
+.B clock
+[
+.B \-Wn
+] [
+.B \+Wn
+] [
+.B \-T
+] [
+.B \-TZ
+.I timezone
+] [
+.B \-12
+] [
+.B \-24
+] [
+.B \-alarm
+.I setting
+]
+.br
+	[
+.B \-alarmtime
+.I hr:min
+] [
+.B \-alarmcmd
+.I cmd
+] [
+.B \-analog
+] [
+.B \-digital
+]
+.br
+	[
+.B \+date
+] [
+.B \-date
+]
+[
+.B \-help
+] [
+.B \-hourcmd
+.I cmd
+] [
+.B \-name
+.I app-name
+]
+.br
+	[
+.B \-r
+] [
+.B \+seconds
+] [
+.B \-seconds
+] [
+.B \-v
+] [
+.B \-?
+]
+.SH AVAILABILITY
+Although this command is available with both the
+SunView software installation option
+and the
+OpenWindows environment,
+its appearance is not the
+same for both environments.
+The man page you are currently
+viewing refers to the clock
+that is available with OpenWindows. 
+The primary difference between this and the 
+SunView clock is the user interface.  
+All OpenWindows standard tools
+use the OPEN LOOK Graphical User Interface. 
+.SH DESCRIPTION
+.LP
+.B clock
+is an OpenWindows XView utility that displays the current time in
+a window or icon. When the window is open, 
+.B clock 
+can display
+the time in  either analog or digital format. 
+The clock window is scalable in either format.
+.SH OPTIONS
+.TP
+.B \-Wn
+Start
+.B clock
+with no title line.
+.TP
+.B \+Wn
+Start
+.B clock
+with a title line present.
+.TP
+.B \-T
+Start the clock in test mode. Test mode ignores the real time, and instead
+runs in a loop continuously incrementing the time by one minute and
+displaying it.
+.TP
+.BI \-TZ " timezone"
+Start the
+.B clock
+with an alternate time zone.
+.TP
+.B \-12
+If the digital clock is being displayed in the open window, then use a 12
+hour clock.
+.TP
+.B \-24
+If the digital clock is being displayed in the open window, then use a 24
+hour clock.
+.TP
+.BI \-alarm " setting"
+Set how often you want the alarm to go off. Choices are "none", "once"
+and "daily".
+.TP
+.BI \-alarmtime " hr:min"
+The time you want the alarm to go off.
+.TP
+.BI \-alarmcmd " cmd"
+The command you want to run, when the alarm does go off.
+.TP
+.B \-analog
+Start up the open window display with the analog clock.
+.TP
+.B \-digital
+Start up the open window display with the digital clock.
+.TP
+.B \+date
+Show the current date in the open window.
+.TP
+.B \-date
+Do not show the current date in the open window.
+.TP
+.B \-help
+Lists generic XView options that can be applied to the
+.B clock.
+.TP
+.BI \-hourcmd " cmd"
+The command you would like run every hour, on the hour.
+.TP
+.BI \-name " app-name"
+This option specifies the application name under which resources are to be
+obtained, rather than the default executable file name.
+.I app-name
+should not contain ``.'' or ``*'' characters.
+.TP
+.B \-r
+Use a face with roman numerals in the iconic state. This replaces the default
+round face.
+.TP
+.B \+seconds
+Show the number of seconds. For the analog clock (and in the iconic state),
+the seconds are shown by displaying a second hand. For the digital display,
+seconds are shown as a numeric value.
+.TP
+.B \-seconds
+Do not show the number of seconds.
+.TP
+.B \-v
+Show the version number and the usage message for this version of
+.B clock.
+.TP
+.B \-?
+Show the version number and the usage message for this version of
+.B clock.
+.SH USAGE
+When the
+.B clock
+window is open, it has a floating menu from which you can bring up a property
+window.
+From this property sheet, you can modify the open window clock face of the
+tool by selecting either the 
+.B Analog
+or
+.B Digital
+choice box.
+.LP
+The icon displayed, can be either an
+.B analog
+or
+.B roman
+clock face. With the
+digital display, you can select between a
+.B 12-hour
+or a
+.B 24-hour
+display.
+.RS
+.B Seconds:
+.RS
+On the analog version, this selection starts a second hand on the
+face of the clock. On the digital version, it adds two digits to
+the digital readout.
+.RE
+.B Date:
+.RS
+Turns on a date display for both analog and digital versions of
+.B clock.
+.RE
+.RE
+.LP
+You can select a local timezone or set it to monitor a remote timezone
+by clicking SELECT on other, then choosing a timezone by pressing MENU over
+the abbreviated menu button displayed.
+.LP
+The stopwatch is an automatic function, and allows you to reset, start
+and stop a stopwatch to second accuracy. This should be set to none, to
+disable it.
+.LP
+An alarm can be set, and when that time occurs, then a command can be run.
+The alarm can be triggered once or daily. If no alarm command is present,
+then the
+.B clock
+will just beep.
+.LP
+You can also set a command that will be run every hour on the hour.
+.LP
+There are various keyboard accelerators that can be used with the
+.B clock.
+These are:
+.TP
+.B 1
+set 12hr mode if currently showing a digital display.
+.TP
+.B 2
+set 24hr mode if currently showing a digital display.
+.TP
+.B c
+toggle clock face between analog and digital.
+.TP
+.B d
+toggle on and off the date display.
+.TP
+.B i
+toggle icon face between analog and roman.
+.TP
+.B s
+toggle on and off the seconds display.
+.TP
+.B S
+set stopwatch. Cycles between reset, start and stop. Hit c to continue in
+normal clock display.
+.TP
+.B t
+toggle the timezone between local and other. Note that you have to have a
+valid other timezone for this to work properly.
+.TP
+.B T
+toggle test mode on and off.
+.TP
+.B q
+quit the clock
+.LP
+On startup, the
+.B clock
+will use the following X resources:
+.TP 15
+.PD 0
+.B Resource:
+deskset.clock.faceAnalog
+.TP
+.B Values:           
+True, False (True)
+.TP
+.B Description
+Setting for the open clock face. Choices are analog and digital.
+.sp
+.TP
+.B Resource:
+deskset.clock.iconAnalog
+.TP
+.B Values:
+True, False (True)
+.TP
+.B Description
+Setting for the closed clock icon. Choices are analog and roman.
+.sp
+.TP
+.B Resource:
+deskset.clock.iconHasWindowColor
+.TP
+.B Values:
+True, False (False)
+.TP
+.B Description
+Determines whether the clock icon should use the window background color. By
+default, it uses the workspace  color.
+.sp
+.TP
+.B Resource:
+deskset.clock.digital12Hour
+.TP
+.B Values:
+True, False (True)
+.TP
+Description
+Setting for digital displays. Choices are 12 hour and 24 hour display.
+.sp
+.TP
+.B Resource:
+deskset.clock.showLocal
+.TP
+.B Values:
+True, False (True)
+.TP
+.B Description
+Indicates whether the local or other timezone should be initially displayed.
+.sp
+.TP
+.B Resource:
+deskset.clock.secondHand
+.TP
+.B Values:
+True, False (False)
+.TP
+Description
+When True, a second hand (for analog) or a seconds value (for digital) will
+be displayed.
+.sp
+.TP
+.B Resource:
+deskset.clock.date
+.TP
+.B Values:
+True, False (False)
+.TP
+Description
+When True, the current date will be displayed.
+.sp
+.TP
+.B Resource:
+deskset.clock.timeZone
+.TP
+.B Values:
+Timezone (string)
+.TP
+Description
+If present, the timezone to monitor.
+.sp
+.TP
+.B Resource:
+deskset.clock.alarmHrValue
+.TP
+.B Values:
+Hour value (numeric)
+.TP
+Description
+The hour value for the alarm command.
+.sp
+.TP
+.B Resource:
+deskset.clock.alarmMinValue
+.TP
+.B Values:
+Minute value (numeric)
+.TP
+Description
+The minute value for the alarm command.
+.sp
+.TP
+.B Resource:
+deskset.clock.alarmChoice
+.TP
+.B Values:
+None, Once, Daily (None)
+.TP
+Description
+How often the alarm should go off. Choices are none, once and daily.
+.sp
+.TP
+.B Resource:
+deskset.clock.alarmCommand
+.TP
+.B Values:
+Command (string)
+.TP
+Description
+The command that should be run when the alarm goes off.
+.sp
+.TP
+.B Resource:
+deskset.clock.hourlyCommand
+.TP
+.B Values:
+Command (string)
+.TP
+Description
+The command that should be run every hour, on the hour.
+.sp
+.TP
+.B Resource:
+deskset.clock.dateFont
+.TP
+.B Values:
+Font name string
+.TP
+Description
+The name of the font used to display the date and timezone, irrespective of
+the current size and scale of
+.B clock
+.sp
+.TP
+.B Resource:
+deskset.clock.secondsFont
+.TP
+.B Values:
+Font name string
+.TP
+Description
+The name of the font used to display the number of seconds when in digital
+mode, plus the am/pm values if in 12 hour mode, irrespective of the current
+size and scale of
+.B clock
+.sp
+.TP
+.B Resource:
+deskset.clock.hasTitle
+.TP                      
+.B Values:               
+True, False (True)
+.TP                      
+Description              
+Indicates whether the
+.B clock
+window has a title line.
+.sp
+.SH ENVIRONMENT
+The
+.B clock
+uses the
+.B TZ
+environment variable to determine the local time, and the initial setting
+for the other timezone. The latter can be over-ridden in a variety of ways.
+.sp
+.SH SEE ALSO
+.LP
+OpenWindows user documentation
+.br
+"About the Clock" in the Help Handbook available through the
+Help option on the Workspace menu.

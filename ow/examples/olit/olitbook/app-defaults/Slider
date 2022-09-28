@@ -1,0 +1,18 @@
+slider*Slider*height:           100
+slider*Slider*sliderMax:        200
+slider*slider1.maxLabel:        Max 1 
+slider*slider2.maxLabel:        Max 2 
+!
+slider2*Slider*maxLabel:         200
+slider2*Slider*granularity:      10
+slider2*Slider*repeatRate:       10
+slider2*Slider*minLabel:         0
+slider2*Slider*width:            200
+slider2*Slider*sliderMax:        200
+slider2*Slider*tickUnit:         percent
+slider2*Slider*ticks:            10
+slider2*Slider*orientation:      horizontal
+slider2*control.layoutType:      fixedcols
+slider2*control.measure:         1
+slider2*slider1.initialDelay:    1000
+slider2*slider2.initialDelay:    10

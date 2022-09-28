@@ -1,0 +1,915 @@
+.\" Copyright (c) 1994 - Sun Microsystems, Inc.
+.TH mailtool 1 "7 January 1992"
+.IX "mailtool" "" "\f3mailtool\f1(1) \(em OpenWindows mail interface" ""
+.IX "mail" "OpenWindows" "mail" "OpenWindows mail interface \(em \f3mailtool\f1(1)"
+.IX "OpenWindows" "mail" "OpenWindows" "mail interface \(em \f3mailtool\f1(1)"
+.SH NAME
+mailtool \- OpenWindows interface for the mail program
+.SH SYNOPSIS
+.B mailtool
+[
+.B \-Mx
+] [
+.B \-Mi
+.I interval
+] [
+.B \-Mf
+.I mailfile
+] [
+.I generic-tool-arguments
+] [
+.B \-v
+]
+.SH AVAILABILITY
+This command is available with the OpenWindows environment.
+.B mailtool
+uses the OPEN LOOK Graphical User Interface. 
+.SH DESCRIPTION
+.LP
+.B mailtool
+is an electronic mail application that uses the standard OpenWindows 
+interface.  It provides a menu-driven facility for reading, storing,
+composing, and sending mail messages.  Scrollable windows allow easy
+access to the In-Box mail files. 
+.LP
+The full editing capabilities of
+.BR textedit (1)
+are available for modifying and composing mail messages as well as
+text fields within command panels.
+.SH OPTIONS
+.LP
+.TP 10
+.B -Mx
+Expert mode.
+Do not ask for confirmation after potentially damaging mail commands.
+This has the same effect as setting the expert variable.
+.TP
+.BI -Mi \ interval
+Check for new mail every 
+.I interval
+seconds.
+This has the same effect as specifying a value
+for the interval variable.
+.TP
+.BI -Mf \ mailfile
+Start up
+.B mailtool
+with
+.I mailfile
+loaded instead of the In-Box.
+.TP
+.B -v
+Print out the version number of
+.B mailtool
+and exit.
+.TP
+.I generic-tool-arguments
+.B Mailtool
+accepts the generic tool arguments described in
+.BR xview (7).
+.SH USAGE
+.LP
+.B mailtool
+operates through the use of a set of command panel buttons, message
+windows, menus, and other components that conform to the OPEN LOOK
+Graphical User Interface Functional Specification.  Mail messages
+are edited using the menus and commands of the
+.B textedit
+program. For more information about the general usage of OPEN LOOK
+software applications, see the OpenWindows documentation.
+For more information about 
+.B textedit
+conventions, see the 
+.B textedit 
+man page.
+.sp .5
+.B Command Panel Buttons
+.sp .5
+The
+.B mailtool
+command panel is located near the top of the main window, under the
+window header. Press MENU on a command panel button to reveal the menu for
+that button. Certain menu functions are accelerated, and may be activated
+directly from the keyboard by holding down the Meta key and the appropriate
+accelerator key. The accelerated functions are so indicated.
+.TP 10
+.B File >
+.RS
+.TP 10
+.B Load In-Box [Meta o]
+.RS
+Used to read mail from the user's system mail file into
+.BR mailtool .
+.RE
+.TP
+.B Print [Meta p]
+.RS
+Sends copies of all the selected mail items 
+to your default printer.
+If there are no selected items, 
+.B mailtool
+sends copies of those items you are 
+currently viewing. 
+.RE
+.TP
+.B Save Changes [Meta s]
+.RS
+Causes all the deletions and changes you have
+made to the mail file to become permanent and opens your
+.B In-Box 
+for any new mail.
+.RE
+.TP
+.B Done
+.RS
+Save your changes and close
+.B mailtool
+to an icon.
+When
+.B mailtool
+is next opened,
+the
+.B In-Box
+will be reread.
+.RE
+.TP
+.B Mail Files...
+.RS
+Bring up the Mail Files... scrolling list of your mail files.
+This popup allows you to create, delete, rename, add messages
+to, and view mail files.
+.RE
+.RE
+.TP
+.B View >
+.RS
+.TP 10
+.B Messages >
+Displays messages you have selected.
+.RS
+.TP 10
+.B Abbreviated Header
+Strips unnecessary header fields from the messages
+you view.
+Specify these fields by adding them to the 
+.B Hide
+list in the
+.B Message Window
+Property Sheet in
+.BR mailtool .
+.TP
+.B Full Header
+Displays the currently selected messages 
+with all of the message header fields.
+.RE
+.TP
+.B Previous
+Determines the message preceding the last one displayed
+and displays it.  The message is chosen from all the
+messages in the current mail file.
+.TP
+.B Next
+Determines the message following the last 
+one displayed and displays it.
+The message is chosen from all the messages in the
+current mail file.
+.TP
+.B Sort By >
+.RS
+.TP 10
+.B Time and Date
+Sorts the messages in chronological order.
+.TP
+.B Sender
+Sorts the messages alphabetically by sender.
+.TP
+.B Subject
+Sorts the messages alphabetically by subject.
+.TP
+.B Size
+Sorts the messages by size (smallest to largest).
+.TP
+.B Status
+Sorts the messages by status: first read, then
+unread, and finally new.
+.TP
+.B Message Number
+Sorts the messages by message number, in increasing
+order.
+.RE
+.TP
+.B Find... [Meta f]
+.RS
+.TP 10
+.B From:
+Enter text that is in the 
+.B From 
+field (mail address) of the message you want
+to find.
+Capitalization is ignored.
+.TP
+.B To/Cc:
+Enter text that is in the To or Cc field (mail address)
+of the message you want to find.
+Capitalization is ignored.
+.TP
+.B To:
+Enter text that is in the To field (mail address) of the
+message you want to find.
+Capitalization is ignored.
+.TP
+.B Cc:
+Enter text that is in the Cc field (mail address) of the
+message you want to find.
+Capitalization is ignored.
+.TP
+.B Subject:
+Enter text that is in the Subject field of the 
+message you want.  
+Capitalization is ignored.
+.TP
+.B Find Forward
+After entering text for 
+.B From:
+, 
+.B To/Cc:
+, 
+.B To:
+, 
+.B Cc:
+, 
+.B Subject:
+, or any combination of the above, click \s-1SELECT\s0 on 
+.B Find Forward 
+to locate the next message that matches the text.
+.TP
+.B Find Backward
+After entering text for 
+.B From:
+, 
+.B To/Cc:
+, 
+.B To:
+, 
+.B Cc:
+, 
+.B Subject:
+or any combination of the above, click \s-1SELECT\s0 on 
+.B Find Backward 
+to locate the previous message that matches the text.
+.TP
+.B Select All
+After entering text for 
+.B From:
+, 
+.B To/Cc:
+, 
+.B To:
+, 
+.B Cc:
+, 
+.B Subject:
+or any combination of the above, click \s-1SELECT\s0 on 
+.B Select All 
+to select all messages that match the text.
+.RE
+.RE
+.TP
+.B Edit >
+.RS
+.TP 10
+.B Cut [Meta x]
+Deletes the selected mail messages, placing copies in the
+.B Clipboard.
+.TP
+.B Copy [Meta c]
+Copies the selected mail messages, placing copies in the
+.B Clipboard.
+.TP
+.B Delete
+Deletes the selected mail messages, without placing copies in the
+.B Clipboard. 
+If no mail messages are selected, the messages currently being viewed are
+deleted.
+.TP
+.B Undelete >
+.RS
+.TP 10
+.B Last
+Restores the last message deleted to your mail header display.  
+This may be done until all messages deleted 
+since the last commit are restored.
+This option also restores messages deleted 
+through cut and move commands.
+.TP
+.B From List...
+Causes a popup window to appear.  
+This popup contains a list box that
+has all the mail items that have been 
+deleted since the last commit operation.  
+You can select any number of these, and press the
+.B Undelete
+button on the command frame.  
+All the selected items will be returned to 
+the mail header window.
+.RE
+.TP
+.B Properties... [Meta i]
+Bring up the
+.B mailtool
+property sheets.  You can modify most of
+the options to
+.B mailtool
+through the property sheets.
+.RE
+.TP
+.B Compose >
+.RS
+This panel button allows users to create new 
+mail to be sent, reply to existing messages 
+with or without including the current message, and
+to forward messages as needed. 
+.TP 10
+.B New [Meta n]
+Opens a composition window without the 
+message headers being filled in. 
+If an unused mail message window currently 
+exists on the screen, it will be brought 
+forward to be used and no new window is
+created. 
+If an unused mail composition window currently
+exists and is fully displayed on the screen,
+there will be no change in the display.
+.TP
+.B Reply >
+Opens a composition window with the message 
+headers filled in appropriately and allows 
+you to write and deliver your response.  
+If an unused mail message window currently exists on the
+screen, it will be brought forward to be used and no new window is
+created. 
+If an unused mail message window currently exists and is fully
+displayed on the screen, its headers will be updated.
+Options to this submenu are described below:
+.RS
+.TP 10
+.B To Sender
+Opens a composition window.  
+In the window, the address field contains 
+the originator's address for the selected 
+message and the subject field contains the
+subject line for the selected message, preceded
+by "Re: ".
+.TP
+.B To All
+Opens a composition window.  
+In the window, the address field contains addresses 
+for the person who sent the selected message as well 
+as all the people that the selected message was sent to.
+The subject field contains the subject line for the
+selected message, preceded by "Re: ".
+.TP
+.B To Sender, Include
+Opens a composition window.  
+In the window, the address field contains the 
+originator's address for the selected message.
+The subject field contains the subject line for the
+selected message, preceded by "Re: ".
+The window also contains the selected message 
+in the body of the new message.
+.TP
+.B To All, Include: 
+Opens a composition window.  
+In the window, the address field contains addresses 
+for the person who sent the selected message as well
+as all the people that the selected message was sent to.
+The subject field contains the subject line for the
+selected message, preceded by "Re: ".
+The window also contains the selected message 
+in the body of the new message.
+.RE
+.TP
+.B Forward
+Opens a composition window.
+In the window, the subject field contains the subject
+line for the selected message.  The window also
+contains the selected message in the body of the
+new message, and it contains the attachments (if any)
+of the selected message in the attachment pane.
+.TP
+.B Vacation
+Lets you compose a message that is automatically 
+delivered in response to incoming messages.  
+Use this when you can't read your mail for a 
+period of time and want your message to be responded
+to automatically.  Only one response is sent to each
+originator over a one-week period.
+.RE
+.sp
+.B
+The Composition Window
+.sp .5
+This window has its own control panel with the following
+buttons.
+.TP 10
+.B Include >
+.RS
+.TP 10
+.B Bracketed
+Pastes the currently selected messages 
+into the body of the message you are composing. 
+The included messages are bracketed with special lines.
+.TP
+.B Indented  
+Pastes the currently selected messages into 
+the body of the message you are composing.  
+Each line of the included message is indented, 
+using the standard indentation string.  The indentation
+string may be modified in the Mail Tool Property Sheet
+for the Compose Window.
+.TP
+.B Templates >
+Lists the available templates that you can include if
+any are installed.  You can add and remove templates
+in the Mail Tool Property Sheet for Templates.
+.RE
+.TP
+.B Deliver >
+.RS
+.TP 10
+.B Quit window
+Mails the message you have composed and 
+then dismisses the compose window.
+.TP
+.B Close window
+Mails the message you have composed, clears
+the compose window, and 
+then closes the compose window to an icon.
+.TP
+.B Clear window
+Mails the message and then clears the 
+compose window to prepare it for re-use.
+.TP
+.B Leave message intact
+Mails the message and leaves the message 
+in the compose window.
+.RE
+.TP
+.B Headers >
+Selecting an option affects the headers of 
+the mail message.
+.RS
+.TP 10
+.B Aliases...
+Bring up the Mail Tool Property Sheet for Aliases.
+From this property sheet, you can add, delete, or
+change your local mail aliases.
+.TP
+.B Add/Delete Bcc:
+Adds or deletes the Bcc: line from the message 
+you are composing.
+.TP
+.B Add/Delete Custom:
+Adds or deletes a custom header line from the message
+you are composing.  You will see one menu item for
+each custom header you have installed.  You can
+install or remove custom headers in the Mail Tool
+Property Sheet for the Compose Window.
+.RE
+.TP
+.B Clear
+Clears the contents of the compose window.
+.TP
+.B Attach >
+Selecting an option allows the creation of a Voice or
+Appointment attachment.
+.RS
+.TP 10
+.B Voice...
+Brings up AudioTool for adding audio attachments.
+.TP
+.B Appt...
+Brings up Appointment Editor for adding calendar
+appointment attachments.
+.RE
+.\" .RE
+.LP
+.sp
+.B Mailtool Variables
+.sp .5
+In addition to the variables recognized by 
+.BR mailx (1),
+.B mailtool
+recognizes those listed below.  They can be set by editing your
+.B .mailrc
+file; however, since most of the variables are accessible through
+the Mail Tool Property Sheets, we strongly recommend that you modify
+them there to reduce the chance of error. Unless otherwise noted, 
+the default for the following variables is
+.I off.
+.TP 10
+.B additionalfields
+A list of header fields to access via the
+.B Add Custom
+field in the
+.B Header
+menu.  This variable can be accessed through the
+.B Custom Fields:, Header Field:,
+and
+.B Default Value:
+portions of the Compose Window category in the
+Mail Tool Property Sheet.
+.TP
+.B bell
+The number of times to ring the bell when new mail arrives.
+This variable can be accessed through the Mail Tool
+Property Sheet in the Header Window category as
+.B Signal With:
+__ Beep(s).  The default is 0.
+.\" .TP
+.\" [toga 12/12/91] We don't use this any more.
+.\" .B editmessagewindow
+.\" Request confirmation before the first editing 
+.\" operation to a message in the message window 
+.\" (as opposed to composing a reply).  
+.\" The default is not to request confirmation of the first edit.
+.TP
+.B dontlogmessages
+This variable controls whether or not the
+.B log
+checkbox is checked in the Compose Message window.
+It is ignored if the
+.I record
+variable is not set.
+The default is to log messages.
+.TP
+.B expert
+Set expert mode in which minimal confirmations are requested.
+This variable can be accessed through the
+.B Request confirmations
+check box in the Compose Window Category of the Mail Tool
+Property Sheet.
+.TP
+.B filemenu
+A list of files from which to initialize the
+.B Move, 
+.B Copy, 
+and
+.B Load
+menus.  These can be absolute pathnames
+or pathnames relative to the directory specified in the
+.I folder
+variable.  This variable is superceded by the
+.B filemenu2
+variable.
+.TP
+.B filemenu2
+Same as filemenu, but if both exist, filemenu2 takes
+precedence.  This variable can be accessed through the
+.B Move, Copy, Load Menus:
+scrolling list and the
+.B Permanent File:
+text field in the Mail Filing category of the Mail
+Tool Property Sheet.
+.TP
+.B filemenusize
+Specifies the maximum number of entries in the 
+.B Move, 
+.B Copy, 
+and
+.B Load
+menus.  This variable can be accessed through the
+.B Display Up To:
+__ Files in Menus entry in the Mail Filing
+Category of the Mail Tool Property Sheet.
+The default is 10.
+.TP
+.B flash
+The number of times to flash the window or 
+icon when new mail arrives.  This variable can 
+be accessed through the Mail Tool Property Sheet
+in the Header Window Category as
+.B Signal With:
+__ Flash(es).
+The default is 0.
+.TP
+.B folder
+The directory for saving mail files.  This variable can
+be accessed as
+.B Mail File Directory
+in the Mail Filing category of the Mail Tool Property
+Sheet.
+.TP
+.B headerlines
+The number of lines to display at a time in the header 
+window.  This variable can be accessed through the
+Mail Tool Property Sheet in the Header Window category
+as
+.B Display
+__ Headers.  The default is 15.
+.TP
+.B hideattachments
+Hide the attachments pane in the Compose Message window.
+This variable can be accessed through the
+.B Defaults:
+Show attachment list
+check box in the Compose Window category of the
+Mail Tool Property Sheet.  The default is to show 
+the attachment pane.
+.TP
+.B indentprefix
+When indentprefix is set, the string that it is set
+to is used to mark indented lines from included messages.
+The default indentprefix is "> ".
+.\" [toga 12/12/91] I don't think we have this any more.
+.\" .TP
+.\" .B moveinputfocus
+.\" Move the input focus into the composition window for 
+.\" .B Compose 
+.\" and
+.\" .BR Reply .
+.\" This only works for click-to-type.
+.TP
+.B popuplines
+The number of lines in the View Message and Compose Message
+Windows.
+This variable can be accessed through the Mail Tool
+Property Sheet in the Message Window category as
+.B Display
+__ Lines of Text.  The default is 30.
+.TP
+.B printmail
+The command to use to print a message.  This variable can
+be accessed through the Mail Tool Property Sheet in the
+Message Window category as
+.B Print Script.
+The default is \fBlp -s\fP.
+.TP
+.B record
+The mail file in which to record outgoing messages.  If
+.I record
+is set, a
+.B Log
+check box will appear on the Compose Message window.  If
+the check box is checked, the message will be logged in the
+record file when it is sent.  If it is not checked, the message
+will not be logged.  The
+.I dontlogmessages
+variable controls whether or not the check box is checked by
+default.  The
+.I record
+variable may be set through the
+.B Logged Messages File
+item in the Compose Window category of the Mail Tool Property
+Sheet.
+.TP
+.B retrieveinterval
+The interval in seconds to check for new mail.  
+This variable can be accessed through the Mail 
+Tool Property Sheet in the Header Window category
+as
+.B Retrieve Every
+.I n
+Seconds.  The default is 300.
+.TP
+.B save
+Save contents of each Compose Message window in a dead.letter file until the
+message is delivered successfully.  If a Compose Message window is quit, and
+a new one is brought up, the new window will reuse the dead.letter from the
+previous window.  The first dead.letter file is called dead.letter, the
+second one is called dead.letter.1, the third dead.letter.2, and so on.
+The default is
+.I on.
+.TP
+.B showto
+Show the "To" field of mail messages in the Header Window if
+the mail is from the same user that is reading mail (eg. you).
+.TP
+.B sortfilemenu
+Sort the
+.B Move, Copy,
+and
+.B Load
+menus alphabetically.
+.TP
+.B suppressautoretrieve
+Do not automatically retrieve new mail messages.
+This variable can be accessed through the Mail Tool
+Property Sheet in the Header Window category as
+the Automatically display headers check box.
+Default is to automatically retrieve new mail.
+.TP
+.B templates
+A list of
+.I name:path
+pairs to access via the
+.B Include > Templates
+menu.
+.I name
+appears in the menu;
+.I path
+is the file included when name is selected.
+This variable can be accessed in the Template category
+of the Mail Tool Property Sheet.
+By default, the calendar template is installed.
+.TP
+.B toolcols
+Default width of Mail Tool windows (in columns).
+This variable can be accessed through the Mail
+Tool Property Sheet in the Header Window
+category as
+.B Display:
+__ Characters wide.  Default is 80.
+.TP
+.B trash
+The name of the trash bin, which may be accessed 
+just like any other mail file.
+If set, all deleted messages are moved to the trash bin.  
+The trash bin is emptied when you commit changes.  This
+option degrades the performance of
+.B mailtool
+and is not recommended.
+.LP
+.sp
+.B Mail Tool Commands
+.sp .5
+In addition to the commands recognized by
+.BR mailx (1)
+in the
+.I .mailrc 
+file,
+.B mailtool 
+also recognizes the following commands.
+.TP
+.B #-button
+This command is used to create the four custom buttons
+in
+.BR mailtool .
+It can be accessed through the
+.B Custom Buttons:, Command:,
+and
+.B Label:
+properties in the Header Window category
+of the Mail Tool Property Sheet.
+.TP
+.B #-clearaliases
+This command is used to clear all the aliases
+defined above the current line in the .mailrc
+file.  Mail Tool uses this command to help prevent
+aliases from being defined twice when it saves
+alias definitions to the .mailrc file.
+.TP
+.B ignore \fR[header-field...]
+Suppress displaying of the specified header fields.  Examples
+of header fields to ignore are Status and Received.  The fields
+are also ignored when the message is saved or printed.  This
+variable can be accessed through the Mail Tool Property Sheet
+in the Message Window category by using the
+.B Hide:
+scrolling list and the
+.B Header Field:
+text field.
+.sp
+.TP
+.B The .mailtool-init File
+.sp .5
+.LP
+The 
+.B .mailtool-init 
+file is created in your home directory when 
+a "Save Workspace" command is invoked 
+from the Workspace menu.
+This file contains
+the current positions and sizes of 
+mailtool's View, Compose, 
+and Header Windows (i.e., what's 
+currently on your screen), so
+on the next invocation of 
+.B mailtool 
+your mailtool windows will start-up
+with the same layouts.
+.sp
+The following 3 lines show the syntax of .mailtool-init's contents:
+.sp
+.B
+viewwin  xloc \fInumber\fB  yloc \fInumber\fB  width \fInumber\fB  height \fInumber\fB 
+.sp
+.B
+compwin  [iconic]  xloc \fInumber\fB  yloc \fInumber\fB  width \fInumber\fB  height \fInumber\fB  ixloc \fInumber\fB  iyloc \fInumber\fB  deldef \fInumber\fB
+.sp
+.B
+basewin  filedef \fInumber\fB  viewdef \fInumber\fB  editdef \fInumber\fB  compdef \fInumber\fB  repdef \fInumber\fR
+.sp
+The first line specifies the x and y coordinates of the top left corner
+of the View Window, and its width and height (all in pixels).
+.sp
+The second line specifies the same information for the Compose Window. 
+In addition, the 
+.B iconic
+word, if present,
+specify that the Compose Window will come up as an icon in the positions
+specified by the 
+.B ixloc
+and 
+.B iyloc
+parameters.
+The 
+.B deldef
+parameter specifies the menu default of the
+.B Deliver
+button (the number 1 for the first menu item, etc.).
+.sp
+The third line specifies, for the Header Window, menu default items for
+the 
+.B File, View, Edit, Compose, 
+and
+.B Reply
+menus, respectively.
+.sp
+.TP
+.B The .mtdeletelog File
+.B Mailtool
+creates the 
+.B .mtdeletelog 
+file in your home directory
+so that it can recover the undelete list if
+.B mailtool
+is terminated abnormally while reading the spool file.
+The next time
+.B mailtool
+comes up after an abnormal termination, it will remember
+which files were deleted so you don't have to delete
+them again, and the undelete list is there so that you
+can undelete any of those messages before saving your
+changes.  This only works if you were editing your In-Box,
+it doesn't work for other mail files.
+.sp
+.TP
+.B Signals
+.sp .5
+.LP
+.TP 15
+.B SIGUSR1
+If you send this signal to
+.B mailtool, mailtool
+will act as if you clicked on the
+.B Done
+button. It will save any changes, close the mail file, 
+and iconify.
+.SH ENVIRONMENT
+.LP
+The following are environment variables taken from the
+execution environment and are not alterable within
+.BR mailtool .
+.TP
+.BI \s-1HOME\s+1= directory
+The user's home directory.
+.TP
+.BI \s-1MAIL\s0= filename
+The name of the initial mailbox file to read (in lieu of the
+standard system mailbox).
+The default is
+.BR /var/mail/\f2username\|\f1.
+.TP
+.BI \s-1MAILRC\s+1= filename
+The name of the start-up file.
+Default is
+\f4$HOME/.mailrc\f1.
+.SH FILES
+.TP 15
+.B /var/mail/*  
+System mailboxes
+.TP
+.B /etc/mail/mailx.rc
+System setup file that is read in before ~/.mailrc.
+.TP
+.B ~/.mailrc
+Start-up file for 
+.B mail
+and
+.BR mailtool .
+.TP
+.B ~/.mailtool-init
+Start-up file for
+.B mailtool
+that contains the positions and sizes 
+of mailtool's View, Compose, and Header Windows.
+.TP
+.B ~/.mtdeletelog
+File
+.B mailtool
+uses to keep track of deleted messages.
+.SH SEE ALSO
+.BR mail (1),
+.BR mailx (1),
+.BR newaliases (1),
+.BR sendmail (1M),
+.BR textedit (1),
+.BR vacation (1),
+.BR aliases (4B),
+.BR xview (7)
+.br
+OpenWindows user documentation
+.br
+"About Mail Tool" in the Help Handbook available through the
+Help option on the Workspace menu.

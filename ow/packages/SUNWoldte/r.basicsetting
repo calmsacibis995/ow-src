@@ -1,0 +1,25 @@
+#!/bin/sh
+#
+#ident  "@(#)r.basicsetting 1.2 95/08/23 SMI"
+#
+# Copyright (c) 1993 by Sun Microsystems, Inc.
+#
+
+BS_L10N_STR=';C|ASCII'
+
+while read dest
+do
+	if [ -f $dest ] ; then
+		cp $dest /tmp/$$basic_setting
+		grep -v '^basic_setting' /tmp/$$basic_setting > $dest
+		grep '^basic_setting' /tmp/$$basic_setting | sed -e "
+		s/$BS_L10N_STR//" >> $dest
+		rm /tmp/$$basic_setting
+		rm_chk=`grep '^basic_setting' $dest`
+		if [ "$rm_chk" = "basic_setting=C" ]; then
+			rm $dest
+		fi
+	fi
+done
+
+exit 0

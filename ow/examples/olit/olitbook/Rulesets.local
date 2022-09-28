@@ -1,0 +1,99 @@
+#
+# @(#)Rulesets.local	1.7 93/12/20 SMI
+# Rulesets for inclusion in OpenWindows olitbook Makefiles 
+#
+#
+#        Copyright (C) 1986,1991  Sun Microsystems, Inc
+#                    All rights reserved.
+#          Notice of copyright on this source code 
+#          product does not indicate publication. 
+# 
+# RESTRICTED RIGHTS LEGEND: Use, duplication, or disclosure by 
+# the U.S. Government is subject to restrictions as set forth 
+# in subparagraph (c)(1)(ii) of the Rights in Technical Data
+# and Computer Software Clause at DFARS 252.227-7013 (Oct. 1988) 
+# and FAR 52.227-19 (c) (June 1987).
+#
+# This file is a product of Sun Microsystems, Inc. and is
+# provided for unrestricted use provided that this legend is
+# included on all media and as a part of the software
+# program in whole or part.  Users may copy or modify this
+# file without charge, but are not authorized to license or
+# distribute it to anyone else except as part of a product or
+# program developed by the user.
+# 
+# THIS FILE IS PROVIDED AS IS WITH NO WARRANTIES OF ANY KIND
+# INCLUDING THE WARRANTIES OF DESIGN, MERCHANTIBILITY AND
+# FITNESS FOR A PARTICULAR PURPOSE, OR ARISING FROM A COURSE
+# OF DEALING, USAGE OR TRADE PRACTICE.
+# 
+# This file is provided with no support and without any
+# obligation on the part of Sun Microsystems, Inc. to assist
+# in its use, correction, modification or enhancement.
+# 
+# SUN MICROSYSTEMS, INC. SHALL HAVE NO LIABILITY WITH RESPECT
+# TO THE INFRINGEMENT OF COPYRIGHTS, TRADE SECRETS OR ANY
+# PATENTS BY THIS FILE OR ANY PART THEREOF.
+# 
+# In no event will Sun Microsystems, Inc. be liable for any
+# lost revenue or profits or other special, indirect and
+# consequential damages, even if Sun has been advised of the
+# possibility of such damages.
+# 
+#    Sun Microsystems, Inc., 2550 Garcia Avenue,
+#    Mountain View, California 94043.
+#
+
+
+COMMAND:sh		= basename `pwd`
+DELIVERABLE		= deliverable
+TOOL			= # None
+			  
+OPTARCH-sun4-svr4       = ${TARGET_ARCH:-%=%}
+OPTARCH                 = ${OPTARCH${TARGET_ARCH}}
+
+INSTALL.publicsource.dir= ${DEST.source.olit.olitbook}/${COMMAND}
+
+MAKE.install.target	= install_publicsources
+#
+# Local rulesets
+#
+
+this_make_files_first_target:
+	#EMPTY#
+
+#
+# Install source files
+#
+#	in:	PUBLICSOURCE
+#		INSTALL.publicsource.dir	where to install
+#
+install_publicsources: ${PUBLICSOURCE}
+	@if [ ! -d ${INSTALL.publicsource.dir} ]; then \
+		echo "created [" ${INSTALL.publicsource.dir} "]"; \
+		${DINSTALL} ${INSTALL.publicsource.dir}; \
+	fi; \
+	for file in ${PUBLICSOURCE}; do \
+	  cmp -s $$file ${INSTALL.publicsource.dir}/$$file || { \
+	      case "$$file" in \
+	      customer*.mk) \
+		${ECHO} \
+		  "$$file 	=> ${INSTALL.publicsource.dir}/Makefile"; \
+		${TINSTALL.bsd} $$file ${INSTALL.publicsource.dir}; \
+		${TINSTALL.posix} -f ${INSTALL.publicsource.dir} $$file ; \
+		${MV} ${INSTALL.publicsource.dir}/$$file ${INSTALL.publicsource.dir}/Makefile ; \
+		;; \
+	      *) \
+		${ECHO} "$$file 	=> ${INSTALL.publicsource.dir}"; \
+		${TINSTALL.bsd} $$file ${INSTALL.publicsource.dir}; \
+		${TINSTALL.posix} -f ${INSTALL.publicsource.dir} $$file ; \
+		;; \
+	      esac; \
+	  }; \
+	done
+
+
+include ${RULESET.include}
+
+
+# end of Makefile

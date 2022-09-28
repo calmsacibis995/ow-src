@@ -1,0 +1,10 @@
+#	Copyright (c) 1990-92 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)depend	1.5	94/12/08 (c) Sun Microsystems, Inc.
+
+P SUNWcsr	Core Sparc, (Root)
+P SUNWcsu	Core Sparc, (Usr)
+P SUNWcar	Core Archictecture, (Root)
+P SUNWkvm	Core Architecture, (Usr)
+P SUNWxwplt      X Windows Platform Software

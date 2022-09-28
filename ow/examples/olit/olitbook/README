@@ -1,0 +1,105 @@
+This directory contains the source code for the examples in the book:
+
+ "The X Window System: Programming and Applications with Xt, OPEN LOOK Edition" 
+   by Douglas Young & John Pew
+
+publisher: Prentice Hall, 1992
+ISBN  0-13-982992-X
+Prentice Hall order line: 201-767-5937
+
+The examples in this directory are not identical to those published
+in the first edition of the book.  These programs have been modified 
+in several ways in preparation of the publication of a second edition
+which is due out in the latter part of 1993.  Here are some of the main 
+differences between this set of programs and the original ones:
+
+	* Some programs have been enhanced and had bugs fixed
+	* OlInitialize has been replaced by OlToolkitInitialize and
+	  XtAppInitialize.
+	* The use of XtSetArg has been replaced with the varargs
+	  version of the function call.
+	* Some of the programs have been internationalized.
+	* The code has been modified towards ANSI compliance.
+	* The lib directory and its corresponding xs_ functions
+	  have been removed.
+
+Most of these changes should not affect your ability to compile and
+run the programs. You may have difficuly compiling the programs if
+you do not have an ANSI C compiler because function prototypes have
+been included.
+
+
+BUILDING THE PROGRAMS
+
+1. If you have lots of disc space, just do a make in this directory.
+
+2. Otherwise, go to a specific directory and do a make.
+
+
+SETTING RESOURCES
+
+There is no longer a Resources file in each directory. Rather, an
+app-defaults directory is included with resource defaults files residing
+in that directory.  To use the app-defaults directory, append the
+path to the app-defaults directory to your XFILESEARCHPATH or 
+XUSERFILESEARCHPATH environment variable.  For example, if you install
+the olitbook directory in /home/sally then you would append the following
+to your XFILESEARCHPATH:
+
+    /home/sally/olitbook/%T/%L/%N%S
+
+If you use the C shell use the following command:
+
+    setenv XFILESEARCHPATH $XFILESEARCHPATH:/home/sally/olitbook/%T/%L/%N%S
+
+If you use the Bourne or Korn shell use the following command:
+
+    XFILESEARCHPATH=$XFILESEARCHPATH:/home/sally/olitbook/%T/%L/%N%S
+    export XFILESEARCHPATH
+
+Each file in the app-defaults directory matches the class name of
+one of the programs in the book.  Some of the app-defaults files
+contains resources for multiple versions of the same program. The multiple
+versions of a program are created by the Makefile by linking to an
+existing executable. For example, ch4 contains a program called gauge and 
+a symbolic link that points to gauge is created called gauge2.
+The corresponding app-defaults file, Gauge, matches the class name
+of the application. Whether you run gauge or gauge2 the Gauge defaults 
+file is used for setting resource defaults. Within the app-defaults file 
+there are some resource specification which only match gauge and some 
+that only match gauge2. This makes is easy to demonstrate two or more
+sets of resources for a single executable without having to change any
+environment variables.
+
+If you are running in a locale other that the C locale, app-defaults files
+should reside in the app-defaults/<locale> directory.  The %L field of
+the XFILESEARCHPATH variable is expanded at run time to your locale.
+This means that there can be a directory for each supported
+locale under app-defaults. If the app-defaults files for the locale you
+are interested in are not provided, you will have to translate the ones
+in the app-defaults directory and install the new ones in the appropriate
+subdirectory which matches your locale.
+
+
+SETTING A BACKGROUND COLOR
+
+In previous versions of OLIT it was necessary to explicitly set a
+background color to get the correct 3-dimensional appearance. This is
+no longer true.  If a background color is not set by the program or in
+an app-defaults file, the OpenWindow.WindowColor is used for the OLIT
+background color.  No special resources are required.
+
+HELP
+
+The OLIT help mechanism now uses the XFILESEARCHPATH environment
+variable to locate the help file when OL_DISK_SOURCE is used to specify
+the help type.  If the help file is not specified as an absolute
+pathname then OLIT expands XFILESEARCHPATH and looks in that directory
+for the file.  In this case the %T in the XFILESEARCHPATH environment
+variable is expanded to "help" and the %N is expanded to the name of
+the file specified in the call to OlRegisterHelp. The help directory
+has been created as a part of this release where the HelpFile is
+located for the example in ch4 named help2.
+
+John Pew
+February 1993

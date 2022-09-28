@@ -1,0 +1,37 @@
+#
+
+# Copyright
+
+#
+#	@(#)include	1.2 90/07/23
+#
+
+all::		 installtool deliverable
+deliverable:	 ${HEADERS}     ${MAKE.all.target}
+variants:	 deliverable
+optimized:	 deliverable
+debug:		 deliverable
+gprof:		 deliverable
+tool:		 deliverable    ${MAKE.tool.target}
+clean:		                ${MAKE.clean.target}
+clobber:	 clean          ${MAKE.clobber.target}
+	@${RM} ${FILES.junk} ${FILES.clobber}
+install:	 deliverable    ${MAKE.install.target}
+installvariants: variants
+installoptimized:deliverable
+installdebug:	 deliverable
+installgprof:	 deliverable
+installtool:	 tool            ${MAKE.installtool.target}
+lint:		
+
+do_cmd: FRC
+	-@for i in . ${SUBDIRS}; do \
+		if test $$i = "."; then \
+			${CMD} ; \
+		else \
+			(cd $$i; $P; ${MAKE} do_cmd CMD='${CMD}' ); \
+		fi \
+	done
+
+FRC:
+

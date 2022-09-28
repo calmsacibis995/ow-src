@@ -1,0 +1,39 @@
+#
+# 
+#
+
+
+SOURCES.c = \
+	libppm1.c 	\
+	libppm2.c 	\
+	libppm3.c 	\
+	libppm4.c 	\
+	libppm5.c 	
+
+SOURCES.h = \
+	ppm.h		\
+	ppmcmap.h	\
+	ppmdraw.h	\
+	libppm.h 	\
+	../pgm/pgm.h 	\
+	../pbm/pbm.h 	
+
+LIBRARY = libppm
+LIBVERSION =
+PROJECTDIR = ../..
+
+CPPFLAGS += -DRGB_DB=\"/usr/openwin/lib/X11/rgb\" -I../ -I../pgm -I../pbm
+
+default: all
+
+include $(PROJECTDIR)/Makefile.master.new
+LDFLAGS =
+LDLIBS  =
+
+all:	$(LIBRARY.a) 
+
+install: 
+
+clean:	master_clobber
+
+.INIT: $(SOURCES.h)

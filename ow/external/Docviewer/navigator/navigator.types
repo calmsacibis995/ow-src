@@ -1,0 +1,11 @@
+ptype Sun_DeskSet_navigator {
+	start		"navigator -tooltalk -depth x -visual y -lc_basiclocale z";
+	per_session	1;
+};
+
+otype Sun_DeskSet_Object_navigator {
+	handle:
+		Departing() => Sun_DeskSet_navigator session;
+		I_Am_Your_Viewer(in string procid, in string status) =>
+						Sun_DeskSet_navigator session;
+};

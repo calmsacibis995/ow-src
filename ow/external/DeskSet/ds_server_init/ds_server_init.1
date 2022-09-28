@@ -1,0 +1,80 @@
+.\" Copyright (c) 1994 - Sun Microsystems, Inc.
+.TH ds_server_init 1 "17 March 1992"
+.IX "ds_server_init" "" "\f3ds_server_init\f1(1) \(em utility to reduce colormap flashing"
+.IX "color" "utility" "color" "utility to reduce colormap flashing \(em \f3ds_server_init\f1(1)"
+.SH NAME
+ds_server_init
+\- store a property in the X11 server to reduce colormap flashing within the DeskSet applications
+.SH SYNOPSIS
+.B ds_server_init
+[ 
+.B \-f 
+.I filename
+] [ 
+.B \-a 
+] 
+.SH AVAILABILITY
+Available with the OpenWindows environment.
+.SH DESCRIPTION
+.LP
+.B ds_server_init
+is a utility which stores a property on 
+the server representing the set of colors to be designated as 
+the DeskSet colors.  This utility reduces colormap flashing
+within applications requiring colors by restricting applications
+to allocate colors only from the DeskSet colors.  As an application
+requires a color, a best fit color algorithm is performed upon
+the DeskSet colors to return the closest match from the DeskSet 
+color list, thus avoiding to allocate duplicate colors that vary 
+slightly.
+.sp .5
+The property is stored as a character string under the name 
+_SUN_DESKSET_COLORS where the property string consists of a series 
+of color strings in the hexadecimal form of color specification.  
+The DeskSet colors are read in from the configurable file 
+\fB$OPENWINHOME/share/xnews/client/ds_server_init/ds_colors.txt\fP.
+If this file does not exist, \fBds_server_init\fP will default to a set
+of its own back-up colors to store in the property.  
+.B ds_server_init
+will allow up to 240 colors to be set on the 
+property.  
+.sp .5
+There are four additional colors (if they exist) that are added
+to the DeskSet 
+color list besides the colors specified in the color file.
+These colors are stored in the user's \fB$HOME/.Xdefaults\fP file
+and are 1) Window.ForegroundColor, 2) Window.BackgroundColor, 
+3) OpenWindows.WorkspaceColor, and 4) OpenWindows.WindowColor.
+.sp .5
+Currently the
+only applications using this property are the DeskSet tools,
+but this concept can work on any application wishing to share colors
+with the tools.  
+.sp .5
+.SH INSTALLATION
+.B ds_server_init
+is invoked when the X11 server is started.
+.SH OPTIONS
+.TP
+.BI -f \ filename
+Indicates the filename containing the colors.
+\fB$OPENWINHOME/share/xnews/client/ds_server_init/ds_colors.txt\fP
+is the default file.
+.TP
+.B \-a
+This will force the allocation of the DeskSet colors at the time 
+.B ds_server_init
+is invoked.
+By default,
+.B ds_server_init
+will allocate each color on an as-needed
+basis controlled from within the applications.
+.SH FILES
+.TP 10
+.B $OPENWINHOME/share/xnews/client/ds_server_init/ds_colors.txt
+This file contains the set of DeskSet colors in ASCII where
+the
+.B ds_server_init
+utility reads the colors from.
+.TP
+.B $HOME/.Xdefaults

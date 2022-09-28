@@ -1,0 +1,348 @@
+
+/*
+ *  @(#)pagecounter.psw 1.1 93/05/25
+ *
+ *  Copyright (c) 1993 - Sun Microsystems Inc.
+ *
+ */
+
+#include "tags.h"
+
+/*
+ * fileinputtoken usage for PostScript rendering connection:
+ * 0: a portion of transformation matrix for page
+ * 1: b portion of transformation matrix for page
+ * 2: c portion of transformation matrix for page
+ * 3: d portion of transformation matrix for page
+ * 4: tx portion of transformation matrix for page
+ * 5: ty portion of transformation matrix for page
+ * 6: if == 1, then at the end of the source file.
+ * 7: height of pixmap
+ * 8: width of pixmap
+ * 9: dpi
+ *
+ */
+
+defineps dps_setup (float a, b, c, d, tx, ty; int width, height, dpi)
+    userdict begin
+
+% Debugging.. use myfile to write out stuff or use print
+%/myfile (/tmp/pc.out) (w) file def
+%myfile (started \n) writestring myfile flushfile
+
+% define global dictionary for all my variables (similar to 
+% fileinputtokens).
+
+	true setglobal
+	/PageCounterObjects 10 array def
+	false setglobal
+
+% define statusdict
+
+        statusdict begin
+            /waittimeout 120 store
+            /printername (Image Tool) def
+            /setjobtimeout { pop } def
+            /seteescratch { pop pop } def
+            /pagetype 0 def
+            /setdostartpage { pop } def
+            /printerror { pop pop } def
+            /pagecount 1 def
+            /setpassword { pop pop true } def
+            /setsccbatch { pop pop pop } def
+            /eescratch { pop 0 } def
+            /note {} def
+            /dostartpage false def
+            /manualfeed false def
+            /pagestackorder false def
+            /letter {} def
+            /sccbatch { pop 9600 0 } def
+            /prefeed false def
+            /legal {} def
+            /setmargins { pop pop } def
+            /setsccinteractive { pop pop pop } def
+            /setprintername { /printername exch store } def
+            /jobtimeout waittimeout def
+            /setidlefonts { cleartomark } def
+            /setdefaulttimeouts { pop pop pop } def
+            /margins { 0 0 } def
+            /printererror { pop pop } def
+            /printerror { pop pop } def
+            /manualfeedtimeout 60 def
+            /idlefonts { mark } def
+            /sccinteractive { pop 9600 0 } def
+            /defaulttimeouts { 60 60 30 } def
+            /setpagetype { /pagetype exch store } def
+            /lettertray {} def
+            /legaltray {} def
+            /b5tray {} def
+            /a4tray {} def
+        end
+
+% stolen operators from NeWS that are handy
+
+	/_isarray? { % any => boolean
+    	    type dup /arraytype eq  exch /packedarraytype eq or
+	} executeonly def
+
+        /_append {       % obj1 obj2  =>  obj3 (concatinates strings)
+            1 index length 1 index length add   % obj1 obj2 totalsize
+            string
+            dup 4 -1 roll 1 index copy length       % a2 A A l1
+            4 -1 roll putinterval
+        } executeonly def
+
+        %
+        % Sprintf: replace %'s in format string with argument as a string.
+        % Note the args can either be before or after the format string.
+        % If they precede the format string, they are in reverse order:
+        % argN .. arg0 formatstring   -or-  formatstring [arg0 .. argN]
+        %
+ 
+        /_sprintf { % args fmtstr -or- fmttstr [args] => str
+            dup _isarray? {                % convert second form to first form
+                3 exch {                   % fmtstr i+3 ai
+                    1 index 1 roll         % ai .. a1 fmtstr i+3
+                    1 add
+                } forall
+                pop
+            } if                           % aN .. ai fmtstr
+            () 250 string 3 -1 roll (%) { % aN . ai resultstr tempstr fmtstr (%)
+                search {                   % aN .. ai result temp post (%) pre
+                    6 -1 roll              % aN .. result temp post (%) pre ai
+                    dup type /stringtype ne   % is ai a string?  If so, convert.
+                        {4 index cvs} if   % aN .. result temp post (%) pre (ai)
+                    _append                % aN .. result temp post (%) pre'
+                    5 -1 roll exch _append % aN .. temp post (%) result'
+                    4 1 roll               % aN .. result' temp post (%)
+                } {                        % result temp fmt
+                    exch pop _append exit
+                } ifelse
+            } loop
+        } executeonly def
+
+% define operators that will be used to get/set values in PageCounterObjects
+
+        /definemyuserobject {           % index any => -
+            1 index PageCounterObjects length ge {
+                true setglobal
+                PageCounterObjects 
+                2 index 1 add array /PageCounterObjects exch store
+                PageCounterObjects exch 0 exch putinterval
+                false setglobal
+            } if
+            PageCounterObjects 3 1 roll put
+        } executeonly def
+ 
+        /execmyuserobject {             % index => value
+            PageCounterObjects exch get
+        } executeonly def
+
+	/clearcanvas {
+	    gsave 
+	  	1 setgray
+		0 0 moveto
+	        0 7 execmyuserobject rlineto 
+	        8 execmyuserobject 0 rlineto 
+	        0 7 execmyuserobject neg rlineto 
+		closepath fill
+	    grestore
+	} executeonly def
+
+% store original ctm and width and height
+
+        0 a definemyuserobject
+        1 b definemyuserobject
+        2 c definemyuserobject
+        3 d definemyuserobject
+        4 tx definemyuserobject
+        5 ty definemyuserobject
+        7 height definemyuserobject
+        8 width definemyuserobject
+	9 dpi definemyuserobject
+
+	/_quit /quit where pop /quit get def
+
+	/serverdict 5 dict def
+	serverdict begin
+            /setrealdevice {
+                % work around - this proc required to parse Laser Prep
+                % (AppleDict md) Procset
+            } def
+            /execjob {
+                % work around - this proc required to parse Laser Prep
+                % (AppleDict md) Procset
+            } def
+            /server (ImageTool/DPS Server) def
+            /setnulldevice {} def
+            /exitserver { pop _quit } def
+	end
+
+	% I added this because some ps files from adobe looked
+	% for /fontalreadydefined in the errordict, and it wasn't
+	% there.. I shouldn't have to do this, but enough ps files
+	% had this, so I added it.
+
+	errordict begin
+	    /fontalreadydefined {} def
+	end
+
+	% Redefine the `real' print since we had a document that redefined it!
+  	% and, turn off print since we don't care about any output from the
+	% files.
+	/it_print /print where pop /print get def
+	/print { pop } def
+	/= { pop } def
+	/== { pop } def
+
+	% don't let users kill our connection to the server...
+
+	/quit {} def
+	/#copies 1 def
+	/letter {} def
+	/note {} def
+	/legal {} def
+	/a4 {} def
+	/b5 {} def
+	/lettersmall {} def
+	/a4small {} def
+	/erasepage {} def
+	/_flushfile /flushfile where pop /flushfile get def
+	/flushfile { 
+	    dup currentfile eq {
+		pop 
+	    } { 
+		_flushfile
+	    } ifelse
+	} executeonly def
+        /stack {
+            (--top of stack--\n) print
+            0 1 count 3 sub {
+                index (%\n) _sprintf print
+            } for
+            (--bottom of stack--\n) print
+        } executeonly def
+
+	/initmatrix {
+	    [0 execmyuserobject 1 execmyuserobject 2 execmyuserobject
+	     3 execmyuserobject 4 execmyuserobject 5 execmyuserobject]
+	    setmatrix 
+	} executeonly def
+	/oldinitclip /initclip where pop /initclip get def
+	/initclip {
+	    /curpoint 0 store
+	    { currentpoint } stopped not {
+		pop pop
+		/curpoint 1 store
+	        false upath
+	    } if
+	    6 array currentmatrix
+	    oldinitclip
+	    [0 execmyuserobject 1 execmyuserobject 2 execmyuserobject
+	     3 execmyuserobject 4 execmyuserobject 5 execmyuserobject]
+	    setmatrix 
+	    0 0 
+	    8 execmyuserobject 72 mul 9 execmyuserobject div 
+	    7 execmyuserobject 72 mul 9 execmyuserobject div 
+	    rectclip
+	    setmatrix
+	    curpoint 1 eq {
+	        uappend
+	    } if
+	} executeonly def
+	/oldinitgraphics /initgraphics where pop /initgraphics get def
+	/initgraphics { % - => -
+	    oldinitgraphics
+	    [0 execmyuserobject 1 execmyuserobject 2 execmyuserobject
+	     3 execmyuserobject 4 execmyuserobject 5 execmyuserobject]
+	    setmatrix 
+	    0 0 
+	    8 execmyuserobject 72 mul 9 execmyuserobject div 
+	    7 execmyuserobject 72 mul 9 execmyuserobject div 
+	    rectclip
+	} executeonly def
+	/oldsetpagedevice /setpagedevice where pop /setpagedevice get def
+	/setpagedevice {
+	    oldsetpagedevice
+	    [0 execmyuserobject 1 execmyuserobject 2 execmyuserobject
+	     3 execmyuserobject 4 execmyuserobject 5 execmyuserobject]
+	    setmatrix 
+	} executeonly def 
+ 	/defaultmatrix { % mtx => mtx'
+	    [0 execmyuserobject 1 execmyuserobject 2 execmyuserobject
+	     3 execmyuserobject 4 execmyuserobject 5 execmyuserobject]
+	    exch copy
+	} executeonly def
+	/showpage {} def
+	/copypage {} def
+%	/oldsethsbcolor /sethsbcolor where pop /sethsbcolor get def
+%	/sethsbcolor {
+%	    oldsethsbcolor
+%	    currentrgbcolor
+%	    setXrgbactual
+%	    pop
+%	} executeonly def
+%	/oldsetrgbcolor /setrgbcolor where pop /setrgbcolor get def
+%	/setrgbcolor {
+%	    oldsetrgbcolor
+%	    currentrgbcolor
+%	    setXrgbactual
+%	    pop
+%	} executeonly def
+    end
+
+% Set the font... just in case a document doesn't do it.
+
+    /Courier 12 selectfont 
+
+endps
+
+/*
+ * dps_stop_rendering - Set the userobject so we know when we've gotten
+ *			to the end of the source file.
+ */
+
+defineps dps_stop_rendering ()
+    6 1 definemyuserobject
+endps
+
+/* 
+ * dps_count_pages - figures out how many pages in the document 
+ */
+
+defineps dps_count_pages ()
+
+    userdict begin
+	{
+            clientsync
+	    initgraphics
+	    clearcanvas
+	} 
+
+	dup
+	/showpage exch executeonly store
+	/copypage exch executeonly store
+    end
+
+    6 0 definemyuserobject
+    initgraphics
+    clearcanvas
+
+    {
+        {
+            currentfile cvx exec
+        } stopped {
+	    6 execmyuserobject 1 eq {
+		exit
+	    } if
+	    clear
+        } {
+	    exit
+	} ifelse
+    } loop
+
+    flush
+    PS_PAGES_STRING it_print
+    flush
+
+endps

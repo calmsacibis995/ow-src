@@ -1,0 +1,1550 @@
+//
+//  @(#)cetables.ascii	3.41  10/28/94 
+//
+//  Copyright (c) 1991 Sun Microsystems, Inc.
+//  All Rights Reserved.
+//
+//  Sun considers its source code as an unpublished, proprietary
+//  trade secret, and it is available only under strict license
+//  provisions.  This copyright notice is placed here only to protect
+//  Sun in the event the source is deemed a published work.  Dissassembly,
+//  decompilation, or other means of reducing the object code to human
+//  readable form is prohibited by the license agreement under which
+//  this code is provided to the user or company in possession of this
+//  copy.
+//
+//  RESTRICTED RIGHTS LEGEND: Use, duplication, or disclosure by the
+//  Government is subject to restrictions as set forth in subparagraph
+//  (c)(1)(ii) of the Rights in Technical Data and Computer Software
+//  clause at DFARS 52.227-7013 and in similar clauses in the FAR and
+//  NASA FAR Supplement.
+//
+
+//
+// code to capture lp dependencies
+//
+
+#undef sun
+
+#ifdef SVR4
+// Hack to define flag to lp for Postscript type files
+#define LP lp -Tpostscript
+// Use LPA if you aren't printing Postscript.
+#define LPA lp 
+#endif
+
+// We assume XFP will only be TARG_SYS on SVR4 systems.
+#ifdef XFP
+#define LP lp -Tpostscript
+// Use LPA if you aren't printing Postscript.
+#define LPA lp
+#endif
+
+#ifdef SUNOS
+#define LP lpr -h
+#define LPA lpr -h
+#endif 
+
+{
+NS_NAME=Types
+NS_ATTR= ((NS_MANAGER,string, <$CEPATH/tns_mgr.so>))
+NS_ENTRIES= (
+   (
+	(TYPE_NAME,type-id,<binder-prog>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Binder_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Binder_glyph_mask.icon>)
+	(TYPE_FGCOLOR,color,<0 0 0>)
+	(TYPE_BGCOLOR,color,<191 114 172>)
+	(TYPE_EXECUTABLE,string,<true>)
+	(TYPE_OPEN,call,<$FILE>)
+	(TYPE_PRINT,string,<>)
+   )(
+	(TYPE_NAME,type-id,<calctool-prog>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Calctool_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Calctool_glyph_mask.icon>)
+	(TYPE_FGCOLOR,color,<0 0 0>)
+	(TYPE_BGCOLOR,color,<114 191 191>)
+	(TYPE_EXECUTABLE,string,<true>)
+	(TYPE_OPEN,call,<$FILE>)
+	(TYPE_PRINT,string,<>)
+   )(
+	(TYPE_NAME,type-id,<ae-prog>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_SunOS_prog_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_SunOS_prog_glyph_mask.icon>)
+	(TYPE_FGCOLOR,color,<0 0 0>)
+	(TYPE_BGCOLOR,color,<114 191 191>)
+	(TYPE_EXECUTABLE,string,<true>)
+	(TYPE_OPEN,call,<$FILE>)
+	(TYPE_PRINT,string,<>)
+   )(
+	(TYPE_NAME,type-id,<clock-prog>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Clock_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Clock_glyph_mask.icon>)
+	(TYPE_FGCOLOR,color,<0 0 0>)
+	(TYPE_BGCOLOR,color,<45 229 91>)
+	(TYPE_EXECUTABLE,string,<true>)
+	(TYPE_OPEN,call,<$FILE>)
+	(TYPE_PRINT,string,<>)
+   )(
+	(TYPE_NAME,type-id,<cmdtool-prog>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Shelltool_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Shelltool_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<137 160 229>)
+	(TYPE_EXECUTABLE,string,<true>)
+	(TYPE_OPEN,call,<$FILE>)
+	(TYPE_PRINT,string,<>)
+   )(
+	(TYPE_NAME,type-id,<colorchooser>)
+	(TYPE_OPEN_TT,tt,<colorchooser>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_GUI_prog_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_GUI_prog_glyph_mask.icon>)
+	(TYPE_EXECUTABLE,string,<true>)
+	(TYPE_OPEN,call,<$FILE>)
+	(TYPE_PRINT,string,<>)
+	(TYPE_MEDIA,string,<Color_Set>)
+   )(
+	(TYPE_NAME,type-id,<dbxtool-prog>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/fm_dbxtool.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/fm_dbxtool.icon>)
+	(TYPE_BGCOLOR,color,<45 229 91>)
+	(TYPE_EXECUTABLE,string,<true>)
+	(TYPE_OPEN,call,<$FILE>)
+	(TYPE_PRINT,string,<>)
+   )(
+	(TYPE_NAME,type-id,<cm-prog>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/CalendarMgr_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/CalendarMgr_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<204 204 204>)
+	(TYPE_FGCOLOR,color,<30 30 30>)
+	(TYPE_EXECUTABLE,string,<true>)
+	(TYPE_OPEN,call,<$FILE>)
+	(TYPE_PRINT,string,<>)
+   )(
+	(TYPE_NAME,type-id,<experiment>)
+	(TYPE_OPEN,call,<textedit $FILE>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/experiment.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<38 191 191>)
+	(TYPE_FGCOLOR,color,<76 76 76>)
+	(TYPE_PRINT,string,<er_export -g>)
+   )(
+	(TYPE_NAME,type-id,<filemgr-prog>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/FileMgr_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/FileMgr_glyph_mask.icon>)
+	(TYPE_FGCOLOR,color,<0 0 0>)
+	(TYPE_BGCOLOR,color,<79 231 235>)
+	(TYPE_EXECUTABLE,string,<true>)
+	(TYPE_OPEN,call,<$FILE>)
+	(TYPE_PRINT,string,<>)
+   )(
+	(TYPE_NAME,type-id,<fontedit-prog>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Fontedit_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Fontedit_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<183 91 229>)
+	(TYPE_EXECUTABLE,string,<true>)
+	(TYPE_OPEN,call,<$FILE>)
+	(TYPE_PRINT,string,<>)
+   )(
+	(TYPE_NAME,type-id,<iconedit-prog>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Iconedit_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Iconedit_glyph_mask.icon>)
+	(TYPE_FGCOLOR,color,<0 0 0>)
+	(TYPE_BGCOLOR,color,<230 150 150>)
+	(TYPE_EXECUTABLE,string,<true>)
+	(TYPE_OPEN,call,<$FILE>)
+	(TYPE_PRINT,string,<>)
+   )(
+        (TYPE_NAME,type-id,<imagetool-prog>)
+        (TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Imagetool_glyph.icon>)
+        (TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Imagetool_glyph_mask.icon>)
+        (TYPE_FGCOLOR,color,<0 0 0>)
+        (TYPE_BGCOLOR,color,<76 191 191>)
+        (TYPE_EXECUTABLE,string,<true>)
+        (TYPE_OPEN,call,<$FILE>)
+        (TYPE_PRINT,string,<>)
+   )(
+	(TYPE_NAME,type-id,<mailtool-prog>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Mailtool_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Mailtool_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<229 141 64>)
+	(TYPE_EXECUTABLE,string,<true>)
+	(TYPE_OPEN,call,<$FILE>)
+	(TYPE_PRINT,string,<>)
+   )(
+	(TYPE_NAME,type-id,<window-prog>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_GUI_prog_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_GUI_prog_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 0 226>)
+	(TYPE_EXECUTABLE,string,<true>)
+	(TYPE_OPEN,string,<$FILE>)
+	(TYPE_PRINT,string,<>)
+   )(
+	(TYPE_NAME,type-id,<perfmeter-prog>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Perfmeter_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Perfmeter_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<229 141 64>)
+	(TYPE_EXECUTABLE,string,<true>)
+	(TYPE_OPEN,call,<$FILE>)
+	(TYPE_PRINT,string,<>)
+   )(
+	(TYPE_NAME,type-id,<printtool-prog>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Printtool_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Printtool_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<229 141 64>)
+	(TYPE_EXECUTABLE,string,<true>)
+	(TYPE_OPEN,call,<$FILE>)
+	(TYPE_PRINT,string,<>)
+   )(
+	(TYPE_NAME,type-id,<shelltool-prog>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Shelltool_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Shelltool_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 0 226>)
+	(TYPE_EXECUTABLE,string,<true>)
+	(TYPE_OPEN,call,<$FILE>)
+	(TYPE_PRINT,string,<>)
+   )(
+	(TYPE_NAME,type-id,<snapshot-prog>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Snapshot_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Snapshot_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 158 223>)
+	(TYPE_EXECUTABLE,string,<true>)
+	(TYPE_OPEN,call,<$FILE>)
+	(TYPE_PRINT,string,<>)
+   )(
+	(TYPE_NAME,type-id,<sundraw-prog>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/sundraw.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/sundraw.mask.icon>)
+	(TYPE_BGCOLOR,color,<0 94 255>)
+	(TYPE_EXECUTABLE,string,<true>)
+	(TYPE_OPEN,call,<$FILE>)
+	(TYPE_PRINT,string,<>)
+   )(
+	(TYPE_NAME,type-id,<IslandDraw-prog>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/sundraw.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/sundraw.mask.icon>)
+	(TYPE_BGCOLOR,color,<223 229 137>)
+	(TYPE_EXECUTABLE,string,<true>)
+	(TYPE_OPEN,call,<$FILE>)
+	(TYPE_PRINT,string,<>)
+   )(
+	(TYPE_NAME,type-id,<sunpaint-prog>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/sunpaint.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/sunpaint.mask.icon>)
+	(TYPE_BGCOLOR,color,<158 194 255>)
+	(TYPE_EXECUTABLE,string,<true>)
+	(TYPE_OPEN,call,<$FILE>)
+	(TYPE_PRINT,string,<>)
+   )(
+	(TYPE_NAME,type-id,<IslandPaint-prog>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/sunpaint.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/sunpaint.mask.icon>)
+	(TYPE_BGCOLOR,color,<229 137 137>)
+	(TYPE_EXECUTABLE,string,<true>)
+	(TYPE_OPEN,call,<$FILE>)
+	(TYPE_PRINT,string,<>)
+   )(
+	(TYPE_NAME,type-id,<sunwrite-prog>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/sunwrite.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/sunwrite.mask.icon>)
+	(TYPE_BGCOLOR,color,<255 7 7>)
+	(TYPE_EXECUTABLE,string,<true>)
+	(TYPE_OPEN,call,<$FILE>)
+	(TYPE_PRINT,string,<>)
+   )(
+	(TYPE_NAME,type-id,<IslandWrite-prog>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/sunwrite.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/sunwrite.mask.icon>)
+	(TYPE_BGCOLOR,color,<255 100 100>)
+	(TYPE_EXECUTABLE,string,<true>)
+	(TYPE_OPEN,call,<$FILE>)
+	(TYPE_PRINT,string,<>)
+   )(
+	(TYPE_NAME,type-id,<tapetool-prog>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Tapetool_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Tapetool_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 255>)
+	(TYPE_EXECUTABLE,string,<true>)
+	(TYPE_OPEN,call,<$FILE>)
+	(TYPE_PRINT,string,<>)
+   )(
+	(TYPE_NAME,type-id,<textedit-prog>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Textedit_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Textedit_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<7 152 255>)
+	(TYPE_EXECUTABLE,string,<true>)
+	(TYPE_OPEN,call,<$FILE>)
+	(TYPE_PRINT,string,<>)
+   )(
+	(TYPE_NAME,type-id,<X-prog>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Xprog_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Xprog_glyph_mask.icon>)
+	(TYPE_FGCOLOR,color,<60 60 60>)
+	(TYPE_BGCOLOR,color,<180 180 180>)
+	(TYPE_EXECUTABLE,string,<true>)
+	(TYPE_OPEN,string,<$FILE>)
+	(TYPE_PRINT,string,<>)
+   )(
+	(TYPE_NAME,type-id,<sun-raster>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/SunRaster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<158 194 255>)
+	(TYPE_FILE_TEMPLATE,string,<raster%t>)
+	(TYPE_COMPRESSION_METHOD, compress-id, <default-compress>)
+	(TYPE_OPEN,call,<imagetool $FILE>)
+// -H scale to height (keep aspect ratio), -m convert color to mono */
+	(TYPE_PRINT,string,<rash -H10.0in -m $FILE | LP>)
+	(TYPE_MEDIA,string,<Sun_Raster>)
+   )(
+	(TYPE_NAME,type-id,<sun-icon-image>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/SunIcon_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_FGCOLOR,color,<0 0 0>)
+	(TYPE_BGCOLOR,color,<210 130 130>)
+	(TYPE_FILE_TEMPLATE,string,<icon%t.icon>)
+	(TYPE_OPEN,call,<iconedit -Wb 255 225 225 $FILE>)
+// XXX need to find way to print image, not file contents */ */
+	(TYPE_PRINT,string,<cat $FILE | mp -o | LP>)
+   )(
+	(TYPE_NAME,type-id,<lotus-spreadsheet>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_spreadsheet_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 225 255>)
+	(TYPE_FILE_TEMPLATE,string,<lotus%t.wks>)
+	(TYPE_OPEN,call,<123 $FILE>)
+	(TYPE_PRINT,string,<>)
+   )(
+	(TYPE_NAME,type-id,<pict-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)                 
+	(TYPE_BGCOLOR,color,<255 255 160>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.pict>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<ppm-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.ppm>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<photocd-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_MEDIA,string,<PhotoCD>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.pcd>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<pj-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.pj>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<pgm-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.pgm>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<pbm-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.pbm>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<ilbm-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.ilbm>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<pi1-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.pi1>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<pcx-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.pcx>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<tga-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.tga>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<yuv-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.yuv>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<xim-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.xim>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<mtv-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.mtv>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<qrt-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.qrt>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<imgw-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.imgw>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<sld-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.sld>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<spc-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.spc>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<spu-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.spu>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<gould-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.gould>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<raw-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.raw>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<rgb3-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.rgb3>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<fs-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.fs>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<fits-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.fits>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<lispm-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.lispm>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<rawg-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.rawg>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<hips-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.hips>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<mac-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.mac>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<atk-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.atk>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<brush-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.brush>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<cmu-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.cmu>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<mgr-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.mgr>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<g3-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.g3>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<img-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.img>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<pi3-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.pi3>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<xbm-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.xbm>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_PRINT,call,<>)
+	(TYPE_MEDIA,string,<XBM>)
+   )(
+	(TYPE_NAME,type-id,<ybm-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.ybm>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<xwd-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_raster_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.xwd>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<msdos-executable>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/DOSwin_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/DOSwin_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<206 192 255>)
+	(TYPE_FILE_TEMPLATE,string,<dos%t.exe>)
+	(TYPE_OPEN,call,<dos -c $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<compress>)
+	(TYPE_ENCODE_PROG,call,<compress>)
+	(TYPE_ENCODE_ARGS,string,<-c>)
+	(TYPE_DECODE_PROG,call,<uncompress>)
+	(TYPE_DECODE_ARGS,string,<-c>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Compressed_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 0 0>)
+	(TYPE_FILE_TEMPLATE,string,<data%t.Z>)
+	(TYPE_OPEN,call,<uncompress $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<framemaker-document>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Frame_doc_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 194>)
+	(TYPE_FILE_TEMPLATE,string,<frame%t.doc>)
+	(TYPE_OPEN,call,<fmclient -f "$FILE">)
+	(TYPE_PRINT,call,<FMPRINTER=$PRINTER fmclient -p "$FILE" -P$PRINTER -c$COPIES>)
+   )(
+	(TYPE_NAME,type-id,<mail-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Mailfile_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Mailfile_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<0 255 204>)
+	(TYPE_FILE_TEMPLATE,string,<mailfile%t>)
+// setup to append to the end of the file */
+	(TYPE_DROP,string,14<cat >> "$FILE">)
+	(TYPE_OPEN,call,<textedit $FILE>)
+	(TYPE_PRINT,call,<cat $FILE | mailprint -b | mp -l -m | LP>)
+	(TYPE_MEDIA,string,<ISO_Latin_1>)
+   )(
+// mail-message has no fns entry.  this is on purpose... */
+	(TYPE_NAME,type-id,<mail-message>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Mailfile_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Mailfile_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<0 255 204>)
+	(TYPE_FILE_TEMPLATE,string,<message%t>)
+	(TYPE_OPEN,call,<textedit $FILE>)
+	(TYPE_PRINT,call,<cat $FILE | mailprint | mp -l -m | LP>)
+	(TYPE_MEDIA,string,<ISO_Latin_1>)
+   )(
+	(TYPE_NAME,type-id,<gif-file>)
+	(TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/GIF_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 160>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.gif>)
+	(TYPE_PRINT,call,<>)
+	(TYPE_MEDIA,string,<GIF>)
+   )(
+        (TYPE_NAME,type-id,<tiff-file>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+        (TYPE_ICON,icon-file,<$OPENWINHOME/include/images/TIFF_glyph.icon>)
+        (TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+        (TYPE_BGCOLOR,color,<255 255 160>)
+        (TYPE_FILE_TEMPLATE,string,<image%t.tiff>)
+        (TYPE_PRINT,call,<>)
+	(TYPE_MEDIA,string,<TIFF>)
+   )(
+        (TYPE_NAME,type-id,<jpeg-file>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+        (TYPE_ICON,icon-file,<$OPENWINHOME/include/images/JPEG_glyph.icon>)
+        (TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+        (TYPE_BGCOLOR,color,<255 255 160>)
+        (TYPE_FILE_TEMPLATE,string,<image%t.jpg>)
+        (TYPE_PRINT,call,<>)
+	(TYPE_MEDIA,string,<JPEG>)
+   )(
+	(TYPE_NAME,type-id,<sunwrite-document>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/writedoc.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/document.mask.icon>)
+	(TYPE_BGCOLOR,color,<255 198 192>)
+	(TYPE_FILE_TEMPLATE,string,<sunwrite%t>)
+	(TYPE_OPEN,call,<sunwrite $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<IslandWrite-document>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/writedoc.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/document.mask.icon>)
+	(TYPE_BGCOLOR,color,<183 193 229>)
+	(TYPE_FILE_TEMPLATE,string,<IslandWrite%t>)
+	(TYPE_OPEN,call,<IslandWrite $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<font-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Font_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<206 192 255>)
+	(TYPE_FILE_TEMPLATE,string,<font%t>)
+	(TYPE_OPEN,call,</usr/bin/fontedit $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<sundraw-document>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/drawdoc.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/document.mask.icon>)
+	(TYPE_BGCOLOR,color,<192 255 255>)
+	(TYPE_FILE_TEMPLATE,string,<sundraw%t>)
+   	(TYPE_OPEN,call,<sundraw $FILE>)
+	(TYPE_PRINT,call,<sundraw -P $FILE>)
+   )(
+	(TYPE_NAME,type-id,<IslandDraw-document>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/drawdoc.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/document.mask.icon>)
+	(TYPE_BGCOLOR,color,<183 91 229>)
+	(TYPE_FILE_TEMPLATE,string,<IslandDraw%t>)
+   	(TYPE_OPEN,call,<IslandDraw $FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<SimplifySQL-stored-query>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/SQLquery.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/SQLquery_mask.icon>)
+	(TYPE_BGCOLOR,color,<192 255 255>)
+	(TYPE_FILE_TEMPLATE,string,<simplify-query%t>)
+	(TYPE_OPEN,call,<>)
+	(TYPE_PRINT,call,<>)
+   )(
+	(TYPE_NAME,type-id,<SimplifySQL-stored-report>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/SQLreport.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/SQLreport_mask.icon>)
+	(TYPE_BGCOLOR,color,<192 255 255>)
+	(TYPE_FILE_TEMPLATE,string,<simplify-report%t>)
+	(TYPE_OPEN,call,<>)
+	(TYPE_PRINT,call,<>)
+   )(
+        (TYPE_NAME,type-id,<ae-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/CalendarMgrFile_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/CalendarMgrFile_glyph_mask.icon>)
+	(TYPE_FILE_TEMPLATE,string,<appointment%t.apt>)
+	(TYPE_OPEN,call,<ae $FILE>)
+	(TYPE_PRINT,call,<>)
+	(TYPE_MEDIA,string,<Sun_CM_Appointment>)
+   )(
+        (TYPE_NAME,type-id,<audio-file>)
+	(TYPE_OPEN_TT,tt,<audiotool>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/SunAudio_Alt_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_FILE_TEMPLATE,string,<audio%t.au>)
+	(TYPE_COMPRESSION_METHOD, compress-id, <adpcm-compress>)
+	(TYPE_OPEN,call,<audiotool $FILE>)
+	(TYPE_PRINT,call,<>)
+	(TYPE_MEDIA,string,<Sun_Audio>)
+   )(
+        (TYPE_NAME,type-id,<audio-prog>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Audiotool_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Audiotool_glyph_mask.icon>)
+	(TYPE_OPEN,call,<$FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+        (TYPE_NAME,type-id,<postscript-file>)
+	(TYPE_FILE_TEMPLATE,string,<postscript%t.ps>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/PostScript_Doc_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<200 255 0>)
+        (TYPE_OPEN,call,<imagetool $FILE>)
+	(TYPE_PRINT,call,<cat $FILE | LP>)
+	(TYPE_MEDIA,string,<PostScript>)
+   )(
+        (TYPE_NAME,type-id,<xpm-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Xpm_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_FGCOLOR,color,<229 177 45>)
+	(TYPE_FILE_TEMPLATE,string,<image%t.xpm>)
+	(TYPE_OPEN,call,<iconedit -Wb 255 225 225 $FILE>)
+	(TYPE_PRINT,call,<cat $FILE | mp -l -o | LP>)
+	(TYPE_MEDIA,string,<XPM>)
+   )(
+        (TYPE_NAME,type-id,<text>)
+	(TYPE_OPEN_TT,tt,<textedit>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/ASCII_glyph.icon>)
+        (TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_OPEN,call,<textedit $FILE>)
+	(TYPE_PRINT,call,<cat $FILE | mp -l -o | LP>)
+	(TYPE_MEDIA,string,<ISO_Latin_1>)
+   )(
+        (TYPE_NAME,type-id,<default>)
+	(TYPE_OPEN_TT,tt,<textedit>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph.icon>)
+        (TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+        (TYPE_FGCOLOR,color,<0 0 0>)
+        (TYPE_BGCOLOR,color,<229 91 193>)
+	(TYPE_OPEN,call,<textedit $FILE>)
+	(TYPE_PRINT,call,<cat $FILE | mp -l -o | LP>)
+	(TYPE_MEDIA,string,<ISO_Latin_1>)
+   )(
+        (TYPE_NAME,type-id,<default-app>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_SunOS_prog_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_SunOS_prog_glyph_mask.icon>)
+        (TYPE_FGCOLOR,color,<100 100 100>)
+        (TYPE_BGCOLOR,color,<200 235 235>)
+	(TYPE_EXECUTABLE,string,<true>)
+	(TYPE_OPEN,call,<$FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+        (TYPE_NAME,type-id,<default-doc>)
+	(TYPE_OPEN_TT,tt,<textedit>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph.icon>)
+        (TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+        (TYPE_FGCOLOR,color,<0 0 0>)
+        (TYPE_BGCOLOR,color,<191 154 172>)
+	(TYPE_OPEN,call,<textedit $FILE>)
+	(TYPE_PRINT,call,<cat $FILE | mp -l -o | LP>)
+	(TYPE_MEDIA,string,<ISO_Latin_1>)
+   )(
+        (TYPE_NAME,type-id,<default-dir>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Folder_closed_glyph.icon>)
+        (TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Folder_closed_glyph_mask.icon>)
+        (TYPE_FGCOLOR,color,<10 10 10>)
+        (TYPE_BGCOLOR,color,<214 234 201>)
+	(TYPE_PRINT,call,<>)
+   )(
+        (TYPE_NAME,type-id,<sun-executable>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_SunOS_prog_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_SunOS_prog_glyph_mask.icon>)
+        (TYPE_FGCOLOR,color,<100 100 100>)
+        (TYPE_BGCOLOR,color,<200 200 245>)
+	(TYPE_EXECUTABLE,string,<true>)
+	(TYPE_OPEN,call,<$FILE>)
+	(TYPE_PRINT,call,<>)
+   )(
+        (TYPE_NAME,type-id,<shell-script>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Shell_script_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Shell_script_glyph_mask.icon>)
+	(TYPE_FILE_TEMPLATE,string,<script%t.sh>)
+        (TYPE_FGCOLOR,color,<45 45 45>)
+        (TYPE_BGCOLOR,color,<200 255 205>)
+	(TYPE_EXECUTABLE,string,<true>)
+	(TYPE_OPEN,call,<$FILE>)
+	(TYPE_PRINT,call,<cat $FILE | mp -l -o | LP>)
+   )(
+        (TYPE_NAME,type-id,<cshell-script>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Shell_script_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Shell_script_glyph_mask.icon>)
+	(TYPE_FILE_TEMPLATE,string,<cscript%t.csh>)
+        (TYPE_FGCOLOR,color,<45 45 45>)
+        (TYPE_BGCOLOR,color,<250 205 255>)
+	(TYPE_EXECUTABLE,string,<true>)
+	(TYPE_OPEN,call,<$FILE>)
+	(TYPE_PRINT,call,<cat $FILE | mp -l -o | LP>)
+   )(
+        (TYPE_NAME,string,<GUIDE-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/GILfile_glyph.icon>)
+        (TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/GILfile_glyph_mask.icon>)
+        (TYPE_FGCOLOR,color,<0 0 0>)
+        (TYPE_BGCOLOR,color,<0 255 0>)
+	(TYPE_FILE_TEMPLATE,string,<GUIDE%t.G>)
+	(TYPE_OPEN,call,<guide $FILE>)
+	(TYPE_PRINT,call,<cat $FILE | mp -l -o | LP>)
+   )(
+        (TYPE_NAME,string,<GUIDE-project-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/GILfile_glyph.icon>)
+        (TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/GILfile_glyph_mask.icon>)
+        (TYPE_FGCOLOR,color,<0 0 0>)
+        (TYPE_BGCOLOR,color,<30 195 245>)
+	(TYPE_FILE_TEMPLATE,string,<GUIDE%t.P>)
+	(TYPE_OPEN,call,<guide $FILE>)
+	(TYPE_PRINT,call,<cat $FILE | mp -l -o | LP>)
+   )(   
+        (TYPE_NAME,string,<Makefile>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Makefile_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+        (TYPE_FGCOLOR,color,<0 0 0>)
+        (TYPE_BGCOLOR,color,<0 255 0>)
+	(TYPE_FILE_TEMPLATE,string,<Makefile%t>)
+        (TYPE_OPEN,call,<make; echo "*** $FILE done ***"; echo>)
+	(TYPE_PRINT,call,<cat $FILE | mp -l -o | LP>)
+   )(   
+        (TYPE_NAME,string,<c-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Code_csource_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+        (TYPE_FGCOLOR,color,<0 0 0>)
+        (TYPE_BGCOLOR,color,<30 205 30>)
+	(TYPE_FILE_TEMPLATE,string,<Cfile%t.c>)
+	(TYPE_PRINT,call,<cat $FILE | mp -l -o | LP>)
+	(TYPE_MEDIA,string,<ISO_Latin_1>)
+   )(
+        (TYPE_NAME,string,<h-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Code_cheader_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+        (TYPE_FGCOLOR,color,<0 0 0>)
+        (TYPE_BGCOLOR,color,<30 195 215>)
+	(TYPE_FILE_TEMPLATE,string,<Headerfile%t.h>)
+	(TYPE_PRINT,call,<cat $FILE | mp -l -o | LP>)
+	(TYPE_MEDIA,string,<ISO_Latin_1>)
+   )(
+        (TYPE_NAME,string,<o-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Code_object_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+        (TYPE_FGCOLOR,color,<60 60 60>)
+        (TYPE_BGCOLOR,color,<190 95 180>)
+	(TYPE_FILE_TEMPLATE,string,<Objectfile%t.o>)
+        (TYPE_OPEN,string,<>)
+        (TYPE_PRINT,string,<>)
+   )(
+	(TYPE_NAME,string,<compose-prog>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Mailtool_Compose_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Mailtool_Compose_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<229 183 218>)
+	(TYPE_FGCOLOR,color,<0 0 0>)
+	(TYPE_OPEN,call,<textedit $FILE>)
+	(TYPE_PRINT,call,<cat $FILE | mp -l -o | LP>)
+   )(
+	(TYPE_NAME,string,<hidden-docs>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Hidden_file_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 255>)
+	(TYPE_FGCOLOR,color,<0 0 0>)
+	(TYPE_PRINT,call,<cat $FILE | mp -l -o | LP>)
+   )(
+	(TYPE_NAME,string,<readme-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Info_doc_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 255 255>)
+	(TYPE_FGCOLOR,color,<38 76 191>)
+	(TYPE_OPEN,call,<textedit $FILE>)
+	(TYPE_PRINT,call,<cat $FILE | mp -l -o | LP>)
+	(TYPE_MEDIA,string,<ISO_Latin_1>)
+   )(
+	(TYPE_NAME,type-id,<Wingz-Worksheet-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_spreadsheet_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<76 191 191>)
+	(TYPE_FILE_TEMPLATE,string,<Wingz%t.wks>)
+	(TYPE_OPEN,call,<>)
+        (TYPE_PRINT,string,<>)
+   )(
+	(TYPE_NAME,type-id,<Wingz-Script-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph.icon>)
+        (TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<76 191 191>)
+	(TYPE_FILE_TEMPLATE,string,<Wingz%t.Spreadsheet>)
+	(TYPE_OPEN,call,<>)
+        (TYPE_PRINT,string,<>)
+   )(
+	(TYPE_NAME,type-id,<Wingz-Help-file>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph.icon>)
+        (TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<76 191 191>)
+	(TYPE_FILE_TEMPLATE,string,<Wingz%t.Help>)
+	(TYPE_OPEN,call,<>)
+        (TYPE_PRINT,string,<>)
+   )(   
+	(TYPE_NAME,compress-id,<default-compress>)
+	(TYPE_ENCODE,call,<compress -c>)
+	(TYPE_DECODE,call,<uncompress -c>)
+	(TYPE_MINSIZE,string,<5000>)
+   )(
+	(TYPE_NAME,compress-id,<adpcm-compress>)
+	(TYPE_ENCODE,call,<audioconvert -f g721>)
+	(TYPE_MINSIZE,string,<5000>)
+   )(
+	(TYPE_NAME,type-id,<corefile>)
+	(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/Corefile_glyph.icon>)
+	(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/Generic_Doc_glyph_mask.icon>)
+	(TYPE_BGCOLOR,color,<255 0 0>)
+	(TYPE_COMPRESSION_METHOD, compress-id, <default-compress>)
+// empty string indicates you should not operate on this file this way */
+	(TYPE_OPEN,call,<>)
+	(TYPE_PRINT,call,<>)
+   )
+)
+}
+
+
+
+{
+NS_NAME=Files
+NS_ATTR=((NS_MANAGER,junk,<$CEPATH/fns_mgr.so>))
+NS_ENTRIES=(
+   (	
+	(FNS_TYPE,refto-Types,<binder-prog>)
+	(FNS_FILENAME,str,<binder>)
+   )(
+	(FNS_TYPE,refto-Types,<audio-prog>)
+	(FNS_FILENAME,str,<audiotool>)
+   )(
+	(FNS_TYPE,refto-Types,<X-prog>)
+	(FNS_FILENAME,str,<bitmap>)
+   )(
+	(FNS_TYPE,refto-Types,<colorchooser>)
+	(FNS_FILENAME,str,<colorchooser>)
+   )(
+	(FNS_TYPE,refto-Types,<default-app>)
+	(FNS_FILENAME,str,<default|app>)
+   )(
+	(FNS_TYPE,refto-Types,<default-doc>)
+	(FNS_FILENAME,str,<default|doc>)
+   )(
+	(FNS_TYPE,refto-Types,<default-dir>)
+	(FNS_FILENAME,str,<default|dir>)
+   )(
+	(FNS_TYPE,refto-Types,<calctool-prog>)
+	(FNS_FILENAME,str,<calctool>)
+   )(
+	(FNS_TYPE,refto-Types,<ae-prog>)
+	(FNS_FILENAME,str,<ae>)
+   )(	
+	(FNS_TYPE,refto-Types,<clock-prog>)
+	(FNS_FILENAME,str,<clock>)
+   )(	
+	(FNS_TYPE,refto-Types,<cmdtool-prog>)
+	(FNS_FILENAME,str,<cmdtool>)
+   )(	
+	(FNS_TYPE,refto-Types,<dbxtool-prog>)
+	(FNS_FILENAME,str,<dbxtool>)
+   )(	
+	(FNS_TYPE,refto-Types,<mb-prog>)
+	(FNS_FILENAME,str,<mb>)
+   )(	
+	(FNS_TYPE,refto-Types,<cm-prog>)
+	(FNS_FILENAME,str,<cm>)
+   )(	
+	(FNS_TYPE,refto-Types,<filemgr-prog>)
+	(FNS_FILENAME,str,<filemgr>)
+   )(	
+	(FNS_TYPE,refto-Types,<fontedit-prog>)
+	(FNS_FILENAME,str,<fontedit>)
+   )(	
+	(FNS_TYPE,refto-Types,<iconedit-prog>)
+	(FNS_FILENAME,str,<iconedit>)
+   )(	
+	(FNS_TYPE,refto-Types,<mailtool-prog>)
+	(FNS_FILENAME,str,<mailtool>)
+   )(	
+	(FNS_TYPE,refto-Types,<window-prog>)
+	(FNS_FILENAME,str,<maze>)
+   )(	
+	(FNS_TYPE,refto-Types,<perfmeter-prog>)
+	(FNS_FILENAME,str,<perfmeter>)
+   )(	
+	(FNS_TYPE,refto-Types,<printtool-prog>)
+	(FNS_FILENAME,str,<printtool>)
+   )(	
+	(FNS_TYPE,refto-Types,<shelltool-prog>)
+	(FNS_FILENAME,str,<shelltool>)
+   )(	
+	(FNS_TYPE,refto-Types,<snapshot-prog>)
+	(FNS_FILENAME,str,<snapshot>)
+   )(	
+	(FNS_TYPE,refto-Types,<sundraw-prog>)
+	(FNS_FILENAME,str,<sundraw>)
+   )(	
+	(FNS_TYPE,refto-Types,<IslandDraw-prog>)
+	(FNS_FILENAME,str,<IslandDraw>)
+   )(	
+	(FNS_TYPE,refto-Types,<window-prog>)
+	(FNS_FILENAME,str,<intro3_start>)
+   )(	
+	(FNS_TYPE,refto-Types,<sunpaint-prog>)
+	(FNS_FILENAME,str,<sunpaint>)
+   )(	
+	(FNS_TYPE,refto-Types,<IslandPaint-prog>)
+	(FNS_FILENAME,str,<IslandPaint>)
+   )(	
+	(FNS_TYPE,refto-Types,<sunwrite-prog>)
+	(FNS_FILENAME,str,<sunwrite>)
+   )(	
+	(FNS_TYPE,refto-Types,<IslandWrite-prog>)
+	(FNS_FILENAME,str,<IslandWrite>)
+   )(	
+	(FNS_TYPE,refto-Types,<window-prog>)
+	(FNS_FILENAME,str,<oclock>)
+   )(	
+	(FNS_TYPE,refto-Types,<window-prog>)
+	(FNS_FILENAME,str,<props>)
+   )(	
+	(FNS_TYPE,refto-Types,<window-prog>)
+	(FNS_FILENAME,str,<vkbd>)
+   )(	
+	(FNS_TYPE,refto-Types,<tapetool-prog>)
+	(FNS_FILENAME,str,<tapetool>)
+   )(	
+	(FNS_TYPE,refto-Types,<textedit-prog>)
+	(FNS_FILENAME,str,<textedit>)
+   )(	
+	(FNS_TYPE,refto-Types,<window-prog>)
+	(FNS_FILENAME,str,<traffic>)
+   )(	
+	(FNS_TYPE,refto-Types,<X-prog>)
+	(FNS_FILENAME,str,<xcalc>)
+   )(
+	(FNS_TYPE,refto-Types,<X-prog>)
+   	(FNS_FILENAME,str,<xpuzzle>)
+   )(
+	(FNS_TYPE,refto-Types,<X-prog>)
+	(FNS_FILENAME,str,<xsol>)
+   )(
+	(FNS_TYPE,refto-Types,<X-prog>)
+	(FNS_FILENAME,str,<xbiff>)
+   )(
+	(FNS_TYPE,refto-Types,<X-prog>)
+	(FNS_FILENAME,str,<xcalc>)
+   )(
+	(FNS_TYPE,refto-Types,<X-prog>)
+	(FNS_FILENAME,str,<xclipboard>)
+   )(
+	(FNS_TYPE,refto-Types,<X-prog>)
+	(FNS_FILENAME,str,<xclock>)
+   )(
+	(FNS_TYPE,refto-Types,<X-prog>)
+	(FNS_FILENAME,str,<xcolor>)
+   )(
+	(FNS_TYPE,refto-Types,<X-prog>)
+	(FNS_FILENAME,str,<xcutsel>)
+   )(
+	(FNS_TYPE,refto-Types,<X-prog>)
+	(FNS_FILENAME,str,<xditview>)
+   )(
+	(FNS_TYPE,refto-Types,<X-prog>)
+	(FNS_FILENAME,str,<xedit>)
+   )(
+	(FNS_TYPE,refto-Types,<X-prog>)
+	(FNS_FILENAME,str,<xfd>)
+   )(
+	(FNS_TYPE,refto-Types,<X-prog>)
+	(FNS_FILENAME,str,<xload>)
+   )(
+	(FNS_TYPE,refto-Types,<X-prog>)
+	(FNS_FILENAME,str,<xlock>)
+   )(
+	(FNS_TYPE,refto-Types,<X-prog>)
+	(FNS_FILENAME,str,<xlogo>)
+   )(
+	(FNS_TYPE,refto-Types,<X-prog>)
+	(FNS_FILENAME,str,<xmag>)
+   )(
+	(FNS_TYPE,refto-Types,<X-prog>)
+	(FNS_FILENAME,str,<xman>)
+   )(
+	(FNS_TYPE,refto-Types,<X-prog>)
+	(FNS_FILENAME,str,<xmh>)
+   )(
+	(FNS_TYPE,refto-Types,<X-prog>)
+	(FNS_FILENAME,str,<xterm>)
+   )(
+	(FNS_TYPE,refto-Types,<sun-icon-image>)
+	(FNS_FILENAME,str,<*.icon>)
+   )(
+	(FNS_TYPE,refto-Types,<sun-icon-image>)
+	(FNS_MAGIC_OFFSET,str,<0>)
+	(FNS_MAGIC_MATCH,str,</* Format_version=>)
+	(FNS_MAGIC_TYPE,str,<string>)
+   )(
+	(FNS_TYPE,refto-Types,<experiment>)
+	(FNS_MAGIC_OFFSET,str,<0>)
+	(FNS_MAGIC_MATCH,str,<Jn<->)
+	(FNS_MAGIC_TYPE,str,<string>)
+   )(
+	(FNS_TYPE,refto-Types,<lotus-spreadsheet>)
+	(FNS_FILENAME,str,<*.wk?>)
+   )(	
+	(FNS_TYPE,refto-Types,<corefile>)
+	(FNS_FILENAME,str,<core*>)
+   )(
+	(FNS_TYPE,refto-Types,<msdos-executable>)
+   	(FNS_FILENAME,str,<*.exe>)
+   )(	
+	(FNS_TYPE,refto-Types,<compress>)
+        (FNS_FILENAME,str,<*.Z>)
+   )(
+	(FNS_TYPE,refto-Types,<framemaker-document>)
+	(FNS_MAGIC_OFFSET,str,<0>)
+	(FNS_MAGIC_MATCH,str,<<MakerFile>)
+	(FNS_MAGIC_TYPE,str,<string>)
+   )(
+	(FNS_TYPE,refto-Types,<framemaker-document>)
+	(FNS_MAGIC_OFFSET,str,<0>)
+	(FNS_MAGIC_MATCH,str,5<<Book>)
+	(FNS_MAGIC_TYPE,str,<string>)
+   )(
+	(FNS_TYPE,refto-Types,<mail-file>)
+	(FNS_MAGIC_OFFSET,str,<0>)
+	(FNS_MAGIC_MATCH,str,<From >)
+	(FNS_MAGIC_TYPE,str,<string>)
+   )(
+	(FNS_TYPE,refto-Types,<sun-raster>)
+	(FNS_MAGIC_OFFSET,str,<0>)
+	(FNS_MAGIC_MATCH,str,<Y¦j•>)
+	(FNS_MAGIC_TYPE,str,<string>)
+   )(
+	(FNS_TYPE,refto-Types,<sunwrite-document>)
+	(FNS_MAGIC_OFFSET,str,<3>)
+	(FNS_MAGIC_MATCH,str,<pgscriptver>)
+	(FNS_MAGIC_TYPE,str,<string>)
+   )(
+	(FNS_TYPE,refto-Types,<IslandWrite-document>)
+	(FNS_MAGIC_OFFSET,str,<4>)
+	(FNS_MAGIC_MATCH,str,<pgscriptver>)
+	(FNS_MAGIC_TYPE,str,<string>)
+   )(
+	(FNS_TYPE,refto-Types,<font-file>)
+	(FNS_MAGIC_OFFSET,str,<0>)
+	(FNS_MAGIC_MATCH,str,<0436>)
+	(FNS_MAGIC_TYPE,str,<short>)
+   )(
+	(FNS_TYPE,refto-Types,<sundraw-document>)
+	(FNS_MAGIC_OFFSET,str,<10>)
+	(FNS_MAGIC_MATCH,str,<sundraw>)
+	(FNS_MAGIC_TYPE,str,<string>)
+   )(
+	(FNS_TYPE,refto-Types,<IslandDraw-document>)
+	(FNS_MAGIC_OFFSET,str,<10>)
+	(FNS_MAGIC_MATCH,str,<islanddraw>)
+	(FNS_MAGIC_TYPE,str,<string>)
+   )(
+	(FNS_TYPE,refto-Types,<IslandDraw-document>)
+	(FNS_MAGIC_OFFSET,str,<13>)
+	(FNS_MAGIC_MATCH,str,<DrawFile1>)
+	(FNS_MAGIC_TYPE,str,<string>)
+   )(
+        (FNS_TYPE,refto-Types,<ae-file>)
+        (FNS_MAGIC_OFFSET,str,<3>)
+        (FNS_MAGIC_MATCH,str,<** Calendar Appointment>)
+        (FNS_MAGIC_TYPE,str,<string>)
+   )(
+        (FNS_TYPE,refto-Types,<audio-file>)
+        (FNS_MAGIC_OFFSET,str,<0>)
+        (FNS_MAGIC_MATCH,str,<.snd>)
+        (FNS_MAGIC_TYPE,str,<string>)
+   )(
+        (FNS_TYPE,refto-Types,<tiff-file>)
+        (FNS_FILENAME,str,<*.TIFF>)
+   )(
+        (FNS_TYPE,refto-Types,<tiff-file>)
+        (FNS_FILENAME,str,<*.TIF>)
+   )(
+        (FNS_TYPE,refto-Types,<tiff-file>)
+        (FNS_FILENAME,str,<*.tif>)
+   )(
+        (FNS_TYPE,refto-Types,<tiff-file>)
+        (FNS_FILENAME,str,<*.tiff>)
+   )(
+        (FNS_TYPE,refto-Types,<jpeg-file>)
+	(FNS_MAGIC_OFFSET,str,<0>)
+	(FNS_MAGIC_MATCH,str,<ÿØÿ>)
+	(FNS_MAGIC_TYPE,str,<string>)
+   )(
+        (FNS_TYPE,refto-Types,<jpeg-file>)
+        (FNS_FILENAME,str,<*.jpg>)
+   )(
+        (FNS_TYPE,refto-Types,<pj-file>)
+        (FNS_FILENAME,str,<*.pj>)
+   )(
+        (FNS_TYPE,refto-Types,<postscript-file>)
+        (FNS_FILENAME,str,<*.ps>)
+   )(
+        (FNS_TYPE,refto-Types,<postscript-file>)
+	(FNS_MAGIC_OFFSET,str,<0>)
+	(FNS_MAGIC_MATCH,str,<%!>)
+	(FNS_MAGIC_TYPE,str,<string>)
+   )(
+	(FNS_TYPE,refto-Types,<SimplifySQL-stored-query>)
+	(FNS_MAGIC_OFFSET,str,<0>)
+	(FNS_MAGIC_MATCH,str,<SSQLQuery>)
+	(FNS_MAGIC_TYPE,str,<string>)
+   )(
+	(FNS_TYPE,refto-Types,<SimplifySQL-stored-report>)
+	(FNS_MAGIC_OFFSET,str,<0>)
+	(FNS_MAGIC_MATCH,str,<SSQLReport>)
+	(FNS_MAGIC_TYPE,str,<string>)
+   )(
+	(FNS_TYPE,refto-Types,<xpm-file>)
+	(FNS_MAGIC_OFFSET,str,<0>)
+	(FNS_MAGIC_MATCH,str,<! XPM2>)
+	(FNS_MAGIC_TYPE,str,<string>)
+   )(
+        (FNS_TYPE,refto-Types,<xpm-file>)
+        (FNS_FILENAME,str,<*.xpm>)
+   )(
+	(FNS_TYPE,refto-Types,<pict-file>)
+	(FNS_FILENAME,str,<*.PICT>)
+   )(
+	(FNS_TYPE,refto-Types,<pict-file>)
+	(FNS_FILENAME,str,<*.pict>)
+   )(
+	(FNS_TYPE,refto-Types,<ppm-file>)
+	(FNS_MAGIC_OFFSET,str,<0>)
+	(FNS_MAGIC_MATCH,str,<P6>)
+	(FNS_MAGIC_TYPE,str,<string>)
+   )(
+	(FNS_TYPE,refto-Types,<ppm-file>)
+	(FNS_MAGIC_OFFSET,str,<0>)
+	(FNS_MAGIC_MATCH,str,<P3>)
+	(FNS_MAGIC_TYPE,str,<string>)
+   )(
+	(FNS_TYPE,refto-Types,<pgm-file>)
+	(FNS_MAGIC_OFFSET,str,<0>)
+	(FNS_MAGIC_MATCH,str,<P5>)
+	(FNS_MAGIC_TYPE,str,<string>)
+   )(
+	(FNS_TYPE,refto-Types,<pgm-file>)
+	(FNS_MAGIC_OFFSET,str,<0>)
+	(FNS_MAGIC_MATCH,str,<P2>)
+	(FNS_MAGIC_TYPE,str,<string>)
+   )(
+	(FNS_TYPE,refto-Types,<pbm-file>)
+	(FNS_MAGIC_OFFSET,str,<0>)
+	(FNS_MAGIC_MATCH,str,<P4>)
+	(FNS_MAGIC_TYPE,str,<string>)
+   )(
+	(FNS_TYPE,refto-Types,<pbm-file>)
+	(FNS_MAGIC_OFFSET,str,<0>)
+	(FNS_MAGIC_MATCH,str,<P1>)
+	(FNS_MAGIC_TYPE,str,<string>)
+   )(
+	(FNS_TYPE,refto-Types,<ilbm-file>)
+	(FNS_MAGIC_OFFSET,str,<0>)
+	(FNS_MAGIC_MATCH,str,<ILBM>)
+	(FNS_MAGIC_TYPE,str,<string>)
+   )(
+	(FNS_TYPE,refto-Types,<ilbm-file>)
+	(FNS_FILENAME,str,<*.ilbm>)
+   )(
+	(FNS_TYPE,refto-Types,<pi1-file>)
+	(FNS_FILENAME,str,<*.pi1>)
+   )(
+	(FNS_TYPE,refto-Types,<pcx-file>)
+	(FNS_FILENAME,str,<*.pcx>)
+   )(
+	(FNS_TYPE,refto-Types,<tga-file>)
+	(FNS_FILENAME,str,<*.tga>)
+   )(
+	(FNS_TYPE,refto-Types,<yuv-file>)
+	(FNS_FILENAME,str,<*.yuv>)
+   )(
+	(FNS_TYPE,refto-Types,<xim-file>)
+	(FNS_FILENAME,str,<*.xim>)
+   )(
+	(FNS_TYPE,refto-Types,<mtv-file>)
+	(FNS_FILENAME,str,<*.mtv>)
+   )(
+	(FNS_TYPE,refto-Types,<qrt-file>)
+	(FNS_FILENAME,str,<*.qrt>)
+   )(
+	(FNS_TYPE,refto-Types,<imgw-file>)
+	(FNS_FILENAME,str,<*.imgw>)
+   )(
+	(FNS_TYPE,refto-Types,<sld-file>)
+	(FNS_FILENAME,str,<*.sld>)
+   )(
+	(FNS_TYPE,refto-Types,<spc-file>)
+	(FNS_FILENAME,str,<*.spc>)
+   )(
+	(FNS_TYPE,refto-Types,<spu-file>)
+	(FNS_FILENAME,str,<*.spu>)
+   )(
+	(FNS_TYPE,refto-Types,<gould-file>)
+	(FNS_FILENAME,str,<*.gould>)
+   )(
+	(FNS_TYPE,refto-Types,<raw-file>)
+	(FNS_FILENAME,str,<*.raw>)
+   )(
+	(FNS_TYPE,refto-Types,<rgb3-file>)
+	(FNS_FILENAME,str,<*.rgb3>)
+   )(
+	(FNS_TYPE,refto-Types,<fs-file>)
+	(FNS_FILENAME,str,<*.fs>)
+   )(
+	(FNS_TYPE,refto-Types,<fits-file>)
+	(FNS_FILENAME,str,<*.fits>)
+   )(
+	(FNS_TYPE,refto-Types,<lispm-file>)
+	(FNS_FILENAME,str,<*.lispm>)
+   )(
+	(FNS_TYPE,refto-Types,<lispm-file>)
+	(FNS_MAGIC_OFFSET,str,<0>)
+	(FNS_MAGIC_MATCH,str,<This is a BitMap file>)
+	(FNS_MAGIC_TYPE,str,<string>)
+   )(
+	(FNS_TYPE,refto-Types,<rawg-file>)
+	(FNS_FILENAME,str,<*.rawg>)
+   )(
+	(FNS_TYPE,refto-Types,<hips-file>)
+	(FNS_FILENAME,str,<*.hips>)
+   )(
+	(FNS_TYPE,refto-Types,<mac-file>)
+	(FNS_FILENAME,str,<*.mac>)
+   )(
+	(FNS_TYPE,refto-Types,<atk-file>)
+	(FNS_FILENAME,str,<*.atk>)
+   )(
+	(FNS_TYPE,refto-Types,<brush-file>)
+	(FNS_FILENAME,str,<*.brush>)
+   )(
+	(FNS_TYPE,refto-Types,<cmu-file>)
+	(FNS_FILENAME,str,<*.cmu>)
+   )(
+	(FNS_TYPE,refto-Types,<cmu-file>)
+	(FNS_MAGIC_OFFSET,str,<0>)
+	(FNS_MAGIC_MATCH,str,<\361\0\100\273>)
+	(FNS_MAGIC_TYPE,str,<string>)
+   )(
+	(FNS_TYPE,refto-Types,<mgr-file>)
+	(FNS_FILENAME,str,<*.mgr>)
+   )(
+	(FNS_TYPE,refto-Types,<mgr-file>)
+	(FNS_MAGIC_OFFSET,str,<0>)
+	(FNS_MAGIC_MATCH,str,<yz>)
+	(FNS_MAGIC_TYPE,str,<string>)
+   )(
+	(FNS_TYPE,refto-Types,<g3-file>)
+	(FNS_FILENAME,str,<*.g3>)
+   )(
+	(FNS_TYPE,refto-Types,<img-file>)
+	(FNS_FILENAME,str,<*.img>)
+   )(
+	(FNS_TYPE,refto-Types,<pi3-file>)
+	(FNS_FILENAME,str,<*.pi3>)
+   )(
+	(FNS_TYPE,refto-Types,<xbm-file>)
+	(FNS_FILENAME,str,<*.xbm>)
+   )(
+	(FNS_TYPE,refto-Types,<ybm-file>)
+	(FNS_FILENAME,str,<*.ybm>)
+   )(
+	(FNS_TYPE,refto-Types,<ybm-file>)
+	(FNS_MAGIC_OFFSET,str,<0>)
+	(FNS_MAGIC_MATCH,str,<!!>)
+	(FNS_MAGIC_TYPE,str,<string>)
+   )(
+	(FNS_TYPE,refto-Types,<xwd-file>)
+	(FNS_FILENAME,str,<*.xwd>)
+   )(
+	(FNS_TYPE,refto-Types,<photocd-file>)
+	(FNS_FILENAME,str,<*.pcd>)
+   )(
+        (FNS_TYPE,refto-Types,<photocd-file>)
+        (FNS_FILENAME,str,<*.PCD>)
+   )(
+	(FNS_TYPE,refto-Types,<gif-file>)
+	(FNS_FILENAME,str,<*.gif>)
+   )(
+        (FNS_TYPE,refto-Types,<gif-file>)
+        (FNS_FILENAME,str,<*.GIF>)
+   )(
+	(FNS_TYPE,refto-Types,<gif-file>)
+	(FNS_MAGIC_OFFSET,str,<0>)
+	(FNS_MAGIC_MATCH,str,<GIF87a>)
+	(FNS_MAGIC_TYPE,str,<string>)
+   )(
+	(FNS_TYPE,refto-Types,<gif-file>)
+	(FNS_MAGIC_OFFSET,str,<0>)
+	(FNS_MAGIC_MATCH,str,<GIF89a>)
+	(FNS_MAGIC_TYPE,str,<string>)
+   )(
+        (FNS_TYPE,refto-Types,<cshell-script>)
+        (FNS_FILENAME,str,<*.csh>)
+   )(
+	(FNS_TYPE,refto-Types,<cshell-script>)
+	(FNS_MAGIC_OFFSET,str,<0>)
+	(FNS_MAGIC_MATCH,str,<#!/bin/csh>)
+	(FNS_MAGIC_TYPE,str,<string>)
+   )(
+	(FNS_TYPE,refto-Types,<cshell-script>)
+	(FNS_MAGIC_OFFSET,str,<0>)
+// some scripts have a space in them */
+	(FNS_MAGIC_MATCH,str,<#! /bin/csh>)
+	(FNS_MAGIC_TYPE,str,<string>)
+   )(
+        (FNS_TYPE,refto-Types,<shell-script>)
+        (FNS_FILENAME,str,<*.sh>)
+   )(
+	(FNS_TYPE,refto-Types,<shell-script>)
+	(FNS_MAGIC_OFFSET,str,<0>)
+	(FNS_MAGIC_MATCH,str,<#!/bin/sh>)
+	(FNS_MAGIC_TYPE,str,<string>)
+   )(
+	(FNS_TYPE,refto-Types,<shell-script>)
+	(FNS_MAGIC_OFFSET,str,<0>)
+// some scripts have a space in them */
+	(FNS_MAGIC_MATCH,str,<#! /bin/sh>)
+	(FNS_MAGIC_TYPE,str,<string>)
+   )(
+        (FNS_FILENAME,str,<Makefile*>)
+        (FNS_TYPE,refto-Types,<Makefile>)
+   )(
+        (FNS_FILENAME,str,<makefile*>)
+        (FNS_TYPE,refto-Types,<Makefile>)
+   )(
+        (FNS_FILENAME,str,<*.G>)
+        (FNS_TYPE,refto-Types,<GUIDE-file>)
+   )(
+        (FNS_FILENAME,str,<*.P>)
+        (FNS_TYPE,refto-Types,<GUIDE-project-file>)
+   )(
+        (FNS_FILENAME,str,<*.c>)
+        (FNS_TYPE,refto-Types,<c-file>)
+   )(
+        (FNS_FILENAME,str,<*.h>)
+        (FNS_TYPE,refto-Types,<h-file>)
+   )(
+        (FNS_FILENAME,str,<*.o>)
+        (FNS_TYPE,refto-Types,<o-file>)
+   )(
+	(FNS_TYPE,refto-Types,<compose-prog>)
+	(FNS_FILENAME,str,<compose>)
+   )(
+	(FNS_TYPE,refto-Types,<readme-file>)
+	(FNS_FILENAME,str,<READ.*.ME>)
+   )(
+	(FNS_TYPE,refto-Types,<readme-file>)
+	(FNS_FILENAME,str,<README>)
+   )(
+	(FNS_TYPE,refto-Types,<readme-file>)
+	(FNS_FILENAME,str,<Read.*.Me>)
+   )(
+	(FNS_TYPE,refto-Types,<readme-file>)
+	(FNS_FILENAME,str,<read.*.me>)
+   )(
+	(FNS_TYPE,refto-Types,<readme-file>)
+	(FNS_FILENAME,str,<README.*>)
+   )(
+	(FNS_TYPE,refto-Types,<Wingz-Worksheet-file>)
+	(FNS_MAGIC_OFFSET,str,<0>)
+	(FNS_MAGIC_MATCH,str,<WNGZWZSS>)
+	(FNS_MAGIC_TYPE,str,<string>)
+   )(
+	(FNS_TYPE,refto-Types,<Wingz-Script-file>)
+	(FNS_MAGIC_OFFSET,str,<0>)
+	(FNS_MAGIC_MATCH,str,<WNGZWZSC>)
+	(FNS_MAGIC_TYPE,str,<string>)
+   )(
+	(FNS_TYPE,refto-Types,<Wingz-Help-file>)
+	(FNS_MAGIC_OFFSET,str,<0>)
+	(FNS_MAGIC_MATCH,str,<WNGZWZHP>)
+	(FNS_MAGIC_TYPE,str,<string>)
+   )
+)
+}
+

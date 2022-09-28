@@ -1,0 +1,31 @@
+#
+# @(#)Imakefile 1.7 91/08/23 SMI
+#
+# Imakefile for panels
+#
+# LIBRARY_DEST is the location of the XView libraries
+# HEADER_DEST is the location of the XView header files
+# LIBDIR is the directory containing the X11 library (libX11.a)
+#
+
+LIBRARY_DEST=/home/xview/usr/lib
+HEADER_DEST=/home/xview/usr/include
+
+LIBDIR=/home/X11/lib
+LDFLAGS=-L$(LIBRARY_DEST) -L$(LIBDIR) -lxview -lX11
+INCLUDES= -I.. -I$(HEADER_DEST) -I$(TOP) -DSTANDALONE
+
+# Uncomment the following line to use libxvol.a and libxvin.a
+#
+#LDFLAGS=-L$(LIBRARY_DEST) -L$(LIBDIR) -lxvol -lxvin -lX11
+
+TARGETS=btn_menu choices client_data item_move list_glyphs \
+	panel_repaint repaint simple_panel stop_frame quit \
+	slider
+
+ICONS=normal.icon normal2.icon busy.icon busy2.icon
+
+all: $(ICONS) $(TARGETS)
+
+${TARGETS}: $$@.c $$@.o 
+	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $@.o 

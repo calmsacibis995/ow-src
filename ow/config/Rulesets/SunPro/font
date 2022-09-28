@@ -1,0 +1,251 @@
+#
+# @(#)font 1.12 93/04/19
+#
+
+#
+# Copyright (c) 1987 by Sun Microsystems, Inc.
+#
+
+#
+#	Preconditions
+#		MAKE.install.target
+#		SOURCES
+#
+#	Optional Preconditions (at least one of these should be defined)
+#		FONTS.afb
+#		FONTS.afm
+#		FONTS.bdf
+#		FONTS.f3b
+#		FONTS.spd
+#		FONTS.pfa
+#		FONTS.bepf
+#		FONTS.ps
+#		FONTS.source
+#		HEADERS
+#		POSTSCRIPT
+#
+#	Optional Preconditions
+#		MAKE.tool.target
+#		MAKE.installtool.target
+#		MAKE.all.target
+#		MAKE.clean.target
+#		MAKE.clobber.target
+#		MAKE.source.target
+#
+
+CONVERTFONT	= ${XW.bin}/convertfont
+BLDFAMILY	= ${XW.bin}/bldfamily
+MKICONFONT	= ${XW.bin}/mkiconfont
+BDFTOPCF	= ${XW.bin}/bdftopcf -p1
+BDFTOPCF.options = -t
+MKFONTDIR	= ${XW.bin}/mkfontdir
+INSTALLALIAS	= ${XW.lib}/installalias
+
+FONTS=	${FONTS.afb} \
+	${FONTS.afm} \
+	${FONTS.bdf} \
+	${FONTS.f3b} \
+	${FONTS.spd} \
+	${FONTS.pfa} \
+	${FONTS.bepf} \
+	${FONTS.ps}
+
+all:: installtool deliverable
+
+tool::		${MAKE.tool.target}
+installtool::	${MAKE.installtool.target}
+deliverable::	${MAKE.all.target}
+galactic::	installtool deliverable
+variants optimized debug gprof static dynamic:: deliverable
+
+checkmakefile::
+	@echo "FONTS.afb='${FONTS.afb}'" 
+	@echo "FONTS.afm='${FONTS.afm}'" 
+	@echo "FONTS.bdf='${FONTS.bdf}'" 
+	@echo "FONTS.f3b='${FONTS.f3b}'" 
+	@echo "FONTS.spd='${FONTS.spd}'" 
+	@echo "FONTS.pfa='${FONTS.pfa}'" 
+	@echo "FONTS.pfa='${FONTS.bepf}'" 
+	@echo "FONTS.ps='${FONTS.ps}'" 
+	@echo "FONTS='${FONTS}'" 
+	@echo "POSTSCRIPT='${POSTSCRIPT}'" 
+	@echo "HEADERS='${HEADERS}'" 
+	@echo "SOURCES='${SOURCES}'" 
+
+clean::  ${MAKE.clean.target}
+
+clobber:: clean ${MAKE.clobber.target}
+	@${RM} *.fb *.ff *.fm *.list fonts.dir
+	@${RM} ${FILES.junk} ${FILES.clobber} ${DERIVEDFILES}
+
+installshared \
+	installoptimized \
+	installdebug \
+	installgprof \
+	installvariants:: install
+
+#
+# This is the real installation target.
+#
+install:: ${MAKE.install.target} ${MAKE.source.target}
+
+#
+# The `make test` target can be used when testing a font in the build
+# hierarchy without actually installing it.
+#
+test: ${MAKE.install.target:install.%=test.%} 
+
+#
+# The generic font installation rule.  FONTS.raw and INSTALL.raw.dir
+# need to be specified as conditional macros to use this rule.
+#
+install.FONTS.raw:	${FONTS.raw}
+	@for file in ${FONTS.raw} ; do \
+	  if cmp -s $$file ${INSTALL.raw.dir}/$$file ; \
+	    then : ; \
+	    else \
+		${ECHO} "$$file => ${INSTALL.raw.dir}";\
+		${TINSTALL.bsd} $$file ${INSTALL.raw.dir} ; \
+		${TINSTALL.posix} -f ${INSTALL.raw.dir} $$file ; \
+	  fi \
+	done
+
+#
+# The `-o filename` option to convertfont is used because
+# convertfont can generate filenames (based on the font name)
+# that collide with each other, so we give it a filename that we
+# know is unique.
+#
+
+install.FONTS.afb:	${FONTS.afb}
+	@for f in ${FONTS.afb} ; do \
+		${CONVERTFONT}  ${CONVERTFONT.options} \
+				-d${INSTALL.fonts.dir} \
+				-o `basename $$f .afb` $$f ; \
+	 done
+
+test.FONTS.afb:		${FONTS.afb}
+	for f in ${FONTS.afb} ; do \
+		${CONVERTFONT}  ${CONVERTFONT.options} \
+				-d. -o `basename $$f .afb` $$f ; \
+	 done
+
+install.FONTS.afm:= FONTS.raw=${FONTS.afm}
+install.FONTS.afm:= INSTALL.raw.dir=${INSTALL.afm.dir}
+install.FONTS.afm: install.FONTS.raw
+
+test.FONTS.afm:		${FONTS.afm}
+
+# Convert bdf format fonts to pcf, compress them and install as pcf.Z format fonts.
+
+install.FONTS.bdf:	${FONTS.bdf}
+	@for f in ${FONTS.bdf} ; do \
+		LD_LIBRARY_PATH=${XW_HOME}/server/lib; export LD_LIBRARY_PATH; \
+		${BDFTOPCF}  ${BDFTOPCF.options} $$f \
+			| compress > ${INSTALL.fonts.dir}/`basename $$f .bdf`.pcf.Z ; \
+		${ECHO} "$$f => ${INSTALL.fonts.dir}/`basename $$f .bdf`.pcf.Z"; \
+	 done
+
+test.FONTS.bdf:		${FONTS.bdf}
+	for f in ${FONTS.bdf} ; do \
+		LD_LIBRARY_PATH=${XW_HOME}/server/lib; export LD_LIBRARY_PATH; \
+		${BDFTOPCF}  ${BDFTOPCF.options} $$f \
+			| compress > `basename $$f .bdf`.pcf.Z ; \
+	 done
+
+install.FONTS.f3b:= FONTS.raw=${FONTS.f3b}
+install.FONTS.f3b:= INSTALL.raw.dir=${INSTALL.fonts.dir}
+install.FONTS.f3b: install.FONTS.raw
+
+test.FONTS.f3b:		${FONTS.f3b}
+
+install.FONTS.spd:= FONTS.raw=${FONTS.spd}
+install.FONTS.spd:= INSTALL.raw.dir=${INSTALL.fonts.dir}
+install.FONTS.spd: install.FONTS.raw
+
+test.FONTS.spd:		${FONTS.spd}
+
+install.FONTS.pfa:= FONTS.raw=${FONTS.pfa}
+install.FONTS.pfa:= INSTALL.raw.dir=${INSTALL.fonts.dir}
+install.FONTS.pfa: install.FONTS.raw
+
+test.FONTS.pfa:		${FONTS.pfa}
+
+install.FONTS.bepf:= FONTS.raw=${FONTS.bepf}
+install.FONTS.bepf:= INSTALL.raw.dir=${INSTALL.fonts.dir}
+install.FONTS.bepf: install.FONTS.raw
+
+test.FONTS.bepf:	${FONTS.bepf}
+
+install.FONTS.ps:= FONTS.raw=${FONTS.ps}
+install.FONTS.ps:= INSTALL.raw.dir=${INSTALL.fonts.dir}
+install.FONTS.ps: install.FONTS.raw
+
+test.FONTS.ps:		${FONTS.ps}
+
+install.FONTS.source:= FONTS.raw=${FONTS.source}
+install.FONTS.source:= INSTALL.raw.dir=${INSTALL.fontsource.dir}
+install.FONTS.source: install.FONTS.raw
+
+test.FONTS.source:	${FONTS.source}
+
+install.FONTS.source.alias:	${FONTS.source.alias}
+	@${TINSTALL.bsd} ${FONTS.source.alias} ${INSTALL.fontsource.dir}
+	@${TINSTALL.posix} -f ${INSTALL.fontsource.dir} ${FONTS.source.alias}
+	@${MV} ${INSTALL.fontsource.dir}/fonts.alias ${INSTALL.fontsource.dir}/${FONTS.source.alias}
+	@${ECHO} "${FONTS.source.alias} => ${INSTALL.fontsource.dir}/fonts.alias"
+
+test.FONTS.source.alias:	${FONTS.source.alias}
+	cp ${FONTS.source.alias} fonts.alias
+
+install.FONTS.source.scale:	${FONTS.source.scale}
+	@${TINSTALL.bsd} ${FONTS.source.scale} ${INSTALL.fontsource.dir}
+	@${TINSTALL.posix} -f ${INSTALL.fontsource.dir} ${FONTS.source.scale}
+	@${MV} ${INSTALL.fontsource.dir}/fonts.scale ${INSTALL.fontsource.dir}/${FONTS.source.scale}
+	@${ECHO} "${FONTS.source.scale} => ${INSTALL.fontsource.dir}/fonts.scale"
+
+test.FONTS.source.scale:	${FONTS.source.scale}
+	cp ${FONTS.source.scale} fonts.scale
+
+install.POSTSCRIPT:	${POSTSCRIPT}
+	@${TINSTALL.bsd} ${POSTSCRIPT} ${DEST.ps}
+	@${TINSTALL.posix} -f ${DEST.ps} ${POSTSCRIPT}
+
+test.POSTSCRIPT:	${POSTSCRIPT}
+
+install.HEADERS:	${HEADERS}
+	@${TINSTALL.bsd} ${HEADERS} ${DEST.include.X11}
+	@${TINSTALL.posix} -f ${DEST.include.X11} ${HEADERS}
+
+test.HEADERS:		${HEADERS}
+
+install.FONTS.dir:
+	@LD_LIBRARY_PATH=${XW_HOME}/server/lib; export LD_LIBRARY_PATH; \
+		${MKFONTDIR} ${INSTALL.fonts.dir}
+	@if [ "x${FONTS.alias}" != "x" ]; then \
+		${INSTALLALIAS} ${FONTS.alias} ${INSTALL.fonts.dir}; \
+	fi
+	@${ECHO} "${INSTALL.fonts.dir}/fonts.dir updated"
+
+test.FONTS.dir:
+	${MKFONTDIR} .
+
+install.FONTS.alias: ${FONTS.alias}
+	@${TINSTALL.bsd} ${FONTS.alias} ${INSTALL.fonts.dir}
+	@${TINSTALL.posix} -f ${INSTALL.fonts.dir} ${FONTS.alias}
+	@${ECHO} "${FONTS.alias} => ${INSTALL.fonts.dir}/${FONTS.alias}"
+
+test.FONTS.alias: ${FONTS.alias}
+	cp ${FONTS.alias} fonts.alias
+
+install.FONTS.scale: ${FONTS.scale}
+	@${TINSTALL.bsd} ${FONTS.scale} ${INSTALL.fonts.dir}/fonts.scale
+	@${TINSTALL.posix} -f ${INSTALL.fonts.dir}/fonts.scale ${FONTS.scale}
+	@${MV} ${INSTALL.fonts.dir}/fonts.scale ${INSTALL.fontsource.dir}/${FONTS.scale}
+	@${ECHO} "${FONTS.scale} => ${INSTALL.fonts.dir}/fonts.scale"
+
+test.FONTS.scale: ${FONTS.scale}
+	cp ${FONTS.scale} fonts.scale
+
+.SUFFIXES: .afb .afm .bdf .f3b .spd .pfa .bepf .ps .pcf
+

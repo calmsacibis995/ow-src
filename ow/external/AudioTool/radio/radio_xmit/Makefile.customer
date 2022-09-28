@@ -1,0 +1,35 @@
+#
+# @(#)Makefile.customer	1.2	92/06/30 SMI
+#
+
+#
+# Makefile for gaintool demo
+#
+
+include ../../Makefile.config
+
+PROGRAM		= radio_xmit
+
+SOURCES		= radio_xmit.c
+HEADERS		= 
+
+OBJECTS		= ${SOURCES:%.c=%.o}
+
+CFLAGS		= -O
+LDFLAGS		= 
+
+CPPFLAGS	+= -I../../../include -I../libradio ${SYSDEFINES}
+
+LDLIBS		= -L../libradio -lradio -L../../../lib -laudio ${SYSLIBS} -lm
+
+all: ${PROGRAM}
+
+${PROGRAM}: ${OBJECTS}
+	${CC} -o $@ ${LDFLAGS} ${OBJECTS} ${LDLIBS}
+
+clean:
+	${RM} ${PROGRAM} ${OBJECTS} core
+
+install: ${PROGRAM}
+	${CP} ${PROGRAM} ${DESTDIR}/bin/${PROGRAM}
+	${CHMOD} 755 ${DESTDIR}/bin/${PROGRAM}

@@ -1,0 +1,133 @@
+.\" Copyright (c) 1994 - Sun Microsystems, Inc.
+.TH ab_admin 1 "26 April 1994"
+.IX "ab_admin" "" "\f3ab_admin\f1(1) \(em administer AnswerBook card catalog database(s)"
+.IX "AnswerBook" "admin" "AnswerBook" "administer card catalog database(s) \(em \f3ab_admin\f1(1)"
+.SH NAME
+ab_admin \- administer AnswerBook card catalog database(s)
+.SH SYNOPSIS
+.LP
+.B ab_admin
+.RS
+.B -file
+.I card-catalog-file
+.RS
+.B -match
+.I answerbook-id[,version]
+.br
+.B -add
+.I answerbook-id[,version]
+.RS
+.I answerbook-attribute-list
+.RE
+.br
+.B -modify
+.I answerbook-id[,version]
+.RS
+.I answerbook-attribute-list
+.RE
+.B -merge
+.I card-catalog-file
+.br
+.B -convert
+.I bookinfo-file
+.br
+.B -remove
+.I answerbook-id[,version]
+.br
+.B -verify
+.I answerbook-id[,version]
+.br
+.B -list
+.RE
+.B -listpaths
+.SH DESCRIPTION
+.LP
+.B ab_admin
+provides a shell-level interface to the AnswerBook
+card catalog database mechanism. It allows administrators to add, delete, list,
+modify, and verify individual AnswerBook entries in a given card catalog
+file.  It also supports the merging of entries from one card catalog file
+into another, and the conversion of old-style "bookinfo" files into
+card catalog entries.
+See
+.BR ab_cardcatalog (4)
+for more information on card catalogs
+.SH OPTIONS
+.TP
+.B -file \f2card-catalog-file\fP
+Specifies the name of the card catalog file.  All
+.B ab_admin
+operations except "-listpaths" require that the file be specified.
+.TP
+.B -merge \f2card-catalog-file\fP
+Merge the entries from input card catalog file into the card catalog file
+being updated.
+.TP
+.B -convert \f2bookinfo-file\fP
+Extract the information from the specified bookinfo file needed to create
+a card catalog entry for the AnswerBook, and add that entry to the
+card catalog file being updated.
+.TP
+.B -add \f2answerbook-id\fP[\f2,version\fP] [\f2answerbook-attribute-list\fP]
+Construct a new card catalog entry for the AnswerBook using the information
+provided on the command line.
+.TP
+.B -remove \f2answerbook-id\fP[\f2,version\fP]
+Delete the specified entry.
+.TP
+.B -match \f2answerbook-id\fP[\f2,version\fP]
+Display the contents of the specified entry.
+.TP
+.B -modify \f2answerbook-id\fP[\f2,version\fP] [\f2answerbook-attribute-list\fP]
+Modify the specified fields of the specified entry.
+.TP
+.B -verify \f2answerbook-id\fP[\f2,version\fP]
+Verify the correctness of the specified entry.  Verify that the
+corresponding AnswerBook exists, and is usable.
+.TP
+.B -list
+List all entries in the specified card catalog.
+.TP
+.B -listpaths
+List the fully qualified pathnames of the card catalogs you
+have access to, one per line.
+.TP
+.B AnswerBook Attributes
+The following AnswerBook attributes are used in the
+.B -add
+and
+.B -modify
+operations of
+.B ab_admin.
+See
+.BR ab_cardcatalog (4)
+for more information.
+.RS
+.TP
+.B title=\f2answerbook-title\fP
+Title of this AnswerBook
+.TP
+.B tocpath=\f2toc-directory-path\fP
+Full pathname of the directory containing this AnswerBook's
+book database files
+.TP
+.B pspath=\f2postscript-directory-path\fP
+Full pathname of the directory containing this AnswerBook's
+PostScript files
+.TP
+.B indexpath=\f2index-directory-path\fP
+Full pathname of the directory containing this AnswerBook's
+search index files
+.RE
+.SH EXAMPLES
+.LP
+See the
+.TZ ABADMIN
+for examples of
+.BR ab_admin (1)
+usage.
+.SH SEE ALSO
+.LP
+.BR ab_cardcatalog (4),
+.BR answerbook (1),
+.BR navigator (1)

@@ -1,0 +1,525 @@
+#
+# @(#)command	1.33 93/12/17
+#
+
+#
+# Copyright (c) 1987 by Sun Microsystems, Inc.
+#
+
+#
+#	If DELIVERABLE	== deliverable then build a deliverable executable
+#	In the same way, if TOOL == tool, build a tool version of the command.
+#
+
+#
+#	Preconditions			Defined in:
+#		COMMAND			Makefile
+#		DELIVERABLE		Makefile
+#		TOOL			Makefile
+#		SOURCES			Makefile
+#		HEADERS			Makefile
+#		OBJECTS			Makefile
+#		LIBRARIES		Makefile
+#		LIBDLS			Makefile	libs used with dlopen()
+#
+#		DIR.*			config/Compiler/*
+#		INSTALL.directory
+
+
+#
+#	NOTE:  In SunPro Make, the macro definition:
+#		BAR=${FOO:%=%mumble}
+#	will generate a "value" for BAR *only* if the macro ${FOO}
+#	also has a "value".
+#
+#	Thus,
+#		local.INSTALL.dir = ${INSTALL.directory:%=%/}
+#	will assign a value to local.INSTALL.dir only if
+#	INSTALL.directory has a value.  If not, the trailing
+#	slash will not become a part of local.INSTALL.dir
+#
+#	Contrast this behavior to the following:
+#		CMD.ins.opt = ${INSTALL.directory}/${CMD.name.opt}
+#	when INSTALL.directory is not defined.
+#
+
+local.INSTALL.dir		= ${INSTALL.directory:%=%/}
+local.INSTALL.tool.dir		= ${INSTALL.tool.directory:%=%/}
+
+SOURCES.lint			= ${SOURCES:%.c=${DIR.lint}/%.ln}
+
+# See the common file for info about these macros
+
+MAKE.METHOD	   =${GETBUILDTYPE} -S ${SOURCEDIR} -f ${CONFIG.DB} -n ${COMMAND} -P build${DELIVERABLE}
+TOOL.METHOD	   =${GETBUILDTYPE} -S ${SOURCEDIR} -f ${CONFIG.DB} -n ${COMMAND} -P build${TOOL}
+INSTALL.METHOD	   =${GETBUILDTYPE} -S ${SOURCEDIR} -f ${CONFIG.DB} -n ${COMMAND} -P inst${DELIVERABLE}
+INSTALLTOOL.METHOD =${GETBUILDTYPE} -S ${SOURCEDIR} -f ${CONFIG.DB} -n ${COMMAND} -P inst${TOOL}
+
+LIB.LINKWITH  = ${PROCESSLIBS}   -f ${CONFIG.DB} -n ${COMMAND} -O ${DIR.targetarch} -S ${SOURCEDIR}
+LIB.LINTWITH  = ${PROCESSLINT}   -f ${CONFIG.DB} -n ${COMMAND} -O ${DIR.targetarch} -S ${SOURCEDIR}
+LIB.DEPENDSON = ${DEPENDSONLIBS} -f ${CONFIG.DB} -n ${COMMAND} -O ${DIR.targetarch} -S ${SOURCEDIR}
+
+#
+#	Define the names of things that we "could" build
+
+LIBS.lintwith			= ${LIB.LINTWITH}  -d tooloptimized   -- ${LIBRARIES} ${SYSLIBS}
+LIBS.lintwith.local		= ${LIB.LINTWITH}  -d tooloptimized   -- ${LIBRARIES}
+
+TOOL.name.optimized		= ${COMMAND:%=%-tool}
+TOOL.optimized			= ${TOOL.name.optimized:%=${DIR.targetarch}/%}
+TOOL.installed.optimized	= ${TOOL.name.optimized:%=${local.INSTALL.tool.dir}%}
+OBJECTS.tool.optimized		= ${OBJECTS:%=${DIR.tool.optimized}/%}
+LIBS.link.tool.optimized	 	= ${LIB.LINKWITH}  -d tooloptimized   -- ${LIBRARIES}
+LIBS.dep.tool.optimized		= ${LIB.DEPENDSON} -d tooloptimized   -- ${LIBRARIES}
+
+TOOL.name.debug			= ${COMMAND:%=%-tool-debug}
+TOOL.debug			= ${TOOL.name.debug:%=${DIR.targetarch}/%}
+TOOL.installed.debug		= ${TOOL.name.debug:%=${local.INSTALL.tool.dir}%}
+OBJECTS.tool.debug		= ${OBJECTS:%=${DIR.tool.debug}/%}
+LIBS.link.tool.debug 		= ${LIB.LINKWITH}  -d tooldebug -- ${LIBRARIES} ${LIBDLS}
+LIBS.dep.tool.debug		= ${LIB.DEPENDSON} -d tooldebug -- ${LIBRARIES} ${LIBDLS}
+
+TOOL.name.gprof			= ${COMMAND:%=%-tool-gprof}
+TOOL.gprof			= ${TOOL.name.gprof:%=${DIR.targetarch}/%}
+TOOL.installed.gprof		= ${TOOL.name.gprof:%=${local.INSTALL.tool.dir}%}
+OBJECTS.tool.gprof		= ${OBJECTS:%=${DIR.tool.gprof}/%}
+LIBS.link.tool.gprof 		= ${LIB.LINKWITH}  -d toolgprof -- ${LIBRARIES} ${LIBDLS}
+LIBS.dep.tool.gprof		= ${LIB.DEPENDSON} -d toolgprof -- ${LIBRARIES} ${LIBDLS}
+
+OWVersionFile			= ${SOURCEDIR}/config/OWversion
+COMMAND.name.optimized		= ${COMMAND:%=%}
+COMMAND.optimized		= ${COMMAND.name.optimized:%=${DIR.targetarch}/%}
+COMMAND.installed.optimized	= ${COMMAND.name.optimized:%=${local.INSTALL.dir}%}
+OBJECTS.optimized		= ${OBJECTS:%=${DIR.optimized}/%}
+LIBS.link.optimized			= ${LIB.LINKWITH}  -d optimized       -- ${LIBRARIES}
+LIBS.dep.optimized  			= ${LIB.DEPENDSON} -d optimized       -- ${LIBRARIES}
+
+COMMAND.name.debug		= ${COMMAND:%=%-debug}
+COMMAND.debug			= ${COMMAND.name.debug:%=${DIR.targetarch}/%}
+COMMAND.installed.debug		= ${COMMAND.name.debug:%=${local.INSTALL.dir}%}
+OBJECTS.debug			= ${OBJECTS:%=${DIR.debug}/%}
+LIBS.link.debug			= ${LIB.LINKWITH}  -d debug     -- ${LIBRARIES} ${LIBDLS}
+LIBS.dep.debug			= ${LIB.DEPENDSON} -d debug     -- ${LIBRARIES} ${LIBDLS}
+
+COMMAND.name.gprof		= ${COMMAND:%=%-gprof}
+COMMAND.gprof			= ${COMMAND.name.gprof:%=${DIR.targetarch}/%}
+COMMAND.installed.gprof		= ${COMMAND.name.gprof:%=${local.INSTALL.dir}%}
+OBJECTS.gprof			= ${OBJECTS:%=${DIR.gprof}/%}
+LIBS.link.gprof			= ${LIB.LINKWITH}  -d gprof     -- ${LIBRARIES} ${LIBDLS}
+LIBS.dep.gprof			= ${LIB.DEPENDSON} -d gprof     -- ${LIBRARIES} ${LIBDLS}
+
+#
+#
+# On with the show
+#
+
+all::		installtool .WAIT ${DELIVERABLE}
+
+optimized::	build${DELIVERABLE}optimized  
+debug::		build${DELIVERABLE}debug
+gprof::		build${DELIVERABLE}gprof
+shared::	build${DELIVERABLE}shared
+
+tool::		tooloptimized	# ${TOOL.METHOD:sh}
+deliverable::	${MAKE.METHOD:sh}
+
+galactic::	installoptimized
+
+tooloptimized:	build${TOOL}optimized  
+tooldebug:	build${TOOL}debug
+toolgprof:	build${TOOL}gprof
+toolvariants:	tooloptimized tooldebug toolgprof
+
+builddeliverablevariants: variants
+buildtoolvariants: 	  toolvariants
+
+#
+# The following targets are only used *if* the TOOL or DELIVERABLE macro is
+# not defined.  This means that we don't build this item.
+#
+
+build	\
+	buildtool	\
+	builddeliverable	\
+	buildoptimized	\
+	builddebug	\
+	buildgprof	\
+	buildshared	\
+	builddeliverableshared	\
+	buildvariants: # Nothing to do
+
+.NO_PARALLEL::	buildtooloptimized buildtooldebug buildtoolgprof
+buildtooloptimized: ${DIR.tool.optimized} ${TOOL.optimized} ${MAKE.tool.target}
+buildtooldebug:	    ${DIR.tool.debug}     ${TOOL.debug}     ${MAKE.tool.target}
+buildtoolgprof:	    ${DIR.tool.gprof}     ${TOOL.gprof}     ${MAKE.tool.target}
+
+.NO_PARALLEL::	builddeliverableoptimized builddeliverabledebug builddeliverablegprof
+builddeliverableoptimized:${DIR.optimized} ${COMMAND.optimized} ${MAKE.all.target}
+builddeliverabledebug:	${DIR.debug}	${COMMAND.debug}    ${MAKE.all.target}
+builddeliverablegprof:	${DIR.gprof}	${COMMAND.gprof}    ${MAKE.all.target}
+
+##### Swet/Hindsight ####
+clean::  ${MAKE.clean.target} .WAIT analyzeclean
+	@if [ -d ${DIR.tool.optimized} ]; \
+				  then ${RMRECURSE} ${DIR.tool.optimized}; fi
+	@if [ -d ${DIR.tool.debug} ]; then ${RMRECURSE} ${DIR.tool.debug}; fi
+	@if [ -d ${DIR.tool.gprof} ]; then ${RMRECURSE} ${DIR.tool.gprof}; fi
+	@if [ -d ${DIR.optimized} ];  then ${RMRECURSE} ${DIR.optimized};  fi
+	@if [ -d ${DIR.debug} ];      then ${RMRECURSE} ${DIR.debug};      fi
+	@if [ -d ${DIR.gprof} ];      then ${RMRECURSE} ${DIR.gprof};      fi
+	@if [ -d ${DIR.lint} ];       then ${RMRECURSE} ${DIR.lint};       fi
+
+clobber:: clean ${MAKE.clobber.target}
+	@if [ -d ${DIR.targetarch} ]; then ${RMRECURSE} ${DIR.targetarch}; fi
+	@${RM} ${FILES.junk} ${FILES.clobber} ${DERIVEDFILES}
+
+install::		${INSTALL.METHOD:sh}
+installoptimized::	inst${DELIVERABLE}optimized
+installdebug::		inst${DELIVERABLE}debug
+installgprof::		inst${DELIVERABLE}gprof
+installvariants:	inst${DELIVERABLE}variants
+installshared::		# None
+
+installtool::		installtooloptimized	# ${INSTALLTOOL.METHOD:sh}
+installtooloptimized:   inst${TOOL}optimized
+installtooldebug:	inst${TOOL}debug
+installtoolgprof:	inst${TOOL}gprof
+installtoolvariants:	inst${TOOL}variants
+installtoolshared:
+
+
+instdeliverablevariants: instdeliverableoptimized	\
+			 instdeliverabledebug	\
+			 instdeliverablegprof
+
+insttoolvariants: 	 insttooldebug		\
+			 insttoolgprof		\
+			 insttooloptimized
+
+inst	\
+	instdeliverable	\
+	instoptimized	\
+	instdebug	\
+	instgprof	\
+	insttool	\
+	instvariants:		# Don't Build Anything
+
+.NO_PARALLEL::	insttooloptimized insttooldebug insttoolgprof
+insttooloptimized:	${TOOL.bin}	\
+			${TOOL.installed.optimized}	\
+			${MAKE.installtool.target}
+
+insttooldebug:		${TOOL.bin}	\
+			${TOOL.installed.debug}	\
+			${MAKE.installtool.target}
+
+insttoolgprof:		${TOOL.bin}	\
+			${TOOL.installed.gprof}	\
+			${MAKE.installtool.target}
+
+
+.NO_PARALLEL:: instdeliverableoptimized instdeliverabledebug instdeliverablegprof
+instdeliverableoptimized: ${COMMAND.installed.optimized} ${MAKE.install.target}
+instdeliverabledebug:	  ${COMMAND.installed.debug}     ${MAKE.install.target}
+instdeliverablegprof:	  ${COMMAND.installed.gprof}     ${MAKE.install.target}
+
+
+${TOOL.optimized}: ${DIR.tool.optimized} .WAIT \
+		   $${OBJECTS.tool.optimized} \
+		   ${LIBS.dep.tool.optimized:sh}
+	@echo "$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS)"
+	@echo "	-o $@"
+	@for obj in . ${OBJECTS.tool.optimized} ; do \
+		if [ "x$$obj" != "x." ]; then \
+		    echo "	$$obj"; \
+		fi; \
+	done
+	@for lib in . ${LIBS.link.tool.optimized:sh} ; do \
+		if [ "x$$lib" != "x." ]; then \
+		    echo "	$$lib"; \
+		fi; \
+	done
+	@echo "	${DYNAMIC} ${SYSLIBS} ${STDSYSLIBS}"
+	@$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -o $@ \
+		${OBJECTS.tool.optimized} \
+		${LIBS.link.tool.optimized:sh} \
+		${DYNAMIC} ${SYSLIBS} ${STDSYSLIBS}
+
+${TOOL.debug}: ${DIR.tool.debug} .WAIT $${OBJECTS.tool.debug} ${LIBS.dep.tool.debug:sh}
+	${LINK.c} -o $@  ${OBJECTS.tool.debug} ${LIBS.link.tool.debug:sh} \
+	${DYNAMIC} ${SYSLIBS} ${STDSYSLIBS}
+
+${TOOL.gprof}: ${DIR.tool.gprof} .WAIT $${OBJECTS.tool.gprof} ${LIBS.dep.tool.gprof:sh}
+	${LINK.c} ${f.GPROF} -o $@ ${OBJECTS.tool.gprof} ${LIBS.link.tool.gprof:sh} \
+	${DYNAMIC} ${SYSLIBS} ${STDSYSLIBS}
+
+${COMMAND.optimized}: ${DIR.optimized} $${OBJECTS.optimized} \
+		${LIBS.dep.optimized:sh} ${OWVersionFile}
+	@echo "$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS)"
+	@echo "	-o $@"
+	@for obj in . ${OBJECTS.optimized} ; do \
+		if [ "x$$obj" != "x." ]; then \
+		    echo "	$$obj"; \
+		fi; \
+	done
+	@for lib in . ${LIBS.link.optimized:sh} ; do \
+		if [ "x$$lib" != "x." ]; then \
+		    echo "	$$lib"; \
+		fi; \
+	done
+	@echo "	${DYNAMIC} ${SYSLIBS} ${STDSYSLIBS}"
+	@$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -o $@ \
+		${OBJECTS.optimized} \
+		${LIBS.link.optimized:sh} \
+		${DYNAMIC} ${SYSLIBS} ${STDSYSLIBS}
+#
+# A executable contains a lot of stuff in its comment section, we delete it
+# and replace it with a version string later on.
+#
+#   ??? Why are we executing `mcs -d' twice for the same files?
+#
+	@if [ "${TARGET_ARCH}" = "-sun4-svr4" ] ; then \
+		echo "mcs -d $@" ; \
+		mcs -d $@ ; \
+	fi
+	@if [ "${TARGET_ARCH}" = "-sun4-svr4" -a "x${SVR4-REORDER}" != "x" ] ; then \
+		${MAKE} ${SVR4-REORDER} ; \
+	fi
+#
+# The version string is of the form:
+#    <name of executable> <Version of OW it is part of> <date of build>
+# 
+	@echo "Adding version string......"
+	@if [ "${TARGET_ARCH}" = "-sun4-svr4" ] ; then \
+		echo mcs -a "${COMMAND} `grep 'OpenWindows' ${OWVersionFile}` `date +'%e %B %Y'`" $@ ; \
+		mcs -a "${COMMAND} `grep 'OpenWindows' ${OWVersionFile}` `date +'%e %B %Y'`" $@ ;\
+		echo "mcs -p $@" ; \
+		mcs -p $@ ; \
+	fi
+
+${COMMAND.debug}: ${DIR.debug} $${OBJECTS.debug} ${LIBS.dep.debug:sh}
+	${LINK.c} -o $@  ${OBJECTS.debug} ${LIBS.link.debug:sh} \
+	${SYSLIBS} ${STDSYSLIBS}
+#
+# For X11/NeWS server, on SVR4, we use special start-up files, crti.o, gcrt1.o and 
+# crtn.o which live in bin/xnews/xnews/GprofFiles, and therefore the conditional below.
+#
+
+SVR4.gprof=:
+${COMMAND.gprof}: ${DIR.gprof} .WAIT $${OBJECTS.gprof} ${LIBS.dep.gprof:sh}
+	@if [ "${TARGET_ARCH}" = "-sun4-svr4" -a "${COMMAND}" = "xnews" ] ; then \
+		${ECHO} "Linking gprof server" ; \
+		${SVR4.gprof} ; \
+	else \
+		${LINK.c} ${f.GPROF} -o $@  ${OBJECTS.gprof} ${LIBS.link.gprof:sh} \
+		${SYSLIBS} ${STDSYSLIBS} ; \
+	fi
+
+${DIR.tool.optimized}/%.o: ${DIR.tool.optimized} %.c ${HEADERS}
+	${COMPILE.c} ${CFLAGS.tool.optimized} -o $@ $<
+
+${DIR.tool.debug}/%.o: ${DIR.tool.debug} %.c ${HEADERS}
+	${COMPILE.c} ${CFLAGS.tool.debug} -o $@ $<
+
+${DIR.tool.gprof}/%.o: ${DIR.tool.gprof} %.c ${HEADERS}
+	${COMPILE.c} ${CFLAGS.tool.gprof} -o $@ $<
+
+${DIR.optimized}/%.o: ${DIR.optimized} %.c ${HEADERS}
+	${COMPILE.c} ${CFLAGS.optimized} -o $@ $<
+
+${DIR.debug}/%.o: ${DIR.debug} %.c ${HEADERS}
+	${COMPILE.c} ${CFLAGS.debug} -o $@ $<
+
+${DIR.gprof}/%.o: ${DIR.gprof} %.c ${HEADERS}
+	${COMPILE.c} ${CFLAGS.gprof} -o $@ $<
+
+
+${DIR.tool.optimized}/%.o: ${DIR.tool.optimized} %.cc ${HEADERS}
+	${COMPILE.cc} ${CCFLAGS.tool.optimized} -o $@ $<
+
+${DIR.tool.debug}/%.o: ${DIR.tool.debug} %.cc ${HEADERS}
+	${COMPILE.cc} ${CCFLAGS.tool.debug} -o $@ $<
+
+${DIR.tool.gprof}/%.o: ${DIR.tool.gprof} %.cc ${HEADERS}
+	${COMPILE.cc} ${CCFLAGS.tool.gprof} -o $@ $<
+
+${DIR.optimized}/%.o: ${DIR.optimized} %.cc ${HEADERS}
+	${COMPILE.cc} ${CCFLAGS.optimized} -o $@ $<
+
+${DIR.debug}/%.o: ${DIR.debug} %.cc ${HEADERS}
+	${COMPILE.cc} ${CCFLAGS.debug} -o $@ $<
+
+${DIR.gprof}/%.o: ${DIR.gprof} %.cc ${HEADERS}
+	${COMPILE.cc} ${CCFLAGS.gprof} -o $@ $<
+
+
+${COMMAND.installed.optimized} : ${INSTALL.directory} ${COMMAND.optimized}
+	@if [ "x${INSTALL.directory}" = "x" ] ; then \
+		: ; \
+	elif [ "x${INSTALL.directory}" = "x." ] ; then \
+		: ; \
+	else \
+		if [ ! -d ${INSTALL.directory} ] ; then \
+			${DINSTALL} ${INSTALL.directory}; \
+		fi ;\
+		${ECHO} ${COMMAND.optimized} "	=>" ${INSTALL.directory} ; \
+		${BINSTALL.bsd} ${COMMAND.optimized} ${INSTALL.directory} ; \
+		${BINSTALL.posix} -f ${INSTALL.directory} ${COMMAND.optimized} ; \
+	fi
+
+${COMMAND.installed.debug} : ${INSTALL.directory} ${COMMAND.debug}
+	@if [ "x${INSTALL.directory}" = "x" ] ; then \
+		: ; \
+	elif [ "x${INSTALL.directory}" = "x." ] ; then \
+		: ; \
+	else \
+		if [ ! -d ${INSTALL.directory} ] ; then \
+			${DINSTALL} ${INSTALL.directory}; \
+		fi; \
+		${ECHO} ${COMMAND.debug} "	=>" ${INSTALL.directory} ; \
+		${BINSTALL.bsd} ${COMMAND.debug} ${INSTALL.directory} ; \
+		${BINSTALL.posix} -f ${INSTALL.directory} ${COMMAND.debug} ; \
+	fi
+
+${COMMAND.installed.gprof} : ${INSTALL.directory} ${COMMAND.gprof}
+	@if [ "x${INSTALL.directory}" = "x" ] ; then \
+		: ; \
+	elif [ "x${INSTALL.directory}" = "x." ] ; then \
+		: ; \
+	else \
+		if [ ! -d ${INSTALL.directory} ] ; then \
+			${DINSTALL} ${INSTALL.directory}; \
+		fi ;\
+		${ECHO} ${COMMAND.gprof} "	=>" ${INSTALL.directory} ; \
+		${BINSTALL.bsd} ${COMMAND.gprof} ${INSTALL.directory} ; \
+		${BINSTALL.posix} -f ${INSTALL.directory} ${COMMAND.gprof} ; \
+	fi
+
+
+${TOOL.installed.optimized}: ${INSTALL.directory} ${TOOL.optimized}
+	@if [ "x${INSTALL.tool.directory}" = "x" ] ; then \
+		: ; \
+	elif [ "x${INSTALL.tool.directory}" = "x." ] ; then \
+		: ; \
+	else \
+		if [ ! -d ${INSTALL.tool.directory} ] ; then \
+			${DINSTALL} ${INSTALL.tool.directory}; \
+		fi ;\
+		${ECHO} ${TOOL.optimized} "	=>" ${INSTALL.tool.directory}; \
+		${BINSTALL.bsd} ${TOOL.optimized} ${INSTALL.tool.directory} ; \
+		${BINSTALL.posix} -f ${INSTALL.tool.directory} ${TOOL.optimized} ; \
+		${RM} ${INSTALL.tool.directory}/${COMMAND}; \
+		${LN} ${TOOL.name.optimized} ${INSTALL.tool.directory}/${COMMAND}; \
+	fi
+
+${TOOL.installed.debug}: ${INSTALL.directory} ${TOOL.debug}
+	@if [ "x${INSTALL.tool.directory}" = "x" ] ; then \
+		: ; \
+	elif [ "x${INSTALL.tool.directory}" = "x." ] ; then \
+		: ; \
+	else \
+		if [ ! -d ${INSTALL.tool.directory} ] ; then \
+			${DINSTALL} ${INSTALL.tool.directory}; \
+		fi ;\
+		${ECHO} ${TOOL.debug} "	=>" ${INSTALL.tool.directory}; \
+		${BINSTALL.bsd} ${TOOL.debug} ${INSTALL.tool.directory} ; \
+		${BINSTALL.posix} -f ${INSTALL.tool.directory} ${TOOL.debug} ; \
+		${RM} ${INSTALL.tool.directory}/${COMMAND}; \
+		${LN} ${TOOL.name.gprof} ${INSTALL.tool.directory}/${COMMAND}; \
+	fi
+
+${TOOL.installed.gprof}: ${INSTALL.directory} ${TOOL.gprof}
+	@if [ "x${INSTALL.tool.directory}" = "x" ] ; then \
+		: ; \
+	elif [ "x${INSTALL.tool.directory}" = "x." ] ; then \
+		: ; \
+	else \
+		if [ ! -d ${INSTALL.tool.directory} ] ; then \
+			${DINSTALL} ${INSTALL.tool.directory}; \
+		fi ;\
+		${ECHO} ${TOOL.gprof} "	=>" ${INSTALL.tool.directory}; \
+		${BINSTALL.bsd} ${TOOL.gprof} ${INSTALL.tool.directory} ; \
+		${BINSTALL.posix} -f ${INSTALL.tool.directory} ${TOOL.gprof} ; \
+		${RM} ${INSTALL.tool.directory}/${COMMAND}; \
+		${LN} ${TOOL.name.gprof} ${INSTALL.tool.directory}/${COMMAND}; \
+	fi
+
+lintlib::
+
+lint::	${DIR.lint}/${COMMAND}.cmd.lo ${HEADERS}
+
+${DIR.lint}/${COMMAND}.cmd.lo:		${SOURCES.lint} ${LIBS.lintwith.local:sh}
+	${LINT.c} ${SOURCES.lint} ${LIBS.lintwith:sh} > ${DIR.lint}/${COMMAND}.cmd.lo 2>&1
+	@if [ -s ${DIR.lint}/${COMMAND}.cmd.lo ] ; then \
+		${ECHO} Warning: ${COMMAND} has problems passing lint. See `pwd`/${DIR.lint}/${COMMAND}.cmd.lo ; \
+	else \
+		${RM} ${DIR.lint}/${COMMAND}.cmd.lo ; \
+	fi
+
+%.ln:	${DIR.lint}/%.ln
+
+${DIR.lint}/%.ln:	${DIR.lint} %.c ${HEADERS}
+	-@${LINT.c} -u ${ln.flag} $< -o $@ > ${@:.ln=.lo} 2>&1
+	@if [ -s ${@:.ln=.lo} ] ; then \
+		${ECHO} Warning: $< has problems passing lint. See `pwd`/${@:.ln=.lo}. ; \
+	else \
+		${RM} ${@:.ln=.lo} ; \
+	fi
+
+
+#
+#	Start of Swet/Hindsight
+#
+
+#
+#	Preconditions
+#		COMMAND			# ... from local Makefile
+#		SOURCES
+#		HEADERS
+#		HINDSIGHT_environ_lm	# ... from ${CONFIGDIR}/OS/SunOS41
+#		HINDSIGHT_environ
+#	Exports:
+# 		analyzecmd
+#	Defines:
+#		.ana
+#	Modifies:
+#		.PRECIOUS
+#
+
+HINDSIGHT.macrofile	= ${COMMAND}.z 
+COMMAND.analyze		= ${ANALYZE.dir}/${COMMAND}.ana
+
+${COMMAND.analyze}: 	${HINDSIGHT.setup} .WAIT ${HEADERS} ${SOURCES}
+	(eval ${HINDSIGHT_environ_lm}; ${ANALYZER.c} -o $@ ${SOURCES})
+
+analyzecmd:		${COMMAND.analyze}
+
+.PRECIOUS:	${COMMAND.analyze}
+
+#
+#	End of Swet/Hindsight
+#
+
+
+checkmakefile:: huh 
+	@echo "TOOL=        ${TOOL}"
+	@echo "DELIVERABLE= ${DELIVERABLE}"
+	@echo "Deliverable:"
+	@echo "  Building     ${COMMAND.optimized}"
+	@echo "    DB lookup= ${MAKE.METHOD:sh}"
+	@echo "  Installing   ${COMMAND.installed.optimized}"
+	@echo "    DB lookup= ${INSTALL.METHOD:sh}"
+	    DB lookup= ${INSTALL.METHOD:sh}"
+	@echo "Tool:"
+	@echo "  Building     ${COMMAND.tool.optimized}"
+	@echo "    DB lookup= ${TOOL.METHOD:sh}"
+	@echo "  Installing   ${COMMAND.installed.tool}"
+	@echo "    DB lookup= ${INSTALLTOOL.METHOD:sh}"
+	@echo
+	@echo "install:     DESTDIR"
+	@echo " (mk.inst)   ${MAKE.install.target}"
+	@echo " (mk.src)    ${MAKE.source.target}"
+
+
+.PRECIOUS: ${COMMAND.optimized} ${COMMAND.debug} ${COMMAND.gprof} ${TOOL.optimized}
+

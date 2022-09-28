@@ -1,0 +1,579 @@
+
+/*
+ * DPS
+ * Title: emulator.psw
+ * Description: LaserWriter server loop emulator for dps pageview.
+ * SccsId: @(#)emulator.psw 1.9 93/08/03
+ *
+ *	 PageView is a page oriented viewer for PostScript documents
+ *	 that follow Adobe PostScript document structuring conventions
+ *
+ */
+
+#include "tags.h"
+
+/*
+ *  fileinputtoken usage for PostScript rendering connection:
+ * 0: a portion of transformation matrix for page
+ * 1: b portion of transformation matrix for page
+ * 2: c portion of transformation matrix for page
+ * 3: d portion of transformation matrix for page
+ * 4: tx portion of transformation matrix for page
+ * 5: ty portion of transformation matrix for page
+ * 6: width of pixmap
+ * 7: height of pixmap
+ * 8: number of pages - when using showpage to determine page breaks.
+ * 9: filepositions - when using showpage to determine page breaks.
+ * 10: (same as 9).. etc.. (until no more pages)
+ */
+
+defineps dps_start_page ()
+	gsave
+	    [ 0 execmyuserobject 1 execmyuserobject 2 execmyuserobject
+	      3 execmyuserobject 4 execmyuserobject 5 execmyuserobject ]
+	    setmatrix
+	    1 setgray
+	    0 0 moveto 
+	    0 7 execmyuserobject rlineto
+	    6 execmyuserobject 0 rlineto
+	    0 7 execmyuserobject neg rlineto
+	    closepath fill
+	grestore
+	/page_matrix 6 array currentmatrix def
+endps
+
+defineps dps_no_page (char *ps_line1, *ps_line2, *ps_line3, *locale)
+	(locale) (C) ne {
+	    /LucidaSans-Bold findfont
+	    dup length dict begin
+	    { 1 index /FID ne { def } { pop pop } ifelse } forall
+	    /Encoding ISOLatin1Encoding def
+	    currentdict end
+	    /LucidaSans-Bold-ISOLatin1 exch definefont pop
+	} if
+
+	gsave
+	    (locale) (C) ne {
+	        /LucidaSans-Bold-ISOLatin1 findfont 
+	    } {
+	        /LucidaSans-Bold findfont 
+	    } ifelse
+	
+	    18 scalefont setfont
+	    /pagewidth 6 execmyuserobject 72 sub def
+	    /middle pagewidth 72 add 2 div def
+	    middle 7 execmyuserobject 100 sub moveto
+	    /line1 (ps_line1) def
+	    /line2 (ps_line2) def
+	    /line3 (ps_line3) def
+	    /space ( ) 0 get def
+	    /newline1 () def
+	    /newline2 () def
+	    /newline3 () def
+	    /done 0 def
+
+	    /createline {
+   	        /newtmp exch store
+      	 	/tmp exch store
+   		tmp stringwidth pop pagewidth gt {
+       		    tmp length 1 sub -1 0 {
+           		dup tmp exch get space eq {
+               		    /newtmp tmp 0 4 -1 roll getinterval store
+               		    newtmp stringwidth pop pagewidth le {
+                   		/done 1 store
+               		    } if
+           		} {
+               		    pop
+           		} ifelse
+           		done 1 eq {
+               		    exit
+           		} if
+       		    } for
+   		} {
+       		    /newtmp tmp store
+   		} ifelse
+   		tmp newtmp done
+	    } def
+ 
+	    /printline {
+    		dup stringwidth exch 2 div neg exch rmoveto show
+    		currentpoint exch pop middle exch
+    		24 sub moveto
+	    } def
+  
+	    /addline {
+    	        /tmp2 exch store
+    		/newtmp exch store
+    		/tmp exch store
+    		tmp newtmp anchorsearch {
+		% get rid of first space left over from first string
+        	    pop dup length 1 sub 1 exch getinterval
+        	    /tmp2 exch ( ) _append tmp2 _append store
+    		} if
+    		tmp2
+	    } def
+ 
+	    line1 newline1 createline
+	    /done exch store
+	    /newline1 exch store
+	    /line1 exch store
+	    newline1 printline
+ 
+	    done 1 eq {
+    		/done 0 store
+		line1 newline1 line2 addline
+    		/line2 exch store
+	    } if
+	     
+	    line2 newline2 createline
+	    /done exch store
+	    /newline2 exch store
+	    /line2 exch store
+	    newline2 printline
+	     
+	    done 1 eq {
+    		/done 0 store
+    		line2 newline2 line3 addline
+    		/line3 exch store
+	    } if
+
+	    line3 newline3 createline
+	    /done exch store
+	    /newline3 exch store
+	    /line3 exch store
+	    newline3 printline
+	     
+	    {
+    		done 1 eq {
+        	    /done 0 store
+        	    /line4 () store
+        	    /newline4 () store
+        	    line3 newline3 anchorsearch {
+	   	    % get rid of first space left over from first string
+            		pop dup length 1 sub 1 exch getinterval
+            		/line4 exch def
+        	    } if
+          	    line4 newline4 createline
+        	    /done exch store
+        	    /newline4 exch store
+        	    /line4 exch store
+        	    newline4 printline
+        
+        	    /newline3 newline4 store
+        	    /line3 line4 store
+		} {
+        	    exit
+    		} ifelse
+	    } loop 
+	grestore
+endps
+
+defineps dps_no_page_i18n (char *ps_line1, *ps_line2, *ps_line3)
+        gsave
+	     /CharToByteFromFirst { % char str => byte
+		 0 0 3 -1 roll  % char bytecounter charcounter str
+		     {   
+			 3 index 2 index eq {
+			     pop exit
+			 } if
+			 dup 16#80 le {
+			     pop 1 add exch 1 add exch
+			 }{
+			     16#8f eq {
+			 	 pop exch 1 add exch
+			     }{
+			        .5 add exch 1 add exch
+		       	     } ifelse
+		 	} ifelse
+		    } forall % char bytecounter charcounter
+		 pop exch pop
+	     } def
+
+	     /locale_getinterval { % string pos num-of-char => substring
+		 2 index 4 2 roll exch
+		 CharToByteFromFirst                % char str byte
+		 1 index length 1 index sub getinterval  % char substrig
+		 exch 1 index
+		 CharToByteFromFirst
+		 0 exch getinterval
+	     } def
+
+	     /locale_length {
+		 0 exch % charcter-counter string
+		 {   
+		     dup 16#80 le {
+			pop 1 add
+		     }{
+			16#8f eq {
+			    pop
+			}{
+		            .5 add
+			} ifelse
+		     } ifelse
+		 } forall  % character-counter
+	         cvi 
+	    } def
+
+            /LC_Helvetica-Bold findfont 18 scalefont setfont
+ 
+	    /pagewidth 6 execmyuserobject 72 sub def
+	    /middle pagewidth 72 add 2 div def
+	    middle 7 execmyuserobject 100 sub moveto
+	    /line1 (ps_line1) def
+	    /line2 (ps_line2) def
+	    /line3 (ps_line3) def
+	    /newline1 () def
+	    /newline2 () def
+	    /newline3 () def
+	    /done 0 def
+
+	    /createline {
+   	        /newtmp exch store
+      	 	/tmp exch store
+   		tmp stringwidth pop pagewidth gt {
+       		    tmp locale_length 1 sub -1 0 {
+               		/newtmp tmp 0 4 -1 roll locale_getinterval store
+               		newtmp stringwidth pop pagewidth le {
+                   	    /done 1 store
+               		} if
+           		done 1 eq {
+               		    exit
+           		} if
+       		    } for
+   		} {
+       		    /newtmp tmp store
+   		} ifelse
+   		tmp newtmp done
+	    } def
+ 
+	    /printline {
+    		dup stringwidth exch 2 div neg exch rmoveto show
+    		currentpoint exch pop middle exch
+    		24 sub moveto
+	    } def
+  
+	    /addline {
+    	        /tmp2 exch store
+    		/newtmp exch store
+    		/tmp exch store
+    		tmp newtmp anchorsearch {
+        	    pop /tmp2 exch tmp2 _append store
+    		} if
+    		tmp2
+	    } def
+ 
+	    line1 newline1 createline
+	    /done exch store
+	    /newline1 exch store
+	    /line1 exch store
+	    newline1 printline
+ 
+	    done 1 eq {
+    		/done 0 store
+		line1 newline1 line2 addline
+    		/line2 exch store
+	    } if
+	     
+	    line2 newline2 createline
+	    /done exch store
+	    /newline2 exch store
+	    /line2 exch store
+	    newline2 printline
+	     
+	    {
+    		done 1 eq {
+        	    /done 0 store
+        	    /line4 () store
+        	    /newline4 () store
+        	    line2 newline2 anchorsearch {
+            		pop /line4 exch def
+        	    } if
+          	    line4 newline4 createline
+        	    /done exch store
+        	    /newline4 exch store
+        	    /line4 exch store
+        	    newline4 printline
+        
+        	    /newline2 newline4 store
+        	    /line2 line4 store
+		} {
+        	    exit
+    		} ifelse
+	    } loop 
+
+	    line3 printline
+	     
+	grestore
+endps
+
+defineps dps_getpages ( | int *numpages)
+	8 execmyuserobject numpages
+endps
+
+defineps dps_getpageloc (int pagenum | int *pageloc) 
+	pagenum 8 add execmyuserobject pageloc
+endps
+
+defineps dps_start_serverloop (float a, b, c, d; int tx, ty, width, height, 
+			       method)
+	userdict begin
+
+%/myfile (/tmp/foo) (w) file def
+% This is a hack.. use a large array and hope that the user never views
+% a ps file > 100 pages!
+
+        true setglobal
+        /PageviewObjects 108 array def
+	false setglobal
+
+	/page_matrix [ a b c d tx ty ] def
+
+	statusdict begin
+	    /waittimeout 120 store
+	    /printername (PageView) def
+	    /setjobtimeout { pop } def
+	    /seteescratch { pop pop } def
+	    /pagetype 0 def
+	    /setdostartpage { pop } def
+	    /printerror { pop pop } def
+	    /pagecount 1 def
+	    /setpassword { pop pop true } def
+	    /setsccbatch { pop pop pop } def
+	    /eescratch { pop 0 } def
+	    /note {} def
+	    /dostartpage false def
+	    /manualfeed false def
+	    /pagestackorder false def
+	    /letter {} def
+	    /sccbatch { pop 9600 0 } def
+	    /prefeed false def
+	    /legal {} def
+	    /setmargins { pop pop } def
+	    /setsccinteractive { pop pop pop } def
+	    /setprintername { /printername exch store } def
+	    /jobtimeout waittimeout def
+	    /setidlefonts { cleartomark } def
+	    /setdefaulttimeouts { pop pop pop } def
+	    /margins { 0 0 } def
+	    /printererror { pop pop } def
+	    /printerror { pop pop } def
+	    /manualfeedtimeout 60 def
+	    /idlefonts { mark } def
+	    /sccinteractive { pop 9600 0 } def
+	    /defaulttimeouts { 60 60 30 } def
+	    /setpagetype { /pagetype exch store } def
+	    /lettertray {} def
+	    /legaltray {} def
+	    /b5tray {} def
+	    /a4tray {} def
+	end
+
+
+	% stolen isarray, sprintf and append from NeWS
+
+	% Return true if an object is an array.
+	/_isarray? { % any => boolean
+    	    type dup /arraytype eq  exch /packedarraytype eq or
+	} executeonly def
+ 
+	/_append {       % obj1 obj2  =>  obj3 (concatinates strings)
+    	    1 index length 1 index length add   % obj1 obj2 totalsize
+    	    string
+    	    dup 4 -1 roll 1 index copy length       % a2 A A l1
+    	    4 -1 roll putinterval
+	} executeonly def 
+
+	%
+	% Sprintf: replace %'s in format string with argument as a string.
+	% Note the args can either be before or after the format string.
+	% If they precede the format string, they are in reverse order:
+	% argN .. arg0 formatstring   -or-  formatstring [arg0 .. argN]
+	%
+
+	/_sprintf { % args fmtstr -or- fmttstr [args] => str
+    	    dup _isarray? {                % convert second form to first form
+        	3 exch {                   % fmtstr i+3 ai
+            	    1 index 1 roll         % ai .. a1 fmtstr i+3
+            	    1 add
+        	} forall
+        	pop 
+    	    } if                           % aN .. ai fmtstr
+    	    () 250 string 3 -1 roll (%) { % aN . ai resultstr tempstr fmtstr (%)
+                search {                   % aN .. ai result temp post (%) pre
+                    6 -1 roll              % aN .. result temp post (%) pre ai
+                    dup type /stringtype ne   % is ai a string?  If so, convert.
+                        {4 index cvs} if   % aN .. result temp post (%) pre (ai)
+                    _append                % aN .. result temp post (%) pre'
+                    5 -1 roll exch _append % aN .. temp post (%) result'
+                    4 1 roll               % aN .. result' temp post (%)
+                } {                        % result temp fmt
+                    exch pop _append exit
+                } ifelse
+            } loop  
+	} executeonly def    
+
+        /definemyuserobject {           % index any => -
+            1 index PageviewObjects length ge {
+                true setglobal
+                PageviewObjects
+                2 index 1 add array /PageviewObjects exch store
+                PageviewObjects exch 0 exch putinterval
+                false setglobal
+            } if
+            PageviewObjects 3 1 roll put
+        } executeonly def
+
+        /execmyuserobject {             % index => value
+            PageviewObjects exch get
+        } executeonly def
+
+	0 a definemyuserobject
+	1 b definemyuserobject
+	2 c definemyuserobject
+	3 d definemyuserobject
+	4 tx definemyuserobject
+	5 ty definemyuserobject
+	6 width definemyuserobject
+	7 height definemyuserobject
+   	8 0 definemyuserobject
+
+	/_quit /quit where pop /quit get def
+
+	/serverdict 5 dict def
+	serverdict begin
+	    /setrealdevice {
+	        % work around - this proc required to parse Laser Prep
+	        % (AppleDict md) Procset
+	    } def
+	    /execjob {
+	        % work around - this proc required to parse Laser Prep
+	        % (AppleDict md) Procset
+	    } def
+	    /server (PageView/DPS Server) def
+	    /setnulldevice {} def
+	    /exitserver { pop _quit } def
+	end
+	/#copies 1 def
+	/letter {} def
+	/note {} def
+	/legal {} def
+	/a4 {} def
+	/b5 {} def
+	/quit {} def
+	/lettersmall {} def
+	/a4small {} def
+	/erasepage {} def
+	/_flushfile /flushfile where pop /flushfile get def
+	/flushfile { 
+	    dup currentfile eq {
+		pop 
+	    } {
+		_flushfile
+	    } ifelse
+	} def
+        /stack {
+            (--top of stack--\n) print
+            0 1 count 3 sub {
+                index (%\n) _sprintf print
+            } for
+            (--bottom of stack--\n) print
+	} executeonly def
+
+	method SHOWPAGE_METHOD eq {
+	    {
+		8 execmyuserobject 1 add dup dup
+		8 exch definemyuserobject 1 eq {
+		    clientsync
+	   	} if	
+		8 add currentfile bytesavailable definemyuserobject
+	    } dup
+	    /showpage exch executeonly def
+	    /copypage exch executeonly def
+	    /stroke {} def
+	    /fill {} def
+	    initgraphics
+	    [ 0 execmyuserobject 1 execmyuserobject 2 execmyuserobject
+	      3 execmyuserobject 4 execmyuserobject 5 execmyuserobject ]
+	    setmatrix
+            0 0 6 execmyuserobject 7 execmyuserobject rectclip
+	} {
+	    /initmatrix {
+	        [ 0 execmyuserobject 1 execmyuserobject 2 execmyuserobject
+	          3 execmyuserobject 4 execmyuserobject 5 execmyuserobject ]
+	        setmatrix
+	    } executeonly def
+	    /oldinitclip /initclip where pop /initclip get def
+	    /initclip {
+		/curpoint 0 store
+		{ currentpoint } stopped not {
+		    pop pop
+		    /curpoint 1 store
+		    false upath
+		} if
+		6 array currentmatrix
+		oldinitclip
+		[ 0 execmyuserobject 1 execmyuserobject 2 execmyuserobject
+		  3 execmyuserobject 4 execmyuserobject 5 execmyuserobject ]
+		setmatrix
+		0 0 6 execmyuserobject 7 execmyuserobject rectclip
+		setmatrix
+		curpoint 1 eq {
+		    uappend
+		} if
+	    } executeonly def
+	    /oldinitgraphics /initgraphics where pop /initgraphics get def
+	    /initgraphics { % - => -
+	        oldinitgraphics 
+	        [ 0 execmyuserobject 1 execmyuserobject 2 execmyuserobject
+	          3 execmyuserobject 4 execmyuserobject 5 execmyuserobject ]
+	        setmatrix
+		0 0 6 execmyuserobject 7 execmyuserobject rectclip
+	    } executeonly def
+	    /defaultmatrix { % mtx => mtx'
+	        [ 0 execmyuserobject 1 execmyuserobject 2 execmyuserobject
+	          3 execmyuserobject 4 execmyuserobject 5 execmyuserobject ]
+	        exch copy
+	    } executeonly def
+	    /oldsetpagedevice /setpagedevice where pop /setpagedevice get def
+	    /setpagedevice {
+	  	oldsetpagedevice
+	        [ 0 execmyuserobject 1 execmyuserobject 2 execmyuserobject
+	          3 execmyuserobject 4 execmyuserobject 5 execmyuserobject ]
+		setmatrix
+	    } executeonly def
+	    /showpage { % - => -
+	        initgraphics
+	        [ 0 execmyuserobject 1 execmyuserobject 2 execmyuserobject
+	          3 execmyuserobject 4 execmyuserobject 5 execmyuserobject ]
+	        setmatrix
+	    } executeonly def
+	    /copypage { % - => -
+	        initgraphics
+	        [ 0 execmyuserobject 1 execmyuserobject 2 execmyuserobject
+	          3 execmyuserobject 4 execmyuserobject 5 execmyuserobject ]
+	        setmatrix
+	    } executeonly def
+	    showpage
+	} ifelse
+
+	end % userdict
+ 
+	/Courier 12 selectfont
+
+  	method SHOWPAGE_METHOD eq {
+	    { currentfile cvx exec } stopped
+	    pop clientsync
+	} if
+endps
+
+defineps dps_synch (| int *done)
+	DONE_TAG done
+endps
+
+defineps dps_fix (int xclip, yclip, width_clip, height_clip)
+	[1.0 0.0 0.0 1.0 0.0 0.0] setmatrix
+	oldinitclip
+	xclip yclip width_clip height_clip rectclip
+	page_matrix setmatrix
+endps
+

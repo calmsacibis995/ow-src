@@ -1,0 +1,252 @@
+.\" Copyright (c) 1994 - Sun Microsystems, Inc.
+.TH imagetool 1  "25 March 1994"
+.ds Ps P\s-2OST\s+2S\s-2CRIPT\s+2
+.IX "imagetool" "" "\f3imagetool\f1(1) \(em Image viewing application" ""
+.IX "images" "OpenWindows" "images" "OpenWindows viewing program \(em \f3imagetool\f1(1)"
+.SH NAME
+imagetool \- Image viewer for OpenWindows
+.SH SYNOPSIS
+.B imagetool 
+[
+.B \-usage
+] [
+.B \-v
+] [
+.B \-verbose
+] [
+.BI \-timeout " seconds" 
+] [
+.I imagefile
+]
+.SH DESCRIPTION
+\f3Imagetool\f1 is an interactive image viewer.  \f3Imagetool\f1
+can be used to view the contents of a variety of file types such as
+gif, tiff, jfif (jpeg) and \*(Ps.
+The user may perform various operations on the image such as rotation,
+zooming and flipping to view the image differently.
+If the file loaded in is a multipage document (such as a \*(Ps document),
+the user may page through the entire document, or skip to any page directly.
+.LP
+.SH USAGE
+The four menu buttons across the top of the main window are
+described below:
+.TP 10
+.B File        
+The File menu contains the following items.
+.RS
+.TP 10
+.B Open...
+Brings up a dialog which allows the user to select a file that is to
+be opened for viewing.
+.TP 
+.B Open As...
+Brings up a dialog which allows the user to select a file that is to
+be opened for viewing, and also allows the user to specify the file type.
+.TP
+.B Save...
+If the file has no name, this brings up a dialog for the user to specify
+the file name, and save the file.
+If the file is named, then this simply saves the currently viewed image
+to the file. 
+.TP 
+.B Save As...
+Brings up a dialog which allows the user to specify the file name, the file
+type, number of colors and compression type of the file that is to be saved.
+.TP 
+.B Save Selection As...
+Brings up a dialog which allows the user to specify the file name, the file type,
+number of colors and compression type of the file that is to be saved.
+This menu item is only active if the user has selected a region of interest
+in the currently displayed image.
+.TP 
+.B Save Page As Image...
+Brings up a dialog which allows the user to specify the file name, the file type,
+number of colors and compression type of the file that is to be saved.
+This menu item is only active if the user if viewing a page of a multipage file.
+.TP 
+.B Print One
+Allows user to print one copy of the currently displayed image using the 
+current values (which may be the default values) on the Print dialog.
+.TP 
+.B Print Preview...
+Brings up a window and displays the image as it would look if it were printed,
+based on the settings (which may be the default values) on the Print dialog.
+.TP 
+.B Print...
+Brings up a dialog which allows user to set various parameters that affect the
+printing of the currently displayed image such as position, and size.
+.RE
+.TP 10
+.B View
+The View menu contains the following items.
+.RS
+.TP 10
+.B Image Info...
+Brings up a window that displays various information about the currently viewed
+image, such as width and height.
+.TP 
+.B Page Overview...
+Brings up a dialog which displays at most 16 pages of the currently viewed document.
+The user may select a page for viewing from this display.
+This option is valid only if the user is viewing a multipage document.
+.TP 
+.B Page Viewing Controls
+Brings up a dialog from which the user may set various parameters that affect
+the viewing of multipage (such as \*(Ps ) files.
+This option is valid only if the user is viewing a multipage document.
+.RE
+.TP 10
+.B Edit
+The Edit menu contains the following items.
+.RS
+.TP 10
+.B Undo
+If the user has selected one of the various operations on the palette, he may
+undo his last selection by choosing this menu item.
+.TP
+.B Palette...
+Brings up a palette with various operations that may be performed on the currently
+displayed image, such as rotation, zooming and flipping.
+.TP
+.B Properties...
+Brings up a dialog that allows the user to specify options that affect how
+.B imagetool
+is run.
+These include whether to display images in gray scale or color, number of colors
+to display (this option depends on the framebuffer of the users system) and
+whether or not the palette is to display immediately or not.
+.TP 10
+.B Help...
+Launches the 
+.BR helpviewer (1)
+which provides the user with 
+.B imagetool
+online help.
+.sp
+.RE
+.TP 0
+There are two other buttons in the main panel with forward and backward arrows
+on them.  These buttons become active when a multipage document is loaded.
+Using these buttons, the user may page forward or backward.
+.sp
+At the far right of the main panel, there is a drop target which has two functions.
+First, the user may drag files from another application
+(
+.BR filemgr (1)
+for example) and drop them in the drop target.
+This causes them to be loaded into the \f3imagetool\f1 and displayed.
+Alternately, after a file has been loaded into the \f3imagetool\f1
+for display, the user may drag a copy of the file out of \f3imagetool\f1
+by moving the mouse pointer to the drop target, pressing down on the left mouse
+button and dragging the resulting file image to another application (\f3filemgr\f1
+again for example ).
+.sp
+Below the main panel, there is a canvas on which the image is displayed.
+When \f3imagetool\f1
+starts up, it tries to create the window to fit the size of the image.
+However, if the image is very large, it may only show a portion of it.
+The user may however, use the scrollbars attached to the display canvas
+to move around within the image.
+.SH OPTIONS
+.TP 9
+.B \-v
+Prints out the current version of
+.B imagetool.
+.TP 9
+.B \-verbose
+Prints lots of debugging information (not useful to the user)
+.TP 9
+.BI \-timeout " seconds"
+Set the timeout value for the 
+Display \*(Ps server.  The default value is 60 seconds.
+.TP 9
+.B \-usage
+Prints out valid command line options.
+.TP 0
+If \f3imagefile\f1 is specified, image is displayed automatically when
+the window appears.
+If no argument is given,
+.B imagetool 
+comes up with no document or image in it. 
+.SH RESOURCES 
+.TP 0
+On startup, imagetool will use the following X resources which
+are stored in $HOME/.desksetdefaults.
+Note these resource names will be prepended with deskset.imagetool.
+.TP 15
+.PD 0
+.B Resource:
+ViewImageIn
+.TP 
+.B Values: 
+Color, GrayScale (Color)
+.TP
+.B Description:
+Determines if images will be displayed in color or grayscale. If user
+is using a monochrome monitor, this setting has no affect.
+.sp
+.TP 15
+.PD 0
+.B Resource:
+Colors
+.TP
+.B Values:
+BW, 16, 256, Millions (256)
+.TP
+.B Description:
+Sets the number of colors to be used when viewing images. This resource
+only is used if a multi-plane framebuffer is being used. Note that for
+most color monitors, only 256 colors are possible.
+.sp
+.TP 15
+.PD 0
+.B Resource:
+DisplayPalette
+.TP
+.B Values:
+True, False (True)
+.TP
+.B Description:
+Determines if palette is automatically displayed when first image is
+opened by imagetool.
+.sp
+.TP 15
+.PD 0
+.B Resource:
+UseDSC
+.TP 
+.B Values:
+True, False (False)
+.TP
+.B Description:
+Determines how \*(Ps documents are interpreted.
+A well written \*(Ps file contains Document Structuring
+Comments which separate various sections of the document.
+If the comments are used correctly, then it is easy to
+determine where each page of the document begins and ends.
+By default, 
+.B imagetool
+does not look for these comments when determining pages.
+Because of this, backward paging can be slow
+since the only way to verify that the displayed page will
+look correct is to begin at the beginning of the document
+and render pages until the desired page is found.
+If the user finds that the performance is not acceptable,
+then this resource may be set, at which time,
+.B imagetool
+will use the Document Structuring Comments to determine where
+each page begins and ends.
+Note that this may help performance, but that displayed
+pages may not look correct due to no comments being found
+in the document, or the comments being used incorrectly.
+.sp
+.sp .5
+.SH "SEE ALSO"
+.BR helpviewer (1),
+.BR filemgr (1),
+.BR dps (7)
+.br
+.TZ SSUG
+.sp
+.SH TRADEMARK
+\*(Ps is a registered trademark of Adobe Systems Inc

@@ -1,0 +1,489 @@
+#ident @(#)common	1.40 93/12/17
+
+#
+# Copyright (c) 1987 by Sun Microsystems, Inc.
+#
+
+#
+# SunPro Make support routines
+#
+# getbuildtype parses the ${CONFIGDIR}/Config/${CONFIG}.db file
+# to see if the library name or command has a special build type
+# specified.  If so, it is returned, else the default type is used.
+# A similar command is also used when linking commands
+#
+# The intention here is to allow the developer a mechanism whereby
+# the built-type of a library or command can be controlled by an
+# external file that contains "name value" pairs, where "name" is the
+# name of the library/command and "value" is one of "optimized", "debug",
+# or "gprof".
+#
+# When linking, the processlibs command  will modify the
+# command line to be sent to ld to change -lShapes into -lShapes_g
+# (For external libraries that are found in ${CONFIG.Destdir}),
+# or ...graphics/libShapes.a into ...graphics/${DIR.targetarch}/libShapes_g.a
+# (for explicitly referenced files), if the external database includes
+# a "Shapes debug" tuple.
+#
+
+GETBUILDTYPE	= ${TOOL.bin}/getbuildtype -g
+PROCESSLIBS	= ${TOOL.bin}/getbuildtype -p
+DEPENDSONLIBS	= ${TOOL.bin}/getbuildtype -l
+PROCESSLINT	= ${TOOL.bin}/getbuildtype -L
+
+# Place this here so that  make  without args does the right thing.
+
+ALLFILES	= ${SOURCES} ${HEADERS} ${HEADERS.public} \
+		  ${MANPAGE} ${FILE} ${HELP} ${APPDEFAULTS} \
+		  ${PUBLICSOURCE} ${SCRIPT} \
+		  ${PSFILE} ${PSHFILE} ${POSTSCRIPT} ${FONTS} \
+		  ${CONFIGDIR}/Templates/${OWCONFIG}.cfg ${CONFIG.DB}
+
+opt::			optimized
+variants::		optimized debug gprof shared
+galactic::		$${ALLFILES}
+
+all::			$${ALLFILES}
+
+tool::			$${ALLFILES}
+
+optimized::		$${ALLFILES}
+gprof::			$${ALLFILES}
+debug::			$${ALLFILES}
+shared::		$${ALLFILES}
+
+install::		$${ALLFILES} DESTDIR
+installoptimized::	$${ALLFILES} DESTDIR
+installdebug::		$${ALLFILES} DESTDIR
+installgprof::		$${ALLFILES} DESTDIR
+installshared::		$${ALLFILES} DESTDIR
+clean::
+clobber::		clean
+	@${RM} ${FILES.junk} ${FILES.clobber} ${DERIVEDFILES}
+lint::			$${ALLFILES}
+lintlib::		$${ALLFILES}
+installlintlib::	$${ALLFILES} DESTDIR
+
+#
+# Common rules used in all parts of the build
+#
+
+# Rather than sprinkling .WAITs through the DEST.DIRS and DEST.SYMLINKS
+# macros, we'll just do all of the directory creation sequentially.
+#
+.NO_PARALLEL::	DESTDIR
+DESTDIR: isdestdirOK .WAIT ${DEST.DIRS} .WAIT ${DEST.SYMLINKS}
+
+isdestdirOK: 
+	@if [ "x${CONFIG.Destdir}" = "x" ] ; \
+	then \
+	    echo "Fatal Error: CONFIG.Destdir not set.  Set it either in"; \
+	    echo "             ${CONFIGDIR}/Config/${OWCONFIG}.cfg or"; \
+	    echo "             in youir environment.  OpenWindows will not"; \
+	    echo "             install without it being set."; \
+	    /bin/false; \
+	fi   
+
+${DEST.DIRS}	$${INSTALL.directory}	\
+		$${INSTALL.headers.dir}	\
+		$${INSTALL.help.dir}	\
+		$${INSTALL.appdefaults.dir}	\
+		$${INSTALL.publicsource.dir}	\
+		$${INSTALL.manpage.dir}	\
+		$${INSTALL.script.dir}	\
+		$${INSTALL.psfile.dir}	\
+		$${INSTALL.pshfile.dir}	\
+		$${INSTALL.file.dir}: 
+	@if [ \! -d $@ ] ; then \
+		${DINSTALL} $@ ; \
+		echo "created [" $@ "]"; \
+	fi 
+
+${DEST.include.sym}: ${DEST.include}
+	@if [ ! -h $@ ] ; then \
+	    ${RMRECURSE} $@; \
+	    cd ${@D}; ${LN} ${DEST.include.link} .; \
+	    echo "created [" $@ "->" ${DEST.include.link} "]"; \
+	fi
+
+${DEST.etc.sym}: ${DEST.etc}
+	@if [ ! -h $@ ] ; then \
+	    ${RMRECURSE} $@; \
+	    cd ${@D}; ${LN} ${DEST.etc.link} .; \
+	    echo "created [" $@ "->" ${DEST.etc.link} "]"; \
+	fi
+
+${DEST.man.sym}: ${DEST.man}
+	@if [ ! -h $@ ] ; then \
+	    ${RMRECURSE} $@; \
+	    cd ${@D}; ${LN} ${DEST.man.link} .; \
+	    echo "created [" $@ "->" ${DEST.man.link} "]"; \
+	fi
+
+${DEST.help.sym}: ${DEST.help}
+	@if [ ! -h $@ ] ; then \
+	    ${RMRECURSE} $@; \
+	    cd ${@D}; ${LN} ${DEST.help.link} .; \
+	    echo "created [" $@ "->" ${DEST.help.link} "]"; \
+	fi
+
+${DEST.xview.sym}: ${DEST.xview}
+	@if [ ! -h $@ ] ; then \
+	    ${RMRECURSE} $@; \
+	    cd ${@D}; ${LN} ${DEST.xview.link} ${@F} ; \
+	    echo "created [" $@ "->" ${DEST.xview.link} "]"; \
+	fi
+
+${DEST.image.sym}: ${DEST.image}
+	@if [ ! -h $@ ] ; then \
+	    ${RMRECURSE} $@; \
+	    cd ${@D}; ${LN} ${DEST.image.link} .; \
+	    echo "created [" $@ "->" ${DEST.image.link} "]"; \
+	fi
+
+${DIR.targetarch} ${DIR.optimized} ${DIR.debug} ${DIR.gprof} ${DIR.shared} ${DIR.shared.sa} ${DIR.tool.optimized} ${DIR.tool.debug} ${DIR.tool.gprof} ${DIR.lint}:
+	@if [ \! -d $@ ] ; then \
+		${DINSTALL} $@ ; \
+	fi 
+
+#
+# Install public header (*.h) files
+#
+#	in:	HEADERS.public		.h files to install
+#		INSTALL.headers.dir	where to install
+#
+install_h:	$${INSTALL.headers.dir} $${HEADERS.public}
+	@for file in ${HEADERS.public} ; do \
+	  if cmp -s $$file ${INSTALL.headers.dir}/$$file ; \
+	    then : ; \
+	    else \
+		${ECHO} "$$file 	=> ${INSTALL.headers.dir}" ; \
+		${TINSTALL.bsd} $$file ${INSTALL.headers.dir} ; \
+		${TINSTALL.posix} -f ${INSTALL.headers.dir} $$file ; \
+	  fi \
+	done
+
+#
+# Install help (*.info) files
+#
+#	in:	HELP			.info files to install
+#		INSTALL.help.dir	where to install
+#
+install_help:	$${INSTALL.help.dir} ${HELP}
+	@for file in ${HELP} ; do \
+	  if cmp -s $$file ${INSTALL.help.dir}/$$file ; \
+	    then : ; \
+	    else \
+		${ECHO} "$$file 	=> ${INSTALL.help.dir}" ; \
+		${TINSTALL.bsd} $$file ${INSTALL.help.dir} ; \
+		${TINSTALL.posix} -f ${INSTALL.help.dir} $$file ; \
+	  fi \
+	done
+
+#
+# Install source files
+#
+# Install help (*.info) files
+#
+#	in:	APPDEFAULTS			.ad files to install
+#		INSTALL.appdefaults.dir		where to install
+#
+# Note that since the SVr4/Solaris2 install doesn't let you rename
+# the file during the install, we need to rename after the install.
+#
+install_appdefaults:	$${INSTALL.appdefaults.dir} ${APPDEFAULTS}
+	@for file in ${APPDEFAULTS} ; do \
+	  ifile=`basename $$file .ad` ; \
+	  if cmp -s $$file ${INSTALL.appdefaults.dir}/$$ifile ; \
+	    then : ; \
+	    else \
+		${ECHO} "$$ifile 	=> ${INSTALL.appdefaults.dir}" ; \
+		${TINSTALL.bsd} $$file ${INSTALL.appdefaults.dir} ; \
+		${TINSTALL.posix} -f ${INSTALL.appdefaults.dir} $$file ; \
+		${MV} ${INSTALL.appdefaults.dir}/$$file ${INSTALL.appdefaults.dir}/$$ifile ; \
+	  fi \
+	done
+
+#
+# Install source files
+#
+#	in:	PUBLICSOURCE
+#		INSTALL.publicsource.dir	where to install
+#
+install_publicsource:	$${INSTALL.publicsource.dir} ${PUBLICSOURCE}
+	@if [ ! -d ${INSTALL.publicsource.dir} ] ; then \
+		echo "created [" ${INSTALL.publicsource.dir} "]"; \
+		${DINSTALL} ${INSTALL.publicsource.dir} ; \
+	fi
+	@for file in ${PUBLICSOURCE} ; do \
+	  if cmp -s $$file ${INSTALL.publicsource.dir}/$$file ; \
+	  then : ; \
+	  else \
+	      if [ "x$$file" = "xMakefile.customer" ] ; then \
+		${ECHO} "$$file 	=> ${INSTALL.publicsource.dir}/Makefile" ; \
+		${TINSTALL.bsd} $$file ${INSTALL.publicsource.dir} ; \
+		${TINSTALL.posix} -f ${INSTALL.publicsource.dir} $$file ; \
+		${MV} ${INSTALL.publicsource.dir}/$$file ${INSTALL.publicsource.dir}/Makefile ; \
+	      else \
+		${ECHO} "$$file 	=> ${INSTALL.publicsource.dir}" ; \
+		${TINSTALL.bsd} $$file ${INSTALL.publicsource.dir} ; \
+		${TINSTALL.posix} -f ${INSTALL.publicsource.dir} $$file ; \
+	      fi; \
+	  fi \
+	done
+
+#
+# Install Man Pages
+#
+#	in:	MANPAGE			man pages to install
+#		INSTALL.manpage.dir	where to install
+#
+install_man:	$${INSTALL.manpage.dir} $${MANPAGE}
+	@for file in ${MANPAGE} ; do \
+	  if cmp -s $$file ${INSTALL.manpage.dir}/$$file ; \
+	    then : ; \
+	    else \
+		${ECHO} "$$file 	=> ${INSTALL.manpage.dir}";\
+		${TINSTALL.bsd} $$file ${INSTALL.manpage.dir} ; \
+		${TINSTALL.posix} -f ${INSTALL.manpage.dir} $$file ; \
+	  fi \
+	done
+
+#
+# Install Executable Shell Scripts
+#
+#	in:	SCRIPT			scripts to install
+#		INSTALL.script.dir	where to install them
+#
+install_script:	$${INSTALL.script.dir} $${SCRIPT}
+	@for file in ${SCRIPT} ; do \
+	  if cmp -s $$file ${INSTALL.script.dir}/$$file ; \
+	    then : ; \
+	    else \
+		${ECHO} "$$file 	=> ${INSTALL.script.dir}" ; \
+		${BINSTALL.posix} -f ${INSTALL.script.dir} $$file ; \
+		${BINSTALL.bsd} $$file ${INSTALL.script.dir} ; \
+	  fi \
+	done
+
+#
+# Install PostScript files
+#
+#	in:	PSFILE			NeWS files to install
+#		INSTALL.psfile.dir	where to install them
+#
+install_psfile:	$${INSTALL.psfile.dir} ${PSFILE}
+	@for file in ${PSFILE} ; do \
+	  if cmp -s $$file ${INSTALL.psfile.dir}/$$file ; \
+	    then : ; \
+	    else \
+		${ECHO} "$$file 	=> ${INSTALL.psfile.dir}" ; \
+		${TINSTALL.bsd} $$file ${INSTALL.psfile.dir} ; \
+		${TINSTALL.posix} -f ${INSTALL.psfile.dir} $$file ; \
+	  fi \
+	done
+
+#
+# Install psh-able PostScript files
+#
+#	in:	PSHFILE			NeWS files to install
+#		INSTALL.pshfile.dir	where to install them
+#
+#
+# Note that since the SVr4/Solaris2 install doesn't let you rename
+# the file during the install, we need to install under a temporary
+# name and rename the result.
+#
+install_pshfile:	$${INSTALL.pshfile.dir} ${PSHFILE}
+	@for file in ${PSHFILE} ; do \
+		(echo "#!/bin/sh" ; \
+		 echo "psh << '--PSH_EOF--'" ; \
+		 cat $$file ; \
+		 echo "" ; \
+		 echo "--PSH_EOF--" ) > $$file.tmp; \
+	  if cmp -s $$file.tmp ${INSTALL.pshfile.dir}/$$file ; \
+	    then : ; \
+	    else \
+		${ECHO} "$$file 	=> ${INSTALL.pshfile.dir}" ; \
+		${TINSTALL.bsd} $$file.tmp ${INSTALL.pshfile.dir} ; \
+		${TINSTALL.posix} -f ${INSTALL.pshfile.dir} $$file.tmp ; \
+		${MV} ${INSTALL.pshfile.dir}/$$file.tmp ${INSTALL.pshfile.dir}/$$file ; \
+	  fi ; \
+	  ${RM} $$file.tmp; \
+	done
+
+#
+# Install generic file
+#
+#	in:	FILE			file to install
+#		INSTALL.file.dir	where to install
+#
+install_file:	$${INSTALL.file.dir} $${FILE}
+	@for file in ${FILE} ; do \
+	  if cmp -s $$file ${INSTALL.file.dir}/$$file ; \
+	    then : ; \
+	    else \
+		${ECHO} "$$file 	=> ${INSTALL.file.dir}" ; \
+		${TINSTALL.bsd} $$file ${INSTALL.file.dir} ; \
+		${TINSTALL.posix} -f ${INSTALL.file.dir} $$file ; \
+	  fi \
+	done
+
+#
+# Install binary scripts - OBSOLETE - use install_script
+#
+# install_bin:	$${INSTALL.headers.dir} ${HEADERS.public}
+# 	@echo "REMIND: The install_bin target is obsolete.  -John Plocher"
+# 	@for file in ${HEADERS.public} ; do \
+# 	  if cmp -s $$file ${INSTALL.headers.dir}/$$file ; \
+# 	    then : ; \
+# 	    else \
+# 		${ECHO} "$$file 	=> ${INSTALL.headers.dir}" ; \
+# 		${BINSTALL} $$file ${INSTALL.headers.dir} ; \
+# 	  fi \
+# 	done
+
+# Force an abnormal build failure
+
+install_bin:
+	@echo "Error: The install_bin target is no longer supported"
+	@echo "       Use install_script instead"
+	@echo "       Refer to Rulesets/SunPro/common"
+	false
+
+
+
+
+#
+#	Start of Swet/Hindsight
+#
+
+#
+#	Preconditions
+#		SOURCES
+#		HEADERS
+#		HINDSIGHT_bin		# ... from ${CONFIGDIR}/OS/SunOS41
+#		HINDSIGHT_environ_lm
+#		HINDSIGHT_environ
+#	Exports:
+# 		%.ana
+# 		analyze analyzeall analyzeclean
+#	Defines:
+#		.ana
+#
+
+ANALYZE.dir.name	= analyze
+ANALYZE.dir		= ${DIR.targetarch}/${ANALYZE.dir.name}
+
+# --- Hindsight/Analyzer ---
+ANALYZER		= ${HINDSIGHT_bin}/analyzer
+local.ANALYZEROPTS	= -f -r -g -c -n -m -v -d
+ANALYZEROPTS		= ${local.ANALYZEROPTS}
+ANALYZER.c		= ${ANALYZER} ${ANALYZEROPTS}
+
+.SUFFIXES:      .ana
+
+HINDSIGHT.setup		= ${HINDSIGHT.macrofile} ${ANALYZE.dir} 
+SOURCES.analyze		= ${SOURCES:%.c=${ANALYZE.dir}/%.ana}
+
+${HINDSIGHT.macrofile}:
+	{					\
+		${ECHO} ${XNEWS.buildtype};	\
+		${ECHO} ${CFLAGS.DEFINE};	\
+		${ECHO} ${DEFINES};		\
+		${ECHO} ${INCLUDE};		\
+		${ECHO} ${local.OPTIONS};	\
+	} > $@
+
+${ANALYZE.dir}:
+	@if [ \! -d $@ ] ; then \
+		${DINSTALL} $@ ; \
+	fi 
+
+%.ana:			${ANALYZE.dir}/%.ana
+
+${ANALYZE.dir}/%.ana:	${HINDSIGHT.setup} ${HEADERS} %.c
+	(eval ${HINDSIGHT_environ_lm}; ${ANALYZER.c} -o $@ $<)
+
+analyze:		${SOURCES.analyze}
+analyzeall:		analyze analyzelib
+
+analyzeclean:
+	@if [ -d ${ANALYZE.dir} ]; then ${RMRECURSE} ${ANALYZE.dir}; fi
+	@if [ -f ${HINDSIGHT.macrofile} ]; \
+		then ${RM} ${HINDSIGHT.macrofile}; fi
+
+analyzecheckmakefile:
+	@${ECHO}
+	@${ECHO} "MAKETARGET = ${MAKETARGET}"
+	@${ECHO} "LIBRARY = ${LIBRARY}"
+	@${ECHO} "SOURCES = ${SOURCES}"
+	@${ECHO} "HEADERS = ${HEADERS}"
+	@${ECHO}
+	@${ECHO}
+	@${ECHO} "HINDSIGHT = ${HINDSIGHT}"
+	@${ECHO} "HINDSIGHT_bin = ${HINDSIGHT_bin}"
+	@${ECHO} "HINDSIGHT_environ_lm = ${HINDSIGHT_environ_lm}"
+	@${ECHO} "HINDSIGHT_environ = "
+	-(	eval ${HINDSIGHT_environ}; \
+		${ECHO} PATH=$${PATH}; \
+		${ECHO}; \
+		${ECHO} GKSDIR=$${GKSDIR}; \
+		${ECHO}; \
+		${ECHO} FONTPATH=$${FONTPATH}; \
+		${ECHO}; \
+		${ECHO} ASA_LM_HOST=$${ASA_LM_HOST}; \
+		${ECHO}; \
+		LD_LIBRARY_PATH=${OPENWINHOME}/lib xset q | tail -2)
+	@${ECHO} "ANALYZER.c = ${ANALYZER.c}"
+	@${ECHO}
+	@${ECHO} "ANALYZE.dir = ${ANALYZE.dir}"
+	@${ECHO} "HINDSIGHT.macrofile = ${HINDSIGHT.macrofile}"
+	@${ECHO} "SOURCES.analyze = ${SOURCES.analyze}"
+	@${ECHO} "LIBRARY.analyze = ${LIBRARY.analyze}"
+
+
+#
+#	End of Swet/Hindsight
+#
+
+#
+#	locale (I18N) additions
+#
+
+.SUFFIXES:      .po .mo
+
+MSGFMT=${TOOL.bin}/msgfmt
+
+%.mo:	%.po
+	${MSGFMT} $<
+
+#
+#	End of locale (I18N) additions
+#
+
+
+populate::  $${ALLFILES}
+depopulate:: clobber
+	${SCCSCLEAN}
+
+huh::
+	@echo "Config file   = ${CONFIGDIR}/Templates/${OWCONFIG}.cfg"
+	@echo "Database file = ${CONFIG.DB}"
+
+do_cmd: FRC
+	-@for i in . ${SUBDIRS}; do \
+		if [ "x$$i" = "x." ]; then \
+			${CMD} ; \
+		else \
+			( \
+			  cd $$i;  echo "----["`${PWDCMD}`"]----"; \
+			  ${MAKE} do_cmd CMD='${CMD}'        \
+			) ; \
+		fi \
+	done
+
+FRC:
+
+.KEEP_STATE:
+

@@ -1,0 +1,25 @@
+The Audience
+
+	This demo is designed for the following:
+	   . programmer's who are currently using OLIT to write applications
+	   . programmer's who plan to use OLIT to port applications from another
+	     toolkit to OPEN LOOK
+	   . anyone who wants an overview of the graphical components (Widgets)
+	     provided by OLIT
+
+
+The Toolkit
+
+
+The OPEN LOOK Intrinsics Toolkit (OLIT) is an Application Programmer Interface (API) toolkit which can be used to build X11-based, OPEN LOOK applications.  The toolkit provides a high level method of creating and manipulating the graphical objects commonly used in the application user interface, such as buttons, menus, text input areas, etc. 
+
+OLIT is based on the C language and the Xt Intrinsics, and like other Intrinsics-based toolkits, it calls its graphical UI objects "Widgets".  A "Widget" is essentially an object (data) and a set of routines (methods) which can be used to manipulate that object.  Each widget has a set of "Resources" (attributes) which can be configured by either the programmer or the user in order to obtain the desired functionality from that object. 
+
+
+The Demo
+
+This demo gives a graphic & informational overview of the widgets that are available in the OPEN LOOK Intrinsics Toolkit that ships with OpenWindows Version2.  It was designed to be used as both a quick widget reference and an introductory guide to the toolkit. 
+
+The demo was implemented using the metaphor of a chemistry Periodic Table (using widgets in place of the elements).  The main window of the demo provides a birds-eye view of all the widgets in a Periodic Table format.  Each cell contains a miniature working version of the widget, as well as a button which can be pressed to bring up more detailed information on the widget, including a general description, example code and a list of its resources. 
+
+

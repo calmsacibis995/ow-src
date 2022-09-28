@@ -1,0 +1,240 @@
+.\" Copyright (c) 1994 - Sun Microsystems, Inc.
+.TH openwin 1 "22 February 1994"
+.ds Ps P\s-2OST\s+2S\s-2CRIPT\s+2
+.IX "openwin" "" "\f3openwin\f1(1) \(em OpenWindows startup script" ""
+.IX "OpenWindows" "startup" "OpenWindows" "startup script \(em \f3openwin\f1(1)"
+.SH NAME
+openwin \- OpenWindows startup script
+.SH SYNOPSIS
+.B openwin
+[
+.I options
+]
+.SH DESCRIPTION
+The 
+.B openwin
+shell script sets up the proper environment for starting the
+entire OpenWindows package, including the
+.BR Xsun (1)
+window server,
+.BR olwm (1)
+an X11 ICCCM and OpenLook compliant window manager, and several 
+default DeskSet(tm) tools.
+.SH OPTIONS
+There are several options which allow you to tailor the default setup of the
+.B Xsun
+server.
+.B openwin
+accepts the same command line options as
+.B Xsun.
+For more information, refer to both the
+.BR Xsun (1)
+and
+.BR Xserver (1)
+manual pages.  Note that options passed to the server by the \f3openwin\f1
+shell script such as \f3-r\f1 may be overwritten by settings specified by
+.BR props (1)
+as it initializes the desktop.  See the
+.BR props (1)
+man page for more details.
+.PP
+In addition,
+.B openwin
+accepts the following command line arguments that the server does not accept:
+.TP
+[\f3-server\f1 \fIXsun\fP]
+This tells openwin which server binary to start.  The default is
+\f3\s-1$OPENWINHOME\s+1/bin/Xsun\fR.
+.TP
+[\f3-noauth\f1]
+The OpenWindows server implements the "MIT-MAGIC-COOKIE" security
+mechanism which is a user-specific, rather than host-specific,
+authorization system.
+The default is to run with this authorization enabled.
+This option tells \f3openwin\f1 to start the server without the "MAGIC
+COOKIE" authorization and will revert to no user-specific security.
+\fIRunning the server with this option enabled lowers your level of security.
+It is recommended that this option not be enabled, except when explicitly needed.\fP
+See the OpenWindows documentation for more information.
+.TP
+[\f3-auth \fIprotocol-name\f1]
+This option allows the user to choose the authentication protocol that
+the server will use to authenticate client connections. The two
+choices available are \f3magic-cookie\fP, or \f3sun-des\fP. The former
+sets the authentication protocol to "MIT-MAGIC-COOKIE" and is the
+default, while the latter makes the server use "SUN-DES-1", which is
+based on SecureRPC, as the authentication protocol.  See the
+OpenWindows documentation for more information.
+.TP
+[\f3-includedemo\fP]
+This option indicates that the path to the demo directory should be included
+in the user's search path (see \f3PATH\fP below).
+.TP
+[\f3-wm\fP \fIwm-command\fP]
+This option allows the user to choose an alternate window manager
+to be started by the system default Xinitrc.  
+The default is to start
+.BR olwm (1)
+(the OpenLook window manager).
+For example, the command "openwin -wm twm" will start
+.BR twm (1)
+instead of 
+.B olwm.
+A \fIwm-command\fP of multiple words must be quoted.
+This option is likely to be ignored if the user has a 
+$HOME/.xinitrc script of their own.
+.SH ENVIRONMENT
+The behavior of \f3openwin\fP can also be tailored by means of the
+following environment variables:
+.TP
+.SB OPENWINHOME
+The 
+.SB OPENWINHOME 
+variable is no longer required to be set.  OpenWindows
+should always be accessible from \f3/usr/openwin\fP.  If 
+.SB OPENWINHOME 
+is set to anything other than \f3/usr/openwin\fP, OpenWindows 
+will not start up properly.
+.TP
+.SB DISPLAY
+By default this is ":0", meaning this server is the first (zero based) one
+running on this machine.  If you need to run more than one server on a given
+machine, use the 
+.B -display 
+option.
+.TP 
+.SB LD_LIBRARY_PATH
+OpenWindows will no longer set \f3LD_LIBRARY_PATH\fP.  Applications requiring 
+the OpenWindows libraries should be compiled with 
+.SB LD_RUN_PATH 
+set to \f3/usr/openwin/lib\fP.  If you find an older binary which was compiled without
+.SB LD_RUN_PATH 
+set, you will need to set \f3LD_LIBRARY_PATH\fP 
+to \f3$OPENWINHOME/lib\fP in order to execute this program.
+.TP
+.SB PATH
+.br
+This is the path searched by shells (i.e. 
+.BR csh (1), 
+.BR sh (1), 
+and
+.BR ksh (1) ) 
+to find executable
+programs. \f3\s-1$OPENWINHOME\s+1/bin\fR is prepended to your path if it
+is not there already.
+.TP
+.SB MANPATH
+.B openwin
+will add \f3$OPENWINHOME/share/man\fP to \f3MANPATH\fP so that OpenWindows
+manual pages will be available to the user through the
+.BR man (1)
+command.
+.TP
+.SB HELPPATH
+OpenWindows searches this path for help files,
+\f3$OPENWINHOME/lib/help\fP is appended to any existing definition of
+\f3HELPPATH\fP.
+.TP
+.SB OW_WINDOW_MANAGER
+.br
+Specifies an alternate window manager command to be used
+by the system default Xinitrc script.  This environment
+variable is private to the startup scripts and should not
+be used or set directly.
+.TP
+.SB XINITRC
+Specifies an init script executed by
+.BR xinit (1)
+after the server is up and running.  If 
+.B $HOME/.xinitrc 
+does not exist and 
+.SB XINITRC 
+is not already set, it is set to \f3$OPENWINHOME/lib/Xinitrc\fP.
+.TP
+.SB HOME
+.br
+The name of the user's login directory, set by
+.BR login (1)
+from the password file
+.B /etc/passwd
+(see
+.BR passwd (1)).
+.sp
+.SH FILES
+.TP
+\f3$HOME/.xinitrc\fP
+This is the file executed by
+.B xinit
+after the server is up and running.
+Previous releases copied 
+\f3$OPENWINHOME/lib/Xinitrc\fP into \f3$HOME/.xinitrc\fP.
+This is no longer necessary and only users who want to customize server
+startup need to have this file.
+.TP
+\f3$HOME/.Xdefaults\fP
+This is where X11 application resources are defined.
+The default Xinitrc script will use 
+.B .Xdefaults 
+if it exists, or use 
+.B $OPENWINHOME/lib/Xdefaults 
+if it does not exist.
+.TP
+\f3$OPENWINHOME/lib/Xinitrc\fP
+The default
+.B xinit
+init script.
+Site specific changes can be made here and will be used by users 
+without an existing \f3.xinitrc\fP.
+The default Xinitrc contains the following:
+.sp
+.nf
+.ta 1n 37n
+	# @(#)Xinitrc   1.20 92/12/08   OpenWindows startup script.
+
+	xrdb $OPENWINHOME/lib/Xdefaults		# Load Default X11 resource
+	database
+	if [ -f $HOME/.Xdefaults ]; then
+	    xrdb -merge $HOME/.Xdefaults	# Load Users X11 resource
+	database
+	fi
+
+	$OPENWINHOME/lib/openwin-sys		# OpenWindows system
+	initialization
+
+	eval `locale_env -env`                  # Set Locale Environment
+
+	if [ "$OW_WINDOW_MANAGER" ]; then       # Alternate Window Manager
+	    xsetroot -def                           # Clear root window
+	    $OW_WINDOW_MANAGER & wmpid=$!           # Start Alt Window Manager
+	    dsdm &                                  # OpenLook Drop Site Database
+	    unset OW_WINDOW_MANAGER
+	else
+	    sleep 15 & pid=$!                   # OpenLook Window Manager
+	    olwm -syncpid $pid & wmpid=$!
+	    wait $pid                           # Pause until olwm inits
+	fi
+
+	if [ -x $HOME/.openwin-init ]; then
+	    $HOME/.openwin-init			# Custom OpenWindows tools
+	else
+	    $OPENWINHOME/lib/openwin-init	# Default OpenWindows tools
+	fi
+
+	wait $wmpid			# Wait for wm (key client) to exit
+.fi
+.TP
+\f3$OPENWINHOME/lib/Xdefaults\fP
+Site specific changes to the default resource database can be made here
+and will be propagated to users without an existing \f3.Xdefaults\fP.
+.TP
+\f3$HOME/.Xauthority\fP and \f3$HOME/.xsun.\fIhostname:displaynumber\fP
+Files where per-session authorization information is written.
+.SH SEE ALSO
+.BR Xsun (1),
+.BR Xserver (1),
+.BR login (1) ,
+.BR olwm (1),
+.BR passwd (1),
+.BR props (1),
+.BR xinit (1),
+.BR xrdb (1)

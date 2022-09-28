@@ -1,0 +1,1081 @@
+#################################################
+#	imagetool.info	20 November -- Rob Patten 
+#
+##################################################
+# This help text is for Image Tool in V3.2
+#
+#       @(#)imagetool.info 1.17 93/02/19
+#
+##################################################
+# Control Button Menus 
+##########This_Line_Is_50_Characters_Long#########
+:File:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+File
+
+Provides options to open, save, and print images.
+
+Open 
+   For choosing the file you want to open.
+
+Open As
+   For choosing a file and specifying its format.
+
+Save
+   For saving the currently displayed image.
+
+Save As	
+   For saving the displayed image and specifying 
+   a directory, name, format, compression method,
+   and the number of colors.
+
+Save Selection As
+   For saving the area of the View window defined
+   by the Selector tool.
+
+Save Page As Image
+   For saving the currently displayed page as 
+   a separate image.
+
+Print One
+   For printing a single copy of the currently 
+   displayed image or page.
+
+Print Preview
+   For previewing the printed appearance of the
+   currently displayed image or page.
+
+Print
+   For specifying the settings that control 
+   printing.
+
+##########This_Line_Is_50_Characters_Long#########
+:View:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+View
+
+Provides these options:
+
+Image Info
+   For displaying the height, width, number of 
+   colors, file size, and file format of the 
+   currently displayed image or page.
+
+Page Overview
+   For displaying a scrollable list of thumbnail
+   pages in the currently opened multiple page
+   document. You can also use this option to view
+   a specific page.
+
+Page Viewing Controls
+   For setting the viewing orientation (portrait
+   or landscape), page display order (first page
+   first or last page first), and page size of
+   multiple page documents.
+
+##########This_Line_Is_50_Characters_Long#########
+:Edit:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Edit
+
+Provides these options:
+
+Undo
+   For canceling the previous operation performed
+   with a palette tool.
+
+Palette
+   For displaying the palette.  The palette
+   contains the Pan, Rotate, Selector, Flip, and
+   Zoom tools.
+
+Properties
+   For setting various Image Tool properties.
+
+##########This_Line_Is_50_Characters_Long#########
+:Help
+Help
+
+Opens the On-line Help Handbook that provides
+detailed information about Image Tool.
+
+##########This_Line_Is_50_Characters_Long#########
+:Up:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Previous Page
+
+Click SELECT on the left arrow button
+to display the previous page of the document.
+
+You can also use the PgUp key on your keyboard to
+display the previous page.
+
+:Down:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Next Page
+
+Click SELECT on the right arrow button 
+to display the next page of the document.
+
+You can also use the PgDn key on your keyboard to
+display the next page.
+
+:DropTarget:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Drag and Drop Target
+
+Drop a file icon on this box to open the image
+or document in Image Tool.
+
+For example, press SELECT on an icon in the
+attachment pane of a Mail Tool message, drag
+the icon to this target, and then release SELECT
+to drop the icon.  Image Tool would then open the
+file.
+
+When a file is displayed in Image Tool, you can 
+drag the icon from this box to an area in another
+application, such as a File Manager window, that
+can accept the file.
+
+##########This_Line_Is_50_Characters_Long#########
+:Panel:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Control Panel
+
+Contains the File, View, and Edit menus, the Help
+button, the Up and Down paging buttons, and the
+Drag and Drop Target. 
+
+##########This_Line_Is_50_Characters_Long#########
+:Canvas:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+View Window
+
+This is where Image Tool displays images.
+
+To shift the display of an image within the View 
+window (pan), use the scroll bars or choose the
+Palette option in the Edit menu and then click
+SELECT on the Pan tool.
+
+To open and display another file, choose Open from
+the File menu. 
+
+################################################
+# File Menu Items
+################################################
+#
+##########This_Line_Is_50_Characters_Long#########
+:Open:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Open
+
+Displays a window from which you choose the file
+for the image you want to open.
+
+Keyboard shortcut:  Meta-O
+ 
+:OpenAs:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Open As
+
+Displays a window from which you choose the file 
+and file format for the image you want to open.
+
+Use this option to identify the specific format
+of the file you want Image Tool to open.
+
+Image Tool can open these image file formats:
+
+3 Portable Graymap             Abekas YUV
+Andrew Toolkit                 Atari Compressed
+Atari Uncompressed Spectrum    Atari Degas 1
+Atari Degas 3                  AutoCAD Slide
+Benet Yee Face File            CMU Window Manager
+EPSF                           FITS
+GEM                            GIF
+Gould Scanner                  Group 3 FAX
+HIPS                           HP PaintJet
+IFF ILBM                       Img-Whatnot
+JFIF (JPEG)
+Lisp Machine Bit-Array         MGR
+MTV/PRT Ray-Tracer             MacPaint
+PBM                            PC Paintbrush
+PGM                            PICT
+PPM                            PostScript
+QRT Ray-Tracer                 Raw Grayscale
+Raw RGB                        Sun Icon
+Sun Raster                     TIFF
+TrueVision Targa               Usenix FaceSaver
+X Bitmap                       X11 Window Dump
+XPM                            Xerox Doodle Brush
+Xim
+
+##########This_Line_Is_50_Characters_Long#########
+:Save:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Save 
+
+Displays a window from which you can save the 
+currently displayed image to a file. 
+
+If you want to save the image to a different file
+format or compress the file before it is saved,
+choose Save As.
+
+The Save option is dimmed when:
+
+o  You have selected an area of the View window
+   with the Selector tool from the palette.
+
+o  When you have opened a file whose format 
+   Image Tool does not write (use Save As).
+
+Keyboard shortcut:  Meta-S
+
+:SaveAs:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Save As
+
+Displays a window from which you choose the type,
+format, folder, and name of a file for saving
+the currently displayed image.
+
+Use this option when you want to convert an image
+to a different file format and file type.
+
+Image Tool writes these file formats:
+
+EPSF             GIF             JFIF (JPEG)
+PostScript       Sun Raster      TIFF
+
+The Save As option is dimmed when there is an area
+of the View window selected with the Selector
+tool from the palette.
+
+##########This_Line_Is_50_Characters_Long#########
+:SaveSelectionAs:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Save Selection As
+
+This option is active when an area of the View
+window has been selected with the Selector tool
+from the palette.
+
+Choose this option to save the selected area to a
+new image file.
+
+:SavePageAsImage:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Save Page As Image
+
+Displays a window from which you can save the 
+currently displayed page of a multiple page 
+document as a new image file.
+
+This option is dimmed when there is an area of the
+View window selected with the Selector tool from
+the palette.
+
+:PrintOne:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Print One
+
+Uses the current settings of the Print window to
+print a single copy of the currently displayed
+image or page.
+
+Keyboard shortcut:  Meta-P
+
+:PrintPreview:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Print Preview
+
+Displays the Print Preview window that shows how
+the contents of the View window will appear when
+printed.  
+
+The Print Preview window uses dotted lines to
+depict the boundaries of the printed page. You
+can control which area of the image gets printed
+by dragging the image within the dotted lines.
+
+##########This_Line_Is_50_Characters_Long#########
+:Print:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Print
+
+Displays the Print window that contains these
+options for controlling how the contents of the
+View window are printed:
+
+Copies (number of)
+Header Page (whether one should be printed) 
+Printer (which device)
+Page Size (Letter, Legal, Ledger, A3, A4, B5)
+Page Range (for multiple page documents)
+Image Size (scaling)
+Image Orientation (Portrait or Landscape)
+Image Position (centered or specify margins)
+
+################################################
+# Edit Menu Items
+################################################
+#
+##########This_Line_Is_50_Characters_Long#########
+:Undo:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Undo
+
+Undoes the last usage of these tools from the 
+palette:  Flip, Rotate, Pan, or Zoom.
+ 
+Keyboard shortcut:  Meta-Z
+
+##################################################
+:Palette:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Palette
+
+The palette contains these tools:
+
+Pan  
+   For moving the image within the View window.
+
+Rotate 
+   For rotating the image right or left by the
+   value entered in the Rotate degrees field.
+
+Selector
+   For selecting and saving an area of the View
+   window as a new image 
+
+   Use with File => Save Selection As.
+
+Flip
+   For flipping the image left to right, or top to
+   bottom.
+
+Zoom
+   For reducing or enlarging the image by the
+   value entered in the Zoom percentage field.
+
+##################################################
+:Properties:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Properties
+
+Displays the Properties window, where you can set:
+
+o If images are viewed in color or gray scale
+
+o The number of colors used for rendering images
+
+o If the palette is automatically displayed when
+  an image is opened
+
+Keyboard shortcut:  Meta-I
+
+################################################
+# View Menu Items
+##################################################
+#
+##########This_Line_Is_50_Characters_Long#########
+:ImageInfo:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Image Info
+
+Displays a window that contains the following 
+information about the currently displayed image
+or page:
+
+o  Height and Width -- inches, centimeters, and
+   pixels
+
+o  Number of colors (depth)
+
+o  File Size -- the size of the file, in bytes
+
+o  File Format 
+
+:Pageview:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Page Overview
+
+Available only for multiple page documents,
+this option displays a window with a scrollable
+list of thumbnail renderings of each page and
+controls for viewing specific pages.
+
+:PsOptions:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Page Viewing Controls
+
+Use this option to set these viewing controls
+for multiple page documents:
+
+o  Page orientation (portrait or landscape)
+
+o  Page display order (first page first or last
+   page first)
+
+o  Page size (Letter, Legal, Ledger, A3, A4, 
+   or B5)
+################################################
+# Open As Popup Window
+################################################
+#
+##########This_Line_Is_50_Characters_Long#########
+:OpenAsFormats:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+File Format
+
+Click SELECT on the file format you want to use
+for opening the file you have selected in the
+scrolling list of file and folder names.
+
+################################################
+# Save Popup Window
+# All Save window objects controlled through 
+# xview--see xview.info
+#
+################################################
+
+
+################################################
+# Save As/Save Selection As/Save Page As Image Windows
+#
+################################################
+#
+##########This_Line_Is_50_Characters_Long#########
+:SaveAsFormats:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+File Format
+
+Click SELECT on the file format you want to use
+for saving the currently displayed image or page.
+
+When you choose a file format, Image Tool
+automatically chooses compatible Compression
+and Color atttibutes.
+ 
+:SaveAsColors:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Colors
+
+Press MENU on the Colors menu button to display a
+list of the color attributes available for the
+selected file format.  This determines the number
+of colors that will be used to render the saved
+file's image.
+
+:SaveAsCompression:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Compression
+
+Press MENU on the Compression menu button to
+display a list of the file compression methods
+available for the currently selected file format.
+
+Image Tool compresses the data using the selected
+compression method before writing the file to
+disk.  This can greatly reduce the size of the 
+stored file.
+
+Image Tool offers four compression methods:
+
+o  UNIX -- Standard UNIX file compression utility,
+   available for encapsulated PostScript (EPSF),
+   PostScript, Sun Raster, and TIFF formats.
+
+o  Encoded run length -- Available for Sun Raster.
+
+o  LZW -- Available for TIFF files.
+
+o  JPEG -- Available for JFIF files.
+
+################################################
+# Print Preview Popup Window
+################################################
+#
+##########This_Line_Is_50_Characters_Long#########
+:PrintPreviewWindow:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Print Preview Window
+ 
+This window shows how the contents of the View
+window will appear when printed with the current
+Print window control settings.
+ 
+Dotted lines depict the boundaries of the printed
+page(s). To control which area of the image is
+printed, move the pointer into the window and drag
+the image into position.
+#
+:PrintPreviewCanvas:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Print Preview Window
+
+This window shows how the contents of the View
+window will appear when printed with the current
+Print window control settings. 
+
+Dotted lines depict the edges of the printed
+page(s). To control which area of the image is
+printed, move the pointer into the window (it
+changes to a hand shape) and drag the image into
+position.
+
+:PrintPreviewPrint:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Print
+
+Click SELECT on this button to display the Print
+window.  Use the Print window options to control
+how the contents of the View window are printed.
+
+:PrintPreviewCancel:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Cancel
+
+Click SELECT on this button to dismiss the Print
+Preview window.
+
+################################################
+# Print Popup Window
+################################################
+#
+##########This_Line_Is_50_Characters_Long#########
+:PrintWindow:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Print Window
+
+The Print window contains options for controlling
+how the contents of the View window are printed.
+
+For help on a particular item in the Print window,
+place the pointer over the item and press the 
+Help key.
+
+As you change settings in the Print window, use
+File => Print Preview to view the effects that
+the settings will have on the printed appearance
+of your file.
+
+#
+:PrintCopies:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Copies
+
+Use this field to specify the number of
+copies to be printed when you click the Print
+button.
+
+Set the number of copies to be printed by clicking
+in the field and typing a number or clicking on
+the arrow buttons.
+
+#
+:PrintHeaders:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Header Page Check-box
+
+Click SELECT on this check-box to determine if
+Image Tool prints a header page.   
+
+If a check mark appears in this box, Image Tool
+prints a header page with your print job.
+
+
+
+Save a tree--disable header page printing!
+
+#
+:PrintPrinters:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Printer List
+
+Choose a device for your print job from this list
+of available printers.  Use the scrollbar to
+scroll through the list.
+
+Click on a printer's name to choose that printer.
+
+#
+:PrintPageSize:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Page Size List
+
+Choose a page size for your print job from this
+list.  
+
+Be sure to choose a page size that your printer
+can accommodate.
+
+If you change the page size, you might want to
+use File => Print Preview before you actually
+print the file.
+
+#
+:PrintPageRange:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Page Range
+
+This option is available for printing multiple
+page documents. 
+
+Select This Page (As Image) to print the currently
+viewed page--Image Tool prints the page as a 
+bit-map image. 
+
+#
+##########This_Line_Is_50_Characters_Long#########
+:PrintSize:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Image Size
+
+Use this option to specify a number (25 to 400)
+for the percentage of scaling to be used in 
+printing the image. 
+
+Type the number, click SELECT on the arrow
+buttons, or drag the slider beneath this field to
+set the percentage of print scaling.
+
+If you scale the image larger than its
+original size, you should use File => Print
+Preview before printing.
+
+This option is not available for PostScript files
+or multiple page documents.  You can use the Zoom
+tool on the palette to scale a page in a file for
+which this option is not available.
+
+#
+:PrintOrientation:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Image Orientation
+
+This option controls the orientation of the
+printed page.  Select Portrait to have the current
+image printed vertically on the page.  Select
+Landscape to have the image printed horizontally.
+
+This option is not available for PostScript files
+or multiple page documents.
+
+You can use the Rotate tools on the palette to
+change the orientation of a page in a file for
+which this option is not available. 
+
+##########This_Line_Is_50_Characters_Long#########
+:PrintPosition:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Image Position
+
+Click SELECT on Centered to have the printed image
+placed in the center of the page.
+
+Click SELECT on Margins so that you can enter 
+values for the sizes of the top and left margins.
+
+This option is not available for PostScript files
+or multiple page documents.
+
+#
+:PrintTopMargin:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Top Margin Value
+
+This field contains a value for the size of the
+margin between the printed image and the top edge
+of the page.
+
+This value is not used unless Margins has first
+been selected.  To change the value, click in the
+field and type a number.
+
+You can enter a margin value in inches or
+centimeters, depending on which of the buttons to
+the right is selected.
+
+#
+:PrintLeftMargin:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Left Margin Value
+
+This field contains a value for the size of the
+margin between the printed image and the left
+edge of the page.
+
+This value is not used unless Margins has first
+been selected.  To change the value, click in the
+field and type a number.
+
+You can enter a margin value in inches or
+centimeters, depending on which of the buttons to
+the right is selected.
+
+##########This_Line_Is_50_Characters_Long#########
+#
+:PrintUnits:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Margin Units
+
+These buttons control whether margin values are
+intrepreted as inches or centimeters.
+
+#
+:PrintPrint:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Print Button
+
+Click SELECT on this button to start the print
+job using the current settings in the Print
+window.
+
+#
+:PrintCancel:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Cancel
+
+Click SELECT on this button to dismiss the Print
+window.
+
+################################################
+# ImageInfo Popup Window
+################################################
+#
+##########This_Line_Is_50_Characters_Long#########
+:ImageInfoWindow:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Image Information
+
+This window provides information about the current
+contents of the View window.
+
+:ImageInfoWidth:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Width
+
+This is the width of the image, in inches,
+centimeters, and pixels.  If you're viewing a
+multiple page document, this is the width of the
+document's page.
+
+To change the size of the page Image Tool uses to
+display a document, use the Page Viewing Controls
+option from the View menu.
+#
+:ImageInfoHeight:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Height
+
+This is the height of the image, in inches, 
+centimeters, and pixels.  If you're viewing a
+multiple page document, this is the height of the
+document's page.
+
+To change the size of the page Image Tool uses to
+display a document, use the Page Viewing Controls
+option from the View menu.
+#
+:ImageInfoColors:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Colors
+
+This is the number of colors, or depth, of the
+image.
+
+#
+:ImageInfoSize:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Bitmap Size
+
+This is the number of bytes required to store
+the contents of the View window.
+
+#
+:ImageInfoFormat:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+File Format
+
+This is the image's file type.
+
+################################################
+# Pageview Popup Window
+################################################
+#
+##########This_Line_Is_50_Characters_Long#########
+:PageviewWindow:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Page Overview
+
+This window contains controls for viewing specific
+pages of a document.
+
+Double-click SELECT on one of the thumbnail page
+buttons to display that page in the View window or
+type the number of the page to be displayed in the
+Go To Page text field and click on the Display
+Page button.
+
+:PageviewStartPage:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+
+This is the number of the first page displayed in
+this set of thumbnail page buttons.
+
+The Page Overview window displays up to 16 
+thumbnail page buttons in a set.  Use the scroll
+bar to navigate past the current set.
+
+:PageviewPages:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Thumbnail Page Button
+ 
+Thumbnail page buttons show simple renderings of
+the pages in a document.  The Page Overview window
+displays up to 16 thumbnail page buttons in a set.
+Use the scroll bar to navigate through sets of
+page buttons.
+ 
+Double-click SELECT on a thumbnail button to
+display that page in the View window.
+#
+:PageviewEndPage:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+
+This is the number of the last page displayed in
+this set of thumbnail page buttons.
+
+The Page Overview window displays up to 16 
+thumbnail page buttons in a set.  Use the scroll
+bar to navigate through sets of page buttons.
+
+:PageviewGoToPage:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Go to Page
+
+Type the number of the page to be displayed
+or click SELECT on the menu buttons to display 
+the next or previous page.
+
+After you have specified the page to be displayed,
+click SELECT on Display Page.
+
+You can also choose a page to be displayed by 
+double-clicking SELECT on a thumbnail page 
+button.
+
+:PageviewDisplayPage:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Display Page
+
+Click SELECT on this button to display the
+currently selected thumbnail page or the page
+whose number appears in the Go To Page text
+field.
+
+:PageviewCancel:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Cancel
+
+Click SELECT on this button to dismiss the Page
+Overview window.
+
+################################################
+# Page Viewing Controls Window 
+################################################
+#
+##########This_Line_Is_50_Characters_Long#########
+:PsOptionsWindow:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Page Viewing Controls
+
+Use the options in this window to control how
+Imagetool displays the pages of the current
+document.
+
+If you change a setting, click SELECT on Apply to
+apply the change.
+
+#
+:PsOptionsOrientation:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Orientation
+
+Click SELECT on the page orientation you want
+Image Tool to use for displaying the pages of the
+current document. 
+
+Landscape orientation displays pages so they are
+wider than they are tall.  Portrait orientation
+displays pages so they are taller than they are
+wide.
+
+If you change this setting, click SELECT on Apply
+to apply the change.
+
+#
+:PsOptionsOrder:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Page Order
+
+Click SELECT on the order you want Image Tool
+to display the pages of the currently viewed
+document, then click on Apply.
+
+#
+:PsOptionsSize:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Page Size
+
+Click SELECT on the size of the page you want
+Image Tool to use for displaying the currently
+viewed document, then click on Apply.
+
+#
+:PsOptionsApply:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Apply
+
+Click SELECT on this button to apply the current
+settings of the page viewing controls.
+
+#
+:PsOptionsCancel:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Cancel
+
+Click SELECT on this button to cancel any changes
+that have been made to the settings of the page
+viewing controls.
+
+################################################
+# Palette Popup Window Tools
+################################################
+#
+##########This_Line_Is_50_Characters_Long#########
+:PaletteWindow:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Palette
+
+The palette contains tools for editing the
+contents of the View window.  For help on a
+specific palette tool, move the pointer over that
+tool and press the Help key on your keyboard.
+
+#
+:PalettePan:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Pan Tool
+
+Click SELECT on this tool so that you can drag
+SELECT on the View window contents to move the 
+image within the window.  When this tool is in
+use, the pointer changes to a hand shape.
+
+You can also use the window's scrollbars to 
+move the image.
+
+#
+:PaletteSelect:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Selector
+
+Changes the pointer to a target pointer so that
+you can drag and then release SELECT to define an
+area of interest in the View window.  To clear a
+selection, click anywhere outside a selected area.
+
+You can save a selected area to a file as a new
+image by choosing Save Selection As from the
+File menu.  
+
+The Save, Save As, and Save Page As Image options
+in the File menu are dimmed when there is an area
+selected in the View window.
+
+#
+:PaletteVerticalFlip:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Flip Horizontal Tool
+
+Click SELECT on this tool to turn the contents of
+the View window left to right, displaying a mirror
+image of the original.
+
+#
+:PaletteHorizontalFlip:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Flip Vertical Tool
+
+Click SELECT on this tool to flip the contents of
+the View window from top to bottom, displaying it 
+upside down.
+
+#
+:PaletteRotate:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Rotate Tools
+
+Click SELECT on one of the rotate tools to rotate
+the contents of the View window right or left
+according to the value entered in the Rotate
+Degrees field.
+
+#
+:PaletteDegreesField:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Rotate Degrees Field
+
+Use this field to specify the number of degrees
+(1 to 180) that the image is to be rotated when
+you click one of the rotate tools.
+
+Type the number, click SELECT on the arrow
+buttons, or drag the slider beneath this field
+to set the degree of rotation. 
+
+#
+:PaletteDegreesSlider:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Rotate Degrees Slider
+
+Use SELECT to drag the slider, entering a value in
+the Rotate Degrees Field.  The rotate tools rotate
+the image according to this value.
+
+#
+:PaletteZoom:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Zoom Tool
+
+Click SELECT on this tool to increase or decrease
+the magnification of the View window according to
+the value in the Zoom Percentage field.
+
+#
+:PalettePercentField:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Zoom Percentage Field
+
+Use this field to specify a number (25 to 400) for
+the percentage of magnification to be used when
+you click the Zoom tool.
+
+Type the number, click SELECT on the arrow
+buttons, or drag the slider beneath this field to
+set the percentage of magnification.
+
+#
+:PalettePercentSlider:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Zoom Percent Slider
+
+Use SELECT to drag the slider, entering a value in
+the Zoom Percentage Field.  The Zoom tool changes
+the magnification in the View window according to
+this value.
+
+#
+:PaletteRevert:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Revert
+
+Click on Revert to display the last saved 
+version of the image and cancel any unsaved 
+changes.
+
+################################################
+# Properties Window Options
+################################################
+#
+##########This_Line_Is_50_Characters_Long#########
+:PropertiesWindow:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Properties Window
+
+Use the controls in this window to set Image Tool
+display preferences.
+
+#
+:PropsView:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+View Images In
+
+Choose whether you want to view images in gray
+scale or color.
+
+If you change this setting, click SELECT on Apply.
+The change will take effect the next time you
+start Image Tool.
+
+#
+:PropsColors:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Colors
+
+Click SELECT on the number of colors you want
+Image Tool to use when it displays the contents
+of the View window.
+
+The number of settings you have to choose from is
+hardware-dependent.
+
+If you change this setting, click SELECT on Apply.
+The change will take effect the next time you
+start Image Tool.
+
+#
+:PropsOpenPalette:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Display Palette
+
+Click SELECT on this check-box to determine if
+Image Tool displays the palette when it opens an
+image.  
+
+You can also use the Palette option on the Edit
+menu to display the palette.
+
+#
+:PropsApply:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Apply
+
+Click SELECT on this button to apply the current
+property settings.  Applied settings take effect
+the next time you start Image Tool.
+
+Once you click on Apply, you cannot restore
+the previous settings unless you re-enter them.
+#
+:PropsReset:$OPENWINHOME/bin/helpopen handbooks/imagetool.handbook
+Reset
+
+Click SELECT on this button to return property
+settings to their last applied values.
+
+##########This_Line_Is_50_Characters_Long#########

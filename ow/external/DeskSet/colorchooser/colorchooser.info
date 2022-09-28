@@ -1,0 +1,47 @@
+##################################################
+#  colorchooser.info    June 8
+#
+# This help text is for the colorchooser
+#
+#       Open Windows Version 3 FCS
+#	revised 29 October 1991 for OWV3.0.1
+# 		rev'd by James Brook 17 July 1991
+##################################################
+#######################50#########################
+:ApplyInfo:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Apply 
+
+Click SELECT on Apply to apply the new setting
+and dismiss Color Chooser.
+
+The square in the top-left corner of the
+shows the newly selected color.
+
+#
+:ResetInfo:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Reset 
+
+Click SELECT on Reset to restore Color
+Chooser to its previous settings.
+
+:AppImageInfo:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Preview Area
+
+This is the preview of what your current color
+selections will look like.
+
+
+:ColorPanelInfo:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Color Chooser
+
+Use Color Chooser in conjunction with Binder
+or Icon Editor to specify colors.
+
+:PaletteInfo:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Palette
+
+Click SELECT on the desired color to choose it.
+
+#######################50#########################
+
+

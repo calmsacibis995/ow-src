@@ -1,0 +1,107 @@
+#
+#       @(#)s493-galactic.db	1.5 @(#)
+#
+#       Full - build everything database
+#       include this file after any of your custom changes
+#
+#       This file causes only optimized versions of things to be built
+#
+#
+# Clients and other executables
+# =============================
+# name     location  Buildtype Linktype
+# ----     --------  --------- --------
+xnews         bin    opt
+olwm          bin    opt
+mkcookie      bin    opt
+xmodmap       bin    opt
+xinit         bin    opt
+newsserverstr bin    opt
+xn_ck_fbs     bin    opt
+xrdb          bin    opt
+svenv         bin    opt
+olitbrowser   bin    opt
+olitsampler   bin    opt
+convert_to_Xdefaults bin        opt
+convert_to_xview     bin        opt
+olwmslave       bin             opt
+props           bin             opt
+print_attr_names bin            opt
+vkbd            bin             opt
+#xgettext        bin             opt
+
+# User/client libraries
+# =====================
+# name     location  Buildtype Linktype
+# ----     --------  --------- --------
+cps         lib       opt       -L${XW_HOME}/lib,-lcps
+wire        lib       opt       -L${XW_HOME}/lib,-lwire
+help        lib       opt       -L${XW_HOME}/lib,-lhelp
+jot         lib       opt       -L${XW_HOME}/lib,-ljot
+X11         lib       opt	-L${XW_HOME}/lib,-lX11
+Xau         lib       opt       -L${XW_HOME}/lib,-lXau
+Xt          lib       opt       -L${XW_HOME}/lib,-lXt
+Xol         lib       opt       -L${FULL_OW_BUILD}/proto-sun4-svr4/lib,-lXol
+Xmu         lib       opt       -L${XW_HOME}/lib,-lXmu
+Xaw         lib       opt       -L${XW_HOME}/lib,-lXaw
+olgx        lib       opt	-L${FULL_OW_BUILD}/proto-sun4-svr4/lib,-lolgx
+xview       lib       opt	-L${FULL_OW_BUILD}/proto-sun4-svr4/lib,-lxview
+Xdmcp       lib       opt 	-L${XW_HOME}/lib,-lXdmcp
+Xinput      lib       opt	-L${XW_HOME}/lib,-lXinput
+Xext        lib       opt	-L${XW_HOME}/lib,-lXext
+#I18N        lib       opt
+palloc      lib       opt
+mltext      lib       nobuild	-L${FULL_OW_BUILD}/proto-sun4-svr4/lib,-lmltext
+xim         lib       nobuild	-L${FULL_OW_BUILD}/proto-sun4-svr4/lib,-lxim
+font	    lib	      opt	-L${XW_HOME}/server/lib,-lfont
+typesclr    lib	      opt	-L${XW_HOME}/server/lib,-ltypesclr
+
+#
+# Server libraries
+# ================
+# name    location  Buildtype Linktype
+# ----    --------  --------- --------
+Core      bin/xnews opt
+cscript   bin/xnews opt
+typesclr  bin/xnews opt
+Type1     bin/xnews opt
+nucleus   bin/xnews opt
+NeWS      bin/xnews opt
+halftone  bin/xnews opt
+SunOSI    bin/xnews/libnpsiSun opt
+SunWIN    bin/xnews/libnpsiSun opt
+X11server bin/xnews opt
+X11dix    bin/xnews opt
+#Xextent   bin/xnews opt
+stextn    bin/xnews/libXextent opt
+mitshm    bin/xnews/libXextent opt
+#
+# Shapes libraries
+# ================
+# name  location  Buildtype Linktype
+# ----  --------  --------- --------
+Shapes  bin/xnews opt    ${SOURCEDIR}/bin/xnews/libshapes/di/libShapes.a
+ShCG2   bin/xnews opt    ${SOURCEDIR}/bin/xnews/libshapes/dd/cg2/libShCG2.a
+ShCG6   bin/xnews opt    ${SOURCEDIR}/bin/xnews/libshapes/dd/cg6/libShCG6.a
+ShFB    bin/xnews opt    ${SOURCEDIR}/bin/xnews/libshapes/dd/libShFB.a
+ShMem   bin/xnews opt    ${SOURCEDIR}/bin/xnews/libshapes/dd/mem/libShMem.a
+ShMem1  bin/xnews opt    ${SOURCEDIR}/bin/xnews/libshapes/dd/mem1/libShMem1.a
+ShMem8  bin/xnews opt    ${SOURCEDIR}/bin/xnews/libshapes/dd/mem8/libShMem8.a
+ShMem32 bin/xnews opt    ${SOURCEDIR}/bin/xnews/libshapes/dd/mem32/libShMem32.a
+ShCG12  bin/xnews opt    ${SOURCEDIR}/bin/xnews/libshapes/dd/cg12/libShCG12.a
+#ShCG12  bin/xnews opt   ,
+#ShDLX   bin/xnews opt   ${SOURCEDIR}/bin/xnews/libshapes/dd/dlx/libShDLX.a
+#ShREC   bin/xnews opt   ${SOURCEDIR}/bin/xnews/libshapes/dd/rec/libShREC.a
+ShREC   bin/xnews opt    ,
+ShGT   bin/xnews opt     ${SOURCEDIR}/bin/xnews/libshapes/dd/gt/libShGT.a
+ 
+# private libraries used by clients
+# =================================
+# name    location    Buildtype Linktype
+# ----    --------    --------- --------
+parsemap  tools/fonts opt       opt
+xnfont    tools/fonts opt       opt
+Audio   external/audio opt ${SOURCEDIR}/external/audio/libAudio/${DIR.targetarch}/libAudio_t.a
+audio   external/audio opt ${SOURCEDIR}/external/audio/libaudio/${DIR.targetarch}/libaudio_t.a
+radio   external/audio opt ${SOURCEDIR}/external/audio/radio/libradio/${DIR.targetarch}/libradio.a
+

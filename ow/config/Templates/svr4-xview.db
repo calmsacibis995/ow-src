@@ -1,0 +1,7 @@
+
+#
+#	@(#)svr4-xview.db	1.3 91/06/24
+#
+
+include <${SOURCEDIR}/config/Templates/opt.db>
+

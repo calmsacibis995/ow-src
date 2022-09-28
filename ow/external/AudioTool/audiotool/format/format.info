@@ -1,0 +1,225 @@
+# @(#)format.info 1.7	93/03/02 SMI
+#
+#
+#
+#
+#
+:format-add_menu
+The Add button adds a named audio format to the
+current list at the top or bottom of the list, or
+before or after the currently selected item.
+#
+:format-sample_rates
+The Sample Rate field specifies the number of
+audio sample frames per second.  Higher sample
+rates give a more accurate reproduction of the
+original signal, but require more data storage.
+#
+:format-encoding_menu
+The Encoding field specifies the numeric encoding
+used to represent the audio data.  The encoding
+may be one of:
+
+ 8-bit u-law    Standard voice encoding
+ 8-bit A-law    Alternate voice encoding
+ 16-bit linear  Standard high-quality encoding
+
+The u-law and A-law formats require less storage
+space, but do not represent the audio signal as
+accurately as the 16-bit linear representation.
+#
+:format-channel_menu
+The Channels field specifies the number of
+interleaved audio channels.  Channels may be:
+    mono        1-channel data
+    stereo      2-channel data
+#
+:format-controls
+The Format panel is used to select the audio data
+format for a File->New operation or to set the
+output format for a File->Save As... operation.
+
+Click SELECT on the + button to expand the Format
+panel.  The expanded panel allows text names to be
+associated with particular audio formats.
+#
+:format-enc_button
+The Encoding field specifies the numeric encoding
+used to represent the audio data.  The encoding
+may be one of:
+
+ 8-bit u-law    Standard voice encoding
+ 8-bit A-law    Alternate voice encoding
+ 16-bit linear  Standard high-quality encoding
+
+The u-law and A-law formats require less storage
+space, but do not represent the audio signal as
+accurately as the 16-bit linear representation.
+#
+:format-enc_msg
+The Encoding field specifies the numeric encoding
+used to represent the audio data.  The encoding
+may be one of:
+
+ 8-bit u-law    Standard voice encoding
+ 8-bit A-law    Alternate voice encoding
+ 16-bit linear  Standard high-quality encoding
+
+The u-law and A-law formats require less storage
+space, but do not represent the audio signal as
+accurately as the 16-bit linear representation.
+#
+:format-encoding
+The Encoding field specifies the numeric encoding
+used to represent the audio data.  The encoding
+may be one of:
+
+ 8-bit u-law    Standard voice encoding
+ 8-bit A-law    Alternate voice encoding
+ 16-bit linear  Standard high-quality encoding
+
+The u-law and A-law formats require less storage
+space, but do not represent the audio signal as
+accurately as the 16-bit linear representation.
+#
+:format-rate_button
+The Sample Rate field specifies the number of
+audio sample frames per second.  Higher sample
+rates give a more accurate reproduction of the
+original signal, but require more data storage.
+#
+:format-rate
+The Sample Rate field specifies the number of
+audio sample frames per second.  Higher sample
+rates give a more accurate reproduction of the
+original signal, but require more data storage.
+#
+:format-rate_msg
+The Sample Rate field specifies the number of
+audio sample frames per second.  Higher sample
+rates give a more accurate reproduction of the
+original signal, but require more data storage.
+#
+:format-chan_button
+The Channels field specifies the number of
+interleaved audio channels.  Channels may be:
+    mono        1-channel data
+    stereo      2-channel data
+#
+:format-channels
+The Channels field specifies the number of
+interleaved audio channels.  Channels may be:
+    mono        1-channel data
+    stereo      2-channel data
+#
+:format-chan_msg
+The Channels field specifies the number of
+interleaved audio channels.  Channels may be:
+    mono        1-channel data
+    stereo      2-channel data
+#
+:format-apply
+The New/Save Format button causes the current
+settings to take effect.  When this panel is
+invoked from the File->New menu, the button (New
+Format) unloads the current audio file and
+initializes Audio Tool with the specified audio
+format.  When this panel is invoked from the
+File->Save As... Format menu, the button (Save
+Format) sets the Format field in the Save As panel
+to the specified audio format.
+
+The Reset button resets the panel settings to
+their original state.
+#
+:format-reset
+The New/Save Format button causes the current
+settings to take effect.  When this panel is
+invoked from the File->New menu, the button (New
+Format) unloads the current audio file and
+initializes Audio Tool with the specified audio
+format.  When this panel is invoked from the
+File->Save As... Format menu, the button (Save
+Format) sets the Format field in the Save As panel
+to the specified audio format.
+
+The Reset button resets the panel settings to
+their original state.
+#
+:format-plus
+The Format panel is used to select the audio data
+format for a File->New operation or to set the
+output format for a File->Save As... operation.
+
+Click SELECT on the + button to expand the Format
+panel.  The expanded panel allows text names to be
+associated with particular audio formats.
+#
+:format-list_controls
+The Format list displays the current list of
+logical audio format names.  On initial startup,
+it contains the following formats:
+
+Voice Format     8-bit u-law, 8 kHz, mono
+CD Format       16-bit linear, 44.1 kHz, stereo
+DAT Format      16-bit linear, 48 kHz, stereo
+
+Changes made to the format name list are stored in
+$HOME/.audiorc.
+#
+:format-list
+The Format list displays the current list of
+logical audio format names.  On initial startup,
+it contains the following formats:
+
+Voice Format     8-bit u-law, 8 kHz, mono
+CD Format       16-bit linear, 44.1 kHz, stereo
+DAT Format      16-bit linear, 48 kHz, stereo
+
+Changes made to the format name list are stored in
+$HOME/.audiorc.
+#
+:format-label
+The Name field is used to specify a logical name
+to represent a particular audio format.
+#
+:format-add
+The Add button adds a named audio format to the
+current list at the top or bottom of the list, or
+before or after the currently selected item.
+
+The Delete button removes the currently selected
+audio format entry from the list.
+
+The Change button replaces the currently selected
+entry with the specified name and format options.
+#
+:format-delete
+The Add button adds a named audio format to the
+current list at the top or bottom of the list, or
+before or after the currently selected item.
+
+The Delete button removes the currently selected
+audio format entry from the list.
+
+The Change button replaces the currently selected
+entry with the specified name and format options.
+#
+:format-change
+The Add button adds a named audio format to the
+current list at the top or bottom of the list, or
+before or after the currently selected item.
+
+The Delete button removes the currently selected
+audio format entry from the list.
+
+The Change button replaces the currently selected
+entry with the specified name and format options.
+#
+:format-minus
+The Format panel is used to select the audio data
+format for a File->New operation or to set the
+output format for a File->Save As... operation.
+
+Click SELECT on the - button to shrink the Format
+panel to its original size.

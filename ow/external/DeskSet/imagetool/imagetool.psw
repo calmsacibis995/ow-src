@@ -1,0 +1,732 @@
+
+/*
+ *  @(#)imagetool.psw 1.5 93/07/26
+ *
+ *  Copyright (c) 1993 - Sun Microsystems Inc.
+ *
+ */
+
+#include "tags.h"
+
+/*
+ * fileinputtoken usage for PostScript rendering connection:
+ * 0: a portion of transformation matrix for page
+ * 1: b portion of transformation matrix for page
+ * 2: c portion of transformation matrix for page
+ * 3: d portion of transformation matrix for page
+ * 4: tx portion of transformation matrix for page
+ * 5: ty portion of transformation matrix for page
+ *
+ * 6: if set, then stop the thumbnail rendering
+ * 7: page requested
+ * 8: 1 if document is in reverse page order
+ * 9: 1 if we're finding all pages of a reverse page order file 
+ * 10: unused
+ * 11: unused
+ *  
+ * 12: height of canvas
+ * 13: width of canvas
+ *
+ * 14: dots/inch
+ * 15: number of pages found in document
+ * 16: page number looking for (when rendering)
+ *     we always render that page number plus the one after
+ * 17: total pages found so far (when rendering)
+ * 18: last small canvas is located here also 
+ * 19: X canvas to render onto
+ * 20: X canvas to copy onto 
+ * 21: when paging - did we (some number) or did we not (0) render the page and
+ * 22: filename being rendered (nullstring if remote, filename otherwise)
+ * 23: true if we think pages are in reverse order
+ * 24: when paging - did we stop (1) or get an error (0)
+ * 25: when paging - page number having last error 
+ * 26: #1 pixmap for Page Overview pop up
+ * 27: #2 pixmap for Page Overview pop up
+ * 28: #3 pixmap for Page Overview pop up
+ * 29: #4 pixmap for Page Overview pop up
+ * 30: #5 pixmap for Page Overview pop up
+ * 31: #6 pixmap for Page Overview pop up
+ * 32: #7 pixmap for Page Overview pop up
+ * 33: #8 pixmap for Page Overview pop up
+ * 34: #9 pixmap for Page Overview pop up
+ * 35: #10 pixmap for Page Overview pop up
+ * 36: #11 pixmap for Page Overview pop up
+ * 37: #12 pixmap for Page Overview pop up
+ * 38: #13 pixmap for Page Overview pop up
+ * 39: #14 pixmap for Page Overview pop up
+ * 40: #15 pixmap for Page Overview pop up
+ * 41: #16 pixmap for Page Overview pop up
+ * etc...
+ */
+
+/* 
+ * Various functions we may need..
+ */
+
+/*
+ * dps_check_stacks - Check the stacks before doing a restore.
+ */
+
+defineps dps_check_stacks ()
+    clear
+    countdictstack -1 4 {
+	pop
+        end
+    } for
+endps
+
+/* 
+ * dps_do_restore - For some reason, if this is inside of a wrap, it
+ *		    doesn't work. So, we made it it's own little wrap.
+ */
+
+defineps dps_do_restore ()
+    ImagetoolSave restore
+endps
+
+defineps dps_set_height_width (int height, width)
+    12 height definemyuserobject
+    13 width definemyuserobject
+    0 0 width 72 mul 14 execmyuserobject div
+    height 72 mul 14 execmyuserobject div 
+    rectclip
+endps
+
+/*
+ * dps_page_requested - Sets user object 7 to the requested page.
+ */
+
+defineps dps_page_requested (int pageno)
+    7 pageno definemyuserobject
+endps
+
+defineps dps_reset_ctm (float a, b, c, d, tx, ty)
+    0 a definemyuserobject
+    1 b definemyuserobject
+    2 c definemyuserobject
+    3 d definemyuserobject
+    4 tx definemyuserobject
+    5 ty definemyuserobject
+endps
+
+defineps dps_zoom (float scale_amt; int height)
+    5 height definemyuserobject
+    [0 execmyuserobject 1 execmyuserobject 2 execmyuserobject
+     3 execmyuserobject 4 execmyuserobject 5 execmyuserobject]
+    setmatrix
+    scale_amt scale_amt scale
+    6 array currentmatrix aload pop
+    5 exch definemyuserobject
+    4 exch definemyuserobject
+    3 exch definemyuserobject
+    2 exch definemyuserobject
+    1 exch definemyuserobject
+    0 exch definemyuserobject
+endps
+
+defineps dps_rotate (int angle, x, y)
+    4 x definemyuserobject
+    5 y definemyuserobject
+    [0 execmyuserobject 1 execmyuserobject 2 execmyuserobject
+     3 execmyuserobject 4 execmyuserobject 5 execmyuserobject]
+    setmatrix
+    angle rotate
+    6 array currentmatrix aload pop
+    5 exch definemyuserobject
+    4 exch definemyuserobject
+    3 exch definemyuserobject
+    2 exch definemyuserobject
+    1 exch definemyuserobject
+    0 exch definemyuserobject
+endps
+
+defineps dps_hflip (int height)
+    5 height definemyuserobject
+    [0 execmyuserobject 1 execmyuserobject 2 execmyuserobject
+     3 execmyuserobject 4 execmyuserobject 5 execmyuserobject]
+    setmatrix
+    1 -1 scale
+    6 array currentmatrix aload pop
+    5 exch definemyuserobject
+    4 exch definemyuserobject
+    3 exch definemyuserobject
+    2 exch definemyuserobject
+    1 exch definemyuserobject
+    0 exch definemyuserobject
+endps
+
+defineps dps_vflip (int width)
+    4 width definemyuserobject
+    [0 execmyuserobject 1 execmyuserobject 2 execmyuserobject
+     3 execmyuserobject 4 execmyuserobject 5 execmyuserobject]
+    setmatrix
+    -1 1 scale
+    6 array currentmatrix aload pop
+    5 exch definemyuserobject
+    4 exch definemyuserobject
+    3 exch definemyuserobject
+    2 exch definemyuserobject
+    1 exch definemyuserobject
+    0 exch definemyuserobject
+endps
+
+/*
+ * dps_setup - Setup ps environment.
+ */ 
+
+defineps dps_setup (float a, b, c, d, tx, ty; int width, height, dpi, reverse)
+
+    userdict begin
+
+% Debugging.. use myfile to write out stuff or use print
+%/myfile (/tmp/foo) (w) file def
+%myfile (started \n) writestring myfile flushfile
+
+% define global dictionary for all my variables (similar to 
+% fileinputtokens).
+
+	true setglobal
+	/ImagetoolObjects 42 array def
+	/ImagetoolSave null def
+	false setglobal
+
+% define statusdict
+
+        statusdict begin
+            /waittimeout 120 store
+            /printername (Image Tool) def
+            /setjobtimeout { pop } def
+            /seteescratch { pop pop } def
+            /pagetype 0 def
+            /setdostartpage { pop } def
+            /printerror { pop pop } def
+            /pagecount 1 def
+            /setpassword { pop pop true } def
+            /setsccbatch { pop pop pop } def
+            /eescratch { pop 0 } def
+            /note {} def
+            /dostartpage false def
+            /manualfeed false def
+            /pagestackorder false def
+            /letter {} def
+            /sccbatch { pop 9600 0 } def
+            /prefeed false def
+            /legal {} def
+            /setmargins { pop pop } def
+            /setsccinteractive { pop pop pop } def
+            /setprintername { /printername exch store } def
+            /jobtimeout waittimeout def
+            /setidlefonts { cleartomark } def
+            /setdefaulttimeouts { pop pop pop } def
+            /margins { 0 0 } def
+            /printererror { pop pop } def
+            /printerror { pop pop } def
+            /manualfeedtimeout 60 def
+            /idlefonts { mark } def
+            /sccinteractive { pop 9600 0 } def
+            /defaulttimeouts { 60 60 30 } def
+            /setpagetype { /pagetype exch store } def
+            /lettertray {} def
+            /legaltray {} def
+            /b5tray {} def
+            /a4tray {} def
+        end
+
+% stolen operators from NeWS that are handy
+
+	/_isarray? { % any => boolean
+    	    type dup /arraytype eq  exch /packedarraytype eq or
+	} executeonly def
+
+        /_append {       % obj1 obj2  =>  obj3 (concatinates strings)
+            1 index length 1 index length add   % obj1 obj2 totalsize
+            string
+            dup 4 -1 roll 1 index copy length       % a2 A A l1
+            4 -1 roll putinterval
+        } executeonly def
+
+        %
+        % Sprintf: replace %'s in format string with argument as a string.
+        % Note the args can either be before or after the format string.
+        % If they precede the format string, they are in reverse order:
+        % argN .. arg0 formatstring   -or-  formatstring [arg0 .. argN]
+        %
+ 
+        /_sprintf { % args fmtstr -or- fmttstr [args] => str
+            dup _isarray? {                % convert second form to first form
+                3 exch {                   % fmtstr i+3 ai
+                    1 index 1 roll         % ai .. a1 fmtstr i+3
+                    1 add
+                } forall
+                pop
+            } if                           % aN .. ai fmtstr
+            () 250 string 3 -1 roll (%) { % aN . ai resultstr tempstr fmtstr (%)
+                search {                   % aN .. ai result temp post (%) pre
+                    6 -1 roll              % aN .. result temp post (%) pre ai
+                    dup type /stringtype ne   % is ai a string?  If so, convert.
+                        {4 index cvs} if   % aN .. result temp post (%) pre (ai)
+                    _append                % aN .. result temp post (%) pre'
+                    5 -1 roll exch _append % aN .. temp post (%) result'
+                    4 1 roll               % aN .. result' temp post (%)
+                } {                        % result temp fmt
+                    exch pop _append exit
+                } ifelse
+            } loop
+        } executeonly def
+
+% define operators that will be used to get/set values in ImagetoolObjects
+
+        /definemyuserobject {           % index any => -
+            1 index ImagetoolObjects length ge {
+                true setglobal
+                ImagetoolObjects 
+                2 index 1 add array /ImagetoolObjects exch store
+                ImagetoolObjects exch 0 exch putinterval
+                false setglobal
+            } if
+            ImagetoolObjects 3 1 roll put
+        } executeonly def
+ 
+        /execmyuserobject {             % index => value
+            ImagetoolObjects exch get
+        } executeonly def
+
+	/savestate null def
+
+	/clearcanvas {
+	    gsave 
+	  	1 setgray
+		0 0 moveto
+	        0 12 execmyuserobject rlineto 
+	        13 execmyuserobject 0 rlineto 
+	        0 12 execmyuserobject neg rlineto 
+		closepath fill
+	    grestore
+	} executeonly def
+
+% define operators to set and copy pixmaps
+
+	/resetcanvas {	% switch canvas (drawable) and clear
+	    [1 0 0 1 0 0] setmatrix
+	    /savestate gstate store
+	    currentXgcdrawable 3 -1 roll pop 4 -1 roll 3 1 roll
+	    setXgcdrawable
+	    [1 0 0 1 0 0] setmatrix
+	} executeonly def
+
+	/imagecanvas { 	% canvas that contains image => to other canvas
+	    /tmpdict 8 dict def
+	    tmpdict begin
+		/ImageType 2 def
+		/XOrigin 0 def
+		/YOrigin 0 def
+		/Width 13 execmyuserobject 0 execmyuserobject mul def
+		/Height 12 execmyuserobject 0 execmyuserobject mul def
+		/ImageMatrix [1 0 0 1 0 0] def
+		/DataSource savestate def
+	  	/PixelCopy true def
+	    end
+	    tmpdict image
+	} executeonly def
+
+% store original ctm and width and height
+
+        0 a definemyuserobject
+        1 b definemyuserobject
+        2 c definemyuserobject
+        3 d definemyuserobject
+        4 tx definemyuserobject
+        5 ty definemyuserobject
+        12 height definemyuserobject
+        13 width definemyuserobject
+	14 dpi definemyuserobject
+	8 reverse definemyuserobject
+
+	/_quit /quit where pop /quit get def
+
+	/serverdict 5 dict def
+	serverdict begin
+            /setrealdevice {
+                % work around - this proc required to parse Laser Prep
+                % (AppleDict md) Procset
+            } def
+            /execjob {
+                % work around - this proc required to parse Laser Prep
+                % (AppleDict md) Procset
+            } def
+            /server (ImageTool/DPS Server) def
+            /setnulldevice {} def
+            /exitserver { pop _quit } def
+	end
+
+	% I added this because some ps files from adobe looked
+	% for /fontalreadydefined in the errordict, and it wasn't
+	% there.. I shouldn't have to do this, but enough ps files
+	% had this, so I added it.
+
+	errordict begin
+	    /fontalreadydefined {} def
+	end
+
+	% Redefine the `real' print since we had a document that redefined it!
+	/it_print /print where pop /print get def
+
+	% don't let users kill our connection to the server...
+
+	/quit {} def
+	/#copies 1 def
+	/letter {} def
+	/note {} def
+	/legal {} def
+	/a4 {} def
+	/b5 {} def
+	/lettersmall {} def
+	/a4small {} def
+	/erasepage {} def
+	/_flushfile /flushfile where pop /flushfile get def
+	/flushfile { 
+	    dup currentfile eq {
+		pop 
+	    } {
+		_flushfile
+	    } ifelse
+	} executeonly def
+        /stack {
+            (--top of stack--\n) it_print
+            0 1 count 3 sub {
+                index (%\n) _sprintf it_print
+            } for
+            (--bottom of stack--\n) it_print
+        } executeonly def
+
+	/initmatrix {
+	    [0 execmyuserobject 1 execmyuserobject 2 execmyuserobject
+	     3 execmyuserobject 4 execmyuserobject 5 execmyuserobject]
+	    setmatrix 
+	} executeonly def
+	/oldinitclip /initclip where pop /initclip get def
+	/initclip {
+	    /curpoint 0 store
+	    { currentpoint } stopped not {
+		pop pop
+		/curpoint 1 store
+	        false upath
+	    } if
+	    6 array currentmatrix
+	    oldinitclip
+	    [0 execmyuserobject 1 execmyuserobject 2 execmyuserobject
+	     3 execmyuserobject 4 execmyuserobject 5 execmyuserobject]
+	    setmatrix 
+	    0 0 
+	    13 execmyuserobject 72 mul 14 execmyuserobject div 
+	    12 execmyuserobject 72 mul 14 execmyuserobject div 
+	    rectclip
+	    setmatrix
+	    curpoint 1 eq {
+	        uappend
+	    } if
+	} executeonly def
+	/oldinitgraphics /initgraphics where pop /initgraphics get def
+	/initgraphics { % - => -
+	    oldinitgraphics
+	    [0 execmyuserobject 1 execmyuserobject 2 execmyuserobject
+	     3 execmyuserobject 4 execmyuserobject 5 execmyuserobject]
+	    setmatrix 
+	    0 0 
+	    13 execmyuserobject 72 mul 14 execmyuserobject div 
+	    12 execmyuserobject 72 mul 14 execmyuserobject div 
+	    rectclip
+	} executeonly def
+	/oldsetpagedevice /setpagedevice where pop /setpagedevice get def
+	/setpagedevice {
+	    oldsetpagedevice
+	    [0 execmyuserobject 1 execmyuserobject 2 execmyuserobject
+	     3 execmyuserobject 4 execmyuserobject 5 execmyuserobject]
+	    setmatrix 
+	} executeonly def 
+ 	/defaultmatrix { % mtx => mtx'
+	    [0 execmyuserobject 1 execmyuserobject 2 execmyuserobject
+	     3 execmyuserobject 4 execmyuserobject 5 execmyuserobject]
+	    exch copy
+	} executeonly def
+	/showpage {} def
+	/copypage {} def
+    end
+
+% Set the font... just in case a document doesn't do it.
+
+    /Courier 12 selectfont 
+
+    /ImagetoolSave save def
+
+endps
+
+/*
+ * dps_set_all_pages - Sets user object to determine whether or not
+ *		       we're getting all pages (ie. only set to TRUE if
+ *		       document is in reverse page order).
+ */
+
+defineps dps_set_all_pages (int status)
+    9 status definemyuserobject
+endps
+
+/*
+ * dps_clearcanvas - used by the dsc method of paging to clear the canvas
+ */
+
+defineps dps_clearcanvas ()
+    gsave
+        [0 execmyuserobject 1 execmyuserobject 2 execmyuserobject
+         3 execmyuserobject 4 execmyuserobject 5 execmyuserobject]
+        setmatrix 
+  	1 setgray
+	0 0 moveto
+        0 12 execmyuserobject rlineto 
+        13 execmyuserobject 0 rlineto 
+        0 12 execmyuserobject neg rlineto 
+	closepath fill
+    grestore
+endps
+
+/*
+ * dps_dsc_paging - loop which is used when we are using the dsc for pages
+ */
+
+defineps dps_dsc_paging ()
+
+    userdict begin
+	{
+	    initgraphics
+	} 
+
+	dup
+	/showpage exch executeonly store
+	/copypage exch executeonly store
+    end
+
+    initgraphics
+    clearcanvas
+
+    /ImagetoolSave save store
+
+    {
+        {
+            currentfile cvx exec
+        } stopped {
+
+	% if we got an error, send back this info.
+
+	    flush
+	    PS_ERROR_STRING (0\n) _append _sprintf
+	    it_print flush
+	    clear
+
+        } {
+
+% we didn't stop? somethings funny.
+
+	    exit
+        } ifelse
+    } loop
+
+endps
+
+/* 
+ * dps_fast_paging - Does the fast paging method (clientsync) of rendering
+ *		     pages.	
+ */
+
+defineps dps_fast_paging ()
+    21 0 definemyuserobject
+
+% set userobjects 15 and 17 to zero, we haven't found any pages yet.
+
+    17 0 definemyuserobject
+
+    6 0 definemyuserobject
+    24 0 definemyuserobject
+    25 -1 definemyuserobject
+    7 0 definemyuserobject
+
+    userdict begin
+	{
+            17 execmyuserobject 1 add dup 
+	    17 exch definemyuserobject
+	    9 execmyuserobject 1 eq {
+		20 execmyuserobject resetcanvas
+		imagecanvas
+	    } {
+	        9 execmyuserobject 0 eq {
+	            7 execmyuserobject 0 ne {
+	                7 execmyuserobject eq {   
+	                    clientsync
+		            7 0 definemyuserobject
+		        } if
+	            } {
+		        pop clientsync	
+	            } ifelse
+		} if
+	    } ifelse
+	    19 execmyuserobject resetcanvas
+	    initgraphics
+	    clearcanvas
+	} 
+
+	dup
+	/showpage exch executeonly store
+	/copypage exch executeonly store
+    end
+
+    19 execmyuserobject resetcanvas
+
+    initgraphics
+    clearcanvas
+
+    /ImagetoolSave save store
+
+    {
+        {
+            currentfile cvx exec
+        } stopped {
+
+	% if the error is an interrupt error, then exit the loop... it
+ 	% looks like we want to start over.
+
+	    $error /errorname get /interrupt eq {
+		exit
+	    } if
+
+	% not an interrupt.. check if we're in reverse page order, and if
+	% so, see if the user object 6 is 1.. if so, time to exit.
+	
+%	    8 execmyuserobject 1 eq 9 execmyuserobject 1 eq and 
+%	    6 execmyuserobject 1 eq and {
+
+	    6 execmyuserobject 1 eq {
+		exit
+	    } if
+
+	    25 execmyuserobject 17 execmyuserobject ne {
+	        flush
+	        PS_ERROR_STRING (%\n) _append [17 execmyuserobject] _sprintf
+		it_print flush
+	   	25 17 execmyuserobject definemyuserobject
+	    } if
+	    clear
+        } {
+
+% we didn't stop? somethings funny.
+
+	    exit
+        } ifelse
+    } loop
+
+% Now, read lines until we get the Imagetool EOF to signify the end
+%      of the postscript. Note, if the doc is in reverse page order
+%      and we wanted to get all of the pages, then don't do this!
+%      Instead, set userobject 9 to zero (ie. we're not looking for
+%      the total number of pages anymore).
+
+    9 execmyuserobject 1 ne {
+        { 
+	    currentfile 1024 string readline {
+	        PS_END_OF_FILE eq {
+	            exit
+	        } if
+            } {
+	        exit
+	    } ifelse
+        } loop
+    } {
+	9 0 definemyuserobject
+	flush
+	PS_REVERSE_PAGES_STRING (%\n) _append 
+	[17 execmyuserobject] _sprintf it_print flush
+	clientsync
+    } ifelse
+
+    clear
+endps
+
+/*
+ * dps_count_pages - gets total number of pages in document, while
+ *		     rendering thumbnails. After each page is rendered,
+ *		     do a clientsync and wait for the image to be copied
+ *	  	     onto another pixmap for the thumbnail.
+ */
+
+defineps dps_count_pages ()
+
+    6 0 definemyuserobject
+
+    userdict begin
+        {
+	    clientsync
+	    initgraphics
+	    clearcanvas
+        } 
+
+	dup
+	/showpage exch executeonly store
+	/copypage exch executeonly store
+    end
+
+    initgraphics
+    clearcanvas
+
+    {
+        {
+            currentfile cvx exec
+        } stopped {
+
+	% Ok, we got an error.. set the fileinputtoken with the current page
+	% number.
+
+	    6 execmyuserobject 1 eq {
+		exit
+	    } if
+	    clear
+        } {
+	    exit
+        } ifelse
+    } loop
+
+    flush
+    PS_PAGES_STRING it_print
+    flush
+endps
+
+/*
+ * dps_stop_rendering - Will stop the thumbnail rendering.
+ */
+defineps dps_stop_rendering ()
+    6 1 definemyuserobject
+endps
+
+/*
+ * dps_switch_pixmaps - Switch the pixmaps stored in user objects 19 and 20.
+ *		        We always render onto the pixmap in object #19, and
+ *		        copy onto the pixmap in object #20, and if we're 
+ *		        displaying the second pixmap now, then we'll want
+ *		        to switch which pixmap we render onto. 
+ */
+
+defineps dps_switch_pixmaps ()
+	19 execmyuserobject
+	20 execmyuserobject exch
+	20 exch definemyuserobject
+	19 exch definemyuserobject
+endps
+
+/*
+ * dps_new_pixmaps - Set user objects to new pixmaps that were create
+ *		     probably as a result of some operation like rotate or
+ *		     zoom.
+ */
+
+defineps dps_new_pixmaps (int xid1, xid2)
+	19 xid2 definemyuserobject
+	20 xid1 definemyuserobject
+endps
+

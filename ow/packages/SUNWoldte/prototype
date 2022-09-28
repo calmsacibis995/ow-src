@@ -1,0 +1,76 @@
+#       Copyright (c) 1990-92 Sun Microsystems, Inc.
+#               All Rights Reserved
+#
+#	"@(#)prototype	1.23 96/06/27   Sun Microsystems" 
+#
+#  OPEN LOOK Desktop Environment
+
+i pkginfo
+#i postinstall
+#i preremove
+#i postremove
+i copyright=../copyright
+i i.renamenew=../i.renamenew
+i depend
+i i.basicsetting
+i r.basicsetting
+
+!HOME=../openwin
+
+#   We need to put three symlinks into /usr/lib for SCD 2.0 compliance
+d none lib 0775 root bin
+
+d none openwin 0775 root bin
+
+!search  $HOME/bin
+d none openwin/bin			0775 root bin
+f none openwin/bin/convert_to_Xdefaults	0775 root bin
+f none openwin/bin/olwm			0775 root bin
+f none openwin/bin/olwmslave		0775 root bin
+f none openwin/bin/openwin		0775 root bin
+f none openwin/bin/owplaces		0775 root bin
+f none openwin/bin/props		0775 root bin
+f none openwin/bin/svenv		0775 root bin
+f none openwin/bin/xv_get_sel		0775 root bin
+f none openwin/bin/locale_env		0775 root bin
+f none openwin/bin/toolwait		0775 root bin
+f none openwin/bin/wsinfo		0755 root sys
+
+
+!search  $HOME/share/locale/C/props
+d none openwin/share					0775 root bin
+d none openwin/share/locale				0775 root bin
+d none openwin/share/locale/C				0775 root bin
+d none openwin/share/locale/C/props			0775 root bin
+f none openwin/share/locale/C/props/C			0664 root bin
+1 e basicsetting openwin/share/locale/C/props/basic_setting	0664 root bin ? ? ?
+
+
+!search  $HOME/lib
+d none openwin/lib				0775 root bin
+f none openwin/lib/openwin-init			0775 root bin
+f none openwin/lib/openwin-menu			0664 root bin
+f none openwin/lib/openwin-menu-demo-fulldemo	0664 root bin
+f none openwin/lib/openwin-menu-demo-nodemo	0664 root bin
+f none openwin/lib/openwin-menu-programs	0664 root bin
+f none openwin/lib/openwin-menu-utilities	0664 root bin
+f none openwin/lib/openwin-sys			0775 root bin
+
+!search  $HOME/lib/app-defaults
+d none openwin/lib/app-defaults 0775 root bin
+f none openwin/lib/app-defaults/Props		0644 root bin
+f none openwin/lib/app-defaults/WSInfo		0644 root bin
+
+!search  $HOME/lib/locale/C/help
+d none openwin/lib/locale			0775 root bin
+d none openwin/lib/locale/C			0775 root bin
+d none openwin/lib/locale/C/help		0775 root bin
+f none openwin/lib/locale/C/help/olwm.info	0664 root bin
+f none openwin/lib/locale/C/help/props.info	0664 root bin
+f none openwin/lib/locale/C/help/wsinfo.info	0664 root bin
+
+!search  $HOME/demo/add
+d none openwin/demo				0775 root bin
+d none openwin/demo/add				0775 root bin
+f none openwin/demo/add/MAE_info		0755 root bin
+f none openwin/demo/add/.maeslide.Z		0644 root bin

@@ -1,0 +1,190 @@
+#
+# @(#)prototype	1.2	97/02/12 SMI
+#
+
+#	Copyright (c) 1990-92 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)prototype	1.2	97/02/12 (c) Sun Microsystems, Inc.
+#
+#  Audio demo binaries, libraries, and sounds for SunOS_5.0/SVR4
+
+i pkginfo
+i depend
+i copyright=../copyright
+
+!HOME=../usr
+
+d none usr							0775 root sys
+d none usr/demo							0775 root bin
+d none usr/demo/SOUND						0775 root bin
+
+!search		$HOME/demo
+f none usr/demo/SOUND/README					0644 root bin
+
+!search         $HOME/demo/bin
+d none usr/demo/SOUND/bin					0775 root bin
+f none usr/demo/SOUND/bin/gaintool				0755 root bin
+f none usr/demo/SOUND/bin/radio					0755 root bin
+f none usr/demo/SOUND/bin/radio_recv				0755 root bin
+f none usr/demo/SOUND/bin/radio_xmit				0755 root bin
+f none usr/demo/SOUND/bin/soundtool				0755 root bin
+f none usr/demo/SOUND/bin/xmit					0755 root bin
+
+
+!search         $HOME/demo/lib
+d none usr/demo/SOUND/lib					0775 root bin
+f none usr/demo/SOUND/lib/libaudio.a				0755 root bin
+
+!search         $HOME/demo/src
+d none usr/demo/SOUND/src					0775 root bin
+f none usr/demo/SOUND/src/Makefile				0644 root bin
+f none usr/demo/SOUND/src/Makefile.config			0644 root bin
+
+!search         $HOME/demo/src/gaintool
+d none usr/demo/SOUND/src/gaintool				0775 root bin
+f none usr/demo/SOUND/src/gaintool/Makefile			0644 root bin
+f none usr/demo/SOUND/src/gaintool/gaintool.G			0644 root bin
+f none usr/demo/SOUND/src/gaintool/gaintool.c			0644 root bin
+f none usr/demo/SOUND/src/gaintool/gaintool.icon		0644 root bin
+f none usr/demo/SOUND/src/gaintool/gaintool.info		0644 root bin
+f none usr/demo/SOUND/src/gaintool/gaintool.mask.icon		0644 root bin
+f none usr/demo/SOUND/src/gaintool/gaintool_ui.c		0644 root bin
+f none usr/demo/SOUND/src/gaintool/gaintool_ui.h		0644 root bin
+
+!search         $HOME/demo/src/radio
+d none usr/demo/SOUND/src/radio					0775 root bin
+f none usr/demo/SOUND/src/radio/Makefile			0644 root bin
+
+!search         $HOME/demo/src/radio/libradio
+d none usr/demo/SOUND/src/radio/libradio			0775 root bin
+f none usr/demo/SOUND/src/radio/libradio/Makefile		0644 root bin
+f none usr/demo/SOUND/src/radio/libradio/agc.c			0644 root bin
+f none usr/demo/SOUND/src/radio/libradio/audio_agc.h		0644 root bin
+f none usr/demo/SOUND/src/radio/libradio/netbroadcast.c		0644 root bin
+f none usr/demo/SOUND/src/radio/libradio/netbroadcast.h		0644 root bin
+f none usr/demo/SOUND/src/radio/libradio/radio.h		0644 root bin
+f none usr/demo/SOUND/src/radio/libradio/radio_network.c	0644 root bin
+f none usr/demo/SOUND/src/radio/libradio/radio_network.h	0644 root bin
+f none usr/demo/SOUND/src/radio/libradio/radio_rcfile.c		0644 root bin
+f none usr/demo/SOUND/src/radio/libradio/radio_subr.c		0644 root bin
+
+!search         $HOME/demo/src/radio/radio
+d none usr/demo/SOUND/src/radio/radio				0775 root bin
+f none usr/demo/SOUND/src/radio/radio/Makefile			0644 root bin
+f none usr/demo/SOUND/src/radio/radio/radio.G			0644 root bin
+f none usr/demo/SOUND/src/radio/radio/radio.c			0644 root bin
+f none usr/demo/SOUND/src/radio/radio/radio.info		0644 root bin
+f none usr/demo/SOUND/src/radio/radio/radio_off.icon		0644 root bin
+f none usr/demo/SOUND/src/radio/radio/radio_off.mask.icon	0644 root bin
+f none usr/demo/SOUND/src/radio/radio/radio_on.icon		0644 root bin
+f none usr/demo/SOUND/src/radio/radio/radio_on.mask.icon	0644 root bin
+f none usr/demo/SOUND/src/radio/radio/radio_ui.c		0644 root bin
+f none usr/demo/SOUND/src/radio/radio/radio_ui.h		0644 root bin
+
+!search         $HOME/demo/src/radio/radio_recv
+d none usr/demo/SOUND/src/radio/radio_recv			0775 root bin
+f none usr/demo/SOUND/src/radio/radio_recv/Makefile		0644 root bin
+f none usr/demo/SOUND/src/radio/radio_recv/radio_recv.c		0644 root bin
+
+!search         $HOME/demo/src/radio/radio_xmit
+d none usr/demo/SOUND/src/radio/radio_xmit			0775 root bin
+f none usr/demo/SOUND/src/radio/radio_xmit/Makefile		0644 root bin
+f none usr/demo/SOUND/src/radio/radio_xmit/radio_xmit.c		0644 root bin
+
+!search         $HOME/demo/src/radio/xmit
+d none usr/demo/SOUND/src/radio/xmit				0775 root bin
+f none usr/demo/SOUND/src/radio/xmit/Makefile			0644 root bin
+f none usr/demo/SOUND/src/radio/xmit/xmit.G			0644 root bin
+f none usr/demo/SOUND/src/radio/xmit/xmit.c			0644 root bin
+f none usr/demo/SOUND/src/radio/xmit/xmit.info			0644 root bin
+f none usr/demo/SOUND/src/radio/xmit/xmit_off.icon		0644 root bin
+f none usr/demo/SOUND/src/radio/xmit/xmit_off.mask.icon		0644 root bin
+f none usr/demo/SOUND/src/radio/xmit/xmit_on.icon		0644 root bin
+f none usr/demo/SOUND/src/radio/xmit/xmit_on.mask.icon		0644 root bin
+f none usr/demo/SOUND/src/radio/xmit/xmit_ui.c			0644 root bin
+f none usr/demo/SOUND/src/radio/xmit/xmit_ui.h			0644 root bin
+
+!search         $HOME/demo/src/soundtool
+d none usr/demo/SOUND/src/soundtool				0775 root bin
+f none usr/demo/SOUND/src/soundtool/Makefile			0644 root bin
+f none usr/demo/SOUND/src/soundtool/soundtool.c			0644 root bin
+f none usr/demo/SOUND/src/soundtool/soundtool.icon		0644 root bin
+	
+!search         $HOME/demo/sounds
+d none usr/demo/SOUND/sounds					0775 root bin
+f none usr/demo/SOUND/sounds/bark.au				0644 root bin
+f none usr/demo/SOUND/sounds/bong.au				0644 root bin
+f none usr/demo/SOUND/sounds/bubbles.au				0644 root bin
+f none usr/demo/SOUND/sounds/busy.au				0644 root bin
+f none usr/demo/SOUND/sounds/chirp.au				0644 root bin
+f none usr/demo/SOUND/sounds/clink.au				0644 root bin
+f none usr/demo/SOUND/sounds/computer.au			0644 root bin
+f none usr/demo/SOUND/sounds/cowbell.au				0644 root bin
+f none usr/demo/SOUND/sounds/crash.au				0644 root bin
+f none usr/demo/SOUND/sounds/cuckoo.au				0644 root bin
+f none usr/demo/SOUND/sounds/dialtone.au			0644 root bin
+f none usr/demo/SOUND/sounds/doorbell.au			0644 root bin
+f none usr/demo/SOUND/sounds/drip.au				0644 root bin
+f none usr/demo/SOUND/sounds/fastbusy.au			0644 root bin
+f none usr/demo/SOUND/sounds/flush.au				0644 root bin
+f none usr/demo/SOUND/sounds/gong.au				0644 root bin
+f none usr/demo/SOUND/sounds/laugh.au				0644 root bin
+f none usr/demo/SOUND/sounds/laughter.au			0644 root bin
+f none usr/demo/SOUND/sounds/ring.au				0644 root bin
+f none usr/demo/SOUND/sounds/rooster.au				0644 root bin
+f none usr/demo/SOUND/sounds/sample.au				0644 root bin
+f none usr/demo/SOUND/sounds/spacemusic.au			0644 root bin
+f none usr/demo/SOUND/sounds/splat.au				0644 root bin
+f none usr/demo/SOUND/sounds/touchtone.0.au			0644 root bin
+f none usr/demo/SOUND/sounds/touchtone.1.au			0644 root bin
+f none usr/demo/SOUND/sounds/touchtone.2.au			0644 root bin
+f none usr/demo/SOUND/sounds/touchtone.3.au			0644 root bin
+f none usr/demo/SOUND/sounds/touchtone.4.au			0644 root bin
+f none usr/demo/SOUND/sounds/touchtone.5.au			0644 root bin
+f none usr/demo/SOUND/sounds/touchtone.6.au			0644 root bin
+f none usr/demo/SOUND/sounds/touchtone.7.au			0644 root bin
+f none usr/demo/SOUND/sounds/touchtone.8.au			0644 root bin
+f none usr/demo/SOUND/sounds/touchtone.9.au			0644 root bin
+f none usr/demo/SOUND/sounds/touchtone.pound.au			0644 root bin
+f none usr/demo/SOUND/sounds/touchtone.star.au			0644 root bin
+f none usr/demo/SOUND/sounds/train.au				0644 root bin
+f none usr/demo/SOUND/sounds/whistle.au				0644 root bin
+
+!search         $HOME/demo/include
+d none usr/demo/SOUND/include					0775 root bin
+
+!search         $HOME/demo/include/multimedia
+d none usr/demo/SOUND/include/multimedia			0775 root bin
+f none usr/demo/SOUND/include/multimedia/archdep.h		0644 root bin
+f none usr/demo/SOUND/include/multimedia/audio_encode.h		0644 root bin
+f none usr/demo/SOUND/include/multimedia/audio_filehdr.h	0644 root bin
+f none usr/demo/SOUND/include/multimedia/audio_hdr.h		0644 root bin
+f none usr/demo/SOUND/include/multimedia/audio_device.h		0644 root bin
+f none usr/demo/SOUND/include/multimedia/audio_errno.h		0644 root bin
+f none usr/demo/SOUND/include/multimedia/libaudio.h		0644 root bin
+f none usr/demo/SOUND/include/multimedia/audio_types.h		0644 root bin
+
+!search    $HOME/demo/man/man3
+d none usr/demo/SOUND/man					0775 root bin
+d none usr/demo/SOUND/man/man3					0755 bin bin
+f none usr/demo/SOUND/man/man3/audio_convert.3			0444 bin bin
+f none usr/demo/SOUND/man/man3/audio_device.3			0444 bin bin
+f none usr/demo/SOUND/man/man3/audio_filehdr.3			0444 bin bin
+f none usr/demo/SOUND/man/man3/audio_g711.3			0444 bin bin
+f none usr/demo/SOUND/man/man3/audio_g721.3			0444 bin bin
+f none usr/demo/SOUND/man/man3/audio_g723.3			0444 bin bin
+f none usr/demo/SOUND/man/man3/audio_hdr.3			0444 bin bin
+f none usr/demo/SOUND/man/man3/audio_intro.3			0444 bin bin
+f none usr/demo/SOUND/man/man3/audio_misc.3			0444 bin bin
+
+!search    $HOME/demo/man/man4
+d none usr/demo/SOUND/man					0775 root bin
+d none usr/demo/SOUND/man/man4					0755 bin bin
+f none usr/demo/SOUND/man/man4/audiofile.4			0444 bin bin
+
+!search    $HOME/demo/help
+d none usr/demo/SOUND/help					0755 bin bin
+f none usr/demo/SOUND/help/gaintool.info			0444 bin bin
+f none usr/demo/SOUND/help/radio.info				0444 bin bin
+f none usr/demo/SOUND/help/xmit.info				0444 bin bin

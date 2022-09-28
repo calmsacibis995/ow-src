@@ -1,0 +1,100 @@
+# 
+# format_floppy.info -- provides help for the popup windows
+#   that appear when you select File -> Check for Floppy,
+#   and/or Format Floppy
+# 
+######## This line is 50 characters long #########
+:format_panel:$OPENWINHOME/bin/helpopen handbooks/filemgr.handbook
+Format Floppy
+
+Choose a disk format:
+
+- UNIX
+- DOS High Density
+- NEC-DOS Medium Density
+ 
+and name or rename your disk by typing a name in 
+the Disk Name field.  Then click on Format Disk.
+######## This line is 50 characters long #########
+:format_choice:$OPENWINHOME/bin/helpopen handbooks/filemgr.handbook
+Disk Format
+
+Choose a disk format depending on the 
+operating system and hardware you have.
+
+Format			Capacity
+------			--------
+UNIX			1.4 MB unformatted
+DOS High Density	1.4 MB unformatted
+NEC-DOS Medium Density	800 KB unformatted
+:format_diskname:$OPENWINHOME/bin/helpopen handbooks/filemgr.handbook
+Disk Name
+
+Give your disk a name or label.
+Use upper or lower case letters or numbers,
+no spaces.  Some of the non-alphanumeric 
+characters will work.  Avoid &, !, *, and
+other characters that have special meanings
+in shells.
+ 
+:format_format:$OPENWINHOME/bin/helpopen handbooks/filemgr.handbook
+Format Disk
+
+Formats the floppy disk in the format
+you choose. Formatting takes a couple
+of minutes.  
+
+WARNING: Formatting erases all data on the disk.
+
+:format_cancel:$OPENWINHOME/bin/helpopen handbooks/filemgr.handbook
+Cancel
+
+Click on Cancel to dismiss the window.
+
+########10########20########30########40########50
+#
+# If a floppy disk contains data in 
+# a format the system can't recognize,
+# a popup window is displayed explaining
+# the options.
+#
+##################################################
+:unlabeled_panel:$OPENWINHOME/bin/helpopen handbooks/filemgr.handbook
+Unlabeled Floppy
+  
+If a floppy disk contains data in
+a format the system can't recognize,
+you will need to format the disk and name
+it to use it.
+
+Choose a format, name the disk, then
+click on Format Disk.
+
+Or click on Cancel & Eject to cancel the
+formatting operation and eject the floppy
+disk from the drive.
+
+##################################################
+#
+# If a floppy disk has not yet been 
+# formatted, a popup window is displayed
+# explaining how to format the disk.
+#
+##################################################
+:unformatted_panel:$OPENWINHOME/bin/helpopen handbooks/filemgr.handbook
+Unformatted Floppy
+
+If a floppy disk has not yet been
+formatted, you will need to format the disk
+and name it to use it.
+
+Choose a format, name the disk, then
+click on Format Disk.
+ 
+:format_eject:$OPENWINHOME/bin/helpopen handbooks/filemgr.handbook
+Cancel & Eject
+
+Click on Cancel & Eject to cancel the 
+Format Disk operation and eject the floppy 
+disk from the drive.
+########10########20########30########40########50

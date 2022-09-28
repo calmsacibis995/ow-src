@@ -1,0 +1,4 @@
+XLogo*canvas.foreground: black
+XLogo*canvas.background: rgb:cc/cc/cc
+XLogo*canvas.width:      100
+XLogo*canvas.height:     100

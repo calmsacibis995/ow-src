@@ -1,0 +1,162 @@
+DESCRIPTION
+	
+	The NumericField widget is a one-line input field for alphanumeric text. 
+	Once the input-focus is moved into the widget, keyboard entry is allowed. 
+	If the input value exceeds the length of the input field, the ScrollButtons 
+	appear.  Hidden text can then be scrolled into view, by pressing the 
+	ScrollButtons.  Pressing the buttons continously, scrolls the text 
+	repeatedly with a user-adjustable delay.  The DeltaButtons can be used to 
+	increment or decrement the value in an appropriate manner.
+
+        The NumericField widget contains the following graphical elements:
+	. Right justified Bold label followed by a colon at Left of field
+	. Optional 1 point (for mono) or chiseled underline
+	. Optional ScrollButtons
+	. Increment & Decrement buttons (aka "DeltaButtons")
+
+	For more detailed information on the NumericField Widget, see the following
+	Sections in the OPEN LOOK Intrinsics Toolkit Widget Set Reference Manual:
+		. NumericField
+
+EXAMPLE CODE
+
+The following code was written to Create the example NumericField Widget shown 
+in the Table :
+/***************************************************************************/
+#include <X11/Intrinsic.h>
+#include <X11/StringDefs.h>
+#include <Xol/OpenLook.h>
+#include <Xol/NumericFie.h>
+#include <Xol/ControlAre.h>
+
+
+static void
+validateCB(Widget w, XtPointer clientData, OlNFValidateCallbackStruct *validate)
+{
+  if (validate->valid)
+  	printf("Data entered and validated.\n");
+  else
+	printf("ERROR: Data entered was invalid.\n");
+}
+
+main(argc, argv)
+int argc;
+char **argv;
+{
+	XtAppContext app;
+	Widget toplevel, panel, numericfield;
+
+	OlToolkitInitialize(NULL);
+	toplevel = XtAppInitialize(&app, "Test", 
+				(XrmOptionDescRec *)NULL,
+				(Cardinal)0, (int *)&argc, argv,
+				(String *)NULL, (ArgList)NULL, 0);
+
+	panel = XtVaCreateManagedWidget("panel",
+				controlAreaWidgetClass,
+				toplevel,
+				NULL);
+
+	numericfield = XtVaCreateManagedWidget("numericfield",
+				numericFieldWidgetClass, 
+				panel, 
+				XtNborderWidth, 	(XtArgVal) 1,
+				XtNcaptionLabel, 	(XtArgVal) "Data:",
+				XtNstring,		(XtArgVal) "12345",
+				XtNcursorPosition,	(XtArgVal)strlen("12345"),
+				XtNcharsVisible, 	(XtArgVal) 4,	
+				NULL);
+
+	XtAddCallback(numericfield, XtNvalidateCallback,  validateCB, NULL);
+
+	XtRealizeWidget(toplevel);
+
+	XtAppMainLoop(app);
+
+}
+/**********************************END Example********************************/
+
+
+RESOURCES
+
+Core (SuperClass) Resources
+---------------------------
+Name            		Type            Default         	Access
+----            		----            -------         	-------
+ XtNx               		Position        0               	SGI
+ XtNy               		Position        0               	SGI
+ XtNwidth           		Dimension       <Calculated>    	SG
+ XtNheight          		Dimension       <Calculated>    	SG
+ XtNborderWidth     		Dimension       0               	SGI
+ XtNsensitive       		Boolean         True            	GIO
+ XtNancestorSensitive		Boolean         True            	G
+ XtNscreen          		Screen *        parent's        	GI
+ XtNdepth           		Cardinal        parent's        	GI
+ XtNcolormap        		Colormap        parent's        	GI
+ XtNbackground      		Pixel           parent's        	SGID
+ XtNbackgroundPixmap		Pixmap          XtUnspecifiedPixmap     SGI
+ XtNborderColor     		Pixel           XtDefaultForeground     SGI
+ XtNborderPixmap    		Pixmap          XtUnspecifiedPixmap     SGI
+ XtNmappedWhenMananaged		Boolean         True            	SGI
+ XtNdestroyCallback 		XtCallbackList  NULL            	SGIO
+
+Primitive (SuperClass) Resources
+--------------------------------       
+ XtNaccelerator     		String          NULL            	Unused
+ XtNacceleratorText 		String          NULL            	Unused
+ XtNconsumeEvent    		Callback        NULL            	SGIO
+ XtNfont            		OlFont          XtDefaultFont   	SGI
+ XtNfontColor       		Pixel   XtDefaultForeground     	SGI
+ XtNforeground      		Pixel   XtDefaultForeground     	SGI
+ XtNinputFocusColor 		Pixel           "Red"           	SGI
+ XtNmnemonic        		OlRChar         NULL            	SGI
+ XtNreferenceName   		String          NULL            	SGI
+ XtNreferenceWidget 		Widget          NULL            	SGI
+ XtNtextFormat      		OlStrRep        OL_SB_STR_REP   	GI
+ XtNtraversalOn     		Boolean         True            	SGI
+ XtNuserData        		XtPointer       NULL            	SGI
+
+TextLine (SuperClass) Resources
+-------------------------------
+XtNblinkRate			int		1000			SGI
+XtNcaptionFont			OlFont		OlDefaultBoldFont	SI
+XtNcaptionLabel			OlStr		NULL			SGI
+XtNcharsVisible			Int		0			GI
+XtNcommitCallback		XtCallbackList	<special>		SGIO
+XtNcursorPosition		int		0			SGI
+XtNeditType			OlDefine	OL_TEXT_EDIT		SGI
+XtNinitialDelay			int		500			SGI
+XtNinsertTab			Boolean		FALSE			SGI
+XtNmaximumChars			int		0			GI
+XtNmenu				Widget		NULL			GI
+XtNmotionCallback		XtCallbackList	NULL			SGIO
+XtNpostModifyCallback		XtCallbackList	NULL			SGIO
+XtNpreModifyCallback		XtCallbackList	<special>		SGIO
+XtNrepeatRate			int		100			SGI
+XtNstring			OlStr		NULL			SGI
+XtNunderline			Boolean		TRUE			SGI
+XtNupdateDisplay		Boolean		TRUE			SGI
+
+NumericField Resources
+----------------------
+XtNconvertProc			XtROlNFConvertProc  widget-defined	I
+XtNdelta			XtPointer	1 for int,.1 for float	SGI
+XtNdeltaCallback		XtCallbackList	NULL			SGIO
+XtNdeltaState			OlDefine	OL_ACTIVE		SGI
+XtNmaxValue			XtPointer	NULL			SGI
+XtNminValue			XtPointer	NULL			SGI
+XtNsizeOf			Cardinal	<computed>		IG
+XtNtype				String		XtRInt			IG
+XtNvalidateCallback		XtCallbackList	NULL			SGIO
+XtNvalue			XtPointer	NULL			SGI
+
+
+
+
+
+
+
+
+
+
+

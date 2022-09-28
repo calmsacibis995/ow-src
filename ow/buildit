@@ -1,0 +1,202 @@
+#! /bin/sh
+#
+# @(#)buildit.source	1.2 95/12/06
+#
+#   Set up the various environment variables and perform a build, placing
+#   the output in a log file.
+#
+#   By default, this script will perform a full galactic build rooted
+#   at the current directory.  If there are any parameters, they will
+#   be used as the make target instead of `galactic'.  To use this
+#   script to perform a partial build in a subdirectory, set the BUILD_DIR
+#   environment variable to the base of the build tree and specify the
+#   target to build.
+#
+#   As of OW4-94 (26 August 1993), the build assumes that the following
+#   are availiable, preferably localy installed:
+#
+#	The entire Solaris distribution
+#	The SPARCworks or PROWworks compiler suite (c, c++, & support)
+#	DevGuide
+#	The XIL Developer's Kit
+#
+
+
+#   Restrict the path to a known set of directories
+PATH=/opt/SUNWspro/bin:/opt/SUNWguide/bin:/usr/bin:/usr/ccs/bin:/usr/sbin:.
+
+# Were's the top of the build tree?
+: BUILD_DIR=${BUILD_DIR:=`pwd`}
+
+# Who do we notify when the build is done?
+: BUILD_MASTER=${BUILD_MASTER:=$USER}
+
+# What kind of machine is this?
+# We translate sparc to sun4 for MACH for backwards compatability in the build system.
+: PROC=${PROC=`uname -p`}
+MACH=$PROC
+if  [ "$MACH" = "sparc" ] ;
+    then MACH=sun4
+fi
+: TARGET_ARCH=${TARGET_ARCH:=-${MACH}-svr4}
+
+#   Where are the current XW includes and libraries?
+: HST=${HST=`uname -n`}
+HOST=$HST
+
+: XW_HOME=${XW_HOME:=/usr/openwin}
+
+if [ -d $XW_HOME ] ; then
+	echo $XW_HOME
+   else
+	echo "ERROR: $XW_HOME does not exist - no XW includes to build with!!"
+	echo "Exiting..."
+	exit;
+fi
+
+#   Remind:  Add test for process still running...
+echo "Build started by $USER on `uname -n` - PID = $$, at `date`" > BUILDid
+
+if [ $# -ge 1 ] ; then
+    MAKE_ARGS="$@"
+else
+    MAKE_ARGS=galactic
+fi
+
+
+umask 0
+
+#   OWCONFIG	chooses the overall build configuration.
+#
+#   For now, we aren't building on MP x86 machines, so Parallel Make
+#   wouldn`t buy us much (and may actually slow the build) for the
+#   i386 build; but it is a big win on the SS10s we use for the SPARC
+#   build...
+#
+case $MACH in
+	sparc) OWCONFIG=s494-galactic
+	       if [ -d /opt/SUNWspro/ParallelMake/bin ] ; then
+		   PATH=/opt/SUNWspro/ParallelMake/bin:$PATH
+	       fi
+	       ;;
+	sun4) OWCONFIG=s494-galactic
+	      if [ -d /opt/SUNWspro/ParallelMake/bin ] ; then
+		  PATH=/opt/SUNWspro/ParallelMake/bin:$PATH
+	      fi
+	      ;;
+	i386) OWCONFIG=s494-i386-galactic
+	      if [ -d /opt/SUNWspro/ParallelMake/bin ] ; then
+	          PATH=/opt/SUNWspro/ParallelMake/bin:$PATH
+	      fi
+	      ;;
+	ppc) OWCONFIG=s494-ppc-galactic
+	      ;;
+esac
+
+#   TARGET_SYS	is used by DeskSet to choose among destination environments.
+#		With the single-binary approach instituted for Solaris 4/93,
+#		they may be able to do away with it.
+# Set in external/Makefile
+#TARGET_SYS=XFP
+
+#   DESTDIR	is used primarily by DeskSet and other `external' subsystems
+#		to indicate where to install into.
+DESTDIR=$BUILD_DIR/proto${TARGET_ARCH}
+
+#   OPENWINHOME	shouldn't actually be used during the build, but we make
+#		sure it doesn't point to a different version in case it
+#		is referenced anywhere.
+OPENWINHOME=$BUILD_DIR/proto${TARGET_ARCH}
+
+#   OWTOOLDIR	is used by DeskSet to locate xgettext.
+OWTOOLDIR=$BUILD_DIR/proto-tool-Obj${TARGET_ARCH}
+
+#   FULL_OW_BUILD	indicates where to obtain libraries and other
+#		components not part of the subsystem being built.  It
+#		is mainly useful to allow I-teams to use only a subset
+#		of the workspace.
+FULL_OW_BUILD=$BUILD_DIR
+
+
+# Temporary env variable for libXol
+# They should be replacing it with references to FULL_OW_BUILD
+#OWNIGHTLY=$FULL_OW_BUILD/proto-sun4-svr4
+#export OWNIGHTLY
+
+#   DeskSet and DocViewer both contain references to the SUNDAEHOME
+#   variable.  I don't know if they are obsolete with S1093 or not.
+SUNDAEHOME=$BUILD_DIR/proto${TARGET_ARCH}
+
+#   Make sure that everything compiled with dynamic libraries tells the
+#   loader to get them from /usr/openwin/lib instead of including the
+#   full path to where they were found in the build dir.
+#
+#   We can't easily build this into the Make system because Make doesn't
+#   provide any way to set its environment variables.
+LD_RUN_PATH=/usr/openwin/lib
+
+#   Put temp files in /tmp (large tmpfs area) instead of /usr/tmp (real dir)
+TMPDIR=/tmp
+
+#   Make sure that the default shell is /bin/sh
+SHELL=/bin/sh
+
+#   Make sure the LD_LIBRARY_PATH value doesn't affect the build.
+unset LD_LIBRARY_PATH
+
+#   Define cross env
+CROSS_ENV=/opt/xenv
+CROSS_ENV_LIB=$CROSS_ENV/usr/ccs/lib:$CROSS_ENV/usr/lib
+
+export DESTDIR PATH LD_RUN_PATH OPENWINHOME OWCONFIG FULL_OW_BUILD \
+       SUNDAEHOME OWTOOLDIR TMPDIR XW_HOME TARGET_ARCH MACH
+
+#export FULL_OW_BUILD  TARGET_SYS
+
+if  [ ! -d $BUILD_DIR/log ] ; then
+    mkdir $BUILD_DIR/log
+fi
+
+
+if  [ ! -f Makefile ] ; then
+    sccs get Makefile
+fi
+
+
+#===========
+# Start the build
+#===========
+
+: LOGFILE=${LOGFILE:=$BUILD_DIR/log/buildit-OL${TARGET_ARCH}.log}
+rm -f $LOGFILE
+touch $LOGFILE
+# DATE=`date +%d%b.%H:%m`
+DATE=`date +%y%m%d-%H:%M`
+ln $LOGFILE  $LOGFILE.$DATE
+
+echo ">>>>> OL596-OL${TARGET_ARCH} Build (-k $MAKE_ARGS) Began `date`		-*-compilation-*-" \
+							>> $LOGFILE
+echo '::::: Build environment :::::'			>> $LOGFILE
+env							>> $LOGFILE
+echo ':::::::::::::::::::::::::::::'			>> $LOGFILE
+make -k $MAKE_ARGS		 			>> $LOGFILE 2>&1
+echo ">>>>> OL596${TARGET_ARCH} Build Ended `date`"	>> $LOGFILE
+
+
+# echo ">>>>> Debug OL596${TARGET_ARCH} Build Began `date`"	>> $LOGFILE
+# make -k libs_debug		 				>> $LOGFILE 2>&1
+# echo ">>>>> Debug OL596${TARGET_ARCH} Build Ended `date`"	>> $LOGFILE
+
+
+mailx -s "OL596${TARGET_ARCH} Build is Done." $BUILD_MASTER <<EOF
+The OL 596 build is done.  The log is in:
+    $LOGFILE.$DATE
+EOF
+
+rm BUILDid
+
+exit 0
+
+# Local Variables: #
+# mode: ksh #
+# End: #

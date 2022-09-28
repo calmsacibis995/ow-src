@@ -1,0 +1,183 @@
+.\" Copyright (c) 1994 - Sun Microsystems, Inc.
+.TH cm_lookup 1 "9 March 1992"
+.IX "cm_lookup" "" "\f3cm_lookup\f1(1) \(em browse calendar appointments from command line" ""
+.IX "calendar" "browse" "Calendar Manager" "browse calendar appointments \(em \f3cm_lookup\f1(1)"
+.SH NAME
+cm_lookup \- look up appointments from Calendar Manager database
+.SH SYNOPSIS
+.B cm_lookup 
+[
+.BI -c \ calendar
+] [
+.BI -d \ date
+] [
+.BI -v \ view
+]
+.SH DESCRIPTION
+.LP
+The
+.B cm_lookup
+utility is a tty interface to Calendar Manager
+.BR cm(1).
+It can be used to look up appointments from the cm
+database via the RPC daemon
+.BR rpc.cmsd (1).
+Each of  the components of an
+appointment is specified using one of the command line
+flags followed by the desired value.  The current list of 
+appointments for the specified date
+(see date, view options) is displayed.
+.SH OPTIONS
+.TP 10
+.BI \-c " calendar"
+The name of the target
+calendar.  Calendar names take the form
+"user@host", where the user is a user's login
+name and the host is the host machine name.
+An example is "felix@cat".  If no target
+calendar is specified, calendar defaults to
+the current user at the current host machine.
+.TP
+.BI \-d " date"
+The date for the appointment.  The
+date is specified using the form "mm/dd/yy",
+although certain other references such as
+"today", "Tuesday", "tomorrow", etc. are
+correctly calculated.  If no date is
+specified, date defaults to today's date.
+.TP
+.BI \-v " view"
+View span.  This controls the span of
+time to display.  The user may specify "day",
+"week", or "month".  The "day" view displays
+all appointments for the given date (see -d
+option above).  The "week" view displays the
+full week which contains the given date,
+starting with Sunday.  The "month" view
+displays the entire month which contains the
+given date, starting with the first of the
+month. The default view is "day".
+
+.SH USAGE
+.LP
+The various components of an appointment are specified using
+command line flags followed by the desired value.  Values
+may have embedded spaces, punctuation, etc., although
+quotes may be needed around strings which contain certain
+characters to protect them from interpretation by the local
+shell (e.g. /bin/csh).  An argument is taken to begin at
+the first space after a flag and to continue until the
+first "-" after a space.
+.SH EXAMPLE
+.LP 2
+The simplest form of
+.B cm_lookup
+has no arguments:
+.RS
+.ft B
+.sp 2
+.nf
+example% cm_lookup
+Appointments for Tuesday September 25, 1990:
+        1) Appointment
+        2) 10:30am-10:45am Morning Tea
+        3) 2:00pm-3:00pm Staff meeting
+        4) 4:30pm-5:00pm Phone home
+
+example%
+.fi
+.ft R
+.RE
+
+.LP 2
+To look up a specific date:
+.RS
+.ft B
+.sp 2
+.nf
+example% cm_lookup -d 09/26/90
+Appointments for Wednesday September 26, 1990:
+        1) 11:00am-12:00pm Appointment
+        2) 11:30am-12:30pm Group Lunch
+        3) 4:00pm-5:00pm Tech Interview
+
+example%
+.fi
+.ft R
+.RE
+
+.LP 2
+To look up a specific target calendar:
+.RS
+.ft B
+.sp 2
+.nf
+example% cm_lookup -c felix@cat
+Appointments for Tuesday September 25, 1990:
+        1) Appointment
+        2) 10:15am-10:30am Coffee
+        3) 11:15am-11:30am Doughnuts
+        4) 2:00pm-2:15pm Coffee
+        5) 3:30pm-3:45pm Snack
+        6) 4:30pm-4:45pm Coffee
+
+example%
+.fi
+.ft R
+.RE
+
+.LP 2
+To look up an entire week's appointments:
+.RS
+.ft B
+.sp 2
+.nf
+example% cm_lookup -v week
+Appointments for Sunday September 23, 1990:
+        1) 6:00am-5:00pm Hiking
+
+Appointments for Monday September 24, 1990:
+        1) 11:00am-11:30am Sync with East Coast
+        2) 4:00pm-4:15pm Confirm flight
+
+Appointments for Tuesday September 25, 1990:
+        1) Appointment
+        2) 10:15am-10:30am Coffee
+        3) 11:15am-11:30am Doughnuts
+        4) 2:00pm-2:15pm Coffee
+        5) 3:30pm-3:45pm Snack
+        6) 4:30pm-4:45pm Coffee
+
+Appointments for Wednesday September 26, 1990:
+        1) 11:00am-11:15am Appointment
+        2) 11:30am-12:30pm Group Lunch
+        3) 4:00pm-5:00pm Tech Interview
+
+Appointments for Friday September 28, 1990:
+        1) Documentation
+        2) 10:00am-11:00am Staff meeting
+
+Appointments for Saturday September 29, 1990:
+        1) 9:00am-11:00am Raquetball with Debbie
+
+example%
+.fi
+.ft R
+.RE
+.LP 2
+Notice that "Thursday" does not appear, since there were no appointments
+on that day.
+
+.SH FILES
+.TP 10
+.PD 0
+.B /usr/spool/calendar/callog.username
+.TP
+.BR "/usr/etc/rpc.cmsd " or " $OPENWINHOME/rpc.cmsd"
+.PD
+.SH SEE ALSO
+.BR rpc.cmsd (1),
+.BR cm_insert (1),
+.BR cm_delete (1),
+.BR cm (1)
+

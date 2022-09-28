@@ -1,0 +1,375 @@
+#	Copyright (c) 1990-92 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)prototype	1.7 94/11/02 (c) Sun Microsystems, Inc.
+#
+#  OPEN LOOK include files
+
+i pkginfo
+i copyright=../copyright
+i depend=../depend
+
+!HOME=../openwin
+
+d none openwin 0775 root bin
+
+!search $HOME/bin
+d none openwin/bin 0775 root bin
+f none openwin/bin/.full1.sed 0775 root bin
+f none openwin/bin/.full2.sed 0775 root bin
+f none openwin/bin/.minimal1.sed 0775 root bin
+f none openwin/bin/.minimal2.sed 0775 root bin
+f none openwin/bin/.minimal3.sed 0775 root bin
+f none openwin/bin/.minimal4.sed 0775 root bin
+f none openwin/bin/.inter1.sed 0775 root bin
+f none openwin/bin/.inter_min2.sed 0775 root bin
+
+d none openwin/share 0775 root bin
+d none openwin/share/include 0775 root bin
+
+
+!HOME=../openwin/include
+
+!search                $HOME/Xol
+d none openwin/share/include/Xol 0775 root bin
+f none openwin/share/include/Xol/AbbrevMenP.h 0664 root bin
+f none openwin/share/include/Xol/AbbrevMenu.h 0664 root bin
+f none openwin/share/include/Xol/AbbrevStac.h 0664 root bin
+f none openwin/share/include/Xol/AcceleratP.h 0664 root bin
+f none openwin/share/include/Xol/Arrow.h 0664 root bin
+f none openwin/share/include/Xol/ArrowP.h 0664 root bin
+f none openwin/share/include/Xol/BaseWindoP.h 0664 root bin
+f none openwin/share/include/Xol/BaseWindow.h 0664 root bin
+f none openwin/share/include/Xol/BulletinBP.h 0664 root bin
+f none openwin/share/include/Xol/BulletinBo.h 0664 root bin
+f none openwin/share/include/Xol/Button.h 0664 root bin
+f none openwin/share/include/Xol/ButtonP.h 0664 root bin
+f none openwin/share/include/Xol/ButtonStac.h 0664 root bin
+f none openwin/share/include/Xol/Caption.h 0664 root bin
+f none openwin/share/include/Xol/CaptionP.h 0664 root bin
+f none openwin/share/include/Xol/Category.h 0664 root bin
+f none openwin/share/include/Xol/CategoryP.h 0664 root bin
+f none openwin/share/include/Xol/ChangeBar.h 0664 root bin
+f none openwin/share/include/Xol/CheckBox.h 0664 root bin
+f none openwin/share/include/Xol/CheckBoxP.h 0664 root bin
+f none openwin/share/include/Xol/ControlArP.h 0664 root bin
+f none openwin/share/include/Xol/ControlAre.h 0664 root bin
+f none openwin/share/include/Xol/DrawArea.h 0664 root bin
+f none openwin/share/include/Xol/DrawAreaP.h 0664 root bin
+f none openwin/share/include/Xol/DropTarget.h 0664 root bin
+f none openwin/share/include/Xol/DropTargetP.h 0664 root bin
+f none openwin/share/include/Xol/Dynamic.h 0664 root bin
+f none openwin/share/include/Xol/DynamicP.h 0664 root bin
+f none openwin/share/include/Xol/EventObj.h 0664 root bin
+f none openwin/share/include/Xol/EventObjP.h 0664 root bin
+f none openwin/share/include/Xol/ExclusiveP.h 0664 root bin
+f none openwin/share/include/Xol/Exclusives.h 0664 root bin
+f none openwin/share/include/Xol/FButton.h 0664 root bin
+f none openwin/share/include/Xol/FButtonP.h 0664 root bin
+f none openwin/share/include/Xol/FCheckBox.h 0664 root bin
+f none openwin/share/include/Xol/FCheckBoxP.h 0664 root bin
+f none openwin/share/include/Xol/FExclusivP.h 0664 root bin
+f none openwin/share/include/Xol/FExclusive.h 0664 root bin
+f none openwin/share/include/Xol/FileCh.h 0664 root bin
+f none openwin/share/include/Xol/FileChP.h 0664 root bin
+f none openwin/share/include/Xol/FileChSh.h 0664 root bin
+f none openwin/share/include/Xol/FileChShP.h 0664 root bin
+f none openwin/share/include/Xol/FNonexcluP.h 0664 root bin
+f none openwin/share/include/Xol/FNonexclus.h 0664 root bin
+f none openwin/share/include/Xol/Flat.h 0664 root bin
+f none openwin/share/include/Xol/FlatP.h 0664 root bin
+f none openwin/share/include/Xol/Font.h 0664 root bin
+f none openwin/share/include/Xol/FontCh.h 0664 root bin
+f none openwin/share/include/Xol/FontChP.h 0664 root bin
+f none openwin/share/include/Xol/FontChSh.h 0664 root bin
+f none openwin/share/include/Xol/FontChShP.h 0664 root bin
+f none openwin/share/include/Xol/FooterPanP.h 0664 root bin
+f none openwin/share/include/Xol/FooterPane.h 0664 root bin
+f none openwin/share/include/Xol/Form.h 0664 root bin
+f none openwin/share/include/Xol/FormP.h 0664 root bin
+f none openwin/share/include/Xol/Gauge.h 0664 root bin
+f none openwin/share/include/Xol/GaugeP.h 0664 root bin
+f none openwin/share/include/Xol/Help.h 0664 root bin
+f none openwin/share/include/Xol/HelpP.h 0664 root bin
+f none openwin/share/include/Xol/ListPane.h 0664 root bin
+f none openwin/share/include/Xol/ListPaneP.h 0664 root bin
+f none openwin/share/include/Xol/Mag.h 0664 root bin
+f none openwin/share/include/Xol/MagP.h 0664 root bin
+f none openwin/share/include/Xol/Manager.h 0664 root bin
+f none openwin/share/include/Xol/ManagerP.h 0664 root bin
+f none openwin/share/include/Xol/Margin.h 0664 root bin
+f none openwin/share/include/Xol/Menu.h 0664 root bin
+f none openwin/share/include/Xol/MenuButtoP.h 0664 root bin
+f none openwin/share/include/Xol/MenuButton.h 0664 root bin
+f none openwin/share/include/Xol/MenuP.h 0664 root bin
+f none openwin/share/include/Xol/NonexclusP.h 0664 root bin
+f none openwin/share/include/Xol/Nonexclusi.h 0664 root bin
+f none openwin/share/include/Xol/Notice.h 0664 root bin
+f none openwin/share/include/Xol/NoticeP.h 0664 root bin
+f none openwin/share/include/Xol/NumericFie.h 0664 root bin
+f none openwin/share/include/Xol/NumericFiP.h 0664 root bin
+f none openwin/share/include/Xol/OblongButP.h 0664 root bin
+f none openwin/share/include/Xol/OblongButt.h 0664 root bin
+f none openwin/share/include/Xol/OlCEnv.h 0664 root bin
+f none openwin/share/include/Xol/OlClients.h 0664 root bin
+f none openwin/share/include/Xol/OlClientsP.h 0664 root bin
+f none openwin/share/include/Xol/OlCursors.h 0664 root bin
+f none openwin/share/include/Xol/OlDnDVCX.h 0664 root bin
+f none openwin/share/include/Xol/OlImP.h 0664 root bin
+f none openwin/share/include/Xol/OlReasons.h 0664 root bin
+f none openwin/share/include/Xol/OlStrings.h 0664 root bin
+f none openwin/share/include/Xol/OlgxP.h 0664 root bin
+f none openwin/share/include/Xol/Oltextbuff.h 0664 root bin
+f none openwin/share/include/Xol/OpenLook.h 0664 root bin
+f none openwin/share/include/Xol/OpenLookP.h 0664 root bin
+f none openwin/share/include/Xol/Pixmap.h 0664 root bin
+f none openwin/share/include/Xol/PixmapP.h 0664 root bin
+f none openwin/share/include/Xol/PopupWindP.h 0664 root bin
+f none openwin/share/include/Xol/PopupWindo.h 0664 root bin
+f none openwin/share/include/Xol/Primitive.h 0664 root bin
+f none openwin/share/include/Xol/PrimitiveP.h 0664 root bin
+f none openwin/share/include/Xol/Pushpin.h 0664 root bin
+f none openwin/share/include/Xol/PushpinP.h 0664 root bin
+f none openwin/share/include/Xol/RectButtoP.h 0664 root bin
+f none openwin/share/include/Xol/RectButton.h 0664 root bin
+f none openwin/share/include/Xol/RootShell.h 0664 root bin
+f none openwin/share/include/Xol/RubberTilP.h 0664 root bin
+f none openwin/share/include/Xol/RubberTile.h 0664 root bin
+f none openwin/share/include/Xol/Scrollbar.h 0664 root bin
+f none openwin/share/include/Xol/ScrollbarP.h 0664 root bin
+f none openwin/share/include/Xol/ScrolledWP.h 0664 root bin
+f none openwin/share/include/Xol/ScrolledWi.h 0664 root bin
+f none openwin/share/include/Xol/ScrollingL.h 0664 root bin
+f none openwin/share/include/Xol/ScrollingP.h 0664 root bin
+f none openwin/share/include/Xol/Slider.h 0664 root bin
+f none openwin/share/include/Xol/SliderP.h 0664 root bin
+f none openwin/share/include/Xol/StaticTexP.h 0664 root bin
+f none openwin/share/include/Xol/StaticText.h 0664 root bin
+f none openwin/share/include/Xol/Stub.h 0664 root bin
+f none openwin/share/include/Xol/StubP.h 0664 root bin
+f none openwin/share/include/Xol/StringList 0664 root bin
+f none openwin/share/include/Xol/SuperCaret.h 0664 root bin
+f none openwin/share/include/Xol/TextEdit.h 0664 root bin
+f none openwin/share/include/Xol/TextEditP.h 0664 root bin
+f none openwin/share/include/Xol/TextField.h 0664 root bin
+f none openwin/share/include/Xol/TextFieldP.h 0664 root bin
+f none openwin/share/include/Xol/TextLine.h 0664 root bin
+f none openwin/share/include/Xol/TextLineP.h 0664 root bin
+f none openwin/share/include/Xol/VendorI.h 0664 root bin
+f none openwin/share/include/Xol/array.h 0664 root bin
+f none openwin/share/include/Xol/buffutil.h 0664 root bin
+f none openwin/share/include/Xol/regexp.h 0664 root bin
+f none openwin/share/include/Xol/textbuff.h 0664 root bin
+f none openwin/share/include/Xol/txtbufCA.h 0664 root bin
+f none openwin/share/include/Xol/txtbufCNA.h 0664 root bin
+
+!search                $HOME/Xol/bitmaps
+d none openwin/share/include/Xol/bitmaps 0775 root bin
+f none openwin/share/include/Xol/bitmaps/biggestCurIn.h 0664 root bin
+f none openwin/share/include/Xol/bitmaps/biggestCurOut.h 0664 root bin
+f none openwin/share/include/Xol/bitmaps/busycurs.h 0664 root bin
+f none openwin/share/include/Xol/bitmaps/busymask.h 0664 root bin
+f none openwin/share/include/Xol/bitmaps/copymsk.h 0664 root bin
+f none openwin/share/include/Xol/bitmaps/copysrc.h 0664 root bin
+f none openwin/share/include/Xol/bitmaps/datadupe_drag.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/datadupe_drag_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/datadupe_drop.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/datadupe_drop_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/datadupe_insert.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/datadupe_insert_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/datadupe_nodrop.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/datadupe_nodrop_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/datamove_drag.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/datamove_drag_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/datamove_drop.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/datamove_drop_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/datamove_insert.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/datamove_insert_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/datamove_nodrop.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/datamove_nodrop_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/doc.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/doc_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/docstack.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/docstack_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/drop.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/drop_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/dupcurs.h 0664 root bin
+f none openwin/share/include/Xol/bitmaps/dupe_box.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/dupe_box_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/dupedoc.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/dupedoc_drag.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/dupedoc_drag_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/dupedoc_drop.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/dupedoc_drop_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/dupedoc_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/dupedoc_nodrop.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/dupedoc_nodrop_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/dupestack.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/dupestack_drag.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/dupestack_drag_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/dupestack_drop.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/dupestack_drop_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/dupestack_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/dupestack_nodrop.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/dupestack_nodrop_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/dupmask.h 0664 root bin
+f none openwin/share/include/Xol/bitmaps/folder.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/folder_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/folderstack.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/folderstack_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/hugeIn.h 0664 root bin
+f none openwin/share/include/Xol/bitmaps/hugeOut.h 0664 root bin
+f none openwin/share/include/Xol/bitmaps/insertdrop.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/insertdrop_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/largeIn.h 0664 root bin
+f none openwin/share/include/Xol/bitmaps/largeOut.h 0664 root bin
+f none openwin/share/include/Xol/bitmaps/larrowOff.h 0664 root bin
+f none openwin/share/include/Xol/bitmaps/larrowOn.h 0664 root bin
+f none openwin/share/include/Xol/bitmaps/mediumIn.h 0664 root bin
+f none openwin/share/include/Xol/bitmaps/mediumOut.h 0664 root bin
+f none openwin/share/include/Xol/bitmaps/morearrow.h 0664 root bin
+f none openwin/share/include/Xol/bitmaps/movcurs.h 0664 root bin
+f none openwin/share/include/Xol/bitmaps/move_box.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/move_box_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/movedoc.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/movedoc_drag.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/movedoc_drag_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/movedoc_drop.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/movedoc_drop_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/movedoc_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/movedoc_nodrop.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/movedoc_nodrop_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/movemsk.h 0664 root bin
+f none openwin/share/include/Xol/bitmaps/movesrc.h 0664 root bin
+f none openwin/share/include/Xol/bitmaps/movestack.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/movestack_drag.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/movestack_drag_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/movestack_drop.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/movestack_drop_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/movestack_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/movestack_nodrop.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/movestack_nodrop_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/movmask.h 0664 root bin
+f none openwin/share/include/Xol/bitmaps/nodrop.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/nodrop_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/pancurs.h 0664 root bin
+f none openwin/share/include/Xol/bitmaps/panmask.h 0664 root bin
+f none openwin/share/include/Xol/bitmaps/pt16CurIn.h 0664 root bin
+f none openwin/share/include/Xol/bitmaps/pt16CurOut.h 0664 root bin
+f none openwin/share/include/Xol/bitmaps/quescurs.h 0664 root bin
+f none openwin/share/include/Xol/bitmaps/quesmask.h 0664 root bin
+f none openwin/share/include/Xol/bitmaps/rarrowOff.h 0664 root bin
+f none openwin/share/include/Xol/bitmaps/rarrowOn.h 0664 root bin
+f none openwin/share/include/Xol/bitmaps/smallIn.h 0664 root bin
+f none openwin/share/include/Xol/bitmaps/smallOut.h 0664 root bin
+f none openwin/share/include/Xol/bitmaps/stdcurs.h 0664 root bin
+f none openwin/share/include/Xol/bitmaps/stdmask.h 0664 root bin
+f none openwin/share/include/Xol/bitmaps/targcurs.h 0664 root bin
+f none openwin/share/include/Xol/bitmaps/targmask.h 0664 root bin
+f none openwin/share/include/Xol/bitmaps/textdupe_drag.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/textdupe_drag_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/textdupe_drop.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/textdupe_drop_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/textdupe_insert.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/textdupe_insert_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/textdupe_nodrop.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/textdupe_nodrop_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/textmove_drag.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/textmove_drag_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/textmove_drop.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/textmove_drop_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/textmove_insert.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/textmove_insert_mask.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/textmove_nodrop.xbm 0664 root bin
+f none openwin/share/include/Xol/bitmaps/textmove_nodrop_mask.xbm 0664 root bin
+
+
+!search                $HOME/desktop
+d none openwin/share/include/desktop 0775 root bin
+f none openwin/share/include/desktop/ce.h 0664 root bin
+f none openwin/share/include/desktop/ce_err.h 0664 root bin
+
+
+!search                $HOME/help
+d none openwin/share/include/help 0775 root bin
+f none openwin/share/include/help/helplib.h 0664 root bin
+
+
+!search                $HOME/olgx
+d none openwin/share/include/olgx 0775 root bin
+f none openwin/share/include/olgx/olgx.h 0664 root bin
+
+
+!search                $HOME/xview
+d none openwin/share/include/xview 0775 root bin
+f none openwin/share/include/xview/alert.h 0664 root bin
+f none openwin/share/include/xview/attr.h 0664 root bin
+f none openwin/share/include/xview/attrol.h 0664 root bin
+f none openwin/share/include/xview/base.h 0664 root bin
+f none openwin/share/include/xview/canvas.h 0664 root bin
+f none openwin/share/include/xview/cms.h 0664 root bin
+f none openwin/share/include/xview/cms_grays.h 0664 root bin
+f none openwin/share/include/xview/cms_mono.h 0664 root bin
+f none openwin/share/include/xview/cms_rgb.h 0664 root bin
+f none openwin/share/include/xview/cmsrainbow.h 0664 root bin
+f none openwin/share/include/xview/cursor.h 0664 root bin
+f none openwin/share/include/xview/db.h 0664 root bin
+f none openwin/share/include/xview/defaults.h 0664 root bin
+f none openwin/share/include/xview/dragdrop.h 0664 root bin
+f none openwin/share/include/xview/drawable.h 0664 root bin
+f none openwin/share/include/xview/expandname.h 0664 root bin
+f none openwin/share/include/xview/file_chsr.h 0664 root bin
+f none openwin/share/include/xview/file_list.h 0664 root bin
+f none openwin/share/include/xview/font.h 0664 root bin
+f none openwin/share/include/xview/frame.h 0664 root bin
+f none openwin/share/include/xview/fullscreen.h 0664 root bin
+f none openwin/share/include/xview/generic.h 0664 root bin
+f none openwin/share/include/xview/hist.h 0664 root bin
+f none openwin/share/include/xview/icon.h 0664 root bin
+f none openwin/share/include/xview/icon_load.h 0664 root bin
+f none openwin/share/include/xview/notice.h 0664 root bin
+f none openwin/share/include/xview/notify.h 0664 root bin
+f none openwin/share/include/xview/openmenu.h 0664 root bin
+f none openwin/share/include/xview/openwin.h 0664 root bin
+f none openwin/share/include/xview/panel.h 0664 root bin
+f none openwin/share/include/xview/path.h 0664 root bin
+f none openwin/share/include/xview/pixwin.h 0664 root bin
+f none openwin/share/include/xview/pkg.h 0664 root bin
+f none openwin/share/include/xview/pkg_public.h 0664 root bin
+f none openwin/share/include/xview/rect.h 0664 root bin
+f none openwin/share/include/xview/rectlist.h 0664 root bin
+f none openwin/share/include/xview/screen.h 0664 root bin
+f none openwin/share/include/xview/scrollbar.h 0664 root bin
+f none openwin/share/include/xview/sel_attrs.h 0664 root bin
+f none openwin/share/include/xview/sel_compat.h 0664 root bin
+f none openwin/share/include/xview/sel_pkg.h 0664 root bin
+f none openwin/share/include/xview/sel_svc.h 0664 root bin
+f none openwin/share/include/xview/selection.h 0664 root bin
+f none openwin/share/include/xview/seln.h 0664 root bin
+f none openwin/share/include/xview/server.h 0664 root bin
+f none openwin/share/include/xview/str_utils.h 0664 root bin
+f none openwin/share/include/xview/sun.h 0664 root bin
+f none openwin/share/include/xview/svrimage.h 0664 root bin
+f none openwin/share/include/xview/termsw.h 0664 root bin
+f none openwin/share/include/xview/text.h 0664 root bin
+f none openwin/share/include/xview/textsw.h 0664 root bin
+f none openwin/share/include/xview/tty.h 0664 root bin
+f none openwin/share/include/xview/ttysw.h 0664 root bin
+f none openwin/share/include/xview/win_enum.h 0664 root bin
+f none openwin/share/include/xview/win_env.h 0664 root bin
+f none openwin/share/include/xview/win_event.h 0664 root bin
+f none openwin/share/include/xview/win_input.h 0664 root bin
+f none openwin/share/include/xview/win_notify.h 0664 root bin
+f none openwin/share/include/xview/win_screen.h 0664 root bin
+f none openwin/share/include/xview/win_struct.h 0664 root bin
+f none openwin/share/include/xview/window.h 0664 root bin
+f none openwin/share/include/xview/window_hs.h 0664 root bin
+f none openwin/share/include/xview/wmgr.h 0664 root bin
+f none openwin/share/include/xview/xv_c_types.h 0664 root bin
+f none openwin/share/include/xview/xv_error.h 0664 root bin
+f none openwin/share/include/xview/xv_i18n.h 0664 root bin
+f none openwin/share/include/xview/xv_version.h 0664 root bin
+f none openwin/share/include/xview/xv_xrect.h 0664 root bin
+f none openwin/share/include/xview/xview.h 0664 root bin
+f none openwin/share/include/xview/xview_xvin.h 0664 root bin
+

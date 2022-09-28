@@ -1,0 +1,178 @@
+DESCRIPTION
+
+	The MenuShell widget is used to create a menu that is not associated
+	with either a MenuButton or an AbbrevMenuButton.  The application is free
+	to attach the menu to other objects (i.e. OblongButtons, TextFields, etc)
+	by creating the MenuShell as a child of the object.
+
+	The MenuShell widget is comprised of the following widget components:
+		MenuShell 		(created automatically)	
+		MenuPane		(created automatically as child of MenuShell)
+		Menu choice items	(created by application as children of MenuPane)
+
+
+	For more detailed information on the MenuShell Widget, see the following
+	Sections in the OPEN LOOK Intrinsics Toolkit Widget Set Reference Manual:
+		. MenuShell
+		. Shell Resources
+
+
+EXAMPLE CODE
+
+/*****************************************************************************/
+The following code could be used to Create the example MenuShell Widget shown 
+in the Table (All color specific code has been removed for simplification).
+This example demonstrates how to implement Mouseless accelerators:
+	
+#include <X11/Intrinsic.h>
+#include <X11/StringDefs.h>
+#include <Xol/OpenLook.h>
+#include <Xol/Menu.h>
+
+#include <Xol/OblongButt.h>
+#include <Xol/ControlAre.h>
+#include <Xol/StaticText.h>
+
+/*******************************************************************
+ *choiceCB:  Callback is called when one of the items in the
+ *	   exclusive is selected.
+ *******************************************************************/
+void
+choiceCB(w, clientData, callData)
+Widget w;
+XtPointer clientData, callData;
+{
+	char *choicestring;
+
+	XtVaGetValues(w,
+			XtNlabel, &choicestring,
+			NULL);
+
+	printf("Ordered Off Menu:  %s\n", choicestring);
+
+}
+/*******************************************************************/
+
+char *choices[] = {"spaghetti", "ravioli", "linguini", "hamburger"};
+char *accels[] = {"Ctrl<s>","Ctrl<r>","Ctrl<l>","Ctrl<h>"};
+char *accel_txt[] = {"^s","^r","^l","^h"};
+
+main(argc, argv)
+int argc;
+char **argv;
+{
+	Widget toplevel, controlarea, menutrigger, menu, menupane, 
+		choice_item[XtNumber(choices)];
+	XtAppContext app;
+	int i;
+
+	OlToolkitInitialize(NULL);
+	toplevel = XtAppInitialize(&app, "Test", 
+				(XrmOptionDescRec *)NULL,
+				(Cardinal)0, (int *)&argc, argv,
+				(String *)NULL, (ArgList)NULL, 0);
+
+	controlarea = XtVaCreateManagedWidget("controls", 
+				controlAreaWidgetClass,
+				toplevel, 
+				NULL);
+	/* 
+	 *Create text area which will trigger Menu when selected 
+	 */
+	menutrigger = XtVaCreateManagedWidget("trigger", 
+				staticTextWidgetClass, 
+				controlarea,
+				XtNstring, 	 (XtArgVal)"Click Here For Menu",
+				NULL);
+
+	/*
+	 * Create MenuShell as child of menutrigger
+	 */
+	menu = XtVaCreatePopupShell("menu", 
+				menuShellWidgetClass,
+				menutrigger,
+				XtNtitle,	(XtArgVal)"Le Menu",
+				XtNpushpin,	(XtArgVal)OL_OUT,
+				NULL);
+
+	/*
+	 * Get handle to MenuPane from shell so we can add choice items.
+	 */
+	XtVaGetValues(menu,
+				XtNmenuPane, &menupane,
+				NULL);
+
+	/*
+	 * Create menu choices from array of strings passed in as parameter 
+	 */
+	for (i = 0; i < XtNumber(choices); i++)	{	
+		choice_item[i] = XtVaCreateManagedWidget(choices[i], 
+				oblongButtonWidgetClass,
+				menupane,
+				/* Add Accelerator Key for Mouseless */
+				XtNaccelerator,	(XtArgVal)accels[i],
+				XtNacceleratorText, (XtArgVal)accel_txt[i],
+				NULL);
+	       XtAddCallback(choice_item[i], XtNselect, choiceCB, NULL);
+	}
+
+
+	XtRealizeWidget(toplevel);
+	XtAppMainLoop(app);
+
+}
+/**********************************END EXAMPLE************************************/	
+
+RESOURCES
+_______________________________________________________________________________________________
+Resource Name		Type		Default		Brief Description
+_______________________________________________________________________________________________
+
+MenuShell Resource Set:
+
+XtNallowShellResize	Boolean		TRUE		is shell allowed to resize itself?
+XtNancestorSensitive	Boolean		TRUE		Will immediate parent receive events?
+XtNbackground		Pixel		White		background color of widget
+XtNbackgroundPixmap	Pixmap		(none)		pixmap used for tiling the background
+XtNconsumeEvent		XtCallbackList	NULL		called when event occurs
+XtNcreatePopupChildProc			NULL		ptr to ftn called before shell is mapped
+XtNdepth		int		(parent's)	number of bits used for each pixel
+XtNdestroyCallback	XtCallbackList	NULL		routines called when widget is destroyed
+XtNfocusWidget		Widget		NULL		id of widget in Menu to get focus
+XtNheight		Dimension	(calculated)	height of widget's window in pixels
+XtNheightInc		int		-1		progression of preferred height values
+XtNinput		Boolean		FALSE		controls type of input focus		
+XtNmaxAspectX		Position	-1		range of max aspect ratio allowed for width
+XtNmaxAspectY		Position	-1		range of max aspect ratio allowed for height
+XtNmaxHeight		Dimension	OL_IGNORE	maximum height of shell window
+XtNmaxWidth		Dimension	OL_IGNORE	maximum width of shell window
+XtNmenuAugment		Boolean		TRUE		should parent of MenuShell popup menu?
+XtNmenuPane		Widget		(none)		widget where menu items are attached
+XtNminAspectX		Position	-1		range of min aspect ratio allowed for width 
+XtNminAspectY		Position	-1		range of min aspect ratio allowed for height
+XtNminHeight		Dimension	OL_IGNORE	minimum height of shell window
+XtNminWidth		Dimension	OL_IGNORE	minimum width of shell window
+XtNpopdownCallback	XtCallbackList	NULL		proc called immed. after shell is unmapped
+XtNpopupCallback	XtCallbackList	NULL		proc called immed. before shell is mapped
+XtNpushpin		OLDefine	OL_NONE		does menu have a pushpin?
+XtNpushpinDefault	Boolean		FALSE		is pushpin 'default' item?
+XtNsaveUnder		Boolean		FALSE		should server attempt save-under? 
+XtNsensitive		Boolean		TRUE		will widget receive input events?
+XtNtitle		String		(widget name)	string used for title in menu
+XtNuserData		XtPointer	NULL		storage for user defined data
+XtNwidth		Dimension	(calculated)	width of widget's window in pixels
+XtNwidthInc		int		-1		progression of preferred width values
+
+MenuPane Resource Set:
+
+XtNcenter		Boolean		TRUE		should children be centered in column?
+XtNhPad			Dimension	4		size in pixels of margin on sides 
+XtNhSpace		Dimension	4		space in pixels between columns
+XtNlayoutType		OlDefine	OL_FIXEDROWS	layout policy of child widgets
+XtNmeasure		int		1		* number of rows/cols or fixed hgt/wth
+XtNsameSize		OlDefine	OL_COLUMNS	which children are forced to same width
+XtNvPad			Dimension	4		size in pixels of top/bottom margins
+XtNvSpace		Dimension	4		space in pixels between rows
+
+
+		

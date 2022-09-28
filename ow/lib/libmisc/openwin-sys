@@ -1,0 +1,69 @@
+#!/bin/sh
+# openwin-sys - OpenWindows X11/NeWS Server system initialization file
+
+fbconsole &				# Start fallback console
+
+if [ -f $HOME/.OWdefaults ]; then	# Load props-written resources
+	xrdb -merge -nocpp $HOME/.OWdefaults
+fi
+props -init				# Effect props resources
+
+ADDFONTPATH() {
+	# Look for the font map files, and feeds it into psh.
+	# This is the workaround for bug 1072001.
+	if winsysck news && test -x $OPENWINHOME/bin/psh ; then
+		for fp in `sed "/^[ 	]*$/d" $1` ; do
+			fp=`eval "echo $fp"`
+			if [ -d "$fp/map" ] ; then
+				psh $fp/map/*.ps
+			fi
+		done
+	fi
+
+	# Combine lines together to make arguments for the xset command
+	FP=`awk '
+	BEGIN { fp="fp+ " }
+	/^[ 	]*$/ { fp=" +fp " ; continue }	
+	{ printf("%s%s", fp, $0) ; fp="," } ' $1`
+	if [ -n "$FP" ]; then
+		eval "xset $FP"
+	fi
+}
+
+# Add necessary fontpaths for the current locale, if needed
+if [ -x $OPENWINHOME/bin/locale_env ]; then
+	LOCALE=`$OPENWINHOME/bin/locale_env -get_basiclocale`
+	if [ -r $OPENWINHOME/lib/locale/$LOCALE/OWfontpath ]; then
+		ADDFONTPATH $OPENWINHOME/lib/locale/$LOCALE/OWfontpath
+	fi
+	unset LOCALE
+fi
+# Add personal fontpaths (mainly for mutiple locale cases)
+if [ -r $HOME/.OWfontpath ]; then
+	ADDFONTPATH $HOME/.OWfontpath
+fi
+
+cmap_compact init
+
+# Allocate default colormaps for dynamic non-default visuals
+cmap_alloc -allscreens
+
+# start virtual keyboard backend
+vkbd -nopopup &
+
+# Start Drop Site Database Manager for drag'n'drop.
+# This line should only be uncommented if olwm is not running.
+# See the dsdm(1) man page for more details.
+# dsdm &
+
+# Init DeskSet colors
+ds_server_init
+
+# Start ttsession here. Deskset tools depend on it.
+
+ttsession -s
+
+if [ -x $OPENWINHOME/bin/speckeysd ] ; then
+	$OPENWINHOME/bin/speckeysd  1> /dev/console 2>&1
+fi
+exit 0

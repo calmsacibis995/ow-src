@@ -1,0 +1,28 @@
+#       Copyright (c) 1990-92 Sun Microsystems, Inc.
+#               All Rights Reserved
+#
+#	@(#)prototype	1.7 95/01/11   Sun Microsystems" 
+#
+#  OpenWindows required core package
+
+i pkginfo
+i copyright=../copyright
+i depend
+
+!HOME=../openwin
+
+d none openwin 0775 root bin
+
+!search  $HOME/bin
+d none openwin/bin 0775 root bin
+f none openwin/bin/audiotool 0775 root bin
+f none openwin/bin/audiocontrol 0775 root bin
+
+
+!search $HOME/lib/locale/C/help
+d none openwin/lib					0775 root bin
+d none openwin/lib/locale				0775 root bin
+d none openwin/lib/locale/C				0775 root bin
+d none openwin/lib/locale/C/help			0775 root bin
+f none openwin/lib/locale/C/help/audiotool.info		0664 root bin
+f none openwin/lib/locale/C/help/audiocontrol.info	0664 root bin

@@ -1,0 +1,29 @@
+#
+# @(#)Imakefile 1.2 91/07/09  SMI
+#
+# Imakefile for the drag and drop directory - dnd
+#
+# LIBRARY_DEST is the location of the XView libraries
+# HEADER_DEST is the location of the XView header files
+# LIBDIR is the directory containing the X11 library (libX11.a)
+#
+
+LIBRARY_DEST=/home/xview/usr/lib
+HEADER_DEST=/home/xview/usr/include
+
+LIBDIR=/home/X11/lib
+LDFLAGS=-L$(LIBRARY_DEST) -L$(LIBDIR) -lxview -lX11
+INCLUDES= -I.. -I$(HEADER_DEST) -I$(TOP) -DSTANDALONE
+
+# Uncomment the following line to use libxvol.a and libxvin.a
+#
+#LDFLAGS=-L$(LIBRARY_DEST) -L$(LIBDIR) -lxvol -lxvin -lX11
+
+TARGETS=dest source1
+ICON= drop.icon
+IMAGES=arrow.bm arrow_mask.bm arrowb.bm bullseye.bm bullseyeI.bm 
+
+all: $(ICON) $(IMAGES) $(TARGETS)
+
+${TARGETS}: $$@.c $$@.o 
+	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $@.o

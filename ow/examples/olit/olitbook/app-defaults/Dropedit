@@ -1,0 +1,15 @@
+!
+! DROPEDIT
+Dropedit*te.background:                        white
+Dropedit*te.font:                              lucidasans-typewriter
+Dropedit*sw.yRefName:                          dt
+Dropedit*sw.yAddHeight:                        TRUE
+Dropedit*sw.xAttachRight:                      TRUE
+Dropedit*sw.xResizable:                        TRUE
+Dropedit*sw.xVaryOffset:                       FALSE
+Dropedit*sw.yAttachBottom:                     TRUE
+Dropedit*sw.yResizable:                        TRUE
+Dropedit*sw.yVaryOffset:                       FALSE
+!
+Dropedit*dt.xAttachRight:                      TRUE
+Dropedit*dt.xVaryOffset:                       TRUE

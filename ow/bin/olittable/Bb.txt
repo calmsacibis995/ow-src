@@ -1,0 +1,93 @@
+DESCRIPTION
+
+	The BulletinBoard widget is a simple composite widget used most often to
+	contain other widgets.  The BulletinBoard widget enforces no ordering or
+	positioning on its children and so it is up to the application to specify
+	the x, y coordinates of each child inserted.  If no x,y coordinates are
+	specified for its children, they are all placed at 0,0.
+
+
+	For more detailed information on the BulletinBoard Widget, see the following
+	Section in the OPEN LOOK Intrinsics Toolkit Widget Set Reference Manual:
+		. BulletinBoard
+
+
+EXAMPLE CODE
+
+The following code could be used to Create the example BulletinBoard Widget
+shown in the Table (All color specific code has been removed for simplification):
+
+/*****************************************************************************/
+#include <X11/Intrinsic.h>
+#include <X11/StringDefs.h>
+#include <Xol/OpenLook.h>
+#include <Xol/BulletinBo.h>
+
+#include <Xol/TextField.h>
+				
+/****************************************************************************/
+
+main(argc, argv)
+int argc;
+char **argv;
+{
+	Widget toplevel, bulletinboard, textfield;
+	XtAppContext app;
+
+	OlToolkitInitialize(NULL);
+	toplevel = XtAppInitialize(&app, "Test", 
+				(XrmOptionDescRec *)NULL,
+				(Cardinal)0, (int *)&argc, argv,
+				(String *)NULL, (ArgList)NULL, 0);
+
+	/*
+	 * Create Example BulletinBoard
+	 * containing a TextField at position (0,0).
+	 */
+	bulletinboard = XtVaCreateManagedWidget("bboard", 
+				bulletinBoardWidgetClass, 
+				toplevel,
+				XtNborderWidth,	(XtArgVal) 1,
+				XtNlayout, 	(XtArgVal)OL_IGNORE,
+				XtNwidth, 	(XtArgVal) 90,
+				XtNheight,	(XtArgVal) 60,
+				NULL);
+
+	textfield = XtVaCreateManagedWidget("textfield", 
+				textFieldWidgetClass,
+				bulletinboard,
+				XtNx,	  	(XtArgVal) 0,
+				XtNy,	  	(XtArgVal) 0,
+				XtNmaximumSize,	(XtArgVal) 12,
+				NULL);
+
+	XtRealizeWidget(toplevel);
+	XtAppMainLoop(app);
+
+}
+/****************************************************************************/
+
+
+RESOURCES
+_______________________________________________________________________________________________
+Resource Name		Type		Default		Brief Description
+_______________________________________________________________________________________________
+
+XtNancestorSensitive	Boolean		TRUE		Will immediate parent receive events?
+XtNbackground		Pixel		White		background color of widget
+XtNbackgroundPixmap	Pixmap		(none)		pixmap used for tiling the background
+XtNborderColor		Pixel		Black		border color of widget
+XtNborderPixmap		Pixmap		(none)		pixmap used for tiling the border
+XtNborderWidth		Dimension	0		width of widget's border in pixels
+XtNconsumeEvent		XtCallbackList	NULL		called when virtual event occurs
+XtNdepth		int		(parent's)	number of bits used for each pixel
+XtNdestroyCallback	XtCallbackList	NULL		routines called when widget is destroyed 
+XtNheight		Dimension	(calculated)	height of widget's window in pixels
+XtNinputFocusColor	Pixel		Red		color of input focus indicator
+XtNlayout		OLDefine	OL_MINIMIZE	identifies layout policy for widget
+XtNmappedWhenManaged	Boolean		TRUE		will widget be mapped when managed?
+XtNsensitive		Boolean		TRUE		will widget receive input events?
+XtNuserData		XtPointer	NULL		storage for user defined data
+XtNwidth		Dimension	(calculated)	width of widget's window in pixels
+XtNx			Position	0		x coord of widget's upper left corner
+XtNy			Position	0		y coord of widget's uuper left corner

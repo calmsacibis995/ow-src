@@ -1,0 +1,42 @@
+#
+
+# Copyright
+
+#
+#	@(#)step	1.2 90/07/23
+#
+
+# Step template
+#
+#	Preconditions
+#		SUBDIRS
+#
+#	Exports
+#
+
+MAKETARGET=build
+all		:= MAKETARGET=all
+deliverable	:= MAKETARGET=deliverable
+tool		:= MAKETARGET=tool
+clean		:= MAKETARGET=clean
+clobber		:= MAKETARGET=clobber
+install		:= MAKETARGET=install
+installtool	:= MAKETARGET=installtool
+lint		:= MAKETARGET=lint
+lintlibs	:= MAKETARGET=lintlibs
+
+step:
+	@for i in ${SUBDIRS}; do \
+	(cd $$i; echo "----["`${PWDCMD}`"]----"; \
+	    ${MAKE} ${MAKETARGET} \
+	) done
+
+all:		installtool deliverable
+deliverable:	step ${MAKE.all.target}
+tool:		step ${MAKE.tool.target}
+installtool:	step ${MAKE.installtool.target}
+install:	step ${MAKE.install.target}
+clean:		step ${MAKE.clean.target}
+clobber:	step ${MAKE.clobber.target}
+
+

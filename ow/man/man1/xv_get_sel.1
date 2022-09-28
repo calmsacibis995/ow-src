@@ -1,0 +1,49 @@
+.\" Copyright (c) 1994 - Sun Microsystems, Inc. 
+.TH xv_get_sel 1 "17 March 1992"
+.IX "xv_get_sel" "" "\f3xv_get_sel\f1(1) \(em copy selection to standard output" ""
+.SH NAME
+xv_get_sel \- copy the content of a selection to the standard output
+.SH SYNOPSIS
+.B xv_get_sel
+[
+.B rank 
+]
+[ \fB-t\fP \fIseconds\fP ] 
+[ 
+.B D 
+]
+.SH DESCRIPTION
+.LP
+.B xv_get_sel
+prints the contents of the indicated selection on standard out.
+A selection is a collection of objects (for instance, characters) selected
+with the mouse in the OpenWindow window system.
+.SH OPTIONS
+.TP
+.B rank
+Indicate which selection is to be printed:
+.TP
+1-   primary;
+.TP
+2-   secondary;
+.TP
+3-   clipboard.
+.sp
+The default is primary.
+.sp
+.TP
+.I seconds
+Indicate how many \fIseconds\fP to wait for the holder of a selection to
+respond to a request before giving up. The default is six seconds.
+.TP
+.B -D
+Debugging. Inquire through a special debugging service for the selection,
+rather than accessing the standard service. Useful only for debugging
+window applications which are clients of the selection library.
+.SH EXAMPLES
+The following line prints the primary selection on the user's default printer:
+.LP
+	sh -c xv_get_sel | lp
+.LP
+.SH "SEE ALSO"
+.I OpenWindows documentation 

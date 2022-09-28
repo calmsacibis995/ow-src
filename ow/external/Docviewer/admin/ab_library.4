@@ -1,0 +1,62 @@
+.\" Copyright (c) 1994 Sun Microsystems, Inc.
+.TH ab_library 4 "22 Mar 1993"
+.IX "ab_library" "" "\f3ab_library\f1(4) \(em library of AnswerBooks searched by \f3navigator\f1 \(em \f3ab_library\f1(4)" ""
+.IX "AnswerBook" "library" "AnswerBook" "library of AnswerBooks searched by by \f3navigator\f1 \(em \f3ab_library\f1(4)"
+.SH NAME
+ab_library \- collection of AnswerBooks browsed and searched as a unit
+.SH SYNOPSIS
+.LP
+.B $HOME/.ab_library
+.SH DESCRIPTION
+.LP
+An AnswerBook library is a group of AnswerBooks that can be
+browsed and searched as a unit by
+.BR navigator (1)
+(the AnswerBook Navigator).
+Also included in a library is the list of bookmarks referencing that
+library's AnswerBooks.
+.LP
+The default library file is
+.B $HOME/.ab_library
+.LP
+.B navigator
+automatically creates a new library for the user if one does not already
+exist.
+Whenever the AnswerBook user adds or deletes an AnswerBook to the library
+via the
+.B navigator
+"Modify Library" pop-up window,
+.B navigator
+saves those changes to the library file so that they exist between
+AnswerBook sessions.
+Changes to the library's bookmark list are similarly saved.
+.LP
+The AnswerBook library file is created and maintained solely by the
+AnswerBook Navigator.  It is not intended to be hand-editable.
+.LP
+.B navigator
+employs a library file locking mechanism to prevent data loss or corruption
+when multiple Navigator access the same library file simultaneously.
+The Navigator creates a lock file (
+.B ab_library.lock
+).  If a lock file already exists,
+the Navigator informs the user that the file is locked,
+then asks whether the user wants to 1) quit, 2) access
+the library in read-only mode, or 3) override the lock.
+Locks should only be overridden when they are known to be out of date,
+i.e., the program that created the lock is no longer running.
+The Navigator removes the lock file it created upon exiting.
+.SH FILES
+.TP
+.B $HOME/.ab_library
+Default AnswerBook library file.
+.TP
+.B $HOME/.ab_library.lock
+AnswerBook library advisory locking file.
+.SH SEE ALSO
+.LP
+.BR navigator (1)
+.SH NOTES
+.LP
+AnswerBook is a trademark of Sun Microsystems, Inc., licensed
+to SunSoft, Inc.

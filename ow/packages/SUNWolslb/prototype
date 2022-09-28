@@ -1,0 +1,34 @@
+#	Copyright (c) 1990-92 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)prototype	1.4 94/11/02 (c) Sun Microsystems, Inc.
+#
+#  OpenWindows profiled, lint, and static libraries
+
+i pkginfo
+i copyright=../copyright
+i depend=../depend
+
+!HOME=../openwin
+
+d none openwin					0775 root bin
+
+!search      $HOME/lib
+d none openwin/lib				0775 root bin
+f none openwin/lib/libXol.a			0755 root bin
+f none openwin/lib/libce.a			0755 root bin
+f none openwin/lib/libolgx.a			0755 root bin
+f none openwin/lib/libxview.a			0755 root bin
+
+
+!search      $HOME/lib
+f none openwin/lib/llib-lXol.ln			0755 root bin
+f none openwin/lib/llib-lolgx.ln		0755 root bin
+
+
+!search      $HOME/lib/libp
+d none openwin/lib/libp				0775 root bin
+f none openwin/lib/libp/libXol.a		0755 root bin
+f none openwin/lib/libp/libolgx.a		0755 root bin
+f none openwin/lib/libp/libxview.a		0755 root bin
+

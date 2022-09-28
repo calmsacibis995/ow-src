@@ -1,0 +1,52 @@
+#
+
+# Copyright
+
+#
+# @(#)SC1.0acc	1.11 91/07/24
+#
+
+CC		= /usr/local/lang/acc
+CCC		= /usr/local/lang/CC
+AS              = /usr/local/lang/as
+RANLIB		= ranlib
+
+CPS_FUNCTION_OPTS	= -o ansi
+# The inline option isn't an ANSI feature and our compiler doesn't support it.
+CPS_INLINE_OPTS		= -o conststr
+
+
+# Generate Postion-Independant-code
+#	-pic = 64k of entrypoints (16 bit offsets)
+#	-PIC = lots of entrypoints (32 bit offsets)
+LITTLEPIC	= -pic
+BIGPIC		= -PIC
+PIC		= ${LITTLEPIC}
+f.CONSTDATA     = -R
+
+#  Shared library commands and options.
+SHLIBCMD        = /bin/ld
+PURETEXT        = -assert pure-text
+HNAME           =
+LIBVER          = ${LIBMAJORVER}.${LIBMINORVER}
+SHAREDLIBFILES	= ${LIBRARY.shared} ${LIBRARY.shared.sa}
+
+#
+# REMIND - JMP
+# This should migrate to the Shapes level Makefile
+#
+# local.FRACT.INLINE	= ${INCLUDE.graphics}/fr${TARGET_ARCH}.il
+local.FRACT.INLINE	=
+
+##############################################################################
+
+f.GPROF         = -pg
+f.DEBUG         = -g
+f.OPT           = -O2
+f.SHARED        = -O2
+f.OPTGPROF      = -O2 -pg
+reorder.OPT	= -Qoption as -r22off
+STRINGCONST	= -strconst
+
+include ${CONFIGDIR}/Compilers/SunCCgeneric
+

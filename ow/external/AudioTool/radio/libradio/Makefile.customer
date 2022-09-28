@@ -1,0 +1,36 @@
+#
+# @(#)Makefile.customer	1.2	92/06/30 SMI
+#
+
+#
+# Makefile for radio library
+#
+
+include ../../Makefile.config
+
+LIBRARY		= libradio.a
+
+DESTDIR		= 
+
+SOURCES		= agc.c netbroadcast.c radio_network.c radio_rcfile.c radio_subr.c
+
+HEADERS		= radio_network.h netbroadcast.h radio.h audio_agc.h
+
+OBJECTS		= ${SOURCES:%.c=%.o}
+
+CFLAGS		= -O
+
+CPPFLAGS	+= -I../../../include ${SYSDEFINES}
+
+all: ${LIBRARY}
+
+${LIBRARY}: ${OBJECTS}
+	${RM} $@
+	${AR} qv $@ ${OBJECTS}
+	${RANLIB} $@
+
+clean:
+	${RM} ${LIBRARY} ${OBJECTS} core
+
+# nothing to install
+install:

@@ -1,0 +1,843 @@
+.\" Copyright (c) 1994 - Sun Microsystems, Inc.
+.TH perfmeter 1 "03 December 1993"
+.IX "perfmeter" "" "\f3perfmeter\f1(1) \(em system preformance display program" ""
+.SH NAME
+perfmeter \- display system performance values in multiple dials or strip charts
+.SH SYNOPSIS
+.B perfmeter
+[
+.B \-a
+] [
+.B \-d
+] [
+.B \-g
+] [
+.B \-h
+.I h-hand-int
+] [
+.B \-l
+] [
+.B \-m
+.I m-hand-int
+] [
+.B \-n
+.I sample-filename
+]
+.br
+	[
+.B \-name
+.I app-name
+] [
+.B \-p
+.I page-length
+] [
+.B \-s
+.I sample-time
+] [
+.B \-t
+.I value
+] [
+.B \-v
+]
+.br
+	[
+.B \-C
+.I chart ceiling
+]
+[
+.B \-H
+] [
+.B \-L
+] [
+.B \-M
+.I chart smax minmax maxmax
+]
+[
+.B \-S
+]
+.br
+	[
+.B \-V
+] [
+.B \-Wn
+] [
+.B \+Wn
+] [
+.I hostname
+]
+.SH AVAILABILITY
+.LP
+This command is available with the OpenWindows environment.
+.SH DESCRIPTION
+.B perfmeter
+is an OpenWindows XView utility that displays performance values (statistics) 
+for a given
+.IR hostname .
+If no host is specified, statistics on the current host are metered.
+The
+.BR rstatd (1M)
+daemon must be running on the machine being metered.
+.LP
+.B perfmeter
+has two display formats. You can display performance values in the form of
+strip charts (the default) .  Alternatively, the performance information can be displayed
+in the form of multiple meter dials.
+By default, the display is updated with a
+.I sample-time
+of 2 seconds.
+The hour hand of a meter represents the average over a
+20-second interval;
+the minute hand, the average over 2 seconds. The default
+value displayed is the percent of
+.SM CPU
+being utilized.
+.LP
+The maximum scale value for the strip chart will automatically double
+or halve to accommodate increasing or decreasing values for the
+host machine.  This scale can be restricted to a certain range
+with the
+.B \-M
+option.
+.SH OPTIONS
+.TP
+.B \-a
+Display all the performance values simultaneously.
+.TP
+.B \-d
+Start the
+.B perfmeter
+display, by showing metered dials.
+.TP
+.B \-g
+Start the
+.B perfmeter
+display, by showing strip charts.
+.TP
+.BI \-h  " h-hand-int"
+Set the hour-hand interval to
+.I h-hand-int
+seconds.
+.TP
+.B \-l
+Log the
+.B perfmeter
+samples to a file.
+.TP
+.BI \-m  " m-hand-int"
+Set the minute hand interval to
+.I m-hand-int
+seconds.
+.TP
+.BI \-n " sample-filename"
+Name of the file to use, when saving
+.B perfmeter
+samples.
+.TP
+.BI \-name " app-name"
+This option specifies the application name under which resources are to be
+obtained, rather than the default executable file name.
+.I app-name
+should not contain ``.'' or ``*'' characters.
+.TP
+.BI \-p " page-length"
+Sets the page length for
+.B perfmeter
+samples written to file. The default is 60 lines per page.
+.TP
+.BI \-s " sample-time"
+Set the sample time to
+.I sample-time
+seconds.
+.TP
+.BI \-t " value"
+This option can be present multiple times, and it determines which performance
+value are to be monitored. The following options are available:
+.RS
+.TP 8n
+.B cpu
+Percent of
+.SM CPU
+being utilized.
+.TP
+.B pkts
+Ethernet packets per second.
+.TP
+.B page
+Paging activity in pages per second.
+.TP
+.B swap
+Jobs swapped per second.
+.TP
+.B intr
+Number of device interrupts per second.
+.TP
+.B disk
+Disk traffic in transfers per second.
+.TP
+.B cntxt
+Number of context switches per second.
+.TP
+.B load
+Average number of runnable processes over the last minute.
+.TP
+.B colls
+Collisions per second detected on the ethernet.
+.TP
+.B errs
+Errors per second on receiving packets.
+.RE
+.br
+.ne 5
+.TP
+.B \-v
+Show version number
+.TP
+.BI \-C " chart ceiling"
+Set a ceiling value for a given strip chart. If the value goes beyond this
+ceiling and
+.B perfmeter
+is running on a color screen, then this portion of the strip chart will be
+displayed in red.
+.TP
+.B \-H
+Multiple dials or strip charts will be displayed initially in a horizontal
+direction.
+.TP
+.B \-L
+If the
+.B \-g
+option is present, then initially display the strip charts in line format.
+direction.
+.TP
+.BI \-M  " chart smax minmax maxmax"
+Set a range of maximum values for the given strip chart.  Values for
+each of the arguments should be powers of 2.
+.I smax
+sets the starting maximum-value.
+.I minmax
+sets the lowest allowed maximum-value for the scale.
+.I maxmax
+sets the highest allowed maximum-value.
+.TP
+.B \-S
+If the
+.B \-g
+option is present, then initially display the strip charts in a solid filled
+format.
+.TP
+.B \-V
+Multiple dials or strip charts will be displayed initially in a vertical
+direction.
+.TP
+.B \-Wn
+Start
+.B perfmeter
+with no title line.
+.TP
+.B \+Wn
+Start
+.B perfmeter
+with a title line present.
+.SH USAGE
+.SS Commands
+.LP
+You can add extra values to be monitored by clicking the
+.SM MENU
+mouse button, and selecting from the popup menu. Alternatively, you can
+select
+.B Properties
+from this menu, and this will bring up the property sheet for the tool.
+The property sheet will allow you to modify what the
+.B perfmeter 
+is monitoring, which direction graphs or dials are displayed in, whether
+to display dials or graphs, if the graph is solid or lined, whether to
+monitor a local machine or a remote one, and how often it checks.
+.LP
+Note that
+.B perfmeter
+does not try to do a best fit, given the shape of the window and the number
+of graphs you wish to display. For example, if the display direction is
+vertical, and you are currently displaying ten graphs in a tall narrow window,
+then resizing the window to be short and wide will result in ten very thin
+wide graphs.
+.LP
+Most meter parameters can be modified  through the use of
+keyboard accelerators. Move the pointer into the window and
+type one of the following keyboard keys:
+.RS
+.TP
+.B d
+Toggle the direction the graphs or dials are displayed in, between
+horizontal and vertical.
+.TP
+.B g
+Toggle the display between graphs and dials.
+.TP
+.B h
+Decrease
+.I hourhandintv
+by one
+.TP
+.B H
+Increase
+.I hourhandintv
+by one
+.TP
+.B m
+Decrease
+.I minutehandintv
+by one
+.TP
+.B M
+Increase
+.I minutehandintv
+by one
+.TP
+.B q
+Quit the
+.B perfmeter
+.TP
+.B s
+If graphs are being displayed, toggle between lined and solid graphs.
+.TP
+.B S
+Toggle the saving of samples to file.
+.TP
+.B t
+Toggle between the monitoring of the local machine and a remote machine.
+Note that a remote machine name must have already been setup via the tools
+property sheet.
+.TP
+.B 1\-9
+Set
+.I sampletime
+to a range from 1 to 9 seconds.
+.RE
+.LP
+On startup,
+.B perfmeter
+will use the following X resources:
+.TP 15
+.PD 0
+.B Resource:
+deskset.perfmeter.displayGraph
+.TP
+.B Values:
+True, False (True)
+.TP
+.B Description
+Indicates whether
+.B perfmeter
+should be started showing strip graphs or metered dials.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.hourInterval
+.TP
+.B Values:
+Hour hand interval (numeric)
+.TP
+.B Description
+Set the hour-hand interval to this number of seconds.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.minInterval
+.TP
+.B Values:
+Minute hand interval (numeric)
+.TP
+.B Description
+Set the minute-hand interval to this number of seconds.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.sampleTime
+.TP
+.B Values:
+Sample time (numeric)
+.TP
+.B Description
+The interval in seconds, between which samples are taken.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.resizeGraphView
+.TP
+.B Values:
+True, False (True)
+.TP
+.B Description
+Indicates whether changing the number of graphs being monitored, should cause
+the window to be resized.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.showLocal
+.TP
+.B Values:
+True, False (True)
+.TP
+.B Description
+Indicates whether the local or the remote host should be initially displayed.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.monitor
+.TP
+.B Values:
+Values to monitor (string)
+.TP
+.B Description
+A comma separated list of different values to monitor. These values are
+identical to their command line equivalents.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.machine
+.TP
+.B Values:
+Machine to monitor (string)
+.TP
+.B Description
+The machine for which the strip graphs or metered dials will be displayed.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.displayVertical
+.TP
+.B Values:
+True, False (True)
+.TP
+.B Description
+Indicates whether the strip graphs or metered dials will be displayed in a
+horizontal or vertical direction.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.graphSolid
+.TP
+.B Values:
+True, False (False)
+.TP
+.B Description
+If the strip graphs are being displayed, this resource indicates whether
+lined or solid graphs are displayed.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.cpuMaxValues
+.TP
+.B Values:
+Starting, lowest and highest maximum values (numeric)
+.TP
+.B Description
+The starting, lowest and highest maximum values for the cpu graph or dial.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.pktsMaxValues
+.TP
+.B Values:
+Starting, lowest and highest maximum values (numeric)
+.TP
+.B Description
+The starting, lowest and highest maximum values for the pkts graph or dial.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.pageMaxValues
+.TP
+.B Values:
+Starting, lowest and highest maximum values (numeric)
+.TP
+.B Description
+The starting, lowest and highest maximum values for the page graph or dial.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.swapMaxValues
+.TP
+.B Values:
+Starting, lowest and highest maximum values (numeric)
+.TP
+.B Description
+The starting, lowest and highest maximum values for the swap graph or dial.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.intrMaxValues
+.TP
+.B Values:
+Starting, lowest and highest maximum values (numeric)
+.TP
+.B Description
+The starting, lowest and highest maximum values for the intr graph or dial.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.diskMaxValues
+.TP
+.B Values:
+Starting, lowest and highest maximum values (numeric)
+.TP
+.B Description
+The starting, lowest and highest maximum values for the disk graph or dial.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.cntxtMaxValues
+.TP
+.B Values:
+Starting, lowest and highest maximum values (numeric)
+.TP
+.B Description
+The starting, lowest and highest maximum values for the cntxt graph or dial.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.loadMaxValues
+.TP
+.B Values:
+Starting, lowest and highest maximum values (numeric)
+.TP
+.B Description
+The starting, lowest and highest maximum values for the load graph or dial.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.collMaxValues
+.TP
+.B Values:
+Starting, lowest and highest maximum values (numeric)
+.TP
+.B Description
+The starting, lowest and highest maximum values for the coll graph or dial.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.errMaxValues
+.TP
+.B Values:
+Starting, lowest and highest maximum values (numeric)
+.TP
+.B Description
+The starting, lowest and highest maximum values for the err graph or dial.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.collectWhenObscured
+.TP
+.B Values:
+True, False (True)
+.TP
+.B Description
+Indicates whether data will be monitored and cached, when the perfmeter
+window is fully obscured.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.hasTitle
+.TP
+.B Values:
+True, False (False)
+.TP
+.B Description
+Indicates whether the
+.B perfmeter
+window has a title line.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.labelFont
+.TP
+.B Values:
+Font name string
+.TP
+.B Description
+The name of the font used to display all the labels for the dials and graphs.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.saveSamples
+.TP
+.B Values:
+True, False (False)
+.TP
+.B Description
+Indicates whether
+.B perfmeter
+should save monitored sample values to disk.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.sampleFilename
+.TP
+.B Values:
+Filename (string)
+.TP
+.B Description
+Name of the file to save sample in. If no filename is given,
+.B perfmeter
+creates a unique filename in the users home directory.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.samplePageLength
+.TP
+.B Values:
+Sample file page length (numeric)
+.TP
+.B Description
+The page length (in lines) in the sample file. If no value is given, the
+default is 60.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.cpuColor
+.TP
+.B Values:
+Color name string or hexadecimal color specification string
+.TP
+.B Description
+The color of the cpu strip chart.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.pktsColor
+.TP
+.B Values:
+Color name string or hexadecimal color specification string
+.TP
+.B Description
+The color of the pkts strip chart.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.pageColor
+.TP
+.B Values:
+Color name string or hexadecimal color specification string
+.TP
+.B Description
+The color of the page strip chart.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.swapColor
+.TP
+.B Values:
+Color name string or hexadecimal color specification string
+.TP
+.B Description
+The color of the swap strip chart.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.intrColor
+.TP
+.B Values:
+Color name string or hexadecimal color specification string
+.TP
+.B Description
+The color of the intr strip chart.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.diskColor
+.TP
+.B Values:
+Color name string or hexadecimal color specification string
+.TP
+.B Description
+The color of the disk strip chart.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.cntxtColor
+.TP
+.B Values:
+Color name string or hexadecimal color specification string
+.TP
+.B Description
+The color of the cntxt strip chart.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.loadColor
+.TP
+.B Values:
+Color name string or hexadecimal color specification string
+.TP
+.B Description
+The color of the load strip chart.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.collColor
+.TP
+.B Values:
+Color name string or hexadecimal color specification string
+.TP
+.B Description
+The color of the coll strip chart.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.errColor
+.TP
+.B Values:
+Color name string or hexadecimal color specification string
+.TP
+.B Description
+The color of the err strip chart.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.ceilingColor
+.TP
+.B Values:
+Color name string or hexadecimal color specification string
+.TP
+.B Description
+The color used when any strip chart goes above its ceiling value.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.ceilingStyleSolid
+.TP
+.B Values:
+True, False (False)
+.TP
+.B Description
+Indicates how the graph line should be drawn on solid graphs when the current
+value is above the ceiling value. Setting this resource true indicates that
+the full line will be drawn in the ceiling color; setting it false means that
+only the portion above the ceiling value will be drawn in the ceiling color.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.cpuCeiling
+.TP
+.B Values:
+cpu ceiling value (numeric)
+.TP
+.B Description
+The ceiling value to use when displaying the cpu strip chart. Values above this
+will be displayed in a different color on color screens.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.pktsCeiling
+.TP
+.B Values:
+pkts ceiling value (numeric)
+.TP
+.B Description
+The ceiling value to use when displaying the pkts strip chart. Values above this
+will be displayed in a different color on color screens.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.pageCeiling
+.TP
+.B Values:
+page ceiling value (numeric)
+.TP
+.B Description
+The ceiling value to use when displaying the page strip chart. Values above this
+will be displayed in a different color on color screens.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.swapCeiling
+.TP
+.B Values:
+swap ceiling value (numeric)
+.TP
+.B Description
+The ceiling value to use when displaying the swap strip chart. Values above this
+will be displayed in a different color on color screens.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.intrCeiling
+.TP
+.B Values:
+intr ceiling value (numeric)
+.TP
+.B Description
+The ceiling value to use when displaying the intr strip chart. Values above this
+will be displayed in a different color on color screens.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.diskCeiling
+.TP
+.B Values:
+disk ceiling value (numeric)
+.TP
+.B Description
+The ceiling value to use when displaying the disk strip chart. Values above this
+will be displayed in a different color on color screens.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.cntxtCeiling
+.TP
+.B Values:
+cntxt ceiling value (numeric)
+.TP
+.B Description
+The ceiling value to use when displaying the cntxt strip chart. Values above
+this will be displayed in a different color on color screens.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.loadCeiling
+.TP
+.B Values:
+load ceiling value (numeric)
+.TP
+.B Description
+The ceiling value to use when displaying the load strip chart. Values above this
+will be displayed in a different color on color screens.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.collCeiling
+.TP
+.B Values:
+coll ceiling value (numeric)
+.TP
+.B Description
+The ceiling value to use when displaying the coll strip chart. Values above this
+will be displayed in a different color on color screens.
+.sp
+.TP
+.B Resource:
+deskset.perfmeter.errCeiling
+.TP
+.B Values:
+err ceiling value (numeric)
+.TP
+.B Description
+The ceiling value to use when displaying the err strip chart. Values above this
+will be displayed in a different color on color screens.
+.sp
+.SH FILES
+.PD 0
+.TP 20
+.B /etc/inetd.conf
+starts statistics server
+.PD
+.SH SEE ALSO
+.BR xview (7),
+.BR netstat (1M),
+.BR rstatd (1M),
+.BR vmstat (1M)
+.br
+.TZ SSUG
+.br
+"About Performance Meter" in the Help Handbook available through the
+Help option on the Workspace menu.

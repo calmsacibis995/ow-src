@@ -1,0 +1,220 @@
+
+##################################################
+#	perfmeter.info	Feb. 14  Hypertext links
+##################################################
+##################################################
+#	Open Windows Version 3	FCS  Rev'd by James Brook
+#	helpopen path changed 11 July 1991
+##################################################
+######################50##########################
+:SetCPUView:$OPENWINHOME/bin/helpopen handbooks/perfmeter.handbook
+Show cpu
+
+Displays the percent of the CPU being used.
+
+:SetPacketView:$OPENWINHOME/bin/helpopen handbooks/perfmeter.handbook
+Show packets
+
+Displays the number of ethernet packets per second.
+
+:SetPageView:$OPENWINHOME/bin/helpopen handbooks/perfmeter.handbook
+Show page
+
+Displays the paging activity in pages per second.
+
+:SetSwapView:$OPENWINHOME/bin/helpopen handbooks/perfmeter.handbook
+Show swap
+
+Displays the number of jobs swapped per second.
+
+:SetInterruptView:$OPENWINHOME/bin/helpopen handbooks/perfmeter.handbook
+Show interrupts
+
+Displays the number of job interrupts per second.
+
+:SetDiskView:$OPENWINHOME/bin/helpopen handbooks/perfmeter.handbook
+Show disk
+
+Displays the disk traffic in transfers per second.
+
+:SetContextView:$OPENWINHOME/bin/helpopen handbooks/perfmeter.handbook
+Show context
+
+Displays the number of context switches per second.
+
+######################50##########################
+:SetLoadView:$OPENWINHOME/bin/helpopen handbooks/perfmeter.handbook
+Show load
+
+Displays the average number of runnable processes
+over the last minute.
+
+:SetCollsView:$OPENWINHOME/bin/helpopen handbooks/perfmeter.handbook
+Show collisions
+
+Displays the number of detected ethernet
+collisions per second.
+
+:SetErrsView:$OPENWINHOME/bin/helpopen handbooks/perfmeter.handbook
+Show errors
+
+Displays the number of ethernet packet errors per
+second.
+
+######################50##########################
+:BringProps:$OPENWINHOME/bin/helpopen handbooks/perfmeter.handbook
+Properties
+
+Displays the Property window for Performance
+Meter.
+
+#:PropsFrame:$OPENWINHOME/bin/helpopen handbooks/perfmeter.handbook
+Properties
+
+This frame contains the property window for the
+Performance Meter.
+
+:ViewChoice:$OPENWINHOME/bin/helpopen handbooks/perfmeter.handbook
+Monitor: 
+
+Set the type of data that Performance Meter is
+to display. 
+
+Click SELECT on Apply to change the display.
+
+:RemoteChoice:$OPENWINHOME/bin/helpopen handbooks/perfmeter.handbook
+Machine:
+
+Sets the display to either your local machine 
+or a remote machine.
+
+Choose local or remote and click SELECT on Apply.
+
+
+######################50##########################
+:MachineName:$OPENWINHOME/bin/helpopen handbooks/perfmeter.handbook
+Machine name:
+
+Enter the name of the remote machine you want to
+monitor. 
+
+Click SELECT on Apply to change to a new machine.
+
+:SampleLength:$OPENWINHOME/bin/helpopen handbooks/perfmeter.handbook
+Sample time:
+
+Enter how often Performance Meter should update
+the strip chart view.
+
+:HourHand:$OPENWINHOME/bin/helpopen handbooks/perfmeter.handbook
+Hour hand:
+
+Enter how often the Performance Meter should
+update the hour hand in dial displays.
+
+:MinuteHand:$OPENWINHOME/bin/helpopen handbooks/perfmeter.handbook
+Minute hand:
+
+Enter how often the Performance Meter should
+update the minute hand in dial displays.
+
+:ApplyButton:$OPENWINHOME/bin/helpopen handbooks/perfmeter.handbook
+Apply
+
+Applies the values in the Property window to the 
+Performance Meter.
+
+######################50##########################
+:DefaultButton:$OPENWINHOME/bin/helpopen handbooks/perfmeter.handbook
+Set Default
+ 
+Makes the current Performance Meter settings the
+default.
+
+These values will take effect the next time you
+start Performance Meter.
+
+:ResetButton:$OPENWINHOME/bin/helpopen handbooks/perfmeter.handbook
+Reset
+
+Restores the values in the Properties window to 
+reflect the current state of the Performance
+Meter.
+
+Discards any changes you made since you last 
+clicked on Apply.
+
+:MeterFrame:$OPENWINHOME/bin/helpopen handbooks/perfmeter.handbook
+Performance Meter
+
+The Performance Meter displays its data 
+in this window.
+
+:MeterCanvas:$OPENWINHOME/bin/helpopen handbooks/perfmeter.handbook
+
+The Performance Meter graphically displays the 
+property it is monitoring.
+ 
+Press MENU to display a menu of performance values
+that the meter can display. 
+ 
+Choose a menu item to change the display.  
+
+Choose Properties to display a window in which you
+can customize the Performance Meter.
+
+#####################################################
+#
+#  New entries for v3.0.
+#
+######################50##########################
+
+:DirectionChoice:$OPENWINHOME/bin/helpopen handbooks/perfmeter.handbook
+Direction:
+
+Dials or strip charts can be displayed either 
+horizontally or vertically. 
+
+Choose horizontal or vertical.
+
+:DisplayChoice:$OPENWINHOME/bin/helpopen handbooks/perfmeter.handbook
+Display:
+
+You can display either speedometer dials or strip 
+graphs to show the statistics.
+
+Choose dial or graph.
+
+:GraphChoice:$OPENWINHOME/bin/helpopen handbooks/perfmeter.handbook
+Graph type:
+
+Strip graphs can be either simple line graphs or
+solidly filled. 
+
+Choose line or solid.
+
+:SaveSamples:$OPENWINHOME/bin/helpopen handbooks/perfmeter.handbook
+Log Samples:
+
+Choose if you want to save statistic samples.
+
+In the Filename field, you can name the file where
+samples are to be saved.
+
+WARNING: Do not leave Performance Meter running
+for a long time with Log Samples turned on--the
+file where samples are saved will increase in
+size until your system runs out of disk space.
+
+:SampleName:$OPENWINHOME/bin/helpopen handbooks/perfmeter.handbook
+Filename:
+
+Enter the name of the file where statistic
+samples are to be saved.
+
+If you do not specify a file name, Performance
+Meter will create a file in your home directory. 
+
+######################50##########################
+
+

@@ -1,0 +1,127 @@
+.\" @(#)realxfishdb.6 1.0 91/03/06
+.\" Copyright (c) 1994 - Sun Microsystems, Inc.
+.TH realxfishdb 6 "06 March 1991"
+.IX "demo" "fish" "demo" "fishtank animation demo \(em \f3realxfishdb\f1(6)" ""
+.IX "realxfish" "" "\f3realxfishdb\f1(6) \(em animated fishtank display" ""
+.SH NAME
+realxfishdb, fish_props \- Display a fishtank on the root window of an X11 server.
+.SH SYNOPSIS
+.B realxfishdb
+[
+.B \-fnn
+] [
+.B \-bn
+] [
+.B \-rn.n
+] [
+.B \-in.n
+] [
+.B \-d
+] [
+.B \-s
+]
+.LP
+.B fish_props
+.SH DESCRIPTION
+.LP
+.B realxfishdb
+displays a fishtank on the root window complete with swimming fish and
+bubbles, all in living color. This demo runs on Open Windows X11/NeWS
+servers v2 and newer. Currently only 8 bit color is supported. The 
+.B fish_props
+program allows the user to preset various options for
+.B realxfishdb.
+.SH OPTIONS
+.TP
+.B \-fnn
+The number of fish. The default is 2. This option is ignored if you have
+used the fish properties sheet and a ~/.fishrc file can be found.
+.TP
+.B \-bn
+The number of bubbles. The suggested number is 0 since they take a
+significant amount of CPU power. The default is 0.
+.TP
+.BR \-rn.n
+Fractions of a second between refresh updates. On an SS1 with about
+8 fish and no hardware multibuffering support, setting this to 0.3 
+leaves you enough CPU power to continue to edit or read mail. Default
+is 1.0 (which corresponds to 100 on the property sheet). This option
+is ignored if you have used the fish properties sheet and a ~/.fishrc
+file can be found.
+.TP
+.BR \-in.n
+Maximum fish increment. For those who like smoothly moving fish, set this
+value to a low value such as 0.2. The default is 1.0 (which corresponds
+to 100 on the property sheet). This option is ignored if you have used
+the fish properties sheet and a ~/.fishrc file can be found.
+.TP
+.BR \-d
+Use the X11 Multibuffering Extension in OWv3 and newer Open Windows servers.
+This is not recommended unless you have hardware support for multibuffering
+since it further drains memory and CPU power. The default is off. This option
+is ignored if you have used the fish properties sheet and a ~/.fishrc file
+can be found.
+.TP
+.BR \-s
+Secure mode. The default is off. This mode covers all windows on the
+screen and runs in a secure mode. Windows can't even be popped up to stop
+the program in this mode.
+.LP
+.B fish_props
+is a fish properties sheet which allows the user to select the fish used in
+the program, the display mode, the refresh rate, and the maximum fish
+increment. After making selections press the apply button to save selections
+in the ~/.fishrc file.
+.B realxfishdb
+attempts to read this file when it starts.
+.SH ENVIRONMENT
+.LP
+There are image files in the $OPENWINHOME/share/images/fish directory  
+which are required to run
+.B realxfishdb. 
+.TP 15 
+.SB FISHHOME
+Indicates an alternate path for
+.B fish_props
+and
+.B realxfishdb
+to search for the fish files otherwise if they can't be found in the
+$OPENWINHOME directory the final path attempted is the ./fish directory
+relative to where the executable lives.
+.SH FILES
+.PD 0
+.TP 20
+.B $HOME/.fishrc
+Contains the options set by running
+.B fish_props.
+.B realxfishdb
+attempts to read this file upon startup.
+.TP
+.B $OPENWINHOME/share/images/fish/*.im8
+Image files necessary to run 
+.B fish_props
+and
+.B realxfishdb.
+.PD
+.SH NOTES
+.LP
+Be patient when starting this program, it processes a lot of pixels
+before starting up. Also, it runs on the root window so don't be alarmed
+when windows temporarily disappear.
+.LP
+If you would like your very own copy you will need the
+.B fish_props
+and
+.B realxfishdb
+executables and all the files from the ./fish subdirectory.
+.LP
+This is an adaptation of an existing X11 application called
+xaqua of unknown origin.
+.SH BUGS
+.LP
+Both 
+.B fish_props
+and
+.B realxfishdb
+dump core if the ./fish directory does not contain the required image files.
+

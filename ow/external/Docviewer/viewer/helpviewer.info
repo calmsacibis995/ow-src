@@ -1,0 +1,195 @@
+########################################################
+# helpviewer.info spot help for Help Viewer  #
+# @(#)helpviewer.info	1.9 04/14/94 Copyright 1991-1993 Sun Microsystems, Inc.   #
+########################################################
+# Edited 04/11/94 by caseyc for DV 3.4, for 4/94  #
+########################################################
+
+############50_Characters#########################
+#
+:viewButton:$OPENWINHOME/bin/helpopen handbooks/question.handbook
+View
+
+The View button menu provides choices for
+following hypertext links, for obtaining
+information about the currently displayed page,
+and for adjusting and magnifying the page
+display.
+
+Follow Link: 
+
+	To follow a hypertext link, first 
+	click SELECT on a link on the current 
+	page and then choose Follow Link.
+
+Standard Magnification:
+
+	Magnification returns to the default
+	value (100%0 for the Help handbook page
+	layout.
+	
+Custom Magnification:
+
+	Provides a slider for you to set your
+	own magnification value for the Help
+	Viewer page.
+	
+
+############50_Characters#########################
+
+###########################################################
+# Spot help for the menu items attached to the ViewButton #
+###########################################################
+#
+:followLinkMenuItem:$OPENWINHOME/bin/helpopen handbooks/question.handbook
+Follow Link
+
+Click SELECT on a hypertext link and then
+choose this menu option to follow that
+link to its destination document.
+
+#
+:customMagnificationMenuItem:$OPENWINHOME/bin/helpopen handbooks/question.handbook
+Custom Magnification
+
+Opens the Custom Magnification window,
+where you can set the Help Viewer to the
+magnification of your choice.
+
+#
+:stdSizeMenuItem::$OPENWINHOME/bin/helpopen handbooks/question.handbook
+Standard Magnification
+
+Returns the Help Viewer to the the default
+magnification (100%) for the Help handbook
+page layout.
+
+
+#######################################
+# Spot help for Page-turning buttons. #
+#######################################
+##########This_Line_Is_50_Characters_Long#########
+#
+:pgfwdButton:$OPENWINHOME/bin/helpopen handbooks/question.handbook
+Next Page
+
+Click SELECT on the right arrow button
+(Next Page) to advance one page
+in the Help Viewer.
+
+
+############50_Characters#########################
+#
+:gobackButton:$OPENWINHOME/bin/helpopen handbooks/question.handbook
+Go Back
+
+Click SELECT on the Go Back button to retrace
+your steps in the Help Viewer, page by page.
+Go Back returns you to any previously viewed
+page, even if it was in another document that
+you accessed via a link.
+
+
+############50_Characters#########################
+#
+:pgbwdButton:$OPENWINHOME/bin/helpopen handbooks/question.handbook
+Previous Page
+
+Click SELECT on the left arrow button
+(Previous Page) to turn back one page
+in the Help Viewer.
+
+
+####################################
+#Spot help for Help Viewer pane menu
+####################################
+#
+:nextPageMenuItem:$OPENWINHOME/bin/helpopen handbooks/question.handbook
+Next Page
+
+Turns forward one page.
+
+#
+:prevPageMenuItem:$OPENWINHOME/bin/helpopen handbooks/question.handbook
+Previous Page
+
+Turns back one page.
+
+#
+:redisplayMenuItem:$OPENWINHOME/bin/helpopen handbooks/question.handbook
+Redisplay
+
+Redraws the current page in the Help Viewer pane.
+
+#
+:goBackMenuItem:$OPENWINHOME/bin/helpopen handbooks/question.handbook
+Go Back
+
+Returns you to the previously viewed page,
+even if it was in a different document
+that you accessed via a link.
+
+############50_Characters#########################
+#
+
+#################################
+# Spot help for the main canvas #
+#################################
+#
+:canvas:$OPENWINHOME/bin/helpopen handbooks/question.handbook
+Help Viewer pane
+
+This Viewer window displays the Help documents
+you choose from the Help Viewer Table of Contents
+or by using any of the other navigational
+controls in the Help Viewer window.
+
+
+################################################
+# Spot help for the Custom Magnification items #
+################################################
+#
+############50_Characters#########################
+:magnifyPanel:$OPENWINHOME/bin/helpopen handbooks/question.handbook
+Custom Magnification
+
+Hold down SELECT to drag the slider to
+the desired numeric value (displayed
+in the Magnification Percentage field).
+
+Click SELECT on either side of the
+slider control to increase or decrease
+magnification in increments of 1%.
+
+Then click SELECT on Apply (to set the
+new magnification) or Reset (to return
+to the previous setting).
+
+:magnifySlider:$OPENWINHOME/bin/helpopen handbooks/question.handbook
+Magnify Slider
+
+Hold down SELECT and drag the slider to
+set the Magnification Percentage.
+
+Click SELECT on either side of the
+slider control to increase or decrease
+magnification in increments of 1%.
+
+Click SELECT on Apply (to set the
+new magnification) or Reset (to return
+to the previous setting).
+
+############50_Characters#########################
+:applyButton:$OPENWINHOME/bin/helpopen handbooks/question.handbook
+Apply
+
+Click SELECT on the Apply button to set the
+page magnification according to its value
+on the slider.
+
+#
+:resetButton:$OPENWINHOME/bin/helpopen handbooks/question.handbook
+Reset
+
+Click SELECT on Reset to revert to the previous 
+page magnification setting.

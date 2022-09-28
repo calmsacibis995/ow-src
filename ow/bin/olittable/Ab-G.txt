@@ -1,0 +1,189 @@
+DESCRIPTION
+
+	The AbbrevMenuButton widget provides the end user a small button from which
+	they can bring up a menu (it also supports default selection, menu previewing, 
+	and menu selection, similar to MenuButton).
+	
+	The actual AbbrevMenuButton widget is comprised of  components:
+		small square button	(created automatically)
+		menu			(created automatically)
+		menupane		(accessible as a Resource of AbbrevMenuButton)
+		menu items		(created by application as child of menupane)
+		current selection	(created by application) 
+
+	In order for previewing to work (clicking LEFT previews default menu selection)
+	the application resource, XtNselectDoesPreview, must be set to TRUE.
+	
+	For more detailed information on the AbbrevMenuButton Widget, see the following
+	Sections in the OPEN LOOK Intrinsics Toolkit Widget Set Reference Manual:
+		. AbbrevMenuButton
+		. MenuShell
+
+	An AbbrevMenuButton Gadget is also available.
+
+
+EXAMPLE CODE
+
+The following code was written to Create the example AbbrevMenuButton Widget shown 
+in the Table (All color specific code has been removed for simplification):
+
+/**************************************************************************************/
+#include <X11/Intrinsic.h>
+#include <X11/StringDefs.h>
+#include <Xol/OpenLook.h>
+#include <Xol/AbbrevMenu.h>
+
+#include <Xol/StaticText.h>
+#include <Xol/OblongButt.h>
+#include <Xol/ControlAre.h>
+#include <Xol/Form.h>
+
+
+/*************************************************************************** 
+ * abbrevCB:  	Menu Choice item Generic Callback
+ * 		This procedure changes the string on the 'current' 
+ *		StaticText widget to the label of the selected 
+ *		Menu choice item.
+ ***************************************************************************/
+static void abbrevCB(w, clientData, callData)
+Widget w;
+XtPointer clientData, callData;
+{
+	Widget currentselection = (Widget) clientData;
+	char *choicelabel;
+
+	XtVaGetValues(w, 
+			XtNlabel, &choicelabel,
+			NULL);
+
+	XtVaSetValues(currentselection, 
+			XtNstring, (XtArgVal)choicelabel,
+			NULL);
+
+}
+/****************************************************************************/
+
+
+char *choice_strings[] = { "Sparcstation1+", "SparcstationSLC", "SparcstationIPC" };
+
+main(argc, argv)
+int argc;
+char **argv;
+{
+	XtAppContext app;
+	Widget toplevel, controlarea, abbrevmenubutton, current,
+	 	menupane;
+	int i;
+
+	OlToolkitInitialize(NULL);
+	toplevel = XtAppInitialize(&app, "Test", 
+				(XrmOptionDescRec *)NULL,
+				(Cardinal)0, (int *)&argc, argv,
+				(String *)NULL, (ArgList)NULL, 0);
+
+	controlarea = XtVaCreateManagedWidget("controlarea",
+				controlAreaWidgetClass,
+				toplevel, 
+				NULL);
+
+	/*
+	 * Create Abbreviated Menubutton with the first item
+	 * as the default (index = 0).
+	 */
+	abbrevmenubutton = XtVaCreateManagedWidget("abbrevbutton",
+				abbrevMenuButtonWidgetClass, 
+				controlarea, 
+				NULL);
+	
+	/*
+	 * Build 'current selection' widget (using StaticText)
+	 */
+	current = XtVaCreateManagedWidget("current", 
+				staticTextWidgetClass,
+				controlarea,
+				XtNstring,
+					(XtArgVal)choice_strings[0],
+				NULL);
+	
+	/*
+	 * Set that Current selection widget for the AbbrevMenuButton
+	 */
+	XtVaSetValues(abbrevmenubutton, 
+				XtNpreviewWidget,(XtArgVal)current,
+				NULL);
+
+	
+	/*
+	 * Get the menupane Widget from the abbrevmenubutton
+	 * so we can add menu choice items
+	 */
+	XtVaGetValues(abbrevmenubutton, 
+				XtNmenuPane, &menupane,
+				NULL);
+	
+	/*
+	 * Create Menu choice items and Register their callback. 
+	 * Note we also pass in the 'current' widget as ClientData so 
+	 * that we can modify its string in the callback to reflect 
+	 * the menu choice which was selected. 
+	 */
+	for (i = 0; i < XtNumber(choice_strings); i++)
+		XtAddCallback(XtCreateManagedWidget(choice_strings[i],  
+						oblongButtonWidgetClass, 
+						menupane, NULL, NULL), 
+						XtNselect, abbrevCB,
+						(Widget)current);
+
+	XtRealizeWidget(toplevel);
+
+	XtAppMainLoop(app);
+
+}
+/**********************************END Example********************************/
+
+
+RESOURCES
+
+________________________________________________________________________________________________
+Resource Name		Type		Default		Brief Description
+________________________________________________________________________________________________
+
+AbbrevMenuButton Resources:
+
+XtNaccelerator		String		NULL		String which defines accelerator key
+XtNacceleratorText	String		Dynamic		string to be displayed as accelerator
+XtNancestorSensitive	Boolean		TRUE		Will immediate parent receive events?
+XtNbackground		Pixel		White		background color of widget
+XtNbackgroundPixmap	Pixmap		(none)		pixmap used for tiling the background
+XtNconsumeEvent		XtCallbackList	NULL		routines called on virtual events
+XtNdestroyCallback	XtCallbackList	NULL		routines called when widget is destroyed
+XtNforeground		Pixel		Black		foreground color of widget
+XtNheight		Dimension	(calculated)	height of widget's window in pixels
+XtNinputFocusColor	Pixel		Red		color of input focus indicator
+XtNmappedWhenManaged	Boolean		TRUE		will widget be mapped when managed?
+XtNmenuPane		Widget		(none)		widget where menuitems are attached
+XtNmnemonic		Usigned char	NULL		key used to activate widget
+XtNpreviewWidget	Widget		NULL		widget showing 'current' selection
+XtNreferenceName	String		NULL		see manpage		
+XtNreferenceWidget	Widget		NULL		see manpage
+XtNsensitive		Boolean		TRUE		will widget receive input events?
+XtNtraversalOn		Boolean		TRUE		is mouseless turned "on" for widget?
+XtNuserData		XtPointer	NULL		storage for user defined data
+XtNwidth		Dimension	(calculated)	width of widget's window in pixels
+XtNx			Position	0		x coord of widget's upper left corner
+XtNy			Position	0		y coord of widget's uuper left corner
+
+Applicable Menu Resources:
+
+XtNcenter		Boolean		TRUE		should children be centered in column?
+XtNhPad			Dimension	4		size in pixels of margin on sides 
+XtNhSpace		Dimension	4		space in pixels between columns
+XtNlayoutType		OlDefine	OL_FIXEDROWS	layout policy of child widgets
+XtNmeasure		int		1		* number of rows/cols or fixed hgt/wth
+XtNpushpin		OlDefine	OL_NONE		does menu have a pushpin?
+XtNpushpinDefault	Boolean		FALSE		is pushpin 'default' item?
+XtNsameSize		OlDefine	OL_COLUMNS	which children are forced to same width
+XtNtitle		String		(widget's name)	string used for title on menu
+XtNvPad			Dimension	4		size in pixels of top/bottom margins
+XtNvSpace		Dimension	4		space in pixels between rows
+

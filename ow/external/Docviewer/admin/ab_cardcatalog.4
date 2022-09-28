@@ -1,0 +1,131 @@
+.\" Copyright (c) 1994 - Sun Microsystems, Inc.
+.TH ab_cardcatalog 4 "29 March 1993"
+.IX "ab_cardcatalog" "" "\f3ab_cardcatalog\f1(4) \(em file of available AnswerBooks" ""
+.IX "AnswerBook" "file" "AnswerBook" "file of available AnswerBooks \(em \f3ab_cardcatalog\f1(4)"
+.SH NAME
+ab_cardcatalog \- directory of available AnswerBooks
+.SH SYNOPSIS
+.LP
+.B $HOME/.ab_cardcatalog, $AB_CARDCATALOG
+.SH DESCRIPTION
+.LP
+AnswerBook card catalogs serve as directories for listing and locating AnswerBooks on the local system and on
+the network.  The AnswerBook programs
+.BR navigator (1),
+.BR docviewer (1),
+and others depend on card catalogs to list and find all available AnswerBooks.
+.LP
+A card catalog file contains entries for one or more AnswerBooks.  Each entry provides information on the AnswerBook's title, id, version number, and the location of its component files.
+.LP
+Use the
+.BR ab_admin (1)
+utility to add, delete, modify, or query AnswerBook entries in a card catalog file.
+Card catalog files are not intended for hand-editing, though they are ASCII files.
+.LP
+AnswerBook programs that use card catalogs typically consult
+several of them, if necessary, in order to locate the entry for a given AnswerBook.
+In particular:
+.RS
+.TP 26
+.B $HOME/.ab_cardcatalog
+entries for personal AnswerBooks
+.TP 26
+.B $AB_CARDCATALOG
+shared, network-wide AnswerBooks
+.RE
+.LP
+When an AnswerBook package is installed on a machine, the installation
+software will create a separate card catalog file for that particular
+AnswerBook.
+If that AnswerBook is to be shared among users in a network, its
+card catalog entry should be added to the network-wide card catalog file
+so that it will be generally available.  See
+.BR ab_admin (1)
+or the
+.TZ ABADMIN
+for more information on sharing AnswerBooks on the network.
+.SH FORMAT
+.LP
+Each AnswerBook entry in a card catalog file contains the following fields:
+.RS 
+.TP 12
+.B title
+AnswerBook title
+.TP
+.B id
+AnswerBook id
+.TP
+.B version
+AnswerBook version number (optional)
+.TP
+.B pspath
+Full path name of directory containing AnswerBook's PostScript files
+.TP
+.B tocpath
+Full path name of directory containing AnswerBook's Table of Contents databases
+.TP
+.B indexpath
+Full path name of directory containing search index files
+.RE
+.LP
+The "version" field is optional and serves mainly to distinguish two
+AnswerBooks that have the same id but different content.
+All other fields are mandatory
+.LP
+The format of an entry is a set of colon-separated "field name=value" pairs.
+Entries can span more than one line by terminating each line with a backslash
+character ('\\').
+Blank lines and comment lines (those beginning with '#') are ignored.
+.LP
+The first line of a card catalog file must be the string
+.RS
+.sp
+\f3#<Card Catalog> version 1\f1
+.sp
+.RE
+which is the "magic number" for card catalog files.  See
+.BR binder (1)
+for more information on magic numbers.
+.LP
+Here is a sample card catalog file:
+.sp
+.RS
+.nf
+\f3#<Card Catalog> version 1
+
+#
+# Sample card catalog entry for My AnswerBook
+#
+title=Title of My AnswerBook: \\
+id=MyAB: \\
+pspath=/net/my_server/export/AnswerBooks/MyAB/ps: \\
+tocpath=/net/my_server/export/AnswerBooks/MyAB/toc: \\
+indexpath=/net/my_server/export/AnswerBooks/MyAB/index
+
+#
+# Sample card catalog entry for Your AnswerBook
+#
+title=Title of Your AnswerBook: \\
+id=YourAB: \\
+pspath=/net/your_server/export/AnswerBooks/YourAB/ps: \\
+tocpath=/net/your_server/export/AnswerBooks/YourAB/toc: \\
+indexpath=/net/your_server/export/AnswerBooks/YourAB/index\f1
+.fi
+.RE
+.SH SEE ALSO
+.LP
+.BR ab_admin (1),
+.BR answerbook (1),
+.BR docviewer (1),
+.BR navigator (1),
+.BR viewprint (1)
+.SH NOTES
+.LP
+Pre-Solaris 2.2 AnswerBooks use the old-style "bookinfo" mechanism,
+which has been superseded by card catalogs.  The bookinfo files for
+these AnswerBooks should be converted to card catalog files using
+.BR ab_admin (1)
+in order to work in OpenWindows Version 3.2 or higher.
+.LP
+AnswerBook is a trademark of Sun Microsystems, Inc., licensed
+to SunSoft, Inc.

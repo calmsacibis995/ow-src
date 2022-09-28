@@ -1,0 +1,13 @@
+#
+
+# Copyright
+
+#
+# @(#)SC1.0acc.dist	1.2 91/10/25
+#
+
+include ${CONFIGDIR}/Compilers/SC1.0acc
+
+CC		= /usr/dist/local/exe/acc
+CCC		= /usr/dist/local/exe/CC
+AS              = /usr/dist/local/exe/as

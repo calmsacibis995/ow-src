@@ -1,0 +1,18 @@
+#
+# @(#)README.make_release_packages	1.1 94/05/23
+#
+Make_release_packages creates and fills a package staging area.
+
+This script should be run from the base of the build tree.  It takes
+one parameter: the name of the directory to put the packages in.
+
+Example:
+	%cd /win/ow
+	%./proto-tool-Obj-$ARCH-svr4/make_release_packages OL-3.4
+
+Normally most of the bin directory is copied and then stripped.
+This can be prevented by using the `--nostrip' option.
+
+Example:
+	%cd /win/ow
+	%./proto-tool-Obj-$ARCH-svr4/make_release_packages OL-3.4 --nostrip

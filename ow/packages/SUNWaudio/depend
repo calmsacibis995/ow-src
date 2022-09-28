@@ -1,0 +1,15 @@
+#
+# @(#)depend	1.2	97/02/12 SMI
+#
+
+#	Copyright (c) 1990-97 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)depend	1.2	97/02/12 (c) Sun Microsystems, Inc.
+
+P SUNWcar	Core Architecture,  (Root)
+P SUNWkvm	Core Architecture,  (Kvm)
+P SUNWcsr	Core Solaris,  (Root)
+P SUNWcsu	Core Solaris,  (Usr)
+P SUNWcsd       Core Solaris Devices
+P SUNWxwplt	X Windows platform software

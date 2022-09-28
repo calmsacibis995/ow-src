@@ -1,0 +1,390 @@
+#
+
+# Copyright
+
+#
+# @(#)SunCCgeneric.fixed	1.2 92/01/28
+# @(#)SunCCgeneric	1.18 92/01/27
+
+#
+
+checkmakefile::
+	@echo "SunCCgeneric:"
+
+# --- Ace ---
+ACE		= ${TOOL.bin}/ace
+ACEOPTS		= -time -mingain 10 -lnc
+
+# --- Cps ---
+# CPS_H+C_OPTS should be used where it doesn't matter whether the cps
+# functions are converted to macros or functions.  CPS_CONSTSTR_OPTS
+# should be used where macros are explicitly desired.  CPS_PORTABLE_OPTS
+# should be used when the generated functions must be usable by both
+# tradional and ANSI c without regenerating from the cps file.  The
+# use of CPS_H_ONLY_OPTS is discouraged due to the duplication of the
+# literal format string for each macro invocation.
+#
+# Note that the individual compiler config files also define
+# CPS_FUNCTION_OPTS and CPS_INLINE_OPTS.
+CPS			= ${TOOL.bin}/cps
+CPS_H+C_OPTS		= -o conststr
+CPS_CONSTSTR_OPTS	= -o conststr
+CPS_PORTABLE_OPTS	= -o portable
+CPS_H_ONLY_OPTS		=
+
+AR		= ar
+AROPT		= qv
+
+LINT		= lint
+local.LINTOPTS  = -abch
+ln.flag		= -i
+
+##############################################################################
+
+CFLAGS.tool.optimized	=        ${f.OPT}       -DOPTIMIZED
+CFLAGS.tool.debug	=        ${f.DEBUG}     -DDEBUG
+CFLAGS.tool.gprof	=        ${f.OPTGPROF}  -DGPROF_HOOKS
+CFLAGS.optimized	=        ${f.OPT}       -DOPTIMIZED
+CFLAGS.debug		=        ${f.DEBUG}     -DDEBUG
+CFLAGS.gprof		=        ${f.OPTGPROF}  -DGPROF_HOOKS
+CFLAGS.shared		= ${PIC} ${f.SHARED}    -DDYNAMICLIB
+CFLAGS.shared.sa	=        ${f.SHARED}    -DOPTIMIZED
+
+##############################################################################
+				  LIBDL	= -ldl
+builddebug			\
+buildstaticdebug		\
+buildshareddebug		\
+buildtooldebug			\
+buildtoolstaticdebug		\
+buildtoolshareddebug		\
+builddeliverabledebug		\
+builddeliverablestaticdebug	\
+builddeliverableshareddebug	\
+tooldebug			\
+installdebug			\
+installtooldebug		\
+installtoolstaticdebug		\
+installtoolshareddebug		\
+installdeliverabledebug		\
+installdeliverablestaticdebug	\
+installdeliverableshareddebug	\
+instdebug			\
+insttooldebug			\
+insttoolstaticdebug		\
+insttoolshareddebug		\
+instdeliverabledebug		\
+instdeliverablestaticdebug	\
+instdeliverableshareddebug	\
+debug				:= LIBDL =
+
+buildgprof			\
+buildstaticgprof		\
+buildsharedgprof		\
+buildtoolgprof			\
+buildtoolstaticgprof		\
+buildtoolsharedgprof		\
+builddeliverablegprof		\
+builddeliverablestaticgprof	\
+builddeliverablesharedgprof	\
+toolgprof			\
+installgprof			\
+installtoolgprof		\
+installtoolstaticgprof		\
+installtoolsharedgprof		\
+installdeliverablegprof		\
+installdeliverablestaticgprof	\
+installdeliverablesharedgprof	\
+instgprof			\
+insttoolgprof			\
+insttoolstaticgprof		\
+insttoolsharedgprof		\
+instdeliverablegprof		\
+instdeliverablestaticgprof	\
+instdeliverablesharedgprof	\
+gprof				:= LIBDL =
+
+checkmakefile::
+	@echo "LIBDL		= ${LIBDL}"
+
+##############################################################################
+# JMP - REMIND
+# These defines should be consistent with those for CFLAGS.* above.
+#
+CFLAGS.DEFINE	= -DOPTIMIZED
+
+buildsharedoptimized		:= CFLAGS.DEFINE = -DDDYNAMICLIB
+builddeliverablesharedoptimized	:= CFLAGS.DEFINE = -DDDYNAMICLIB
+
+builddebug			\
+buildstaticdebug		\
+buildshareddebug		\
+buildtooldebug			\
+buildtoolstaticdebug		\
+buildtoolshareddebug		\
+builddeliverabledebug		\
+builddeliverablestaticdebug	\
+builddeliverableshareddebug	\
+tooldebug			\
+installdebug			\
+installtooldebug		\
+installtoolstaticdebug		\
+installtoolshareddebug		\
+installdeliverabledebug		\
+installdeliverablestaticdebug	\
+installdeliverableshareddebug	\
+instdebug			\
+insttooldebug			\
+insttoolstaticdebug		\
+insttoolshareddebug		\
+instdeliverabledebug		\
+instdeliverablestaticdebug	\
+instdeliverableshareddebug	\
+debug				:= CFLAGS.DEFINE = -DDEBUG
+
+buildgprof			\
+buildstaticgprof		\
+buildsharedgprof		\
+buildtoolgprof			\
+buildtoolstaticgprof		\
+buildtoolsharedgprof		\
+builddeliverablegprof		\
+builddeliverablestaticgprof	\
+builddeliverablesharedgprof	\
+toolgprof			\
+installgprof			\
+installtoolgprof		\
+installtoolstaticgprof		\
+installtoolsharedgprof		\
+installdeliverablegprof		\
+installdeliverablestaticgprof	\
+installdeliverablesharedgprof	\
+instgprof			\
+insttoolgprof			\
+insttoolstaticgprof		\
+insttoolsharedgprof		\
+instdeliverablegprof		\
+instdeliverablestaticgprof	\
+instdeliverablesharedgprof	\
+gprof				:= CFLAGS.DEFINE = -DGPROF_HOOKS
+
+checkmakefile::
+	@echo "CFLAGS.DEFINE	= ${CFLAGS.DEFINE}"
+
+##############################################################################
+PROFILE_LIBC-sun4	= -lc_p
+PROFILE_LIBC-sun4-svr4	= -lc
+PROFILE_LIBC		= ${PROFILE_LIBC${TARGET_ARCH}}
+
+STDSYSLIBS	= -lc
+
+builddebug			\
+buildstaticdebug		\
+buildshareddebug		\
+buildtooldebug			\
+buildtoolstaticdebug		\
+buildtoolshareddebug		\
+builddeliverabledebug		\
+builddeliverablestaticdebug	\
+builddeliverableshareddebug	\
+tooldebug			\
+installdebug			\
+installtooldebug		\
+installtoolstaticdebug		\
+installtoolshareddebug		\
+installdeliverabledebug		\
+installdeliverablestaticdebug	\
+installdeliverableshareddebug	\
+instdebug			\
+insttooldebug			\
+insttoolstaticdebug		\
+insttoolshareddebug		\
+instdeliverabledebug		\
+instdeliverablestaticdebug	\
+instdeliverableshareddebug	\
+debug				:= STDSYSLIBS = ${LIBG} #-lc
+
+buildgprof			\
+buildstaticgprof		\
+buildsharedgprof		\
+buildtoolgprof			\
+buildtoolstaticgprof		\
+buildtoolsharedgprof		\
+builddeliverablegprof		\
+builddeliverablestaticgprof	\
+builddeliverablesharedgprof	\
+toolgprof			\
+installgprof			\
+installtoolgprof		\
+installtoolstaticgprof		\
+installtoolsharedgprof		\
+installdeliverablegprof		\
+installdeliverablestaticgprof	\
+installdeliverablesharedgprof	\
+instgprof			\
+insttoolgprof			\
+insttoolstaticgprof		\
+insttoolsharedgprof		\
+instdeliverablegprof		\
+instdeliverablestaticgprof	\
+instdeliverablesharedgprof	\
+gprof				:= STDSYSLIBS = ${LIBG} ${PROFILE_LIBC}
+
+checkmakefile::
+	@echo "STDSYSLIBS	= ${STDSYSLIBS}"
+
+##############################################################################
+LINKSTATIC  = -Bstatic
+DYNAMIC	= -Bdynamic
+LINKMODE = ${DYNAMIC}
+builddebug			\
+buildstaticdebug		\
+buildshareddebug		\
+buildtooldebug			\
+buildtoolstaticdebug		\
+buildtoolshareddebug		\
+builddeliverabledebug		\
+builddeliverablestaticdebug	\
+builddeliverableshareddebug	\
+tooldebug			\
+installdebug			\
+installtooldebug		\
+installtoolstaticdebug		\
+installtoolshareddebug		\
+installdeliverabledebug		\
+installdeliverablestaticdebug	\
+installdeliverableshareddebug	\
+instdebug			\
+insttooldebug			\
+insttoolstaticdebug		\
+insttoolshareddebug		\
+instdeliverabledebug		\
+instdeliverablestaticdebug	\
+instdeliverableshareddebug	\
+debug				:= LINKMODE = ${LINKSTATIC}
+
+buildgprof			\
+buildstaticgprof		\
+buildsharedgprof		\
+buildtoolgprof			\
+buildtoolstaticgprof		\
+buildtoolsharedgprof		\
+builddeliverablegprof		\
+builddeliverablestaticgprof	\
+builddeliverablesharedgprof	\
+toolgprof			\
+installgprof			\
+installtoolgprof		\
+installtoolstaticgprof		\
+installtoolsharedgprof		\
+installdeliverablegprof		\
+installdeliverablestaticgprof	\
+installdeliverablesharedgprof	\
+instgprof			\
+insttoolgprof			\
+insttoolstaticgprof		\
+insttoolsharedgprof		\
+instdeliverablegprof		\
+instdeliverablestaticgprof	\
+instdeliverablesharedgprof	\
+gprof				:= LINKMODE = ${LINKSTATIC}
+
+checkmakefile::
+	@echo "LINKSTATIC	= ${LINKSTATIC}"
+	@echo "DYNAMIC		= ${DYNAMIC}"
+	@echo "LINKMODE		= ${LINKMODE}"
+
+
+# Subdirs to hold object files
+
+DIR.name.tool.optimized = optimizedtool
+DIR.name.tool.debug     = debugtool
+DIR.name.tool.gprof     = gproftool
+
+DIR.name.optimized	= optimized
+DIR.name.debug		= debug
+DIR.name.gprof		= gprof
+DIR.name.shared		= shared
+DIR.name.shared.sa	= shared.sa
+DIR.name.lint		= lint
+
+DIR.tool.optimized	= ${DIR.targetarch}/${DIR.name.tool.optimized}
+DIR.tool		= ${DIR.targetarch}/${DIR.name.tool.optimized}
+DIR.tool.debug		= ${DIR.targetarch}/${DIR.name.tool.debug}
+DIR.tool.gprof		= ${DIR.targetarch}/${DIR.name.tool.gprof}
+DIR.lint		= ${DIR.targetarch}/${DIR.name.lint}
+
+DIR.optimized		= ${DIR.targetarch}/${DIR.name.optimized}
+DIR.debug		= ${DIR.targetarch}/${DIR.name.debug}
+DIR.gprof		= ${DIR.targetarch}/${DIR.name.gprof}
+DIR.shared		= ${DIR.targetarch}/${DIR.name.shared}
+DIR.shared.sa		= ${DIR.targetarch}/${DIR.name.shared.sa}
+
+
+
+# --- Flags ---
+
+CPPFLAGS= ${local.OPTIONS} ${DEFINES} ${XNEWS.buildtype} ${CPPFLAGS.OS} ${INCLUDE}
+
+CFLAGS	= ${local.FRACT.INLINE} ${CFLAGS.OS}
+
+LDFLAGS	= ${OTHEROBJECTS} ${LINKMODE}
+
+LINTFLAGS=${local.LINTOPTS}
+
+
+checkmakefile::
+	@echo "CPPFLAGS	= ${CPPFLAGS}"
+	@echo "CFLAGS		= ${CFLAGS}"
+	@echo "LDFLAGS		= ${LDFLAGS}"
+	@echo "LINTFLAGS	= ${LINTFLAGS}"
+
+#
+# Files that get removed when doing a   make clobber
+#
+FILES.junk	= core .make.state .nse_depinfo* gmon.out
+
+
+#
+# REMIND For now, assume .make.state will notice any build differences here...
+#
+# Should find a way to put this into the Obj* subdir because it can be modified
+# by -DDEBUG for debug builds ...
+#
+
+.SUFFIXES:      .ace
+.ace.c:
+	${RM} $@
+	${ACE} ${ACEOPTS} ${CPPFLAGS} $< -o $@
+	${CHMOD} 444 $@
+
+.SUFFIXES:      .cps
+
+%.h %.cc %.c: %.cps
+	${CPS} ${CPSOPTS} $<
+
+.SUFFIXES:	.curs .curs~ 
+
+.curs~.curs:
+	${GET} -G$*.curs ${GFLAGS} $<
+
+.SUFFIXES:	.ps .ps~ 
+
+.ps~.ps:
+	${GET} -G$*.ps ${GFLAGS} $<
+
+# Saber
+.SUFFIXES: .src .obj
+
+.c.src:
+	#load ${CFLAGS} ${CPPFLAGS} $<
+.o.obj:
+	#load ${CFLAGS} $<
+
+saber_src: ${SOURCES}
+	#load ${CFLAGS} ${CPPFLAGS} ${SOURCES}
+	
+
+checkmakefile::
+	@echo "----"
+

@@ -1,0 +1,169 @@
+!	"@(#)Olitsampler.ad	1.22	94/09/06 bin/olitsampler SMI"	/* OLIT	*/
+!
+! System application defaults file for the OpenWindows OLIT Sampler program.
+! This file should be installed in $OPENWINHOME/lib/locale/C/app-defaults/Olitsampler
+!
+
+!
+!        Copyright (C) 1989, 1993  Sun Microsystems, Inc
+!			All rights reserved.
+!		Notice of copyright on this source code 
+!		product does not indicate publication. 
+! 
+! RESTRICTED RIGHTS LEGEND: Use, duplication, or disclosure by 
+! the U.S. Government is subject to restrictions as set forth 
+! in subparagraph (c)(1)(ii) of the Rights in Technical Data
+! and Computer Software Clause at DFARS 252.227-7013 (Oct. 1988) 
+! and FAR 52.227-19 (c) (June 1987).
+!
+! This file is a product of Sun Microsystems, Inc. and is
+! provided for unrestricted use provided that this legend is
+! included on all media and as a part of the software
+! program in whole or part.  Users may copy or modify this
+! file without charge, but are not authorized to license or
+! distribute it to anyone else except as part of a product or
+! program developed by the user.
+! 
+! THIS FILE IS PROVIDED AS IS WITH NO WARRANTIES OF ANY KIND
+! INCLUDING THE WARRANTIES OF DESIGN, MERCHANTIBILITY AND
+! FITNESS FOR A PARTICULAR PURPOSE, OR ARISING FROM A COURSE
+! OF DEALING, USAGE OR TRADE PRACTICE.
+! 
+! This file is provided with no support and without any
+! obligation on the part of Sun Microsystems, Inc. to assist
+! in its use, correction, modification or enhancement.
+! 
+! SUN MICROSYSTEMS, INC. SHALL HAVE NO LIABILITY WITH RESPECT
+! TO THE INFRINGEMENT OF COPYRIGHTS, TRADE SECRETS OR ANY
+! PATENTS BY THIS FILE OR ANY PART THEREOF.
+! 
+! In no event will Sun Microsystems, Inc. be liable for any
+! lost revenue or profits or other special, indirect and
+! consequential damages, even if Sun has been advised of the
+! possibility of such damages.
+! 
+!    Sun Microsystems, Inc., 2550 Garcia Avenue,
+!    Mountain View, California 94043.
+!
+
+!
+! L10N centers: please uncomment the next line
+!Olitsampler.imStatusStyle:		imDisplaysInClient
+
+Olitsampler.title:			OLIT V3.5 Sampler
+Olitsampler.leftFooterString:		Left Footer Message (read-only)
+Olitsampler.rightFooterString:		Right Footer Message (read-only)
+
+Olitsampler*StaticText.alignment:	left
+Olitsampler*StaticText.gravity:		west
+
+!
+! Specific Resources extracted for I18N
+!
+! Top level child is fm_caption(captionWidgetClass) which has a child,
+!		form(formWidgetClass), where all the other widgets go. 
+!		The toplevel widget create a footer message which
+!		can be changed by setting the XtNleftFooterString
+!		resource on the toplevel widget.
+!
+
+Olitsampler*fm_caption.label:	Form
+
+Olitsampler*fm_caption.form.ca_caption.label:	ControlArea: 
+
+Olitsampler*file_mb.label:		File
+Olitsampler*new_ob.label:		New
+Olitsampler*open_ob.label:		Open...
+Olitsampler*open_ob.accelerator:	Coreset Open
+Olitsampler*save_ob.label:		Save
+Olitsampler*save_ob.accelerator:	Coreset Save
+Olitsampler*save_as_ob.label:		Save As...
+Olitsampler*include_ob.label:		Include...
+Olitsampler*print_one_ob.label:		Print One
+Olitsampler*print_ob.label:		Print...
+Olitsampler*filebutton.label: File
+
+Olitsampler*fm_caption.form.ca_caption.controlarea.popupbutton1.label:	Command...
+    !
+    Olitsampler*popupshell1.title:	OLIT Sampler: Command
+    Olitsampler*popupshell1*textline.captionLabel:	TextLine:
+!
+! L10N centers: please uncomment the next line
+!    Olitsampler*popupshell1*ControlArea*imPreeditStyle:	overTheSpot
+    Olitsampler*popupshell1*ControlArea.option1.label:	Option 1
+    Olitsampler*popupshell1*ControlArea.option2.label:	Option 2
+
+Olitsampler*fm_caption.form.ca_caption.controlarea.popupbutton2.label:	Properties...
+    !
+    Olitsampler*popupshell2.title:	OLIT Sampler: Properties Popup
+    Olitsampler*popupshell2*exclus.label:	Exclusives: 
+    Olitsampler*popupshell2*exclus*rbutton.label:	Choice 1
+    Olitsampler*popupshell2*exclus*rbutton1.label:	Choice 2
+    Olitsampler*popupshell2*exclus*rbutton2.label:	Choice 3
+    Olitsampler*popupshell2*nexclus.label:	Non-exclusives: 
+    Olitsampler*popupshell2*nexclus*rbutton3.label:	Choice 1
+    Olitsampler*popupshell2*nexclus*rbutton4.label:	More
+    Olitsampler*popupshell2*nexclus*Fewer.label:	Fewer
+
+Olitsampler*menubutton1.label: MenuButton
+    !
+    Olitsampler*menubutton1*oblong1.label:		One
+    Olitsampler*menubutton1*oblong1.accelerator:	Meta<Key>1
+    Olitsampler*menubutton1*oblong2.label:		Two
+    Olitsampler*menubutton1*oblong2.accelerator:	Meta<Key>2
+
+Olitsampler*delbutton.label: Delete
+    !
+    Olitsampler*noticeshell*string:		Notice Widget \n Confirm
+    Olitsampler*noticeshell*ControlArea.delete.label:	Delete
+    Olitsampler*noticeshell*ControlArea.cancel.label:	Cancel
+
+Olitsampler*fontbutton.label: Font Chooser...
+    Olitsampler*fontchooser*previewText: Preview Area
+
+Olitsampler*fm_caption.form.maincaption.label:	Caption
+    !
+    Olitsampler*maincaption.rainbo.label:	Draw Rainbow
+
+Olitsampler*fm_caption.form.bb_caption.label:	BulletinBoard
+    !
+    Olitsampler*bb_caption*abbmenu_caption.label:	AbbreviatedMenuButton: 
+    Olitsampler*bb_caption*abbmenubutton.label:	AbbreviatedMenuButton: 
+    Olitsampler*bb_caption*abbmenubutton*am_butt1.label:		Button 1
+    Olitsampler*bb_caption*abbmenubutton*am_butt2.label:		Button 2
+    Olitsampler*bb_caption*numericfield.captionLabel:	NumericField:
+    Olitsampler*cb_caption.label:	CheckBox:
+    Olitsampler*cb_caption.checkbox.label:	Label
+    Olitsampler*te_caption.label:	TextEdit:
+!
+! L10N centers: please uncomment the next line
+!    Olitsampler*bb_caption*te_caption.textedit.imPreeditStyle:	overTheSpot
+    Olitsampler*bb_caption*te_caption.textedit.source:	This text \
+is in a TextEdit widget and can be edited.
+
+Olitsampler*slist_caption.label:	ScrollingList
+
+Olitsampler*sw_caption.label:	ScrolledWindow
+!
+Olitsampler*sw_caption*scroll_text.string:StaticText widget\n\
+in a scrolled window.\nYou can move it up\nand down or left\n\
+and right with the\ntwo scrollbars.\n
+
+Olitsampler*slider_caption.label:	Slider
+
+Olitsampler*g_caption.label:		Gauge
+
+Olitsampler*gd_caption.label:		Gadgets
+    !
+    Olitsampler*gd_caption*buttongadget.label:	OblongButton
+    Olitsampler*gd_caption*menubutton.label:	MenuButton
+    Olitsampler*gd_caption*mbutton_gd1.label:	Button 1
+    Olitsampler*gd_caption*mbutton_gd2.label:	Button 2
+
+Olitsampler*f_caption.label:	Flat Widgets
+    !
+    Olitsampler*f_caption*exc_caption.label:	Exclusives: 
+    Olitsampler*f_caption*nexc_caption.label:	Non-Exclusives: 
+    Olitsampler*flatchecklabel1:	Check Box 1
+    Olitsampler*flatchecklabel2:	Check Box 2
+    Olitsampler*flatchecklabel3:	Check Box 3

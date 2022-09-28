@@ -1,0 +1,188 @@
+DESCRIPTION
+
+	The Form widget is a constraint-based manager that provides the ability
+	to layout child widgets in a relative manner (either relative to the
+	Form widget itself or relative to other children in the Form).  It does
+	this by providing resources which establish the spatial relationships for
+	each child widget.  The form widget continues to manage these relationships
+	when it is resized, new children are added, or its children are moved,
+	resized, unmanaged, remanaged, rearranged, or destroyed.
+
+	The Form widget supports the following constraint modes:
+
+		Spanning - 	a child can be created such that it span the width or
+				height of the entire form.
+
+		Row	 -	Sets of child widgets can be set up as a row so that
+				resizing the form will increase/decrease spacing
+				between the widgets.
+
+		Column	 -	Sets of child widgets can be displayed in a column or
+				or in multiple columns.  When the form is resized it
+				can either resize the children or increase/descrease 
+				the spacing between children.
+
+	Essentially each child defines an x-reference widget and a y-reference widget
+	(via resources, see below).  It then specifies it's distance (offset) away
+	from the reference widgets relative to each reference widget's origin (0,0).
+	
+	i.e. 	If I want to create a row of 2 widgets spaced 10 pixels apart:
+
+	 	I first create widgetA and do not specify the x-ref or y-ref widgets as
+		resources (so the x-ref and y-ref default to the parent form).  I 
+		then specify the xoffset to be 10 and the y offset to be 20 so this widget 
+		will always be positioned at (10, 20) relative to the form.
+
+		I then create widgetB and specify its x_ref widget to be widgetA
+		and do not specify a y-ref (so y-ref defaults to parent form).  Then, I
+		specify the xoffset to be 10.  BUT! Remember that this offset is relative
+		to the x-ref widget's origin (0,0), so in order to get WidgetB to be 10
+		pixels from the Right edge of WidgetA (0, WidgetA'sWidth + 10) I must also
+		set the XtNxAddWidth resource to True.  I then just set the yoffset to
+		20 so that WidgetB will have the same vertical offset from the form as
+		WidgetA. 
+
+	In addition to the basic x, y spacial resources, there are also some constraint
+	resources which specify resizing and respacing behavior.  
+
+ 	For more detailed and complete information on the Form Widget, see the following
+	Section in the OPEN LOOK Intrinsics Toolkit Widget Set Reference Manual:
+		. Form
+
+
+EXAMPLE CODE
+
+The code below shows an example of how to create a Form widget like the example shown
+in the Table.
+/****************************************************************************************/
+#include <X11/Intrinsic.h>
+#include <X11/StringDefs.h>
+#include <Xol/OpenLook.h>
+#include <Xol/Form.h>
+
+#include <Xol/StaticText.h>
+
+main(argc, argv)
+int argc;
+char **argv;
+{
+	Widget toplevel, form, pane[3];
+	XtAppContext app;
+
+	OlToolkitInitialize(NULL);
+	toplevel = XtAppInitialize(&app, "Test", 
+				(XrmOptionDescRec *)NULL,
+				(Cardinal)0, (int *)&argc, argv,
+				(String *)NULL, (ArgList)NULL, 0);
+
+	/*
+	 * Create Form to hold 3 panes
+	 */
+	form = XtVaCreateManagedWidget("form", 
+					formWidgetClass,
+					toplevel,
+					NULL); 
+
+	pane[0] = XtVaCreateManagedWidget("text",
+					staticTextWidgetClass,
+					form,
+					XtNstring,	(XtArgVal)"I Span The Top",
+					XtNgravity,	(XtArgVal)CenterGravity,
+					XtNborderWidth,	(XtArgVal)1,
+					XtNxAttachRight,(XtArgVal)True,
+					XtNxResizable,	(XtArgVal)True,
+					XtNyResizable,	(XtArgVal)True,
+					XtNrecomputeSize,(XtArgVal)True,
+					XtNxVaryOffset,	(XtArgVal)False,
+					XtNyVaryOffset,	(XtArgVal)False,
+					NULL);
+
+	pane[1] = XtVaCreateManagedWidget("text",
+					staticTextWidgetClass,
+					form,
+					XtNstring,	(XtArgVal)"I sit on LowerLeft",
+					XtNgravity,	(XtArgVal)CenterGravity,
+					XtNborderWidth,	(XtArgVal)1,
+					XtNyRefWidget,	(XtArgVal)pane[0],
+					XtNyAddHeight,	(XtArgVal)True,
+					XtNyAttachBottom,(XtArgVal)True,
+					XtNyResizable,	(XtArgVal)True,
+					XtNyVaryOffset,	(XtArgVal)False,
+					XtNxVaryOffset,	(XtArgVal)False,
+					XtNxResizable,	(XtArgVal)True,
+					XtNyResizable,	(XtArgVal)True,
+					XtNrecomputeSize,(XtArgVal)True,
+					NULL);
+
+	pane[2] = XtVaCreateManagedWidget("text",
+					staticTextWidgetClass,
+					form,
+					XtNstring,	(XtArgVal)"I span LowerRight",
+					XtNgravity,	(XtArgVal)CenterGravity,
+					XtNborderWidth,	(XtArgVal)1,
+					XtNyRefWidget,	(XtArgVal)pane[0],
+					XtNyAddHeight,	(XtArgVal)True,
+					XtNyAttachBottom,(XtArgVal)True,
+					XtNyResizable,	(XtArgVal)True,
+					XtNyVaryOffset,	(XtArgVal)False,
+					XtNxRefWidget,	(XtArgVal)pane[1],
+					XtNxAddWidth,	(XtArgVal)True,
+					XtNxAttachRight,(XtArgVal)True,
+					XtNxResizable,	(XtArgVal)True,
+					XtNxVaryOffset,	(XtArgVal)False,
+					XtNrecomputeSize,(XtArgVal)True,
+					NULL);
+
+	XtRealizeWidget(toplevel);
+	XtAppMainLoop(app);
+
+}
+/*******************************END EXAMPLE******************************/
+	
+	
+	
+	
+
+RESOURCES
+_______________________________________________________________________________________________
+Resource Name		Type		Default		Brief Description
+_______________________________________________________________________________________________
+
+Form Resource Set (these are set directly on the Form widget):
+
+XtNancestorSensitive	Boolean		TRUE		Will immediate parent receive events?
+XtNbackground		Pixel		White		background color of widget
+XtNbackgroundPixmap	Pixmap		(none)		pixmap used for tiling the background
+XtNborderColor		Pixel		Black		border color of widget
+XtNborderPixmap		Pixmap		(none)		pixmap used for tiling the border
+XtNborderWidth		Dimension	0		width of widget's border in pixels
+XtNconsumeEvent		XtCallbackList	NULL		called when event occurs
+XtNdepth		int		(parent's)	number of bits used for each pixel
+XtNdestroyCallback	XtCallbackList	NULL		routines called when widget is destroyed 
+XtNheight		Dimension	(calculated)	height of widget's window in pixels
+XtNmappedWhenManaged	Boolean		TRUE		will widget be mapped when managed?
+XtNsensitive		Boolean		TRUE		will widget receive input events?
+XtNuserData		XtPointer	NULL		storage for user defined data
+XtNwidth		Dimension	(calculated)	width of widget's window in pixels
+XtNx			Position	0		x coord of widget's upper left corner
+XtNy			Position	0		y coord of widget's uuper left corner
+
+
+Constraint Resouce Set (these are set on the Form's children to define spatial relationships):
+
+XtNxAddWidth		Boolean		FALSE		add width of x-ref widget to x offset?
+XtNxAttachOffset	int		0		pixel offset (if attached at Right)
+XtNxAttachRight		Boolean		FALSE		attach widget to Right of parent form?
+XtNxOffset		int		0		distance in pixels from x-ref widget
+XtNxRefName		String		NULL		name of x-ref widget		
+XtNxRefWidget		Widget		(parent form)	widget to be referenced in x direction
+XtNxResizable		Boolean		FALSE		can parent form resize the widget's width?
+XtNxVaryOffset		Boolean		FALSE		can parent form change x spacing ?	
+XtNyAddHeight		Boolean		FALSE		add height of y-ref widget to y offset?
+XtNyAttachBottom	Boolean		FALSE		attach widget to bottom of parent form?
+XtNyOffset		int		0		distance in pixels from y-ref widget
+XtNyRefName		String		NULL		name of y-ref widget		
+XtNyRefWidget		Widget		(parent form)	widget to be referenced in y direction
+XtNyResizable		Boolean		FALSE		can parent form resize the widget's hgt?
+XtNyVaryOffset		Boolean		FALSE		can parent form change y spacing ?	
+

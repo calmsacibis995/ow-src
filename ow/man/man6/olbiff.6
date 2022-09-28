@@ -1,0 +1,64 @@
+.\" Copyright (c) 1994, Sun Microsystems, Inc.
+.TH olbiff 6 "19 July 91"
+.IX "mail" "OLIT" "mail" "OLIT mailbox monitor \(em \f3olbiff\f1(6)" 
+.IX "olbiff" "" "\f3olbiff\f1(6) \(em OLIT mailbox monitor utility" ""
+.SH NAME
+olbiff \- OLIT mailbox monitor
+.SH SYNOPSIS
+.B olbiff
+[
+.BI -show " n"
+] [
+.BI -interval " n"
+] [
+.BI -fl " n"
+] [
+.BI -sl " n"
+] [
+.B -bell
+] [
+.B -help
+] [
+.B -center
+] [
+.B -history
+]
+.SH DESCRIPTION
+.B Olbiff
+monitors the user's mail spool file at a specified interval,
+and displays information about incoming messages.
+.SH OPTIONS
+.TP 15
+.BI -show " n"
+display \fIn\fP lines in ListBox
+.sp
+.TP 15
+.BI -interval " n"
+check mail every \fIn\fP seconds
+.sp
+.TP 15
+.BI -fl " n" 
+display no more than \fIn\fP characters for name
+.sp
+.TP 15
+.BI -sl " n" 
+display no more than \fIn\fP characters in subject
+.sp
+.TP 15
+.BI -bell
+beep the bell when each new message arrives
+.sp
+.TP 15
+.B -help
+display the help message
+.sp
+.TP 15
+.B -center 
+center the popup on the screen
+.sp
+.TP 15
+.B -history 
+maintain the list of items beyond mail increments
+until the Acknowledge button is pressed
+.SH SEE ALSO
+.BR xbiff (1) 

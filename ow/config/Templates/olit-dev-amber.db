@@ -1,0 +1,24 @@
+#
+#	@(#)olit-dev-amber.db	1.1 92/02/29
+#
+#	OLIT's Development version:	TEMPORARLY MODIFIED FOR AMBER
+#	Build all OLIT components, including test demos
+#
+
+
+#
+# User/client libraries
+# =====================
+# name    location  Buildtype Linktype
+# ----    --------  --------- --------
+
+X11        lib       nobuild   -L${X11HOME}/lib,-lX11
+Xau        lib       nobuild   -L${X11HOME}/lib,-lXau
+Xdmcp      lib       nobuild   -L${X11HOME}/lib,-lXdmcp
+Xext       lib	     nobuild   -L${X11HOME}/lib,-lXext
+Xinput     lib	     nobuild   -L${X11HOME}/lib,-lXinput
+Xmu        lib       nobuild   -L${X11HOME}/lib,-lXmu
+
+
+include <${SOURCEDIR}/config/Templates/olit-dev.db>
+include <${SOURCEDIR}/config/Templates/nobuild.db>

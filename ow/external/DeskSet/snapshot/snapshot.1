@@ -1,0 +1,201 @@
+.\" @(#)snapshot.1 1.3 90/02/26 SMI;
+.\" Copyright (c) 1994 - Sun Microsystems, Inc.
+.TH snapshot 1 "9 March 1992"
+.IX "snapshot" "" "\f3snapshot\f1(1) \(em screen image capture tool" ""
+.IX "images" "capture" "images" "capturing screens \(em \f3snapshot\f1(1)"
+.IX "OpenWindows" "screen" "OpenWindows" "screen capturing program \(em \f3snapshot\f1(1)"
+.SH NAME
+snapshot \- capture some or all of a screen image and save to a raster file
+.SH SYNOPSIS
+.B snapshot
+[
+.BI \-d " default directory"
+] [
+.BI \-f " default filename"
+] [
+.B \-g
+] [
+.BI \-l " filename"
+] [
+.B \-n
+] [
+.B \-v
+]
+.SH AVAILABILITY
+This command is available with the OpenWindows environment.
+.SH DESCRIPTION
+.LP
+.B snapshot
+is an OpenWindows XView utility that allows users to save images from their 
+workstation screens into a raster file. The user may choose to take a picture
+of a single window, the entire screen, or any rectangular portion of the
+screen. 
+.LP
+.B snapshot
+can also be used to load and display Sun rasterfile or GIF formatted files.
+It is also capable of viewing images of a different depth than the screen,
+for example, displaying color images on a monochrome screen. The image is
+appropriately dithered before it is displayed. Compressed images will be
+unpacked and loaded automatically.
+.LP
+Images can be saved to disk in Sun rasterfile format, or printed on a
+PostScript printer. There are various printer options (see below).
+.LP
+If it also possible to drag and drop rasterfile or GIF images onto the
+.B snapshot
+drop zone and these will be loaded automatically. Similarily, it is possible
+to drag and drop from
+.B snapshot
+to another DeskSet application such as
+.BR filemgr (1)
+or
+.BR printtool (1)\&.
+.SH OPTIONS
+.TP
+.BI \-d " default-directory"
+Name of the default directory to use for load and save operations.
+.TP
+.BI \-f " default-filename"
+Name of the default filename to use for load and save operations.
+.TP
+.B \-g
+Display color images using a greyscale ramp.
+.TP
+.BI \-l " filename"
+Name of the file to automatically load and view on startup.
+.TP
+.B \-n
+Automatically overwrite previously loaded images or snapshot without prompting
+the user for confirmation. Similarly, when saving images to disk, files will
+be automattically overwritten.
+.TP
+.B \-v
+Print the version number of this release of the
+.B snapshot
+program.
+.SH USAGE
+.B snapshot
+operates using a combination of control panels with various buttons, choices
+and text fields to define the actions performed and the files used.
+.TP 10
+.B Load...
+This button displays a control panel which allows the user to specify the
+name of the directory and the filename to use for image load operations.
+The default directory name is the current working directory, and the default
+filename is
+.B snapshot.rs.
+These text fields can be overwritten by the user.
+.TP
+.B Save...
+This button displays a control panel which allows the user to specify the
+name of the directory and filename to use for saving snapped images. As with
+the load operation, the default directory name is the current working
+directory and the default filename is
+.B snapshot.rs,
+both of which can be adjusted by the user.
+.TP
+.B Print
+This button displays a menu with two options:
+.RS
+.TP 10
+.B Print Snap
+Sends the currently snapped or loaded image to the printer with the current
+options.
+.TP
+.B Options
+The options displayed in the
+.B Print Options
+window follow.
+.RS
+.TP 10
+.B Destination:
+Indicates the destination for the print. This can be either the printer (the
+default), or the name of a file. If the Printer option is specified, then the
+printer name can be given, or if the File option is specified, the name
+of the directory and file to use can be given.
+.TP
+.B Orientation:
+Specifies the position of the image on the paper. The snap can be printed
+either up and down the page (the default), or sideways across the page.
+.TP
+.B Position:
+Specifies the position of the snapshot on the page. By default the image will
+be centered, but you can specify the position in inches from the left and
+top of the paper.
+.TP
+.B Scale to:
+Allows the user to specify whether the image should be printed at actual
+size, or if a width or height (or both) should be given, which will override
+the default size.
+.TP 
+.B Double Size: 
+Specifies whether the snapshot is to be doubled 
+in width and height.
+.TP
+.B Monochrome Printer
+Select this option if the printed output is to be in monochrome.
+.RE
+.RE
+.TP
+.B Snap Type:
+The type of image to snap; a window, a rectangular region of the screen, or
+the entire screen.
+.TP
+.B Snap Delay:
+Delays the snapping of the picture for the specified number of seconds.
+.TP
+.B Beep During Countdown
+Indicates if a beep should be sounded every second as the snap delay is
+counted down.
+.TP
+.B Hide Window During Capture
+The snapshot window is made invisible before the snapshot is taken.
+The timer delay is forced to eight seconds.
+.TP
+.B Snap
+Snap the contents of the window, region or screen. If you are snapping a
+window, then select the desired window using
+.SM SELECT\s0 .
+To cancel the selection, use
+.SM ADJUST
+or
+.SM MENU\s0 .
+If you are snapping a region, select the region to be snapped by using
+.SM SELECT
+and dragging the rectangle around the area.
+Use
+.SM ADJUST
+to take the snapshot or use
+.SM MENU
+to cancel.
+.TP
+.B View...
+Launches 
+.B imagetool
+and displays the snapped or loaded image in the 
+.B imagetool
+main window.
+Once
+.B imagetool
+is running, all snapped images will be displayed in this window.
+Also, the 
+.B Load, Save
+and
+.B Print
+buttons on the
+.B snapshot
+main window all become inactive once
+.B imagetool
+is running.
+Users can find these options on the
+.B imagetool
+file menu.
+.SH SEE ALSO
+.BR imagetool (1),
+.BR filemgr (1),
+.BR printtool (1)
+.LP
+OpenWindows user documentation
+.br
+"About Snapshot" in the Help Handbook available through the
+Help option on the Workspace menu.

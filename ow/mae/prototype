@@ -1,0 +1,86 @@
+#	Copyright (c) 1990-92 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)prototype	1.3 97/05/09 (c) Sun Microsystems, Inc.
+#
+#  OPEN LOOK demo programs
+
+i pkginfo
+i copyright
+i depend
+
+d none openwin 0775 root bin
+d none openwin/demo 0775 root bin
+d none openwin/demo/add 0775 root bin
+d none openwin/demo/add/.MAE.data 0775 root bin
+f none openwin/demo/add/.MAE.data/README=data/README 0775 root bin
+f none openwin/demo/add/.MAE.data/SCRIPT=data/SCRIPT 0775 root bin
+f none openwin/demo/add/.MAE.data/bdr_black.xpm.Z=data/bdr_black.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/bdr_gray.xpm.Z=data/bdr_gray.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/boot.au=data/boot.au 0775 root bin
+f none openwin/demo/add/.MAE.data/butHdn.xpm.Z=data/butHdn.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/butHdnm.xpm.Z=data/butHdnm.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/butHup.xpm.Z=data/butHup.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/butHupm.xpm.Z=data/butHupm.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/butLdn.xpm.Z=data/butLdn.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/butLdnm.xpm.Z=data/butLdnm.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/butLup.xpm.Z=data/butLup.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/butLupm.xpm.Z=data/butLupm.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/butM1dn.xpm.Z=data/butM1dn.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/butM1dnm.xpm.Z=data/butM1dnm.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/butM1up.xpm.Z=data/butM1up.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/butM1upm.xpm.Z=data/butM1upm.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/butM2dn.xpm.Z=data/butM2dn.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/butM2dnm.xpm.Z=data/butM2dnm.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/butM2up.xpm.Z=data/butM2up.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/butM2upm.xpm.Z=data/butM2upm.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/butM3dn.xpm.Z=data/butM3dn.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/butM3dnm.xpm.Z=data/butM3dnm.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/butM3up.xpm.Z=data/butM3up.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/butM3upm.xpm.Z=data/butM3upm.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/butM4dn.xpm.Z=data/butM4dn.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/butM4dnm.xpm.Z=data/butM4dnm.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/butM4up.xpm.Z=data/butM4up.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/butM4upm.xpm.Z=data/butM4upm.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/butQdn.xpm.Z=data/butQdn.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/butQdnm.xpm.Z=data/butQdnm.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/butQup.xpm.Z=data/butQup.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/butQupm.xpm.Z=data/butQupm.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/butRdn.xpm.Z=data/butRdn.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/butRdnm.xpm.Z=data/butRdnm.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/butRup.xpm.Z=data/butRup.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/butRupm.xpm.Z=data/butRupm.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/butSdn.xpm.Z=data/butSdn.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/butSdnm.xpm.Z=data/butSdnm.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/butSup.xpm.Z=data/butSup.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/butSupm.xpm.Z=data/butSupm.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/icon.xpm.Z=data/icon.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/slide1.xpm.Z=data/slide1.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/slide10.xpm.Z=data/slide10.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/slide11.xpm.Z=data/slide11.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/slide12.xpm.Z=data/slide12.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/slide13.xpm.Z=data/slide13.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/slide14.xpm.Z=data/slide14.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/slide15.xpm.Z=data/slide15.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/slide16.xpm.Z=data/slide16.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/slide16a.xpm.Z=data/slide16a.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/slide17.xpm.Z=data/slide17.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/slide18.xpm.Z=data/slide18.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/slide19.xpm.Z=data/slide19.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/slide20.xpm.Z=data/slide20.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/slide21.xpm.Z=data/slide21.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/slide22.xpm.Z=data/slide22.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/slide3.xpm.Z=data/slide3.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/slide4.xpm.Z=data/slide4.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/slide4m.xpm.Z=data/slide4m.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/slide5.xpm.Z=data/slide5.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/slide5m.xpm.Z=data/slide5m.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/slide6.xpm.Z=data/slide6.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/slide7.xpm.Z=data/slide7.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/slide7a.xpm.Z=data/slide7a.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/slide8.xpm.Z=data/slide8.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/slide9.xpm.Z=data/slide9.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/welcome.xpm.Z=data/welcome.xpm.Z 0775 root bin
+f none openwin/demo/add/.MAE.data/welcomem.xpm.Z=data/welcomem.xpm.Z 0775 root bin
+f none openwin/demo/add/.maeprog=binary/maeprog 0775 root bin
+

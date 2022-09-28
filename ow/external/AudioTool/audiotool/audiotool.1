@@ -1,0 +1,106 @@
+.\" Copyright (c) 1994 - Sun Micorsystems, Inc.
+.TH audiotool 1 "19 Nov 1992"
+.IX "audiotool" "" "\f3audiotool\f1(1) \(em audio recording & playback tool" ""
+.SH NAME
+audiotool \- audio play/record tool
+.SH SYNOPSIS
+.B audiotool
+[
+.B \-p
+] [
+.B \-d
+.I device
+] [
+.I generic-tool-arguments
+] [
+.I audio-file ...
+]
+.SH DESCRIPTION
+\fBAudio Tool\fP is an OpenWindows DeskSet application for recording,
+playing, and simple editing of audio data.
+.SS Sound Segment Display
+.LP
+\fBAudio Tool\fP analyzes sound data to distinguish between sound segments
+and silence segments.
+Segments of sounds are displayed as boxes; segments of silence are displayed as
+lines connecting these boxes.  This type of display can be useful for
+scanning and editing voice data, since pauses often indicate breaks between
+sentences or key phrases.  Data may be selected, using the mouse, in a manner
+similar to text selections.  Double-clicking on a sound or silence segment
+selects the entire segment.  The \fBCut\fP, \fBCopy\fP, and \fBPaste\fP
+operations also work on selected data.
+.LP
+A triangular graphic indicator, called the \fIposition pointer\fP,
+marks the current play position.  When you select a segment of audio data,
+the position pointer is constrained to remain within the selected segment.
+The position pointer also denotes the point in a segment where \fBRecord\fP
+and \fBPaste\fP operations will insert data.
+.SS Control Panel
+.TP
+.B "Play/Stop"
+Clicking this button starts playing audio data at the current position.
+Playing will stop automatically at the end of the data
+or at the end of the currently selected segment, whichever comes first.
+If the position pointer is at the end of the data (or selection) when 
+.B Play
+is pressed, it jumps back to the beginning of the data before starting to play.
+.sp
+While data is playing, this button becomes a \fBStop\fP
+button.  Audio output may be stopped and restarted at will.
+.TP
+.B "Rewind/Fast-Forward"
+Clicking either of these buttons causes the position pointer to jump
+backward or forward to the next sound segment boundary. If you press and hold
+one of these buttons,
+playing will begin/proceed at an accelerated rate in the designated
+direction. Releasing the button returns the tool to its previous state.
+.TP
+.B "Record/Stop"
+Clicking this button starts the recording of data
+from the audio input port.
+The recorded data is inserted at the position pointer's position.
+If audio data is currently selected, it is replaced by the new recording.
+While recording is in progress, this button becomes a \fBStop\fP button.
+.SS "File Browser Panel"
+.LP
+Selecting \fBOpen...\fP, \fBSave As...\fP, or \fBInclude...\fP from the
+\fBFile\fP menu will bring up the \fBFile Browser Panel\fP.
+The \fBDirectory\fP field displays the pathname of the current directory.
+.LP
+The scrolling list contains a list of directories or audio files
+in the displayed directory. Double-click SELECT on the name of a directory to
+change to that directory. Double-click SELECT on the name of an audio file
+to perform the current operation (Load, Save, or Include) on the selected
+file. You can also type file names or directories into the \fBName\fP
+field.
+.LP
+When \fBSave As...\fP
+is selected from the File menu, the File Browser displays an additional
+choice item, which enables you to select the file format. The choices are
+\fBUncompressed\fP (8-bit 8 kHz, \(*m-law), or \fBCompressed\fP
+(4-bit G.721 ADPCM). The compressed format takes up half the disk space but
+can take somewhat longer to load and save.
+.SS "Volume Panels"
+.LP
+Selecting \fBPlay...\fP  or \fBRecord...\fP  from the \fBVolume\fP
+menu will invoke the \fBAudio Control\fP
+application to display volume control panels for the audio device.
+Refer to the
+.BR audiocontrol (1)
+manual page for further details.
+.SH OPTIONS
+.LP
+.TP 10
+.B \-p
+Play all files listed on the command line at startup.
+.SH SEE ALSO
+.BR audiocontrol (1),
+.BR audioconvert (1),
+.BR audioplay (1),
+.BR audiorecord (1)
+.br
+.\" .I "DeskSet Reference Guide for OpenWindows Version 3"
+.TZ SSUG
+.br
+\fIAbout Audio Tool\fP in the Help Handbook available through the
+Help option on the Workspace menu.

@@ -1,0 +1,43 @@
+#	Copyright (c) 1990-92 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)prototype	1.9 94/11/02 (c) Sun Microsystems, Inc.
+#
+#  OpenWindows online handbooks
+
+i pkginfo
+i copyright=../copyright
+i depend=../depend
+
+!HOME=../openwin/lib/locale/C/help/handbooks
+
+d none openwin							0775 root bin
+d none openwin/lib						0775 root bin
+d none openwin/lib/locale					0775 root bin
+d none openwin/lib/locale/C					0775 root bin
+d none openwin/lib/locale/C/help				0775 root bin
+d none openwin/lib/locale/C/help/handbooks			0775 root bin
+
+!search                              $HOME
+f none openwin/lib/locale/C/help/handbooks/ab.handbook.Z	0664 root bin
+f none openwin/lib/locale/C/help/handbooks/audio.handbook.Z	0664 root bin
+f none openwin/lib/locale/C/help/handbooks/binder.handbook.Z	0664 root bin
+f none openwin/lib/locale/C/help/handbooks/calc.handbook.Z	0664 root bin
+f none openwin/lib/locale/C/help/handbooks/clock.handbook.Z	0664 root bin
+f none openwin/lib/locale/C/help/handbooks/cm.handbook.Z	0664 root bin
+f none openwin/lib/locale/C/help/handbooks/desktop.intro.handbook.Z 0664 root bin
+f none openwin/lib/locale/C/help/handbooks/filemgr.handbook.Z	0664 root bin
+f none openwin/lib/locale/C/help/handbooks/iconedit.handbook.Z	0664 root bin
+f none openwin/lib/locale/C/help/handbooks/imagetool.handbook.Z	0664 root bin
+f none openwin/lib/locale/C/help/handbooks/mail.handbook.Z	0664 root bin
+f none openwin/lib/locale/C/help/handbooks/nohelp.handbook.Z	0664 root bin
+f none openwin/lib/locale/C/help/handbooks/perfmeter.handbook.Z	0664 root bin
+f none openwin/lib/locale/C/help/handbooks/print.handbook.Z	0664 root bin
+f none openwin/lib/locale/C/help/handbooks/question.handbook.Z	0664 root bin
+f none openwin/lib/locale/C/help/handbooks/sample.txt		0664 root bin
+f none openwin/lib/locale/C/help/handbooks/snapshot.handbook.Z	0664 root bin
+f none openwin/lib/locale/C/help/handbooks/tape.handbook.Z	0664 root bin
+f none openwin/lib/locale/C/help/handbooks/textedit.handbook.Z	0664 root bin
+f none openwin/lib/locale/C/help/handbooks/top.toc.handbook.Z	0664 root bin
+f none openwin/lib/locale/C/help/handbooks/tty.handbook.Z	0664 root bin
+f none openwin/lib/locale/C/help/handbooks/workspace.handbook.Z 0664 root bin

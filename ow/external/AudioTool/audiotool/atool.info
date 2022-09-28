@@ -1,0 +1,581 @@
+# @(#)atool.info 1.11	95/02/08 SMI
+#
+#
+#
+#
+#
+:atool-File_menu
+File Menu
+
+The File button menu handles sound file
+management:
+
+New             Unload the current audio file and
+		initialize Audio Tool to record a
+		new file.  This operation is not
+		undoable.
+
+Open...         Displays the Open window, where
+		you specify an audio file to
+		load.
+
+Save            Saves changes to previously named
+		and saved file.
+
+Save As...      Displays the Save window, where
+		you can save a file to an
+		alternate file or directory name.
+		Allows you to save file in either
+		compressed or uncompressed
+		format.
+
+Include...      Displays the Include window, where
+		you choose a file to insert at the
+		current play position.
+#
+:atool-Volume_menu
+Volume Menu
+
+The Volume button menu has two options for
+controlling playback and recording volume:
+
+Play    Displays the Audio Control: Play window,
+	which controls audio output and volume
+	parameters.
+
+Record  Displays the Audio Control: Record window,
+	which controls audio input and volume
+	parameters.
+#
+:atool-Edit_Delete_menu
+Edit Delete Menu
+
+The Edit Delete menu selects sound deletion
+options:
+
+Delete->Selection   Removes the current selection
+		    from the sound file without
+		    modifying the clipboard.
+
+Delete->Unselected  Removes all sound except
+		    for the current selection.
+
+Delete->All Silence Removes all silent segments
+		    (as indicated by a single
+		    horizontal line in the
+		    audio display).
+
+Delete->Silent Ends Removes any silent segments
+		    at the start and end of the
+		    sound file.
+#
+:atool-Edit_Undo_Menu
+Edit Undo Menu
+
+The Edit Undo menu selects undo options:
+
+Undo->Last Edit   Reverses the effects of the
+		  last Edit command.
+
+Undo->All Edits   Backs out all changes to the
+		  current file.
+#
+:atool-Edit_Redo_Menu
+Edit Redo Menu
+
+The Edit Redo menu selects redo options:
+
+Redo->Last Edit   Restores the edit operation
+		  reversed by last Undo command.
+
+Redo->All Edits   Restores all changes to the
+		  current file.
+#
+:atool-Edit_menu
+Edit Menu
+
+The Edit button menu controls basic file editing
+procedures:
+
+Clear           Removes current sound data from
+		the display canvas.
+		This operation is undoable.
+
+Undo            Reverses effects of last Edit
+		command.  Undo->All backs out
+		all changes to the current file.
+
+Redo            Reverses the last Undo command.
+		Redo->All restores all changes
+		to the current file.
+
+Cut             Removes current selection from
+		the sound file and places it on
+		the clipboard.
+
+Copy            Places copy of current selection
+		on the clipboard without modifying
+		original file.
+
+Paste           Pastes information from clipboard
+		into an active sound file.
+
+Delete          Removes the current selection
+		from the sound file without
+		modifying the clipboard.
+		Delete->Unselected removes
+		all sound except for the current
+		selection.
+		Delete->All Silence removes all
+		silent segments (as indicated by a
+		single horizontal line in the
+		audio display).
+		Delete->Silent Ends removes any
+		silent segments at the start and
+		end of the sound file.
+
+Properties...   Displays the Properties window,
+		where you can modify Audio Tool
+		operating parameters.
+
+Another menu with a subset of the sound editing
+commands is available by pressing MENU in the
+Display Canvas.
+#
+:atool-Canvas_menu
+Audio Tool Menu
+
+This menu contains some accelerators for common
+editing operations:
+
+Reset Pointer       Clears the current selection
+		    and resets the play position
+		    pointer to the start of the
+		    audio file.
+
+Clear               Removes current sound data
+		    from the display canvas.
+		    This operation is undoable.
+
+Delete Unselected   Removes all sound except
+		    for the current selection.
+
+Delete All Silence  Removes all silent segments
+		    (as indicated by a single
+		    horizontal line in the
+		    audio display).
+
+Delete Silent Ends  Removes any silent segments
+		    at the start and end of the
+		    sound file.
+
+Select All          Selects the entire sound file.
+#
+:atool-Left_border_controls
+Audio Tool
+
+Audio Tool is a basic sound recording and playback
+tool.  Sound data is depicted graphically as
+segments of sound and silence.  Sound segments are
+represented as an empty box and silence is
+represented as a line.  If Silence Detection is
+disabled (or if the audio sample rate is greater
+than 8kHz), the entire sound file is represented
+as a single empty box.
+
+The Rev, Play, Fwd, and Rec buttons control play,
+record, rewind, and fast forward functions.  They
+behave much like ordinary tape recorder controls.
+
+The File menu allows loading and saving of audio
+files.  The Edit menu invokes editing operations
+that affect the current selection.  The Volume
+menu brings up panels that control audio device
+parameters.
+
+More HELP is available for individual controls.
+#
+:atool-Audio_file_controls
+Audio Tool
+
+Audio Tool is a basic sound recording and playback
+tool.  Sound data is depicted graphically as
+segments of sound and silence.  Sound segments are
+represented as an empty box and silence is
+represented as a line.  If Silence Detection is
+disabled (or if the audio sample rate is greater
+than 8kHz), the entire sound file is represented
+as a single empty box.
+
+The Rev, Play, Fwd, and Rec buttons control play,
+record, rewind, and fast forward functions.  They
+behave much like ordinary tape recorder controls.
+
+The File menu allows loading and saving of audio
+files.  The Edit menu invokes editing operations
+that affect the current selection.  The Volume
+menu brings up panels that control audio device
+parameters.
+
+More HELP is available for individual controls.
+#
+:atool-Cursor_label
+The Pointer value indicates the position of the
+Play Position Pointer (a large solid triangle
+displayed above the sound display).  If the Play
+button is selected, audio playback starts at the
+indicated pointer location.
+
+The Cursor value indicates the position of the
+hairline cursor and is displayed only when the
+mouse pointer is positioned in the display
+canvas.
+
+The total length of the file is displayed below,
+at Length.  [The length of the selection, if there
+is one, is displayed in square brackets.]
+#
+:atool-Cursor_val
+The Pointer value indicates the position of the
+Play Position Pointer (a large solid triangle
+displayed above the sound display).  If the Play
+button is selected, audio playback starts at the
+indicated pointer location.
+
+The Cursor value indicates the position of the
+hairline cursor and is displayed only when the
+mouse pointer is positioned in the display
+canvas.
+
+The total length of the file is displayed below,
+at Length.  [The length of the selection, if there
+is one, is displayed in square brackets.]
+#
+:atool-Time_label
+The Pointer value indicates the position of the
+Play Position Pointer (a large solid triangle
+displayed above the sound display).  If the Play
+button is selected, audio playback starts at the
+indicated pointer location.
+
+The Cursor value indicates the position of the
+hairline cursor and is displayed only when the
+mouse pointer is positioned in the display
+canvas.
+
+The total length of the file is displayed below,
+at Length.  [The length of the selection, if there
+is one, is displayed in square brackets.]
+#
+:atool-Time_val
+The Pointer value indicates the position of the
+Play Position Pointer (a large solid triangle
+displayed above the sound display).  If the Play
+button is selected, audio playback starts at the
+indicated pointer location.
+
+The Cursor value indicates the position of the
+hairline cursor and is displayed only when the
+mouse pointer is positioned in the display
+canvas.
+
+The total length of the file is displayed below,
+at Length.  [The length of the selection, if there
+is one, is displayed in square brackets.]
+#
+:atool-File_button
+File Button
+
+The File button menu handles sound file
+management:
+
+New             Unload the current audio file and
+		initialize Audio Tool to record a
+		new file.  This operation is not
+		undoable.
+
+Open...         Displays the Open window, where
+		you specify an audio file to
+		load.
+
+Save            Saves changes to previously named
+		and saved file.
+
+Save As...      Displays the Save window, where
+		you can save a file to an
+		alternate file or directory name.
+		Allows you to save file in either
+		compressed or uncompressed
+		format.
+
+Include...      Displays the Include window, where
+		you choose a file to insert at the
+		current play position.
+#
+:atool-Edit_button
+Edit Button
+
+The Edit button controls basic file editing
+procedures:
+
+
+Clear           Removes current sound data from
+		the display canvas. This
+		operation is undoable.
+
+Undo            Reverses effects of last Edit
+		command.  Undo->All backs out
+		all changes to the current file.
+
+Redo            Reverses the last Undo command.
+		Redo->All restores all changes
+		to the current file.
+
+Cut             Removes current selection from
+		the sound file and places it on
+		the clipboard.
+
+Copy            Places copy of current selection
+		on the clipboard without modifying
+		original file.
+
+Paste           Pastes information from clipboard
+		into an active sound file.
+
+Delete          Removes the current selection
+		from the sound file without
+		modifying the clipboard.
+		Delete->Unselected removes
+		all sound except for the current
+		selection.
+		Delete->All Silence removes all
+		silent segments (as indicated by
+		a single horizontal line in the
+		the audio display).
+		Delete->Silent Ends removes any
+		silent segments at the start and
+		end of the sound file.
+
+Properties...   Displays the Properties window,
+		where you can modify Audio Tool
+		operating parameters.
+
+Another menu with a subset of the sound editing
+commands is available by pressing MENU in the
+Display Canvas.
+#
+:atool-Volume_button
+Volume Button
+
+The Volume button menu has two options for
+controlling playback and recording volume:
+
+Play    Displays the Audio Control: Play window,
+	which controls audio output and volume
+	parameters.
+
+Record  Displays the Audio Control: Record
+	window, which controls audio input and
+	volume parameters.
+#
+:atool-drop_target
+Drag and Drop Target
+
+Drop a file icon here to load a file into Audio
+Tool.
+
+Press SELECT on an icon to drag it from File
+Manager to Audio Tool.
+
+When there is a sound file in the Audio Tool
+window, you can drag the icon from this box to
+another program that will accept the file.
+#
+:atool-Level_control_panel
+Level Meter
+
+The Level Meter indicates volume level.  During
+playback, the output level of the sound file is
+displayed.  During recording, the input level is
+displayed.
+
+While recording, five to seven green indicators
+should be lit while the input signal is at a
+normal level.  If the red indicators are
+consistently lit, the record volume may be too
+high.
+
+Use the Volume->Record... option to bring up the
+Audio Control: Record panel.  The Auto-Adjust
+feature on that panel adjusts the record volume to
+match the input signal.
+#
+:atool-VuMeter
+Level Meter
+
+The Level Meter indicates volume level.  During
+playback, the output level of the sound file is
+displayed.  During recording, the input level is
+displayed.
+
+While recording, five to seven green indicators
+should be lit while the input signal is at a
+normal level.  If the red indicators are
+consitently lit, the record volume may be too
+high.
+
+Use the Volume->Record... option to bring up the
+Audio Control: Record panel.  The Auto-Adjust
+feature on that panel adjusts the record volume to
+match the input signal.
+#
+:atool-Display_canvas
+AudioTool Display Canvas
+
+Sound data is represented graphically in this
+area.  When Silence Detection is
+enabled(Edit->Properties), sound segments are
+represented as an empty box and silence is
+represented as a line.  If Silence Detection is
+disabled (or if the audio sample rate is greater
+than 8kHz), the entire sound file is represented
+as a single empty box.
+
+Press MENU in this canvas to display a menu with
+these sound editing commands:
+
+Reset Pointer       Clears the current selection
+		    and resets the play position
+		    pointer to the start of the
+		    audio file.
+
+Clear               Deletes the entire sound file
+		    (this operation is undoable).
+
+Delete Unselected   Removes all sound except
+		    for the current selection.
+
+Delete All Silence  Removes all silent segments
+		    (as indicated by a single
+		    horizontal line in the
+		    audio display).
+
+Delete Silent Ends  Removes any silent segments
+		    at the start and end of the
+		    sound file.
+
+Select All          Selects the entire sound file.
+#
+:atool-Audio_tool_controls
+Audio Tool
+
+Audio Tool is a basic sound recording and playback
+tool.  Sound data is depicted graphically as
+segments of sound and silence.  Sound segments are
+represented as an empty box and silence is
+represented as a line.  If Silence Detection is
+disabled (or if the audio sample rate is greater
+than 8kHz), the entire sound file is represented
+as a single empty box.
+
+The Rev, Play, Fwd, and Rec buttons control play,
+record, rewind, and fast forward functions.  They
+behave much like ordinary tape recorder controls.
+
+The File menu allows loading and saving of audio
+files.  The Edit menu invokes editing operations
+that affect the current selection.  The Volume
+menu brings up panels that control audio device
+parameters.
+
+More HELP is available for individual controls.
+#
+:atool-Rev_button
+Rev Button
+
+Click SELECT on the Rev button to re-position the
+play position pointer backward to the previous
+segment.
+
+Press and hold the Rev button to play backwards
+from the current position at an accelerated rate.
+#
+:atool-ReverseLabel
+Rev Button
+
+Click SELECT on the Rev button to re-position the
+play position pointer backward to the previous
+segment.
+
+Press and hold the Rev button to play backwards
+from the current position at an accelerated rate.
+#
+:atool-Play_button
+Play/Stop Button
+
+The Play/Stop button controls the start and stop
+of playback. Once selected, the button toggles
+from Play to Stop.
+#
+:atool-PlayLabel
+Play/Stop Button
+
+The Play/Stop button controls the start and stop
+of playback. Once selected, the button toggles
+from Play to Stop.
+#
+:atool-Fwd_button
+Fwd Button
+
+Click SELECT on the Fwd button to advance the play
+position pointer to the next segment.
+
+Press and hold the Fwd button to play from the
+current position at an accelerated rate.
+#
+:atool-ForwardLabel
+Fwd Button
+
+Click SELECT on the Fwd button to advance the play
+position pointer to the next segment.
+
+Press and hold the Fwd button to play from the
+current position at an accelerated rate.
+#
+:atool-Rec_button
+Rec/Stop Button
+
+The Rec/Stop button controls the start and stop of
+recording. Once selected, the button toggles from
+Rec to Stop.
+#
+:atool-RecLabel
+Rec/Stop Button
+
+The Rec/Stop button controls the start and stop of
+recording. Once selected, the button toggles from
+Rec to Stop.
+#
+:atool-Done_button
+Done Button
+
+The Done button appears only when you've started
+Audio Tool from an independent application (e.g.,
+by pressing the Voice... button in a Mail Tool
+Compose window).
+
+Click SELECT on Done to save the recorded message
+back to the initiating application and quit Audio
+Tool.
+#
+:atool-done_label
+Done Button
+
+The Done button appears only when you've started
+Audio Tool from an independent application (e.g.,
+by pressing the Voice... button in a Mail Tool
+Compose window).
+
+Click SELECT on Done to save the recorded message
+back to the initiating application and quit Audio
+Tool.

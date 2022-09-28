@@ -1,0 +1,105 @@
+#	Copyright (c) 1990-92 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)prototype	1.3 94/11/02 (c) Sun Microsystems, Inc.
+#
+#  X Windows demo images
+
+i pkginfo
+i copyright=../copyright
+i depend=../depend
+
+!HOME=../openwin/share/images
+
+d none openwin						0775 root bin
+d none openwin/share					0775 root bin
+d none openwin/share/images				0775 root bin
+
+!search               $HOME/fish
+d none openwin/share/images/fish			0775 root bin
+f none openwin/share/images/fish/b2rot.im8		0664 root bin
+f none openwin/share/images/fish/f10_tub.im8		0664 root bin
+f none openwin/share/images/fish/f10_tus.im8		0664 root bin
+f none openwin/share/images/fish/f11_tub.im8		0664 root bin
+f none openwin/share/images/fish/f11_tus.im8		0664 root bin
+f none openwin/share/images/fish/f12_tub.im8 		0664 root bin
+f none openwin/share/images/fish/f12_tus.im8 		0664 root bin
+f none openwin/share/images/fish/f14_tub.im8 		0664 root bin
+f none openwin/share/images/fish/f14_tus.im8		0664 root bin
+f none openwin/share/images/fish/f15_tub.im8		0664 root bin
+f none openwin/share/images/fish/f15_tus.im8		0664 root bin
+f none openwin/share/images/fish/f16_tub.im8		0664 root bin
+f none openwin/share/images/fish/f16_tus.im8		0664 root bin
+f none openwin/share/images/fish/f17_tub.im8		0664 root bin
+f none openwin/share/images/fish/f17_tus.im8		0664 root bin
+f none openwin/share/images/fish/f21_tub.im8		0664 root bin
+f none openwin/share/images/fish/f21_tus.im8		0664 root bin
+f none openwin/share/images/fish/f23_tub.im8		0664 root bin
+f none openwin/share/images/fish/f23_tus.im8		0664 root bin
+f none openwin/share/images/fish/f24_tub.im8		0664 root bin
+f none openwin/share/images/fish/f24_tus.im8		0664 root bin
+f none openwin/share/images/fish/f25_tub.im8		0664 root bin
+f none openwin/share/images/fish/f25_tus.im8		0664 root bin
+f none openwin/share/images/fish/f26_tub.im8		0664 root bin
+f none openwin/share/images/fish/f26_tus.im8		0664 root bin
+f none openwin/share/images/fish/f27_tub.im8		0664 root bin
+f none openwin/share/images/fish/f27_tus.im8		0664 root bin
+f none openwin/share/images/fish/f28_tub.im8		0664 root bin
+f none openwin/share/images/fish/f28_tus.im8		0664 root bin
+f none openwin/share/images/fish/f29_tub.im8		0664 root bin
+f none openwin/share/images/fish/f29_tus.im8		0664 root bin
+f none openwin/share/images/fish/f2_tub.im8		0664 root bin
+f none openwin/share/images/fish/f2_tus.im8		0664 root bin
+f none openwin/share/images/fish/f30_tub.im8		0664 root bin
+f none openwin/share/images/fish/f30_tus.im8		0664 root bin
+f none openwin/share/images/fish/f31_tub.im8		0664 root bin
+f none openwin/share/images/fish/f31_tus.im8		0664 root bin
+f none openwin/share/images/fish/f32_tub.im8		0664 root bin
+f none openwin/share/images/fish/f32_tus.im8		0664 root bin
+f none openwin/share/images/fish/f34_tub.im8		0664 root bin
+f none openwin/share/images/fish/f34_tus.im8		0664 root bin
+f none openwin/share/images/fish/f35_tub.im8		0664 root bin
+f none openwin/share/images/fish/f35_tus.im8		0664 root bin
+f none openwin/share/images/fish/f36_tub.im8		0664 root bin
+f none openwin/share/images/fish/f36_tus.im8		0664 root bin
+f none openwin/share/images/fish/f37_tub.im8		0664 root bin
+f none openwin/share/images/fish/f37_tus.im8		0664 root bin
+f none openwin/share/images/fish/f38_tub.im8		0664 root bin
+f none openwin/share/images/fish/f38_tus.im8		0664 root bin
+f none openwin/share/images/fish/f39_tub.im8		0664 root bin
+f none openwin/share/images/fish/f39_tus.im8		0664 root bin
+f none openwin/share/images/fish/f3_tus.im8		0664 root bin
+f none openwin/share/images/fish/f40_tub.im8		0664 root bin
+f none openwin/share/images/fish/f40_tus.im8		0664 root bin
+f none openwin/share/images/fish/f41_tub.im8		0664 root bin
+f none openwin/share/images/fish/f41_tus.im8		0664 root bin
+f none openwin/share/images/fish/f42_tub.im8		0664 root bin
+f none openwin/share/images/fish/f42_tus.im8		0664 root bin
+f none openwin/share/images/fish/f43_tub.im8		0664 root bin
+f none openwin/share/images/fish/f43_tus.im8		0664 root bin
+f none openwin/share/images/fish/f46_tub.im8		0664 root bin
+f none openwin/share/images/fish/f46_tus.im8		0664 root bin
+f none openwin/share/images/fish/f48_tub.im8		0664 root bin
+f none openwin/share/images/fish/f48_tus.im8		0664 root bin
+f none openwin/share/images/fish/f49_tub.im8		0664 root bin
+f none openwin/share/images/fish/f49_tus.im8		0664 root bin
+f none openwin/share/images/fish/f50_tub.im8		0664 root bin
+f none openwin/share/images/fish/f50_tus.im8		0664 root bin
+f none openwin/share/images/fish/f51_tub.im8		0664 root bin
+f none openwin/share/images/fish/f51_tus.im8		0664 root bin
+f none openwin/share/images/fish/f52_tub.im8		0664 root bin
+f none openwin/share/images/fish/f52_tus.im8		0664 root bin
+f none openwin/share/images/fish/f53_tub.im8		0664 root bin
+f none openwin/share/images/fish/f53_tus.im8		0664 root bin
+f none openwin/share/images/fish/f5_tub.im8		0664 root bin
+f none openwin/share/images/fish/f5_tus.im8		0664 root bin
+f none openwin/share/images/fish/f6_tub.im8		0664 root bin
+f none openwin/share/images/fish/f6_tus.im8		0664 root bin
+f none openwin/share/images/fish/f7_tub.im8		0664 root bin
+f none openwin/share/images/fish/f7_tus.im8		0664 root bin
+f none openwin/share/images/fish/f8_tub.im8		0664 root bin
+f none openwin/share/images/fish/f8_tus.im8		0664 root bin
+f none openwin/share/images/fish/f9_tub.im8		0664 root bin
+f none openwin/share/images/fish/f9_tus.im8		0664 root bin
+f none openwin/share/images/fish/swimmer_tub.im8	0664 root bin
+f none openwin/share/images/fish/swimmer_tus.im8	0664 root bin

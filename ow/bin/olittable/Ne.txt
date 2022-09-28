@@ -1,0 +1,151 @@
+DESCRIPTION
+
+	The Nonexclusives widget provides a simple way to build a several-of-many 
+	button selection widget.  This widget manages a set of child RectButton widgets
+	or CheckBox Widgets, as well as their layout.
+
+	The Nonexclusives widget is comprised of the following widget components:
+		Nonexclusives 	 		(created automatically)
+		RectButton OR 
+		CheckBox choices		(created by application as children of 
+							Nonexclusives widget)
+
+	The Nonexclusives widget lays out its choice items in a grid in the order they
+	are added as children (the number of rows, columns can be controlled by the
+	application).
+
+	The Nonexclusives widget can be used by itself or it can be added as a single
+	child to a menu pane to implement a several-of-many choice menu.  Note that
+	ONLY RectButton widgets can be used as choice items in Nonexclusive Menus.
+
+ 	For more detailed information on the Nonexclusive Widget, see the following
+	Sections in the OPEN LOOK Intrinsics Toolkit Widget Set Reference Manual:
+		. Nonexclusives
+		. RectButton
+		. CheckBox
+
+EXAMPLE CODE
+
+The following code was written to create the example Nonexclusives Widget shown in the
+Table  (All color specific code has been removed for simplification).
+
+/**************************************************************************************/
+#include <X11/Intrinsic.h>
+#include <X11/StringDefs.h>
+#include <Xol/OpenLook.h>
+#include <Xol/Nonexclusi.h>
+
+#include <Xol/RectButton.h>
+
+/*******************************************************************
+ *unselectCB:  Callback is called when one of the items in the
+ *	       nonexclusive is de-selected.
+ *******************************************************************/
+void
+unselectCB(w, clientData, callData)
+Widget w;
+XtPointer clientData, callData;
+{
+	char *choicestring;
+
+	XtVaGetValues(w,
+			XtNlabel, &choicestring,
+			NULL);
+
+	printf("Unselected Item:  %s\n", choicestring);
+
+}
+
+/*******************************************************************
+ *selectCB:  Callback is called when one of the items in the
+ *	     nonexclusive is selected.
+ *******************************************************************/
+void
+selectCB(w, clientData, callData)
+Widget w;
+XtPointer clientData, callData;
+{
+	char *choicestring;
+
+	XtVaGetValues(w,
+			XtNlabel, &choicestring,
+			NULL);
+
+	printf("Selected Item:  %s\n", choicestring);
+
+}
+/*******************************************************************/
+
+static char *choices[] = {"PickMe", "And/Or Me"};
+
+main(argc, argv)
+int argc;
+char **argv;
+{
+	Widget toplevel, nonexclusive, 
+		choice_item[XtNumber(choices)];
+	XtAppContext app;
+	int i;
+
+	OlToolkitInitialize(NULL);
+	toplevel = XtAppInitialize(&app, "Test", 
+				(XrmOptionDescRec *)NULL,
+				(Cardinal)0, (int *)&argc, argv,
+				(String *)NULL, (ArgList)NULL, 0);
+
+	/*
+	 * First, create Exclusive Widget to hold choices...
+	 */
+	nonexclusive = XtVaCreateManagedWidget("nonexclusive", 
+			    nonexclusivesWidgetClass, 
+			    toplevel,
+			    /* Layout choices in columns */
+			    XtNlayoutType, (XtArgVal) OL_FIXEDCOLS,
+			    /* specify number columns = 1 */
+			    XtNmeasure, 	(XtArgVal) 1,
+			    NULL);
+
+	/*
+	 * Create RectButton choice items as children of
+	 * nonexclusive widget.
+	 */
+	for (i = 0; i < XtNumber(choices); i++){
+	       choice_item[i] =XtVaCreateManagedWidget(choices[i],
+			    rectButtonWidgetClass,
+			    nonexclusive,
+			    NULL);
+	       	XtAddCallback(choice_item[i], XtNselect, selectCB, NULL);
+		XtAddCallback(choice_item[i], XtNunselect, unselectCB, NULL);
+	}
+
+
+	XtRealizeWidget(toplevel);
+	XtAppMainLoop(app);
+
+}
+/**********************************END EXAMPLE*****************************/
+
+
+
+RESOURCES
+_______________________________________________________________________________________________
+Resource Name		Type		Default		Brief Description
+_______________________________________________________________________________________________
+
+XtNancestorSensitive	Boolean		TRUE		Will immediate parent receive events?
+XtNconsumeEvent		XtCallbackList	NULL		called when event occurs
+XtNdepth		int		(parent's)	number of bits used for each pixel
+XtNdestroyCallback	XtCallbackList	NULL		routines called when widget is destroyed 
+XtNheight		Dimension	(calculated)	height of widget's window in pixels
+XtNlayoutType		OlDefine	OL_FIXEDROWS	layout policy of child widgets
+XtNmappedWhenManaged	Boolean		TRUE		will widget be mapped when managed?
+XtNmeasure		int		1		* number of rows/cols or fixed hgt/wth
+XtNreferenceName	String		NULL		see manpage		
+XtNreferenceWidget	Widget		NULL		see manpage
+XtNsensitive		Boolean		TRUE		will widget receive input events?
+XtNtraversalOn		Boolean		TRUE		is mouseless turned "on" for widget?
+XtNuserData		XtPointer	NULL		storage for user defined data
+XtNwidth		Dimension	(calculated)	width of widget's window in pixels
+XtNx			Position	0		x coord of widget's upper left corner
+XtNy			Position	0		y coord of widget's uuper left corner
+

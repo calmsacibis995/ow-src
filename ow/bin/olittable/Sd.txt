@@ -1,0 +1,135 @@
+DESCRIPTION
+
+	The Slider widget provides an object which the user can use to set a numeric 
+	value visually (by dragging the box to the desired value along the slider bar).
+
+	The Slider consists of two Anchors, a bar, and a drag box.  It can
+	have either a vertical or a horizontal orientation.
+
+	For more detailed information on the Slider Widget, see the following
+	Section in the OPEN LOOK Intrinsics Toolkit Widget Set Reference Manual:
+		. Slider
+
+
+EXAMPLE CODE
+
+The following code could be used to Create a Slider Widget similar to that shown 
+in the Table (All color specific code has been removed for simplification):
+
+/**************************************************************************************/
+#include <X11/Intrinsic.h>
+#include <X11/StringDefs.h>
+#include <Xol/OpenLook.h>
+#include <Xol/Slider.h>
+
+#include <Xol/ControlAre.h>
+
+/********************************************************************
+ * sliderCB: Callback called when box on slider is moved.
+ * 		The current value is passed in as callData.
+ ********************************************************************/
+void
+sliderCB(w, clientData, callData)
+Widget w;
+XtPointer clientData, callData;
+{
+	int oldvalue;
+	OlSliderVerify *value = (OlSliderVerify*)callData;
+
+	XtVaGetValues(w,
+				XtNsliderValue,	&oldvalue,
+				NULL);
+
+	printf("Slider Moved. Current Value = %d\n", value->new_location);
+	printf("Slider Moved. Previous Value = %d\n", oldvalue);
+
+}
+/*******************************************************************/
+
+main(argc, argv)
+int argc;
+char **argv;
+{
+	Widget toplevel, controlarea, slider;
+	XtAppContext app;
+
+	OlToolkitInitialize(NULL);
+	toplevel = XtAppInitialize(&app, "Test", 
+				(XrmOptionDescRec *)NULL,
+				(Cardinal)0, (int *)&argc, argv,
+				(String *)NULL, (ArgList)NULL, 0);
+
+	controlarea = XtVaCreateManagedWidget("controls",
+				controlAreaWidgetClass,
+				toplevel, 
+				NULL);
+
+	slider = XtVaCreateManagedWidget("slider", 
+				sliderWidgetClass, 
+				controlarea,
+				XtNorientation,	(XtArgVal)OL_HORIZONTAL,
+				XtNgranularity, (XtArgVal)5,
+				XtNwidth,	(XtArgVal)125,
+				XtNsliderMin,	(XtArgVal)0,
+				XtNminLabel,	(XtArgVal)"0",
+				XtNsliderMax,	(XtArgVal)100,
+				XtNmaxLabel,	(XtArgVal)"100",
+				NULL);
+
+	XtAddCallback(slider, XtNsliderMoved,	sliderCB, NULL);
+
+	XtRealizeWidget(toplevel);
+	XtAppMainLoop(app);
+
+}
+/********************************END EXAMPLE******************************/
+
+
+
+RESOURCES
+_______________________________________________________________________________________________
+Resource Name		Type		Default		Brief Description
+_______________________________________________________________________________________________
+
+XtNaccelerator		String		NULL		String which defines accelerator key
+XtNacceleratorText	String		Dynamic		string to be displayed as accelerator
+XtNancestorSensitive	Boolean		TRUE		Will immediate parent receive events?
+XtNbackground		Pixel		White		background color of widget
+XtNbackgroundPixmap	Pixmap		(none)		pixmap used for tiling the background
+XtNconsumeEvent		XtCallbackList	NULL		called when event occurs
+XtNdestroyCallback	XtCallbackList	NULL		routines called when widget is destroyed
+XtNdragCBType		OlDefine	OL_CONTINUOUS	frequency of XtNsliderMoved callbacks
+XtNendBoxes		Boolean		TRUE		should slider have end boxes?
+XtNfont			XFontStruct *	(OPENLOOK font)	font used to display Caption's label
+XtNfontColor		Pixel		Black		label font's color
+XtNforeground		Pixel		Black		foreground color of widget
+XtNgranularity		int		1		number of pixels elevator moves on click
+XtNheight		Dimension	(calculated)	height of widget's window in pixels
+XtNinitialDelay		int		500		time in millisec's between click & action
+XtNinputFocusColor	Pixel		Red		color of input focus indicator
+XtNmappedWhenManaged	Boolean		TRUE		will widget be mapped when managed?
+XtNminLabel		String		NULL		string used for minimum Slider label
+XtNmaxLabel		String		NULL		string used for maximum Slider label
+XtNmnemonic		Usigned char	NULL		key used to activate widget
+XtNorientation		OlDefine	OL_VERTICAL	orientation of slider
+XtNrecomputeSize	Boolean		FALSE		should Gauge resize itself for ticks/etc?
+XtNreferenceName	String		NULL		see manpage		
+XtNreferenceWidget	Widget		NULL		see manpage
+XtNrepeatRate		int		100		time in millisec's between actions on hold
+XtNsensitive		Boolean		TRUE		will widget receive input events?
+XtNsliderMax		int		100		maximum length in pixels of content
+XtNsliderMin		int		0		minimum length in pixels of content
+XtNsliderMoved		XtCallbackList	NULL		procs called when slider is manipulated
+XtNsliderValue		int		0		current position of elevator
+XtNspan			Dimension	OL_IGNORE	preferred length of Gauge if recomputeSize=T
+XtNstopPosition		OlDefine	OL_ALL		disposition of dragbox at dragend
+XtNticks		int		0		interval between tick marks
+XtNtickUnit		OlDefine	OL_NONE		Gauge's tick mark policy
+XtNtraversalOn		Boolean		TRUE		is mouseless turned "on" for widget?
+XtNuserData		XtPointer	NULL		storage for user defined data
+XtNwidth		Dimension	(calculated)	width of widget's window in pixels
+XtNx			Position	0		x coord of widget's upper left corner
+XtNy			Position	0		y coord of widget's uuper left corner
+
+			
+  

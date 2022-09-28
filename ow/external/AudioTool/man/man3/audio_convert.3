@@ -1,0 +1,59 @@
+.\"  @(#)audio_convert.3     1.6     92/01/10 SMI
+.TH audio_convert 3 "27 Sep 1991"
+.SH NAME
+audio_convert, audio_c2d, audio_d2c, audio_d2s, audio_d2l, audio_s2d, audio_l2d \- floating-point data conversions
+.SH SYNOPSIS
+.nf
+.B #include <multimedia/libaudio.h>
+.LP
+.BI "char audio_d2c(double " dbl );
+.LP
+.BI "short audio_d2s(double " dbl );
+.LP
+.BI "long audio_d2l(double " dbl );
+.LP
+.BI "double audio_c2d(char " pcm );
+.LP
+.BI "double audio_s2d(short " pcm );
+.LP
+.BI "double audio_l2d(long " pcm );
+.fi
+.SH DESCRIPTION
+.LP
+These macros are designed to facilitate conversion between
+integer and floating-point
+.SM PCM
+audio data.
+.LP
+.BR audio_c2d(\|) ,
+.BR audio_s2d(\|) ,
+and
+.B audio_l2d(\|)
+convert 8, 16, and 32 bit
+.SM PCM
+signed integers to floating-point values that range between \-1. and +1.
+In order to preserve symmetry around 0, the singular value represented by
+the most negative integer (that is, \-128, \-32768, \-2147483648) is clipped
+to \-1.
+.LP
+.BR audio_d2c(\|) ,
+.BR audio_d2s(\|) ,
+and
+.B audio_d2l(\|)
+convert floating-point data to
+.SM PCM
+signed integers of 8, 16, or 32 bit precision, respectively.
+Floating-point values outside the range of \(+-1. are clipped at
+full range in the appropriate precision.
+.SH SEE ALSO
+.BR audio_ulaw2linear (3)
+.SH WARNINGS
+.LP
+The manual pages, header files, and object library associated with
+.B /usr/demo/SOUND/libaudio.a
+are furnished on an
+.I as is
+basis as a preliminary interface to several
+useful audio data-processing capabilities.  A future release of the
+operating system may redefine the syntax or semantics of some of the
+functions described herein.

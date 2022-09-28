@@ -1,0 +1,8 @@
+Controldata*font:                               lucidasans-bold
+Controldata*panel*Control.layoutType:           fixedrows
+Controldata*panel*Control.measure:              2
+Controldata*Slider*orientation:                 horizontal
+Controldata*Slider*width:                       100
+Controldata*speed*label.string:                 Speed
+Controldata*direction*label.string:             Direction
+Controldata*altitude*label.string:              Altitude

@@ -1,0 +1,253 @@
+.\" Copyright (c) 1994 - Sun Microsystems, Inc.
+.TH printtool 1 "19 November 1993"
+.IX "printtool" "" "\f3printtool\f1(1) \(em OpenWindows printing tool" ""
+.IX "OpenWindows" "printing" "OpenWindows" "printing tool \(em \f3printtool\f1(1)"
+.SH NAME
+printtool \- OpenWindows tool for printing files
+.SH SYNOPSIS
+.B printtool 
+[
+.B \-P
+.I printer
+] [
+.B \-v
+] [
+.B \-?
+]
+.SH DESCRIPTION
+.LP
+.B Printtool
+is a DeskSet utility that provides a Graphical User Interface (GUI) for the
+.BR lp (1),
+.BR cancel (1),
+and 
+.BR lpstat (1)
+printing functions.
+.LP
+.B Printtool 
+is an XView-based OpenWindows application that allows users to easily
+control standard printing options such as the name of the file to be
+printed, the name of the printer to use, whether or not to print a header 
+page, number of copies to print, print method, etc.
+.B Printtool
+also lets users determine the status of print jobs in progress
+and cancel print jobs that are waiting in the queue.
+.SH OPTIONS
+.LP
+In addition to the generic tool arguments supported by
+.BR xview (7),
+.B printtool
+accepts the following options:
+.TP 12
+.BI \-P " printer"
+Send output to the named printer.
+.TP
+.B \-v
+Show the version number and the usage message of this release of the
+.B printtool
+program.
+.TP
+.B \-?
+Same as
+.B \-v
+.SH USAGE
+.LP
+.B Printtool
+is part of the OpenWindows user environment. For more information on the
+basic functions of OpenWindows, see the
+.TZ SSUG
+.LP
+Users will normally use
+.B printtool
+to print files by entering the name of a file in the
+.B Filename
+field, selecting a printer from the scrollable list of possible printers
+and then clicking on the
+.B Print
+button.  The number of copies to print is set to 1 by default but can be
+easily changed by using the up/down arrows in the
+.B Copies
+control or by entering a number.  The
+.B Header
+check-box allows a user to specify whether or not a header page should be
+printed as part of the print job.  The setting of the 
+.B Header
+check-box will override the setting in the
+.B Properties...
+window.
+.LP
+Users may also drag and drop file icons from 
+.BR filemgr (1) 
+or mail attachments from 
+.BR mailtool (1) 
+onto
+.B printtool's
+drop target instead of typing a name in the 
+.B Filename:
+text field. The drop target is a small rectangular area in the upper right-hand
+corner of the 
+.B printtool
+window.  If the 
+.B printtool
+window is not open users can simply drag and drop a file icon onto the
+icon for 
+.B printtool
+itself.
+.LP
+The status of the printer queue can be checked automatically or by clicking the
+.B Status 
+button.  Print jobs may be terminated by selecting their name from the
+.B Job
+scrollable list and then clicking on the
+.B Stop Printing
+button.
+.LP
+A print method can be invoked interactively by using the "Override
+Default Print Method" check-box in the
+.B Properties...
+window and entering the print method in the space provided. This option allows
+finer control over how files are to be printed.
+.B Printtool
+will not add or append anything to or from the print method.
+Users can use the environment variables $FILES, $PRINTER, $LPDEST and $COPIES,
+which are specified in 
+.B printtool, 
+to write their own print method.
+For instance, the entry:
+.LP
+.B	mp -l
+.br
+will pass the file through the
+.BR mp (1)
+filter with the "landscape" option selected.  This is the equivalent of
+executing the following command on the command line:
+.LP
+.B	cat $FILE | mp -l
+.B | lp 
+.LP
+The
+.B Information...
+button brings up a text window with information about the selected printer.
+.LP
+The
+.B Properties...
+button brings up a window that allows users to specify global defaults for
+.B printtool.
+These include whether or not to print header pages, whether to beep or flash
+when all jobs done, and whether or not to override default print method.  The
+.B Apply
+button only sets these options for the current process.  To save the current
+settings permanently the
+.B Save as Defaults
+button should be clicked.
+.SH RESOURCES
+On startup,
+.B printtool
+uses the following resources which are stored in 
+.B $HOME/.desksetdefaults:
+.TP 15
+.PD 0
+.B Resource:
+deskset.printtool.checkInterval
+.TP
+.B Values:
+Status check interval (numeric)
+.TP
+.B Description
+This is the number of seconds between status checks on the 
+printer.  The default value is 10 seconds.
+.sp
+.TP 15
+.PD 0
+.B Resource:
+deskset.printtool.headerPage
+.TP
+.B Values:
+true, false
+.TP
+.B Description
+This is the flag for printing with header page or not. 
+The default value is false (no header page).
+.sp
+.TP 15
+.PD 0
+.B Resource:
+deskset.printtool.printMethodOverride
+.TP
+.B Values:
+true, false
+.TP
+.B Description
+This is the flag for overriding the default print method.
+The default value is false (use default print method which is
+determined by Classing Engine).
+.sp
+.TP 15
+.PD 0
+.B Resource:
+deskset.printtool.lastPrintMethod
+.TP
+.B Values:
+Print method string or full path of script string
+.TP
+.B Description
+This is the print method for printing instead of the default method 
+if deskset.printtool.printMethodOverride is set to true.
+.sp
+.TP 15
+.PD 0
+.B Resource:
+deskset.printtool.notifyFlash
+.TP
+.B Values:
+true, false
+.TP
+.B Description
+If set to true, printtool will flash the window or icon when all print jobs 
+are done.  The default value is false (no flash).
+.sp
+.TP 15
+.PD 0
+.B Resource:
+deskset.printtool.notifyBeep
+.TP
+.B Values:
+true, false
+.TP
+.B Description
+If set to true, printtool will beep when all print jobs 
+are done.  The default value is false (no beep).
+.sp
+.SH "SEE ALSO"
+.LP
+.BR accept (1M),
+.BR cancel (1),
+.BR enable (1),
+.BR filemgr (1),
+.BR lp (1),
+.BR lpadmin (1),
+.BR lpfilter (1M),
+.BR lpstat (1),
+.BR lpsystem (1M),
+.BR mailtool (1)
+.BR xview (7)
+.br
+.TZ SSUG
+.br
+"About Print Tool" in the Help Handbook available through the
+.B Help
+option on the Workspace menu.
+.sp
+.SH DIAGNOSTICS
+.LP
+See 
+.BR lpstat (1) 
+diagnostics.
+.sp
+.SH BUGS
+.LP
+See 
+.BR lp (1),
+.BR lpstat (1)
+bugs.
+

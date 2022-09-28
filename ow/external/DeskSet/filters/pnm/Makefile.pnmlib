@@ -1,0 +1,32 @@
+#
+# 
+#
+
+
+SOURCES.c = \
+	libpnm1.c 	\
+	libpnm2.c 	\
+	libpnm3.c 	\
+	libpnm4.c
+
+SOURCES.h =  pnm.h rast.h
+
+LIBRARY = libpnm
+LIBVERSION =
+PROJECTDIR = ../..
+
+CPPFLAGS += -I../ -I../pgm -I../pbm -I../ppm
+
+default: all
+
+include $(PROJECTDIR)/Makefile.master.new
+LDFLAGS =
+LDLIBS  =
+
+all:	$(LIBRARY.a) 
+
+install: 
+
+clean:	master_clean
+
+.INIT: $(SOURCES.h)

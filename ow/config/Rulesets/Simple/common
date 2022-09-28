@@ -1,0 +1,27 @@
+#
+# Common Makefile definitions
+#
+
+# Copyright
+
+#
+#	@(#)common	1.2 90/08/10
+#
+
+all::
+
+populate: ${SOURCES} ${HEADERS}
+depopulate:
+
+do_cmd: FRC
+	-@for i in . ${SUBDIRS}; do \
+		if test $$i = "."; then \
+			${CMD} ; \
+		else \
+			(cd $$i; echo "----["`${PWDCMD}`"]----"; \
+			  ${MAKE} do_cmd CMD='${CMD}' ); \
+		fi \
+	done
+
+FRC:
+

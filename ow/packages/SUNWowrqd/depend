@@ -1,0 +1,13 @@
+#	Copyright (c) 1990-92 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)depend	1.11	94/12/08 (c) Sun Microsystems, Inc.
+#
+P SUNWxwplt	X Windows platform software
+P SUNWxwcft	X Windows common (not required) fonts
+P SUNWoldst	OPEN LOOK deskset tools
+P SUNWoldte	OPEN LOOK Desktop Environment
+P SUNWolaud	OPEN LOOK Audio applications
+P SUNWoldcv	OPEN LOOK document and help viewer applications
+P SUNWolimt	OPEN LOOK imagetool
+P SUNWolrte	OPEN LOOK toolkits runtime environment

@@ -1,0 +1,93 @@
+#
+#	@(#)debug.db	1.18 91/01/10
+#
+#	Full - build everything database
+#	include this file after any of your custom changes
+#
+#	This file causes debug versions of things to be built
+#
+#
+# Clients and other executables
+# =============================
+# name     location  Buildtype Linktype
+# ----     --------  --------- --------
+xnews	      bin    debug
+olwm	      bin    debug
+mkcookie      bin    debug
+xmodmap	      bin    debug
+xinit	      bin    debug
+newsserverstr bin    debug
+xn_ck_fbs     bin    debug
+xrdb	      bin    debug
+svenv	      bin    debug
+loadmodule    bin    debug
+
+# User/client libraries
+# =====================
+# name     location  Buildtype Linktype
+# ----     --------  --------- --------
+cps           lib    debug
+cps_server    lib    debug
+olgx          lib    nobuild    -L${OPENWINHOME}/lib,-lolgx
+xim           lib    nobuild
+mltext        lib    nobuild
+xview         lib    nobuild    -L${XVIEWHOME}/lib,-lxview
+palloc        lib    debug
+wire          lib    debug
+jot           lib    debug
+#X11           lib    variants	-L${OPENWINHOME}/lib,-lX11
+X11           lib    nobuild	-L${OPENWINHOME}/lib,-lX11
+Xext          lib    nobuild	-L${OPENWINHOME}/lib,-lXext
+Xau           lib    nobuild    -L${OPENWINHOME}/lib,-lXau
+Xt            lib    debug
+Xol           lib    debug
+Xmu           lib    debug
+Xaw           lib    debug
+Xdmcp         lib    debug
+Xinput        lib    debug
+I18N	      lib    opt
+#
+# Server libraries
+# ================
+# name    location  Buildtype Linktype
+# ----    --------  --------- --------
+Core      bin/xnews debug
+cscript   bin/xnews debug
+folio     bin/xnews debug
+nucleus   bin/xnews debug
+NeWS      bin/xnews debug
+halftone  bin/xnews debug
+SunOSI    bin/xnews/libnpsiSun debug
+SunWIN    bin/xnews/libnpsiSun debug
+SunEVQ    bin/xnews/libnpsiSun debug
+suntool   bin/xnews/libnpsiSun opt
+sunwindow bin/xnews/libnpsiSun opt
+pixrect   bin/xnews/libnpsiSun opt
+X11server bin/xnews debug
+X11dix    bin/xnews debug
+#Xextent   bin/xnews debug
+stextn    bin/xnews/libXextent debug
+mitshm    bin/xnews/libXextent debug
+#
+# Shapes libraries
+# ================
+# name  location  Buildtype Linktype
+# ----  --------  --------- --------
+Shapes  bin/xnews debug ${SOURCEDIR}/bin/xnews/libshapes/di/libShapes_d.a
+ShCG2   bin/xnews debug ${SOURCEDIR}/bin/xnews/libshapes/dd/cg2/libShCG2_d.a
+ShCG6   bin/xnews debug ${SOURCEDIR}/bin/xnews/libshapes/dd/cg6/libShCG6_d.a
+ShFB    bin/xnews debug ${SOURCEDIR}/bin/xnews/libshapes/dd/libShFB_d.a
+ShMem   bin/xnews debug ${SOURCEDIR}/bin/xnews/libshapes/dd/mem/libShMem_d.a
+ShMem1  bin/xnews debug ${SOURCEDIR}/bin/xnews/libshapes/dd/mem1/libShMem1_d.a
+ShMem8  bin/xnews debug ${SOURCEDIR}/bin/xnews/libshapes/dd/mem8/libShMem8_d.a
+ShMem32 bin/xnews debug ${SOURCEDIR}/bin/xnews/libshapes/dd/mem32/libShMem32_d.a
+ShCG12  bin/xnews debug ${SOURCEDIR}/bin/xnews/libshapes/dd/cg12/libShCG12_d.a
+ShGT   bin/xnews debug ${SOURCEDIR}/bin/xnews/libshapes/dd/gt/libShGT_d.a
+ShREC   bin/xnews debug ${SOURCEDIR}/bin/xnews/libshapes/dd/rec/libShREC_d.a
+
+# private libraries used by clients
+# =================================
+# name    location    Buildtype Linktype
+# ----    --------    --------- --------
+parsemap  tools/fonts opt	opt
+xnfont    tools/fonts opt	opt

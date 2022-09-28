@@ -1,0 +1,68 @@
+#       Copyright (c) 1990-92 Sun Microsystems, Inc.
+#               All Rights Reserved
+#
+#	"@(#)prototype	1.5 94/11/02   Sun Microsystems" 
+#
+#  OpenWindows required core package
+
+i pkginfo
+i copyright=../copyright
+i depend
+
+!HOME=../openwin
+
+#   We need to put three symlinks into /usr/lib for SCD 2.0 compliance
+d none lib 0775 root bin
+
+d none openwin 0775 root bin
+
+!search  $HOME/bin
+d none openwin/bin		0775 root bin
+f none openwin/bin/atktopbm	0775 root bin
+f none openwin/bin/brushtopbm	0775 root bin
+f none openwin/bin/cmuwmtopbm	0775 root bin
+f none openwin/bin/fitstopgm	0775 root bin
+f none openwin/bin/fstopgm	0775 root bin
+f none openwin/bin/g3topbm	0775 root bin
+f none openwin/bin/gemtopbm	0775 root bin
+f none openwin/bin/gouldtoppm	0775 root bin
+f none openwin/bin/hipstopgm	0775 root bin
+f none openwin/bin/icontopbm	0775 root bin
+f none openwin/bin/ilbmtoppm	0775 root bin
+f none openwin/bin/imagetool	0775 root bin
+f none openwin/bin/imgtoppm	0775 root bin
+f none openwin/bin/lispmtopgm	0775 root bin
+f none openwin/bin/macptopbm	0775 root bin
+f none openwin/bin/mgrtopbm	0775 root bin
+f none openwin/bin/mtvtoppm	0775 root bin
+f none openwin/bin/pcxtoppm	0775 root bin
+f none openwin/bin/pgmtoppm	0775 root bin
+f none openwin/bin/pi1toppm	0775 root bin
+f none openwin/bin/pi3topbm	0775 root bin
+f none openwin/bin/picttoppm	0775 root bin
+f none openwin/bin/pjtoppm	0775 root bin
+f none openwin/bin/psidtopgm	0775 root bin
+f none openwin/bin/qrttoppm	0775 root bin
+f none openwin/bin/ras2ps	0775 root bin
+f none openwin/bin/rash		0775 root bin
+f none openwin/bin/rawtopgm	0775 root bin
+f none openwin/bin/rawtoppm	0775 root bin
+f none openwin/bin/rgb3toppm	0775 root bin
+f none openwin/bin/sldtoppm	0775 root bin
+f none openwin/bin/spctoppm	0775 root bin
+f none openwin/bin/sputoppm	0775 root bin
+f none openwin/bin/tgatoppm	0775 root bin
+f none openwin/bin/xbmtopbm	0775 root bin
+f none openwin/bin/ximtoppm	0775 root bin
+f none openwin/bin/xpmtoppm	0775 root bin
+f none openwin/bin/xwdtopnm	0775 root bin
+f none openwin/bin/ybmtopbm	0775 root bin
+f none openwin/bin/yuvtoppm	0775 root bin
+
+
+!search  $HOME/lib/locale/C/help
+d none openwin/lib				0775 root bin
+d none openwin/lib/locale			0775 root bin
+d none openwin/lib/locale/C			0775 root bin
+d none openwin/lib/locale/C/help		0775 root bin
+f none openwin/lib/locale/C/help/imagetool.info 0664 root bin

@@ -1,0 +1,7 @@
+Olbiff.interval: 10
+Olbiff*background: white
+Olbiff*inputFocusColor: yellow
+Olbiff*pointerWarping:  false
+Olbiff*font: lucidasans-19
+Olbiff*Acknowledge.accelerator: c<a>
+Olbiff*ListPane.selectable: false

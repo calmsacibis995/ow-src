@@ -1,0 +1,17 @@
+#
+# @(#)openwin-menu-demo-fulldemo	1.2 92/10/19 openwin-menu-demo-fulldemo
+#
+#	OpenWindows default root menu file - Demos submenu
+#
+
+"Demos" TITLE PIN
+
+"Icosahedron..."	exec $OPENWINHOME/demo/ico2
+"Maze..."		exec $OPENWINHOME/demo/maze
+"Muncher..."	   	exec $OPENWINHOME/demo/muncher
+"Plaid..."		exec $OPENWINHOME/demo/plaid
+"Puzzle..."		exec $OPENWINHOME/demo/puzzle
+"Worms..."		exec $OPENWINHOME/demo/worm
+"Xsol..."		exec $OPENWINHOME/demo/xsol
+"Spider..."             exec $OPENWINHOME/demo/spider
+"OLIT Sampler..."       exec $OPENWINHOME/demo/olitsampler

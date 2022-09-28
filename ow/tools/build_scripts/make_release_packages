@@ -1,0 +1,153 @@
+#! /bin/sh
+#
+# @(#)make_release_packages.source	1.5 97/01/23
+#
+#	Create and fill a package staging area on eightbits
+#
+#	This script should be run from the base of the build tree.
+#	It takes one parameter.  The name of the directory to put
+#	the packages in.
+#
+#	Example:
+#	    cd /export/build/WORKSPACES_OL494_prealpha1
+#	    ./proto-tool-Obj-<arch>-svr4/make_release_packages OLprealpha1-<arch>
+#
+#	Normally most of the bin directory is copied and then stripped.
+#	This can be prevented by using the `--nostrip' option (-AFTER- the release name).
+#
+
+
+#   Make sure that we aren't affected by the personal environment of
+#   whoever is running this script
+PATH=/opt/SUNWspro/bin:/opt/SUNWguide/bin:/usr/bin:/usr/ccs/bin:/usr/sbin:.
+SHELL=/bin/sh
+
+
+# What kind of machine is this?
+: PROCESSOR=${PROCESSOR=`uname -p`}
+MACH=$PROCESSOR
+if  [ "$MACH" = "sparc" ] ;
+    then MACH=sun4
+fi
+echo "PROCESSOR=<$PROCESSOR>"
+
+
+SOURCEDIR=`pwd`
+
+#   List of official (deliverable) OpenLook packages
+OL_PACKAGE_LIST="SUNWoldcv SUNWolbk SUNWolaud SUNWaudio SUNWaudmo SUNWoldem SUNWoldim SUNWoldst SUNWoldte \
+	SUNWolimt SUNWolinc SUNWolman SUNWolrte SUNWolslb SUNWolsrc"
+
+
+#   Packages that are architecture-specific
+case  $MACH  in
+	sun4) ARCH_PACKAGE_LIST="SUNWowbcp"
+	      ;;
+	i386) ARCH_PACKAGE_LIST=""
+	      ;;
+esac
+
+#   The official packages consist of the OpenLook packages, the ToolTalk packages,
+#   and the OpenWindows (SunOS 4.x) Binary Compatability package.
+PACKAGE_LIST="$OL_PACKAGE_LIST $ARCH_PACKAGE_LIST"
+
+
+#   There is also an unregistered package used to deliver the message files
+#   to the localization centers.
+EXTRA_PACKAGES=
+
+: TARGET_ARCH=${TARGET_ARCH:=-${MACH}-svr4}
+
+: ${PACKAGE_DIR:=${SOURCEDIR}/packages/$1}
+
+
+
+# First strip the binaries (unless the --nostrip option was used)
+if  [ "$2" != "--nostrip" ] ; then
+    (cd proto${TARGET_ARCH}/bin ; /bin/sh ../../tools/build_scripts/strip_binaries)
+fi
+
+#   Next, create the staging area.  Make sure that the logs directory
+#   is writeable by everyone because it is likely that we will need to
+#   write into it as root across an NFS link...
+#
+/bin/mkdir $PACKAGE_DIR
+/bin/mkdir $PACKAGE_DIR/logs
+/bin/chmod a+w $PACKAGE_DIR/logs
+
+#  Now copy the package description info
+cd $SOURCEDIR/packages
+echo 'Copying package descriptions'
+
+#   We can't just use `sccs get SCCS' because it will punt if it hits
+#   a file which is being edited (writeable).
+#   
+#for F in SCCS/s.*
+#do
+#    /usr/ccs/bin/get -s $F
+#done
+/bin/cp copyright depend i.* r.* $PACKAGE_DIR >/dev/null 2>&1
+
+for package in $PACKAGE_LIST  $EXTRA_PACKAGES
+do
+    cd $package
+
+    #   See above about sccs usage
+#    for F in SCCS/s.*
+#    do
+#	/usr/ccs/bin/get $F >/dev/null 2>&1
+#    done
+
+    /bin/mkdir $PACKAGE_DIR/$package
+    /bin/cp p* d* lib* i.* r.* $PACKAGE_DIR/$package >/dev/null 2>&1
+    cd ..
+done
+
+
+#   Now move into the package staging area and build the packages.
+cd $PACKAGE_DIR
+
+/bin/ln -s $SOURCEDIR/proto${TARGET_ARCH} openwin
+/bin/ln -s $SOURCEDIR/proto${TARGET_ARCH} usr
+
+LOGfile=logs/package_build
+if  [ -f $LOGfile ] ; then rm -f $LOGfile ; fi
+
+echo '---Building packages'
+for package in $PACKAGE_LIST $EXTRA_PACKAGES
+do
+    cd $package
+    echo "******** Making the $package package ********"
+
+    if [ -r pkginfo.tmpl ] ; then
+	echo "Making architecture-specific version of pkginfo for $PROCESSOR"
+	sed -e '/ARCH/s/ISA/'$PROCESSOR'/' pkginfo.tmpl > pkginfo
+    fi
+    /usr/bin/pkgmk -d $PACKAGE_DIR/$package -o
+	
+    echo "******** Done Making the $package package ********"
+    cd ..
+done >$LOGfile 2>&1
+
+/bin/rm -f openwin usr
+
+# copy SUNWoladd package to package area
+   /bin/mkdir $PACKAGE_DIR/SUNWoladd
+   cd $SOURCEDIR/mae
+   echo "******** Making the SUNWoladd package ********" >>$PACKAGE_DIR/$LOGfile 2>&1
+   make >>$PACKAGE_DIR/$LOGfile 2>&1
+   echo "******** Done Making the SUNWoladd package ********" >>$PACKAGE_DIR/$LOGfile 2>&1
+/bin/cp p* depend c* $PACKAGE_DIR/SUNWoladd >/dev/null 2>&1
+find SUNWoladd -depth -print | cpio -pdum $PACKAGE_DIR/SUNWoladd
+
+# Create an installdir with symlinks to SUNW* pkgs
+cd $PACKAGE_DIR
+mkdir installdir
+cd installdir
+ln -s ../SUNW*/SUNW* .
+
+exit
+
+# Local Variables:
+# mode: ksh
+# End:

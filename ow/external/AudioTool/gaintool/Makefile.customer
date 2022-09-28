@@ -1,0 +1,53 @@
+#
+# @(#)Makefile.customer	1.2	92/06/30 SMI
+#
+
+#
+# Makefile for gaintool demo
+#
+
+include ../Makefile.config
+
+PROGRAM		= gaintool
+
+# guide file
+GSRCS		= gaintool.G
+
+SOURCES		= gaintool.c gaintool_ui.c
+HEADERS		= gaintool_ui.h
+
+OBJECTS		= ${SOURCES:%.c=%.o}
+
+CFLAGS		= -O
+LDFLAGS		= -L../../lib -L${OPENWINHOME}/lib -L${GUIDEHOME}/lib
+
+CPPFLAGS	+= -I../../include -I${OPENWINHOME}/include \
+		   -I${GUIDEHOME}/include ${SYSDEFINES}
+
+LDLIBS		= -laudio -lguidexv -lxview -lolgx -lX11 ${SYSLIBS} -lm
+
+all: $(GUIDEHOME) ${PROGRAM}
+
+$(GUIDEHOME):
+	@if [ "$(GUIDEHOME)" = "not-set" -o ! -d $(GUIDEHOME) ]; then \
+		echo "You must have Devguide installed and GUIDEHOME set to build this program." ; \
+		false ;\
+	fi
+		
+${PROGRAM}: ${OBJECTS}
+	${CC} -o $@ ${OBJECTS} ${LDFLAGS} ${LDLIBS}
+
+clean:
+	${RM} ${PROGRAM} ${OBJECTS} core
+
+install: ${PROGRAM}
+	${CP} ${PROGRAM} ${DESTDIR}/bin/${PROGRAM}
+	${CHMOD} 755 ${DESTDIR}/bin/${PROGRAM}
+
+# Uncomment the following lines if you want to re-generate the
+# _ui.[ch] files with gxv.
+
+#%_ui.h: %.G
+#	gxv $<
+#%_ui.c: %_ui.h
+#	touch $@

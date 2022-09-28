@@ -1,0 +1,24 @@
+#
+# @(#)prototype	1.1	97/01/15 SMI
+#
+
+#	Copyright (c) 1990-92 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)prototype	1.1	97/01/15 (c) Sun Microsystems, Inc.
+#
+#  Audio binaries and man pages for SunOS_5.0/SVR4
+
+i pkginfo
+i depend
+i copyright=../copyright
+
+!HOME=../usr
+
+d none usr						0775 root sys
+
+!search $HOME/bin
+d none usr/bin						0775 root bin
+f none usr/bin/audioconvert				0755 root staff
+f none usr/bin/audioplay				0755 root staff
+f none usr/bin/audiorecord				0755 root staff

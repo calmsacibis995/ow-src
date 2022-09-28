@@ -1,0 +1,181 @@
+DESCRIPTION
+
+	The MenuButton widget/gadget is used to create a special button which has
+	a menu attached to it.  If the user clicks RIGHT on the MenuButton, the menu 
+	appears, and if the user clicks LEFT on the MenuButton, the default menu item 
+	selection is activated.
+
+	The MenuButton is comprised of the following widget components:
+		the MenuButton		(created automatically)
+		the MenuShell		(created automatically as child of MenuButton)
+		the MenuPane		(created automatically as child of MenuShell)
+		the Menu choice items	(created by application as children of MenuPane)
+
+	In order for previewing to work (clicking LEFT previews default menu selection)
+	the application resource, XtNselectDoesPreview, must be set to True.
+
+	Features of the MenuShell widget also apply to the MenuButton Widget.
+
+	For more detailed information on the MenuButton Widget, see the following
+	Sections in the OPEN LOOK Intrinsics Toolkit Widget Set Reference Manual:
+		. MenuButton
+		. MenuShell
+
+	A MenuButton Gadget is also available.
+
+
+EXAMPLE CODE
+
+The following code could be used to Create the example MenuButton Widget shown 
+in the Table  (All color specific code has been removed for simplification):
+	
+/**************************************************************************************/
+#include <X11/Intrinsic.h>
+#include <X11/StringDefs.h>
+#include <Xol/OpenLook.h>
+#include <Xol/MenuButton.h>
+
+#include <Xol/Exclusives.h>
+#include <Xol/RectButton.h>
+#include <Xol/ControlAre.h>
+
+
+static char *size_choices[] = {" 8","10","12","14","18","24"};
+
+/**********************************************************************/
+/* AddMenu: procedure to add a menu built with exclusive
+ * choices (Exclusives & RectButtons) to a menu 'object' (passed in as
+ * parameter).  This 'object' could either be a MenuShell Widget or
+ * a MenuButton widget.
+ **********************************************************************/
+void
+AddMenu(menuobject, choice_strings, choice_count)
+Widget menuobject;
+char **choice_strings;
+int choice_count;
+{
+	Widget menupane, exclusive;
+	int i;
+
+	/*
+	 * Get MenuPane handle from menuobject
+	 */
+	XtVaGetValues(menuobject,
+				XtNmenuPane, &menupane,
+				NULL);
+
+	/*
+	 * Create Exclusives Widget as child of MenuPane 
+	 * (2 columns of choices) 
+	 */
+	exclusive = XtVaCreateManagedWidget("exclusivemenu",
+				exclusivesWidgetClass,
+				menupane,
+				XtNlayoutType,  (XtArgVal)OL_FIXEDCOLS,
+				XtNmeasure, 	(XtArgVal) 2,
+				NULL);
+
+	/*
+	 * Add choice items to Exclusives
+	 */
+	for (i=0; i < choice_count; i++)
+		XtVaCreateManagedWidget(choice_strings[i], 
+				rectButtonWidgetClass,
+				exclusive, 
+				XtNlabelJustify,(XtArgVal)OL_CENTER,
+				NULL);
+}
+/************************************************************************/
+
+
+
+main(argc, argv)
+int argc;
+char **argv;
+{
+	Widget toplevel, controlarea, menubutton;
+	XtAppContext app;
+
+	OlToolkitInitialize(NULL);
+	toplevel = XtAppInitialize(&app, "Test", 
+				(XrmOptionDescRec *)NULL,
+				(Cardinal)0, (int *)&argc, argv,
+				(String *)NULL, (ArgList)NULL, 0);
+
+	controlarea = XtVaCreateManagedWidget("controls", 
+				controlAreaWidgetClass,
+				toplevel, 
+				NULL);
+
+	/*
+	 * Create MenuButton and Add menu to it
+	 */
+	menubutton = XtVaCreateManagedWidget("menubutton",
+				menuButtonWidgetClass,
+				controlarea,
+				XtNlabel,	(XtArgVal)"FontSize",
+				XtNpushpin,	(XtArgVal)OL_OUT,
+				NULL);
+
+	AddMenu(menubutton, size_choices, XtNumber(size_choices));
+
+	XtRealizeWidget(toplevel);
+	XtAppMainLoop(app);
+
+}
+/**********************************END EXAMPLE******************************/
+
+
+RESOURCES
+_______________________________________________________________________________________________
+Resource Name		Type		Default		Brief Description
+_______________________________________________________________________________________________
+
+MenuButton Resource Set:
+
+XtNaccelerator		String		NULL		String which defines accelerator key
+XtNacceleratorText	String		Dynamic		string to be displayed as accelerator
+XtNancestorSensitive	Boolean		TRUE		Will immediate parent receive events?
+XtNbackground		Pixel		White		background color of widget
+XtNbackgroundPixmap	Pixmap		(none)		pixmap used for tiling the background
+XtNconsumeEvent		XtCallbackList	NULL		called when event occurs
+XtNdefault		Boolean		FALSE		double border of default selection?
+XtNdepth		int		(parent's)	number of bits used for each pixel
+XtNdestroyCallback	XtCallbackList	NULL		routines called when widget is destroyed
+XtNfont			XFontStruct *	(OPENLOOK font)	font used to display Caption's label
+XtNfontColor		Pixel		Black		label font's color
+XtNforeground		Pixel		Black		foreground color of widget
+XtNheight		Dimension	(calculated)	height of widget's window in pixels
+XtNlabel		String		(class name)	string used as widget's label
+XtNlabelJustify		OlDefine	OL_LEFT		justification of label in Widget
+XtNmappedWhenManaged	Boolean		TRUE		will widget be mapped when managed?
+XtNmenuMark		OlDefine	(calculated)	specifies direction of menu arrow
+XtNmenuPane		Widget		(none)		widget where menu items are attached
+XtNmnemonic		Usigned char	NULL		key used to activate widget
+XtNrecomputeSize	Boolean		TRUE		should widget calculate size ?
+XtNreferenceName	String		NULL		see manpage		
+XtNreferenceWidget	Widget		NULL		see manpage
+XtNsensitive		Boolean		TRUE		will widget receive input events?
+XtNtraversalOn		Boolean		TRUE		is mouseless turned "on" for widget?
+XtNuserData		XtPointer	NULL		storage for user defined data
+XtNwidth		Dimension	(calculated)	width of widget's window in pixels
+XtNx			Position	0		x coord of widget's upper left corner
+XtNy			Position	0		y coord of widget's uuper left corner
+
+Menu Resource Set:
+	
+XtNcenter		Boolean		TRUE		should children be centered in column?
+XtNhPad			Dimension	4		size in pixels of margin on sides 
+XtNhSpace		Dimension	4		space in pixels between columns
+XtNlayoutType		OlDefine	OL_FIXEDROWS	layout policy of child widgets
+XtNmeasure		int		1		* number of rows/cols or fixed hgt/wth
+XtNpushpin		OLDefine	OL_NONE		is there a pushpin in the menu?	
+XtNpushpinDefault	Boolean		FALSE		is pushpin 'default' item?
+XtNsameSize		OlDefine	OL_COLUMNS	which children are forced to same width
+XtNtitle		String		(widget name)	string used for title in menu
+XtNvPad			Dimension	4		size in pixels of top/bottom margins
+XtNvSpace		Dimension	4		space in pixels between rows
+
+
+
+

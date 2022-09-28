@@ -1,0 +1,34 @@
+#
+# @(#)Makefile.template	3.3 05 Aug 1992 Copyright (c) 1987-1990 Sun Microsystems, Inc.
+# All Rights Reserved
+#
+
+SOURCES.c	= ck_zmalloc.c rash.c rast.c
+SOURCES.h	= rast.h 
+SOURCES.man	= rash.1
+SOURCES.ps	= default.rash epsf.rash
+PROGRAM		= rash 
+PROJECTDIR	= ..
+
+MANSECT   	= 1
+
+#
+# Couple of extra def's so that Guide gets included.  GUIDEHOME has
+# to be defined for this Makefile to work anyway.
+
+LDLIBS		= -lm 
+
+.KEEP_STATE:
+
+default:	all
+
+include ${PROJECTDIR}/Makefile.master.new
+
+DESTDIR.ps	= $(DESTDIR)/share/xnews/client/snapshot
+
+all:	$(PROGRAM)
+
+clean:	master_clean
+
+install: install_normal_bins install_man install_ps
+ 

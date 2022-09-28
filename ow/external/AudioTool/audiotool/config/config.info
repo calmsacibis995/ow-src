@@ -1,0 +1,90 @@
+# @(#)config.info 1.5	93/02/25 SMI
+#
+#
+#
+#
+#
+:config-Tool_config_control
+Audio Tool Properties Window
+
+This panel contains controls for the configurable
+Audio Tool properties.  Help is available for the
+individual controls.
+#
+:config-Autoplay_set
+If this option is selected, Audio Tool will begin
+playing a file as soon as it is loaded.
+
+#
+:config-AutoSelect_set
+If this option is selected, Audio Tool will begin
+playing the selected audio region immediately
+after a selection is made.
+
+#
+:config-Confirm_clear_set
+If this option is selected, pop-up confirmers will
+be displayed before unsaved data is discarded
+permanently (i.e., File->New... or File->Open...
+operations, or drag'n'drop to the tool
+drop-site).
+
+Since the Edit->Clear operation is undoable, this
+function does not require a confirmation.
+#
+:config-SilenceDetect_check
+If this option is selected, the display of sound
+and silence segments is enabled.
+
+When Silence Detection is enabled, regions of
+silence are displayed as horizontal lines and
+regions of sound are displayed as boxes.  These
+segments can be useful in locating particular
+phrases or regions of voice data.
+
+Silence detection requires extra time to
+calculate, and can be disabled if this overhead is
+undesirable.  When Silence Detection is disabled,
+the entire file is represented as a single box.
+
+Note that silence detection is always disabled
+when the audio data is sampled faster than 8 khz.
+#
+:config-SilenceDetect_slider
+The Silence Threshold slider controls the silence
+threshold -- adjust the threshold to control the
+amount of time that silence must persist before a
+silence segment is displayed.
+
+Drag the slider to the left to increase the
+sensitivity to short pauses. (This should increase
+the number of sound and silence segments.)
+
+Drag the slider to the right to decrease the
+sensitivity. (This should decrease the number of
+segments.)
+
+To disable silence detection entirely, clear the
+Silence Detection checkbox.
+
+Please see the help for Silence Detection.
+#
+:config-tempdir
+The Temp file directory specifies a location in
+which to store audio data temporarily.  This
+directory is used, for example, when recording new
+audio data.  The temporary space is released when
+the file has been saved to permanent storage.
+
+This field should identify a writeable directory
+on a filesystem that has plenty of free space
+available.
+#
+:config-Apply_button
+Apply changes and save the current configuration
+to the audio properties file ($HOME/.audiorc).
+#
+:config-Reset_button
+Reset panel items to their previous settings
+(i.e., the values that were set at the last
+"Apply").

@@ -1,0 +1,62 @@
+.\" Copyright (c) 1994 - Sun Microsystems, Inc.
+.TH mailprint 1 "27 April 1994"
+.IX "mailprint" "" "\f3mailprint\f1(1) \(em mail message attachment filter" ""
+.IX "mail" "removing" "mail" "removing attachments \(em \f3mailprint\f1(1)"
+.SH NAME
+mailprint \- filter to strip out mail message attachments
+.SH SYNOPSIS
+.B mailprint
+[
+.B \-b
+] [
+.IR filename .\|.\|.
+]
+.SH DESCRIPTION
+The
+.B mailprint
+program reads a
+.I filename
+(which contains one or more mail messages from
+.BR mail (1)
+or
+.BR mailtool (1),
+and sends to standard output the same messages, minus
+any attachments that were included in the mail messages.
+If no \f2filename\f1 argument is provided,
+.B mailprint
+reads from the standard input.
+.PP
+.B mailprint 
+will add the following line to the
+end of each mail message, if any attachments were stripped out:
+.PP
+	This message contains \f2n\f1 attachments (not printed)
+.PP
+where \f2n\f1 is the number of attachments stripped.
+.PP
+This program will output nothing
+if the filename or standard input is not a message.
+.PP
+This program's functionality is already provided in
+.B mailtool's 
+print option, as well as 
+.B printtool
+when you drag a message from mailtool and drop it onto
+.BR printtool (1).
+.PP
+.B mailprint 
+can be used together with other programs to print out a message.
+For example:
+.PP
+.ft 3
+	example% cat \f2filename\f3 | mailprint | mp | lp
+.ft 1
+.SH OPTIONS
+.TP
+.B \-b
+At the end of each message, a formfeed/pagebreak is added.
+This is useful for sending multiple mail messages to a printer.
+.SH SEE ALSO
+.BR mail (1),
+.BR mailtool (1),
+.BR printtool (1)

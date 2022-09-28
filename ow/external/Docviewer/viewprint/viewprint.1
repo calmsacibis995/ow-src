@@ -1,0 +1,104 @@
+.\" Copyright (c) 1994 Sun Microsystems, Inc.
+.TH viewprint 1 "18 November 1993"
+.IX "viewprint" "" "\f3viewprint\f1(1) \(em print AnswerBook documents using lp" ""
+.IX "AnswerBook" "print" "AnswerBook" "print AnswerBook documents using lp \(em \f3viewprint\f1(1)"
+.IX "viewprint command"
+.SH NAME
+viewprint \- print AnswerBook documents using lp
+.SH SYNOPSIS
+.LP
+.B viewprint
+.BR \-P
+.I printer \(or
+.BR \-f
+.I file
+[
+.BR \-\#
+.I ncopies
+] [
+.BR \-p
+.I pages
+] [
+.BR \-R
+] [
+.B \-c
+.I card-catalog-file
+]
+.I document-name
+.SH DESCRIPTION
+.LP
+.B viewprint
+is a utility used by 
+.BR docviewer (1)
+to print selected pages of AnswerBook documents.
+.B viewprint
+uses the AnswerBook "card catalog" mechanism to locate
+the PostScript files corresponding to the specified document
+.I document-name,
+and prints these files using
+.BR lp (1).
+.LP
+OpenWindows users do not typically need to use
+.B viewprint.
+It is automatically invoked by
+.B docviewer
+as needed.
+.SH OPTIONS
+.TP
+.BI \-P " printer"
+Send document to 
+.I printer
+.TP
+.BI \-f " filename"
+Send document to
+.I filename
+(instead of printer)
+.TP
+.BI \-\# " ncopies"
+Print
+.I ncopies
+copies
+.TP
+.BI \-p " pages"
+Specify page numbers of pages to print.
+.I pages
+can be a single page number, or a page range of the form
+.I first-last
+.TP
+.B \-R
+Reverse the order of pages (last page first)
+.TP
+.B \-c \f2card-catalog\fP
+Specify the name of the card catalog file used to locate AnswerBooks.  See
+.BR ab_cardcatalog (4)
+for more information.
+.SH ENVIRONMENT
+.LP
+.B AB_CARDCATALOG
+.IP 
+Specify the name of the card catalog file used to locate AnswerBooks.
+See
+.BR ab_cardcatalog (4)
+for more information.
+.SH SEE ALSO
+.LP
+.BR docviewer (1),
+.BR lp (1),
+.BR ab_cardcatalog (4)
+.SH DIAGNOSTICS
+.LP
+.B viewprint
+prints an error message on failure and returns a
+non-zero exit status.
+.SH NOTES
+.LP
+.B viewprint
+assumes the printer is PostScript-capable. In addition, most
+AnswerBook documents are typeset using the Palatino font, and
+will not print correctly on a printer that does not support
+that font.
+.LP
+PostScript is a trademark of Adobe Systems Incorporated.
+.br
+AnswerBook is a trademark of Sun Microsystems, Inc., licensed
+to SunSoft, Inc.

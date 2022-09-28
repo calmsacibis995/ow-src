@@ -1,0 +1,587 @@
+! 	@(#)Props.ad	1.63 93/08/03 SMI
+!
+! Props App-Defaults File
+!
+! Workspace Properties Foundation
+!
+*props.title:						Workspace Properties
+*props.winType:						Command
+*props.pushpin:						In
+*props.resizeCorners:					False
+*props.menuType:					Limited
+*props.x:						0
+*props.y:						0
+*propsPopup.layoutType:					FIXEDCOLS
+*propsPopup.measure:					1
+!
+! Foundation - Top Row Of Widgets
+!
+*topRow*categoryChoice.x:				20
+*topRow*categoryChoice.label:				Category:
+*topRow*categoryChoice*exclusive.layoutType:		FIXEDCOLS
+*topRow*standButton.xVaryOffset:			True
+*topRow*standButton.xAttachRight:			True
+*topRow*standButton.xAttachOffset:			20
+*topRow*standButton.yOffset:				4
+*topRow*standButton.label:                      	Reset To Standard
+!
+! Foundation - Border outline container
+!
+*propsBorder.layoutType:				FIXEDCOLS
+*propsBorder.borderWidth:				1
+!
+! Foundation - Main Control Area
+!
+*propsMain.layoutType:					FIXEDCOLS
+*propsMain.urm_notice*string: 				\n\n Unable to update resource manager. \n             Please try again.\n\n
+!
+! Foundation - Common Buttons
+!
+*propsButtons.orientation:				horizontal
+*propsButtons*buttons.layoutType:			fixedrows
+*propsButtons*buttons.hSpace:				15
+*propsButtons*ControlArea.layoutType:			fixedcols
+*propsButtons*ControlArea.center:			TRUE
+*propsButtons*ControlArea.sameSize:			columns
+*propsButtons*applyButton.label:			Apply
+*propsButtons*resetButton.label:			Reset
+!
+! Foundation - Error Notice Policy
+!
+*errorNotice.borderWidth: 				1
+*errorNotice.allowShellResize: 				False
+*errorNotice*strip:					False
+*errorNotice*confirmButton.label:			Continue
+*errorNotice*yesButton.label:				Continue
+*errorNotice*noButton.label:				Cancel
+*errorNotice*StaticText.alignment:			Center
+*errorNotice*StaticText.hSpace:				24
+*errorNotice*StaticText.vSpace:				24
+*errorNotice*ControlArea.vPad:				12
+! The noticeShell is a composite widget with a controlArea containing a
+! staticText & a controlArea. The second controlArea contains the buttons.
+! Thus, to obtain a border around the outer controlArea but not the inner
+! controlArea, it is necessary when setting the outer controlArea border
+! to one, to set the border on the inner controlArea to zero. The following
+! two lines accomplish this.
+*errorNotice*ControlArea.borderWidth:			1
+*errorNotice*ControlArea*ControlArea.borderWidth:	0
+!
+! Foundation - Footer Error Message Characteristics
+!
+*propsError*gravity:					West
+*propsError*hSpace:					4
+*propsError*recomputeSize:				False
+!
+! Foundation - Error Messages
+!
+*propsPopup*noAbbrevExclusive:	Abbreviated button "%s" missing exclusive.
+*propsPopup*noAbbrevParent:	Unable to get parent of abbreviated button "%s".
+*propsPopup*noCategoryCreation:	Unable to create category.
+*propsPopup*noCategoryInfo:	Missing category info. Can't change categories.
+*propsPopup*noCategoryName:	Missing category name. Can't change categories.
+*propsPopup*noDefaultDatabase:	Can't find default database "%s".\nIs $OPENWINHOME set properly? Is OpenWindows installed correctly?
+*propsPopup*noGetResourceValue:	Internal error. Cannot retrieve new resource value.
+*propsPopup*noMenuPane:		No menu pane for abbreviated menu button "%s".
+*propsPopup*noPutResourceValue: Internal error. Cannot store new resource value.
+*propsPopup*noResourceManager:	Cannot get RESOURCE_MANAGER string. XGetWindowProperty() returned %d.
+*propsPopup*noStringConversion:	Bad string value "%s" for "%s".
+*propsPopup*noUpdateAbbrev:	Internal error. Unable to update abbreviated menu button.
+*propsPopup*noUpdateSetting:	Internal error. Unable to update setting.
+*propsPopup*noUpdateXrm:	Unable to update resource manager.
+*propsPopup*noUpdateXrmPopup:	Unable to update resource manager.\nPlease try again.
+*propsPopup*unknownWidgetClass: Attempting to set state of widget "%s" of unknown class %d.
+*propsPopup*valueTooLarge:	Value %d too large for exclusive choice. Choice not set.
+!
+! Foundation - Miscellaneous
+!
+*noHelpString:			There is no help available for this object.
+*StaticText*selectable:					False
+*propsPopup*Caption.space:				10
+!
+! Color Category
+!
+*categoryChoice*color.label:                            Color
+*colorCategory.alignCaptions:                           False
+*colorCategory.layoutType:                              FIXEDCOLS
+*colorCategory.measure:                                 1
+*colorCategory.hPad:                                    18
+*colorCategory.vPad:                                    12
+*colorCategory.vSpace:                                  10
+*colorCategory*PopupWindowShell.pushpin:                IN
+*colorCategory*PopupWindowShell.resizeCorners:          False
+*colorCategory.borderColorString:			#bbbbbb
+!
+*colorCategory*colorWindows.label:                      WINDOWS
+*colorCategory*colorWindows.position:                   Top
+*colorCategory*colorWindows.space:                   	0
+*colorCategory*colorWindows.alignment:                  Left
+*colorCategory*colorWindows*colorType.vSpace:           9
+*colorCategory*colorDataAreas.label:                    DATA AREAS
+*colorCategory*colorDataAreas.position:                 Top
+*colorCategory*colorDataAreas.space:                    0
+*colorCategory*colorDataAreas.alignment:                Left
+*colorCategory*colorDataAreas*colorType.vSpace:         9
+*colorCategory*colorWorkspace.label:                    WORKSPACE
+*colorCategory*colorWorkspace.position:                 Top
+*colorCategory*colorWorkspace.space:                    0
+*colorCategory*colorWorkspace.alignment:                Left
+*colorCategory*colorType.layoutType:                    FIXEDROWS
+*colorCategory*colorType.measure:                       2
+*colorCategory*colorType.alignCaptions:                 True
+*colorCategory*colorType.allowChangeBars:               True
+*colorCategory*colorType.hSpace:                        36
+*colorCategory*colorType*colorFg.label:            \                 Foreground:
+*colorCategory*colorType*colorBg.label:            \                 Background:
+*colorCategory*colorType*pattern.label:                 Pattern:
+*colorCategory*colorType*pattern.alignment:             Top
+*colorCategory*colorType*pattern*labelType:             IMAGE
+*colorCategory*colorType*pattern*labelJustify:          CENTER
+*colorCategory*colorType*pattern*layoutType:    	FIXEDCOLS
+*colorCategory*colorType*pattern*measure:                5
+*colorCategory*colorType*pattern*patternPatch.width:    32
+*colorCategory*colorType*pattern*patternPatch.height:   28
+*colorCategory*colorType*pattern*patternPatch.borderWidth: 2
+!
+*colorCategory*colorType*control.layoutType:            FIXEDROWS
+*colorCategory*colorType*control.measure:               1
+*colorCategory*colorType*control.vPad:                  0
+*colorCategory*colorType*control*colorPatch.width:      26
+*colorCategory*colorType*control*colorPatch.height:     22
+*colorCategory*colorType*control*colorPatch.borderWidth: 2
+*colorCategory*colorType*control*chooserButton.label:   ...
+*colorCategory*colorType*control*chooserButton.labelJustify: Center
+!
+*colorCategory*percentHeightSmall:                      84
+*colorCategory*percentHeightMedium:                     86
+*colorCategory*percentHeightLarge:                      90
+*colorCategory*percentHeightXLarge:                     97
+*colorCategory*previewDraw.height:                	100
+*colorCategory*previewDraw.width:                	250
+*colorCategory*previewDraw.borderWidth:             	1
+*colorCategory*percentWindowWidth:			64
+*colorCategory*percentWindowHeight:			90
+*colorCategory*titleString:				Window Title
+*colorCategory*controlAreaString:			Control Area:
+*colorCategory*buttonTextString:			Button
+*colorCategory*dataAreaString:				Data Area
+!
+*colorCategory*colorChooser00.title:                	Window Foreground Color
+*colorCategory*colorChooser01.title:                	Window Background Color
+*colorCategory*colorChooser02.title:                	Data Foreground Color
+*colorCategory*colorChooser03.title:                	Data Background Color
+*colorCategory*colorChooser04.title:                Workspace Foreground Color
+*colorCategory*colorChooser05.title:                Workspace Background Color
+!
+! Color Category - Color Choosers
+!
+*colorCategory*choosers.layoutType:                 	FIXEDCOLS
+*colorCategory*choosers.measure:                    	2
+*colorCategory*customChoice*exclusive.layoutType:       FIXEDROWS
+*colorCategory*customChoice*button00.label:             \   Palette   
+*colorCategory*customChoice*button01.label:             \    Custom   
+*colorCategory*customChoice.hSpace:                     20
+*colorCategory*customChoice*colorPatch.width:		70
+*colorCategory*customChoice*colorPatch.height:		18
+*colorCategory*customChoice*colorPatch.borderWidth:	2
+!
+! Color Category - Color Chooser Palette
+!
+*colorCategory*palette.layoutType:                  	FIXEDROWS
+*colorCategory*palette.measure:                   	8
+*colorCategory*palette*labelType:                   	IMAGE
+*colorCategory*palette*labelJustify:                	CENTER
+!
+! Color Category - Color Chooser Custom
+!
+*colorCategory*custom.alignCaptions:                	True
+*colorCategory*custom*layoutType:                   	FIXEDCOLS
+! REMIND: Setting the Slider width shouldn't be necessary.
+*colorCategory*custom*Slider.width: 			160
+*colorCategory*custom*Slider*endBoxes:              	False
+*colorCategory*custom*Slider*orientation:           	HORIZONTAL
+*colorCategory*custom*Slider*sliderMin:		      	  0
+*colorCategory*custom*Slider*sliderValue:	      	  0
+*colorCategory*custom*Slider*span:                  	160
+*colorCategory*custom*hue*slider.sliderMax:         	360
+*colorCategory*custom*saturation*slider.sliderMax:  	255
+*colorCategory*custom*brightness*slider.sliderMax:  	255
+*colorCategory*custom*DrawArea.width:               	160
+*colorCategory*custom*DrawArea.height:              	 16
+*colorCategory*custom*DrawArea.borderWidth:         	  1
+*colorCategory*custom*hue.label:                    	Hue:
+*colorCategory*custom*hue.alignment:                   	Top
+*colorCategory*custom*saturation.label:             	Saturation:
+*colorCategory*custom*saturation.alignment:            	Top
+*colorCategory*custom*brightness.label:             	Brightness:
+*colorCategory*custom*brightness.alignment:            	Top
+!
+! Color Category - Error Messages
+!
+*colorCategory*noAllocCells:	Cannot allocate read/write colorcells.\nConsider quitting applications which use many colors.\nRestarting OpenWindows may help with 4-bit color.
+*colorCategory*noAllocColor:	Cannot allocate color "%s". Using black.
+*colorCategory*noAllocRgb:	Cannot allocate color RGB %d %d %d.
+*colorCategory*noColorUpdate:	Cannot convert color "%s". Unable to update color.
+*colorCategory*noColorUseBlack: Cannot convert color "%s". Using black.
+*colorCategory*noDeskSetColors:	Cannot get _SUN_DESKSET_COLORS from root window.
+*colorCategory*noPaletteUpdate:	Cannot set color palette button number %d.
+*colorCategory*noPatternDb:	Cannot load color pattern database "%s".
+*colorCategory*noPatternDir:	Cannot find pattern directory "%s".
+*colorCategory*noPatternUpdate: Cannot convert color "%s". Unable to update pattern.
+!
+! Fonts Category
+!
+*categoryChoice*fonts.label: 			Fonts
+*fontsCategory.layoutType:			FIXEDCOLS
+*fontsCategory.allowChangeBars:			True
+*fontsCategory.alignCaptions:			TRUE
+*fontsCategory.vSpace:				12
+*fontsCategory*defaultFont0:			Lucida Sans-Sans (B&H)
+*fontsCategory*defaultFont1:			Lucida-Sans (B&H)
+*fontsCategory*defaultFont2:			Lucida Sans Typewriter-Sans (B&H)
+*fontsCategory*defaultFont3:			Lucidatypewriter-Sans (B&H)
+*fontsCategory*pointSizeSmall:			10
+*fontsCategory*pointSizeMedium:			12
+*fontsCategory*pointSizeLarge:			14
+*fontsCategory*pointSizeXLarge:			19
+!
+! Fonts Category - Choice
+!
+*fontsCategory*fontChoices.label:		Choices:
+*fontsCategory*fontChoices*button00.set:	True
+*fontsCategory*fontChoices*button00.label:	\          Standard           
+*fontsCategory*fontChoices*button01.label:	\           Custom           
+!
+! Fonts Category - Typeface
+!
+*fontsCategory*fontTypefaces.label:		Typeface:
+*fontsCategory*fontTypefaces.alignment:		Top
+*fontsCategory*fontTypefaces.slist*viewHeight:	7
+*fontsCategory*fontTypefaces.slist*prefMinWidth:	305
+!
+! Fonts Category - Scale
+!
+*fontsCategory*fontScale.label:			Scale:
+*fontsCategory*fontScale*button01.set:		True
+*fontsCategory*fontScale*button00.label:	\   Small   
+*fontsCategory*fontScale*button01.label:	\  Medium  
+*fontsCategory*fontScale*button02.label:	\  Large   
+*fontsCategory*fontScale*button03.label:	Extra Large
+!
+! Fonts Category - Preview
+!
+*fontsCategory*previewDraw.height:                      100
+*fontsCategory*previewDraw.width:                       250
+*fontsCategory*previewDraw.borderWidth:                 1
+!
+! Fonts Category - Error Messages
+!
+*fontsCategory*usingDefaultFont:	Using default font.
+*fontsCategory*usingDefaultDataFont:	Proportional font selected; using monospace font in Data Areas.
+*fontsCategory*fontNotFound:	Font no longer available: %s
+*fontsCategory*badPointSize:	Invalid point size (%d) encountered.
+!
+! Keyboard Category
+!
+*categoryChoice*keyboard.label:			Keyboard
+*keyboardCategory.layoutType:			FIXEDCOLS
+*keyboardCategory.alignCaptions:		True
+*keyboardCategory.allowChangeBars:		True
+*keyboardCategory.vSpace:			15
+!
+*keyboardCategory*mouseless.label:		Keyboard Mouse Equivalents:
+*keyboardCategory*mouseless*button00.label:	Basic Functions            
+*keyboardCategory*mouseless*button01.label:	All Functions              
+*keyboardCategory*mouseless*button00.set:	True
+*keyboardCategory*mouseless*layoutType:		FIXEDCOLS
+*keyboardCategory*mouseless.alignment:		top
+!
+*keyboardCategory*menuAccel.label:		Keyboard Menu Equivalents:
+*keyboardCategory*menuAccel*button00.label:	Application + Window 
+*keyboardCategory*menuAccel*button01.label:	Application Only     
+*keyboardCategory*menuAccel*button02.label:	None                 
+*keyboardCategory*menuAccel*button00.set:	True
+*keyboardCategory*menuAccel*layoutType:		FIXEDCOLS
+*keyboardCategory*menuAccel.alignment:		top
+*keyboardCategory*menuAccel*checkbox.label:	Keyboard Equivalents
+*keyboardCategory*menuAccel*checkbox.position:	right
+!
+*keyboardCategory*keyClick.label:		Other Options:
+*keyboardCategory*keyClick*checkbox.label:	Key Click
+*keyboardCategory*keyClick*checkbox.position:	right
+!
+*keyboardCategory*repeatKeys.label:		\ 
+*keyboardCategory*repeatKeys*checkbox.label:	Key Repeat
+*keyboardCategory*repeatKeys*checkbox.position:	right
+!
+! Keyboard Category - Error Messages
+!
+*keyboardCategory*noMenuAccelButton:	Menu accelerator button missing.
+*keyboardCategory*noItemInfo:		Widget item info is missing.
+!
+! Menu Category
+!
+*categoryChoice*menu.label:				Menus
+*menuCategory.layoutType:				FIXEDCOLS
+*menuCategory.alignCaptions:				True
+*menuCategory.allowChangeBars:				True
+!
+*menuCategory*dragRightDistance.label:			Drag-Right Distance:
+*menuCategory*dragRightDistance.alignment:		top
+*menuCategory*dragRightDistance*slider.sliderValue:	100
+*menuCategory*dragRightDistance*slider.minLabel:	0
+*menuCategory*dragRightDistance*slider.sliderMin:	0
+*menuCategory*dragRightDistance*slider.maxLabel:	150
+*menuCategory*dragRightDistance*slider.sliderMax:	150
+*menuCategory*dragRightDistance*slider.span:		150
+*menuCategory*dragRightDistance*slider.orientation:	HORIZONTAL
+*menuCategory*dragRightDistance*slider.ticks:		10
+*menuCategory*dragRightDistance*slider.tickUnit:	slidervalue
+*menuCategory*dragRightDistance*slider.endBoxes:	FALSE
+*menuCategory*dragRightDistance*units.string:		pixels
+!
+*menuCategory*leftButtonIsSelect:			Left Mouse Press:
+*menuCategory*rightButtonIsSelect:			Right Mouse Press:
+*menuCategory*selectMousePress.alignment:		Top
+*menuCategory*selectMousePress*layoutType:		FIXEDCOLS
+*menuCategory*selectMousePress*button00.label:	Displays Menu             
+*menuCategory*selectMousePress*button01.label:	Selects Default Item
+*menuCategory*selectMousePress*button00.set:		True
+!
+! Miscellaneous Category
+!
+*categoryChoice*misc.label:				Miscellaneous
+*miscCategory.layoutType:				FIXEDCOLS
+*miscCategory.alignCaptions:				True
+*miscCategory.allowChangeBars:				True
+*miscCategory.vSpace:					10
+!
+*miscCategory*screenSaver.label:			Screen Saver:
+*miscCategory*screenSaver*button0.set:			True
+*miscCategory*screenSaver*button0.label:		\  Off   
+*miscCategory*screenSaver*button1.label:		\   Auto   
+*miscCategory*screenSaver*numeric.charsVisible:		4
+*miscCategory*screenSaver*numeric.string:		10
+*miscCategory*screenSaver*numcontrol.sensitive:		False
+*miscCategory*screenSaver*units.string:			minutes
+!
+*miscCategory*beep.label:				Beep:
+*miscCategory*beep*button0.label:			\  Always  
+*miscCategory*beep*button0.set:				True
+*miscCategory*beep*button1.label:			\Notices Only
+*miscCategory*beep*button2.label:			\   Never   
+!
+*miscCategory*beepDuration.label:			Beep Duration:
+*miscCategory*beepDuration.alignment: top
+*miscCategory*beepDuration*slider.sliderValue:		100
+*miscCategory*beepDuration*slider.minLabel:		0
+*miscCategory*beepDuration*slider.sliderMin:		0
+*miscCategory*beepDuration*slider.maxLabel:		1000
+*miscCategory*beepDuration*slider.sliderMax:		1000
+*miscCategory*beepDuration*slider.span:			140
+*miscCategory*beepDuration*slider.orientation:		HORIZONTAL
+*miscCategory*beepDuration*slider.endBoxes:		False
+*miscCategory*beepDuration*slider.ticks:		100
+*miscCategory*beepDuration*slider.tickUnit:		SLIDERVALUE
+*miscCategory*beepDuration*units.string:		milliseconds
+!
+*miscCategory*setInputArea.label:			Set Active Window:
+*miscCategory*setInputArea*button0.label:		\     Click Mouse    
+*miscCategory*setInputArea*button0.set:			True
+*miscCategory*setInputArea*button1.label:		\   Move Pointer  
+!
+*miscCategory*iconLocation.label:			Icon Location:
+*miscCategory*iconLocation*button0.label:		\  Top   
+*miscCategory*iconLocation*button1.label:		\ Bottom 
+*miscCategory*iconLocation*button2.label:		\  Left  
+*miscCategory*iconLocation*button3.label:		\ Right  
+*miscCategory*iconLocation*button1.set:			True
+!
+*miscCategory*scrollbarPlacement.label:			Scrollbar Placement:
+*miscCategory*scrollbarPlacement*button0.label:		\          Left           
+*miscCategory*scrollbarPlacement*button1.label:		\         Right        
+*miscCategory*scrollbarPlacement*button1.set:		True
+!
+! Miscellaneous Category Error Messages
+!
+*miscCategory*badTimeoutValue:	Please use numerals to specify minutes for the screen saver.\nSince the value "%s" you entered was blank or contained non-numeric\ncharacters, the screen saver timeout was reset to its previous value.
+!
+! Mouse Category
+!
+*categoryChoice*mouse.label:				Mouse
+*mouseCategory.layoutType:				FIXEDCOLS
+*mouseCategory.alignCaptions:				True
+*mouseCategory.allowChangeBars:				True
+*mouseCategory.vSpace:					10
+!
+*mouseCategory*acceleration.label:			Mouse Acceleration:
+*mouseCategory*acceleration.alignment:			top
+*mouseCategory*acceleration*slider.endBoxes:		False
+*mouseCategory*acceleration*slider.maxLabel:		High
+*mouseCategory*acceleration*slider.minLabel:		None
+*mouseCategory*acceleration*slider.orientation:		HORIZONTAL
+*mouseCategory*acceleration*slider.sliderMax:		10
+*mouseCategory*acceleration*slider.sliderMin:		1
+*mouseCategory*acceleration*slider.sliderValue:		2
+*mouseCategory*acceleration*slider.span:		125
+*mouseCategory*acceleration*slider.ticks:		1
+*mouseCategory*acceleration*slider.tickUnit:		SLIDERVALUE
+!
+*mouseCategory*threshold.label:				Mouse Threshold:
+*mouseCategory*threshold.alignment:			top
+*mouseCategory*threshold*slider.endBoxes:		False
+*mouseCategory*threshold*slider.maxLabel:		50
+*mouseCategory*threshold*slider.minLabel:		1
+*mouseCategory*threshold*slider.orientation:		HORIZONTAL
+*mouseCategory*threshold*slider.sliderMax:		50
+*mouseCategory*threshold*slider.sliderMin:		1
+*mouseCategory*threshold*slider.sliderValue:		15
+*mouseCategory*threshold*slider.span:			125
+*mouseCategory*threshold*slider.ticks:			7
+*mouseCategory*threshold*slider.tickUnit:		SLIDERVALUE
+*mouseCategory*threshold*units.string:			pixels
+!
+*mouseCategory*multiClickInterval.label:		Multi-Click Interval:
+*mouseCategory*multiClickInterval.alignment:		top
+*mouseCategory*multiClickInterval*control.layoutType:	FIXEDROWS
+*mouseCategory*multiClickInterval*slider.endBoxes:	False
+*mouseCategory*multiClickInterval*slider.maxLabel:	1.0
+*mouseCategory*multiClickInterval*slider.minLabel:	0.1
+*mouseCategory*multiClickInterval*slider.orientation:	HORIZONTAL
+*mouseCategory*multiClickInterval*slider.sliderMax:	10
+*mouseCategory*multiClickInterval*slider.sliderMin:	1
+*mouseCategory*multiClickInterval*slider.sliderValue:	4
+*mouseCategory*multiClickInterval*slider.span:		125
+*mouseCategory*multiClickInterval*slider.ticks:		1
+*mouseCategory*multiClickInterval*slider.tickUnit:	SLIDERVALUE
+*mouseCategory*multiClickInterval*units.string:		seconds
+!
+*mouseCategory*buttonMapping.label:			Mouse Button Order:
+*mouseCategory*buttonMapping*layoutType:		FIXEDCOLS
+*mouseCategory*buttonMapping.alignment:			top
+*mouseCategory*buttonMapping*RectButton.labelJustify:	Center
+*mouseCategory*buttonMapping*button0.label:		\    SELECT-ADJUST-MENU    
+*mouseCategory*buttonMapping*button1.label:		\   MENU-ADJUST-SELECT   
+*mouseCategory*buttonMapping*button0.set:		True
+!
+*mouseCategory*scrollbarJumping.label:			Pointer Jumping:
+*mouseCategory*scrollbarJumping*checkbox.label:		Scrollbars
+*mouseCategory*scrollbarJumping*checkbox.position:	right
+!*mouseCategory*scrollbarJumping*checkbox.set:		True
+!
+*mouseCategory*popupJumping.label:			\  
+*mouseCategory*popupJumping*checkbox.label:		Pop-Up Windows
+*mouseCategory*popupJumping*checkbox.position:		right
+!*mouseCategory*popupJumping*checkbox.set:		True
+!
+! Mouse Category Error Messages
+!
+*mouseCategory*noItemInfo:	Missing item_info for widget "%s".
+*mouseCategory*badPtrMapping:	Bad return value %d from XSetPointerMapping().
+*mouseCategory*buttonDown:	Unable to switch mouse buttons.\nPerhaps you were holding down\none of the mouse buttons?
+!
+! Screen Saver Category
+!
+*categoryChoice*screensaver.label:			Screen Saver
+*screensaverCategory.layoutType:			FIXEDCOLS
+*screensaverCategory.alignCaptions:			True
+*screensaverCategory.allowChangeBars:			True
+!
+*screensaverCategory*OnOff.label:			Screen Saver:
+*screensaverCategory*OnOff*button0.label:		On
+*screensaverCategory*OnOff*button0.set:			True
+*screensaverCategory*OnOff*button1.label:		Off
+!
+*screensaverCategory*SaveMethod.label:			Save Method:
+*screensaverCategory*SaveMethod*button0.label:		VideoBlanking
+*screensaverCategory*SaveMethod*button0.set:		True
+*screensaverCategory*SaveMethod*button1.label:		Use Image
+!
+*screensaverCategory*IdleTime.label:			Idle Time:
+*screensaverCategory*IdleTime*units.string:		minutes
+*screensaverCategory*IdleTime*textfield.charsVisible:	  4
+*screensaverCategory*IdleTime*textfield.string:		 10
+*screensaverCategory*IdleTime*slider.sliderValue:	 10
+*screensaverCategory*IdleTime*slider.minLabel:		  1
+*screensaverCategory*IdleTime*slider.sliderMin:		  1
+*screensaverCategory*IdleTime*slider.maxLabel:		 60
+*screensaverCategory*IdleTime*slider.sliderMax:		 60
+*screensaverCategory*IdleTime*slider.span:		120
+*screensaverCategory*IdleTime*slider.orientation:	HORIZONTAL
+*screensaverCategory*IdleTime*slider.endBoxes:		False
+!
+*screensaverCategory*ImageCycleTime.label:      	Image Cycle TIme:
+*screensaverCategory*ImageCycleTime*text.string:       	seconds
+*screensaverCategory*ImageCycleTime*textfield.charsVisible: 4
+*screensaverCategory*ImageCycleTime*textfield.string:	  5
+*screensaverCategory*ImageCycleTime*slider.sliderValue:	  5
+*screensaverCategory*ImageCycleTime*slider.minLabel:	  1
+*screensaverCategory*ImageCycleTime*slider.sliderMin:	  1
+*screensaverCategory*ImageCycleTime*slider.maxLabel:	600
+*screensaverCategory*ImageCycleTime*slider.sliderMax:	600
+*screensaverCategory*ImageCycleTime*slider.span:	120
+*screensaverCategory*ImageCycleTime*slider.orientation:	HORIZONTAL
+*screensaverCategory*ImageCycleTime*slider.endBoxes:	False
+!
+! Locale Category
+!
+*categoryChoice*locale.label:			Locale
+*localeCategory*allowChangeBars:        	True
+!
+! make the Panel use a vertical layout
+*localeCategory.layoutType:                   FIXEDCOLS
+!  make each menu vertical
+*localeCategory*basicExclusive.layoutType:	FIXEDCOLS
+*localeCategory*displayExclusive.layoutType:	FIXEDCOLS
+*localeCategory*inputExclusive.layoutType:	FIXEDCOLS
+*localeCategory*timeExclusive.layoutType:	FIXEDCOLS
+*localeCategory*numericExclusive.layoutType:	FIXEDCOLS
+*localeCategory*blankLine.label:		\ 
+!
+!  everything else defaults to ROWS, so the preview gets
+!    displayed on the right, where it belongs.
+!
+! label the main captions
+*localeCategory*basicCaption.label:		Basic Locale:
+*localeCategory*displayCaption.label:		Display Locale:
+*localeCategory*inputCaption.label:		Input Locale:
+*localeCategory*timeCaption.label:		Time Format:
+*localeCategory*numericCaption.label:		Numeric Format:
+!
+! and align them along the ":"
+*localeCategory.alignCaptions:			True
+!
+!
+! Locale Error Messages
+!
+*localeCategory*noLocaleFile: Missing locale file for \"%s\" locale. Using C.
+!
+!
+! WorkSpace Programs Menu Category 
+!
+*categoryChoice*wkspMenu.label:					Programs Menu
+!
+*wkspMenuListControlArea.alignCaptions:				TRUE
+*wkspMenuListControlArea.layoutType:				FIXEDCOLS
+*wkspMenuListControlArea*scrollingListCaption.alignment:	top
+*wkspMenuListControlArea*scrollingListCaption.label:		Menu Contents:
+*wkspMenuListControlArea*scrollingList*viewHeight:		12
+*wkspMenuListControlArea*scrollingList*prefMinWidth:		208
+*wkspMenuListControlArea*labelTextLineCaption.label:		Label:
+*wkspMenuListControlArea*labelTextLine.charsVisible:		17
+*wkspMenuListControlArea*commandTextLineCaption.label:		Command:
+*wkspMenuListControlArea*commandTextLine.charsVisible:		17
+*wkspMenuButtonControlArea.layoutType:				FIXEDCOLS
+*wkspMenuButtonControlArea*wkspMenuChange.label:		Change
+*wkspMenuButtonControlArea*wkspMenuAdd.label:			Add
+*wkspMenuButtonControlArea*wkspMenuCut.label:			Cut
+*wkspMenuButtonControlArea*wkspMenuCopy.label:			Copy
+*wkspMenuButtonControlArea*wkspMenuPasteBefore.label:		Paste Before
+*wkspMenuButtonControlArea*wkspMenuPasteAfter.label:		Paste After
+*wkspMenuButtonControlArea*wkspMenuDelete.label:		Delete
+*wkspMenuButtonControlArea*wkspMenuDefault.label:		Set Default
+!
+! WorkSpace Programs error messages 
+!
+*wkspMenuControlArea*programsMenuNotIncluded: Changes to the Workspace Programs menu are stored in the\n file \".openwin-menu-programs\" in your home directory.\nYour \".openwin-menu\" file does not include this file so any\n changes you make will not be avaliable via the Workspace menu.\nSee the olwm(1) man page for information on how to include your\n \".openwin-menu-programs\" file in your \".openwin-menu\" file.\n
+

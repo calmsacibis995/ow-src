@@ -1,0 +1,192 @@
+DESCRIPTION
+
+	The ScrolledWindow widget is used as an easy method of implementing an OPEN LOOK 
+	scrollable text or graphics pane.  This widget provides no innate text or graphics
+	semantics (these are handled by the widget which the ScrolledWindow manages) 
+	and really only provides a 'window' (view) into a larger widget.
+
+	The ScrolledWindow is comprised of the following components:
+		content widget 		(created by application as child of ScrolledWindow)
+		horizontal scrollbar 	(optional)
+		vertical scrollbar	(optional)
+		view of the content  	(created automatically)
+
+	The view of the content is never larger than needed to show the content.
+	Unless forced to appear, a scrollbar is removed from the side where it
+	is no longer needed.
+
+	For more detailed information on the ScrolledWindow Widget, see the following
+	Sections in the OPEN LOOK Intrinsics Toolkit Widget Set Reference Manual:
+		. ScrolledWindow
+		. Scrollbar
+
+
+EXAMPLE CODE
+
+The following code could be used to Create a scrolling canvas.
+
+/**************************************************************************************/
+#include <X11/Intrinsic.h>
+#include <X11/StringDefs.h>
+#include <Xol/OpenLook.h>
+
+#include <X11/Shell.h>
+#include <Xol/ScrolledWi.h>
+#include <Xol/Form.h>
+#include <Xol/Stub.h>
+
+#define CANVAS_WT	400
+#define CANVAS_HT	200
+
+/**********************************************************************
+ * exposeHandler: routine to handle Exposure Events in Canvas (Stub).
+ **********************************************************************/
+void exposeHandler(w, xevent, region)
+Widget w;
+XEvent *xevent;
+Region region;
+{
+	Display *display;
+	GC gc;
+	XGCValues gc_values;
+	Window paint_win;
+	
+	display = XtDisplay(w);
+	paint_win = XtWindow(w);
+
+	/* All xlib drawing code would go here....for example...*/
+
+	gc_values.foreground = BlackPixel(display, DefaultScreen(display));
+	gc = XtGetGC(w, GCForeground, gc_values);
+
+	XDrawArc(display, paint_win, gc, 20, 20, 
+			CANVAS_WT - 50, CANVAS_HT - 50, 0, 360*64);
+	XDrawArc(display, paint_win, gc, 40, 40, 
+			CANVAS_WT - 90, CANVAS_HT - 90, 0, 360*64);
+	XDrawArc(display, paint_win, gc, 60, 60, 
+			CANVAS_WT - 130, CANVAS_HT - 130, 0, 360*64);
+	XDrawArc(display, paint_win, gc, 80, 80,
+			CANVAS_WT - 170, CANVAS_HT - 170, 0, 360*64);
+
+
+
+}
+/*************************************************************************/
+
+main(argc, argv)
+int argc;
+char **argv;
+{
+	Widget toplevel, form, scrolledwin, canvas;
+	XtAppContext app;
+
+	OlToolkitInitialize(NULL);
+	toplevel = XtAppInitialize(&app, "Test", 
+				(XrmOptionDescRec *)NULL,
+				(Cardinal)0, (int *)&argc, argv,
+				(String *)NULL, (ArgList)NULL, 0);
+
+	/*
+	 * Restrict the size which the user can expand the window
+	 */
+	XtVaSetValues(toplevel,
+				XtNmaxWidth,	(XtArgVal)CANVAS_WT + 10,
+				XtNmaxHeight,	(XtArgVal)CANVAS_HT + 10,
+				NULL);
+
+	/*
+	 * Create A Scrolled Canvas where the scrollable view will
+	 * exand/shrink, depending on how large the user resizes the
+	 * window.
+	 * To get the resizing capabilities, we place the scrolled
+	 * window in A Form and attach it's right & botttom to the
+	 * Form.
+	 */
+	form = XtVaCreateManagedWidget("form",
+				formWidgetClass,
+				toplevel,
+				NULL);
+
+	scrolledwin = XtVaCreateManagedWidget("scrolledwin", 
+				scrolledWindowWidgetClass,
+				form,
+				XtNwidth,	(XtArgVal) CANVAS_WT/2,
+				XtNheight,	(XtArgVal) CANVAS_HT/2,
+				/* Set Form constraint resources */
+				XtNxAttachRight,(XtArgVal)True,
+				XtNxVaryOffset, (XtArgVal)False,
+				XtNxResizable,  (XtArgVal)True,
+				XtNyAttachBottom,(XtArgVal)True,
+				XtNyVaryOffset, (XtArgVal)False,
+				XtNyResizable,  (XtArgVal)True,
+				NULL);
+
+	/*** Create Canvas(Stub) as child of Scrolled Window ***/
+	canvas = XtVaCreateManagedWidget("canvas", 
+				stubWidgetClass, 
+				scrolledwin,
+				XtNwidth, 	(XtArgVal)CANVAS_WT,
+				XtNheight, 	(XtArgVal)CANVAS_HT,
+				XtNexpose,	(XtArgVal)exposeHandler,
+				NULL);
+
+	XtRealizeWidget(toplevel);
+
+	XtAppMainLoop(app);
+
+}
+/********************************END EXAMPLE*****************************/
+
+
+
+
+RESOURCES
+_______________________________________________________________________________________________
+Resource Name		Type		Default		Brief Description
+_______________________________________________________________________________________________
+
+XtNalignHorizontal	OlDefine	OL_BOTTOM	position of horizontal scrollbar
+XtNalignVertical	OlDefine	OL_RIGHT	position of vertical scrollbar
+XtNancestorSensitive	Boolean		TRUE		Will immediate parent receive events?
+XtNborderColor		Pixel		Black		border color of widget
+XtNborderPixmap		Pixmap		(none)		pixmap used for tiling the border
+XtNcomputeGeometries	Function	NULL		called when scrolledwindow lays out children
+XtNconsumeEvent		XtCallbackList	NULL		called when event occur
+XtNcurrentPage		int		1		*see OLIT Widget Set Reference Manual
+XtNdepth		int		(parent's)	number of bits used for each pixel
+XtNdestroyCallback	XtCallbackList	NULL		routines called when widget is destroyed
+XtNforceHorizontalSB	Boolean		FALSE		force scrollbar regardless of size?
+XtNforceVerticalSB	Boolean		FALSE		force scrollbar regardless of size?
+XtNforeground		Pixel		Black		foreground color of widget
+XtNhAutoScroll		Boolean		TRUE		should scrolled window handle scrolling?
+XtNhInitalDelay		int		500		initial repeat delay when arrow is pressed
+XtNhMenuPane		Widget		(none)		*see OLIT Widget Set Reference Manual
+XtNhRepeatRate		int		100		repeat delay when arrow is pressed
+XtNhScrollbar		Widget		(none)		handle to horizontal scrollbar
+XtNhSliderMoved		XtCallbackList	NULL		*see OLIT Widget Set Reference Manual
+XtNhStepSize		int		1		size in pixels of minimal scroll unit
+XtNheight		Dimension	(calculated)	height of widget's window in pixels
+XtNinitialX		Position	0		initial x position of child in window
+XtNinitialY		Position	0		initial y position of child in window
+XtNinputFocusColor	Pixel		Red		color of input focus indicator
+XtNmappedWhenManaged	Boolean		TRUE		will widget be mapped when managed?
+XtNrecomputeHeight	Boolean		TRUE		shrink view height when child resized?
+XtNrecomputeWidth	Boolean		TRUE		shrink view width when child resized?
+XtNreferenceName	String		NULL		see manpage		
+XtNreferenceWidget	Widget		NULL		see manpage
+XtNsensitive		Boolean		TRUE		will widget receive input events?
+XtNshowPage		OlDefine	OL_NONE		*see OLIT Widget Set Reference Manual
+XtNtraversalOn		Boolean		TRUE		is mouseless turned "on" for widget?
+XtNuserData		XtPointer	NULL		storage for user defined data
+XtNviewHeight		Dimension	n/a		preferred number of lines in view height
+XtNviewWidth		Dimension	n/a		preferred number of lines in view width
+XtNvAutoScroll		Boolean		TRUE		should scrolled window handle scrolling?
+XtNvInitalDelay		int		500		initial repeat delay when arrow is pressed
+XtNvMenuPane		Widget		(none)		*see OLIT Widget Set Reference Manual
+XtNvRepeatRate		int		100		repeat delay when arrow is pressed
+XtNvScrollbar		Widget		(none)		handle to vertical scrollbar
+XtNvSliderMoved		XtCallbackList	NULL		*see OLIT Widget Set Reference Manual
+XtNvStepSize		int		1		size in pixels of minimal scroll unit
+XtNwidth		Dimension	(calculated)	width of widget's window in pixels
+XtNx			Position	0		x coord of widget's upper left corner
+XtNy			Position	0		y coord of widget's uuper left corner

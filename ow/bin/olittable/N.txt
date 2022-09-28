@@ -1,0 +1,189 @@
+DESCRIPTION
+
+	The NoticeShell widget provides a method for popping up a window containing
+	'alert' type messages for the user.  The popup window will remain and block
+	further interaction with the application (application headers become "busy")
+	until the user awknowledges the message has been read by selecting a button
+	in the notice window.
+
+	The Notice widget is comprised of the following widget components:
+		the NoticeShell		(created automatically)
+		the textarea		(created automatically as child of Notice)
+		the control area	(created automatically as child of Notice)
+		optional control widgets(created by application as children of control area)
+		button(s)		(created by application as children of control area)
+
+	For more detailed and complete information on the NoticeShell Widget, see the 
+	following Section in the OPEN LOOK Intrinsics Toolkit Widget Set Reference Manual:
+		. Notice
+		. Shell Resources
+
+
+EXAMPLE CODE
+
+The following code could be used to Create the example Notice Widget shown 
+in the Table (All color specific code has been removed for simplification):
+
+/**************************************************************************************/
+#include <X11/Intrinsic.h>
+#include <X11/StringDefs.h>
+#include <Xol/OpenLook.h>
+#include <Xol/Notice.h>
+
+#include <Xol/ControlAre.h>
+#include <Xol/OblongButt.h>	
+	
+/***********************************************************************
+ * CreateSimpleNotice: function used to create a simple implementation of
+ * a Notice Widget.  It creates a notice composed of a text message
+ * (passed in as parameter) and an "Okay" button (selection dismisses
+ * Notice).
+ * This function returns the handle to the created Notice widget.
+ ************************************************************************/
+Widget
+CreateSimpleNotice(name, parent, message)
+char *name;
+Widget parent;
+char *message;
+{
+	Widget notice, message_area, controlarea;
+
+	/*
+	 * Create Notice Shell
+	 */
+	notice = XtVaCreatePopupShell(name, 
+				noticeShellWidgetClass, 
+				parent,
+				/* Declare Widget to be "busy" */
+				XtNemanateWidget,(XtArgVal)parent,
+				NULL);
+
+	/*
+	 * Get handles for textarea and control area of Notice
+	 */
+	XtVaGetValues(notice,
+			XtNtextArea, 	&message_area,
+			XtNcontrolArea,&controlarea,
+			NULL);
+	/*
+	 * add message to textarea of noticebox
+	 */
+	XtVaSetValues(message_area,
+			XtNstring,	(String)message,
+			NULL);	
+	/*
+	 * Create "okay" button: this button has an exit() callback
+	 */
+	XtVaCreateManagedWidget("Okay", 
+				oblongButtonWidgetClass,
+				controlarea,
+				NULL);
+	return(notice);
+}
+/****************************************************************/
+/* popupCB: procedure to popup notice (passed in as clientData).
+ ****************************************************************/
+static void popupCB(w,clientData,callData)
+	Widget w;
+	XtPointer clientData, callData;
+{
+	XtPopup((Widget)clientData, XtGrabExclusive);
+}
+/***************************************************************/
+
+main(argc, argv)
+int argc;
+char **argv;
+{	
+	Widget toplevel, controlarea, button, notice;
+	XtAppContext app;
+
+	OlToolkitInitialize(NULL);
+	toplevel = XtAppInitialize(&app, "Test", 
+				(XrmOptionDescRec *)NULL,
+				(Cardinal)0, (int *)&argc, argv,
+				(String *)NULL, (ArgList)NULL, 0);
+
+	controlarea = XtVaCreateManagedWidget("controls", 
+				controlAreaWidgetClass,
+				toplevel, 
+				NULL);
+
+	button = XtVaCreateManagedWidget("Show Notice..", 
+				oblongButtonWidgetClass,
+				controlarea,
+				NULL);
+	/*
+	 * Create Notice Widget
+	 */
+	notice = CreateSimpleNotice("notice", button,
+			 "Read This Message:\nConfirm?");
+
+	/* 
+	 * Add callback to popup button now that we have 
+	 * noticeshell widget ID. 
+	 */
+	XtAddCallback(button, XtNselect, popupCB, (Widget)notice);
+
+	XtRealizeWidget(toplevel);
+	XtAppMainLoop(app);
+
+}	
+/**********************************END EXAMPLE*******************************/
+
+
+
+RESOURCES
+_______________________________________________________________________________________________
+Resource Name		Type		Default		Brief Description
+_______________________________________________________________________________________________
+
+Notice Resources Set:
+
+XtNallowShellResize	Boolean		TRUE		is shell allowed to resize itself?
+XtNancestorSensitive	Boolean		TRUE		Will immediate parent receive events?
+XtNbackground		Pixel		White		background color of widget
+XtNbackgroundPixmap	Pixmap		(none)		pixmap used for tiling the background
+XtNborderColor		Pixel		Black		border color of widget
+XtNborderPixmap		Pixmap		(none)		pixmap used for tiling the border
+XtNconsumeEvent		XtCallbackList	NULL		called when event occurs
+XtNcontrolArea		Widget		(none)		controlarea widget id within Notice
+XtNcreatePopupChildProc			NULL		ftn called before shell is mapped
+XtNdepth		int		(parent's)	number of bits used for each pixel
+XtNdestroyCallback	XtCallbackList	NULL		routines called when widget destroyed
+XtNemanateWidget	Widget		(parent's)	widget to be set to 'busy'
+XtNfocusWidget		Widget		NULL		widget in Notice to get input focus 
+XtNgeometry		String		NULL		can specify size, position of popup
+XtNheight		Dimension	(calculated)	height of widget's window in pixels
+XtNpopdownCallback	XtCallbackList	NULL		called immed. after shell unmapped
+XtNpopupCallback	XtCallbackList	NULL		called immed. before shell mapped
+XtNsaveUnder		Boolean		FALSE		should server attempt save-under?
+XtNsensitive		Boolean		TRUE		will widget receive input events?
+XtNtextArea		Widget		(none)		textarea widget id within Notice
+XtNuserData		XtPointer	NULL		storage for user defined data
+XtNwidth		Dimension	(calculated)	width of widget's window in pixels
+XtNx			Position	0		x coord of widget's upper left corner
+XtNy			Position	0		y coord of widget's uuper left corner
+
+
+ControlArea Resource Set:
+
+XtNhPad			Dimension	4		size in pixels of margin on sides 
+XtNhSpace		Dimension	4		space in pixels between columns
+XtNlayoutType		OlDefine	OL_FIXEDROWS	layout policy of child widgets
+XtNmeasure		int		1		number of rows/cols or fixed hgt/wth
+XtNsameSize		OlDefine	OL_COLUMNS	children are forced to same width
+XtNvPad			Dimension	4		size in pixels of top/bottom margins
+XtNvSpace		Dimension	4		space in pixels between rows
+
+TextArea Resource Set(StaticText Class):
+
+XtNalignment		OlDefine	OL_LEFT		text alignment
+XtNfont			XFontStruct *	(OPENLOOK font)	font used to display text string
+XtNfontColor		Pixel		Black		string font's color
+XtNlineSpace		int		0		space in pixels between lines of text
+XtNstring		String		NULL		string displayed in widget
+XtNstrip		Boolean		TRUE		strip leading/trailing spaces?
+XtNwrap			Boolean		TRUE		wrap lines that are too long for width?		
+
+

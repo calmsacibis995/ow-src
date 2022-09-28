@@ -1,0 +1,51 @@
+.\" Copyright (c) 1994 Sun Microsystems, Inc.
+.TH helpopen 1 "18 November 1993"
+.IX "helpopen" "" "\f3helpopen\f1(1) \(em program to communicate with helpviewer"
+.SH NAME
+helpopen \- utility for programmatically controlling \f3helpviewer\fP
+.SH SYNOPSIS
+.LP
+.B helpopen
+.I help-handbook-file
+.SH DESCRIPTION
+.LP
+.B helpopen
+is a utility for programmatically controlling
+.BR helpviewer (1).
+.LP
+.B helpopen
+sends a ToolTalk request to a running
+.B helpviewer
+to display the specified help handbook file.  If no
+.B helpviewer
+is running,
+.B helpopen
+starts one.
+.LP
+OpenWindows users do not typically need to use
+.B helpopen
+directly.  It is used to implement the "more help"
+feature in OpenWindows spot help.
+.SH OPTIONS
+.LP
+.B helpopen
+accepts the following command line options:
+.TP
+.B \-f \f2help-handbook-file\fP
+Specify the name of the help handbook to be viewed.
+The file name must be relative to a directory in $HELPPATH.  See
+.BR helpviewer (1)
+for more information.
+.SH DIAGNOSTICS
+.LP
+.B helpopen
+prints an error message on failure and returns non-zero exit status.
+.SH BUGS
+.LP
+.B helpviewer 
+and 
+.B helpopen 
+do not share the same view of the file system,
+since they are separate processes and could be running on
+different machines.
+

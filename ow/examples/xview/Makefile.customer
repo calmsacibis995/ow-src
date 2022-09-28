@@ -1,0 +1,67 @@
+#
+#       @(#)Makefile.customer 1.18 92/08/20 
+#
+#	Makefile for the example programs for XView programmers
+#
+
+# The OSTYPE macro on the following line provides a way of customizing the
+# CFLAGS macro for different operating systems. Customized  macros are provided
+# for general SunOS 4.1.x machines and SVR4 machines.
+# For example, to compile on 5.0 (SVR4) the following line should be
+# OSTYPE        = SUNOS5
+# To compile on SunOS4.1.x it should be
+# OSTYPE        = SUNOS41
+
+OSTYPE          = SUNOS5
+
+INCLUDE		= -I${OPENWINHOME}/include
+
+#
+# If you want to compile for debugging, change "-O" to "-g"
+#
+
+CFLAGS		= ${INCLUDE} -O
+
+# if you want special to pass special loader options to ld, set
+# LDFLAGS= ...
+#
+
+XVIEW_LIBS 	= -L${OPENWINHOME}/lib \
+		  -lxview -lolgx -lX11
+
+SUBDIRS		= canvas \
+		  color \
+		  cursor \
+		  defaults \
+		  dnd \
+		  extensions \
+		  fonts \
+		  frames \
+		  icons \
+		  menus \
+		  misc \
+		  notice \
+		  notifier \
+		  panels \
+		  scrollbar \
+		  selection \
+		  seln_svc \
+		  sv_compat \
+		  textsw \
+		  ttysw
+
+all:
+	-@for i in ${SUBDIRS}; do \
+	(	echo "<<< Descending into directory: $$i >>>"; \
+		cd $$i; \
+		${MAKE} ${MFLAGS} "OPENWINHOME=$(OPENWINHOME)" "OSTYPE=$(OSTYPE)" all; \
+		cd ..; \
+	); done
+
+clean:
+	-@for i in ${SUBDIRS}; do \
+	(	echo "<<< Descending into directory: $$i >>>"; \
+		cd $$i; \
+		${MAKE} -f Makefile.customer ${MFLAGS} clean ; \
+		cd ..; \
+	); done

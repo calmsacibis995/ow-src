@@ -1,0 +1,620 @@
+#	Copyright (c) 1990-92 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)prototype	1.5 94/11/02 (c) Sun Microsystems, Inc.
+#
+#  OpenWindows sample source
+
+i pkginfo
+i copyright=../copyright
+i depend=../depend
+
+!HOME=../openwin
+
+d none openwin 0775 root bin
+
+!search  $HOME/share
+d none openwin/share 0775 root bin
+
+!search  $HOME/share/src
+d none openwin/share/src 0775 root bin
+
+#
+#
+!search  $HOME/share/src/dig_samples
+d none openwin/share/src/dig_samples 0775 root bin
+f none openwin/share/src/dig_samples/README 0664 root bin
+#
+!search  $HOME/share/src/dig_samples/DnD
+d none openwin/share/src/dig_samples/DnD 0775 root bin
+f none openwin/share/src/dig_samples/DnD/Makefile.customer 0664 root bin
+f none openwin/share/src/dig_samples/DnD/Resources 0664 root bin
+f none openwin/share/src/dig_samples/DnD/dnd.h 0664 root bin
+f none openwin/share/src/dig_samples/DnD/main.c 0664 root bin
+f none openwin/share/src/dig_samples/DnD/owner.c 0664 root bin
+f none openwin/share/src/dig_samples/DnD/requestor.c 0664 root bin
+#
+!search  $HOME/share/src/dig_samples/Tooltalk
+d none openwin/share/src/dig_samples/Tooltalk 0775 root bin
+f none openwin/share/src/dig_samples/Tooltalk/Makefile.customer 0664 root bin
+f none openwin/share/src/dig_samples/Tooltalk/README 0664 root bin
+f none openwin/share/src/dig_samples/Tooltalk/Resources 0664 root bin
+f none openwin/share/src/dig_samples/Tooltalk/olit_tt.c 0664 root bin
+f none openwin/share/src/dig_samples/Tooltalk/tt_callbacks.c 0664 root bin
+f none openwin/share/src/dig_samples/Tooltalk/tt_code.c 0664 root bin
+f none openwin/share/src/dig_samples/Tooltalk/types.file 0664 root bin
+#
+!search  $HOME/share/src/dig_samples/ce1
+d none openwin/share/src/dig_samples/ce1 0775 root bin
+f none openwin/share/src/dig_samples/ce1/Makefile.customer 0664 root bin
+f none openwin/share/src/dig_samples/ce1/ce_map1.c 0664 root bin
+#
+!search  $HOME/share/src/dig_samples/ce2
+d none openwin/share/src/dig_samples/ce2 0775 root bin
+f none openwin/share/src/dig_samples/ce2/Makefile.customer 0664 root bin
+f none openwin/share/src/dig_samples/ce2/ce_simple.c 0664 root bin
+#
+!search  $HOME/share/src/dig_samples/dnd_olit
+d none openwin/share/src/dig_samples/dnd_olit 0775 root bin
+f none openwin/share/src/dig_samples/dnd_olit/Makefile.customer 0664 root bin
+f none openwin/share/src/dig_samples/dnd_olit/olitdnd.c 0664 root bin
+#
+!search  $HOME/share/src/dig_samples/dnd_xview1
+d none openwin/share/src/dig_samples/dnd_xview1 0775 root bin
+f none openwin/share/src/dig_samples/dnd_xview1/Makefile.customer 0664 root bin
+f none openwin/share/src/dig_samples/dnd_xview1/busy_site.icon 0664 root bin
+f none openwin/share/src/dig_samples/dnd_xview1/drop_site.icon 0664 root bin
+f none openwin/share/src/dig_samples/dnd_xview1/xview_dnd.c 0664 root bin
+#
+!search  $HOME/share/src/dig_samples/dnd_xview2
+d none openwin/share/src/dig_samples/dnd_xview2 0775 root bin
+f none openwin/share/src/dig_samples/dnd_xview2/Makefile.customer 0664 root bin
+f none openwin/share/src/dig_samples/dnd_xview2/xview_dnd2.c 0664 root bin
+#
+!search  $HOME/share/src/dig_samples/selection_olit
+d none openwin/share/src/dig_samples/selection_olit 0775 root bin
+f none openwin/share/src/dig_samples/selection_olit/Makefile.customer 0664 root bin
+f none openwin/share/src/dig_samples/selection_olit/olit_sel.c 0664 root bin
+#
+!search  $HOME/share/src/dig_samples/selection_xview
+d none openwin/share/src/dig_samples/selection_xview 0775 root bin
+f none openwin/share/src/dig_samples/selection_xview/Makefile.customer 0664 root bin
+f none openwin/share/src/dig_samples/selection_xview/xview_sel.c 0664 root bin
+#
+!search  $HOME/share/src/dig_samples/tooltalk_simple
+d none openwin/share/src/dig_samples/tooltalk_simple 0775 root bin
+f none openwin/share/src/dig_samples/tooltalk_simple/Makefile.customer 0664 root bin
+f none openwin/share/src/dig_samples/tooltalk_simple/ttdig.h 0664 root bin
+f none openwin/share/src/dig_samples/tooltalk_simple/ttreceive.c 0664 root bin
+f none openwin/share/src/dig_samples/tooltalk_simple/ttsend.c 0664 root bin
+#
+#
+#
+!search  $HOME/share/src/olit
+d none openwin/share/src/olit 0775 root bin
+f none openwin/share/src/olit/Makefile 0664 root bin
+
+
+!search  $HOME/share/src/olit/oldials
+d none openwin/share/src/olit/oldials 0775 root bin
+f none openwin/share/src/olit/oldials/Makefile 0664 root bin
+f none openwin/share/src/olit/oldials/oldials.c 0664 root bin
+
+
+!search  $HOME/share/src/olit/olitbook
+d none openwin/share/src/olit/olitbook 0775 root bin
+f none openwin/share/src/olit/olitbook/Makefile 0664 root bin
+f none openwin/share/src/olit/olitbook/README 0664 root bin
+
+
+!search  $HOME/share/src/olit/olitbook/app-defaults
+d none openwin/share/src/olit/olitbook/app-defaults 0775 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/Abbrev 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/Bulletinboard 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/Caption 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/Clipboard 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/Coloredit 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/ColoreditDnD 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/Controlarea 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/Controldata 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/DialTest 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/Dragfile 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/Draw 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/Dropedit 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/Fileview 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/Flfontchooser 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/Fontchooser 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/Form 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/Fractal 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/Gauge 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/Memo 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/Menu 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/Menubutton 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/Monitordata 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/Mousetracks 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/Notice 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/Oblong 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/Rectbutton 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/Rowtest 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/Rubberband 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/Rubbertile 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/Scrollbar 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/Scrollinglist 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/Slider 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/Statictext 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/Stopwatch 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/Textedit 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/Textfield 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/Twoshells 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/XBc 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/XLogo 0664 root bin
+f none openwin/share/src/olit/olitbook/app-defaults/XTalk 0664 root bin
+
+
+!search  $HOME/share/src/olit/olitbook/ch10
+d none openwin/share/src/olit/olitbook/ch10 0775 root bin
+f none openwin/share/src/olit/olitbook/ch10/Makefile 0664 root bin
+f none openwin/share/src/olit/olitbook/ch10/bitmaps.h 0664 root bin
+f none openwin/share/src/olit/olitbook/ch10/draw.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch10/draw.h 0664 root bin
+f none openwin/share/src/olit/olitbook/ch10/fractal.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch10/fractal.h 0664 root bin
+f none openwin/share/src/olit/olitbook/ch10/fractal2.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch10/rubberband.c 0664 root bin
+
+
+!search  $HOME/share/src/olit/olitbook/ch11
+d none openwin/share/src/olit/olitbook/ch11 0775 root bin
+f none openwin/share/src/olit/olitbook/ch11/Makefile 0664 root bin
+f none openwin/share/src/olit/olitbook/ch11/bitmaps.h 0664 root bin
+f none openwin/share/src/olit/olitbook/ch11/clipboard.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch11/coloredit.h 0664 root bin
+f none openwin/share/src/olit/olitbook/ch11/coloreditDnD.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch11/controldata.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch11/data.h 0664 root bin
+f none openwin/share/src/olit/olitbook/ch11/dragfile.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch11/draw.h 0664 root bin
+f none openwin/share/src/olit/olitbook/ch11/drawDnD.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch11/dropedit.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch11/memo.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch11/monitordata.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch11/xtalk.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch11/xtalk.h 0664 root bin
+
+
+!search  $HOME/share/src/olit/olitbook/ch12
+d none openwin/share/src/olit/olitbook/ch12 0775 root bin
+f none openwin/share/src/olit/olitbook/ch12/Dial.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch12/Dial.h 0664 root bin
+f none openwin/share/src/olit/olitbook/ch12/DialP.h 0664 root bin
+f none openwin/share/src/olit/olitbook/ch12/Makefile 0664 root bin
+f none openwin/share/src/olit/olitbook/ch12/SquareDial.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch12/SquareDial.h 0664 root bin
+f none openwin/share/src/olit/olitbook/ch12/SquareDialP.h 0664 root bin
+f none openwin/share/src/olit/olitbook/ch12/dial.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch12/sqdial.c 0664 root bin
+
+
+!search  $HOME/share/src/olit/olitbook/ch13
+d none openwin/share/src/olit/olitbook/ch13 0775 root bin
+f none openwin/share/src/olit/olitbook/ch13/Makefile 0664 root bin
+f none openwin/share/src/olit/olitbook/ch13/Row.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch13/Row.h 0664 root bin
+f none openwin/share/src/olit/olitbook/ch13/RowP.h 0664 root bin
+f none openwin/share/src/olit/olitbook/ch13/rowtest.c 0664 root bin
+
+
+!search  $HOME/share/src/olit/olitbook/ch14
+d none openwin/share/src/olit/olitbook/ch14 0775 root bin
+f none openwin/share/src/olit/olitbook/ch14/Makefile 0664 root bin
+f none openwin/share/src/olit/olitbook/ch14/Tree.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch14/Tree.h 0664 root bin
+f none openwin/share/src/olit/olitbook/ch14/TreeP.h 0664 root bin
+f none openwin/share/src/olit/olitbook/ch14/data 0664 root bin
+f none openwin/share/src/olit/olitbook/ch14/data1 0664 root bin
+f none openwin/share/src/olit/olitbook/ch14/sort.c 0664 root bin
+
+
+!search  $HOME/share/src/olit/olitbook/ch2
+d none openwin/share/src/olit/olitbook/ch2 0775 root bin
+f none openwin/share/src/olit/olitbook/ch2/Makefile 0664 root bin
+f none openwin/share/src/olit/olitbook/ch2/memo.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch2/memo2.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch2/memo3.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch2/memo4.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch2/memo5.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch2/memo6.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch2/memo7.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch2/memo8.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch2/memo9.c 0664 root bin
+
+
+!search  $HOME/share/src/olit/olitbook/ch3
+d none openwin/share/src/olit/olitbook/ch3 0775 root bin
+f none openwin/share/src/olit/olitbook/ch3/Makefile 0664 root bin
+f none openwin/share/src/olit/olitbook/ch3/rmtest.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch3/rmtest2.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch3/rmtest3.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch3/rmtest4.c 0664 root bin
+
+
+!search  $HOME/share/src/olit/olitbook/ch4
+d none openwin/share/src/olit/olitbook/ch4 0775 root bin
+f none openwin/share/src/olit/olitbook/ch4/Makefile 0664 root bin
+f none openwin/share/src/olit/olitbook/ch4/abbrev.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch4/bulletinboard.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch4/caption.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch4/checkbox.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch4/control.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch4/flfontchooser.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch4/flfontchooser.h 0664 root bin
+f none openwin/share/src/olit/olitbook/ch4/fontchooser.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch4/fontchooser.h 0664 root bin
+f none openwin/share/src/olit/olitbook/ch4/footerpanel.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch4/form.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch4/gauge.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch4/help.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch4/help2.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch4/help3.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch4/menu.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch4/menubutton.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch4/notice.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch4/oblong.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch4/popupwindow.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch4/rectbutton.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch4/rubbertile.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch4/scrollbar.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch4/scrolledwindow.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch4/scrollinglist.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch4/slider.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch4/statictext.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch4/textedit.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch4/textfield.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch4/twoshells.c 0664 root bin
+
+
+!search  $HOME/share/src/olit/olitbook/ch5
+d none openwin/share/src/olit/olitbook/ch5 0775 root bin
+f none openwin/share/src/olit/olitbook/ch5/Makefile 0664 root bin
+f none openwin/share/src/olit/olitbook/ch5/mousetracks.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch5/select.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch5/stopwatch.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch5/tracker1.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch5/tracker2.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch5/tracker3.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch5/tracker4.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch5/xbc.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch5/xclock.c 0664 root bin
+
+
+!search  $HOME/share/src/olit/olitbook/ch6
+d none openwin/share/src/olit/olitbook/ch6 0775 root bin
+f none openwin/share/src/olit/olitbook/ch6/Makefile 0664 root bin
+f none openwin/share/src/olit/olitbook/ch6/coloredit.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch6/getpixel.c 0664 root bin
+
+
+!search  $HOME/share/src/olit/olitbook/ch7
+d none openwin/share/src/olit/olitbook/ch7 0775 root bin
+f none openwin/share/src/olit/olitbook/ch7/Makefile 0664 root bin
+f none openwin/share/src/olit/olitbook/ch7/bitmaps.h 0664 root bin
+f none openwin/share/src/olit/olitbook/ch7/browser.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch7/xlogo.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch7/xlogo2.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch7/xlogo64 0664 root bin
+
+
+!search  $HOME/share/src/olit/olitbook/ch9
+d none openwin/share/src/olit/olitbook/ch9 0775 root bin
+f none openwin/share/src/olit/olitbook/ch9/Makefile 0664 root bin
+f none openwin/share/src/olit/olitbook/ch9/fileview.c 0664 root bin
+f none openwin/share/src/olit/olitbook/ch9/fileview.h 0664 root bin
+f none openwin/share/src/olit/olitbook/ch9/fileview2.c 0664 root bin
+
+
+!search  $HOME/share/src/olit/olitbook/help
+d none openwin/share/src/olit/olitbook/help 0775 root bin
+f none openwin/share/src/olit/olitbook/help/HelpFile 0664 root bin
+
+
+!search  $HOME/share/src/olit/olitsampler
+d none openwin/share/src/olit/olitsampler 0775 root bin
+f none openwin/share/src/olit/olitsampler/Makefile 0664 root bin
+f none openwin/share/src/olit/olitsampler/Olitsampler.ad 0664 root bin
+f none openwin/share/src/olit/olitsampler/olitsampler.c 0664 root bin
+f none openwin/share/src/olit/olitsampler/olitsampler.info 0664 root bin
+
+
+!search  $HOME/share/src/xview
+d none openwin/share/src/xview 0775 root bin
+
+!search  $HOME/share/src/xview/demos
+d none openwin/share/src/xview/demos 0775 root bin
+
+!search  $HOME/share/src/xview/demos/spider
+d none openwin/share/src/xview/demos/spider 0775 root bin
+f none openwin/share/src/xview/demos/spider/Imakefile 0664 root bin
+f none openwin/share/src/xview/demos/spider/Makefile 0664 root bin
+f none openwin/share/src/xview/demos/spider/README 0664 root bin
+f none openwin/share/src/xview/demos/spider/copyright.h 0664 root bin
+f none openwin/share/src/xview/demos/spider/defs.h 0664 root bin
+f none openwin/share/src/xview/demos/spider/doc.controls 0664 root bin
+f none openwin/share/src/xview/demos/spider/doc.examples 0664 root bin
+f none openwin/share/src/xview/demos/spider/doc.intro 0664 root bin
+f none openwin/share/src/xview/demos/spider/doc.misc 0664 root bin
+f none openwin/share/src/xview/demos/spider/doc.rules 0664 root bin
+f none openwin/share/src/xview/demos/spider/doc.summary 0664 root bin
+f none openwin/share/src/xview/demos/spider/events.c 0664 root bin
+f none openwin/share/src/xview/demos/spider/face.bm 0664 root bin
+f none openwin/share/src/xview/demos/spider/gfx.c 0664 root bin
+f none openwin/share/src/xview/demos/spider/globals.h 0664 root bin
+f none openwin/share/src/xview/demos/spider/movelog.c 0664 root bin
+f none openwin/share/src/xview/demos/spider/rank.bm 0664 root bin
+f none openwin/share/src/xview/demos/spider/spider.6 0664 root bin
+f none openwin/share/src/xview/demos/spider/spider.bm 0664 root bin
+f none openwin/share/src/xview/demos/spider/spider.c 0664 root bin
+f none openwin/share/src/xview/demos/spider/spider.info 0664 root bin
+f none openwin/share/src/xview/demos/spider/suit.bm 0664 root bin
+f none openwin/share/src/xview/demos/spider/util.c 0664 root bin
+f none openwin/share/src/xview/demos/spider/version.c 0664 root bin
+f none openwin/share/src/xview/demos/spider/windows.c 0664 root bin
+f none openwin/share/src/xview/demos/spider/xv_stubs.c 0664 root bin
+f none openwin/share/src/xview/demos/spider/xv_ui.c 0664 root bin
+f none openwin/share/src/xview/demos/spider/xv_ui.h 0664 root bin
+
+
+!search  $HOME/share/src/xview/examples
+d none openwin/share/src/xview/examples 0775 root bin
+f none openwin/share/src/xview/examples/Makefile 0664 root bin
+
+
+!search  $HOME/share/src/xview/examples/canvas
+d none openwin/share/src/xview/examples/canvas 0775 root bin
+f none openwin/share/src/xview/examples/canvas/Imakefile 0664 root bin
+f none openwin/share/src/xview/examples/canvas/Makefile 0664 root bin
+f none openwin/share/src/xview/examples/canvas/canvas_event.c 0664 root bin
+f none openwin/share/src/xview/examples/canvas/canvas_input.c 0664 root bin
+f none openwin/share/src/xview/examples/canvas/line.c 0664 root bin
+f none openwin/share/src/xview/examples/canvas/scroll_view.c 0664 root bin
+f none openwin/share/src/xview/examples/canvas/split_views.c 0664 root bin
+
+
+!search  $HOME/share/src/xview/examples/color
+d none openwin/share/src/xview/examples/color 0775 root bin
+f none openwin/share/src/xview/examples/color/Imakefile 0664 root bin
+f none openwin/share/src/xview/examples/color/Makefile 0664 root bin
+f none openwin/share/src/xview/examples/color/animate.c 0664 root bin
+f none openwin/share/src/xview/examples/color/cardback.icon 0664 root bin
+f none openwin/share/src/xview/examples/color/color.c 0664 root bin
+f none openwin/share/src/xview/examples/color/color_animate.c 0664 root bin
+f none openwin/share/src/xview/examples/color/color_logo.c 0664 root bin
+f none openwin/share/src/xview/examples/color/color_objs.c 0664 root bin
+f none openwin/share/src/xview/examples/color/color_panel.c 0664 root bin
+f none openwin/share/src/xview/examples/color/example1.c 0664 root bin
+f none openwin/share/src/xview/examples/color/example2.c 0664 root bin
+f none openwin/share/src/xview/examples/color/example3.c 0664 root bin
+f none openwin/share/src/xview/examples/color/example4.c 0664 root bin
+f none openwin/share/src/xview/examples/color/x_draw.c 0664 root bin
+
+
+!search  $HOME/share/src/xview/examples/cursor
+d none openwin/share/src/xview/examples/cursor 0775 root bin
+f none openwin/share/src/xview/examples/cursor/Imakefile 0664 root bin
+f none openwin/share/src/xview/examples/cursor/Makefile 0664 root bin
+f none openwin/share/src/xview/examples/cursor/hot_spot.c 0664 root bin
+f none openwin/share/src/xview/examples/cursor/simple_cursor.c 0664 root bin
+f none openwin/share/src/xview/examples/cursor/stop_cursor.c 0664 root bin
+
+
+!search  $HOME/share/src/xview/examples/defaults
+d none openwin/share/src/xview/examples/defaults 0775 root bin
+f none openwin/share/src/xview/examples/defaults/Imakefile 0664 root bin
+f none openwin/share/src/xview/examples/defaults/Makefile 0664 root bin
+f none openwin/share/src/xview/examples/defaults/default_size.c 0664 root bin
+f none openwin/share/src/xview/examples/defaults/default_text.c 0664 root bin
+
+
+!search  $HOME/share/src/xview/examples/dnd
+d none openwin/share/src/xview/examples/dnd 0775 root bin
+f none openwin/share/src/xview/examples/dnd/Imakefile 0664 root bin
+f none openwin/share/src/xview/examples/dnd/Makefile 0664 root bin
+f none openwin/share/src/xview/examples/dnd/arrow.bm 0664 root bin
+f none openwin/share/src/xview/examples/dnd/arrow_mask.bm 0664 root bin
+f none openwin/share/src/xview/examples/dnd/arrowb.bm 0664 root bin
+f none openwin/share/src/xview/examples/dnd/bullseye.bm 0664 root bin
+f none openwin/share/src/xview/examples/dnd/bullseyeI.bm 0664 root bin
+f none openwin/share/src/xview/examples/dnd/dest.c 0664 root bin
+f none openwin/share/src/xview/examples/dnd/drop.icon 0664 root bin
+f none openwin/share/src/xview/examples/dnd/source1.c 0664 root bin
+
+
+!search  $HOME/share/src/xview/examples/extensions
+d none openwin/share/src/xview/examples/extensions 0775 root bin
+f none openwin/share/src/xview/examples/extensions/Bitmap.c 0664 root bin
+f none openwin/share/src/xview/examples/extensions/Image.c 0664 root bin
+f none openwin/share/src/xview/examples/extensions/Logo.c 0664 root bin
+f none openwin/share/src/xview/examples/extensions/Makefile 0664 root bin
+f none openwin/share/src/xview/examples/extensions/bitmap.c 0664 root bin
+f none openwin/share/src/xview/examples/extensions/bitmap.h 0664 root bin
+f none openwin/share/src/xview/examples/extensions/bitmap_impl.h 0664 root bin
+f none openwin/share/src/xview/examples/extensions/image.c 0664 root bin
+f none openwin/share/src/xview/examples/extensions/image.h 0664 root bin
+f none openwin/share/src/xview/examples/extensions/image_impl.h 0664 root bin
+f none openwin/share/src/xview/examples/extensions/logo.c 0664 root bin
+f none openwin/share/src/xview/examples/extensions/logo.h 0664 root bin
+f none openwin/share/src/xview/examples/extensions/logo_impl.h 0664 root bin
+f none openwin/share/src/xview/examples/extensions/sample.bitmap 0664 root bin
+
+
+!search  $HOME/share/src/xview/examples/fonts
+d none openwin/share/src/xview/examples/fonts 0775 root bin
+f none openwin/share/src/xview/examples/fonts/Imakefile 0664 root bin
+f none openwin/share/src/xview/examples/fonts/Makefile 0664 root bin
+f none openwin/share/src/xview/examples/fonts/disp_fonts.c 0664 root bin
+f none openwin/share/src/xview/examples/fonts/disp_fonts2.c 0664 root bin
+f none openwin/share/src/xview/examples/fonts/fonts.c 0664 root bin
+f none openwin/share/src/xview/examples/fonts/simple_font.c 0664 root bin
+f none openwin/share/src/xview/examples/fonts/type_font.c 0664 root bin
+
+
+!search  $HOME/share/src/fonts/misc
+d none openwin/share/src/fonts				0775 root bin
+d none openwin/share/src/fonts/misc			0775 root bin
+f none openwin/share/src/fonts/misc/olcursor.bdf	0664 root bin
+f none openwin/share/src/fonts/misc/olgl10.bdf		0664 root bin
+f none openwin/share/src/fonts/misc/olgl12.bdf		0664 root bin
+f none openwin/share/src/fonts/misc/olgl14.bdf		0664 root bin
+f none openwin/share/src/fonts/misc/olgl16.bdf		0664 root bin
+f none openwin/share/src/fonts/misc/olgl19.bdf		0664 root bin
+f none openwin/share/src/fonts/misc/olgl20.bdf		0664 root bin
+f none openwin/share/src/fonts/misc/olgl24.bdf		0664 root bin
+
+
+!search  $HOME/share/src/xview/examples/frames
+d none openwin/share/src/xview/examples/frames 0775 root bin
+f none openwin/share/src/xview/examples/frames/Imakefile 0664 root bin
+f none openwin/share/src/xview/examples/frames/Makefile 0664 root bin
+f none openwin/share/src/xview/examples/frames/command_frame.c 0664 root bin
+f none openwin/share/src/xview/examples/frames/done_proc.c 0664 root bin
+f none openwin/share/src/xview/examples/frames/frame_color.c 0664 root bin
+f none openwin/share/src/xview/examples/frames/hdrs_n_footers.c 0664 root bin
+f none openwin/share/src/xview/examples/frames/popup.c 0664 root bin
+f none openwin/share/src/xview/examples/frames/simple_frame.c 0664 root bin
+f none openwin/share/src/xview/examples/frames/subframe.c 0664 root bin
+
+
+!search  $HOME/share/src/xview/examples/icons
+d none openwin/share/src/xview/examples/icons 0775 root bin
+f none openwin/share/src/xview/examples/icons/Imakefile 0664 root bin
+f none openwin/share/src/xview/examples/icons/Makefile 0664 root bin
+f none openwin/share/src/xview/examples/icons/closed.icon 0664 root bin
+f none openwin/share/src/xview/examples/icons/closed2.icon 0664 root bin
+f none openwin/share/src/xview/examples/icons/icon_demo.c 0664 root bin
+f none openwin/share/src/xview/examples/icons/icon_demo2.c 0664 root bin
+f none openwin/share/src/xview/examples/icons/open.icon 0664 root bin
+
+
+!search  $HOME/share/src/xview/examples/menus
+d none openwin/share/src/xview/examples/menus 0775 root bin
+f none openwin/share/src/xview/examples/menus/Imakefile 0664 root bin
+f none openwin/share/src/xview/examples/menus/Makefile 0664 root bin
+f none openwin/share/src/xview/examples/menus/menu.c 0664 root bin
+f none openwin/share/src/xview/examples/menus/menu_dir.c 0664 root bin
+f none openwin/share/src/xview/examples/menus/menu_dir2.c 0664 root bin
+f none openwin/share/src/xview/examples/menus/pin_menu.c 0664 root bin
+f none openwin/share/src/xview/examples/menus/simple_menu.c 0664 root bin
+f none openwin/share/src/xview/examples/menus/xv_menu.c 0664 root bin
+
+
+!search  $HOME/share/src/xview/examples/misc
+d none openwin/share/src/xview/examples/misc 0775 root bin
+f none openwin/share/src/xview/examples/misc/Imakefile 0664 root bin
+f none openwin/share/src/xview/examples/misc/Makefile 0664 root bin
+f none openwin/share/src/xview/examples/misc/fullscreen.c 0664 root bin
+f none openwin/share/src/xview/examples/misc/multi_display.c 0664 root bin
+f none openwin/share/src/xview/examples/misc/multiscreen.c 0664 root bin
+f none openwin/share/src/xview/examples/misc/screen.c 0664 root bin
+f none openwin/share/src/xview/examples/misc/svrimage.c 0664 root bin
+f none openwin/share/src/xview/examples/misc/textdemo.icon 0664 root bin
+f none openwin/share/src/xview/examples/misc/type_to_string.c 0664 root bin
+f none openwin/share/src/xview/examples/misc/vkbd_colors.c 0664 root bin
+f none openwin/share/src/xview/examples/misc/vkbd_fonts.c 0664 root bin
+
+
+!search  $HOME/share/src/xview/examples/notice
+d none openwin/share/src/xview/examples/notice 0775 root bin
+f none openwin/share/src/xview/examples/notice/Imakefile 0664 root bin
+f none openwin/share/src/xview/examples/notice/Makefile 0664 root bin
+f none openwin/share/src/xview/examples/notice/notice.c 0664 root bin
+f none openwin/share/src/xview/examples/notice/simple_notice.c 0664 root bin
+f none openwin/share/src/xview/examples/notice/trigger_notice.c 0664 root bin
+
+
+!search  $HOME/share/src/xview/examples/notifier
+d none openwin/share/src/xview/examples/notifier 0775 root bin
+f none openwin/share/src/xview/examples/notifier/Imakefile 0664 root bin
+f none openwin/share/src/xview/examples/notifier/Makefile 0664 root bin
+f none openwin/share/src/xview/examples/notifier/animate.c 0664 root bin
+f none openwin/share/src/xview/examples/notifier/interpose.c 0664 root bin
+f none openwin/share/src/xview/examples/notifier/notify.c 0664 root bin
+f none openwin/share/src/xview/examples/notifier/notify_input.c 0664 root bin
+f none openwin/share/src/xview/examples/notifier/ntfy_do_dis.c 0664 root bin
+f none openwin/share/src/xview/examples/notifier/ntfy_pipe.c 0664 root bin
+f none openwin/share/src/xview/examples/notifier/ntfy_sig.c 0664 root bin
+
+
+!search  $HOME/share/src/xview/examples/panels
+d none openwin/share/src/xview/examples/panels 0775 root bin
+f none openwin/share/src/xview/examples/panels/Imakefile 0664 root bin
+f none openwin/share/src/xview/examples/panels/Makefile 0664 root bin
+f none openwin/share/src/xview/examples/panels/btn_menu.c 0664 root bin
+f none openwin/share/src/xview/examples/panels/busy.icon 0664 root bin
+f none openwin/share/src/xview/examples/panels/busy2.icon 0664 root bin
+f none openwin/share/src/xview/examples/panels/choices.c 0664 root bin
+f none openwin/share/src/xview/examples/panels/client_data.c 0664 root bin
+f none openwin/share/src/xview/examples/panels/item_move.c 0664 root bin
+f none openwin/share/src/xview/examples/panels/list_6_glyphs.c 0664 root bin
+f none openwin/share/src/xview/examples/panels/list_glyphs.c 0664 root bin
+f none openwin/share/src/xview/examples/panels/normal.icon 0664 root bin
+f none openwin/share/src/xview/examples/panels/normal2.icon 0664 root bin
+f none openwin/share/src/xview/examples/panels/panel_dnd.c 0664 root bin
+f none openwin/share/src/xview/examples/panels/panel_repaint.c 0664 root bin
+f none openwin/share/src/xview/examples/panels/quit.c 0664 root bin
+f none openwin/share/src/xview/examples/panels/repaint.c 0664 root bin
+f none openwin/share/src/xview/examples/panels/simple_panel.c 0664 root bin
+f none openwin/share/src/xview/examples/panels/slider.c 0664 root bin
+f none openwin/share/src/xview/examples/panels/stop_frame.c 0664 root bin
+
+
+!search  $HOME/share/src/xview/examples/scrollbar
+d none openwin/share/src/xview/examples/scrollbar 0775 root bin
+f none openwin/share/src/xview/examples/scrollbar/Imakefile 0664 root bin
+f none openwin/share/src/xview/examples/scrollbar/Makefile 0664 root bin
+f none openwin/share/src/xview/examples/scrollbar/scroll_cells.c 0664 root bin
+f none openwin/share/src/xview/examples/scrollbar/scroll_cells2.c 0664 root bin
+f none openwin/share/src/xview/examples/scrollbar/scrollto.c 0664 root bin
+
+
+!search  $HOME/share/src/xview/examples/selection
+d none openwin/share/src/xview/examples/selection 0775 root bin
+f none openwin/share/src/xview/examples/selection/Imakefile 0664 root bin
+f none openwin/share/src/xview/examples/selection/Makefile 0664 root bin
+f none openwin/share/src/xview/examples/selection/sel_hold.c 0664 root bin
+f none openwin/share/src/xview/examples/selection/sel_req.c 0664 root bin
+
+
+!search  $HOME/share/src/xview/examples/seln_svc
+d none openwin/share/src/xview/examples/seln_svc 0775 root bin
+f none openwin/share/src/xview/examples/seln_svc/Imakefile 0664 root bin
+f none openwin/share/src/xview/examples/seln_svc/Makefile 0664 root bin
+f none openwin/share/src/xview/examples/seln_svc/long_seln.c 0664 root bin
+f none openwin/share/src/xview/examples/seln_svc/seln.c 0664 root bin
+f none openwin/share/src/xview/examples/seln_svc/seln_line.c 0664 root bin
+f none openwin/share/src/xview/examples/seln_svc/simple_seln.c 0664 root bin
+f none openwin/share/src/xview/examples/seln_svc/text_seln.c 0664 root bin
+
+
+!search  $HOME/share/src/xview/examples/sv_compat
+d none openwin/share/src/xview/examples/sv_compat 0775 root bin
+f none openwin/share/src/xview/examples/sv_compat/Imakefile 0664 root bin
+f none openwin/share/src/xview/examples/sv_compat/Makefile 0664 root bin
+f none openwin/share/src/xview/examples/sv_compat/gray_stencil.pr 0664 root bin
+f none openwin/share/src/xview/examples/sv_compat/pw_draw.c 0664 root bin
+
+
+!search  $HOME/share/src/xview/examples/textsw
+d none openwin/share/src/xview/examples/textsw 0775 root bin
+f none openwin/share/src/xview/examples/textsw/Imakefile 0664 root bin
+f none openwin/share/src/xview/examples/textsw/Makefile 0664 root bin
+f none openwin/share/src/xview/examples/textsw/textsw.c 0664 root bin
+f none openwin/share/src/xview/examples/textsw/textsw.font.c 0664 root bin
+f none openwin/share/src/xview/examples/textsw/textswrc 0664 root bin
+
+
+!search  $HOME/share/src/xview/examples/ttysw
+d none openwin/share/src/xview/examples/ttysw 0775 root bin
+f none openwin/share/src/xview/examples/ttysw/Imakefile 0664 root bin
+f none openwin/share/src/xview/examples/ttysw/Makefile 0664 root bin
+f none openwin/share/src/xview/examples/ttysw/sample_tty.c 0664 root bin
+f none openwin/share/src/xview/examples/ttysw/textsw_to_ttysw.c 0664 root bin
+f none openwin/share/src/xview/examples/ttysw/ttycurses.c 0664 root bin

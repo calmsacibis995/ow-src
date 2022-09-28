@@ -1,0 +1,25 @@
+/*
+ * @(#)audiocontrol.types	1.4	93/02/19 SMI
+ */
+
+ptype Sun_MA_audiocontrol
+{
+start "audiocontrol -message_alliance";
+per_session 1;
+handle:
+/*     
+ *
+ * Optional extra arguments for these requests:
+ *            in    string      title
+ *            in    messageID   text
+ */
+/* content display */
+session Audio_Control (inout Play_Control action, in string Devname) => start;
+session Audio_Control (inout Play_Control action, in string Devname, in title text) => start;
+session Audio_Control (inout Play_Control action, in string Devname, in messageID text) => start;
+session Audio_Control (inout Play_Control action, in string Devname, in messageID text, in title text) => start;
+session Audio_Control (inout Record_Control action, in string Devname) => start;
+session Audio_Control (inout Record_Control action, in string Devname, in title text) => start;
+session Audio_Control (inout Record_Control action, in string Devname, in messageID text) => start;
+session Audio_Control (inout Record_Control action, in string Devname, in messageID text, in title text) => start;
+}

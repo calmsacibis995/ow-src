@@ -1,0 +1,134 @@
+# @(#)README	1.4	92/10/21 SMI
+
+
+This directory hierarchy contains the sources and executables for demo
+applications, a prototype audio programming library, and a set of
+pre-recorded audio sound samples.  Manual pages for the demo programs
+are located in section 6: Games and Demos.
+
+Note that the principal audio record/playback utility is AudioTool,
+provided with the OpenWindows DestSet applications (refer to the
+DeskSet User's Guide and the audiotool(1) manual page).
+
+Some of the XView demo programs contain spot help information.  To obtain
+spot help, set the HELPPATH environment variable to include the directory
+in which the files are located.  For example:
+
+	% setenv HELPPATH "$HELPPATH:/usr/demo/SOUND/help"
+
+
+The following is an overview of the contents of /usr/demo/SOUND:
+
+/usr/demo/SOUND/bin		demo program executables
+/usr/demo/SOUND/help		spot help files for the demos
+/usr/demo/SOUND/include		header files for the prototype audio library
+/usr/demo/SOUND/lib		libaudio.a, the prototype audio library
+/usr/demo/SOUND/man		manual pages for libaudio functions
+/usr/demo/SOUND/sounds		sample sound files
+/usr/demo/SOUND/src		source code for the demo programs
+
+
+Demo programs
+-------------
+
+soundtool(6)
+	This is a prototype audio record/playback tool.  It demonstrates
+	many of the features of the audio programming interface.  Since
+	it is an XView application, it is written to obey the constraints
+	of the XView Notifier and to issue only asynchronous i/o requests.
+	Because it also attempts to keep an oscilloscope display synchronized
+	during play and record, it is far more complex than most audio
+	applications need to be.  However, it serves as a demonstration of
+	the real-time audio capabilities of the SPARCstation.
+
+gaintool(6)
+	This is a prototype audio control panel.  It illustrates the ability
+	to control various aspects of the workstation audio configuration
+	outside of particular audio applications.  For instance, since play
+	volume may be controlled from the panel, it is not necessary for all
+	audio applications to provide an output volume control themselves.
+
+	Gaintool also has a property sheet (activated from a menu over the
+	main panel) that displays complete status information for the audio
+	device.  This information can be useful for debugging audio programs.
+
+Radio Free Ethernet
+	Radio Free Ethernet is a suite of programs that allow broadcasting
+	and receiving audio over the network.  The receiver and transmitter
+	(radio_recv and radio_xmit) are command-line programs that are
+	controlled by window programs (radio and xmit).  The command-line
+	programs may also be invoked by shell scripts or through the cron(1m)
+	facility.  See the About Sound document for a general overview of
+	this demo.
+
+    radio(6)
+	Radio is the window-based tool for the radio receiver.  The interface
+	is similar to that of a car radio.
+
+    xmit(6)
+	Xmit is the window-based tool for the radio transmitter.  When running
+	xmit for the first time, a radio station name must be entered in the
+	Station configuration panel before transmission can be started.
+
+    radio_recv(6)
+	Radio_recv is the command-line radio receiver program (normally invoked
+	by the radio program).
+
+    radio_xmit(6)
+	Radio_xmit is the command-line radio transmitter (normally invoked by
+	the xmit program).
+
+
+Prototype audio programming library
+-----------------------------------
+
+	A preliminary audio programming library, libaudio.a, is provided.
+	Manual pages for the functions in libaudio.a are located in
+	/usr/demo/SOUND/man/man3.  Header files for libaudio.a are in
+	/usr/demo/SOUND/include/multimedia.
+
+
+Sound files
+-----------
+	Some sample sound files are located in the /usr/demo/SOUND/sounds
+	directory.  sample.au contains guidelines in setting the recording
+	volume level.  The other files include sample sound effects and
+	telephone control tones.
+
+
+Building the demos from source code
+-----------------------------------
+
+Source code is provided for all demo programs.  Before attempting to build
+the demo programs from source, ensure that the OpenWindows, SPARCompilers,
+and Devguide (Version 3.0.1 or later) products are installed in your system.
+(Note that Devguide must be purchased separately.)  Refer to the system
+installation manual for instructions on installing these products.
+
+Be sure to set the GUIDEHOME environment variable to the directory where
+Devguide is installed.  Header files are included from ${GUIDEHOME}/include
+and libraries are linked from ${GUIDEHOME}/lib.
+
+To build the demo programs, do the following:
+
+	% cd src
+	% make
+
+To install them in /usr/demo/SOUND/bin, type:
+
+	% make install
+
+The file 'Makefile.config', in the src directory, may be edited to change
+the value of DESTDIR, where the binaries are installed.  This file also
+contains compiler and operating system version configuration parameters.
+
+By default, the demo makefiles will not re-generate Devguide source code
+from the GIL file.  If you have all of Devguide installed and you wish to
+have the makefiles run 'gxv' automatically, uncomment the following lines
+in the individual program makefiles (only relevant for gaintool, radio/radio,
+and radio/xmit):
+
+	#%_ui.h: %.G
+	#	gxv $<
+	#%_ui.c: %_ui.h
+	#	touch $@

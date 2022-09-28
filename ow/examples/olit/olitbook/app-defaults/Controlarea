@@ -1,0 +1,7 @@
+control2*ca.layoutType: fixedcols
+control2*ca.measure:    2
+control3*ca.layoutType: fixedrows
+control3*ca.measure:    4
+control3*ca.vSpace:     20
+control3*ca.hSpace:     20
+control3*ca.hPad:       20

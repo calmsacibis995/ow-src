@@ -1,0 +1,98 @@
+#
+
+# Copyright
+
+#
+#	@(#)step	1.12 92/11/19
+#
+
+# Step template
+#
+#	Preconditions
+#		SUBDIRS
+#
+#	Exports
+#
+
+
+MAKETARGET	= unknown-target-error
+all		:= MAKETARGET=
+deliverable	:= MAKETARGET=deliverable
+tool		:= MAKETARGET=tool
+variants	:= MAKETARGET=variants
+galactic	:= MAKETARGET=galactic
+opt		:= MAKETARGET=optimized
+optimized	:= MAKETARGET=optimized
+debug		:= MAKETARGET=debug
+gprof		:= MAKETARGET=gprof
+shared		:= MAKETARGET=shared
+clean		:= MAKETARGET=clean
+clobber		:= MAKETARGET=clobber
+install		:= MAKETARGET=install
+installtool	:= MAKETARGET=installtool
+installoptimized:= MAKETARGET=installoptimized
+installdebug	:= MAKETARGET=installdebug
+installgprof	:= MAKETARGET=installgprof
+installshared	:= MAKETARGET=installshared
+installvariants	:= MAKETARGET=installvariants
+lint		:= MAKETARGET=lint
+lintlib		:= MAKETARGET=lintlib
+installlintlib	:= MAKETARGET=installlintlib
+populate	:= MAKETARGET=populate
+depopulate	:= MAKETARGET=depopulate
+
+
+step: ${SUBDIRS}
+	@for i in . ${SUBDIRS}; do \
+	(if [ "x$$i" != "x." ] ; then \
+	    cd $$i; \
+	    echo "----["`${PWDCMD}`"]----"; \
+	    ${MAKE} ${MAKETARGET}; \
+	 fi \
+	) done
+
+all::			echotool .WAIT installtool .WAIT echodeliverable .WAIT deliverable
+deliverable::		step .WAIT ${MAKE.all.target}
+tool::			step .WAIT ${MAKE.tool.target}
+variants::		step
+galactic::		step
+opt::			step
+optimized::		step
+debug::			step
+gprof::			step
+shared::		step
+install::		step .WAIT ${MAKE.install.target} ${MAKE.source.target}
+installtool::		step .WAIT ${MAKE.installtool.target}
+installoptimized::	step
+installdebug::		step
+installgprof::		step
+installshared::		step
+installvariants::	step
+lint::			step
+lintlib::		step
+installlintlib::	step
+populate::		step
+depopulate::		step
+checkmakefile::
+clean::			step .WAIT ${MAKE.clean.target}
+clobber::		step .WAIT ${MAKE.clobber.target}
+	@${RM} ${FILES.junk} ${FILES.clobber} ${DERIVEDFILES}
+
+echotool:
+	@${ECHO} "Building and installing tools ..."
+	@${ECHO} "${MAKE} installtool"
+
+echodeliverable:
+	@${ECHO} "Building deliverables ..."
+	@${ECHO} "Using ${OWCONFIG}.cfg and ${CONFIG.DB}
+	@${ECHO} "${MAKE} deliverable"
+
+##### Swet/Hindsight ####
+analyze		:= MAKETARGET=analyze
+analyzelib	:= MAKETARGET=analyzelib
+analyzecmd	:= MAKETARGET=analyzecmd
+analyzeall	:= MAKETARGET=analyzeall
+analyze:	step
+analyzelib:	step
+analyzecmd:	step
+analyzeall:	step

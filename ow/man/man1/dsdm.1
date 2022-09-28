@@ -1,0 +1,67 @@
+.\" Copyright (c) 1994 - Sun Microsystems, Inc.
+.TH dsdm 1 "23 Nov 1992"
+.IX "dsdm" "" "\f3dsdm\f1(1) \(em drop site database manager" ""
+.SH NAME
+dsdm \- Drop Site Database Manager
+.SH SYNOPSIS
+.LP
+.B dsdm
+[
+.B \-x
+]
+.SH DESCRIPTION
+The
+.B dsdm
+manages a database of all drop sites on the screen.  When a drag-and-drop
+operation is started, the
+.B dsdm
+is queried for a list of the drop sites.  This drop site information is used
+by the dragging application to provide user feedback during the drag
+operation.
+.LP
+The
+.B dsdm
+is not used during normal operation of the system.  Drop site database
+management is normally provided by the
+.BR olwm (1)
+window manager.  If you are running a window manager other than
+.B olwm,
+you must run
+.B dsdm
+in order for proper feedback to appear during drag-and-drop operations.
+The
+.B dsdm
+is normally started from the
+.B openwin-sys
+file.
+.LP
+There should be only one
+.B dsdm
+running at a time.  The
+.B dsdm
+will refuse to run if there is another
+.B dsdm
+running, or if
+.B olwm
+is running and is managing the drop site database.
+This mutual exclusion is accomplished through ownership of an X
+selection called \s-1_SUN_DRAGDROP_DSDM\s0.  If 
+.B dsdm
+loses ownership of this selection, it will exit.
+.SH OPTIONS
+.TP
+.B \-x
+Sets the owner of the \s-1_SUN_DRAGDROP_DSDM\s0 to
+.B None.
+If another instance of the
+.B dsdm
+is running, it will exit.  If
+.B olwm
+is running and is maintaining the drop site database, it will stop
+maintaining the database.
+.SH DIAGNOSTICS
+.TP
+\fBanother DSDM is already running\fP
+Another client has ownership of the \s-1_SUN_DRAGDROP_DSDM\s0 selection.
+.SH SEE ALSO
+.BR olwm (1)

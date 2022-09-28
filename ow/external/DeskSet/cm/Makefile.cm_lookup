@@ -1,0 +1,37 @@
+#
+# @(#)Makefile.template 3.3 05 Aug 1992 Copyright (c) 1987-1990 Sun Microsystems, Inc.
+# All Rights Reserved
+#
+
+SOURCES.c 	=  \
+	cm_lookup.c \
+	cm_tty.c
+
+SOURCES.h       =  \
+	util.h \
+	appt.h \
+	table.h \
+	misc.h \
+	datefield.h \
+        cm_tty.h \
+	timeops.h 
+
+SOURCES.man	= cm_lookup.1
+PROGRAM		= cm_lookup
+PROJECTDIR	= ..
+CFLAGS		+=
+
+MANSECT		= 1
+
+.KEEP_STATE:
+
+default:	all
+
+include ${PROJECTDIR}/Makefile.master.new
+
+LDLIBS		= $($(TARG_SYS)_LDLIBS) -L. -lcm
+
+all:	$(PROGRAM)
+
+install: install_normal_bins install_man
+

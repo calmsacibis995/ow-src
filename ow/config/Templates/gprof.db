@@ -1,0 +1,139 @@
+#
+#	@(#)gprof.db	1.26 93/10/04
+#
+#	Full - build everything database
+#	include this file after any of your custom changes
+#
+#	This file causes only gprof versions of things to be built
+#
+#
+# Clients and other executables
+# =============================
+# name     location  Buildtype Linktype
+# ----     --------  --------- --------
+xnews	      bin    gprof
+olwm	      bin    gprof
+mkcookie      bin    gprof
+xmodmap	      bin    gprof
+xinit	      bin    gprof
+newsserverstr bin    gprof
+xn_ck_fbs     bin    gprof
+xrdb	      bin    gprof
+svenv	      bin    gprof
+loadmodule    bin    gprof
+olitbrowser   bin    nobuild
+olitsampler   bin    gprof
+
+# User/client libraries
+# =====================
+# name     location  Buildtype Linktype
+# ----     --------  --------- --------
+xvps		lib    gprof
+X11		lib    gprof
+Xau		lib    gprof
+jot		lib    gprof
+Xt		lib    gprof
+Xol		lib    gprof
+cps		lib    gprof
+wire		lib    gprof
+help		lib    gprof
+Xmu		lib    gprof
+Xaw		lib    gprof
+
+palloc		lib    gprof
+Xext		lib    gprof
+Xdmcp		lib    gprof
+Xinput		lib    gprof
+
+#
+#I18N MUST be statically linked
+#
+I18N		lib    gprof
+
+xim			lib	nobuild
+mltext			lib	nobuild
+olgx			lib	gprof
+xview			lib	gprof
+xview/attr		lib	gprof
+xview/base		lib	gprof
+xview/canvas		lib	gprof
+xview/imcb		lib	gprof
+xview/color		lib	gprof
+xview/cursor		lib	gprof
+xview/defaults		lib	gprof
+xview/dnd		lib	gprof
+xview/filter		lib	gprof
+xview/font		lib	gprof
+xview/frame		lib	gprof
+xview/fullscreen	lib	gprof
+xview/help		lib	gprof
+xview/icon		lib	gprof
+xview/io_stream		lib	gprof
+xview/menu		lib	gprof
+xview/misc		lib	gprof
+xview/notice		lib	gprof
+xview/notify		lib	gprof
+xview/openwin		lib	gprof
+xview/panel		lib	gprof
+xview/pw		lib	gprof
+xview/rect		lib	gprof
+xview/screen		lib	gprof
+xview/scrollbar		lib	gprof
+xview/sel		lib	gprof
+xview/selection		lib	gprof
+xview/server		lib	gprof
+xview/server_image	lib	gprof
+xview/string_utils	lib	gprof
+xview/textsw		lib	gprof
+xview/textsw2		lib	gprof
+xview/ttysw		lib	gprof
+xview/win		lib	gprof
+xview/window		lib	gprof
+xview/wmgr		lib	gprof
+
+#
+# Server libraries
+# ================
+# name    location  Buildtype Linktype
+# ----    --------  --------- --------
+Core      bin/xnews gprof
+cscript   bin/xnews gprof
+typesclr     bin/xnews gprof
+Type1     bin/xnews gprof
+nucleus   bin/xnews gprof
+NeWS      bin/xnews gprof
+halftone  bin/xnews gprof
+SunOSI    bin/xnews/libnpsiSun gprof
+SunWIN    bin/xnews/libnpsiSun gprof
+SunEVQ    bin/xnews/libnpsiSun gprof
+suntool   bin/xnews/libnpsiSun opt
+sunwindow bin/xnews/libnpsiSun opt
+pixrect   bin/xnews/libnpsiSun opt
+X11server bin/xnews gprof
+X11dix    bin/xnews gprof
+#Xextent   bin/xnews gprof
+stextn    bin/xnews/libXextent gprof
+mitshm    bin/xnews/libXextent gprof
+#
+# Shapes libraries
+# ================
+# name  location  Buildtype Linktype
+# ----  --------  --------- --------
+Shapes  bin/xnews gprof	 ${SOURCEDIR}/bin/xnews/libshapes/di/libShapes_p.a
+ShCG2   bin/xnews gprof	 ${SOURCEDIR}/bin/xnews/libshapes/dd/cg2/libShCG2_p.a
+ShCG6   bin/xnews gprof	 ${SOURCEDIR}/bin/xnews/libshapes/dd/cg6/libShCG6_p.a
+ShFB    bin/xnews gprof	 ${SOURCEDIR}/bin/xnews/libshapes/dd/libShFB_p.a
+ShMem   bin/xnews gprof	 ${SOURCEDIR}/bin/xnews/libshapes/dd/mem/libShMem_p.a
+ShMem1  bin/xnews gprof	 ${SOURCEDIR}/bin/xnews/libshapes/dd/mem1/libShMem1_p.a
+ShMem8  bin/xnews gprof	 ${SOURCEDIR}/bin/xnews/libshapes/dd/mem8/libShMem8_p.a
+ShMem32 bin/xnews gprof	 ${SOURCEDIR}/bin/xnews/libshapes/dd/mem32/libShMem32_p.a
+ShCG12  bin/xnews gprof	 ${SOURCEDIR}/bin/xnews/libshapes/dd/cg12/libShCG12_p.a
+ShGT   bin/xnews gprof	 ${SOURCEDIR}/bin/xnews/libshapes/dd/gt/libShGT_p.a
+ShREC   bin/xnews gprof	 ${SOURCEDIR}/bin/xnews/libshapes/dd/rec/libShREC_p.a
+
+# private libraries used by clients
+# =================================
+# name    location    Buildtype Linktype
+# ----    --------    --------- --------
+parsemap  tools/fonts opt	opt
+xnfont    tools/fonts opt	opt

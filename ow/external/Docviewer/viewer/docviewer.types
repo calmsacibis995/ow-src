@@ -1,0 +1,38 @@
+ptype Sun_DeskSet_docviewer {
+	start		"docviewer -tooltalk -depth x -visual y -lc_basiclocale z";
+	per_session	256;
+};
+
+otype Sun_DeskSet_Object_docviewer {
+	handle:
+		Departing(void) => Sun_DeskSet_docviewer session;
+		View_Document(in string docname) => Sun_DeskSet_docviewer session;
+		View_File(in string filename) => Sun_DeskSet_docviewer session;
+		Get_Current_Document(out string docname,
+				     out string status)
+						=> Sun_DeskSet_docviewer session;
+		Get_Current_File(out string filename,
+				 out int    page,
+				 out string status)
+						=> Sun_DeskSet_docviewer session;
+		Next_Page(in	int	number_of_pages,
+			  out	string	status)
+						=> Sun_DeskSet_docviewer session;
+		Previous_Page(in  int	number_of_pages,
+			      out string status)
+						=> Sun_DeskSet_docviewer session;
+		Go_Back(in	int	number_of_pages,
+			out	string	status)
+						=> Sun_DeskSet_docviewer session;
+		Custom_Magnify(in  int    level,
+			       out string status)
+						=> Sun_DeskSet_docviewer session;
+		Partial_Page(out string status) => Sun_DeskSet_docviewer session;
+		Full_Page(out string status) => Sun_DeskSet_docviewer session;
+		Ping(in  string hostname,
+		     in  string display,
+		     out string status) => Sun_DeskSet_docviewer session;
+
+		Set_Card_Catalogs(in string cclist) => Sun_DeskSet_docviewer session;
+		Set_Preferred_Language(in string language) => Sun_DeskSet_docviewer session;
+};

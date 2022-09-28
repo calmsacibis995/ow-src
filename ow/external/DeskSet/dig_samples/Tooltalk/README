@@ -1,0 +1,49 @@
+
+			Tooltalk Sample Program
+
+Description:
+	This sample codes shows a working yet simple editor that can be
+	launched from mailtool when a user double clicks on a text
+	attachment. To test it out perform the following steps:
+
+1 - save your original setup "tt_type_comp -p > save_file"
+
+2 - run "make"
+
+3 - run "make tooltalk"
+
+4 - exit mailtool AND ttsession
+
+5 - in ONE shelltool
+	A - set the environment variable XENVIRONMENT to be the
+		full path to the Resources file.
+		"setenv XENVIRONMENT /usr/openwin/demo/tooltalk/Resources"
+
+	B - set your path environment variable to be this directory.
+
+	C - restart ttsession so that it has BOTH these environment variables.
+
+6 - restart mailtool and select a text attachment.
+
+When your testing is done and you want to go back to your original setup
+you can "tt_type_comp save_file" OR if you had no local changes to begin
+with you can just "rm -rf ~/.tt"
+
+File layout:
+	README		This file.
+
+	olit_tt.c	These are the routines that support the GUI.
+
+	tt_code.c	These are the routines that initalize tooltalk
+			and sets up the other callbacks.
+
+	tt_callbacks.c	These are the routines that get called in response
+			to tooltalk and/or GUI events.
+
+	Resources	These are the resource for the GUI.
+
+	types.file	This file containes the tooltalk static ptypes
+			used to identify to tooltalk that this applicaion
+			should be started for text applications.
+
+	Makefile	This builds the application and installs the ptypes.

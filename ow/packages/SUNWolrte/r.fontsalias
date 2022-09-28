@@ -1,0 +1,13 @@
+#
+#"@(#)r.fontsalias	35.1 94/09/01   Sun Microsystems" 
+#
+# SUNWxwoft class action remove script for the fontsalias class
+
+# Remove the fonts.alias.opt files. 
+
+while   read dst
+do
+    rm -f $dst
+done
+
+exit 0

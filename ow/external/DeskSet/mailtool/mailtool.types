@@ -1,0 +1,65 @@
+ptype Sun_DeskSet_mailtool {
+	per_session	1;
+	start		"mailtool -tooltalk -depth x -visual y -lc_basiclocale z";
+};
+
+ptype Sun_MA_mailtool
+{
+start "$OPENWINHOME/bin/mailtool -message_alliance";
+per_session 1;
+handle:
+/*     
+ *
+ * Optional extra arguments for Open
+ *            in    boolean     mapped
+ *            in    integer     shareLevel
+ *            in    locator     initialPos
+ */
+/* Open */
+session Open (in  RFC_822_Message	contents,
+	      out bufferID	docBuf,
+	      in  boolean	readOnly) => start;
+
+
+session Open (in  RFC_822_Message	contents,
+	      out bufferID	docBuf,
+	      in  boolean	readOnly,
+	      in  boolean	mapped) => start;
+
+session Open (in  RFC_822_Message	contents,
+	      out bufferID	docBuf,
+	      in  boolean	readOnly,
+	      in  boolean	mapped,
+	      in  integer	shareLevel) => start;
+
+session Open (in  RFC_822_Message	contents,
+	      out bufferID	docBuf,
+	      in  boolean	readOnly,
+	      in  boolean	mapped,
+	      in  integer	shareLevel,
+	      in  locator	initialPos) => start;
+
+session Open (in  RFC_822_Message	contents,
+	      out bufferID	docBuf,
+	      in  boolean	readOnly,
+	      in  boolean	mapped,
+	      in  locator	initialPos) => start;
+
+
+session Open (in  RFC_822_Message 	contents,
+	      out bufferID 	docBuf,
+	      in  boolean 	readOnly,
+	      in  integer 	shareLevel) => start;
+
+session Open (in  RFC_822_Message  contents,
+	      out bufferID 	docBuf,
+	      in  boolean	readOnly,
+	      in  integer	shareLevel,
+	      in  locator	initialPos) => start;
+
+
+session Open (in  RFC_822_Message 	contents,
+	      out bufferID 	docBuf,
+	      in  boolean 	readOnly,
+	      in  locator	initialPos) => start;
+};

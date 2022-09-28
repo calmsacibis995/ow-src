@@ -1,0 +1,9 @@
+#define _icv_state	_lcl_iso_to_tw_icv_state
+#define _iconv_st	_lcl_iso_to_tw_iconv_st
+#define _icv_open	_lcl_iso_to_tw_icv_open
+#define _icv_close	_lcl_iso_to_tw_icv_close
+#define _icv_iconv	_lcl_iso_to_tw_icv_iconv
+#define get_plane_no_by_iso	_lcl_iso_to_tw_get_plane_no_by_iso
+#define iso_to_cns	_lcl_iso_to_tw_iso_to_cns
+
+#include "iso2022-CN_to_cns11643.c"

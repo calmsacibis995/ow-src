@@ -1,0 +1,39 @@
+.\" Copyright (c) 1994 - Sun Microsystems, Inc.
+.TH rpc.cmsd 1 "9 November 1993"
+.IX "rpc.cmsd" "" "\f3rpc.cmsd\f1(1) \(em calendar manager service deamon" ""
+.IX "calendar" "deamon" "Calendar Manager"  "deamon used with \f3cm\f1 \(em \f3rpc.cmsd\f1(1)"
+.SH NAME
+rpc.cmsd \- calendar manager service daemon
+.SH SYNOPSIS
+.B /usr/openwin/bin/rpc.cmsd
+[
+.B -d
+] [
+.B -s
+]
+.SH DESCRIPTION
+.B rpc.cmsd 
+is a small database manager for appointment and resource-scheduling data.  
+Its primary client is Calendar Manager, a productivity tool
+included with OpenWindows.
+.B rpc.cmsd
+is normally invoked by
+.BR inetd (1M)
+when a Calendar Manager request is recieved.
+.SH OPTIONS
+.PP
+.TP 8
+.B "-d"
+Enables debugging output.
+.PP
+.TP 8
+.B "-s"
+Runs
+.B rpc.cmsd
+in the foreground.  This option should be used when
+.B rpc.cmsd
+is invoked manually for debugging purposes.
+.SH FILES
+.B /usr/spool/calendar/callog.$USER
+.br
+.B /etc/inetd.conf

@@ -1,0 +1,33 @@
+#
+# @(#)Makefile   3.12 - 92/10/28
+#
+
+YFLAGS		=	-dv
+
+SOURCES.y=	ce_yacc.y
+
+SOURCES.l=	ce_lex.l
+
+LIBRARY		= libcelex
+LIBVERSION	= .0
+PROJECTDIR	= ..
+
+
+.KEEP_STATE:
+
+default:	all
+
+include ${PROJECTDIR}/Makefile.master.new
+
+all:		$(LIBRARY.a) 
+
+$(SOURCES.l):	ce_yacc.c
+
+clean:		master_clean
+
+#
+# For I18N string extraction (see DeskSet's Makefile.master)
+#
+TEXTDOMAIN   	  = SUNW_DESKSET_CE
+
+

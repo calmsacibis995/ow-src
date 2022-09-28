@@ -1,0 +1,145 @@
+DESCRIPTION
+
+	The RubberTile widget is a constraint widget which allows an application to
+	layout its children either vertically or horizontally, and then assign relative
+	weights to each child so that it absorbs a certain percentage of size changes.
+	If the RubberTile is set with a vertical orientation, then the children will
+	be layed out vertically in columns, each spanning the width of the RubberTile.  
+	If the RubberTile is layed out horizontally, then the children we be placed in a row,
+	each one's height spanning the height of the RubberTile.
+
+	The RubberTile resizes it's children according to their specified value in the
+	constraint resource, XtNweight.  To determine the percentage of the RubberTile's
+	size change a child should absorb, the following formula is used:
+
+	   child's size change percentage = child's XtNweight/sum of all children's XtNweights
+
+	This widget is very useful when laying out panes in a window.  For example, if
+	an application requires three panes layed out vertically, and the top pane is
+	not to absorb any height changes, however the two lower panes are to each absorb
+	half of the height changes, then the application can do the following:
+	create a RubberTile with XtNorientation set to OL_VERTICAL, then create each
+	child, assigning each the appropriate XtNweight constraint resource value:
+
+		top pane -> 	XtNweight = 0 
+		middle pane -> 	XtNweight = 1 
+		bottom pane -> 	XtNweight = 1
+	
+		top pane's size change percentage    =  0 / (0 + 1 + 1) = 0%
+		middle Pane's size change percentage =  1 / (0 + 1 + 1) = 50%
+		bottom pane's size change percentage =  1 / (0 + 1 + 1) = 50% 
+	
+
+ 	For more detailed and complete information on the RubberTile Widget, see the following
+	Section in the OPEN LOOK Intrinsics Toolkit Widget Set Reference Manual:
+		. RubberTile
+
+
+EXAMPLE CODE
+
+The code below shows an example of how to create a RubberTile widget like the example shown
+in the Table.
+/****************************************************************************************/
+#include <X11/Intrinsic.h>
+#include <X11/StringDefs.h>
+#include <Xol/OpenLook.h>
+#include <Xol/RubberTile.h>
+
+#include <Xol/StaticText.h>
+
+main(argc, argv)
+int argc;
+char **argv;
+{
+	Widget toplevel, rubbertile, rt_text[3];
+	XtAppContext app;
+
+	OlToolkitInitialize(NULL);
+	toplevel = XtAppInitialize(&app, "Test", 
+				(XrmOptionDescRec *)NULL,
+				(Cardinal)0, (int *)&argc, argv,
+				(String *)NULL, (ArgList)NULL, 0);
+
+	/*
+	 * Create a RubberTile container and lay it out vertically
+ 	 */
+	rubbertile = XtVaCreateManagedWidget("tile",
+					rubberTileWidgetClass,
+					toplevel,
+					XtNorientation,	(XtArgVal)OL_VERTICAL,
+					NULL);
+
+	/*
+	 * Create StaticText Children in RubberTile and assign them their
+ 	 * resize-absorb weights...
+	 */
+	rt_text[0] = XtVaCreateManagedWidget("text",
+					staticTextWidgetClass,
+					rubbertile,
+					XtNweight,	(XtArgVal)1,
+					XtNstring,	(XtArgVal)"I Absorb 1/6 height changes",
+					XtNgravity,	(XtArgVal)CenterGravity,
+					XtNborderWidth,	(XtArgVal)1,
+					NULL);
+	rt_text[1] = XtVaCreateManagedWidget("text",
+					staticTextWidgetClass,
+					rubbertile,
+					XtNweight,	(XtArgVal)2,
+					XtNstring,	(XtArgVal)"I get 1/3 height changes",
+					XtNgravity,	(XtArgVal)CenterGravity,
+					XtNborderWidth,	(XtArgVal)1,
+					NULL);
+
+	rt_text[2] = XtVaCreateManagedWidget("text",
+					staticTextWidgetClass,
+					rubbertile,
+					XtNweight,	(XtArgVal)3,
+					XtNstring,	(XtArgVal)"I Get 1/2 height changes",
+					XtNgravity,	(XtArgVal)CenterGravity,
+					XtNborderWidth,	(XtArgVal)1,
+					NULL);
+
+	/*
+	 * Realize widgets and enter event loop...
+	 */
+
+	XtRealizeWidget(toplevel);
+	XtAppMainLoop(app);
+
+}
+/*******************************END EXAMPLE******************************/	
+	
+	
+RESOURCES
+_______________________________________________________________________________________________
+Resource Name		Type		Default		Brief Description
+_______________________________________________________________________________________________
+
+RubberTile Resource Set (these are set directly on the RubberTile widget):
+
+XtNancestorSensitive	Boolean		TRUE		Will immediate parent receive events?
+XtNbackground		Pixel		White		background color of widget
+XtNbackgroundPixmap	Pixmap		(none)		pixmap used for tiling the background
+XtNborderColor		Pixel		Black		border color of widget
+XtNborderPixmap		Pixmap		(none)		pixmap used for tiling the border
+XtNborderWidth		Dimension	0		width of widget's border in pixels
+XtNconsumeEvent		XtCallbackList	NULL		called when event occurs
+XtNdestroyCallback	XtCallbackList	NULL		routines called when widget is destroyed 
+XtNheight		Dimension	(calculated)	height of widget's window in pixels
+XtNmappedWhenManaged	Boolean		TRUE		will widget be mapped when managed?
+XtNorientation		OlDefine	OL_VERTICAL	what direction will widget layout children?
+XtNsensitive		Boolean		TRUE		will widget receive input events?
+XtNuserData		XtPointer	NULL		storage for user defined data
+XtNwidth		Dimension	(calculated)	width of widget's window in pixels
+XtNx			Position	0		x coord of widget's upper left corner
+XtNy			Position	0		y coord of widget's uuper left corner
+
+
+Constraint Resouce Set (these are set on the RubberTile's children to define spatial relationships):
+
+XtNrefName		String		NULL		see Widget man page
+XtNrefWidget		Widget		NULL		see Widget man page
+XtNspace		Dimension	0		distance (offset) from reference widget
+XtNweight		Dimension	1		relative proportion of absorbed size changes
+
+

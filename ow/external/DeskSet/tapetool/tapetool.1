@@ -1,0 +1,305 @@
+.\" Copyright (c) 1994 - Sun Microsystems, Inc.
+.TH tapetool 1 "9 March 1992"
+.IX "tapetool" "" "\f3tapetool\f1(1) \(em tape drive control tool" ""
+.IX "OpenWindows" "tape" "OpenWindows" "tape drive control tool \(em \f3tapetool\f1(1)"
+.SH NAME
+tapetool \- OpenWindows tool for reading files from tape 
+or archiving files to tape
+.SH SYNOPSIS
+.B tapetool 
+[ 
+.I generic-tool-arguments
+]
+.SH AVAILABILITY
+This command is available with the OpenWindows environment.
+All OpenWindows standard tools use the 
+.SW OPEN LOOK 
+Graphical User Interface (
+.SM GUI
+). 
+.SH DESCRIPTION
+.LP
+.B tapetool 
+is an OpenWindows based XView application that
+uses the 
+.BR tar (1) 
+command to write files to tape, extract files 
+from tape or list the contents of a tape.
+.SH OPTIONS
+.TP 10
+.I generic-tool-arguments
+.B tapetool
+accepts the generic tool arugments described in
+.BR xview (7).
+.SH USAGE
+.LP
+.B tapetool 
+is part of the OpenWindows user environment.  
+.LP
+There are two windows associated with 
+.B tapetool. 
+The main window that appears when the tool is 
+initially brought up is for writing files to tape.  
+The read window appears when you 
+.RB ` List ' 
+the contents of a tape or choose either
+.RB ` "Read Selected" ' 
+or 
+.RB ` "Read Entire List" '. 
+.LP
+.RB ` "List..." ' 
+panel-button brings up a 
+.RB ` "Tape Contents' " 
+window that lists the files on tape. 
+Filenames can be added using the 
+.RB ` "File To Read" '
+button. 
+Filenames can be deleted using the scrolling 
+list popup menu. 
+It may take some time listing the entire contents 
+of a tape if it contains many files. 
+If you want to extract just a few files and 
+know the exact names of the files you may 
+want to do a 
+.RB ` "Read Selected" ' 
+that will bring up an empty 
+.RB ` "Tape Contents" ' 
+window. 
+Then add the filenames to the list using the
+.RB ` "File To Read" ' 
+button and do a 
+.RB ` "Read Entire List" '.
+.LP
+There are three ways to read files:
+.RS
+.TP 10
+.B "Read Selected"
+Reads the files selected in the 
+.RB ` "Tape Contents" ' 
+window.
+.TP
+.B "Read Entire List" 
+Reads all the files listed in the
+.RB ` "Tape Contents" ' 
+window.
+.TP
+.B "Read Entire Tape"
+Reads the entire tape. The
+.RB ` "Tape Contents" ' 
+window does not have to be showing to do this.  
+The files are put into the directory specified 
+by the 
+.RB ` Destination ' 
+field if they do not contain fully qualified pathnames.
+.RE
+.LP	
+To write files to tape, add filenames to the 
+main scrolling list using the
+.RB ` "File To Write" ' 
+menu button. 
+The main scrolling list has a popup menu
+for deleting selected files.  
+.RB ` Write ' 
+writes the filenames listed in this window to tape.  
+.LP
+.B "Props" 
+gives a property sheet for specifying 
+.BR tar (1) 
+options.
+.RS
+.TP 10
+.PD 0
+.B Device:
+.RS
+.TP 15  
+.B /dev/rmt/\fIn\fR 
+SCSI tape drives
+.RE
+.B Host Name:
+.RS
+Specifies the name of host system where the reading or archiving of files will
+be applied.  The default is the current host name.
+.RE
+.B "Tar Options"
+.TP
+.B "Write:"
+.RS
+.TP 15
+.B "No \s-1SCCS\s0"
+F option to 
+.BR tar (1), 
+exclude all directories named 
+.SM SCCS 
+from tarfile.
+.TP
+.B "No \s-1SCCS\s0+"
+FF option to 
+.BR tar (1), 
+exclude all directories named 
+.SM SCCS, 
+all files with 
+.B .o 
+as their suffix, and all files named 
+.BR errs , core , 
+and 
+.BR a.out .
+.TP
+.B "Block I/0"
+.B b 
+option to 
+.BR tar (1), 
+blocking factor for tape records.
+The default blocking factor is 20 blocks. 
+The block size is determined automatically 
+when reading tapes.  
+This determination of the blocking factor may be 
+fooled when reading from a pipe or a socket. 
+The maximum blocking factor is determined only 
+by the amount of memory available to 
+.B tar 
+when it is run.  
+Larger blocking factors result in better throughput, 
+longer blocks on nine-track tapes, and better media 
+utilization.
+.TP
+.B "Sym Links"
+.B h 
+option to 
+.BR tar (1), 
+follow symbolic links as if they were normal files 
+or directories. 
+Normally, 
+.B tar  
+does not follow symbolic links.
+.TP
+.B "Show Errs"
+.B l 
+option to 
+.BR tar (1), 
+Display error messages if all 
+links to archived files cannot be resolved.   
+If not used, no error messages are printed.
+.TP
+.B Suppress
+.B o 
+option to 
+.BR tar (1), 
+Suppress information specifying  
+owner and modes of directories that 
+.B tar 
+normally places in the archive.
+.RE
+.RE
+.RS
+.TP 10
+.B "Read:"
+.RS
+.TP 15
+.B "No Check"
+.B i 
+option to 
+.BR tar (1), 
+Ignore directory checksum errors.
+.TP
+.B "Mod Time"
+.B m 
+option to 
+.BR tar (1), 
+Do not extract modification 
+times of extracted files.
+The modification time will be the time of extraction.
+.TP
+.B "Orig Mode"
+.B p 
+option to 
+.BR tar (1), 
+Restore the named files to their original modes, 
+ignoring the present 
+.BR umask (2).
+Set\s-1UID\s0 and sticky information are also 
+extracted if you are the super-user.
+.RE
+.RE
+.RS
+.TP 10
+.B "Delete Dir:"
+For writing files to tape
+.RS
+.TP 20
+.RB ` NONE ' 
+retains filename path exactly as specified. 
+.TP
+.RB ` ALL ' 
+Extracts the entire path from 
+.I filename 
+and writes just the 
+.IR filename .
+.TP
+.RB ` PATTERN ' 
+extracts the 
+.I pattern 
+specifed and writes the 
+.I filename 
+left over.
+.RE
+.RE
+.RS
+.TP 10
+.B Other:
+.RS
+.TP 20
+.B "Err Exit"
+.B e 
+option to 
+.BR tar (1), 
+If any unexpected errors occur 
+.B tar 
+aborts immediately with a positive exit status.
+.TP
+.B Exclude
+.B X 
+option to 
+.BR tar (1), 
+Specify a file containing a list of named files (or 
+directories) to be excluded when reading from tape. 
+Only one file can be specified.
+.RE
+.RE
+.RS
+.TP 10
+.B Apply 
+Menu button that applies the options that have been set.
+.TP
+.B Reset 
+Menu button that resets the defaults.
+.RE
+.LP
+.sp
+You may drag and drop files from 
+.BR filemgr (1) 
+onto the tapetool write window for writing 
+files to tape. 
+You can also drop files onto the 
+.B tapetool 
+icon for writing.
+.sp .5
+.SH FILES
+.LP
+.TP 10
+.PD 0
+.B /dev/rmt/\fIn\fR
+SCSI tape interface
+.sp .5
+.SH BUGS
+.LP
+See bugs for 
+.BR tar (1)
+.sp .5
+.SH SEE ALSO
+.BR tar (1),
+.BR filemgr (1)
+.br
+OpenWindows user documentation
+.br
+"About Tape Tool" in the Help Handbook available through the
+Help option on the Workspace menu.

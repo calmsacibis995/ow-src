@@ -1,0 +1,39 @@
+#
+# @(#)openwin-menu-programs	1.22 97/03/05 openwin-menu-programs 
+#
+#	OpenWindows default root menu file - Programs submenu
+#
+
+"Programs" TITLE PIN
+
+"File Manager..."	DEFAULT	exec $OPENWINHOME/bin/filemgr
+"Power Manager..."		exec $OPENWINHOME/bin/dtpower
+"Text Editor..."	 	exec $OPENWINHOME/bin/textedit
+"Mail Tool..."			exec $OPENWINHOME/bin/mailtool
+"Calendar Manager..."		exec $OPENWINHOME/bin/cm
+
+SEPARATOR
+
+"Command Tool..." 		exec $OPENWINHOME/bin/cmdtool
+"Shell Tool..."			exec $OPENWINHOME/bin/shelltool
+
+SEPARATOR
+
+"Clock..."			exec $OPENWINHOME/bin/clock
+"Calculator..."			exec $OPENWINHOME/bin/calctool
+"Performance Meter..."		exec $OPENWINHOME/bin/perfmeter
+"Print Tool..."			exec $OPENWINHOME/bin/printtool
+"Audio Tool..."			exec $OPENWINHOME/bin/audiotool
+"Tape Tool..."			exec $OPENWINHOME/bin/tapetool
+
+SEPARATOR
+
+"Image Tool..."			exec $OPENWINHOME/bin/imagetool
+"Snapshot..."			exec $OPENWINHOME/bin/snapshot
+"Icon Editor..."		exec $OPENWINHOME/bin/iconedit
+"Binder..."			exec $OPENWINHOME/bin/binder
+"AnswerBook2..."		exec /usr/dt/bin/answerbook2
+
+SEPARATOR
+
+"Demos..."			exec $OPENWINHOME/bin/filemgr -d $OPENWINHOME/demo/add

@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+# @(#)MAE_info	1.2 97/03/17
+#
+# This script determines if the entire interactive infomercial is available,
+# and runs it, or shows a static slide with a bunch of info on it.
+#
+
+if [ -d .MAE.data ]
+then
+	./.maeprog 
+else
+        imagetool .maeslide.Z
+fi

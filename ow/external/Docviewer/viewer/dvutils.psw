@@ -1,0 +1,76 @@
+defineps drawbox()
+	  		% type bbox_llx bbox_lly bbox_urx bbox_ury => -
+	newpath			% type bbox_llx bbox_lly bbox_urx bbox_ury
+	points2rect		% type bbox_llx bbox_lly w h
+	rectpath		% type
+	closepath		% type
+	XOR_OPCODE setrasteropcode % type
+	FILLBOX eq {		% -
+		fill		% Fill the box
+	}{
+		1 setlinewidth	% Draw an outline
+		stroke
+	} ifelse
+	SRC_OPCODE setrasteropcode
+endps
+
+defineps ps_dvRestoreObject()
+	{
+	    currentdict userdict ne { end } { exit } ifelse
+	} loop
+	userdict /dv_SaveObject known
+	{
+	    userdict /dv_SaveObject get restore
+	} if
+endps
+
+defineps  ps_dvSaveObject()
+	userdict /dv_SaveObject save put
+endps
+
+
+
+defineps ps_ChangeDrawable (int xid)
+ 	[1 0 0 1 0 0] setmatrix
+ 	currentXgcdrawable 3 -1 roll pop xid 3 1 roll
+        setXgcdrawable
+        [1 0 0 1 0 0] setmatrix
+endps
+
+
+defineps ps_ClearCanvas()
+	gsave
+	    newpath clippath 1.0 setgray fill
+	grestore
+endps
+
+
+defineps ps_ShowPage()
+	newpath initclip 1 setlinewidth 0 setlinecap 0 setlinejoin
+	[] 0 setdash 0 setgray 10 setmiterlimit
+	clear
+endps
+
+defineps ps_DrawBox(int type, bbox_llx, bbox_lly, bbox_urx, bbox_ury)
+gsave type setgray bbox_llx bbox_lly bbox_urx bbox_ury rectstroke grestore
+endps
+
+
+defineps redefineSetScreen ()
+/sys_setscreen systemdict /setscreen get  def
+/setscreen { % f a proc | - 
+	     dup
+	     null eq
+	     { pop pop pop }
+	     {sys_setscreen} ifelse
+	} def
+endps
+
+
+
+defineps defineFrameBuffer(char* frameBufStr)
+
+/frameBufStr 1 def
+
+endps
+

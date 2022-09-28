@@ -1,0 +1,753 @@
+#################################################
+##    iconedit.info     
+#
+#
+#      OpenWindows Version 3 FCS
+#	rev'd by James Brook 17 July 1991
+#	rev'd 29 October 1991 for OWV3.0.1
+#
+#      rev'd by R.Patten Jan 27 93 for V3.2
+##########This_Line_Is_50_Characters_Long#########
+
+# Panel, Canvas and Preview Windows
+#
+:Panel:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Panel
+
+The Icon Editor panel contains:
+
+o  The File, View, Edit, and Properties menus
+o  The Palette button
+o  Eight drawing options
+o  Nine fill choices and an outline for drawing
+   squares, circles, or ellipses
+o  Arrows for moving the icon or a selected 
+   region in one-pixel increments
+o  The flip tools
+o  The rotate tools
+
+For help on a specific panel item, move the
+pointer over that item and press the Help key on
+your keyboard.
+
+#
+:Canvas:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Canvas
+
+The canvas shows a magnified version of your icon.
+Each pixel is represented by a square of 7-by-7 
+pixels.  
+
+Click MENU on the canvas to display an Edit menu.
+
+The square at the top right of the Icon Editor
+window displays the icon in its actual size.
+
+##########This_Line_Is_50_Characters_Long#########
+:PreviewWindow:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Preview window
+
+This is a picture of your icon at its actual size.
+
+# 	File Menu
+:FileButton:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+File
+
+Provides options to open, save, and print files:
+
+Load	For choosing the file you want to open.
+
+Save	For saving the current icon to the 
+	previously opened file.
+
+Save As	For saving the current icon and specifying
+	a folder, file name, and format.
+
+Print	For specifying the settings that control
+	printing.
+
+#
+:LoadMenuItem:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Load
+
+Displays a window from which you choose the file
+for the icon you want to open.
+
+Keyboard shortcut:  Meta-O
+
+#
+:SaveMenuItem:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Save
+
+Saves your current icon in the currently opened
+file.
+
+If your icon has not yet been saved, or you want 
+to save it in a different format, use Save As.
+
+Keyboard shortcut:  Meta-S
+
+#
+:SaveAsMenuItem:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Save As
+
+Displays a window in which you specify the folder,
+name, and format of a file for saving the current
+icon.
+
+Use this option when you want to convert an icon
+to a different file format.  Icon Editor writes
+these formats:  XView Icon, X Bitmap, Color X 
+Pixmap, and Mono Pixmap.
+
+##########This_Line_Is_50_Characters_Long#########
+#
+:FileFormat:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+File Format
+
+Use this drop-down menu to choose the file format
+in which you want the current icon saved.
+
+#
+:PrintMenuItem:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Print
+
+Displays the Print window that contains these
+options for controlling how the current icon is
+printed:
+
+Destination (printer or file)
+Printer (which device)
+Options (OS command)
+Width
+Height
+Position (left and bottom margins)
+Copies (number of)
+
+Keyboard shortcut:  Meta-P
+
+##########This_Line_Is_50_Characters_Long#########
+
+# 	View Menu
+:ViewButton:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+View
+
+The View menu toggles from Grid On to Grid Off:
+
+Grid On	turns on a 4-pixel grid for the canvas.
+
+Grid Off turns off the grid.	
+
+The grid is useful for aligning and centering
+all or part of your icon.
+
+:GridMenuItem:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Grid On/Grid Off
+
+Grid On	turns on a 4-pixel grid for the canvas.
+
+Grid Off turns off the grid.	
+
+The grid is useful for aligning and centering
+all or part of your icon.
+
+
+#:ToggleMenuItem:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Toggle
+
+Turns the grid on when it's off.
+
+Turns the grid off when it's on.
+
+#:ToggleOffMenuItem:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Off
+
+Turns off the grid.
+
+#
+# Properties button
+#
+:PropsButton:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Properties
+
+Format	Choose a format from the submenu.
+
+Size	Choose a size from the submenu.
+
+#
+:PropsMenuItem:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Format
+
+Choose which format to save the icon in:
+
+- XView Icon
+- X Bitmap
+- Color X Pixmap
+- Mono X Pixmap
+
+
+:XvIconMenuItem:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+XView Icon
+
+Saves the icon in a black and white format for
+display in File Manager.
+
+:XBMMenuItem:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+X Bitmap
+
+Saves the icon in a black and white format for
+use in a C program.
+
+:ColorXPMMenuItem:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Color X Pixmap
+
+Saves the icon as a color X pixmap image for 
+use in XView applications.
+
+:MonoXPMMenuItem:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Mono X Pixmap
+
+Saves the icon as monochrome X pixmap image.
+
+##########This_Line_Is_50_Characters_Long#########
+
+:SizeMenuItem:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Size
+
+Changes the size of the canvas to the specified
+image size. Choose from:
+
+Size 		Kind of Standard Icon
+(in pixels)
+__________________________________________
+16 X 16		Typical cursor
+32 X 32		File Manager data file
+48 X 48		None
+
+64 X 64		DeskSet application
+128 X 128	None
+__________________________________________
+
+:16xMenuItem:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+16 (cursor)
+
+Resizes the canvas so it displays 16 by 16
+pixels.  
+
+This is the size of a standard cursor.
+
+:32xMenuItem:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+32 (File manager icon)
+
+Resizes the canvas so it displays 32 by 32
+pixels.  
+
+This is the size of a standard icon for a
+data file in the File Manager window.
+
+:48xMenuItem:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+48
+
+Resizes the canvas so it displays 48 by 48
+pixels.  
+
+:64xMenuItem:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+64 (Tool Icon)
+
+Resizes the canvas so it displays 64 by 64
+pixels.  
+
+This is the size of a standard icon for a
+DeskSet tool, such as the Clock.
+
+:128xMenuItem:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+128
+
+Resizes the canvas so it displays 128 by 128
+pixels.  
+
+##########This_Line_Is_50_Characters_Long#########
+
+# 	Edit Menu
+:EditButton:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Edit
+
+Choose from these options:
+
+Undo	Undoes up to seven of your last drawing
+	or editing actions.
+
+Redo	Restores your drawing to the state it was
+	in before you chose Undo.
+
+Clear	Clears the canvas.
+
+Cut	Removes the entire icon or a selected
+	region and places it on a clipboard.
+
+Copy	Copies the entire icon or a selected
+	region and places it on a clipboard.  
+
+Paste	Pastes the contents of the clipboard in a
+	region you define.
+
+Invert	Makes black pixels white and white pixels
+	black in the entire icon or selected 
+	region.
+
+
+:UndoMenuItem:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Undo
+
+Undoes up to seven of your last drawing or
+editing actions.
+
+You can use Redo to restore something you
+have undone.
+
+Keyboard shortcut:  Meta-Z
+
+#
+:RedoMenuItem:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Redo
+
+Restores your drawing to the state it was in
+before you chose Undo.
+
+You can redo up to seven actions.
+
+Keyboard shortcut:  Shift Meta-Z
+
+#
+:ClearMenuItem:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Clear
+
+Clears the canvas.
+
+If you want the drawing back, choose Undo.
+
+#
+:CutMenuItem:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Cut
+
+Removes the entire icon or a selected region
+and places it on a clipboard.
+
+You can then paste whatever you cut.
+
+Keyboard shortcut: Meta-X
+
+#
+:CopyMenuItem:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Copy
+
+Copies the entire icon or a selected region
+and places it on a clipboard.
+
+(Copy leaves the original intact.)
+
+You can then paste whatever you copied.
+
+Keyboard shortcut:  Meta-C
+
+#
+:PasteMenuItem:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Paste
+
+Pastes the contents of the clipboard in a
+region you define.
+
+To use Paste:
+
+1.  Choose Region for the drawing mode.
+2.  Drag SELECT to define the region, which
+    appears as a dashed line.
+3.  Choose Paste from the Edit menu.
+
+Keyboard shortcut:  Meta-V
+
+#
+:InvertMenuItem:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Invert
+
+Makes black pixels white and white pixels black
+in the entire icon or selected region.
+
+##########This_Line_Is_50_Characters_Long#########
+
+# 	Colors
+#
+:BlackMenuItem:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Black
+
+Choose this item to turn the pen color to black.
+
+:RedMenuItem:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Red
+
+Choose this item to turn the pen color to red.
+
+:GreenMenuItem:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Green
+
+Choose this item to turn the pen color to green.
+
+
+:BlueMenuItem:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Blue
+
+Choose this item to turn the pen color to blue.
+
+:OrangeMenuItem:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Orange
+
+:YellowMenuItem:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Yellow
+
+Choose this item to turn the pen color to yellow.
+
+:VioletMenuItem:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Violet
+
+Choose this item to turn the pen color to violet.
+
+:BrownMenuItem:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Brown
+
+Choose this item to turn the pen color to brown.
+
+:WhiteMenuItem:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+White
+
+Choose this item to turn the pen color to white.
+
+##########This_Line_Is_50_Characters_Long#########
+#
+# 	Palette
+#
+:PaletteButton:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Palette
+
+Displays Color Chooser, where you can set the
+color you want to use for your icon.
+
+:BlackWhiteToggle:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Black/White
+
+Sets the color the pen draws.
+
+Click SELECT on the color of your choice.
+
+##########This_Line_Is_50_Characters_Long#########
+
+:BrushSetting:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Drawing Options
+
+Eight options for what the pointer will draw
+on the canvas.
+
+Click SELECT on any of the drawing options to
+choose it.
+
+Option		What it does
+________________________________________________
+
+Point		When you click SELECT on the
+		canvas, one black pixel is
+		inserted at the hot spot (tip) 
+		of the pointer.
+
+		When you point to a black or
+		color pixel and click ADJUST,
+		the pixel turns white.
+
+Line		Draws a line 1-pixel wide when
+		you drag SELECT.
+
+Square		Draws open or filled squares or
+		rectangles, using any fill
+		pattern.
+
+		Drag SELECT from one corner to the
+		opposite corner to draw a square.
+
+Circle		Draws open or filled circles, 
+		using any fill pattern.
+
+		Drag SELECT from the center of the
+		circle to its outside. 
+
+Ellipse		Draws open or filled ellipses, 
+		using any fill pattern.
+
+		Drag SELECT from the center of the
+		ellipse to its outside. 
+
+Text		Displays a Text window. Choose the
+		options you want, type the text in
+		the Text window, then insert it 
+		into the icon by moving the 
+		pointer onto the canvas and
+		clicking SELECT.
+
+Region		Defines a rectangular region on
+		the canvas.
+
+		Drag SELECT to define the region.
+		You can then move, flip, or 
+		rotate it by clicking on any of
+		the Move buttons.
+
+		You can also cut, copy, and
+		paste regions.
+
+Erase		Erases pixels on the canvas.
+
+		Drag SELECT to erase the pixel
+		under the front tip of the eraser.
+
+##########This_Line_Is_50_Characters_Long#########
+:FillSetting:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Fill Choices
+
+Nine patterns or an outline for drawing squares,
+circles, or ellipses.
+
+Click SELECT on any of the fill choices to
+select it.
+
+These choices are available only when the draw
+option is one of those fillable shapes. The open 
+square draws an outline of the shape, using a line
+1-pixel wide.
+
+:ColorToggle:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Color/B&W
+
+Determines whether your icon is in color or black
+and white. If you have a black and white system,
+you can't choose color.
+
+Click SELECT on the option you want.
+
+If you change your icon from color to black and
+white, you lose the colors--even if you switch
+back. Choose Undo from the Edit menu to restore
+the colors.
+
+##########This_Line_Is_50_Characters_Long#########
+
+#	Move Buttons
+
+:MoveLeftButton:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Left Arrow
+
+Moves the icon or selected region one pixel to
+the left.
+
+If you move the image off the canvas, pixels are
+cropped. They are not restored if you move the
+image back.
+
+:MoveRightButton:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Right Arrow
+
+Moves the icon or selected region one pixel to
+the right.
+
+If you move the image off the canvas, pixels are
+cropped. They are not restored if you move the
+image back.
+
+:MoveUpButton:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Up Arrow
+
+Moves the icon or selected region one pixel up.
+
+If you move the image off the canvas, pixels are
+cropped. They are not restored if you move the
+image back.
+
+:MoveDownButton:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Down Arrow
+
+Moves the icon or selected region one pixel down.
+
+If you move the image off the canvas, pixels are
+cropped. They are not restored if you move the
+image back.
+
+##########This_Line_Is_50_Characters_Long#########
+:HorizFlipButton:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Flip Left to Right
+
+Flips the icon or selected region from left to 
+right.
+
+:VertFlipButton:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Flip Up to Down
+
+Flips the icon or selected region from top to 
+bottom.
+
+:RotLeftButton:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Rotate Left
+
+Rotates the icon or selected region 90 degrees
+to the left. 
+
+:RotRightButton:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Rotate Right
+
+Rotates the icon or selected region 90 degrees
+to the right. 
+#
+##########This_Line_Is_50_Characters_Long#########
+
+
+##########This_Line_Is_50_Characters_Long#########
+#
+#	File pop-up window
+#
+:DirectoryFillin:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Directory:
+
+Type the path of the directory for the file you
+want to load or save.
+
+:FileFillin:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+File:
+
+Type the name of the file you want to load
+or save.
+
+:LoadButton:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Load
+
+Click SELECT on Load to load the file.
+
+:SaveButton:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Save
+
+Press MENU to display your options for saving a
+file.
+
+Save Option:	Use It For:
+	
+XView Icon	Black and white icons displayed
+		in File Manager
+	
+X Bitmap	Black and white icons included
+		in a C program
+
+Color X Pixmap	Color X pixmap icons used in
+		XView applications
+	
+Mono X Pixmap	Monochrome X pixmap icons
+
+##########This_Line_Is_50_Characters_Long#########
+#
+#	Print pop-up window
+#
+:FilePrinterChoice:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Destination: Printer/File
+
+Click SELECT on your choice of destination.
+
+:PrinterFillin:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Printer:
+
+Type the name of the printer you want to send the
+file to. 
+
+:PrintOptsFillin:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Options:
+
+Type an operating system command to customize the
+way the icon is printed.
+
+##########This_Line_Is_50_Characters_Long#########
+:PrintDirectoryFillin:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Directory:
+
+Type the path of the directory for the file you
+want to print to.
+
+:PrintFileFillin:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+File:
+
+Type the name of the file you want to print to.
+
+:PrintWidthFillin:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Width:
+
+Type the width of the printed image.
+
+:PrintPositionFillin:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Position:
+
+Type the number of inches for the left and bottom
+margins on the page.
+
+Example:  1.00 inches from left and 1.00 inches
+	  from bottom places your icon in the
+	  lower left corner of the page.
+
+:PrintCopiesFillin:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Copies:
+
+Type the number of copies you want of your icon.
+
+Or click SELECT on the up or down arrow.
+
+:PrintHeightFillin:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Height:
+
+Type the height of the printed image.
+
+:PrintButton:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Print
+
+Click SELECT on Print to print the icon.
+
+
+##########This_Line_Is_50_Characters_Long#########
+
+#	Text pop-up window
+
+:TextFillin:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Text:
+
+Type the text you want to add to your icon.
+
+:FontFamilySetting:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Font:
+
+Press MENU on the button to display and choose
+from the list of fonts.
+
+:FontSizeSetting:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Size:
+
+Press MENU on the button to choose the size for
+the font you have selected.
+
+Different fonts have different sizes available.
+
+:FontStyleSetting:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Style:
+
+Press MENU on the button to choose the style for
+the font you have selected.
+
+Different fonts have different styles available.
+
+:FontWeightSetting:$OPENWINHOME/bin/helpopen handbooks/iconedit.handbook
+Weight:
+
+Press MENU on the button to choose the weight for
+the font you have selected.
+
+Different fonts have different weights available.
+
+##########This_Line_Is_50_Characters_Long#########

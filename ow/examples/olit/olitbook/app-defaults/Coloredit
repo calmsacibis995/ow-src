@@ -1,0 +1,60 @@
+!
+! Layout the colorpanel in a 8x8 matrix
+!
+Coloredit*colorpanel*layoutType:        fixedcols
+Coloredit*colorpanel*measure:           8
+!
+! Position the sliderpanel below the colorpanel
+!
+Coloredit*Slider.orientation:           horizontal
+Coloredit*sliderpanel.yRefName:         colorpanel
+Coloredit*sliderpanel.yAddHeight:       TRUE
+Coloredit*sliderpanel.xRefName:         base
+Coloredit*sliderpanel.xAttachRight:     TRUE
+Coloredit*sliderpanel.xVaryOffset:      FALSE
+Coloredit*sliderpanel.xResizable:       TRUE
+!
+! Slider resources
+!
+Coloredit*Slider.granularity:           1000
+Coloredit*Slider.repeatRate:            10
+Coloredit*Slider.xAddWidth:             TRUE
+Coloredit*Slider.xVaryOffset:           FALSE
+Coloredit*Slider.xAttachRight:          TRUE
+Coloredit*Slider.xResizable:            TRUE
+!
+! Position the red StaticText and Slider
+!
+Coloredit*redtext.xRefName:             sliderpanel
+Coloredit*redtext.width:                50
+Coloredit*redtext.recomputeSize:        FALSE
+Coloredit*redtext.gravity:              East
+
+Coloredit*red.xRefName:                 redtext
+Coloredit*red.background:               red
+!
+! Position the green StaticText and Slider
+!
+Coloredit*greentext.yRefName:           redtext
+Coloredit*greentext.yAddHeight:         TRUE
+Coloredit*greentext.width:              50
+Coloredit*greentext.recomputeSize:      FALSE
+Coloredit*greentext.gravity:            East
+
+Coloredit*green.yRefName:               red
+Coloredit*green.yAddHeight:             TRUE
+Coloredit*green.xRefName:               greentext
+Coloredit*green.background:             green
+!
+! Position the blue StaticText and Slider
+!
+Coloredit*bluetext.yRefName:            greentext
+Coloredit*bluetext.yAddHeight:          TRUE
+Coloredit*bluetext.width:               50
+Coloredit*bluetext.recomputeSize:       FALSE
+Coloredit*bluetext.gravity:             East
+
+Coloredit*blue.yRefName:                green
+Coloredit*blue.yAddHeight:              TRUE
+Coloredit*blue.xRefName:                bluetext
+Coloredit*blue.background:              blue

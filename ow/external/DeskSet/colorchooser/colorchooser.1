@@ -1,0 +1,55 @@
+.\" Copyright (c) 1994 - Sun Microsystems, Inc.
+.TH colorchooser 1 "22 November 1993"
+.IX "colorchooser" "" "\f3colorchooser\f1(1) \(em icon color manipulation tool" ""
+.IX "color" "icon" "color" "icon color manipulation tool \(em \f3colorchooser\f1(1)"
+.SH NAME
+colorchooser \- change icon colors in deskset tools
+.SH SYNOPSIS
+.B colorchooser
+.SH AVAILABILITY
+The Color Chooser is available with the
+OpenWindows environment on color workstations.
+.SH DESCRIPTION
+.B colorchooser
+is an XView-based OpenWindows tool that lets users change the colors of icons
+used by DeskSet applications.  Currently, the Color Chooser can be invoked from
+the Binder and Icon Editor applications.
+.SH USAGE
+.LP
+The Color Chooser can be used with the Binder to specify foreground and
+background colors for the icons displayed by the File Manager or other DeskSet
+applications.  To display the Color Chooser from the Binder, click SELECT on the
+Foregr Color or Backgr Color menu button.  (These are the buttons to the
+right of the text fields).  When the Color Chooser is displayed, the
+icon image with the currently Foreground and Background colors is 
+displayed in the upper left corner of the palette.  To use any of the colors
+displayed in the palette for the Binder, click SELECT on the desired color in
+the Color Chooser palette then click SELECT on the Apply button to record
+the color change.
+.LP
+The Color Chooser can also be used with the Icon Editor to create a 
+multi-color icon.  To display the Color Chooser from the Icon Editor,
+click SELECT on the
+button labeled "Palette".  The Color Chooser can then be used to specify the color 
+to draw with.  The current color that Icon Editor will use for drawing is
+displayed in the upper left corner of the color palette.  To use any of the colors
+displayed in the palette for the Icon Editor, click SELECT on the desired
+color in the Color Chooser palette then click SELECT on the Apply button
+to record the color change.  The pointer changed to be the selected color
+as a reminder of the color you are presently using.
+.SH FILES
+.LP
+.TP 10
+.PD 0
+.B /usr/openwin/share/xnews/client/ds_server_init/ds_colors.txt
+.LP
+This file contains the colors displayed on the color palette
+of the
+.B colorchooser.
+.sp
+.SH SEE ALSO
+.BR ds_server_init (1),
+.BR iconedit (1),
+.BR binder (1)
+.br
+.TZ SSUG

@@ -1,0 +1,23 @@
+*File.label:			     File
+*New.label:			     New
+*Open.label:			     Open
+*Save.label:			     Save
+*Print.label:			     Print
+menubutton2*Save.default:            TRUE
+menubutton2*pushpin:                 out
+menubutton2*menuMark:                right
+!
+menubutton2*New.mnemonic:            n
+menubutton2*Open.mnemonic:           o
+menubutton2*Save.mnemonic:           s
+menubutton2*Print.mnemonic:          p
+!
+menubutton2*New.accelerator:         c<n>
+menubutton2*Open.accelerator:        c<o>
+menubutton2*Save.accelerator:        c<s>
+menubutton2*Print.accelerator:       c<p>
+!
+menubutton2*New.acceleratorText:     (^N)
+menubutton2*Open.acceleratorText:    (^O)
+menubutton2*Save.acceleratorText:    (^S)
+menubutton2*Print.acceleratorText:   (^P)

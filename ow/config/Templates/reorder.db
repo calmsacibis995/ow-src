@@ -1,0 +1,86 @@
+#
+#	@(#)sun4.db	1.37 91/02/11
+#
+#	Full - build everything database
+#
+# Clients and other executables
+# =============================
+# name          location    Buildtype
+# ----          --------    ---------
+xnews		bin	    opt
+olwm		bin	    opt
+mkcookie	bin	    opt
+xmodmap		bin	    opt
+xinit		bin	    opt
+newsserverstr	bin	    opt
+xn_ck_fbs	bin	    opt
+xrdb		bin	    opt
+svenv		bin	    opt
+loadmodule	bin	    opt
+olitbrowser     bin         opt
+olitsampler     bin         opt
+
+
+#
+# User/client libraries
+# =====================
+# name    location  Buildtype Linktype
+# ----    --------  --------- --------
+cps       lib       opt
+palloc    lib       opt
+wire      lib       opt -L${FULL_OW_SUN4_BUILD}/proto-sun4-4.1/lib,-lwire
+help      lib       opt -L${FULL_OW_SUN4_BUILD}/proto-sun4-4.1/lib,-lhelp
+jot      lib       opt -L${FULL_OW_SUN4_BUILD}/proto-sun4-4.1/lib,-ljot
+X11       lib       opt -L${FULL_OW_SUN4_BUILD}/proto-sun4-4.1/lib,-lX11
+Xau       lib       opt
+Xt        lib       opt -L${FULL_OW_SUN4_BUILD}/proto-sun4-4.1/lib,-lXt
+Xol       lib       opt -L${FULL_OW_SUN4_BUILD}/proto-sun4-4.1/lib,-lXol
+Xmu       lib       opt -L${FULL_OW_SUN4_BUILD}/proto-sun4-4.1/lib,-lXmu
+Xaw       lib       opt -L${FULL_OW_SUN4_BUILD}/proto-sun4-4.1/lib,-lXaw
+Xdmcp     lib       opt
+Xinput    lib	    opt
+Xext      lib       opt
+olgx      lib       opt -L${FULL_OW_SUN4_BUILD}/proto-sun4-4.1/lib,-lolgx
+xview     lib       opt -L${FULL_OW_SUN4_BUILD}/proto-sun4-4.1/lib,-lxview
+I18N	  lib	    opt
+#
+# Server libraries
+# ================
+# name    location  Buildtype Linktype
+# ----    --------  --------- --------
+Core      bin/xnews opt
+cscript   bin/xnews opt
+typesclr     bin/xnews opt
+Type1     bin/xnews opt
+nucleus   bin/xnews opt
+NeWS      bin/xnews opt
+halftone  bin/xnews opt
+SunOSI    bin/xnews/libnpsiSun opt
+SunWIN    bin/xnews/libnpsiSun opt
+SunEVQ    bin/xnews/libnpsiSun opt
+suntool   bin/xnews/libnpsiSun opt
+sunwindow bin/xnews/libnpsiSun opt
+pixrect   bin/xnews/libnpsiSun opt
+Shapes    bin/xnews opt ${FULL_OW_SUN4_BUILD}/bin/xnews/libshapes/di/libShapes.a
+ShCG2     bin/xnews opt ${FULL_OW_SUN4_BUILD}/bin/xnews/libshapes/dd/cg2/libShCG2.a
+ShCG6     bin/xnews opt ${FULL_OW_SUN4_BUILD}/bin/xnews/libshapes/dd/cg6/libShCG6.a
+ShFB      bin/xnews opt ${FULL_OW_SUN4_BUILD}/bin/xnews/libshapes/dd/libShFB.a
+ShMem     bin/xnews opt ${FULL_OW_SUN4_BUILD}/bin/xnews/libshapes/dd/mem/libShMem.a
+ShMem1    bin/xnews opt ${FULL_OW_SUN4_BUILD}/bin/xnews/libshapes/dd/mem1/libShMem1.a
+ShMem8    bin/xnews opt ${FULL_OW_SUN4_BUILD}/bin/xnews/libshapes/dd/mem8/libShMem8.a
+ShMem32   bin/xnews opt ${FULL_OW_SUN4_BUILD}/bin/xnews/libshapes/dd/mem32/libShMem32.a
+ShCG12    bin/xnews opt ${FULL_OW_SUN4_BUILD}/bin/xnews/libshapes/dd/cg12/libShCG12.a
+ShGT  	  bin/xnews opt ${FULL_OW_SUN4_BUILD}/bin/xnews/libshapes/dd/gt/libShGT.a
+ShREC  	  bin/xnews opt ${FULL_OW_SUN4_BUILD}/bin/xnews/libshapes/dd/rec/libShREC.a
+X11server bin/xnews opt
+X11dix    bin/xnews opt
+#Xextent   bin/xnews opt
+stextn    bin/xnews/libXextent opt
+mitshm    bin/xnews/libXextent opt
+
+# private libraries
+# =====================
+# name    location  Buildtype Linktype
+# ----    --------  --------- --------
+parsemap  tools/fonts opt
+xnfont    tools/fonts opt

@@ -1,0 +1,137 @@
+DESCRIPTION
+
+	The Caption widget is a simple composite widget that provides a convenient
+	method of labeling an arbitrary widget.  This arbitrary widget is created as
+	a child of the Caption widget and the Caption widget will be positioned around
+	this child widget in a manner specified by the application (above, below, to the 
+	right, to the left).
+	
+	There are two components of the Caption widget:
+		Label			(created automatically)
+		widget being labeled	(created by application as child of Caption widget)
+	
+	For more detailed information on the Caption Widget, see the following
+	Sections in the OPEN LOOK Intrinsics Toolkit Widget Set Reference Manual:
+		. Caption
+
+
+EXAMPLE CODE
+
+The following code was written to create the example Caption Widget shown in the
+Table (All color specific code has been removed for simplification).
+
+/**************************************************************************************/
+#include <X11/Intrinsic.h>
+#include <stdio.h>
+#include <X11/StringDefs.h>
+#include <Xol/OpenLook.h>
+#include <Xol/Caption.h>
+
+#include <Xol/ControlAre.h>
+#include <Xol/TextField.h>
+
+/**********************************************************************
+ * CreateInputField: function used to create a Caption
+ * widget which manages a TextField (the caption acts as the label
+ * to the TextField).  The caption label(string), the caption fontname,
+ * the input text fontname, and the input text maximum length are
+ * passed in as parameters.
+ * This function returns a handle to the created caption widget.
+ ********************************************************************/	
+Widget
+CreateInputField(name, parent, labelfont, label, txtfont, inputlen )
+char *name;
+Widget parent;
+char*labelfont;
+char *label;
+char*txtfont;
+int inputlen;
+{
+	Widget caption, textfield;
+
+	/*
+	 * Create Caption widget 
+	 */
+	caption = XtVaCreateManagedWidget(name, 
+					captionWidgetClass, 
+					parent,
+					XtNlabel, 	(char*)label,
+					XtVaTypedArg, XtNfont,
+					  	XtRString, labelfont, 
+					  	strlen(labelfont) +1,
+					NULL);
+
+	/*
+	 * Create TextField as child of caption
+	 */
+	textfield = XtVaCreateManagedWidget("textfield", 
+					textFieldWidgetClass,
+					caption,
+					XtNmaximumSize,	(XtArgVal)inputlen,
+					XtVaTypedArg, XtNfont,
+					  	XtRString, txtfont, 
+					  	strlen(txtfont) +1,
+					NULL);
+
+	return(caption);
+}
+/***************************************************************************/
+
+main(argc, argv)
+int argc;
+char **argv;
+{
+	Widget toplevel, controlarea, inputfield;
+	XtAppContext app;
+
+	OlToolkitInitialize(NULL);
+	toplevel = XtAppInitialize(&app, "Test", 
+				(XrmOptionDescRec *)NULL,
+				(Cardinal)0, (int *)&argc, argv,
+				(String *)NULL, (ArgList)NULL, 0);
+
+	/*
+	 * Create Control area conting text input field
+	 */
+	controlarea = XtVaCreateManagedWidget("controlarea", 
+				controlAreaWidgetClass,
+				toplevel, 
+				NULL);
+
+	inputfield = CreateInputField("input field", controlarea, 
+				"times-bold-14", "Generic:",
+				"times-roman-12", 8);
+
+	XtRealizeWidget(toplevel);
+	XtAppMainLoop(app);
+
+}
+/**********************************END EXAMPLE******************************/
+
+
+	
+
+RESOURCES
+_______________________________________________________________________________________________
+Resource Name		Type		Default		Brief Description
+_______________________________________________________________________________________________
+
+XtNalignment		OlDefine	OL_CENTER	caption's alignment relative to child
+XtNancestorSensitive	Boolean		TRUE		Will immediate parent receive events?
+XtNconsumeEvent		XtCallbackList	NULL		called when event occurs
+XtNdepth		int		(parent's)	number of bits used for each pixel
+XtNdestroyCallback	XtCallbackList	NULL		routines called when widget is destroyed 
+XtNfont			XFontStruct *	(OPENLOOK font)	font used to display Caption's label
+XtNfontColor		Pixel		Black		label font's color
+XtNheight		Dimension	(calculated)	height of widget's window in pixels
+XtNlabel		String		NULL		string used for label
+XtNmnemonic		Usigned char	NULL		key used to activate widget 
+XtNmappedWhenManaged	Boolean		TRUE		will widget be mapped when managed?
+XtNposition		OlDefine	OL_LEFT		which side of child the caption is placed
+XtNsensitive		Boolean		TRUE		will widget receive input events?
+XtNspace		Dimension	4		separation in pixels of caption from child
+XtNtraversalOn		Boolean		TRUE		is mouseless turned "on" for widget?
+XtNuserData		XtPointer	NULL		storage for user defined data
+XtNwidth		Dimension	(calculated)	width of widget's window in pixels
+XtNx			Position	0		x coord of widget's upper left corner
+XtNy			Position	0		y coord of widget's uuper left corner

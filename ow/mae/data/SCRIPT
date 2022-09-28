@@ -1,0 +1,373 @@
+#
+#              SCRIPT by Brian Wilson and Michael Yee, 5/17/94
+#
+# This is the script that drives the Info-mercial.
+#
+
+#
+# First we load the Mac Monitor border with BLACK background
+#
+    LoadSlide bdr_black.xpm 0,0
+    ShowSlide 0,0,745,917 pop		# show whole enchilada
+
+#
+# First we load the Mac Monitor border with GRAY background (Mac starting up)
+#
+    LoadSlide bdr_gray.xpm 0,0
+    ShowSlide 0,0,745,917 pop		# show whole enchilada
+    ShowWatchCursor
+#
+# Play Quadra boot sound (sound good at 50% volume)
+#
+    PlaySound boot.au
+
+#
+# Define the arrow buttons while we are waiting
+#
+    DefineButton B1 "Goto Screen1" butLup.xpm butLdn.xpm butLupm.xpm butLdnm.xpm
+    DefineButton B2 "Goto MainMenu" butHup.xpm butHdn.xpm butHupm.xpm butHdnm.xpm
+    DefineButton B3 "Goto Screen3" butRup.xpm butRdn.xpm butRupm.xpm butRdnm.xpm
+
+#
+# Show the "Welcome to Macintosh" startup screen
+#
+    LoadSlide welcome.xpm 240,200 welcomem.xpm
+    ShowSlide 200,240,326,688 pop
+
+#
+# Define the some more buttons while we are waiting
+#
+    DefineButton B4 "Goto Quit" butQup.xpm butQdn.xpm butQupm.xpm butQdnm.xpm
+    DefineButton B5 "Goto Screen1" butSup.xpm butSdn.xpm butSupm.xpm butSdnm.xpm
+
+#
+# Create the main menu buttons while the user figures out what to do
+#
+    DefineButton B6 "Goto Screen8" butM1up.xpm butM1dn.xpm butM1upm.xpm butM1dnm.xpm
+    DefineButton B7 "Goto Screen17" butM2up.xpm butM2dn.xpm butM2upm.xpm butM2dnm.xpm
+    DefineButton B8 "Goto Screen20" butM3up.xpm butM3dn.xpm butM3upm.xpm butM3dnm.xpm
+    DefineButton B9 "Goto Screen13" butM4up.xpm butM4dn.xpm butM4upm.xpm butM4dnm.xpm
+
+#
+# Now, we can start the SLIDE SHOW
+#
+-Screen1:				# Welcome to MAE
+    HideButtons B1 B2 B4 B5 B6 B7 B8 B9
+    LoadSlide bdr_black.xpm 0,0
+    LoadSlide slide1.xpm 150,140
+#    ShowWatchCursor
+    ShowSlide 0,0,745,917 center_out
+    ShowSlide 637,707,650,820 pop	# clear "limited time offer" notice
+
+    DefineButton B3 "Goto Screen3"
+    HideWatchCursor
+    ShowButtons B3 761,600
+    WaitForever
+
+# 
+#-Screen2:				# Not used
+#    LoadSlide slide2.xpm 170,105
+#    ShowSlide 100,100,640,820 pop
+#    WaitForever
+
+-Screen3:				# MI paragraph
+    ShowWatchCursor
+    LoadSlide slide3.xpm 150,130
+    ShowSlide 100,100,640,820 center_out
+
+    DefineButton B1 "Goto Screen1"
+    DefineButton B3 "Goto Screen4"
+    ShowButtons B1 714,600
+    HideWatchCursor
+    WaitForever
+
+-Screen4:				# Screen shot of Motif
+    ShowWatchCursor
+    LoadSlide slide4.xpm 100,100 slide4m.xpm
+    ShowSlide 100,100,640,820 center_out
+
+    DefineButton B1 "Goto Screen3"
+    DefineButton B3 "Goto Screen5"
+    HideWatchCursor
+    WaitForever
+
+-Screen5:				# Screen shot of OpenLook
+    ShowWatchCursor
+    LoadSlide slide5.xpm 100,100 slide5m.xpm
+    ShowSlide 100,100,640,820 center_out
+
+    DefineButton B1 "Goto Screen4"
+    DefineButton B3 "Goto Screen6"
+    HideWatchCursor
+    WaitForever
+
+-Screen6:				# A bunch of fizzling application icons
+    HideButtons B1 B3 
+    ShowWatchCursor
+    LoadSlide slide6.xpm 100,100
+
+    ClearToBackground 100,100,640,820   
+    ShowSlide 104,210,216,704 pop	# MAE Runs Popular Mac Apps
+
+    ShowSlide 482,530,542,630 fizzle 3	# Microsoft Word
+    ShowSlide 390,222,446,340 fizzle 3	# Adobe Photoshop
+    ShowSlide 236,664,294,746 fizzle 2	# Claris Works
+    ShowSlide 318,418,374,516 fizzle 2	# Meeting Maker
+    ShowSlide 534,212,592,330 fizzle 2	# Aldus Persuasion
+    ShowSlide 252,134,314,228 fizzle 2	# FileMaker Pro
+    ShowSlide 388,642,446,736 fizzle 2	# MacWrite Pro
+    ShowSlide 492,716,546,804 fizzle 2	# Word Perfect
+    ShowSlide 488,124,548,206 fizzle 1	# PageMaker
+    ShowSlide 462,430,520,522 fizzle 1	# Quark XPress
+    ShowSlide 562,548,620,620 fizzle 1	# Lotus 123
+    ShowSlide 334,750,394,806 fizzle 1	# Canvas
+    ShowSlide 238,446,292,506 fizzle 1	# Quicken
+    ShowSlide 470,230,520,332 fizzle 1	# Microsoft Excel
+    ShowSlide 234,230,296,336 fizzle 1	# Aldus Freehand
+    ShowSlide 330,526,394,640 fizzle 1	# Adobe Illustrator
+    ShowSlide 392,436,446,518 fizzle 1	# Great Works
+    ShowSlide 524,636,596,718 fizzle 1	# Delta Graph Professional
+    ShowSlide 336,110,394,222 fizzle 1	# Microsoft Project
+    ShowSlide 560,310,620,416 fizzle 1	# MacProject Pro
+    ShowSlide 254,548,312,634 pop	# On Location
+    usleep 100;
+    ShowSlide 408,344,464,418 pop	# DayMaker
+    usleep 100;
+    ShowSlide 330,292,392,434 pop	# Microsoft PowerPoint
+    usleep 100;
+    ShowSlide 406,724,464,814 pop	# BrushStrokes
+    usleep 100;
+    ShowSlide 408,102,464,210 pop	# Microsoft Works
+    usleep 50;
+    ShowSlide 254,346,310,416 pop	# In Control
+    usleep 50;
+    ShowSlide 460,640,518,716 pop	# Retrieve it!
+    usleep 50;
+    ShowSlide 536,420,592,512 pop	# MacDraw Pro
+    usleep 10;
+    ShowSlide 316,664,372,710 pop	# Nisus
+    usleep 10;
+    ShowSlide 318,240,374,290 pop	# Painter
+    usleep 10;
+    ShowSlide 486,336,546,384 pop	# More
+    usleep 10;
+    ShowSlide 408,518,464,630 pop	# Now Up To Date
+    
+#    ShowSlide 100,100,640,820 pop	# whole enchilada
+
+    HideWatchCursor
+    DefineButton B1 "Goto Screen5"
+    DefineButton B3 "Goto MainMenu"
+    ShowButtons B1 714,600 B3 761,600
+    WaitForever
+
+#
+# This is the central menu, of which you can pick any of four separate paths
+#
+-MainMenu:				# Central Menu, user picks an M button
+   HideButtons B1 B2 B3			# hide the "forward" and "backward"
+   ShowWatchCursor
+   LoadSlide slide7.xpm 140,114
+   ShowSlide 100,100,640,820 center_out
+   LoadSlide slide7a.xpm 707,637	# "limited time offer" notice
+   ShowSlide 637,707,650,820 pop
+
+   DefineButton B1 "Goto Screen6"
+   DefineButton B3 "Goto Screen8"
+   HideWatchCursor
+   ShowButtons B4 677,456 B5 172,456 B6 131,556 B7 303,556 B8 472,556 B9 644,556
+   WaitForever
+
+#
+#
+# These are all the different paths from the main menu (and back again)
+#
+-Screen8:				# It's a Macintosh, start of loop
+    HideButtons B4 B5 B6 B7 B8 B9	# you can back up from MainMenu to here
+    ShowWatchCursor
+    LoadSlide slide8.xpm 120,110
+    ShowSlide 100,100,640,820 center_out
+    ShowSlide 637,707,650,820 pop	# clear "limited time offer" notice
+
+    DefineButton B1 "Goto MainMenu"
+    DefineButton B3 "Goto Screen9"
+    HideWatchCursor
+    ShowButtons B1 651,600 B2 699,600 B3 770,600
+    WaitForever
+
+-Screen9:				# It's a Macintosh, 2nd slide
+    ShowWatchCursor
+    LoadSlide slide9.xpm 120,110
+    ShowSlide 100,100,640,820 center_out
+
+    DefineButton B1 "Goto Screen8"
+    DefineButton B3 "Goto Screen10"
+    HideWatchCursor
+    WaitForever
+
+-Screen10:				# It's a Macintosh, 3rd slide
+    ShowWatchCursor
+    LoadSlide slide10.xpm 120,110
+    ShowSlide 100,100,640,820 center_out
+
+    DefineButton B1 "Goto Screen9"
+    DefineButton B3 "Goto Screen11"
+    HideWatchCursor
+    WaitForever
+
+-Screen11:				# It's a Macintosh, 4th slide, run apps
+    ShowWatchCursor
+    LoadSlide slide11.xpm 120,110
+    ShowSlide 100,100,640,820 center_out
+
+    DefineButton B1 "Goto Screen10"
+    DefineButton B3 "Goto Screen12"
+    HideWatchCursor
+    WaitForever
+
+-Screen12:				# It's a Macintosh, 5th slide, cert app
+    ShowWatchCursor
+    LoadSlide slide12.xpm 120,110
+    ShowSlide 100,100,640,820 center_out
+
+    DefineButton B1 "Goto Screen11"
+    DefineButton B3 "Goto MainMenu"
+    HideWatchCursor
+    WaitForever
+
+-Screen13:				# Unix Integration, start of loop
+    HideButtons B4 B5 B6 B7 B8 B9
+    ShowWatchCursor
+    LoadSlide slide13.xpm 120,110
+    ShowSlide 100,100,640,820 center_out
+    ShowSlide 637,707,650,820 pop	# clear "limited time offer" notice
+
+    DefineButton B1 "Goto MainMenu"
+    DefineButton B3 "Goto Screen14"
+    HideWatchCursor
+    ShowButtons B1 651,600 B2 699,600 B3 770,600
+    WaitForever
+
+-Screen14:				# Unix Integration, 2nd slide
+    ShowWatchCursor
+    LoadSlide slide14.xpm 120,110
+    ShowSlide 100,100,640,820 center_out
+
+    DefineButton B1 "Goto Screen13"
+    DefineButton B3 "Goto Screen15"
+    HideWatchCursor
+    WaitForever
+
+-Screen15:				# Unix Integration, 3rd slide
+    ShowWatchCursor
+    LoadSlide slide15.xpm 120,110
+    ShowSlide 100,100,640,820 center_out
+
+    DefineButton B1 "Goto Screen14"
+    DefineButton B3 "Goto Screen16"
+    HideWatchCursor
+    WaitForever
+
+-Screen16:				# Unix Integration, 4th slide, Toolbar
+    HideButtons B1 B2 B3 
+    ShowWatchCursor
+    LoadSlide slide16.xpm 100,100
+    ShowSlide 100,100,640,820 center_out
+    LoadSlide slide16a.xpm 100,100
+#    usleep 500
+    ShowSlide 370,135,590,720 center_out
+
+    HideWatchCursor
+    DefineButton B1 "Goto Screen15"
+    DefineButton B3 "Goto MainMenu"
+    ShowButtons B1 651,600 B2 699,600 B3 770,600
+    WaitForever
+
+-Screen17:				# Optimized for Performance, start loop
+    HideButtons B4 B5 B6 B7 B8 B9
+    ShowWatchCursor
+    LoadSlide slide17.xpm 120,110
+    ShowSlide 100,100,640,820 center_out
+    ShowSlide 637,707,650,820 pop	# clear "limited time offer" notice
+
+    DefineButton B1 "Goto MainMenu"
+    DefineButton B3 "Goto Screen18"
+    HideWatchCursor
+    ShowButtons B1 651,600 B2 699,600 B3 770,600
+    WaitForever
+
+-Screen18:				# Optimized for Performance, 2nd slide
+    ShowWatchCursor
+    LoadSlide slide18.xpm 120,110
+    ShowSlide 100,100,640,820 center_out
+
+    DefineButton B1 "Goto Screen17"
+    DefineButton B3 "Goto Screen19"
+    HideWatchCursor
+    WaitForever
+
+-Screen19:				# Optimized for Performance, Archit.
+    ShowWatchCursor
+    LoadSlide slide19.xpm 100,130
+    ShowSlide 100,100,640,820 center_out
+
+    DefineButton B1 "Goto Screen18"
+    DefineButton B3 "Goto MainMenu"
+    HideWatchCursor
+    WaitForever
+
+-Screen20:				# Foundation for Future, start of loop
+    HideButtons B4 B5 B6 B7 B8 B9
+    ShowWatchCursor
+    LoadSlide slide20.xpm 180,100
+    ShowSlide 100,100,640,820 center_out
+    ShowSlide 637,707,650,820 pop	# clear "limited time offer" notice
+
+    DefineButton B1 "Goto MainMenu"
+    DefineButton B3 "Goto Screen21"
+    HideWatchCursor
+    ShowButtons B1 651,600 B2 699,600 B3 770,600
+    WaitForever
+
+-Screen21:				# Foundation for Future, 2nd slide
+    ShowWatchCursor
+    LoadSlide slide21.xpm 180,100
+#    LoadSlide slide21.xpm 220,100
+    ShowSlide 100,100,640,820 center_out
+
+    DefineButton B1 "Goto Screen20"
+    DefineButton B3 "Goto MainMenu"
+    HideWatchCursor
+    WaitForever
+
+#
+# All Done, this is the exit point for the script
+#
+-Quit:
+    HideButtons B1 B2 B3 B4 B5 B6 B7 B8 B9
+#    DefineButton B4 "Goto Exit"
+    LoadSlide slide22.xpm 250,100
+    ClearToBackground 100,100,640,820
+    ShowSlide 637,707,650,820 pop	# clear "limited time offer" notice
+
+    ShowSlide 105,255,195,675 pop	# MAE
+    usleep 500;
+    ShowSlide 224,392,248,544 fizzle 2	# It Does More
+    usleep 500;
+    ShowSlide 272,378,302,564 fizzle 2	# It Costs Less
+    usleep 500;
+    ShowSlide 332,330,380,618 fizzle 2	# It's That Simple
+    usleep 500;
+
+    ShowSlide 358,300,630,620 pop       # Picture of Apple
+#    ShowButtons B4 699,600 
+#    WaitForever
+    ShowWatchCursor
+    usleep 3000;
+
+#
+# Final exit point
+#
+-Exit:
+    HideButtons B1 B2 B3 B4 B5 B6 B7 B8 B9
+    EndScript

@@ -1,0 +1,37 @@
+#
+# @(#)Makefile.customer	1.2	92/06/30 SMI
+#
+
+#
+# Makefile for gaintool demo
+#
+
+include ../Makefile.config
+
+PROGRAM		= soundtool
+
+SOURCES		= soundtool.c
+HEADERS		= soundtool.icon
+
+OBJECTS		= ${SOURCES:%.c=%.o}
+
+CFLAGS		= -O
+LDFLAGS		= 
+
+CPPFLAGS	+= -I../../include -I$(OPENWINHOME)/include \
+		   -DBSD_COMP -DOPENLOOK ${SYSDEFINES}
+
+LDLIBS		= -L../../lib -laudio -L$(OPENWINHOME)/lib \
+		  -lxview -lolgx -lX11 ${SYSLIBS} -lm
+
+all: ${PROGRAM}
+
+${PROGRAM}: ${OBJECTS}
+	${CC} -o $@ ${LDFLAGS} ${OBJECTS} ${LDLIBS}
+
+clean:
+	${RM} ${PROGRAM} ${OBJECTS} core
+
+install: ${PROGRAM}
+	${CP} ${PROGRAM} ${DESTDIR}/bin/${PROGRAM}
+	${CHMOD} 755 ${DESTDIR}/bin/${PROGRAM}

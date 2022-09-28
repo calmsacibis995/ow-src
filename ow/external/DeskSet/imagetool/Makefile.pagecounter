@@ -1,0 +1,48 @@
+#
+# @(#)Makefile.pagecounter 1.2 93/09/18 SMI
+#
+# pagecounter Makefile
+# This application determines the number of pages in a postscrpt document.
+#
+
+SOURCES.c	= pagecounter_dps.c pagecounter.c
+SOURCES.h	= tags.h
+SOURCES.psw	= pagecounter.psw
+PROGRAM		= pagecounter
+PROJECTDIR	= ..
+
+#
+# Couple of extra def's so that Guide gets included.  GUIDEHOME has
+# to be defined for this Makefile to work anyway.
+
+.KEEP_STATE:
+
+default:	all
+
+include ${PROJECTDIR}/Makefile.master.new
+
+CPPFLAGS	+= -I$(WIN_HOME)/include/X11 -I$(XW_HOME)/include/X11
+LDLIBS          = -ldps -lm  -lX11
+
+#
+# For our nightly builds, and for testing, you can set the environment
+# variable ADD_RUN_PATH to be another library to be *pre-pended* to
+# -R/usr/openwin/lib.  This variable *must* end in a ":" for the
+# concatenation to work properly.  Kludge.
+#
+# Add the xil library to the LD_RUN_PATH.
+#   Have to include the other paths from Makefile.master.new. 
+#
+LDFLAGS         += -R$(ADD_RUN_PATH)/usr/openwin/lib:
+
+all:	$(PROGRAM)
+
+clean:	master_clean
+
+#
+# For I18N string extraction (see Makefile.master)
+#
+
+install: install_normal_bins 
+ 
+.INIT:	

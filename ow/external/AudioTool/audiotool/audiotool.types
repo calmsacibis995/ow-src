@@ -1,0 +1,73 @@
+ptype Sun_DeskSet_audiotool {
+	per_session	5;
+	start		"audiotool -tooltalk -depth x -visual y -lc_basiclocale z";
+};
+
+otype Sun_DeskSet_Object_audiotool {
+	handle:
+		launch(in string locale, in int depth,
+			in int visual) => Sun_DeskSet_audiotool session start;
+		status(in string status_string) => Sun_DeskSet_audiotool session;
+		dispatch_data(in string sel_name) => Sun_DeskSet_audiotool session;
+		move(in int xpos, in int ypos, in int width, in int height,
+			in int position) => Sun_DeskSet_audiotool session;
+		quit() => Sun_DeskSet_audiotool session;
+		hide() => Sun_DeskSet_audiotool session;
+		expose() => Sun_DeskSet_audiotool session;
+		retrieve_data(in string sel_name) => Sun_DeskSet_audiotool session;
+		departing() => Sun_DeskSet_audiotool session;
+};
+
+ptype Sun_MA_audiotool
+{
+start "audiotool -message_alliance";
+per_session 5;
+handle:
+/*     
+ *
+ * Optional extra arguments for these requests:
+ *            in    string      title
+ *            in    messageID   text
+ */
+/* content display */
+session Display (in Sun_Audio audio) => start;
+session Display (in Sun_Audio audio, in title text) => start;
+session Display (in Sun_Audio audio, in messageID text) => start;
+session Display (in Sun_Audio audio, in messageID text, in title text) => start;
+
+/* content compose */
+session Edit (out Sun_Audio audio) => start;
+session Edit (out Sun_Audio audio, in title text) => start;
+session Edit (out Sun_Audio audio, in messageID text) => start;
+session Edit (out Sun_Audio audio, in messageID text, in title text) => start;
+
+/* content edits */
+session Edit (inout Sun_Audio audio) => start;
+session Edit (inout Sun_Audio audio, in title text) => start;
+session Edit (inout Sun_Audio audio, in messageID text) => start;
+session Edit (inout Sun_Audio audio, in messageID text, in title text) => start;
+
+/*
+ * Optional extra arguments for these requests:
+ *            in    string    title
+ *            in    messageID   text
+ */
+
+/* file display */
+file Display (in Sun_Audio audio) => start;
+file Display (in Sun_Audio audio, in title text) => start;
+file Display (in Sun_Audio audio, in messageID text) => start;
+file Display (in Sun_Audio audio, in messageID text, in title text) => start;
+
+/* file compose */
+file Edit (out Sun_Audio audio) => start;
+file Edit (out Sun_Audio audio, in title text) => start;
+file Edit (out Sun_Audio audio, in messageID text) => start;
+file Edit (out Sun_Audio audio, in messageID text, in title text) => start;
+
+/* file edits */
+file Edit (inout Sun_Audio audio) => start;
+file Edit (inout Sun_Audio audio, in title text) => start;
+file Edit (inout Sun_Audio audio, in messageID text) => start;
+file Edit (inout Sun_Audio audio, in messageID text, in title text) => start;
+};

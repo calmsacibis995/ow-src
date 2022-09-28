@@ -1,0 +1,102 @@
+######################50##########################
+:generic
+Function Keys Panel/Virtual Keyboard
+
+1. Using the Function Keys Panel
+
+The Function Keys Panel is a pop-up window that
+is displayed at the bottom of the screen when you
+select "Function Keys" from the Workspace menu's
+Utilities submenu.  
+
+The Function Keys Panel is equivalent to the
+function keys on your keyboard. Applications use
+it to provide application-specific labels for the
+function keys.
+
+When you change the input area to a window that
+uses the function keys, the key labels in the
+Function Keys Panel are automatically updated to
+reflect the new set of function key actions. When
+you change the input area to a window that does
+not use the function keys, the key labels are
+left blank.
+
+You can also use the keys in the Function Keys
+Panel to activate the functions (assuming you
+have the Workspace property "Set Input Area" set
+to "Click SELECT"): just click SELECT on a key.
+
+
+2. Using the Virtual Keyboard
+
+Multiple language support is provided by the
+Virtual Keyboard available through the LANGUAGE
+key, which is R2 (PrSc) by default. 
+
+When you press and hold the LANGUAGE key, the 
+Character Sets Window is displayed, showing keys
+that correspond to the top row of the function
+keys. Labels for these function keys correspond
+to character sets for different languages.
+
+Pressing the More function key changes the
+labels of the keycaps in the panel, cycling
+through the set of available character sets.
+
+Pressing Show opens the Virtual Keyboard
+Window, which displays the entire keyboard with
+the corresponding characters for the currently 
+active character set.
+
+While you press the LANGUAGE key, the chosen
+language is bound to the keyboard, and the
+corresponding key labels are displayed in the
+Virtual Keyboard Window (if it is open). In this
+way, you can easily access a few characters or
+symbols from another language or alternate
+character set interactively, and then return to
+typing with your usual character set.
+
+For example, to type a few Greek characters in
+English text, hold down the LANGUAGE key, press
+the Greek key, and then type some characters.
+When you release the LANGUAGE key, the Character
+Sets window is dismissed and the primary character
+set is restored to English.
+
+You can also use the keys in the Virtual Keyboard
+Window to type characters (assuming you have the
+Workspace property "Set Input Area" set to "Click
+SELECT"): just click SELECT on a key.
+
+Pressing the Set key redefines the keyboard to
+make it correspond to the currently selected
+character set. When you release the LANGUAGE key,
+the Character Sets Window is dismissed. 
+
+For example, to change the keyboard character set
+from English to Greek, hold down the LANGUAGE
+key, press the Greek key, and then press the Set
+key. When you release the LANGUAGE key, the
+Character Sets Window is dismissed and the
+default character set is Greek. Any alphabetic key
+you press on the keyboard types the corresponding
+Greek character at the active text insert point.
+
+If you do not press the Set key, the default
+character set is not changed when the LANGUAGE
+key is released.
+
+If you do not know which keys correspond to the
+characters for the language  you have selected,
+press the LANGUAGE key and the Show key: the
+Virtual Keyboard Window is displayed or updated
+with the appropriate labels on the keycaps.
+
+This window remains on the screen when you 
+release the LANGUAGE key, and it can be 
+closed to an icon or dismissed separately.    
+
+#
+

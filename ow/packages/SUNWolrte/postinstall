@@ -1,0 +1,55 @@
+# SUNWowrqd (OpenWindows required core package) post install/remove script.
+
+
+# Link $OPENWINHOME/lib/openwin-menu-demo link to the correct menu file. This
+# link is included by the openwin-menu-program menu. If the demos are not
+# installed then it points to openwin-menu-demo-nodemo, which contains a short
+# message saying that the demos are not installed.  If the demos are installed
+# then it points to openwin-menu-demo-fulldemo which contains a list of the
+# OpenWindows demos.
+#
+# See also the SUNowdem (OpenWindows demo package) postinstall script.
+
+
+(   # Run in a subshell to isolate any directory changes.
+
+    if [ -d $BASEDIR/openwin/demo ]; then
+	cd    $BASEDIR/openwin/lib
+	rm -f $BASEDIR/openwin/lib/openwin-menu-demo
+	ln -s openwin-menu-demo-fulldemo openwin-menu-demo
+    else 
+        cd    $BASEDIR/openwin/lib
+        rm -f $BASEDIR/openwin/lib/openwin-menu-demo
+        ln -s openwin-menu-demo-nodemo openwin-menu-demo
+    fi
+)
+
+FONTINSTDIR=$BASEDIR/openwin/lib/X11/fonts
+export FONTINSTDIR
+
+if [ `/bin/uname -p` = "$ARCH" ] ; then
+    EXEC_BASE=$BASEDIR
+else
+    EXEC_BASE=/usr
+fi
+
+if [ $EXEC_BASE != "/usr" ]; then
+        LD_LIBRARY_PATH=$EXEC_BASE/openwin/server/lib:$EXEC_BASE/openwin/lib
+        export LD_LIBRARY_PATH
+fi
+
+if [ -x $EXEC_BASE/openwin/bin/mkfontdir ]; then
+
+    for dir in 100dpi 75dpi F3 F3bitmaps Speedo Type1 Type1/outline misc Xt+
+    do
+        if [ -d $FONTINSTDIR/$dir ]; then
+          (
+                cd $FONTINSTDIR/$dir
+                $EXEC_BASE/openwin/bin/mkfontdir . || exit 2
+          )
+        fi
+    done
+fi
+
+exit 0
+

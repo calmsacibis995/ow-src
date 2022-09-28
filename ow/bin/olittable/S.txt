@@ -1,0 +1,143 @@
+DESCRIPTION
+
+	The Stub widget is a method-driven widget which allows the application
+	to define its own procedures which are normally restricted to the
+	Widget's private Class methods.  It allows the application to set its
+	own procedures to handle exposure, 'SetValues' calls, or initialization.
+
+	This widget provides the application with the capability of creating a
+	uniquely defined widget without going through the painful formal process
+	of building a new widget the standard way.
+
+	Once a Stub has been created, other Stub widgets can inherit its methods 
+	without the application having to specify them again.  The application
+	just needs to specify a reference stub widget as a resource and the new
+	stub widget will automatically inherit all instance methods from the
+	reference Stub.
+
+	The Stub widget also allows the application to give 'widget' functionality
+	to existing X windows.  For example, if the application wants to track
+	button presses on the root window, the application would create a Stub
+	widget using the RootWindow id as the XtNwindow resource and then attach
+	event handlers to the stub to monitor the events.
+
+
+	For more detailed and complete information on the Stub Widget, see the following
+	Section in the OPEN LOOK Intrinsics Toolkit Widget Set Reference Manual:
+		. Stub
+
+EXAMPLE CODE
+
+The following code could be used to Create a generic canvas for Xlib rendering. 
+
+/*********************************************************************************/
+#include <X11/Intrinsic.h>
+#include <X11/StringDefs.h>
+#include <Xol/OpenLook.h>
+#include <Xol/Stub.h>
+
+#define CANVAS_WIDTH	300
+#define CANVAS_HEIGHT	300
+
+/*************************************************************************
+ * exposeHandler: routine called on Exposure events on the Canvas(Stub).
+ ************************************************************************/
+void exposeHandler(w, xevent, region)
+Widget w;
+XEvent *xevent;
+Region region;
+{
+	Display *display;
+	static GC gc;
+	XGCValues gc_values;
+	Window paint_win;
+	
+	display = XtDisplay(w);
+	paint_win = XtWindow(w);
+
+	/* All xlib drawing routines would go here....*/
+}
+/**********************************************************************/
+
+
+main(argc, argv)
+int argc;
+char **argv;
+{
+	Widget toplevel, canvas;
+	XtAppContext app;
+
+	OlToolkitInitialize(NULL);
+	toplevel = XtAppInitialize(&app, "Test", 
+				(XrmOptionDescRec *)NULL,
+				(Cardinal)0, (int *)&argc, argv,
+				(String *)NULL, (ArgList)NULL, 0);
+
+	/* 
+	 * Create canvas (Stub) and set its expose Method 
+	 */
+	canvas = XtVaCreateManagedWidget("canvas",
+				stubWidgetClass,
+				toplevel,
+				XtNexpose,	(XtArgVal)exposeHandler,
+				XtNwidth,	CANVAS_WIDTH,
+				XtNheight,	CANVAS_HEIGHT,
+				NULL);
+
+	XtRealizeWidget(toplevel);
+	XtAppMainLoop(app);
+
+}
+/*******************************END EXAMPLE***************************/
+
+
+
+RESOURCES
+_______________________________________________________________________________________________
+
+Resource Name		Type		Default		Brief Description
+_______________________________________________________________________________________________
+
+XtNacceptFocusFunc	XtRFunction	NULL		proc called when focus is set to widget
+XtNaccelerator		String		NULL		String which defines accelerator key
+XtNacceleratorText	String		Dynamic		string to be displayed as accelerator
+XtNactivateFunc		Function	NULL		called when OlActivateWidget is called
+XtNancestorSensitive	Boolean		TRUE		Will immediate parent receive events?
+XtNbackground		Pixel		White		background color of widget
+XtNbackgroundPixmap	Pixmap		(none)		pixmap used for tiling the background
+XtNborderColor		Pixel		Black		border color of widget
+XtNborderWidth		Dimension	0		width of widget's border in pixels
+XtNconsumeEvent		XtCallbackList	NULL		called when event occurs
+XtNdepth		int		(parent's)	number of bits used for each pixel
+XtNdestroy		Function	NULL		proc called when stub is destroyed
+XtNdestroyCallback	XtCallbackList	NULL		routines called when widget is destroyed
+XtNexpose		Function	NULL		proc called when stub is exposed
+XtNgetValuesHook	Function	NULL		proc called when XtGetValues is called
+XtNhighlightHandlerProc	XtRFunction	NULL		called when Stub gains input focus
+XtNinputFocusColor	Pixel		Red		color of input focus indicator
+XtNheight		Dimension	(calculated)	height of widget's window in pixels
+XtNinitialize		Function	(private)	default stub initialize proc
+XtNinitializeHook	Function	NULL		proc called after default initialize proc
+XtNmappedWhenManaged	Boolean		TRUE		will widget be mapped when managed?
+XtNmnemonic		Usigned char	NULL		key used to activate widget
+XtNqueryGeometry	Function	NULL		proc called on XtQueryGeometry() request
+XtNrealize		Function	(private)	proc called when stub is realized
+XtNreferenceName	String		NULL		see manpage		
+XtNreferenceStub	Widget		NULL		stub from which methods are inherited
+XtNreferenceWidget	Widget		NULL		see manpage
+XtNregisterFocusFunc	XtRFunction	NULL		see manpage
+XtNresize		Function	NULL		proc called when stub is resized
+XtNsensitive		Boolean		TRUE		will widget receive input events?
+XtNsetValues		Function	NULL		proc called when XtSetVaues is called
+XtsetValuesAlmost	Function	(superclass)	*see OLIT Widget Set Reference Manual
+XtsetValuesHook		Function	NULL		proc called after default setValues proc
+XtNtraversalHandlerFunc	Function	NULL		proc called to handle mouseless traversa
+XtNtraversalOn		Boolean		TRUE		is mouseless turned "on" for widget?
+XtNuserData		XtPointer	NULL		storage for user defined data
+XtNwidth		Dimension	(calculated)	width of widget's window in pixels
+XtNwindow		Window		NULL		*see OLIT Widget Set Reference Manual
+XtNx			Position	0		x coord of widget's upper left corner
+XtNy			Position	0		y coord of widget's uuper left corner
+
+	
+	

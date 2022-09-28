@@ -1,0 +1,13 @@
+!
+! DRAGFILE
+Dragfile*dt.xAttachRight:                      TRUE
+Dragfile*dt.xVaryOffset:                       TRUE
+!
+Dragfile*sl.yRefName:                          dt
+Dragfile*sl.yAddHeight:                        TRUE
+Dragfile*sl.xAttachRight:                      TRUE
+Dragfile*sl.xResizable:                        TRUE
+Dragfile*sl.xVaryOffset:                       FALSE
+Dragfile*sl.yAttachBottom:                     TRUE
+Dragfile*sl.yResizable:                        TRUE
+Dragfile*sl.yVaryOffset:                       FALSE

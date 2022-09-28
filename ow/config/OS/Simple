@@ -1,0 +1,35 @@
+# SunOS.cmds
+
+# Copyright
+
+#
+#	@(#)Simple	1.2 90/08/09
+#
+
+# Definitions for SunOS commands used by the X11/NeWS Makefiles
+# Does not include and Compiler-related commands
+
+
+# --- Commands common to Unix systems (In your NATIVE environment)
+AWK             = awk
+MV              = mv
+CP              = cp
+CHMOD           = chmod
+MKDIR           = mkdir -p
+RM              = rm -f
+RMRECURSE	= rm -rf
+RMDIR		= rmdir
+ECHO		= echo
+LN		= ln -s
+CD		= cd
+
+# override any existing LD_LIBRARY_PATH in the environment
+LD_LIBRARY_PATH=	# /dev/null
+
+# --- Install macros ---
+# Generic install command
+local.INSTALL	= install
+BINSTALL	= ${local.INSTALL} -m 755	# Executable files
+TINSTALL	= ${local.INSTALL} -m 644	# Non-executable files
+DINSTALL	= ${local.INSTALL} -d -m 755	# Directories
+ 

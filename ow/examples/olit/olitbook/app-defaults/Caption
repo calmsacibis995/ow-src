@@ -1,0 +1,54 @@
+!
+! caption resources
+!
+caption*ControlArea*alignCaptions:    TRUE
+caption*cap_slider.label:             Celsius: 
+caption*cap_gauge.label:              Fahrenheit: 
+caption*Caption*alignment:            top
+caption*orientation:                  horizontal
+caption*control.layoutType:           fixedcols
+caption*control.measure:              1
+caption*control.sameSize:             none
+!
+caption*slider.width:                 100
+caption*slider.sliderMax:             100
+caption*slider.maxLabel:              100
+caption*slider.minLabel:              0
+caption*slider.tickUnit:              slidervalue
+caption*slider.ticks:                 20
+caption*slider.endBoxes:              FALSE
+caption*gauge.width:                  180
+caption*gauge.sliderMax:              212
+caption*gauge.sliderMin:              32
+caption*gauge.sliderValue:            32
+caption*gauge.maxLabel:               212
+caption*gauge.minLabel:               32
+caption*gauge.tickUnit:               slidervalue
+caption*gauge.ticks:                  10
+!
+! caption2 resources
+!
+caption2*cap_slider.label:            Celsius
+caption2*cap_gauge.label:             Fahrenheit
+caption2*Caption*position:            top
+caption2*orientation:                 horizontal
+caption2*control.layoutType:          fixedcols
+caption2*control.measure:             1
+caption2*control.sameSize:            none
+caption2*control.center:              TRUE
+!
+caption2*slider.width:                100
+caption2*slider.sliderMax:            100
+caption2*slider.maxLabel:             100
+caption2*slider.minLabel:             0
+caption2*slider.tickUnit:             slidervalue
+caption2*slider.ticks:                20
+caption2*slider.endBoxes:             FALSE
+caption2*gauge.width:                 180
+caption2*gauge.sliderMax:             212
+caption2*gauge.sliderMin:             32
+caption2*gauge.sliderValue:           32
+caption2*gauge.maxLabel:              212
+caption2*gauge.minLabel:              32
+caption2*gauge.tickUnit:              slidervalue
+caption2*gauge.ticks:                 10

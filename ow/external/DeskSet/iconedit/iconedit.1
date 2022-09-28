@@ -1,0 +1,146 @@
+.\" Copyright (c) 1994 - Sun Microsystems, Inc.
+.TH iconedit 1 "20 Feb 1992"
+.IX "iconedit" "" "\f3iconedit\f1(1) \(em DeskSet utility for editing icons" ""
+.SH NAME
+iconedit 
+\- create and edit images for OpenWindows icons, cursors, and panel items
+.SH SYNOPSIS
+.br
+.B iconedit
+[
+.I filename
+] [
+.I XView command-line arguments
+]
+.SH AVAILABILITY
+This command is available with the
+OpenWindows user environment.
+For information about XView 
+command-line arguments see the XView documentation. 
+.SH OPTIONS
+.TP 10
+.I filename
+Contains the image.
+.TP
+.I XView command-line arguments
+.B iconedit
+accepts XView command-line arguments listed in
+.BR xview (7).
+.SH DESCRIPTION
+.LP
+.B iconedit
+is part of the OpenWindows DeskSet. With 
+.B iconedit
+you can create and edit small images for use 
+in icons, cursors, panel items, etc.
+
+.B Main Window
+.LP
+This window contains the controls for manipulating your image,
+as well as the image itself as it will appear in an icon or 
+cursor, and an expanded image in a drawing canvas.  From the 
+main window you have the following pull-down menus.
+.TP 10
+.B File
+.RS
+.TP 10
+.B Load
+Specify a file to load.
+.TP
+.B Save
+Save the file under the current name.
+.TP
+.B Save As
+Save file under a new name.
+.TP
+.B Print
+Generate PostScript output for a printer or a file.
+.RE
+.TP
+.B View
+.RS
+.TP 10
+.B Grid On/Off
+Turns a grid on or off in the display area.
+One grid square is a 4x4 area of pixels.
+.RE
+.TP
+.B Edit
+.RS
+.TP 10
+.B Undo
+The last action is un-done.  A record of undos available is kept in the
+lower right footer.
+.TP
+.B Redo
+The last undo is redone, provided the last action was an undo.
+.TP
+.B Clear
+The drawing area is cleared by having all of the pixels set to white.
+.TP
+.B Cut
+A selected area is cleared, with its contents moved to the paste buffer.
+If no area is selected, the default area is the entire image.
+.TP
+.B Copy
+A selected area is copied to the paste buffer.
+If no area is selected, the default area is the entire image.
+.TP 
+.B Paste
+The contents of the paste buffer are copied into the image at the current 
+pointer location.
+.TP
+.B Invert
+The selected area is inverted, black for white and white for black.  This
+action is only available in B&W mode.
+.RE
+.TP 
+.B Properties
+.RS
+.TP 10
+.B Format
+Selects the default save format of an image, be it an XView icon, an X Bitmap,
+a color X Pixmap, or a monochrome X Pixmap.
+.TP 
+.B Size
+Selects the size of the image.  64x64 is the most common size for an icon, 
+32x32 is used within 
+.B filemgr
+and 16x16 is the size of cursors.
+.RE
+.TP 10 
+.B Palette
+This brings up the color palette for choosing the pen color.  
+.TP 10
+.B Controls
+.RS
+.TP 10
+.B Drawing Mode
+This choice lets you select you drawing mode: dots, lines, rectangles,
+circles, ellipses, text, selection, or erase.  
+.TP 10
+.B Fill Pattern
+This selects the pattern in which objects drawn are filled.  The choices 
+range from outline through various textures to solid.  The fill pattern 
+is only in effect when drawing rectangles, circles or ellipses.
+.TP 10
+.B Color or B&W
+This item selects between having your image in color or monochrome.
+If you change it from color to monochrome, the color information 
+is lost, though it can be restored through undo.
+.RE
+.TP 10
+.B Movement Arrows
+These let you move your image or a selected part of your image.  Vertical
+and horizontal flip, as well as rotation are also provided.
+.RE
+.SH SEE ALSO
+.LP
+.BR xview (7)
+.br
+.TZ SSUG
+.br
+XView documentation
+.br
+"About Icon Editor" in the Help Handbook available through the
+Help option on the Workspace menu.

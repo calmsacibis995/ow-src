@@ -1,0 +1,89 @@
+! @(#)WSInfo.ad	1.9 95/01/11 
+!
+!	wsinfo - Workstation Information PopUp
+!
+! Top-Level Widget
+!
+*wsinfo.title:				Workstation Information
+*wsinfo.winType:			command
+*wsinfo.menuType:			limited
+*wsinfo.resizeCorners:			False
+*wsinfo.pushpin:			in
+*selectable:				True
+!
+! ControlArea Container
+!
+*controls.layoutType:			fixedcols
+*controls.alignCaptions:		True
+*controls.center:			True
+*controls.hPad:				20
+*controls.vPad:				20
+*controls.hSpace:			10
+!
+! Space/Separator widget
+!
+*spacer.height:				10
+!
+! Individual Item Captions & StaticText or Slider
+!
+*workstationName.label:			Workstation Name:
+!
+*workstationType.label:			Workstation Type:
+!
+*hostID.label:				Host ID:
+!
+*internetAddress.label:			Internet Address:
+!
+*networkDomain.label:			Network Domain:
+!
+*physicalMemory.label:			Physical Memory (RAM):
+!
+*virtualMemAvail.label:			Virtual Memory (Swap):
+*virtualMemUsed.label:			Virtual Memory In Use:
+*virtualMemUsed.alignment:		Top
+*virtualMemUsed*gauge.orientation:	horizontal
+*virtualMemUsed*gauge.minLabel:		0
+*virtualMemUsed*gauge.sliderMin:	0
+*virtualMemUsed*gauge.maxLabel:		100
+*virtualMemUsed*gauge.sliderMax:	100
+*virtualMemUsed*gauge.span:		100
+*virtualMemUsed*gauge.ticks:		10
+*virtualMemUsed*gauge.tickUnit:		percent
+*virtualMemUsed*text.string:		percent
+!
+*osRelease.label:			Operating System:
+!
+*wsRelease.label:			Window System:
+!
+! System Type Names (based on hostid)
+!
+! Do not add more types here, newer machines
+! cannot be distinguished by their hosts ids.
+!
+! These are now used only as a fallback for OSs
+! earlier then Solaris 2.5 which do not support
+! sysinfo's SI_PLATFORM command.
+!
+*systemType21:				Sun 4/260
+*systemType22:				Sun 4/110
+*systemType23:				Sun 4/330
+*systemType24:				Sun 4/490
+*systemType51:				Sun 4/60 (SPARCstation 1)
+*systemType52:				Sun 4/40 (SPARCstation IPC)
+*systemType53:				Sun 4/65 (SPARCstation 1+)
+*systemType54:				Sun 4/20 (SPARCstation SLC)
+*systemType55:				Sun 4/75 (SPARCstation 2)
+*systemType56:				Sun 4/25 (SPARCstation ELC)
+*systemType57:				Sun 4/50 (SPARCstation IPX)
+*systemType61:				Sun 4E/120 (SPARCengine 1E)
+*systemType71:				Sun 4/690 (Galaxy MP)
+!
+! Misc Settings/Strings
+!
+*timeDelay:				5000
+*strOpenWindows:			OpenWindows
+*strRelease:				Release
+*strVersion:				Version
+*strUnavailable:			[Couldn't Ascertain]
+*strMegabyteFmt:			%d Megabytes
+*strHelpFailFmt:			Help Unavailable For `%s'

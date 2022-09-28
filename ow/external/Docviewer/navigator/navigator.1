@@ -1,0 +1,309 @@
+.\" Copyright (c) 1994 Sun Microsystems, Inc.
+.TH navigator 1 "18 November 1993"
+.IX "navigator" "" "\f3navigator\f1(1) \(em browse and search AnswerBook documentation" ""
+.IX "AnswerBook" "browse" "AnswerBook" "browse and search AnswerBook documentation \(em \f3navigator\f1(1)"
+.SH NAME
+navigator \- browse and search AnswerBook on-line documentation
+.SH SYNOPSIS
+.LP
+.B navigator
+[
+.B \-b
+.I library-file
+]
+[
+.B \-c
+.I card-catalog
+]
+.SH DESCRIPTION
+.LP
+.B navigator
+and 
+.BR docviewer (1)
+together comprise an OpenWindows
+application for viewing and navigating
+AnswerBook on-line document collections.
+.LP
+.B navigator 
+provides three modes for accessing AnswerBook documents:
+Contents (table-of-contents browsing), Search 
+(full-text search and retrieval), and Bookmarks (links the
+user creates to frequently referenced pages).
+.LP
+Documents found using 
+.B navigator 
+may then be viewed with 
+.BR docviewer (1).
+.LP
+New to this version of
+.B navigator
+is the AnswerBook Library feature.  An AnswerBook library is a group of
+AnswerBooks that can be browsed and searched as a single unit.
+.B navigator
+lets you select AnswerBooks of interest from those available on the network,
+and add them to the current AnswerBook Library.
+AnswerBook Library contents are stored in files and thus saved between
+.B navigator
+sessions.  In addition, these files may be shared among groups of AnswerBook
+users, and even mailed to others.  See
+.BR ab_library (4)
+for more information.
+.LP
+You should not start
+.B navigator
+directly.  Instead, use the
+.BR answerbook (1)
+script, which performs certain operations to initialize and verify
+the AnswerBook environment before starting
+.B navigator.
+.SH OPTIONS
+.TP
+.B \-b \f2library-file\fP
+Specify the AnswerBook library to load.
+The default library is $HOME/.ab_library.  See
+.BR ab_library (4)
+for more information.
+.TP
+.B \-c \f2card-catalog\fP
+Specify the name of the card catalog file(s) used to locate AnswerBooks. See
+.BR ab_cardcatalog (4)
+for more information.
+.TP
+.SH USAGE
+.TP
+.B Contents Mode
+Click SELECT on the "Contents" button near the top of the Navigator window
+to browse the tables of contents of the AnswerBooks
+in the current AnswerBook Library.
+.RS
+.LP
+The Location list \- the upper scrolling list in Contents mode \- shows
+the current path through the table of contents hierarchy.  The Contents (lower)
+list show the contents of the current title in the location list.
+.LP
+Double-click SELECT on any bold-faced title in the Contents list
+to display that title's contents.
+The title itself moves to the bottom of the Location list,
+and the first page of the corresponding document is displayed in the Viewer
+window.  Non-bold-faced titles do not expand, but are displayed in the Viewer.
+.LP
+To move back up the table of contents hierarchy, just click SELECT
+on any title in the Location list.  That document's contents will then
+appear in the Contents list.
+.RE
+.TP
+.B Search Mode
+Click SELECT on the "Search" button near the top of the Navigator window
+to perform full-text searches across all the AnswerBooks 
+in the current AnswerBook Library.
+.RS
+.LP
+The search query syntax is generally free-form (but see below).
+Simply enter one or more words or phrases in the "Search Library for"
+text window, then hit RETURN (or click SELECT on "Start Search" button)
+to initiate the search.  The navigator displays the list of titles
+of documents found, ranked in order of relevance to the search query.
+The algorithm used to determine document relevance is heuristical,
+and is based on word-occurrence statistics.
+.LP
+Double-click SELECT on any title in the list to display the corresponding
+document in the Viewer window.
+.LP
+Search for literal phrases by enclosing them in double quotes:
+.RS
+.ft 8
+.sp
+.nf
+"workspace properties"
+.fi
+.sp
+.ft P
+.RE
+Search for words in proximity by enclosing them in parentheses:
+.RS
+.ft 8
+.sp
+.nf
+(print mail messages)
+.fi
+.sp
+.ft P
+.RE
+Match different work ending with an asterisk:
+.RS
+.ft 8
+.sp
+.nf
+print* \f2(matches "print", "printer", "printing", etc.)\fP
+.fi
+.sp
+.ft P
+.RE
+.TP
+.B Previous Searches
+Click SELECT on "Previous Searches..." to bring up a list of
+earlier search queries.  The Previous Searches
+window provides a simple copy-and-paste facility for redoing or
+modifying queries.
+.TP
+.B Search Settings
+Click SELECT on "Search Settings..." to modify search properties.
+In the Search Settings window, you can select the search scope
+(either the entire document, or just document titles);
+the sorting order for the results list (by relevance, or by
+book and relevance); and the maximum number of titles to display.
+.RE
+.TP
+.B Bookmarks Mode
+Click SELECT on the "Bookmarks" button near the top of the Navigator window
+to browse the list of
+bookmarks in the current AnswerBook Library.
+Click Select on a bookmark in the
+"Bookmarks in Library" list to display
+the annotation for that bookmark in the "Comment for"
+window.  Double-click SELECT on a bookmark
+to display the corresponding document in the Viewer window
+.RS
+.LP
+Click SELECT on the "Delete Bookmark" button to delete the currently
+selected bookmark.  This operation cannot be undone.
+.LP
+The bookmark annotation in the "Comment for" window, as well as the
+bookmark title on the "Comment for" line are editable.  Use the standard
+textedit editing functions to modify them, then click SELECT
+on the "Save Changes" button.
+.RE
+.TP
+.B New Bookmark
+Click SELECT on the "New Bookmark..." button to
+create a bookmark to the current page in the Viewer window.
+In the resulting New Bookmark pop-up window,
+edit the bookmark title, and annotate it if desired, then click SELECT on the "Create" button to add the
+new bookmark to the bookmark list for the current AnswerBook Library.
+The updated bookmark list is automatically saved to the current Library file
+so that it can be browsed the next time that file is loaded into
+.B navigator.
+.TP
+.B Modify Library
+Click SELECT on the "Modify Library..." button to bring up a list of
+available AnswerBooks to include in the current AnswerBook Library.
+Select one or more AnswerBooks from the list, then click SELECT on the
+"Apply" button to put those AnswerBooks in the current Library.
+This list of AnswerBooks is automatically saved to the current Library
+file so that it is available when you next run
+.B navigator.
+.RS
+.LP
+The AnswerBooks shown in the Modify Library list are those found
+in the AnswerBook Card Catalogs in your Card Catalog path.  See
+.BR ab_cardcatalog (4)
+for more information.
+.LP
+To prevent two people from updating the same AnswerBook Library file
+at the same time (and thus losing data and/or corrupting the file),
+.B navigator
+sets an advisory lock on the file upon opening it.  If the file is
+already locked,
+.B navigator
+gives you the option of opening it read-only, or resetting the lock.
+If you open an AnswerBook Library file read-only, changes to that Library
+(including bookmark changes) will not be saved.
+You should reset a lock only if you know that it is no longer valid
+(e.g., the navigator that set it is no longer running).
+.RE
+.TP
+.B Starting Navigator
+You should start
+.B navigator
+via the
+.BR answerbook (1)
+script rather than running it directly.  Command line arguments to
+.B answerbook
+are passed on to
+.B navigator.
+.RS
+.LP
+You can also start AnswerBook by opening an AnswerBook Library file
+in File Manager, MailTool, or other DeskSet application.  See
+.BR filemgr (1)
+for details.
+.LP
+By default,
+.B navigator
+loads your personal AnswerBook Library file ($HOME/.ab_library)
+when it starts.  Use the
+.B \-b
+.I library-file
+option to load a different Library file (see
+.B OPTIONS
+).
+.RE
+.TP
+Foreign Language Support
+Some AnswerBooks contain translated documents in addition to the
+English versions.
+The user can specify
+the preferred language at the beginning of an AnswerBook session
+via the $LANG environment variable or the "-l" command line
+flag.
+.B navigator 
+and
+.B docviewer
+will display, search, etc., documents
+in the preferred language when they are present in the
+AnswerBook.
+.SH ENVIRONMENT
+.LP
+.B AB_CARDCATALOG
+.IP 
+Specify the name of the card catalog file used to locate AnswerBooks.
+See
+.BR ab_cardcatalog (4)
+for more information.
+.LP
+.B LANG
+.IP
+Specify the preferred language for browsing,
+searching, etc.
+Can be overridden by "-l" command line flag.
+.LP
+.B FULTEMP
+.IP
+Directory for writing temporary files used during search operation.
+.SH FILES
+.LP
+.B ~/.ab_cardcatalog
+.IP
+Default AnswerBook Card Catalog file used to locate AnswerBooks.  See
+.BR ab_cardcatalog (4)
+for more information.
+.BR
+.LP
+.B ~/.ab_library
+.IP
+Default AnswerBook Library file loaded by
+.B navigator.
+See
+.BR ab_library (4)
+for more information.
+.LP
+.B /usr/tmp/ft*
+.br
+.B $FULTEMP/ft*
+.IP
+Temporary files used during search operations.
+.SH SEE ALSO
+.LP
+.BR docviewer (1),
+.BR answerbook (1),
+.BR ab_admin (1),
+.BR setlocale (3),
+.BR ab_cardcatalog (4),
+.BR ab_library (4),
+.SH NOTES
+.LP
+AnswerBook is a trademark of Sun Microsystems, Inc.,
+licensed to SunSoft, Inc.
+
+
+

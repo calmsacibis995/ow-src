@@ -1,0 +1,100 @@
+
+convert_to_xview(1)              USER COMMAND       convert_to_xview(1)
+
+NAME
+     convert_to_xview - convert a SunView1 source program to XView source
+
+SYNOPSIS
+     convert_to_xview [-m] filename...
+
+AVAILABILITY
+     This command is available with the XView software distribution.
+
+DESCRIPTION
+     convert_to_xview is a shell script which uses sed(1) scripts 
+     to convert SunView1.x programs to the XView Application
+     Programming Interface (API).  convert_to_xview parses "filename"
+     and creates a new file with the XView API in the current directory
+     called "filename".converted_to_xview.
+
+     The standard conversion that is done is called FULL conversion.
+     FULL conversion of SunView1 source converts everything to XView
+     naming conventions reguardless of API compatibility support (eg.
+     changes WIN_FONT to XV_FONT even though WIN_FONT would still
+     work).
+     
+     The other type of conversion is called MINIMAL conversion.
+     MINIMAL conversion retains SunView1 compatibility wherever
+     possible and inserts a unique "flag" and comments at every
+     instance where manual conversion is necessary in C language source
+     comment form.  The flag and comments will look something like
+     this:
+     
+     	/* XView CONVERSION - use xv_set() instead. See Sect 3.2 */
+
+     The original SunView1.x file is not modified.
+     
+     After the file is converted, you should then search for 
+     
+     		XView CONVERSION
+    
+     in the new converted program (filename.converted_to_xview).  Use
+     the conversion documentation, "XView Reference Manual: Converting
+     SunView1 to XView," to determine the proper conversion for these
+     "flagged" items.  In some possible cases, the comments may make
+     references to sections in the manual which should be consulted to
+     correctly convert something.
+     
+OPTIONS
+
+     -m   Perform minimal conversion only. 
+     
+
+ENVIRONMENT
+     The script assumes that the necessary sed(1) conversion scripts
+     are located in the standard XView binary installation directory.
+     By default XView would be installed into /usr.  If XView were
+     installed into a different directory, for example /home/xview,
+     $OPENWINHOME should be set to /home/xview/usr because the sed
+     scripts would have been installed into /home/xview/usr/bin/xview.
+     
+     convert_to_xview will assume that $OPENWINHOME/bin/xview is in
+     the standard $PATH environment variable if $OPENWINHOME isn't
+     set.
+     
+EXAMPLES
+     Convert my_program.c from SunView1 to XView:
+
+          % convert_to_xview my_program.c
+          ----Converting file: foo.c
+          --Done
+          %
+
+     Now go in and edit (with your favorite text editor such as vi,
+     textedit, etc) the result of the conversion
+     (my_program.c.converted_to_xview) and see if there is anything
+     that didn't get converted:
+     
+          % textedit my_program.c.converted
+
+     Do only mininal conversion of my_program.c & your_program.c to XView:
+
+          % convert_to_xview -m my_program.c your_program.c
+          ----Converting file: foo.c
+          ----Converting file: blah.c
+          --Done
+          %
+
+     The above would create two files new files and each will only
+     had mininal conversion performed (just flags inserted).
+
+FILES
+     $OPENWINHOME/bin/xview/convert_to_xview
+     $OPENWINHOME/bin/xview/.*.sed       (full & minimal conversion scripts)
+     
+     Where $OPENWINHOME is the installation point for OpenWindows.
+
+SEE ALSO
+     sunview(1), sed(1), textedit(1), vi(1)
+
+convert_to_xview(1)              USER COMMAND       convert_to_xview(1)

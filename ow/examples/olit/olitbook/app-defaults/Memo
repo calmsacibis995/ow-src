@@ -1,0 +1,6 @@
+memo5*msg*translations: #override \n\
+    <BtnDown>: OlAction() action_proc()
+memo6*msg*translations: #override \n\
+    <BtnDown>: OlAction() action_proc(5, 9)
+memo8.msg.string: Hello World (English)
+memo9.msg.string: Hello World (English)

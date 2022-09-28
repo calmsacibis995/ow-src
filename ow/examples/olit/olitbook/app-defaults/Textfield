@@ -1,0 +1,11 @@
+Textfield*control.layoutType:      fixedcols
+Textfield*control.measure:         2
+Textfield*StaticText*width:        70
+Textfield*StaticText*gravity:      east
+Textfield*st0.string:              MAKE: 
+Textfield*st1.string:              MODEL: 
+Textfield*st2.string:              SERIAL #: 
+Textfield*TextField*charsVisible:  10
+!*tf0*imPreeditStyle: none
+!*tf1*imPreeditStyle: none
+!*tf2*imPreeditStyle: none

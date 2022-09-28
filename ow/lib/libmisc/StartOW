@@ -1,0 +1,19 @@
+#!/bin/sh
+# @(#)StartOW 1.5 93/07/29
+
+args=$*
+
+OPENWINHOME=${OPENWINHOME:=/usr/openwin}
+PATH=$OPENWINHOME/bin:$PATH
+MANPATH=$OPENWINHOME/man:$MANPATH
+export OPENWINHOME PATH MANPATH
+
+pass=$OPENWINHOME"/bin/X"
+
+for i in $* 
+do
+	if [ $i != $0 ]; then
+	pass=$pass" "$i	
+	fi 
+done
+exec $pass

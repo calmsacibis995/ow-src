@@ -1,0 +1,5 @@
+Mousetracks*target.width:       110
+Mousetracks*target.height:      100
+Mousetracks*command.layoutType: fixedcols
+tracker4*target.translations: #augment \n\
+	<Motion>: OlAction()

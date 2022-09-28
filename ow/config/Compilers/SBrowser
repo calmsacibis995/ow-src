@@ -1,0 +1,47 @@
+#
+
+# Copyright
+
+#
+# @(#)SBrowser	1.2 91/05/18
+# SBrowser - NeWSplate -sb version, from:
+# @(#)SC1.0acc	1.7 91/04/25
+#
+
+CC		= /usr/local/lang/acc
+AS              = /usr/local/lang/as
+RANLIB		= ranlib
+
+# Generate Postion-Independant-code
+#	-pic = 64k of entrypoints (16 bit offsets)
+#	-PIC = lots of entrypoints (32 bit offsets)
+LITTLEPIC	= -pic
+BIGPIC		= -PIC
+PIC		= ${LITTLEPIC}
+
+#  Shared library commands and options.
+SHLIBCMD        = /bin/ld
+PURETEXT        = -assert pure-text
+HNAME           =
+LIBVER          = ${LIBMAJORVER}.${LIBMINORVER}
+SHAREDLIBFILES	= ${LIBRARY.shared} ${LIBRARY.shared.sa}
+
+#
+# REMIND - JMP
+# This should migrate to the Shapes level Makefile
+#
+# local.FRACT.INLINE	= ${INCLUDE.graphics}/fr${TARGET_ARCH}.il
+local.FRACT.INLINE	=
+
+##############################################################################
+
+f.GPROF         = -pg
+f.DEBUG         = -g -sb
+f.OPT           = -O2
+f.SHARED        = -O2
+f.OPTGPROF      = -O2 -pg
+reorder.OPT	= -Qoption as -r22off
+STRINGCONST	= -strconst
+
+include ${CONFIGDIR}/Compilers/SunCCgeneric
+

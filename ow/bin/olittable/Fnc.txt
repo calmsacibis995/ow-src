@@ -1,0 +1,154 @@
+DESCRIPTION
+
+	The FontChooser widget provides a user-interface to conveniently choose
+	fonts in an OLIT application. The widget does this by presenting lists of
+	meaningful typographical attributes for the user to choose from. The
+	typographical attributes displayed are: TYPEFACE, STYLE and SIZE. Note that
+	the above attributes are not on-to-one mapped to XLFD fields of the same names.
+	 
+	The typographical attributes are extracted either:
+ 	. directly from the XLFD fonts announced by the underlying X11 server
+	. or, from FontSet definitions stored in the OpenWindows.fs database
+  	  for the curent locale. (this source only used when FontChooser operates
+	  in the internationalized mode).
+ 
+        Typically, an application uses a popup window FontChooser, though it may
+        use a FontChooser panel embedded in a multi-category property sheet, hence
+        the 2 widgets classes for the OLIT FontChooser implementation:
+                . FontChooserWidget
+                . FontChooserShellWidget
+	 
+	The FontChooser widget has the following graphical elements:         
+		. Scrolling lists for font attributes: TYPEFACE, STYLE and SIZE.
+		. Numeric field for typing in the SIZE of a scalable font.
+		. Optional Extension container (for customization)
+		. Font Preview Area (can be disabled).
+		. Apply, Revert & Cancel buttons.
+
+	For more detailed information on the FontChooser Widget, see the following
+	Sections in the OPEN LOOK Intrinsics Toolkit Widget Set Reference Manual:
+		. FontChooser
+		. FontChooserShell
+
+
+EXAMPLE CODE
+
+The following code was written to Create the example FontChooserShell Widget shown
+in the Table.
+/***************************************************************************/
+#include <X11/Intrinsic.h>
+#include <X11/StringDefs.h>
+#include <Xol/OpenLook.h>
+#include <Xol/ControlAre.h>
+#include <Xol/OblongButt.h>
+#include <Xol/FontChSh.h>
+
+static void
+popupCB(Widget w, Widget shell, XtPointer calldata)
+{
+   XtPopup(shell, XtGrabNone);
+}
+
+main(argc, argv)
+int argc;
+char **argv;
+{
+	XtAppContext app;
+	Widget toplevel, panel, fontbutton, fontch_shell;
+
+	OlToolkitInitialize(NULL);
+	toplevel = XtAppInitialize(&app, "Test", 
+				(XrmOptionDescRec *)NULL,
+				(Cardinal)0, (int *)&argc, argv,
+				(String *)NULL, (ArgList)NULL, 0);
+
+	panel = XtVaCreateManagedWidget("panel",
+				controlAreaWidgetClass,
+				toplevel,
+				NULL);
+
+	fontbutton = XtVaCreateManagedWidget("fontbutton", 
+				oblongButtonWidgetClass,
+				panel,
+				XtNlabel,	(XtArgVal)"FontChooser...",
+				NULL);
+
+	fontch_shell = XtVaCreatePopupShell("fontchooser", 
+		     		fontChooserShellWidgetClass, 
+				fontbutton,
+				XtNemanateWidget, (XtArgVal)fontbutton,
+				NULL);
+	/* 
+   	 * Add callback to popup button now that we have noticeshell widget ID. 
+	*/
+	XtAddCallback(fontbutton, XtNselect, popupCB, (XtPointer)fontch_shell);
+
+
+	XtRealizeWidget(toplevel);
+
+	XtAppMainLoop(app);
+
+}
+/**********************************END Example********************************/
+
+
+RESOURCES
+
+Core Resources
+--------------
+Name            		Type            Default         	Access
+----            		----            -------         	-------
+ XtNx               		Position        0               	SGI
+ XtNy               		Position        0               	SGI
+ XtNwidth           		Dimension       <Calculated>    	SG
+ XtNheight          		Dimension       <Calculated>    	SG
+ XtNborderWidth     		Dimension       0               	SGI
+ XtNsensitive       		Boolean         True            	GIO
+ XtNancestorSensitive		Boolean         True            	G
+ XtNscreen          		Screen *        parent's        	GI
+ XtNdepth           		Cardinal        parent's        	GI
+ XtNcolormap        		Colormap        parent's        	GI
+ XtNbackground      		Pixel           parent's        	SGID
+ XtNbackgroundPixmap		Pixmap          XtUnspecifiedPixmap     SGI
+ XtNborderColor     		Pixel           XtDefaultForeground     SGI
+ XtNborderPixmap    		Pixmap          XtUnspecifiedPixmap     SGI
+ XtNmappedWhenMananaged		Boolean         True            	SGI
+ XtNdestroyCallback 		XtCallbackList  NULL            	SGIO
+
+Composite Resources
+-------------------
+ XtNchildren        		WidgetList      NULL             	G
+ XtNinsertPosition  		Function        NULL            	SGI
+ XtNnumChildren     		Cardinal        0                	G
+ 
+FontChooser Resources
+---------------------
+ XtNapplyCallback   		XtCallbackList  NULL                    SGIO
+ XtNapplyLabel      		OlStr           "Apply"                  GI
+ XtNattributeListHeight		Dimension       <Calculated>            SGI
+ XtNcancelCallback  		XtCallbackList  NULL                    SGIO
+ XtNcancelLabel     		OlStr           "Cancel"                 GI
+ XtNchangedCallback 		XtCallbackList  NULL                    SGIO
+ XtNcharsetInfo     		String          "iso8859-1"              G
+ XtNerrorCallback   		XtCallbackList  NULL                    SGIO
+ XtNextensionArea   		Widget          NULL                     G
+ XtNfontSearchSpec  		String          "*-*-...-* (15 *'s)      GI
+ XtNinitialFontName 		String          NULL                     GI
+ XtNmaximumPointSize		Cardinal        99                       GI
+ XtNpreferredPointSizes		String          "8 10 12 14 18 24"       GI
+ XtNpreviewHeight   		Dimension       <calculated>            SGI
+ XtNpreviewBorderWidth		Dimension       <calculated>             GI
+ XtNpreviewBackground		Pixel           XtDefaultBackground      GI
+ XtNpreviewFontColor		Pixel           XtDefaultForeground      GI
+ XtNpreviewForeground		Pixel           XtDefaultForeground      GI
+ XtNpreviewPresent  		Boolean         True                    SGI
+ XtNpreviewText     		OlStr           "%T %S %s"              SGI
+ XtNrevertCallback  		XtCallbackList  NULL                    SGIO
+ XtNrevertLabel     		OlStr           "Revert"                 GI
+ XtNsizeLabel       		OlStr           "Size"                   GI
+ XtNstyleLabel      		OlStr           "Style"                  GI
+ XtNtextFormat      		OlStrRep        OlGetDefaultTextFormat   GI
+ XtNtypefaceLabel   		OlStr           "Typeface"               GI
+
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------

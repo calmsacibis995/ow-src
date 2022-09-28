@@ -1,0 +1,11 @@
+#       Copyright (c) 1990-92 Sun Microsystems, Inc.
+#               All Rights Reserved
+#
+#	"@(#)prototype	1.107 94/02/02   Sun Microsystems" 
+#
+#  OpenWindows required core package
+
+i pkginfo
+i copyright=../copyright
+i i.renamenew=../i.renamenew
+i depend

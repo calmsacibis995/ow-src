@@ -1,0 +1,26 @@
+#
+# @(#)Makefile.template	3.3 05 Aug 1992 Copyright (c) 1987-1990 Sun Microsystems, Inc.
+# All Rights Reserved
+#
+
+SOURCES.c	= ck_zmalloc.c ras2ps.c rast.c
+SOURCES.h	= rast.h
+PROGRAM		= ras2ps
+PROJECTDIR	= ..
+
+#
+# Couple of extra def's so that Guide gets included.  GUIDEHOME has
+# to be defined for this Makefile to work anyway.
+
+.KEEP_STATE:
+
+default:	all
+
+include ${PROJECTDIR}/Makefile.master.new
+
+all:	$(PROGRAM)
+
+clean:	master_clean
+
+install: install_normal_bins 
+ 

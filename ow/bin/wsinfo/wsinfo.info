@@ -1,0 +1,76 @@
+# @(#)wsinfo.info	1.3 92/11/20 SM 
+#################################################
+#  wsinfo.info   20 November 1992 -- R.Patten
+#
+#  This is help for Workstation Information
+#################################################
+##########This_Line_Is_50_Characters_Long#########
+:wsinfo:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Workstation Information
+
+The Workstation Information window displays read-only information about the configuration of
+your workstation.
+
+#----------------------------------------------------------
+:workstationName:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Workstation Name
+
+This is the host name of your workstation.
+
+#----------------------------------------------------------
+:workstationType:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Workstation Type
+
+This is the architecture and cpu type of your workstation.
+
+#----------------------------------------------------------
+:hostID:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Host ID
+
+This is the unique sequence of numbers and letters that identifies this workstation.
+
+#----------------------------------------------------------
+:internetAddress:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Network Address
+
+This is the address assigned to this workstation on your network.
+
+##########This_Line_Is_50_Characters_Long#########
+#----------------------------------------------------------
+:networkDomain:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Network Domain
+
+This is part of a naming hierarchy that identifies your network.
+ 
+#----------------------------------------------------------
+:physicalMemory:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Physical Memory (RAM)
+
+This is the amount of main memory that this workstation contains.
+
+#----------------------------------------------------------
+:virtualMemAvail:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Virtual Memory (Swap)
+
+This is the total amount of available memory (physical memory and swap partition combined).
+
+#----------------------------------------------------------
+##########This_Line_Is_50_Characters_Long#########
+:virtualMemUsed:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Virtual Memory Used
+
+This indicator shows the amount of virtual memory in use by processes running on this workstation.
+
+#----------------------------------------------------------
+:osRelease:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Operating System Release
+
+This is the release version of the operating system currently running.
+
+#----------------------------------------------------------
+:wsRelease:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Window System Release
+
+This is the release version of OpenWindows currently running.
+
+##################################################

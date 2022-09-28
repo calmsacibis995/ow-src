@@ -1,0 +1,96 @@
+.\" Copyright (c) 1994 - Sun Microsystems, Inc.
+.TH format_floppy 1 "30 November 1993"
+.IX "format_floppy" "" "\f3format_floppy\f1(1) \(em diskette formatting program" ""
+.SH NAME
+format_floppy \- diskette formatting program used by FileManager
+.SH SYNOPSIS
+.B format_floppy 
+.BI \-d " device"
+.BI \-m " mnt_point"
+[ 
+.B \-h
+] [
+.BI \-n " name"
+] [
+.BI \-p " popup_type"
+] [
+.B \-r
+] [
+.BI \-x " x_pos"
+] [
+.BI \-y " y_pos" 
+]
+.SH DESCRIPTION
+.PP
+.B Format_floppy
+is used by
+.BR filemgr (1)
+to format 3.5 in. high-density floppy disks.  It is not intended to be
+used directly but rather is called by
+.B filemgr
+when a floppy disk can not be read and the user indicates that it should be
+formatted.  This situation occurs if the user inserts a new disk into the dirve
+or tries to use a disk that is unreadable for some reason.  The user will be
+notified that the disk is unreadable and be given the options of ejecting the
+disk or formatting it.
+.B Filemgr
+and
+.BR vold (1)
+must be running when the unreadable disk is inserted into the drive in order for
+.B format_floppy
+to be called.
+.PP
+Note that DOS-formatted disks are automatically recognized by
+.B vold
+and
+.B filemgr
+will not try to reformat them.
+.SH OPTIONS
+.TP 14
+.BI \-d " device"
+The raw device name of the floppy disk must be specified.  This information
+is in the second filed of the file
+.B /tmp/.removable/floppy\fIN\fP
+where \fIN\fP is the number of hte floppy disk (usually 0).
+.TP 14
+.B \-h
+Causes
+.B format_floppy
+to display its "help" or usage message.
+.TP 14
+.BI \-m " mnt_point"
+The mount-point of the floppy disk must be specified.  This information is
+in the first field of the the file
+.B /tmp/.removable/floppy\fIN\fP,
+where \fIN\fP is the number of the floppy disk (usually 0).
+.TP 14
+.BI \-n " name"
+Allows a name to be assigned to the newly-formatted floppy disk.
+.TP 14
+.BI \-p " popup_type"
+Allows the type of popup menu to be specified where \fIpopup_type\fP can be
+\f3format\fP, \f3unformatted\fP, or \f3unlabled\fP.  The default is \f3format\fP.
+Note that the wording in these popup menus is different.
+.TP 14
+.B \-r
+Allows the floppy disk to be renamed.  If
+.B \-r
+is specified,
+.B \-n
+must be also.
+.TP 14
+.BI \-x " x_pos"
+Used with the
+.B \-p
+option to specify the x-coordinate position for the popup menu.
+.TP 14
+.BI \-y " y_pos"
+Used with the
+.B \-p
+option to specify the y-coordinate position for the popup menu.
+.SH FILES
+.B /tmp/.removable/*
+.SH SEE ALSO
+.BR filemgr (1),
+.BR vold (1)
+

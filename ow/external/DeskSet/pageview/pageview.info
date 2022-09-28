@@ -1,0 +1,334 @@
+
+##################################################
+#
+# This help text is for PageView.
+#
+#       Open Windows Version 3 FCS
+#	2 July 1991, rev'd by James Brook
+#	edited for OWV3.0.1 31 October 1991
+#
+#	Added Goto Page window text 6 Oct 93, R.Patten
+#
+#	@(#)pageview.info 3.1 92/04/03
+#
+##################################################
+#####################50##########################
+:Edit
+Edit
+
+Use to edit the PostScript source of the current
+document or change the properties of the current
+page:
+
+PostScript	Displays a window in which you 
+		can edit and run PostScript
+		source.
+
+Properties	Displays the Page Properties
+		window, where you can set page
+		size, dpi, page orientation,
+		anti-aliasing, job timeout
+		value, and method of
+		interpretation.
+
+:File
+File
+
+Has two options:
+
+Load 	Loads a new file.
+
+Print	Prints the current file.
+
+
+#####################50##########################
+:View
+View
+
+Provides ways to navigate multi-page documents:
+
+First Page		Displays the first page.
+
+Last Page		Displays the last page.
+
+Next Page		Displays the next page
+			(the default).
+
+Previous Page		Returns to the page
+			previously viewed.
+
+Goto Page		Displays a pop up window
+			from which you can select
+			a specific page for
+			viewing.
+
+Reverse Page Order	Reverses the page order
+			of the currently
+			displayed document.
+
+#####################50##########################
+:MainWindowInfo
+PageView
+
+This window contains the preview of a PostScript
+page. The entire page may not be visible at one
+time. Use the mouse to pan around the page.
+
+You can directly manipulate the page with the 
+mouse: Press SELECT and drag the pointer to move 
+the page. 
+
+ADJUST gives you quick access to any part of the
+page: For example, click ADJUST in the upper
+left corner of the window to display the upper
+left corner of the page.
+
+ADJUST is most useful when the dpi is set to 300 
+or more in the Page Properties window. 
+
+#####################50##########################
+:SourceDrag
+Drag and Drop Target
+
+This box is the place to drop a file icon when 
+you want to display it in PageView.
+
+For example, you can press SELECT on an icon 
+and drag it from File Manager to PageView. 
+
+When a file is displayed in PageView, you can 
+drag the icon from this box to another program
+that will accept the file.
+  
+For example, you can drag from PageView to 
+Print Tool to print the file.
+ 
+################################################
+#	Page Properties pop-up window
+################################################
+#####################50##########################
+:dpi
+DPI (Dots Per Inch):
+
+Changes the resolution of the page that is 
+displayed.
+
+The options for resolution are common for 
+several screens and printers.  
+
+If you have a 100 dpi monitor and select 100 
+dpi, the page should appear actual size.
+ 
+If you select 300 dpi, the page will appear
+3 times larger than actual size.
+
+:orient
+Orientation:
+
+Controls which way the page is oriented on
+the screen.
+
+This is useful for rotating and viewing slides, 
+which are often rendered in "landscape" as 
+opposed to "portrait" orientation.
+
+#####################50##########################
+:pagesize
+Size:
+
+Controls the size of the page in virtual space 
+(not on the screen--unless the dpi of the page 
+matches the screen exactly).
+
+USLetter	8.5 x 11 inches
+USLegal		8.5 x 14 inches
+
+A3 (European)	29.7 x 42.0 cm
+		11.693 x 16.535 inches
+
+A4 (European)	21.0 X 29.7 cm
+		8.268 x 11.693 inches
+
+A5 (European)	14.8 x 21.0 cm
+		5.827 x 8268 inches
+
+B5 (European)	17.6 x 25.0 cm
+		6.929 x 9.842 inches
+
+#####################50##########################
+:aa
+AntiAlias:
+
+Enables the AntiAliasing feature in the X11/NeWS
+server for the pages of this document.
+
+This feature allows for viewing of documents at
+a size and apparent resolution that is closer
+to that of a printer.
+
+:timeout
+Job Timeout (sec):
+ 
+Sets the timeout for the current job to the
+value entered.
+ 
+If a PostScript page cannot be interpreted and
+displayed in the given time, a blank page will
+be displayed and a job time-out error will be
+written into the Output Log window.
+
+ 
+:method
+Ignore PostScript Structuring Comments:
+ 
+Changes the way PageView determines the number
+of pages in a document.
+
+Normally, PageView checks a file for PostScript
+structuring comments, such as a "%%Page:" to
+denote the start of a new page.
+
+However, some documents do not conform to
+these conventions. When you choose Ignore
+PostScript Structuring Comments, an alternate
+method of determining page breaks is used.
+ 
+This alternate method may increase the time it
+takes for PageView to determine the number of
+pages in a document. You may want to turn this
+option on only when the normal method of 
+determining page breaks doesn't work.
+
+#####################50##########################
+:apply
+Apply
+
+Applies any changes you have made to the page 
+properties and redraws the page.
+
+:reset
+Reset
+
+Resets page properties to what they were when you
+started making changes.
+
+:defaults
+Defaults
+
+Resets the page properties to their default 
+values.
+
+############################################
+#	File pop-up window
+############################################
+
+:directory
+Directory
+
+Type the name of the directory for the 
+PostScript file you want to load. 
+
+:filename
+File
+
+Type the filename of the PostScript file you
+want to load.  
+
+:loadfile
+Load File
+
+Click SELECT to load the file specified in 
+Directory and File.
+
+#####################50##########################
+############################################
+#	PostScript pop-up window
+############################################
+
+:run
+Run
+
+Re-executes the contents of the edit buffer.
+
+:edit
+PostScript Source
+
+This is an editable text window that contains
+the PostScript source of the current document.
+
+:clearoutput
+Clear output log
+
+Clears the log of output and errors without 
+confirmation.
+
+:output
+Output
+
+This is a non-editable text window that shows
+the output of the current document, including
+error messages.
+
+#################################################
+#	Print pop-up window
+################################################
+#####################50##########################
+:printorfile
+Destination:
+
+Determines whether you are printing to a file
+or directly to a printer.
+
+Click SELECT on your choice of Printer or File.
+
+:printer
+Printer:
+
+Type the name of the printer to send the file to. 
+
+:printdir
+Directory:
+
+Type the name of the directory to write the file 
+to.
+
+#####################50##########################
+:printfile
+File:
+
+Type the name of the file.
+
+:thispageonly
+This page only:
+
+Indicates that you want to print only the 
+current page.
+
+Click SELECT on the box to check it. Click
+SELECT again to uncheck it.
+
+:print
+Print
+
+Sends the page to the printer or file.
+
+#################################################
+#	Goto Page pop-up window
+################################################
+#####################50##########################
+:pageslider
+Goto Page:
+
+Use this window to select the page you want to 
+view:
+
+o Type the number of the page you want to view  
+  and press Return.
+
+o Drag the slider until the number of the page
+  you want to view is displayed.  When you 
+  release SELECT, PageView displays the page.
+
+o Click SELECT on a tick mark beneath the 
+  slider.
+

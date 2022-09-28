@@ -1,0 +1,104 @@
+.\" Copyright (c) 1994 Sun Microsystems, Inc.
+.TH helpviewer 1 "18 November 1993"
+.IX "helpviewer" "" "\f3helpviewer\f1(1) \(em OpenWindows viewer for on-line help" ""
+.IX "OpenWindows" "on-line" "OpenWindows" "on-line help viewer \(em \f3helpviewer\f1(1)"
+.SH NAME
+helpviewer \- OpenWindows viewer for on-line help handbooks
+.SH SYNOPSIS
+.LP
+.B helpviewer
+.B \-f
+.I help-handbook-file
+.SH DESCRIPTION
+.LP
+.B helpviewer
+is an OpenWindows application for viewing and navigating on-line help
+handbooks.
+.LP
+.B helpviewer
+lets you page through a help handbook, magnify or reduce pages,
+and follow hypertext links and table-of-contents entries within
+a handbook and to other handbooks.
+Because help handbooks are in PostScript format, they may contain high
+quality fonts and graphics.
+.LP
+You should not start
+.B helpviewer
+directly.  It is started automatically by OpenWindows when you click SELECT
+on the "More" button in a spot help window, or when you select the "Help..."
+item in the OpenWindows root menu.
+.SH OPTIONS
+.LP
+.B helpviewer
+accepts most of the generic tool arguments described in
+.BR xview (7),
+as well as the following options:
+.TP
+.B \-f \f2help-handbook-file\fP
+Specify the name of the help handbook to be viewed.  This file name
+should be specified relative to a directory in $HELPPATH
+(see ENVIRONMENT below).
+.SH USAGE
+.LP
+Once a help handbook is displayed in the
+.B helpviewer
+window, you can view it as follows:
+.TP
+.B Page Turning
+Click SELECT on the left and right arrow buttons at the top of the
+.B helpviewer
+window to page back and forth through a handbook.
+The PgUp and PgDn keys on the keyboard perform the same functions.
+In addition, the Home and End keys
+let you page through a handbook one chapter at a time.
+.TP
+.B Page History
+.B helpviewer
+keeps track of each page visited. 
+Click SELECT on the Go Back button until the window returns
+to the page you want to revisit, or use the Undo keyboard function.
+.TP
+.B Hypertext Links 
+.B helpviewer
+has a simple hypertext mechanism. Hypertext links are displayed
+as rectangular outlines around words or graphics on a page.
+Double-clicking SELECT on a link causes
+.B helpviewer
+to display the handbook and page to which the link points.
+Handbooks may have links to other handbooks.
+Certain types of hypertext links can also initiate system processes.
+Double-clicking on these links will start up a program or shell script.
+.TP
+.B Page Magnification
+Magnify or reduce the size of the handbook by pulling the resize corners on the
+.B helpviewer
+window, or select the "View->Custom Magnification" menu item.
+Select the "View->Standard Magnification" menu item to reset the handbook
+to the standard size.
+For very high magnifications, select the "View->Partial Page" menu item
+so that the
+.B helpviewer
+window still fits on the screen.
+.SH ENVIRONMENT
+.LP
+.B HELPPATH
+.IP 
+This environment variable must be set to the directories that contain
+help handbooks (e.g. $OPENWINHOME/lib/locale:$OPENWINHOME/lib/help). The
+.B helpviewer
+uses the
+.BR $HELPPATH
+variable to locate handbook files.  $HELPPATH is typically set automatically
+during the OpenWindows startup process, so it is not usually necessary
+to set it yourself.
+.SH SEE ALSO
+.LP
+.BR helpopen (1)
+.SH DIAGNOSTICS
+.LP
+.BR helpviewer (1)
+displays PostScript error messages in the console.
+.SH NOTES
+.LP
+.br
+PostScript is a trademark of Adobe Systems Incorporated.

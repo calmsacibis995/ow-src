@@ -1,0 +1,57 @@
+*st.borderWidth:			4
+*Caption.font:				lucidasans-bold
+*bold.label:				Bold
+*italic.label:				Italic
+*font.label:				Font: 
+*style.label:				Style: 
+*fontcolor.label:			Font Color: 
+*backgroundcolor.label:			Background Color: 
+*scale.label:				Scale: 
+!
+! Set font name resources
+!
+flfontchooser.font1:			times
+flfontchooser.font2:			rockwell
+flfontchooser.font3:			palatino
+!
+! Set color names resources
+!
+flfontchooser.colorname1:		Cyan
+flfontchooser.colorname2:		Azure
+flfontchooser.colorname3:		Coral
+flfontchooser.colorname4:		Plum
+flfontchooser.colorname5:		Salmon
+flfontchooser.colorname6:		Beige
+!
+! Set color resources
+!
+flfontchooser.color1:			cyan
+flfontchooser.color2:			azure
+flfontchooser.color3:			coral
+flfontchooser.color4:			plum
+flfontchooser.color5:			salmon
+flfontchooser.color6:			beige
+!
+! Set font name resources
+!
+flfontchooser2.font1:			rockwell
+flfontchooser2.font2:			bembo
+flfontchooser2.font3:			lucida sans
+!
+! Set color names resources
+!
+flfontchooser2.colorname1:		Lavender
+flfontchooser2.colorname2:		Turquoise
+flfontchooser2.colorname3:		Khaki
+flfontchooser2.colorname4:		Steel Blue
+flfontchooser2.colorname5:		Forest Green
+flfontchooser2.colorname6:		Aquamarine
+!
+! Set color resources
+!
+flfontchooser2.color1:			lavender
+flfontchooser2.color2:			turquoise
+flfontchooser2.color3:			khaki
+flfontchooser2.color4:			SteelBlue
+flfontchooser2.color5:			ForestGreen
+flfontchooser2.color6:			aquamarine

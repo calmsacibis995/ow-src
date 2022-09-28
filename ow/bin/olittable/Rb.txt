@@ -1,0 +1,84 @@
+DESCRIPTION
+
+	The RectButton Widget is an OPEN LOOK button used as a building block
+	for Exclusives and Nonexclusives Widgets.  This is not a "Push" button
+	type button and is not useful alone.  The RectButton widget has two states:
+	"set" and "not set".  
+
+	The only widget component of the RectButton Widget is the button itself.
+
+	The border of the button can be changed to reflect:
+		. that the button is the default of several buttons (double border)
+		. that the button represents the current state of an object (thick border)
+		. that the button represents a current state of one object of many with
+			different states (dimmed border).
+
+	RectButtons can be used as choices in a menu by building either an Exclusives
+	or Nonexclusives widget and making that a child of the MenuPane.
+
+	For more detailed information on the RectButton Widget, see the following
+	Sections in the OPEN LOOK Intrinsics Toolkit Widget Set Reference Manual:
+		. RectButton
+
+
+EXAMPLE CODE
+
+The following code could be used to Create the example RectButton Widget shown 
+in the Table (All color specific code has been removed for simplification).
+
+For more detailed examples on usage of RectButton widgets, see EXAMPLE CODE
+sections on Exclusives Widget, Nonexclusives Widget, and MenuButton Widget.
+	
+/************************************************************************************/
+#include <Intrinsic.h>
+#include <StringDefs.h>
+#include <OpenLook.h>
+#include <RectButton.h>
+
+/*** Create a RectButton (not really useful alone) ***/
+Widget rectbutton = XtVaCreateManagedWidget("UseMe2Build 12&13", 
+						rectButtonWidgetClass, 
+						parent,
+						NULL);
+
+/************************************************************************************/
+
+
+
+RESOURCES
+_______________________________________________________________________________________________
+Resource Name		Type		Default		Brief Description
+_______________________________________________________________________________________________
+
+XtNaccelerator		String		NULL		String which defines accelerator key
+XtNacceleratorText	String		Dynamic		string to be displayed as accelerator
+XtNancestorSensitive	Boolean		TRUE		Will immediate parent receive events?
+XtNbackground		Pixel		White		background color of widget
+XtNbackgroundPixmap	Pixmap		(none)		pixmap used for tiling the background
+XtNconsumeEvent		XtCallbackList	NULL		called when event occurs
+XtNdefault		Boolean		FALSE		is this button the default?
+XtNdepth		int		(parent's)	number of bits used for each pixel
+XtNdestroyCallback	XtCallbackList	NULL		routines called when widget is destroyed
+XtNdim			Boolean		FALSE		should widget border be dimmed?
+XtNfont			XFontStruct *	(OPENLOOK font)	font used to display Caption's label
+XtNfontColor		Pixel		Black		label font's color
+XtNforeground		Pixel		Black		foreground color of widget
+XtNheight		Dimension	(calculated)	height of widget's window in pixels
+XtNinputFocusColor	Pixel		Red		color of input focus indicator
+XtNlabel		String		(class name)	string used as widget's label
+XtNlabelImage		XImage *	NULL		pointer to image used for label
+XtNlabelJustify		OlDefine	OL_LEFT		justification of label in Widget
+XtNlabelTile		Boolean		FALSE		tile label pixmap/image ?
+XtNlabelType		int		OL_STRING	use string or image for label ?
+XtNmappedWhenManaged	Boolean		TRUE		will widget be mapped when managed?
+XtNmnemonic		Usigned char	NULL		key used to activate widget
+XtNrecomputeSize	Boolean		TRUE		should widget calculate size ?
+XtNreferenceName	String		NULL		see manpage		
+XtNreferenceWidget	Widget		NULL		see manpage
+XtNselect		XtCallbackList	NULL		routine called when button's selected
+XtNsensitive		Boolean		TRUE		will widget receive input events?
+XtNset			Boolean		TRUE		is button in "set" state?
+XtNtraversalOn		Boolean		TRUE		is mouseless turned "on" for widget?
+XtNunselect		XtNCallbackList	NULL		routine called when button is unset
+XtNuserData		XtPointer	NULL		storage for user defined data
+XtNwidth		Dimension	(calculated)	width of widget's window in pixels

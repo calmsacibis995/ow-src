@@ -1,0 +1,22 @@
+#
+
+# Copyright
+
+#
+#	@(#)include	1.7 92/11/19
+#
+
+all::		 installtool .WAIT deliverable
+deliverable::	 ${MAKE.all.target}
+variants::	 deliverable
+
+opt::		 optimized
+optimized::	 deliverable
+debug::		 deliverable
+gprof::		 deliverable
+tool::		 ${MAKE.tool.target}
+clean::		 ${MAKE.clean.target}
+clobber::	 ${MAKE.clobber.target}
+install::	 deliverable .WAIT ${MAKE.install.target}
+installtool::	 tool        .WAIT ${MAKE.installtool.target}
+

@@ -1,0 +1,74 @@
+!
+! ColoreditDnD
+!
+! Layout the colorpanel in a 8x8 matrix
+!
+ColoreditDnD*colorpanel*layoutType:        fixedcols
+ColoreditDnD*colorpanel*measure:           8
+!
+! Position the display_color widget
+!
+ColoreditDnD*display_color.width:               60
+ColoreditDnD*display_color.height:              60
+ColoreditDnD*display_color.recomputeSize:       FALSE
+ColoreditDnD*display_color.xRefName:            base
+ColoreditDnD*display_color.xOffset:             4
+ColoreditDnD*display_color.yRefName:            base
+ColoreditDnD*display_color.yOffset:             4
+ColoreditDnD*colorpanel.xRefName:               display_color
+ColoreditDnD*colorpanel.xAddWidth:      TRUE
+!
+! Position the sliderpanel below the colorpanel
+!
+ColoreditDnD*Slider.orientation:           horizontal
+ColoreditDnD*sliderpanel.yRefName:         colorpanel
+ColoreditDnD*sliderpanel.yAddHeight:       TRUE
+ColoreditDnD*sliderpanel.xRefName:         base
+ColoreditDnD*sliderpanel.xAttachRight:     TRUE
+ColoreditDnD*sliderpanel.xVaryOffset:      FALSE
+ColoreditDnD*sliderpanel.xResizable:       TRUE
+!
+! Slider resources
+!
+ColoreditDnD*Slider.granularity:           1000
+ColoreditDnD*Slider.repeatRate:            10
+ColoreditDnD*Slider.xAddWidth:             TRUE
+ColoreditDnD*Slider.xVaryOffset:           FALSE
+ColoreditDnD*Slider.xAttachRight:          TRUE
+ColoreditDnD*Slider.xResizable:            TRUE
+!
+! Position the red StaticText and Slider
+!
+ColoreditDnD*redtext.xRefName:             sliderpanel
+ColoreditDnD*redtext.width:                50
+ColoreditDnD*redtext.recomputeSize:        FALSE
+ColoreditDnD*redtext.gravity:              East
+
+ColoreditDnD*red.xRefName:                 redtext
+ColoreditDnD*red.background:               red
+!
+! Position the green StaticText and Slider
+!
+ColoreditDnD*greentext.yRefName:           redtext
+ColoreditDnD*greentext.yAddHeight:         TRUE
+ColoreditDnD*greentext.width:              50
+ColoreditDnD*greentext.recomputeSize:      FALSE
+ColoreditDnD*greentext.gravity:            East
+
+ColoreditDnD*green.yRefName:               red
+ColoreditDnD*green.yAddHeight:             TRUE
+ColoreditDnD*green.xRefName:               greentext
+ColoreditDnD*green.background:             green
+!
+! Position the blue StaticText and Slider
+!
+ColoreditDnD*bluetext.yRefName:            greentext
+ColoreditDnD*bluetext.yAddHeight:          TRUE
+ColoreditDnD*bluetext.width:               50
+ColoreditDnD*bluetext.recomputeSize:       FALSE
+ColoreditDnD*bluetext.gravity:             East
+
+ColoreditDnD*blue.yRefName:                green
+ColoreditDnD*blue.yAddHeight:              TRUE
+ColoreditDnD*blue.xRefName:                bluetext
+ColoreditDnD*blue.background:              blue

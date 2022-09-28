@@ -1,0 +1,103 @@
+#
+
+# Copyright
+
+#
+# @(#)SunOSSVR4	1.28 93/09/10
+#
+
+CC		= cc
+CCC		= CC
+AS              = /usr/ccs/bin/as
+RANLIB          = echo ranlib
+
+# i386
+# use native environment for tool build, this is added by Henry
+# to do cross environment build
+#installtool:=   CC      = /opt/SUNWspro/SC2.0.1/cc
+#installtool:=   CCC     = /opt/SUNWspro/SC2.0.1/CC
+installtool:=   CC      = cc
+installtool:=   CCC     = CC
+
+CPS_FUNCTION_OPTS	= -o ansi
+# The inline option isn't an ANSI feature and our compiler doesn't support it.
+CPS_INLINE_OPTS		= -o conststr
+
+# Generate Postion-Independant-code
+#	-pic = 64k of entrypoints (16 bit offsets)
+#	-PIC = lots of entrypoints (32 bit offsets)
+LITTLEPIC	= -K pic
+BIGPIC		= -K PIC
+PIC		= ${LITTLEPIC}
+
+#  Shared library commands and options.
+## SHLIBCMD        = /opt/SUNWspro/bin/ld -G
+## Per McGrew on Dec 5,91, changed to:
+SHLIBCMD        = /usr/ccs/bin/ld -G
+
+PURETEXT        = -ztext
+HNAME           = -h${LIBRARY.name.shared}
+LIBVER          = ${LIBMAJORVER}
+SHAREDLIBFILES	= ${LIBRARY.shared}
+
+# Control usage of libg.a hack.  This is a convenience measure for
+# SunOS adb users.  Not an issue on SVR4. 
+LIBG		=
+
+# REMIND - JMP
+# This should migrate to the Shapes level Makefile
+#
+# local.FRACT.INLINE	= ${INCLUDE.graphics}/fr${TARGET_ARCH}.il
+local.FRACT.INLINE	=
+
+##############################################################################
+
+# The sequence `-cg89 0Wa,-cg92' should cause the SC2.0.1 (and later)
+# compilers to use the cg89 (SS2) instruction set, but the cg92
+# (Viking, Tsunami, Ross) instruction scheduling algorythms.
+#
+# HOWEVER, these are SPARC-specific options, and this may be a shared
+# makefile, so we have to put them in an extra macro...
+# <<NOTE: I don't know what the TARGET_ARCH value is for the Intel platform>>
+#
+# These options cause compile errors using SC2.0.1
+C.OPTIMIZE-sparc	=  -xcg89 -Wa,-cg92
+C.OPTIMIZE-sun4-svr4	=  -xcg89 -Wa,-cg92
+C.OPTIMIZE-i386-svr4		=
+C.OPTIMIZE		=
+
+# SC2.0.1 CC calls acc, not cc, so an older form of the options is necessary.
+# I don't know about FORTRAN, Pascal, or Modula-2, but since we aren't using
+# them in the OW build, it doesn't matter.
+#
+# This further complicates the rest of the make system as well...
+#
+#CC.OPTIMIZE-sparc	=  -cg89 -Qoption fbe -cg92
+#CC.OPTIMIZE-sun4-svr4	=  -cg89 -Qoption fbe -cg92
+CC.OPTIMIZE-sparc	=
+CC.OPTIMIZE-sun4-svr4	=
+CC.OPTIMIZE-i386-svr4	=
+CC.OPTIMIZE		=
+
+f.GPROF         = -xpg
+f.DEBUG         = -g
+f.OPT           = -O -xF ${C.OPTIMIZE${TARGET_ARCH}}
+f.SHARED        = -O -xF ${C.OPTIMIZE${TARGET_ARCH}}
+f.OPTGPROF      = -O -xpg ${C.OPTIMIZE${TARGET_ARCH}}
+
+ff.GPROF         = -xpg
+ff.DEBUG         = -g
+ff.OPT           = -O -xF ${CC.OPTIMIZE${TARGET_ARCH}}
+ff.SHARED        = -O -xF ${CC.OPTIMIZE${TARGET_ARCH}}
+ff.OPTGPROF      = -O -xpg ${CC.OPTIMIZE${TARGET_ARCH}}
+
+STRINGCONST	= -xstrconst
+
+include ${CONFIGDIR}/Compilers/SunCCgeneric
+
+local.LINTOPTS  =
+ln.flag		= -c
+ln.outflag	= -C
+ln.libflag	= -o
+ln.srcout	= ${@:.ln=}
+ln.libout	= ${LIBRARY.lint:.ln=}

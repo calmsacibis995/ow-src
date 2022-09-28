@@ -1,0 +1,293 @@
+#------------------------------------------------- 
+#
+# sccsid[]="@(#)printtool.info	3.5 02/07/93 Copyr 1987-1990 Sun Micro";
+#
+# printtool.info 	24 June 1991
+# edited for OWV3.2 27 January 1992
+# Copyright (c) 1987-1991 Sun Microsystems, Inc.
+# All Rights Reserved.
+# helpopen path changed July 11 1991
+#------------------------------------------------- 
+########################50########################
+:FILE:$OPENWINHOME/bin/helpopen handbooks/print.handbook
+Filename:___
+
+Type the name of the file you want to print and
+click SELECT the Print button.
+
+The print job is displayed in the Printtool Job
+List.
+ 
+#------------------------------------------------- 
+########################50########################
+:PRINTERINFO:$OPENWINHOME/bin/helpopen handbooks/print.handbook
+Information
+
+Displays a pop-up window with a description of
+the selected printer.
+
+#------------------------------------------------- 
+:INFOTEXT:$OPENWINHOME/bin/helpopen handbooks/print.handbook
+Information for the printer
+
+Shows a description of the printer. This 
+description must be entered by your system
+administrator.
+
+#-------------------------------------------------
+:PRINTERLIST:$OPENWINHOME/bin/helpopen handbooks/print.handbook
+Printer pane
+
+Displays a list of available printers. You can
+scroll through the list using the scrollbar.
+
+Select a printer from the list. The printer you
+select is shown inside a shadowed rectangular 
+area. 
+
+########################50########################
+#-------------------------------------------------
+:COPIES:$OPENWINHOME/bin/helpopen handbooks/print.handbook
+Copies:___
+
+Type the number of copies you want to print, or
+click SELECT on the up or down arrows and choose
+a value between 1 and 100.
+
+########################50########################
+#-------------------------------------------------
+:PRINTMETHOD:$OPENWINHOME/bin/helpopen handbooks/print.handbook
+Print Method:
+
+The print method for the file. 
+
+The last custom print method is shown, if one
+has been used. 
+
+In the case that a custom print method is not
+provided, the file is printed as a plain text
+(ASCII) file.
+
+########################50########################
+#-------------------------------------------------
+:PRINT:$OPENWINHOME/bin/helpopen handbooks/print.handbook
+Print
+
+Starts a print job for the file entered in the 
+File:___ field. 
+
+The print job is displayed in the Printtool Job
+List.
+
+#-------------------------------------------------
+:STATUS:$OPENWINHOME/bin/helpopen handbooks/print.handbook
+Status
+
+Displays a list of active jobs in the print
+queue.  
+
+To remove print jobs from the queue:
+
+1. Select the jobs you want to remove.
+
+2. Click SELECT on the Stop Printing button.
+   The selected job(s) are removed from the 
+   queue.
+
+########################50########################
+#-------------------------------------------------
+:STOPPRINTING:$OPENWINHOME/bin/helpopen handbooks/print.handbook
+Stop Printing
+
+Removes selected print jobs from the print queue.  
+
+To remove print jobs from the queue: 
+
+1.  Click SELECT on the Status button to display
+    a list of the jobs in the print queue.
+
+2.  Select the jobs you want to remove. 
+
+3.  Click SELECT on the Stop Printing button.
+    The selected job(s) are removed from the
+    queue.
+
+#-------------------------------------------------
+:PRINT_SCROLL_LIST:$OPENWINHOME/bin/helpopen handbooks/print.handbook
+Print Job List
+
+Displays the status of print jobs for the
+specified printer. 
+
+To remove print jobs from the queue:
+
+1. Select the jobs you want to remove.
+
+2. Click SELECT on the Stop Printing button.
+   The selected job(s) are removed from the
+   queue.
+
+########################50########################
+#------------------------------------------------
+:PRINT_PANEL:$OPENWINHOME/bin/helpopen handbooks/print.handbook
+Printtool control area
+
+The Printtool control area provides buttons and
+menus so you can:
+
+- Print files by dragging and dropping from
+  another application
+- Print files by entering the file name
+- Print multiple copies of a file
+- Print files with or without header page
+- Send files to a specific printer
+- Check the status of the print queue
+- Remove files from the print queue
+- Use print method to format a file for printing
+- Information for the selected printer, if
+  available 
+- Set property options 
+
+#----------------------------------------------
+:PRINT_DROP_SITE:$OPENWINHOME/bin/helpopen handbooks/print.handbook
+Drag and Drop Target
+
+You can print a file by dragging and dropping
+the file icon from File Manager onto the 
+Printtool Drop Target. 
+
+You can also drag a selected file name from the
+Text Editor onto the Printtool Drop Target to
+start a print job. 
+
+########################50########################
+#-------------------------------------------------
+:HEADER:$OPENWINHOME/bin/helpopen handbooks/print.handbook
+Header
+
+Print a file with or without a header page.
+
+#-------------------------------------------------
+:PROPERTIES:$OPENWINHOME/bin/helpopen handbooks/print.handbook
+Properties
+
+Displays the Properties window. 
+
+You can customize the following print options in
+the Properties window:
+
+- Header Page 
+     Displays a check mark if you select to
+     to print a header page. No check mark is
+     is displayed if you select not to print
+     a header page.
+
+- Notify When ALL Jobs Are Done 
+     You can set audible (beep) and visual (flash)
+     notification signals at the completion of all
+     print jobs, or when an error occurs. You can
+     use either or both as desired.
+
+- Override Print Default Method
+     Displays a check mark if you select to over-
+     ride the print default. No check mark is
+     displayed if you select to use the default
+     print method. The default print method is
+     displayed in the main panel of the Properties
+     window.
+
+Once you customize the print options, you can:
+
+- Apply
+     Apply the newly set Printtool properties.
+
+- Save As Defaults
+     Save the newly set Printtool properties as
+     the default print options.
+
+- Reset
+     Erase any new property changes and reinstate
+     the last set of applied print options.
+
+#-------------------------------------------------
+:JOBDONENOTIFY:$OPENWINHOME/bin/helpopen handbooks/print.handbook
+job done notify
+
+Lets you specify an audible (beep) and visual
+(flash) notification signal at the completion of
+ALL your print jobs, or in the case of an error.
+
+########################50########################
+#-------------------------------------------------
+:PMOVERRIDE:$OPENWINHOME/bin/helpopen handbooks/print.handbook
+Print Method Override
+
+To set an override print method, click SELECT on
+the box to display a check, then click SELECT on
+the Apply button.
+
+The Print Method field is displayed in the main
+panel of the Properties window and you can type
+in a custom print method.
+
+You can use the following environment variables
+to define your custom print method:
+
+$PRINTER - selected printer name
+   usage: -d $PRINTER
+
+$COPIES - selected number of copies
+   usage: -n $COPIES
+
+$FILE - the file to be printed
+   usage: $FILE 
+
+$HEADER - print with or without header
+   usage: $HEADER
+
+To define a filter, use the -T option.
+
+The following is an example of a custom print
+method using some of the environment variables
+listed above:
+
+   lp -d$PRINTER -n$COPIES -Tpostscript $FILE
+
+If this option is disabled, the Print Method
+field is invisible.
+
+#-------------------------------------------------
+:APPLY:$OPENWINHOME/bin/helpopen handbooks/print.handbook
+Apply
+
+Applies changes made to Printtool properties.
+
+#-------------------------------------------------
+:RESET:$OPENWINHOME/bin/helpopen handbooks/print.handbook
+Reset
+
+Discards changes made to Printtool properties 
+that have not been applied.
+
+#-------------------------------------------------
+:SETDEFAULT:$OPENWINHOME/bin/helpopen handbooks/print.handbook
+Set Default
+
+Records the changes to Printtool properties
+as the new default print options.
+
+########################50########################
+#-------------------------------------------------
+:PROP_PANEL:$OPENWINHOME/bin/helpopen handbooks/print.handbook
+Printtool Properties 
+
+Lets you customize the following print options:
+
+- Print files with or without a header page
+- Specify the notification method when all  
+  print jobs are completed, or when error occurs
+- Use customize print method
+
+
+########################50########################
+

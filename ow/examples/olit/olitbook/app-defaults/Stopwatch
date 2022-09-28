@@ -1,0 +1,8 @@
+Stopwatch*panel.layoutType:    fixedrows
+Stopwatch*panel.measure:       2
+Stopwatch*commands.layoutType: fixedcols
+Stopwatch*commands.measure:    2
+Stopwatch*timer*background:    white
+Stopwatch*timer.borderWidth:   1
+Stopwatch*start.label:         Start
+Stopwatch*stop.label:          Stop

@@ -1,0 +1,224 @@
+DESCRIPTION
+
+	The ScrollingList widget provides a way of implementing a dynamic, scrollable list
+	of text items.  The items in the ScrollingList are selectable and if the application
+	specifies, can be edited by the user.
+
+	The ScrollingList widget has the following widget components:
+		Scrollbar		(created automatically)
+		list of items		(created by application)
+		editable TextField	(optional - used if ScrollingList is user editable)
+
+	NOTE: For OLIT3.2, many enhancements have been added to the ScrollingList to make it
+	      easier to implement.  See OLIT3.2 documentation for details.
+
+	For more complete and detailed information on the ScrollingList Widget, see the 
+	following Section in the OPEN LOOK Intrinsics Toolkit Widget Set Reference Manual:
+		. ScrollingList
+
+EXAMPLE CODE
+
+The following function could be used to Create the example ScrollingList Widget shown 
+in the Table (All color specific code has been removed for simplification).
+This program gives an example of how to implement Mnemonic keys for Mouseless:
+
+/**********************************************************************************/
+#include <X11/Intrinsic.h>
+#include <X11/StringDefs.h>
+#include <Xol/OpenLook.h>
+#include <Xol/ScrollingL.h>
+#include <Xol/Form.h>
+
+
+
+static 	char *liststring[] = { "PresidentsDay" , "St.PatricksDay",
+	"Easter", "MemorialDay","4th of July", "LaborDay", "Halloween",
+	"Thanksgiving", "Hanakuh","Christmas","NewYearsEve"};
+
+/* Define Mnemonic characters for Mouseless */
+static char *mnemonic_char[] = {'P','S','E','M','4','L','H','T','a','C','N'};
+
+
+
+static OlListToken	(*ListAddItem)();
+static void 		(*ListTouchItem)();
+static void		(*ListViewItem)();
+
+/********************************************************************
+ * makeCurrentCB:  Callback called when the user selects one of the
+ *		   items in the ScrollingList.  Note it is UP TO THE
+ *		   application to make the item appear "current"
+ *		   (indented) by setting the attr field in the 
+ *		   OlListItem structure to be OL_LIST_ATTR_CURRENT.
+ *		   as well as making the previously selected item
+ *		   no longer appear selected.
+ *******************************************************************/
+void
+makeCurrentCB(w, clientData, callData)
+Widget w;
+XtPointer clientData, callData;
+{
+	OlListItem* new_item = OlListItemPointer(callData);
+	OlListItem* prev_item;
+	OlListToken token = (OlListToken) callData;
+	static OlListToken selectedtoken;
+
+	if (selectedtoken != token)
+		{
+		printf("Item selected: %s\n", new_item->label);
+	
+		/*
+		* Mark the item as selected or current by setting a bit
+		* in its attribute field.  Notify the widget that we have
+		* touched an item.
+		*/
+		new_item->attr |= OL_LIST_ATTR_CURRENT;
+		(*ListTouchItem)(w, token);
+	
+		(*ListViewItem)(w, token);
+
+		/*
+		 * If there was a previously selected item, unselect by
+		 * clearing the CURRENT attribute bit.   Again, since we have
+		 * modified an item, we must notify the widget.
+		 */		
+		if (selectedtoken != 0)
+			{
+			prev_item = OlListItemPointer(selectedtoken);
+			prev_item->attr &= ~OL_LIST_ATTR_CURRENT;
+			(*ListTouchItem)(w, selectedtoken);
+			}
+		/*
+		 * Keep track of currently selected item in list
+		 */
+		selectedtoken = token;
+		}
+}
+/***************************************************************************/	
+
+main(argc, argv)
+int argc;
+char **argv;
+{
+	Widget toplevel, form, list;
+	XtAppContext app;
+	OlListItem *listitem;
+	int i;
+
+	OlToolkitInitialize(NULL);
+	toplevel = XtAppInitialize(&app, "Test", 
+				(XrmOptionDescRec *)NULL,
+				(Cardinal)0, (int *)&argc, argv,
+				(String *)NULL, (ArgList)NULL, 0);
+
+	form = XtVaCreateManagedWidget("form",
+				formWidgetClass,
+				toplevel,
+				NULL);
+
+	/*
+	 * Create ScrollingList
+	 */	
+	list = XtVaCreateManagedWidget("list", 
+				scrollingListWidgetClass, 
+				form,
+				XtNviewHeight,	(XtArgVal)5,
+				XtNselectable,	(XtArgVal)True,
+				NULL);
+	/*
+	 * Get routines to manipulate the ScrollingList
+	 */
+	XtVaGetValues(list,
+				XtNapplAddItem,    (XtArgVal)&ListAddItem,
+				XtNapplTouchItem,  (XtArgVal)&ListTouchItem,
+				XtNapplViewItem,   (XtArgVal)&ListViewItem,
+				NULL);
+
+	/*
+	 * Malloc up space for listitem data.
+	 */
+	listitem = 
+		(OlListItem *)XtMalloc(XtNumber(liststring)*sizeof(OlListItem));
+
+	/*
+	 * Create list items one by one and add them to list
+	 */
+	for(i=0; i < XtNumber(liststring) ;i++) {
+		/* 
+		 * We MUST initialize ALL feilds in the data structure, else we
+		 * could see unexpected results...
+		 */
+	   	listitem[i].label_type = (OlDefine) OL_STRING;
+	   	listitem[i].label= XtNewString(liststring[i]);
+	   	listitem[i].attr = 0;
+	  	listitem[i].mnemonic = mnemonic_char[i];
+	   	(*ListAddItem) (list, NULL, NULL, listitem[i]); 
+	   }
+
+
+	XtAddCallback(list, XtNuserMakeCurrent, makeCurrentCB, NULL);
+
+	XtRealizeWidget(toplevel);
+
+	XtAppMainLoop(app);
+
+}
+/********************************END EXAMPLE*******************************/
+
+
+
+
+
+RESOURCES
+_______________________________________________________________________________________________
+Resource Name		Type		Default		Brief Description
+_______________________________________________________________________________________________	
+
+ScrollingList Resource Set:
+
+XtNancestorSensitive	Boolean		TRUE		Will immediate parent receive events?
+XtNapplAddItem		OlListToken(*)() n/a		ptr to proc called to add new item to list
+XtNapplDeleteItem	void(*)() 	 n/a		ptr to proc called to delete item from list
+XtNapplEditClose	void(*)() 	 n/a		ptr to proc called when user done editing
+XtNapplEditOpen		void(*)() 	 n/a		ptr to proc called for user to add item
+XtNapplTouchItem	void(*)() 	 n/a		ptr to proc called when item is changed
+XtNapplUpdateView	void(*)() 	 n/a		ptr to proc called to prevent/allow update
+XtNapplViewItem		void(*)() 	 n/a		ptr to proc called to place item in view
+XtNbackground		Pixel		White		background color of widget
+XtNbackgroundPixmap	Pixmap		(none)		pixmap used for tiling the background
+XtNborderColor		Pixel		Black		border color of widget
+XtNborderPixmap		Pixmap		(none)		pixmap used for tiling the border
+XtNconsumeEvent		XtCallbackList	NULL		called when event occur
+XtNdestroyCallback	XtCallbackList	NULL		routines called when widget is destroyed
+XtNfont			XFontStruct*	(OPENLOOK font)	pointer to font used to display text
+XtNfontColor		Pixel		Black		text font's color
+XtNforeground		Pixel		Black		foreground color of widget
+XtNheight		Dimension	(calculated)	height of widget's window in pixels
+XtNinputFocusColor	Pixel		Red		color of input focus indicator
+XtNmappedWhenManaged	Boolean		TRUE		will widget be mapped when managed?
+XtNrecomputeWidth	Boolean		TRUE		shrink view width when child resized?
+XtNreferenceName	String		NULL		see manpage		
+XtNreferenceWidget	Widget		NULL		see manpage
+XtNselectable		Boolean		TRUE		can user select items in list?
+XtNsensitive		Boolean		TRUE		will widget receive input events?
+XtNtextField		Widget		(none)		handle to TextField used for editing list
+XtNtraversalOn		Boolean		TRUE		is widget selectable during traversal?
+XtNuserData		XtPointer	NULL		storage for user defined data
+XtNuserDeleteItems	XtCallbackList	NULL		procs called when user deletes items
+XtNuserMakeCurrent	XtCallbackList	NULL		procs called when user 'selects' item
+XtNviewHeight		Dimension	(calculated)	preferred number of lines in view height
+XtNwidth		Dimension	(calculated)	width of widget's window in pixels
+XtNx			Position	0		x coord of widget's upper left corner
+XtNy			Position	0		y coord of widget's uuper left corner
+
+TextField Resource Set:
+
+XtNfont			XFontStruct*   (scrollingList's)pointer to font used to display text
+XtNfontColor		Pixel	       (scrollingList's)text font's color
+XtNforeground		Pixel	       (scrollingList's)foreground color of widget
+XtNmaximumSize		int		(none)		max number of characters 
+XtNstring		String		NULL		ptr to initial string used for text
+XtNverification		XtCallbackList	NULL		proc called before string is changed
+
+
+

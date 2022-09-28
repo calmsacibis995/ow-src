@@ -1,0 +1,79 @@
+.\" @(#)toolwait.1 1.1 91/07/15
+.\" Copyright (c) 1994 - Sun Microsystems, Inc.
+.TH toolwait 1 "30 March 1994"
+.IX "toolwait" "" "\f3toolwait\f1(1) \(em X client startup utility" ""
+.SH NAME
+toolwait \- control client program startup
+.SH SYNOPSIS
+.B toolwait
+[
+.BI \-display " displaystring"
+] [
+.B \-timeout " nseconds"
+] [
+.B \-help
+]
+.I command
+.SH DESCRIPTION
+.LP
+.B toolwait
+is a program that controls the startup of an X11 client program.
+.B toolwait
+takes a client program as its argument.  When the client program has started,
+.B toolwait
+will exit.
+.SH OPTIONS
+.LP
+The basic options are as follows:
+.TP 15
+.BI "\-display " string
+Specify the name of the display that
+.B toolwait
+should monitor.  Overrides the DISPLAY
+environment variable, if any.
+.TP
+.BI \-timeout " nsecs"
+Specifies the time to wait for the client to start up.  Toolwait will exit if
+the client hasn't started by nsecs seconds.  Default is 15 seconds.
+.TP
+.B \-help
+Display a short summary of the possible command line options.
+.SH EXAMPLES
+.LP
+To start a cmdtool with
+.BR toolwait ,
+the following command may be used:
+.RS
+.ft B
+.sp .5
+.nf
+example% toolwait cmdtool -Wp 0 0 -Ws 557 95 -WP 263 833
+.fi
+.ft R
+.RE
+
+To start a mailtool on display "host2" with a timeout of 25 seconds, use
+the following command:
+.RS
+.ft B
+.sp .5
+.nf
+example% toolwait -display host2:0 -timeout 25 mailtool 
+-display host2:0
+.fi
+.ft R
+.RE
+.SH DIAGNOSTICS
+.LP
+Exit status is 0 for clean exits, the exit status of the child if the child has
+problems, and 1 if toolwait has problems.
+.SH NOTES
+.LP
+In the current version of
+.BR toolwait ,
+a client is considered
+"started" when it has mapped a top level window on the display.  
+As soon as
+.B toolwait
+detects that a top level window has been mapped, 
+it will exit.

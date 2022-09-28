@@ -1,0 +1,122 @@
+DESCRIPTION
+
+	The CheckBox widget implements one of the OPEN LOOK button widgets.  It allows
+	a user to either specify the item to be 'checked' or 'unchecked'.  The CheckBox
+	widget is typically used as the building block to a Nonexclusives widget.
+	
+	The CheckBox widget is comprised of a label and a checkbox component.
+	
+	For more detailed information on the CheckBox Widget, see the following
+	Section in the OPEN LOOK Intrinsics Toolkit Widget Set Reference Manual:
+		. CheckBox
+
+
+EXAMPLE CODE
+
+The following code could be used to Create the example CheckBox Widget shown 
+in the Table (All color specific code has been removed for simplification):
+
+/******************************************************************/
+#include <X11/Intrinsic.h>
+#include <X11/StringDefs.h>
+#include <Xol/OpenLook.h>
+#include <Xol/CheckBox.h>
+
+#include <Xol/ControlAre.h>
+
+/*****************************************************************
+ * selectCB: routine called when checkbox is selected.
+ *****************************************************************/
+void
+selectCB(w, clientData,callData)
+Widget w;
+XtPointer clientData, callData;
+{
+	printf("Checked.\n");
+}
+/*****************************************************************
+ * unselectCB: routine called when checkbox is Unselected.
+ *****************************************************************/
+void
+unselectCB(w, clientData,callData)
+Widget w;
+XtPointer clientData, callData;
+{
+	printf("UnChecked.\n");
+}
+
+/*********************************************************************/
+
+main(argc, argv)
+int argc;
+char **argv;
+{
+	Widget toplevel, controlarea, checkbox;
+	XtAppContext app;
+
+	OlToolkitInitialize(NULL);
+	toplevel = XtAppInitialize(&app, "Test", 
+				(XrmOptionDescRec *)NULL,
+				(Cardinal)0, (int *)&argc, argv,
+				(String *)NULL, (ArgList)NULL, 0);
+
+	controlarea = XtVaCreateManagedWidget("controls", 
+				controlAreaWidgetClass,
+				toplevel,
+				NULL);
+
+
+	checkbox = XtVaCreateManagedWidget("checkbox", 
+				checkBoxWidgetClass, 
+				controlarea,
+				XtNlabel,	(XtArgVal)"Check Me",
+				NULL);
+
+	XtAddCallback(checkbox, XtNselect, selectCB, NULL);
+	XtAddCallback(checkbox, XtNunselect, unselectCB, NULL);
+
+	XtRealizeWidget(toplevel);
+	XtAppMainLoop(app);
+
+}
+/*******************************END EXAMPLE****************************/
+
+RESOURCES
+
+________________________________________________________________________________________________
+Resource Name		Type		Default		Brief Description
+________________________________________________________________________________________________
+
+XtNaccelerator		String		NULL		String which defines accelerator key
+XtNacceleratorText	String		Dynamic		string to be displayed as accelerator
+XtNancestorSensitive	Boolean		TRUE		Will immediate parent receive events?
+XtNconsumeEvent		XtCallbackList	NULL		called when event occurs
+XtNdepth		int		(parent's)	number of bits used for each pixel
+XtNdestroyCallback	XtCallbackList	NULL		routines called when widget is destroyed 
+XtNdim			Boolean		FALSE		is checkbox border dimmed ?
+XtNfont			XFontStruct*	OPEN LOOK font	font used as Checkbox's label
+XtNfontColor		Pixel		Black		label font's color
+XtNforeground		Pixel		Black		foreground color of widget
+XtNheight		Dimension	(calculated)	height of widget's window in pixels
+XtNinputFocusColor	Pixel		Red		color of input focus indicator
+XtNlabel		String		(classname)	string used for label
+XtNlabelImage		XImage *	(classname)	pointer to image used for label
+XtNlabelJustify		OlDefine	OL_LEFT		position of label relative to checkbox 
+XtNlabelTile		Boolean		FALSE		should background be tiled with pixmap?
+XtNlabelType		int		OL_STRING	type of label (string or image?)
+XtNmappedWhenManaged	Boolean		TRUE		will widget be mapped when managed?
+XtNmnemonic		Usigned char	NULL		key used to activate widget
+XtNposition		OlDefine	OL_LEFT		which side of child caption is placed
+XtNrecomputeSize	Boolean		TRUE		should widget calculate own wth/hgt?
+XtNreferenceName	String		NULL		see manpage		
+XtNreferenceWidget	Widget		NULL		see manpage
+XtNselect		XtCallbackList	NULL		callback invoked when widget is selected
+XtNsensitive		Boolean		TRUE		will widget receive input events?
+XtNset			Boolean		TRUE		current state of checkbox
+XtNtraversalOn		Boolean		TRUE		is mouseless turned "on" for widget?	
+XtNunselect		XtCallbackList	NULL		callback invoked when widget is unset
+XtNuserData		XtPointer	NULL		storage for user defined data
+XtNwidth		Dimension	(calculated)	width of widget's window in pixels
+XtNx			Position	0		x coord of widget's upper left corner
+XtNy			Position	0		y coord of widget's uuper left corner
+

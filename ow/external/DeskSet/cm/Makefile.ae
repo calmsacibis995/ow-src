@@ -1,0 +1,56 @@
+# @(#)Makefile.ae 1.20 93/09/21 Copyr 1992 Sun Microsystems, Inc.
+#
+
+SOURCES.G	=
+
+SOURCES.c 	=  \
+	ae_ui.c \
+	ae.c \
+	ae_proc.c \
+	ae_tt.c \
+	gdd.c
+
+SOURCES.h       =  \
+	ae.h \
+	ae_ui.h \
+	ae_proc.h \
+	ae_tt.h \
+	ae_ui.h \
+	common.h \
+	datefield.h \
+	gettext.h \
+	misc.h
+
+SOURCES.icon	= accept.cursor drag.cursor
+
+SOURCES.types	= ae.types
+
+PROGRAM		= ae
+
+PROJECTDIR	= ..
+CFLAGS 		+=
+
+.KEEP_STATE:
+
+default:	all
+
+CPPFLAGS	+= -I$(PROJECTDIR)/libdstt -I$(GUIDEHOME)/include
+LDFLAGS		+= -L$(GUIDEHOME)/lib -L. -L$(PROJECTDIR)/libdstt
+LDLIBS		+= -lguidexv -lcm -ldstt -ltt
+
+include ${PROJECTDIR}/Makefile.master.new
+
+TEXTDOMAIN = SUNW_DESKSET_CM_LABEL SUNW_DESKSET_CM_MSG SUNW_DESKSET_CM_ERR
+
+strings_append_domain: $(SOURCES.c)
+	-@echo "Extracting strings:"; \
+	for i in $(SOURCES.c) ; do \
+		echo "$$i"; \
+		$(COMPILE.c) -E -C -DXGETTEXT $$i | $(XGETTEXT) $(XGETTEXT_OPTS); \
+	done
+
+all:	$(PROGRAM)
+
+install: install_normal_bins strings_append_domain install_tt_types
+
+ae.G:	$(SOURCES.icon)

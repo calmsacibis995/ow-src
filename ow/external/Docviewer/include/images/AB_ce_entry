@@ -1,0 +1,26 @@
+{
+NS_NAME=Types
+NS_ATTR=((NS_MANAGER,string,<$CEPATH/tns_mgr.so>)
+)
+NS_ENTRIES=(	(
+(TYPE_NAME,type-id,<AnswerBook>)
+(TYPE_OPEN,call,<navigator -b $FILE>)
+(TYPE_ICON,icon-file,<$OPENWINHOME/include/images/ab_library.icon>)
+(TYPE_ICON_MASK,icon-file,<$OPENWINHOME/include/images/ab_library.mask.icon>)
+(TYPE_BGCOLOR,color,<153 191 191>)
+(TYPE_FGCOLOR,color,<0 0 0>)
+)
+)
+}
+{
+NS_NAME=Files
+NS_ATTR=((NS_MANAGER,string,<$CEPATH/fns_mgr.so>)
+)
+NS_ENTRIES=(	(
+(FNS_TYPE,refto-Types,<AnswerBook>)
+(FNS_MAGIC_OFFSET,str,<0>)
+(FNS_MAGIC_MATCH,str,21<#<AnswerBook Library>>)
+(FNS_MAGIC_TYPE,str,<string>)
+)
+)
+}

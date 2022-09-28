@@ -1,0 +1,121 @@
+#
+# @(#)library	1.2 90/07/23
+#
+
+#
+# Copyright (c) 1987 by Sun Microsystems, Inc.
+#
+
+#
+#	Preconditions
+#		LIBRARY
+#		SOURCES
+#		HEADERS
+#		OBJECTS
+#
+#		DIR.targetarch
+#		INSTALL.directory
+
+#		DIR.objects
+
+#	If LIBRARY.tool is defined, LIBRARY.*variant will be identical.
+#	if not, LIBRARY.tool.variant will be empty
+
+LIBRARY.variant		= ${LIBRARY:%=${DIR.targetarch}/lib%.a}
+LIBRARY.tool.variant	= ${LIBRARY.tool:%=${DIR.targetarch}/lib%.a}
+
+OBJECTS.variant		= ${OBJECTS:%=${DIR.targetarch}/%}
+LIBRARY.lint		= llib-l${LIBRARY}.ln
+SOURCES.lint		= ${SOURCES:.c=.lo}
+
+.INIT:
+	@if [ ! -d ${DIR.targetarch} ] ;      then ${DINSTALL} ${DIR.targetarch} ; fi
+
+all:: installtool deliverable
+
+deliverable:	${LIBRARY.variant} ${MAKE.all.target}
+tool:	${LIBRARY.tool.variant} ${MAKE.tool.target}
+
+${LIBRARY.variant}: $${OBJECTS.variant}
+	@if [ -f $@ ] ; then ${RM} $@ ; fi
+	${AR} ${AROPT} $@ ${OBJECTS.variant}
+	${RANLIB} $@
+
+${DIR.targetarch}/%.o: %.c
+	${COMPILE.c} -o $@ $<
+
+clean:  ${MAKE.clean.target}
+	@${RM} ${OBJECTS.variant}
+	@${RM} ${SOURCES.lint}
+
+clobber: clean ${MAKE.clobber.target}
+	@${RM} ${LIBRARY.variant}
+	@${RM} ${LIBRARY.lint}
+	@${RMDIR} ${DIR.targetarch}
+	@${RM} ${FILES.junk}
+
+install: ${INSTALL.directory}/${LIBRARY.variant}
+
+${INSTALL.directory}/${LIBRARY.variant}: ${LIBRARY.variant}
+	-@ if [ "x${LIBRARY.variant}" = "x" ] ; then \
+		${ECHO} No library to install ; \
+	elif [ "x${INSTALL.directory}" = "x" ] ; then \
+		${ECHO} ${LIBRARY} "is used where built" ; \
+	else \
+		if [ ! -d ${INSTALL.directory} ] ; then \
+			${DINSTALL} ${INSTALL.directory}; \
+		fi; \
+		${ECHO} ${LIBRARY.variant} "=>" ${INSTALL.directory} ; \
+		${TINSTALL} ${LIBRARY.variant} ${INSTALL.directory} ; \
+	fi
+
+installtool: inst${LIBRARY.tool.variant}
+	-@ if [ "x${LIBRARY.tool.variant}" = "x" ] ; then \
+		${ECHO} No tool library to install ; \
+	elif [ "x${INSTALL.tool.directory}" = "x" ] ; then \
+		${ECHO} ${LIBRARY.tool} "is used where built" ; \
+	else \
+		if [ ! -d ${INSTALL.tool.directory} ] ; then \
+			${DINSTALL} ${INSTALL.tool.directory}; \
+		fi; \
+		${ECHO} ${LIBRARY.tool.variant} "=>" ${INSTALL.tool.directory}; \
+		${TINSTALL} ${LIBRARY.tool.variant} ${INSTALL.tool.directory} ; \
+	fi
+
+.c.lo:
+	-${LINT} ${LINTFLAGS} $< >/tmp/$@ 2>&1
+	@if [ -s /tmp/$@ ] ; then \
+		${MV} /tmp/$@ . ; \
+		${ECHO} $@ has problems passing lint ; \
+	fi
+
+
+${SOURCES.lint}: ${SOURCES}
+
+lint:		${SOURCES} ${HEADERS}
+		${LINT} ${LINTFLAGS} ${SOURCES} ${LIBRARY.lint} -lc
+
+lintlib:	${LIBRARY.lint}
+
+#
+# Shouldn't this be SOURCES.lint ?
+#
+${LIBRARY.lint}:${SOURCES}
+		${LINT} ${LINTFLAGS} -C${LIBRARY} ${SOURCES}
+
+
+do_cmd: FRC
+	-@for i in . ${SUBDIRS}; do \
+		if test $$i = "."; then \
+			${CMD} ; \
+		else \
+			(cd $$i; $P; ${MAKE} do_cmd CMD='${CMD}' ); \
+		fi \
+	done
+
+FRC:
+
+.PRECIOUS: $(LIBRARY.variant)
+
+.SUFFIXES: .aw .aw~ .tb .tb~ .lo 
+

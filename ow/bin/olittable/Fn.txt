@@ -1,0 +1,216 @@
+DESCRIPTION
+
+	The FlatNonexclusives widget is a special class of OLIT widget, called a "Flat Widget".  
+	A Flat widget is basically a single widget which manages a set of 'like' components
+	(Rectangular items in this case).  The flat widget gives the appearance of many widgets, 
+	however they consume only a fraction of memory as the same implementation using an
+	equivalent normal widget hierarchy.
+
+	The FlatNonexclusives widget implements a several-of-many Choice object using a 
+	single widget.  
+
+	For more detailed and complete information on the FlatNonexclusives
+	Widget, see the following sections in the OPEN LOOK Intrinsics Toolkit
+	Widget Set Reference Guide:
+		. FlatNonexclusives
+                . Flat Widget Layout
+                . Flat Widget Functions 
+
+EXAMPLE CODE
+
+The following code was written to Create a FlatNonexclusives Widget close to
+the one shown in the Table (All color specific code has been removed for simplification):
+
+/**************************************************************************************/
+#include <X11/Intrinsic.h>
+#include <X11/StringDefs.h>
+#include <Xol/OpenLook.h>
+
+#include <Xol/FNonexclus.h>
+#include <Xol/ControlAre.h>
+#include <Xol/MenuButton.h>
+
+/* Declare resources which we'll need to set for each individual
+ * subobject in the FlatNonexclusives.
+ */
+typedef struct {
+	XtArgVal label;		/* label string of subobject */
+	XtArgVal mnemonic;	/* mnemonic character */
+} FlatNonexclusives;
+
+String attributes[] = { XtNlabel, XtNmnemonic };
+
+static FlatNonexclusives subobjects[] = {
+			{(XtArgVal)"Bold",	(XtArgVal)'B'},
+			{(XtArgVal)"Italic",	(XtArgVal)'I'},
+			{(XtArgVal)"Underline", (XtArgVal)'U'},
+			};
+
+/*****************************************************************
+ * selectedCB:  Callback called when one of the sub-items on the
+ * 		nonexclusive choice is selected.
+ *****************************************************************/
+void
+selectedCB(w, clientData, callData)
+Widget w;
+XtPointer clientData, callData;
+{
+	OlFlatCallData *fcd = (OlFlatCallData*)callData;
+	int subitem = fcd->item_index;  /* index of item selected */
+
+	/* A choice has been selected OFF the Flat exclusive
+	 */
+	printf("Font Style selected: %s\n", subobjects[subitem].label);
+
+}
+/*****************************************************************
+ * unselectedCB:  Callback called when one of the sub-items on the
+ * 		 nonexclusive choice is Unselected.
+ *****************************************************************/
+void
+unselectedCB(w, clientData, callData)
+Widget w;
+XtPointer clientData, callData;
+{
+	OlFlatCallData *fcd = (OlFlatCallData*)callData;
+	int subitem = fcd->item_index;  /* index of item selected */
+
+	/* A choice has been selected OFF the Flat exclusive
+	 */
+	printf("Font Style Unselected: %s\n", subobjects[subitem].label);
+
+}
+
+
+main(argc, argv)
+int argc;
+char **argv;
+{
+	Widget toplevel, controlarea, stylebutton, 
+		menupane, flatnonexclusive;
+	XtAppContext app;
+
+	OlToolkitInitialize(NULL);
+	toplevel = XtAppInitialize(&app, "Test", 
+				(XrmOptionDescRec *)NULL,
+				(Cardinal)0, (int *)&argc, argv,
+				(String *)NULL, (ArgList)NULL, 0);
+
+	controlarea = XtVaCreateManagedWidget("controls", 
+				controlAreaWidgetClass,
+				toplevel, 
+				XtNvPad,	(XtArgVal)10,
+				XtNhPad,	(XtArgVal)10,
+				NULL);
+
+	/* 
+	 * Create MenuButton which will bring up
+	 * Nonexclusives menu.
+	 */
+	stylebutton = XtVaCreateManagedWidget("menubutton",
+				menuButtonWidgetClass,
+				controlarea,
+				XtNlabel,	"Font Style",
+				XtNpushpin,	OL_OUT,
+				NULL);
+
+	XtVaGetValues(stylebutton,
+				XtNmenuPane,	&menupane,
+				NULL);
+
+	/*
+	 * Create Exclusive Widget to hold Style choices...
+	 */
+	flatnonexclusive = XtVaCreateManagedWidget("flatnonexclusive", 
+			    	flatNonexclusivesWidgetClass, 
+			    	menupane,
+				XtNlayoutType,	(XtArgVal)OL_FIXEDCOLS,
+				XtNmeasure,	(XtArgVal)1,
+				XtNitems,	(XtArgVal)subobjects,
+				XtNnumItems,	(XtArgVal)XtNumber(subobjects),
+				XtNitemFields,	(XtArgVal)attributes,
+				XtNnumItemFields,(XtArgVal)XtNumber(attributes),
+
+				/* Declare routines to be called for 
+				 * check/unchecking of subobjects. 
+				 * NOTE: WE DO NOT SET THESE AS NORMAL CALLBACKS
+				 * with XtAddCallback().
+	                         */
+				XtNselectProc,	(XtArgVal)selectedCB,
+				XtNunselectProc,(XtArgVal)unselectedCB,
+			    	NULL);
+
+
+	XtRealizeWidget(toplevel);
+	XtAppMainLoop(app);
+
+}
+/******************************END EXAMPLE****************************/
+
+
+
+
+
+RESOURCES
+
+________________________________________________________________________________________________
+Resource Name		Type		Default		Brief Description
+________________________________________________________________________________________________
+XtNaccelerator		String		NULL		String which defines accelerator key
+XtNacceleratorText	String		Dynamic		string to be displayed as accelerator
+XtNancestorSensitive	Boolean		TRUE		Will immediate parent receive events?
+XtNbackground		Pixel		White		background color of widget
+XtNbackgroundPixmap	Pixmap		(none)		pixmap used for tiling the background
+XtNborderWidth		Dimension	0		width in pixels of object border
+XtNclientData		XtPointer	NULL		data supplied to callback procedures
+XtNconsumeEvent		XtCallbackList	NULL		routines called on virtual events
+XtNdefault		Boolean		FALSE		is subobject default item?
+XtNdepth		Cardinal	(parent's)	depth (in pixels) of widget
+XtNdim			Boolean		FALSE		is subobject dimmed?
+XtNfont			XFontStruct*	OPEN LOOK font	font used in label
+XtNfontColor		Pixel		Black		label font's color
+XtNforeground		Pixel		Black		foreground color of widget
+XtNgravity		int		CenterGravity	the gravity of subobjects as group
+XtNhPad			Dimension	4		size in pixels of margin on sides 
+XtNhSpace		Dimension	4		space in pixels between columns
+XtNheight		Dimension	(calculated)	height of widget's window in pixels
+XtNinputFocusColor	Pixel		Red		color of input focus indicator
+XtNitemFields		String*		NULL		pointer to resources set for subobject
+XtNitemMaxHeight	Dimension	OL_IGNORE	max allowable height for subobjects
+XtNitemMaxWidth		Dimension	OL_IGNORE	max allowable width for subobjects
+XtNitemMinHeight	Dimension	OL_IGNORE	min allowable height for subobjects
+XtNitemMinWidth		Dimension	OL_IGNORE	min allowable width for subobjects
+XtNitems		XtPointer	NULL		pointer to subobject structure
+XtNitemsTouched		Boolean		False		see manpage
+XtNlabel		String		(classname)	string used for label
+XtNlabelImage		XImage *	(classname)	pointer to image used for label
+XtNlabelJustify		OlDefine	OL_LEFT		position of label relative to checkbox 
+XtNlabelTile		Boolean		FALSE		should background be tiled with pixmap?
+XtNlayoutHeight		OlDefine	OL_MINIMIZE	resize policy for flat widget
+XtNlayoutType		OlDefine	OL_FIXEDROWS	layout policy for subobjects
+XtNlayoutWidth		OlDefine	OL_MINIMIZE	resize policy for flat widget
+XtNmanaged		Boolean		TRUE		is subobject managed?
+XtNmappedWhenManaged	Boolean		TRUE		will widget be mapped when managed?
+XtNmeasure		int		1		* number of rows/cols or fixed hgt/wth
+XtNmnemonic		Usigned char	NULL		key used to activate widget
+XtNnumItemFields	Cardinal	0		number of resources set for subobject
+XtNnumItems		Cardinal	0		number of subobjects in Flat widget
+XtNreferenceName	String		NULL		see manpage		
+XtNreferenceWidget	Widget		NULL		see manpage
+XtNsameHeight		OlDefine	OL_ALL		size policy for subobjects' height
+XtNsameWidth		OlDefine	OL_COLUMNS	size policy for subobjects in column
+XtNselectProc		XtCallbackProc	NULL		routine called when subobject selected
+XtNsensitive		Boolean		TRUE		will widget receive input events?
+XtNset			Boolean		TRUE		current state of subobject
+XtNtraversalOn		Boolean		TRUE		is mouseless turned "on" for widget?	
+XtNunselectProc		XtCallbackProc	NULL		routine called when subobject unselected
+XtNuserData		XtPointer	NULL		storage for user defined data
+XtNvPad			Dimension	4		size in pixels of top/bottom margins
+XtNvSpace		Dimension	4		space in pixels between rows
+XtNwidth		Dimension	(calculated)	width of widget's window in pixels
+XtNx			Position	0		x coord of widget's upper left corner
+XtNy			Position	0		y coord of widget's uuper left corner
+
+
+
+	

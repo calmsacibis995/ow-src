@@ -1,0 +1,126 @@
+.\" @(#)audio_g723.3	1.3	92/12/09 SMI
+.ds Dc	12/09/92
+.TH AUDIO_G723 3 "\*(Dc" ""  "Audio Library"
+.SH NAME
+g723_encode g723_decode g723_init_state
+.SM CCITT
+.SM G.723
+audio compression and decompression.
+.SH SYNOPSIS
+.nf
+.B #include <multimedia/libaudio.h>
+.LP
+.B int g723_encode(in_buf, size, header, out_buf, out_size, state_ptr)
+.B void *in_buf;
+.B int size;
+.B Audio_hdr *header;
+.B char *out_buf;
+.B int *out_size;
+.B struct audio_g72x_state *state_ptr;
+.LP
+.B int g723_decode(in_buf, size, header, out_buf, out_size, state_ptr)
+.B char *in_buf;
+.B int size;
+.B Audio_hdr *header;
+.B void *out_buf;
+.B int *out_size;
+.B struct audio_g72x_state *state_ptr;
+.LP
+.B void g723_init_state(state_ptr)
+.B struct audio_g72x_state *state_ptr;
+.fi
+.SH DESCRIPTION
+.LP
+These routines implement the 
+.SM CCITT
+.SM G.723
+standard for encoding 16-bit linear \s-1PCM\s0 or 8-bit \(*m-law or \s-1A\s0-law coded
+audio data as 3-bit Adaptive Differential Pulse Coded Modulated 
+.SM (ADPCM)
+data.
+It provides 24 Kbps coding for 8KHz audio data with little degradation
+in sound quality.
+The encoding and decoding routines use a \fBaudio_g72x_state\fP structure
+to store state information between calls.
+An \fBaudio_g72x_state\fP structure must be initialized by calling
+\fBg723_init_state(\|)\fP.
+This routine should also be used whenever there is a discontinuity in the
+compressed data stream (for instance, if one input/output file is closed and
+another is opened for decoding/encoding).
+.LP
+The \fBg723_encode(\|)\fP function encodes \fIsize\fP bytes of 16-bit linear
+\s-1PCM\s0 or 8-bit \(*m-law or \s-1A\s0-law data from the buffer pointed to
+by \fIin_buf\fP.
+The compressed
+.SM ADPCM
+data is returned in 
+.IR out_buf,
+whose length (in bytes) is returned in \fIout_size\fP.
+The data type of the decoded data is specified in the \fIheader\fP structure.
+.IR state_ptr
+points to the
+.B audio_g72x_state
+structure for preserving encoding state.
+The first 3-bit code is returned in the least significant bits of the first
+byte in the output buffer,
+while the succeeding code is packed into the high order bits.
+Output codes are packed into 3-byte sample units.
+In the event that the input buffer does not contain an even multiple of
+3 samples,
+the extra output codes are
+saved in the state structure until the next invocation of
+.BR g723_encode(\|) .
+The output buffer specified by \fIout_buf\fP must contain at least
+(\fIin_size\fP + 8 ) * 3 / 8 bytes for \(*m-law and \s-1A\s0-law input
+and ((\fIin_size\fP + 16 ) * 3 / 16 bytes for 16-bit linear input data
+to accomodate the encoded data.
+.LP
+After the entire input signal is processed, the remaining state structure
+should be flushed by calling \fBg723_encode(\|)\fP one more time with
+a \fIin_size\fP argument of zero.
+\fIout_buf\fP should refer to a valid output buffer to which up to three
+bytes of data may be written.  The final output codes are packed with
+zeroes, which are harmless when decoded.
+.LP
+The \fBg723_decode(\|)\fP function expands 3-bit \s-1ADPCM\s0 data into 16-bit
+linear \s-1PCM\s0 or 8-bit \(*m-law or \s-1A\s0-law format.
+\fIin_buf\fP specifies the address of a buffer containing \fIin_size\fP
+bytes of 3-bit \s-1ADPCM\s0 data.
+Decoded data is stored in the buffer whose address is given by \fIout_buf\fP.
+The data type of the decoded data is specified in the \fIheader\fP structure.
+In the event that the total number of bits in \fIin_buf\fP is not a multiple
+of 3-bit code, the last bits are saved in the state
+structure until the next invocation of
+.B g723_decode(\|).
+The output buffer must contain enough room to store
+(8 * (\fIin_size\fP + 3) / 3) bytes for \(*m-law and \s-1A\s0-law data or
+(16 * (\fIin_size\fP + 3) / 3) bytes for 16-bit linear \s-1PCM\s0 data.
+.IR state_ptr
+points to the
+.B audio_g72x_state
+structure for preserving decoding state.
+The number of stored output samples (not bytes!) is returned in
+\fIout_size\fP.
+.LP
+.SH RETURN VALUE
+.LP
+.B g723_encode(\|)
+and
+.B g723_decode(\|)
+return audio error codes or AUDIO_SUCCESS.
+.LP
+.SH SEE ALSO
+.LP
+.B audio_711(3), audio_g721(3).
+.LP
+.SH NOTES
+.LP
+These routines comprise an implementation of the 24Kbps
+.SM CCITT
+.SM G.723
+.SM ADPCM
+encoding algorithm.
+The 40 Kbps \s-1G.723 ADPCM\s0, 5 bits per sample, has not been implemented yet.
+This implementation has passed the test vectors furnished by
+.SM CCITT
+(Dec. 20, 1988) for \(*m-law and \s-1A\s0-law data.

@@ -1,0 +1,902 @@
+.\" Copyright (c) 1994 - Sun Microsystems, Inc.
+.TH olmh 6 "24 March 1994"
+.IX "olmh" "" "\f3olmh\f1(6) \(em OPEN LOOK interface for MH system" "" PAGE START
+.IX "mail" "OPEN LOOK" "mail" "OPEN LOOK interface for MH \(em \f3olmh\f1(6)" PAGE START
+.SH NAME
+olmh \- OpenLook interface to the MH message handling system
+.SH SYNOPSIS
+.B olmh
+[
+.BI -path " mailpath
+] [
+.BI -initial " foldername
+] [
+.B -flag
+] [
+.I -toolkitoption...
+]
+.SH DESCRIPTION
+The
+.B olmh
+program provides a window-oriented user interface to the Rand \fIMH\fP Message
+Handling System.  To actually do things with your mail, it makes calls to the
+\fIMH\fP package.  Electronic mail messages may be composed, sent, 
+received, replied to, forwarded, sorted, and stored in folders. 
+.sp
+To specify an alternate collection of mail folders in which to process
+mail, use \f3-path\f1 followed by the pathname of the alternate mail directory.
+The default mail path is the value of the Path component in 
+$HOME/.mh_profile, or $HOME/Mail if the \fIMH\fP Path is not given.  
+To specify an alternate folder which may receive new mail and is initially 
+opened by \f3olmh\f1, use the \f3-initial\f1 flag.  
+The default initial folder is `inbox'.  
+The option \f3-flag\f1 will cause \f3olmh\f1 to attempt to
+change the appearance of its icon when new mail has arrived.  
+These three options have corresponding application-specific resources, 
+named \f3MailPath\f1, \f3InitialFolder\f1, and \f3MailWaitingFlag\f1, which
+can be used in a resource file.  
+The standard toolkit command line options are given in
+.BR X11 (7).
+.PP
+Please don't be misled by the size of this document.  It introduces 
+many aspects of the OLIT Widget Set, and provides extensive mechanism
+for customization of the user interface.  \f3olmh\f1 really is easy to use.
+.SH INSTALLATION
+The current version of \f3olmh\f1 requires that the user is already set up
+to use \fIMH\f1, version 6.  To do so, see if there is a file
+called .mh_profile in your home directory.  If it exists, check to see if it
+contains a line that starts with ``Current-Folder''.  If it does, 
+you've been using version 4 or earlier of \fIMH\f1; to convert to version
+6, you must remove that line.  (Failure to do so causes spurious output to
+stderr, which can hang \f3olmh\f1 depending on your setup.)
+.sp
+If you do not already have a .mh_profile, you can create one (and
+everything else you need) by typing ``inc'' to the shell.  You should
+do this before using \f3olmh\f1 to incorporate new mail.
+.sp
+For more information, refer to the 
+.BR mh (1)
+documentation.
+.sp
+.SH BASIC SCREEN LAYOUT
+\f3olmh\f1 starts out with a single window, divided into four main areas:
+.sp
+.TP 4
+.B \-
+Five buttons with pull-down command menus.
+.PP
+.TP 4
+.B \-
+A collection of buttons, one for each top level folder. 
+New users of mh will have two folders, ``drafts'' and ``inbox''.
+.PP
+.TP 4
+.B \-
+A listing, or Table of Contents, of the messages in the open folder.
+Initially, this will show the messages in ``inbox''.
+.PP
+.TP 4
+.B \-
+A view of one of your messages.  Initially this is blank.
+.sp
+.SH OLMH AND THE OLIT WIDGET SET
+\f3olmh\f1 uses the X Toolkit Intrinsics and the OLIT Widget Set.
+Many of the features described below (scrollbars, buttonboxes, etc.) are
+actually part of the OLIT Widget Set, and are described here only for
+completeness.  For more information, see the OLIT Widget Set documentation.
+.sp
+.SH PROCESSING YOUR MAIL
+This section will define the concepts of the selected folder, current folder,
+selected message(s), current message, selected sequence, and current 
+sequence.  Each \f3olmh\f1 command is introduced.  
+.sp
+.SS SELECTED FOLDER
+A folder contains a collection of mail messages, or is empty.
+.sp
+The selected folder is whichever foldername appears in the bar above the 
+folder buttons.  Note that this is not necessarily the same folder that is
+being viewed.  
+To change the selected folder, just press SELECT on the desired folder button
+and then SELECT 'Open Folder' from the main 'Folder' menu;
+if the folder has subfolders, SELECT a folder from the pull down menu.
+You can traverse to any depth of sub-folders using the pull-right menu
+buttons.
+.sp
+The Table of Contents, or toc, lists the messages in the viewed folder.
+The title bar above the Table of Contents displays the name of the 
+viewed folder.
+.sp
+The toc title bar also displays the name of the viewed sequence of messages 
+within the viewed folder.
+Every folder has an ``all'' sequence, which contains all the messages
+in the folder, and initially the toc title bar will show ``inbox:all''.
+.sp
+.SS FOLDER COMMANDS
+The \fIfolder\f1 command menu contains commands of a global nature:
+.sp
+.TP 8
+.B Open Folder
+Display the data in the selected folder.  Thus, the selected folder also
+becomes the viewed folder.  
+.TP 8
+.B Open Folder in New Window
+Displays the selected folder in an additional main window.
+Note, however, that you may not reliably display the same folder in more 
+than one window at a time, although \f3olmh\f1 will not prevent you from trying.
+.TP 8
+.B Create Folder
+Create a new folder.
+You will be prompted for a name for the new folder;
+to enter the name, move the pointer to the blank box provided and type.
+Subfolders are created by specifying the parent folder, a slash, and the
+subfolder name.  For example, 
+to create a folder named ``olmh'' which is a subfolder of an existing folder
+named ``clients'', type ``clients/olmh''.
+Click on the Apply button when finished;
+click on Cancel to cancel this operation. 
+.PP
+.TP 8
+.B Delete Folder
+Destroy the selected folder.  You will be asked to confirm this action (see
+CONFIRMATION WINDOWS).  Destroying a folder will also destroy any subfolders
+of that folder.
+.PP
+.TP 8
+.B Close Window
+Exits \f3olmh\f1, after first confirming that you won't lose any changes;
+or, if selected from any additional \f3olmh\fP window, simply closes that
+window.
+.sp
+.SS HIGHLIGHTED MESSAGES, SELECTED MESSAGES, CURRENT MESSAGE
+It is possible to highlight a message in the area of the Table of Contents.
+To highlight a message, click on it with pointer button 1.
+.sp
+The selected message is the same as the highlighted message, if any.  If no
+message is highlighted, then the selected message is considered the same
+as the current message.
+.sp
+The current message is indicated by a '+' next to the message number.  It
+usually corresponds to the message currently being viewed. 
+When a message is viewed, the title bar above the view will identify the message.
+.sp
+.SS TABLE OF CONTENTS COMMANDS
+The \fITable of Contents\fP command menu
+contains commands which operate on the open, or viewed folder.
+.sp
+.TP 18
+.B Incorporate New Mail
+Add any new mail received to your inbox folder, and set the current
+message to be the first new message.  (This command is selectable only if
+``inbox'' is the folder being viewed.)
+.TP 18
+.B Commit Changes
+Execute all deletions, moves, and copies that have been marked in this
+folder.
+.TP 18
+.B Pack Folder
+Renumber the messages in this folder so they start with 1 and increment by
+1.
+.TP 18
+.B Sort Folder
+Sort the messages in this folder in chronological order.  As a side
+effect, this also packs the folder.
+.TP 18
+.B Rescan Folder
+Rebuild the list of messages.  This can be used whenever you suspect 
+that \f3olmh\f1's
+idea of what messages you have is wrong.  (In particular, this is necessary
+if you change things using straight \fIMH\f1 commands without using 
+\f3olmh\f1.)
+.TP 18
+.B Read in Reverse
+Read in Reverse will switch the meaning of the next and previous 
+messages, and will increment in the opposite direction.  This is useful
+if you want to read your messages in the order of most recent first.
+The option acts as a toggle; select it from the menu a second time to
+undo the effect.
+.sp
+.SS MESSAGE COMMANDS
+The \fIMessage\f1 command menu contains commands which operate on the selected
+message(s), or if there are no selected messages, the current message.
+.sp
+.TP 18
+.B Compose Message
+Composes a new message.  A new window will be brought up for composition;
+a description of it is given in the COMPOSITION WINDOWS section below.
+This command does not affect the current message.
+.PP
+.TP 18
+.B View Next Message
+View the first selected message.  If no messages are highlighted, view the
+current message.  If current message is already being viewed, view the
+first unmarked message after the current message.
+.PP
+.TP 18
+.B View Previous
+View the last selected message.  If no messages are highlighted, view the
+current message.  If current message is already being viewed, view the
+first unmarked message before the current message.
+.PP
+.TP 18
+.B Mark Deleted
+Mark the selected messages for deletion.  If no messages are highlighted, then
+this will mark the current message for deletion and automatically display the 
+next unmarked message.
+.PP
+.TP 18
+.B Mark Move
+Mark the selected messages to be moved into the current (selected) folder.
+(If the current folder is the same as the viewed folder, 
+this command will just beep.)  If no messages are highlighted,
+this will mark the current message to be moved and display the next 
+unmarked message.
+.PP
+.TP 18
+.B Mark Copy
+Mark the selected messages to be copied into the current folder.  (If the
+current folder is the same as the viewed folder, this command will just
+beep.)  If no messages are highlighted, mark the current message to be
+copied.
+.PP
+.TP 18
+.B Unmark
+Remove any of the above three marks from the selected messages, or the
+current message, if none are highlighted.
+.PP
+.TP 18
+.B View in New Window
+Create a new window containing only a view of the first selected message,
+or the current message, if none are highlighted.
+.PP
+.TP 18
+.B Reply
+Create a composition window in reply to the first selected message, or the
+current message, if none are highlighted.
+.PP
+.TP 18
+.B Forward
+Create a composition window whose body is initialized to be the contents
+of the selected messages, or the current message if none are highlighted.
+.PP
+.TP 18
+.B Use as Composition
+Create a composition window whose body is initialized to be the contents
+of the first selected message, or the current message if none are selected.
+Any changes you make in the composition will be saved in a new 
+message in the ``drafts'' folder, and will not change the original message.
+However, this command was designed to be used within the ``drafts'' folder 
+to compose message drafts, and there is an exception to this rule.
+If the message to be used as composition was selected from 
+the ``drafts'' folder, the changes will be reflected in the original message
+(see COMPOSITION WINDOWS).
+.PP
+.TP 18
+.B Print
+Print the selected messages, or the current message if none are selected.
+\f3olmh\f1 normally prints by invoking
+the
+.BR enscript (1)
+command, but this can be customized with the 
+application-specific resource \f3PrintCommand\f1.
+.sp
+.SS SEQUENCE COMMANDS
+The \fISequence\f1 command menu of xmh allows the user to view chosen
+sequences of messages. Unfortunately this useful feature is not available
+in this demonstration version of Olmh.
+.sp
+.SS VIEW COMMANDS
+Commands in the View menu and in the buttonboxes of 
+view windows (which result from the Message command ``View In New'')
+correspond in functionality to commands of the same
+name in the Message menu, but they operate on the viewed message 
+rather than the selected messages or current message.
+.sp
+.TP 18
+.B Close Window
+When the viewed message is in a separate view window, this command will
+close the view, after confirming the status of any unsaved edits.
+.TP 18
+.B Reply
+Create a composition window in reply to the viewed message.
+.TP 18
+.B Forward
+Create a composition window whose body is initialized to be the contents of
+the viewed message.
+.TP 18
+.B Use As Composition
+Create a composition window whose body is initialized to be the contents of
+the viewed message.  Any changes made in the composition window will be
+saved in a new message in the ``drafts'' folder, and will not change the
+original message.  An exception: if the viewed message was selected from
+the ``drafts'' folder, the original message is edited.
+.TP 18
+.B Edit Message
+This command enables the direct editing of the viewed message.
+.TP 18
+.B Save Message
+This command is insensitive until the message has been edited; when
+activated, edits will be saved to the original message in the view.
+.TP 18
+.B Print
+Print the viewed message.  \f3olmh\f1 prints by invoking
+the
+.BR enscript (1)
+command, but this can be customized with the 
+application-specific resource \f3PrintCommand\f1.
+.sp
+.SH COMPOSITION WINDOWS
+Aside from the normal text editing functions, there are six command
+buttons associated with composition windows:
+.TP 18
+.B Close Window
+Close this composition window.  If changes have been made since the
+most recent Save or Send, you will be asked to confirm losing them.
+.PP
+.TP 18
+.B Send
+Send this composition.
+.PP
+.TP 18
+.B New Headers
+Replace the current composition with an empty message.  If changes have
+been made since the most recent Send or Save, you will be
+asked to confirm losing them. 
+.PP
+.TP 18
+.B Compose Message
+Bring up another new composition window.
+.PP
+.TP 18
+.B Save Message
+Save this composition in your drafts folder.  Then you can safely close the
+composition.  At some future date, you can continue working on the
+composition by opening the drafts folder, selecting the message, and
+using the ``Use as Composition'' command.  
+.PP
+.TP 18
+.B Insert
+Insert a related message into the composition.  If the composition window
+was created with a ``Reply'' command, the related message is the message
+being replied to, otherwise no related message is defined and this button
+is insensitive.  The message may be filtered before being inserted;
+see \f3ReplyInsertFilter\fP under APPLICATION RESOURCES for more information.
+.sp
+.SH ACCELERATORS
+Accelerators are shortcuts.  They allow you to invoke commands
+without using the menus, directly from the keyboard.
+.PP
+\f3olmh\fP defines the following keyboard accelerators over the surface of
+the main window, except in the view area while editing a message:
+.nf
+	Meta-I		Incorporate New Mail
+	Meta-C		Commit Changes
+	Meta-R		Rescan Folder
+	Meta-P		Pack Folder
+	Meta-S		Sort Folder
+.sp
+	Meta-space	View Next Message
+	Meta-c		Mark Copy
+	Meta-d		Mark Deleted
+	Meta-f		Forward the selected or current message
+	Meta-m		Mark Move
+	Meta-n		View Next Message
+	Meta-p		View Previous Message
+	Meta-r		Reply to the selected or current message
+	Meta-u		Unmark
+.fi
+.PP
+In addition to these keyboard accelerators, you can use all the standard
+OLIT mouseless commands to traverse and activate objects. For example,
+to scroll a TextEdit widget inside a ScrollingList:
+.nf
+	Alt-Down	Scroll down a line
+	Alt-Up		Scroll up a line
+	Alt-PgDn	Scroll down a page
+	Alt-PgUp	Scroll up a page
+	Alt-Ctrl-End	Scroll to bottom
+	Alt-Ctrl-Home	Scroll to top
+.fi
+.sp
+.SH TEXT EDITING COMMANDS
+All of the text editing commands are actually defined by the TextEdit widget
+in the OLIT Widget Set.
+The commands may be bound to different keys than the defaults through the
+OLIT key re-binding mechanisms.
+See the OLIT Widget Set documentation for more details.
+.sp
+.SH CONFIRMATION DIALOG BOXES
+Whenever you press a button that may cause you to lose some work or is
+otherwise dangerous, a popup dialog box will appear asking you to confirm the
+action.  This window will contain an ``Abort'' or ``No'' button and a
+``Confirm'' or ``Apply''
+button.  Pressing the ``No'' button cancels the operation, and pressing
+the ``Apply'' will proceed with the operation. 
+.sp
+.SH WIDGET HIERARCHY
+In order to specify resources, it is useful to know the hierarchy of 
+widgets which compose \f3olmh\f1.  In the notation below, indentation
+indicates hierarchical structure.  The widget class name is given first,
+followed by the widget instance name.
+The application class name is Olmh.
+.PP
+The hierarchy of the main toc and view window is identical for additional
+toc and view windows, except that a TopLevelShell widget is inserted
+in the hierarchy between the application shell and the RubberTile widget.
+.sp
+.nf
+.ta .5i 1.0i 1.5i 2.0i 2.5i 3.0i 3.5i 4.0i 4.5i 5.0i 5.5i 6.0i 6.5i 7.0i
+Olmh olmh
+	RubberTile olmh
+		Control  menuBox
+			MenuButton  folderButton
+				MenuShell  menu
+					Form  menu_form
+						Control  pane
+							OblongButton  open
+							OblongButton  openInNew
+							OblongButton  create
+							OblongButton  delete
+							OblongButton  close
+			MenuButton  tocButton
+				MenuShell  menu
+					Form  menu_form
+						Control  pane
+							OblongButton  inc
+							OblongButton  commit
+							OblongButton  pack
+							OblongButton  sort
+							OblongButton  rescan
+							OblongButton  reverse
+			MenuButton  messageButton
+				MenuShell  menu
+					Form  menu_form
+						Control  pane
+							OblongButton  compose
+							OblongButton  next
+							OblongButton  prev
+							OblongButton  delete
+							OblongButton  move
+							OblongButton  copy
+							OblongButton  unmark
+							OblongButton  viewNew
+							OblongButton  reply
+							OblongButton  forward
+							OblongButton  useAsComp
+							OblongButton  print
+			MenuButton  sequenceButton
+				MenuShell  menu
+					Form  menu_form
+						Control  pane
+							OblongButton  pick
+							OblongButton  openSeq
+							OblongButton  addToSeq
+							OblongButton  removeFromSeq
+							OblongButton  deleteSeq
+							OblongButton  all
+			MenuButton  viewButton
+				MenuShell  menu
+					Form  menu_form
+						Control  pane
+							OblongButton  reply
+							OblongButton  forward
+							OblongButton  useAsComp
+							OblongButton  edit
+							OblongButton  save
+							OblongButton  print
+		StaticText folderTitlebar
+		Control  folders
+			OblongButton  inbox
+			OblongButton  drafts
+			OblongButton  a_folder
+			MenuButton  sub_folder
+				MenuShell  menu
+					Form  menu_form
+						Control  pane
+							OblongButton  sub_folder
+							OblongButton sub_folder/this
+							OblongButton sub_folder/that
+							.
+							.
+							.
+.sp
+		StaticText  tocTitlebar
+		ScrolledWindow  scrwin
+			TextEdit  toc
+		StaticText  viewTitlebar
+		ScrolledWindow  scrwin
+			TextEdit  view
+.sp
+\fIThe hierarchy of the Create Folder popup dialog box:\f1
+.sp
+	PopupWindowShell  prompt
+		FooterPanel  panel
+			Control  control
+				Control  upper
+					StaticText  label
+					TextField  prompt
+				Control  lower
+					OblongButton  apply
+					OblongButton  cancel
+.sp
+\fIThe hierarchy of the Notice dialog box, which reports messages from MH:\f1
+.sp
+	NoticeShell  notice
+		Control  pane
+			StaticText  textarea
+			Control  controlarea
+				OblongButton  confirm
+.sp
+\fIThe hierarchy of the Confirmation dialog box:\f1
+.sp
+	NoticeShell  confirm
+		Control  pane
+			StaticText  textarea
+			Control  controlarea
+				OblongButton  yes
+				OblongButton  no
+.sp
+\fIThe hierarchy of the dialog box which reports errors:\f1
+.sp
+	NoticeShell  error
+		Control  pane
+			StaticText  textarea
+			Control  controlarea
+				OblongButton OK
+.sp
+\fIThe hierarchy of the composition window:\f1
+.sp
+	TopLevelShell  olmh
+		RubberTile  olmh
+			StaticText  composeTitlebar
+			ScrolledWindow  scrwin
+				TextEdit  comp
+			Control  compButtons
+				OblongButton  close
+				OblongButton  send
+				OblongButton  reset
+				OblongButton  compose
+				OblongButton  save
+				OblongButton  insert
+.sp
+\fIThe hierarchy of the view window:\f1
+.sp
+	TopLevelShell  olmh
+		RubberTile  olmh
+			StaticText  viewTitlebar
+			ScrolledWindow  scrwin
+				TextEdit  view
+			Control  viewButtons
+				OblongButton  close
+				OblongButton  reply
+				OblongButton  forward
+				OblongButton  useAsComp
+				OblongButton  edit
+				OblongButton  save
+				OblongButton  print
+.sp
+\fIThe hierarchy of the pick window:\f1
+.sp
+	Not implemented in this demo version of Olmh
+.sp
+.fi				
+.SH APPLICATION-SPECIFIC RESOURCES
+.sp
+Resource instance names begin with a lower case letter but are otherwise
+identical to the class name.
+.PP
+If TocGeometry, ViewGeometry, CompGeometry, or PickGeometry are not
+specified, then the value of Geometry is used instead.  If the resulting
+height is not specified (e.g., "", "=500", "+0-0"), then the default
+height of windows is calculated from fonts and line counts. If
+the width is not specified (e.g., "", "=x300", "-0+0), then half of the
+display width is used.  If unspecified, the height of a pick window
+defaults to half the height of the display.
+.sp
+Any of these options may also be specified on the command line by
+using the X Toolkit Intrinsics resource specification mechanism.
+Thus, to run \f3olmh\f1 showing all message headers,
+.sp
+% olmh -xrm '*HideBoringHeaders:off'
+.sp
+The following resources are defined:
+.TP 8
+.B Banner
+A short string that is the default label of the folder, Table of Contents,
+and view.  The default is "olmh   OpenWindows  V3.0"
+.PP
+.TP 8
+.B BlockEventsOnBusy
+Whether to disallow user input and show a busy cursor while \f3olmh\fP is
+busy processing a command.  Default is true.
+.PP
+.TP 8
+.B BusyCursor
+The name of the symbol used to represent the position of the pointer,
+displayed if \f3BlockEventsOnBusy\f1 is true, when \f3olmh\f1 is
+processing a time-consuming command.
+The default is "watch".
+.PP
+.TP 8
+.B BusyPointerColor
+The foreground color of the busy cursor.  Default is XtDefaultForeground.
+.PP
+.TP 8
+.B CheckFrequency
+How often to check for new mail, make checkpoints, and rescan the Table
+of Contents, in minutes.  If \f3CheckNewMail\f1 is true, \f3olmh\f1 checks
+to see if you have new mail each interval.  If \f3MakeCheckpoints\f1 is
+true, checkpoints are made every fifth interval.  Also every fifth 
+interval, the Table of Contents is checked for inconsistencies with the
+file system, and rescanned.  To prevent all of these checks from occurring,
+set \f3CheckFrequency\f1 to 0.  The default is 1.
+.PP
+.TP 8
+.B CheckNewMail
+If true, \f3olmh\fP will check at regular intervals to see if new mail
+has arrived for any of the folders.  A visual indication will be given
+if new mail is waiting to be retrieved.  Default is True. (See BUGS).
+The interval can be adjusted with the \f3CheckFrequency\f1.
+.PP
+.TP 8
+.B CommandButtonCount
+The number of command buttons to create in a button box in between the toc
+and the view areas of the main window.  \f3olmh\fP will create these buttons
+with the names \fIbutton1, button2\fP and so on, in a box with the name
+\fIcommandBox\f1.  The user can specify labels and actions for the buttons
+in a private resource file; see the section on Actions.  The default is 0.
+.PP
+.TP 8
+.B CompGeometry
+Initial geometry for windows containing compositions.
+.PP
+.TP 8
+.B Cursor
+The name of the symbol used to represent the pointer.  Default is ``left_ptr''.
+.PP
+.TP 8
+.B DraftsFolder
+The folder used for message drafts.  Default is ``drafts''.
+.PP
+.TP 8
+.B Geometry
+Default geometry to use.  Default is none.
+.PP
+.TP 8
+.B HideBoringHeaders
+If ``on'', then \f3olmh\f1 will attempt to skip uninteresting header lines
+within messages by scrolling them off.  Default is ``on''.
+.PP
+.TP 8
+.B InitialFolder
+Which folder to display on startup.  May also be set with the command-line
+option \f3-initial\f1.  Default is ``inbox''.  
+.PP
+.TP 8
+.B InitialIncFile
+The file name of your incoming mail drop.  \f3olmh\f1 tries to construct
+a filename for the ``inc -file'' command, but in some installations
+(e.g. those using the Post Office Protocol) no file is appropriate.
+In this case, \f3InitialIncFile\f1 should be specified as the empty string,
+and \fIinc\f1 will be invoked without a -file argument.  The default
+is to use the value of the environment variable \f3MAIL\f1, or if that
+is not set, to append the value of the environment variable \f3USER\f1
+to \f3/var/mail/\f1.
+.PP
+.TP 8
+.B MailPath
+The full path prefix for locating your mail folders.  May also be set
+with the command-line option, \f3-path\f1.  The default is the
+Path component in $HOME/.mh_profile, or ``$HOME/Mail'' if none.
+.PP
+.TP 8
+.B MailWaitingFlag
+If true, \f3olmh\fP will attempt to set an indication in its icon when
+new mail is waiting to be retrieved.  If this option is true, then
+CheckNewMail is assumed to be true as well.  The \f3-flag\fP command line
+option is a quick way to turn MailWaitingFlag on.
+.PP
+.TP 8
+.B MakeCheckpoints
+If true, \f3olmh\fP will attempt to save checkpoints of volatile information.
+The frequency of checkpointing is controlled by the resource 
+\f3CheckFrequency\f1.
+.PP
+.TP 8
+.B MhPath
+What directory in which to find the \fIMH\f1 commands.  If a command isn't found
+here, then the directories in the user's path are searched.  Default is
+``/usr/local/mh6''.
+.PP
+.TP 8
+.B PickGeometry
+Initial geometry for pick windows.
+.PP
+.TP 8
+.B PointerColor
+The foreground color of the pointer.  Default is XtDefaultForeground.
+.PP
+.TP 8
+.B PrefixWmAndIconName
+Whether to prefix the window and icon name with "olmh: ".  Default is true.
+.PP
+.TP 8
+.B PrintCommand
+What sh command to execute to print a message.  Note that stdout and stderr
+must be specifically redirected!  If a message or range of messages is
+selected for printing, the full file paths of each message file is
+appended to the specified print command.  The default is ``enscript >/dev/null
+2>/dev/null''.
+.PP
+.TP 8
+.B ReplyInsertFilter
+A shell command to be executed when the \fIInsert\fP button is activated
+in a composition window.  The full path and filename of the source
+message is added to the end of the command before being passed to
+.BR sh (1) .
+The default filter is \fIcat\fP; i.e. it inserts the entire message
+into the composition.  Interesting filters are:
+\fIawk -e '{print "    " $0}'\fP or
+\fI<mh directory>/lib/mhl -form mhl.body\fP.
+.PP
+.TP 8
+.B ReverseReadOrder
+When true, the next message will be the message prior to the current message
+in the table of contents, and the previous message will be the message
+after the current message in the table of contents.  The default is false.
+.PP
+.TP 8
+.B SendBreakWidth
+When a message is sent from \f3olmh\fP, lines longer than this value will be
+split into multiple lines, each of which is no longer than \f3SendWidth\fP.
+This value may be overridden for a single message by inserting an additional
+line in the message header of the form \fISendBreakWidth: value\fP.  This
+line will be removed from the header before the message is sent.
+The default is 85.
+.PP
+.TP 8
+.B SendWidth
+When a message is sent from \f3olmh\fP, lines longer than \f3SendBreakWidth\fP
+characters will be split into multiple lines, each of which is no longer than
+this value.
+This value may be overridden for a single message by inserting an additional
+line in the message header of the form \fISendWidth: value\fP.  This
+line will be removed from the header before the message is sent.
+The default is 72.
+.PP
+.TP 8
+.B SkipCopied
+Whether to skip over messages marked for copying when using ``View Next
+Message'' and ``View Previous Message''.  Default is true.
+.PP
+.TP 8
+.B SkipDeleted
+Whether to skip over messages marked for deletion when using ``View Next
+Message'' and ``View Previous Message''.  Default is true.
+.PP
+.TP 8
+.B SkipMoved
+Whether to skip over messages marked for moving to other folders when
+using ``View Next Message'' and ``View Previous Message''.  Default is true.
+.PP
+.TP 8
+.B StickyMenu
+If true, when popup command menus are used, the most recently selected
+entry will be under the cursor when the menu pops up.  Default is false.
+See the file \fIclients/olmh/Olmh.sample\f1 for an example of how to 
+specify resources for pop up command menus.
+.PP
+.TP 8
+.B TempDir
+Directory for \f3olmh\f1 to store temporary directories.  For privacy, a user
+might want to change this to a private directory.  Default is ``/tmp''.
+.PP
+.TP 8
+.B TocGeometry
+Initial geometry for master \f3olmh\f1 windows.
+.PP
+.TP 8 
+.B TocPercentage
+In xmh, this represents the percentage of the main window that is used to
+display the Table of Contents. However, in olmh this now refers to the
+relative proportion of a size CHANGE to the main window that gets applied to
+the toc. Consider the toc and the view portions of the main window as having
+a weight; The view has a fixed weight of 50 and the toc has a weight of
+TocPercentage (default is 33). The total weight is 83 and, by default the
+toc will get 33/83 of the size change and the view will get 50/83 of the
+size change.
+To change the INITIAL number of lines in the toc, set the resource
+*toc.linesVisible to some number. NOTE however that you may not get exactly
+this number of lines because the RubberTile may resize the toc widget.
+.PP
+.TP 8
+.B TocWidth
+How many characters to generate for each message in a folder's table of
+contents.  Default is 100.  Use 80 if you plan to use \fImhl\f1 a lot,
+because it will be faster, and the extra 20 characters may not be useful.
+.PP
+.TP 8
+.B ViewGeometry
+Initial geometry for windows showing only a view of a message.
+.sp
+.SH CUSTOMIZATION USING \fIMH\f1
+The initial text displayed in a composition window is generated by
+executing the corresponding \fIMH\fP command; i.e. \fIcomp\fP, \fIrepl\fP,
+or \fIforw\fP, and therefore message components may be customized as
+specified for those commands.  \fIComp\fP is executed only once per
+invocation of \f3olmh\fP and the message template is re-used for each
+successive new composition.
+.SH FILES
+~/Mail
+.br
+~/.mh_profile - \fIMH\f1 profile
+.br
+/usr/local/mh6 - \fIMH\f1 commands
+.br
+~/Mail/<folder>/.olmhcache - scan folder
+.br
+~/Mail/<folder>/.mh_sequences - sequence definitions
+.br
+/tmp - temporary files
+.SH SEE ALSO
+.BR xrdb (1) ,
+X Toolkit Intrinsics, OLIT Widget Set,
+.BR mh (1) ,
+.BR enscript (1)
+.SH BUGS
+- Marks disappear after Incorporating new mail, although internally the
+messages are still marked.
+.br
+- Reading mail using 'raw' MH commands or another mailer such as xmh, can
+cause olmh to get confused, and the 'current' message in the toc may not
+be the actual message displayed.
+.br
+- Mouseless does not activate buttons in comp or view TopLevel shells.
+.br
+- Because of the way OLIT uses the translation manager to map all events to
+OlAction, the action procs do not work as for xmh and have been removed from
+this man page.
+.br
+- Printing support is minimal.
+.br
+- Should handle the ``unseen'' message-sequence.
+.br
+- Should determine by itself if the user hasn't used \fIMH\f1 before, and
+offer to create the .mh_profile, instead of hanging on inc.
+.br
+- Still a few commands missing (rename folder, remail message).
+.br
+- A bug in \fIMH\f1 limits the the number of characters in .mh_sequences to 
+BUFSIZ.
+When the limit is reached, the .mh_sequences file often becomes corrupted,
+and sequence definitions may be lost.
+.br
+- Except for the icon, there isn't an indication that you have new mail.
+.br
+- There should be a resource, ShowOnInc, which when true, would show 
+the current message in the view after incorporating new mail.
+.br
+- The CheckFrequency resource should be split into two separate resources.
+.br
+- WM_SAVE_YOURSELF protocol is ignored.
+.br
+- WM_DELETE_WINDOW protocol doesn't work right when requesting deletion
+of the first toc and view, while trying to keep other \f3olmh\fP windows around.
+.br
+- Doesn't support annotations when replying to messages.
+.br
+- If the MH commands aren't in your PATH, you get ``Execvp Failed'' messages
+instead of something useful like ``Can't find program.''
+.SH COPYRIGHT
+Copyright 1988, 1989, Digital Equipment Corporation.
+.br
+Copyright 1989, Massachusetts Institute of Technology
+.br
+.\"See \fIX11(7)\fP for a full statement of rights and permissions.
+.SH AUTHOR
+Terry Weissman, Digital Western Research Laboratory
+.br
+modified by Donna Converse, MIT X Consortium
+.br
+ported to OLIT as a demo by John S Cooper, Sun Microsystems, Inc.
+.IX "olmh" "" "\f3olmh\f1(6) \(em OPEN LOOK interface for MH system" "" PAGE END
+.IX "mail" "OPEN LOOK" "mail" "OPEN LOOK interface for MH \(em \f3olmh\f1(6)" PAGE END

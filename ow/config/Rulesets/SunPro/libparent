@@ -1,0 +1,722 @@
+#
+# @(#)libparent	1.33 95/05/22
+#
+
+#
+# Copyright (c) 1987 by Sun Microsystems, Inc.
+#
+
+#
+# This file is included by Makefiles for libraries which have their
+# source split among various subdirectories.
+#
+#	Preconditions
+#		LIBPARENT
+#		SUBDIRS
+#		LIBMAJORVER
+#		LIBMINORVER
+#
+#		DIR.optimized
+#		DIR.debug
+#		DIR.gprof
+#
+
+LIBRARY.name.static	   = ${LIBPREFIX}${LIBPARENT}.a
+LIBRARY.name.optimized	   = ${LIBPREFIX}${LIBPARENT}_o.a
+LIBRARY.name.debug	   = ${LIBPREFIX}${LIBPARENT}_d.a
+LIBRARY.name.gprof	   = ${LIBPREFIX}${LIBPARENT}_p.a
+LIBRARY.name.tool.optimized= ${LIBPREFIX}${LIBPARENT}_t.a
+LIBRARY.name.tool.debug	   = ${LIBPREFIX}${LIBPARENT}_td.a
+LIBRARY.name.tool.gprof	   = ${LIBPREFIX}${LIBPARENT}_tg.a
+LIBRARY.name.shared.base   = ${LIBPREFIX}${LIBPARENT}.so
+LIBRARY.name.shared.sa.base= ${LIBPREFIX}${LIBPARENT}.sa
+LIBRARY.name.lint	= ${LIBPARENT:%=l${LIBPREFIX}-l%.ln}
+
+LIBRARY.name.shared	   = ${LIBRARY.name.shared.base}.${LIBVER}
+LIBRARY.name.shared.sa	   = ${LIBRARY.name.shared.sa.base}.${LIBVER}
+
+
+LIBRARY.static		= ${DIR.targetarch}/${LIBRARY.name.static}
+LIBRARY.optimized	= ${DIR.targetarch}/${LIBRARY.name.optimized}
+LIBRARY.debug		= ${DIR.targetarch}/${LIBRARY.name.debug}
+LIBRARY.gprof		= ${DIR.targetarch}/${LIBRARY.name.gprof}
+LIBRARY.shared.base	= ${DIR.targetarch}/${LIBRARY.name.shared.base}
+LIBRARY.shared.sa.base	= ${DIR.targetarch}/${LIBRARY.name.shared.sa.base}
+LIBRARY.shared		= ${DIR.targetarch}/${LIBRARY.name.shared}
+LIBRARY.shared.sa	= ${DIR.targetarch}/${LIBRARY.name.shared.sa}
+
+LIBRARY.tool.optimized	= ${DIR.targetarch}/${LIBRARY.name.tool.optimized}
+LIBRARY.tool.debug	= ${DIR.targetarch}/${LIBRARY.name.tool.debug}
+LIBRARY.tool.gprof	= ${DIR.targetarch}/${LIBRARY.name.tool.gprof}
+
+INSTALL.gprof.directory	= ${INSTALL.directory}/libp
+
+ID	= ${INSTALL.directory}
+tID	= ${INSTALL.tool.directory}
+pID	= ${INSTALL.gprof.directory}
+LIBRARY.installed.static	= ${ID}/${LIBRARY.name.static}
+LIBRARY.installed.optimized	= ${ID}/${LIBRARY.name.optimized}
+LIBRARY.installed.debug		= ${ID}/${LIBRARY.name.debug}
+LIBRARY.installed.gprof		= ${pID}/${LIBRARY.name.gprof:%_p.a=%.a}
+LIBRARY.installed.shared.base	= ${ID}/${LIBRARY.name.shared.base}
+LIBRARY.installed.shared.sa.base= ${ID}/${LIBRARY.name.shared.sa.base}
+LIBRARY.installed.shared	= ${ID}/${LIBRARY.name.shared}
+LIBRARY.installed.shared.sa	= ${ID}/${LIBRARY.name.shared.sa}
+LIBRARY.installed.tool.optimized= ${tID}/${LIBRARY.name.tool.optimized}
+LIBRARY.installed.tool.debug	= ${tID}/${LIBRARY.name.tool.debug}
+LIBRARY.installed.tool.gprof	= ${tID}/${LIBRARY.name.tool.gprof}
+LIBRARY.installed.lint	= ${LIBRARY.name.lint:%=${INSTALL.lintlib.dir}/%}
+
+######################################################################
+#
+# User callable entry points
+#	we need to consult the signs to see if we are to do anything
+#	or if this invocation is a no-op
+#
+######################################################################
+
+######################################################################
+#
+# Default entry points
+#
+######################################################################
+all::			installtool .WAIT deliverable
+install::		installtool .WAIT installdeliverable
+galactic::		install_headers \
+			installgprof installoptimized \
+			installshared
+
+######################################################################
+#
+#	Look up the default dependencies in the users database.
+#	This is either empty (don't build this), or one of
+#	{optimized, debug, gprof, shared, or variants}
+#
+######################################################################
+
+GENERIC_GBT_ARGS	= -S ${SOURCEDIR} -f ${CONFIG.DB} -n ${LIBPARENT}
+G			= ${GETBUILDTYPE} ${GENERIC_GBT_ARGS}
+MAKE.METHOD.STATIC	= $G -P private.build${DELIVERABLE}${STATIC}
+INSTALL.METHOD.STATIC	= $G -P private.instl${DELIVERABLE}${STATIC}
+MAKE.METHOD.SHARED	=       private.build${DELIVERABLE}${SHARED}optimized
+INSTALL.METHOD.SHARED	=       private.instl${DELIVERABLE}${SHARED}optimized
+
+# File containing version string
+OWVersionFile   = ${SOURCEDIR}/config/OWversion
+
+build_db_lookup:	${MAKE.METHOD.STATIC:sh}
+install_db_lookup:	${INSTALL.METHOD.STATIC:sh}
+
+######################################################################
+#
+# aliases
+#
+######################################################################
+galacticinstall::	galactic
+installgalactic::	galactic
+deliverableinstall::	installdeliverable
+toolinstall::   	installtool
+
+
+######################################################################
+#
+# Workhorse tool targets
+#
+######################################################################
+tool::			tooloptimized
+tooloptimized::		private.build${TOOL}optimized ${MAKE.tool.target}
+tooldebug::		private.build${TOOL}debug	   ${MAKE.tool.target}
+toolgprof::		private.build${TOOL}gprof	   ${MAKE.tool.target}
+
+toolvariants:		private.build${TOOL}optimized	\
+			private.build${TOOL}debug	\
+			private.build${TOOL}gprof
+
+
+######################################################################
+#
+# Workhorse deliverable targets
+#
+######################################################################
+deliverable::		build_db_lookup
+optimized::		private.build${DELIVERABLE}${STATIC}optimized
+debug::			private.build${DELIVERABLE}${STATIC}debug
+gprof::			private.build${DELIVERABLE}${STATIC}gprof
+static::		private.build${DELIVERABLE}${STATIC}static
+shared::		private.build${DELIVERABLE}${SHARED}optimized
+
+variants::		private.build${DELIVERABLE}${STATIC}optimized	\
+			private.build${DELIVERABLE}${STATIC}debug	\
+			private.build${DELIVERABLE}${STATIC}gprof	\
+			private.build${DELIVERABLE}${SHARED}optimized
+######################################################################
+#
+# Workhorse tool targets
+#
+######################################################################
+installtool::		install_headers installtooloptimized
+installtooloptimized::	private.instl${TOOL}optimized
+installtooldebug::	private.instl${TOOL}debug
+installtoolgprof::	private.instl${TOOL}gprof
+
+installtoolvariants:	private.instl${TOOL}optimized	\
+			private.instl${TOOL}debug	\
+			private.instl${TOOL}gprof
+
+######################################################################
+#
+# Workhorse deliverable targets
+#
+######################################################################
+installdeliverable::	installstatic installshared
+installoptimized::	private.instl${DELIVERABLE}${STATIC}optimized
+installdebug::		private.instl${DELIVERABLE}${STATIC}debug
+installgprof::		private.instl${DELIVERABLE}${STATIC}gprof
+installstatic::		private.instl${DELIVERABLE}${STATIC}static
+installshared::		private.instl${DELIVERABLE}${SHARED}optimized
+
+installvariants:	installoptimized	\
+			installdebug		\
+			installgprof		\
+			installshared
+######################################################################
+#
+# The macros MAKE.*.target are optionally defined by the user.
+#	They allow "post-processing" after all the "builtin"
+#	shell command recipies are executed.
+#
+######################################################################
+
+all	\
+	optimized		\
+	debug			\
+	gprof			\
+	shared			:: ${MAKE.all.target}
+
+tool	\
+	tooloptimized		\
+	tooldebug		\
+	toolgprof		:: ${MAKE.tool.target}
+
+install	\
+	installdebug		\
+	installgprof		\
+	installshared		:: ${MAKE.install.target}
+
+installtool	\
+	installtooloptimized	\
+	installtooldebug	\
+	installtoolgprof	:: ${MAKE.installtool.target}
+
+clean::				   step
+clobber::			   step
+populate::			   step
+
+
+#									#
+#########################################################################
+#									#
+# Qualified entry points - these are not user callable - they are	#
+#	accessed by the common target dependencies			#
+#									#
+#########################################################################
+#									#
+# Tool Builds
+#
+######################################################################
+private.buildtooloptimized:   step .WAIT ${DIR.targetarch} .WAIT ${LIBRARY.tool.optimized}
+private.buildtooldebug:       step .WAIT ${DIR.targetarch} .WAIT ${LIBRARY.tool.debug}
+private.buildtoolgprof:       step .WAIT ${DIR.targetarch} .WAIT ${LIBRARY.tool.gprof}
+private.buildtoolvariants:    private.buildtooloptimized \
+			      private.buildtooldebug \
+			      private.buildtoolgprof
+ 
+######################################################################
+#
+# Shared Builds
+#
+######################################################################
+private.builddeliverablesharedoptimized:step .WAIT ${DIR.targetarch} .WAIT	\
+					${LIBRARY.shared} \
+					${LIBRARY.shared.sa}
+private.builddeliverableshareddebug:	warning.not.supported
+private.builddeliverablesharedgprof:	warning.not.supported
+
+private.builddeliverablesharedvariants: private.builddeliverablesharedoptimized
+
+######################################################################
+#
+# Shared Installs
+#
+######################################################################
+private.instldeliverablesharedoptimized:private.builddeliverablesharedoptimized .WAIT \
+					${INSTALL.directory}	\
+					${LIBRARY.installed.shared}	\
+					${LIBRARY.installed.shared.sa}
+private.instldeliverableshareddebug:	warning.not.supported
+private.instldeliverablesharedgprof:	warning.not.supported
+
+warning.not.supported:
+	@echo "Warning: only optimized shared libraries are currently supported"
+
+######################################################################
+#
+# Static Builds
+#
+######################################################################
+private.builddeliverablestaticoptimized:step .WAIT ${DIR.targetarch} .WAIT \
+					${LIBRARY.optimized}
+private.builddeliverablestaticdebug:	step .WAIT ${DIR.targetarch} .WAIT ${LIBRARY.debug}
+private.builddeliverablestaticgprof:	step .WAIT ${DIR.targetarch} .WAIT ${LIBRARY.gprof}
+private.builddeliverablestaticstatic:	step .WAIT ${DIR.targetarch} .WAIT ${LIBRARY.static}
+
+private.builddeliverablestaticvariants:	\
+				private.builddeliverablestaticoptimized \
+				private.builddeliverablestaticdebug \
+				private.builddeliverablestaticgprof
+######################################################################
+#
+# Static Installs
+#
+######################################################################
+private.instltooloptimized:	${INSTALL.tool.dir}	\
+				${LIBRARY.installed.tool.optimized}
+private.instltooldebug:		${INSTALL.tool.dir}	\
+				${LIBRARY.installed.tool.debug}
+private.instltoolgprof:		${INSTALL.tool.dir}	\
+				${LIBRARY.installed.tool.gprof}
+
+private.instldeliverablestaticoptimized:private.builddeliverablestaticoptimized .WAIT \
+					${INSTALL.directory}			.WAIT \
+					${LIBRARY.installed.optimized}
+private.instldeliverablestaticdebug:	private.builddeliverablestaticdebug	.WAIT \
+					${INSTALL.directory}			.WAIT \
+					${LIBRARY.installed.debug}
+private.instldeliverablestaticgprof:	private.builddeliverablestaticgprof	.WAIT \
+					${INSTALL.directory}			.WAIT \
+					${LIBRARY.installed.gprof}
+private.instldeliverablestaticstatic:	private.builddeliverablestaticstatic	.WAIT \
+					${INSTALL.directory}			.WAIT \
+					${LIBRARY.installed.static}
+
+######################################################################
+#
+#	The following targets are the "nop" permutations generated
+#	by expanding
+#	  private.build${mumble.macros}
+#	& appending {optimized,debug,gprof,variants} to the degenerate cases
+#
+######################################################################
+private.build \
+	private.builddeliverable		\
+	private.buildtool			\
+	private.buildstatic			\
+	private.buildshared			\
+	private.builddeliverablestatic		\
+	private.builddeliverableshared		\
+	private.builddeliverableoptimized	\
+	private.builddeliverabledebug		\
+	private.builddeliverablegprof		\
+	private.builddeliverablevariants	\
+	private.buildoptimized			\
+	private.builddebug			\
+	private.buildgprof			\
+	private.buildvariants:			# nothing to do
+
+private.instl \
+	private.instldeliverable		\
+	private.instltool			\
+	private.instlstatic			\
+	private.instlshared			\
+	private.instldeliverablestatic		\
+	private.instldeliverableshared		\
+	private.instldeliverableoptimized	\
+	private.instldeliverabledebug		\
+	private.instldeliverablegprof		\
+	private.instldeliverablevariants	\
+	private.instloptimized			\
+	private.instldebug			\
+	private.instlgprof			\
+	private.instlvariants:			# nothing to do
+
+#
+######################################################################
+#
+
+MAKETARGET	= unknown-target-error
+all		:= MAKETARGET=all
+deliverable	:= MAKETARGET=deliverable
+tool		:= MAKETARGET=tool
+variants	:= MAKETARGET=variants
+galactic	:= MAKETARGET=galactic
+opt		:= MAKETARGET=optimized
+optimized	:= MAKETARGET=optimized
+debug		:= MAKETARGET=debug
+gprof		:= MAKETARGET=gprof
+static		:= MAKETARGET=static
+shared		:= MAKETARGET=shared
+clean		:= MAKETARGET=clean
+clobber		:= MAKETARGET=clobber
+install		:= MAKETARGET=install
+installtool	:= MAKETARGET=installtool
+installoptimized:= MAKETARGET=installoptimized
+installdebug	:= MAKETARGET=installdebug
+installgprof	:= MAKETARGET=installgprof
+installshared	:= MAKETARGET=installshared
+installvariants	:= MAKETARGET=installvariants
+install_headers	:= MAKETARGET=install_headers
+lint		:= MAKETARGET=lint
+lintlib		:= MAKETARGET=lintlib
+populate	:= MAKETARGET=populate
+depopulate	:= MAKETARGET=depopulate
+
+
+install_headers	: echoheadermsg step echodoneheadermsg
+echoheadermsg:
+	@echo "[Installing header files]"
+echodoneheadermsg:
+	@echo
+
+#  NOTE:	I'm not sure whether this does what we want or not...
+#		We want the subdirectories to be built in parallel.
+#
+.PARALLEL::	step
+step: ${SUBDIRS}
+	@echo MAKETARGET=${MAKETARGET}
+	@for i in . ${SUBDIRS}; do \
+	(if [ "x$$i" != "x." ] ; then \
+	    cd $$i; \
+	    echo "----["`${PWDCMD}`"]----"; \
+	    ${MAKE} ${MAKETARGET}; \
+	 fi \
+	) done
+
+
+LIBRARY = ${LIBRARY.static}
+${LIBRARY.optimized}		:= LIBRARY = ${LIBRARY.optimized}
+${LIBRARY.debug}		:= LIBRARY = ${LIBRARY.debug}
+${LIBRARY.gprof}		:= LIBRARY = ${LIBRARY.gprof}
+${LIBRARY.static}		:= LIBRARY = ${LIBRARY.static}
+
+${LIBRARY.tool.optimized}	:= LIBRARY = ${LIBRARY.tool.optimized}
+${LIBRARY.tool.debug}		:= LIBRARY = ${LIBRARY.tool.debug}
+${LIBRARY.tool.gprof}		:= LIBRARY = ${LIBRARY.tool.gprof}
+
+DATABASE_probe_type		= `${GETBUILDTYPE} \
+					     -S ${SOURCEDIR} \
+					     -f ${CONFIG.DB} \
+					     -n ${LIBPARENT}/$$dir \
+					 | sed -e "s: ::"`
+
+TYPE = ${DATABASE_probe_type}
+${LIBRARY.optimized}		:= TYPE = optimized
+${LIBRARY.debug}		:= TYPE = debug
+${LIBRARY.gprof}		:= TYPE = gprof
+${LIBRARY.static}		:= TYPE = ${DATABASE_probe_type}
+
+${LIBRARY.tool.optimized}	:= TYPE = tooloptimized
+${LIBRARY.tool.debug}		:= TYPE = tooldebug
+${LIBRARY.tool.gprof}		:= TYPE = toolgprof
+
+${LIBRARY.optimized}		: link
+${LIBRARY.debug}		: link
+${LIBRARY.gprof}		: link
+${LIBRARY.static}		: link
+
+${LIBRARY.tool.optimized}	: link
+${LIBRARY.tool.debug}		: link
+${LIBRARY.tool.gprof}		: link
+
+
+link: FRC ${DIR.targetarch}
+	${RM} ${LIBRARY}
+	@( for dir in ${SUBDIRS} ; do \
+		type=${TYPE} ; \
+		${ECHO} $$dir:$$type; \
+		(   \
+		    if [ ! -d $$dir/${DIR.targetarch}/$$type ] ; then \
+			( \
+			 cd $$dir; \
+			 echo "----["`${PWDCMD}`"]----"; \
+			 make $$type \
+			) \
+		    fi; \
+		    cd $$dir/${DIR.targetarch}/$$type; \
+		    ${ECHO} "${AR} ${AROPTS} ../../../${LIBRARY} *.o"; \
+		    ${AR} ${AROPTS} ../../../${LIBRARY} *.o \
+		) ; \
+	 done; \
+	 ${ECHO} "${RANLIB} ${LIBRARY}"; \
+	 ${RANLIB} ${LIBRARY}; \
+	)
+
+${LIBRARY.shared.sa}: FRC
+	${RM} ${LIBRARY.shared.sa}
+	@( \
+	    type=shared.sa; \
+	    for dir in ${SUBDIRS} ; do \
+		if [ -d $$dir/${DIR.targetarch}/$$type ]; then \
+		(   \
+		    cd $$dir/${DIR.targetarch}/$$type; \
+		    files=`ls`; \
+		    if [ "x$$files" != "x" ]; then \
+			${ECHO} $$dir:$$type; \
+		        ${ECHO} "${AR} ${AROPTS} ../../../${LIBRARY.shared.sa} *.o"; \
+		        ${AR} ${AROPTS} ../../../${LIBRARY.shared.sa} *.o ; \
+		    fi \
+		) \
+		fi ; \
+	    done; \
+	    ${ECHO} "${RANLIB} ${LIBRARY.shared.sa}"; \
+	    ${RANLIB} ${LIBRARY.shared.sa}; \
+	    ${RM} ${LIBRARY.shared.sa.base}; \
+	    ${LN} ${LIBRARY.shared.sa} ${LIBRARY.shared.sa.base}; \
+	)
+
+DOTsoDIRS=	${SUBDIRS:%=%/${DIR.targetarch}/shared}
+DOTsoFILES=	${DOTsoDIRS:%=%/*.o}
+MAPFILE=	Reordering.data/mapfile
+MAPFILE.arch=   ${MAPFILE}${TARGET_ARCH}
+
+${LIBRARY.shared}: FRC ${MAPFILE.arch}
+	${RM} ${LIBRARY.shared}
+	@for file in  ${DOTsoDIRS} ; do \
+		${ECHO} "	$$file/*.o"; \
+	done
+	${ECHO} "${SHLIBCMD} ${PURETEXT} ${HNAME} -M ${MAPFILE.arch} -o ${LIBRARY.shared}"; \
+	${SHLIBCMD} ${PURETEXT} ${HNAME} -M ${MAPFILE.arch} -o ${LIBRARY.shared} ${DOTsoFILES}; \
+	${RM} ${LIBRARY.shared.base}
+	${LN} ${LIBRARY.shared} ${LIBRARY.shared.base}
+
+${MAPFILE.arch}: ${MAPFILE}
+	sed -e 's/TARGET_ARCH/$(TARGET_ARCH)/' ${MAPFILE} > $@
+
+#
+# Implementation
+#
+
+${LIBRARY.installed.tool.optimized}: ${LIBRARY.tool.optimized}
+	@if [ "x${INSTALL.tool.directory}" = "x" ] ; then \
+		: ; \
+	else \
+		if [ ! -d ${INSTALL.tool.directory} ] ; then \
+			${DINSTALL} ${INSTALL.tool.directory}; \
+		fi ;\
+		${ECHO} ${LIBRARY.tool.optimized} "	=>" ${INSTALL.tool.directory}; \
+		${TINSTALL.bsd} ${LIBRARY.tool.optimized} ${INSTALL.tool.directory} ; \
+		${TINSTALL.posix} -f ${INSTALL.tool.directory} ${LIBRARY.tool.optimized} ; \
+		${RANLIB} $@ ; \
+		${RM} ${INSTALL.tool.directory}/${LIBRARY.name.tool.optimized} ; \
+		${LN} ${LIBRARY.installed.tool.optimized} \
+		      ${INSTALL.tool.directory}/${LIBRARY.name.tool.optimized} ; \
+	fi
+
+
+${LIBRARY.installed.tool.debug}: ${LIBRARY.tool.debug}
+	@if [ "x${INSTALL.tool.directory}" = "x" ] ; then \
+		: ; \
+	else \
+		if [ ! -d ${INSTALL.tool.directory} ] ; then \
+			${DINSTALL} ${INSTALL.tool.directory}; \
+		fi ;\
+		${ECHO} ${LIBRARY.tool.debug} "	=>" ${INSTALL.tool.directory}; \
+		${TINSTALL.bsd} ${LIBRARY.tool.debug} ${INSTALL.tool.directory} ; \
+		${TINSTALL.posix} -f ${INSTALL.tool.directory} ${LIBRARY.tool.debug} ; \
+		${RANLIB} $@ ; \
+		${RM} ${INSTALL.tool.directory}/${LIBRARY.name.tool.debug} ; \
+		${LN} ${LIBRARY.installed.tool.debug} \
+		      ${INSTALL.tool.directory}/${LIBRARY.name.tool.debug} ; \
+	fi
+
+
+${LIBRARY.installed.tool.gprof}: ${LIBRARY.tool.gprof}
+	@if [ "x${INSTALL.tool.directory}" = "x" ] ; then \
+		: ; \
+	else \
+		if [ ! -d ${INSTALL.tool.directory} ] ; then \
+			${DINSTALL} ${INSTALL.tool.directory}; \
+		fi ;\
+		${ECHO} ${LIBRARY.tool.gprof} "	=>" ${INSTALL.tool.directory}; \
+		${TINSTALL.bsd} ${LIBRARY.tool.gprof} ${INSTALL.tool.directory} ; \
+		${TINSTALL.posix} -f ${INSTALL.tool.directory} ${LIBRARY.tool.gprof} ; \
+		${RANLIB} $@ ; \
+		${RM} ${INSTALL.tool.directory}/${LIBRARY.name.tool.gprof} ; \
+		${LN} ${LIBRARY.installed.tool.gprof} \
+		      ${INSTALL.tool.directory}/${LIBRARY.name.tool.gprof} ; \
+	fi
+
+
+${LIBRARY.installed.optimized}: ${LIBRARY.optimized}
+	@if [ "x${INSTALL.directory}" = "x" ] ; then \
+		: ; \
+	else \
+		if [ ! -d ${INSTALL.directory} ] ; then \
+			${DINSTALL} ${INSTALL.directory}; \
+		fi ;\
+		${ECHO} ${LIBRARY.optimized} "	=>" ${INSTALL.directory}; \
+		${TINSTALL.bsd} ${LIBRARY.optimized} ${INSTALL.directory} ; \
+		${TINSTALL.posix} -f ${INSTALL.directory} ${LIBRARY.optimized} ; \
+		${RANLIB} $@ ; \
+	fi
+
+
+${LIBRARY.installed.debug}: ${LIBRARY.debug}
+	@if [ "x${INSTALL.directory}" = "x" ] ; then \
+		: ; \
+	else \
+		if [ ! -d ${INSTALL.directory} ] ; then \
+			${DINSTALL} ${INSTALL.directory}; \
+		fi ;\
+		${ECHO} ${LIBRARY.debug} "	=>" ${INSTALL.directory}; \
+		${TINSTALL.bsd} ${LIBRARY.debug} ${INSTALL.directory} ; \
+		${TINSTALL.posix} -f ${INSTALL.directory} ${LIBRARY.debug} ; \
+		${RANLIB} $@ ; \
+	fi
+
+${LIBRARY.installed.gprof}: ${LIBRARY.gprof}
+	@if [ "x${INSTALL.directory}" = "x" ] ; then \
+		: ; \
+	else \
+		if [ ! -d ${INSTALL.gprof.directory} ] ; then \
+			${DINSTALL} ${INSTALL.gprof.directory}; \
+		fi ;\
+		${ECHO} ${LIBRARY.gprof} "	=>" ${LIBRARY.installed.gprof} ; \
+		${TINSTALL.bsd} ${LIBRARY.gprof} ${INSTALL.gprof.directory} ; \
+		${TINSTALL.posix} -f ${INSTALL.gprof.directory} ${LIBRARY.gprof} ; \
+		${MV} ${INSTALL.gprof.directory}/${LIBRARY.name.gprof} ${LIBRARY.installed.gprof} ; \
+		${RANLIB} $@ ; \
+	fi
+
+${LIBRARY.installed.static}: ${LIBRARY.static}
+	@if [ "x${INSTALL.directory}" = "x" ] ; then \
+		: ; \
+	else \
+		if [ ! -d ${INSTALL.directory} ] ; then \
+			${DINSTALL} ${INSTALL.directory}; \
+		fi ;\
+		${ECHO} ${LIBRARY.static} "	=>" ${INSTALL.directory}; \
+		${TINSTALL.bsd} ${LIBRARY.static} ${INSTALL.directory} ; \
+		${TINSTALL.posix} -f ${INSTALL.directory} ${LIBRARY.static} ; \
+		${RANLIB} $@ ; \
+	fi
+
+${LIBRARY.installed.shared}: ${LIBRARY.shared}
+	@if [ "x${INSTALL.directory}" = "x" ] ; then \
+		: ; \
+	else \
+		if [ ! -d ${INSTALL.directory} ] ; then \
+			${DINSTALL} ${INSTALL.directory}; \
+		fi ;\
+		if [ "${TARGET_ARCH}" = "-sun4-svr4" -o "${TARGET_ARCH}" = "-i386-svr4" -o "${TARGET_ARCH}" = "-ppc-svr4" ] ; then \
+			mcs -d ${LIBRARY.shared} ; \
+			mcs -a "${LIBRARY.shared} `grep 'OpenWindows' ${OWVersionFile}` `date +'%e %B %Y'`" ${LIBRARY.shared} ; \
+		fi ; \
+		${ECHO} ${LIBRARY.shared} "	=>" ${INSTALL.directory}; \
+		${TINSTALL.bsd} ${LIBRARY.shared} ${INSTALL.directory} ; \
+		${TINSTALL.posix} -f ${INSTALL.directory} ${LIBRARY.shared} ; \
+		${RM} ${INSTALL.directory}/${LIBRARY.name.shared.base}; \
+		${ECHO} ${LIBRARY.name.shared} "	=>" ${LIBRARY.name.shared.base} ; \
+		${LN} ${LIBRARY.name.shared} \
+		      ${INSTALL.directory}/${LIBRARY.name.shared.base} ; \
+	fi
+
+${LIBRARY.installed.shared.sa}: ${LIBRARY.shared.sa}
+	@if [ "x${INSTALL.directory}" = "x" ] ; then \
+	    : ; \
+	else \
+	    if [ ! -d ${INSTALL.directory} ] ; then \
+		${DINSTALL} ${INSTALL.directory}; \
+	    fi ; \
+	    if [ -f ${LIBRARY.shared.sa} ] ; then \
+		${ECHO} ${LIBRARY.shared.sa} "	=>" ${INSTALL.directory}; \
+		${TINSTALL.bsd} ${LIBRARY.shared.sa} ${INSTALL.directory} ; \
+		${TINSTALL.posix} -f ${INSTALL.directory} ${LIBRARY.shared.sa} ; \
+		${RANLIB} $@ ; \
+		${RM} ${INSTALL.directory}/${LIBRARY.name.shared.sa.base}; \
+		${ECHO} ${LIBRARY.name.shared.sa} "	=>" ${LIBRARY.name.shared.sa.base} ; \
+		${LN} ${LIBRARY.name.shared.sa} \
+		      ${INSTALL.directory}/${LIBRARY.name.shared.sa.base} ; \
+	    fi ; \
+	fi
+
+#
+# Lint rules
+#
+
+lint::			$${SOURCES.lint}
+
+%.ln:			${DIR.lint}/%.ln
+
+installlintlib::		${LIBRARY.installed.lint}
+
+${DIR.lint}/%.ln:	${DIR.lint} %.c ${HEADERS}
+	-@${LINT.c} -u ${ln.flag} $< -o $@ > ${@:.ln=.lo} 2>&1
+	@if [ -s ${@:.ln=.lo} ] ; then \
+	    ${ECHO} "Warning: lint problems: $<" ; \
+	    ${ECHO} "         See `pwd`/${@:.ln=.lo} for the lint output" ; \
+	else \
+		${RM} ${@:.ln=.lo} ; \
+	fi
+
+lintlib::		${LIBPART.lint}
+
+${LIBPART.lint}:	$${SOURCES} $${SOURCES.lint}
+	-@${LINT.c} -nu -C${LIBPART} ${SOURCES} -o ${LIBPART.lint} > ${DIR.lint}/l${LIBPREFIX}-l${LIBPART}.lo 2>&1
+
+${LIBRARY.installed.lint}: ${LIBRARY.lint}
+	@if [ "x${INSTALL.lintlib.dir}" = "x" ] ; then \
+		: ; \
+	else \
+		if [ ! -d ${INSTALL.lintlib.dir} ] ; then \
+			${DINSTALL} ${INSTALL.lintlib.dir}; \
+		fi ;\
+		${ECHO} ${LIBRARY.lint} "	=>" ${INSTALL.lintlib.dir}; \
+		${TINSTALL.bsd} ${LIBRARY.lint} ${INSTALL.lintlib.dir} ; \
+		${TINSTALL.posix} -f ${INSTALL.lintlib.dir} ${LIBRARY.lint} ; \
+	fi
+
+#
+# Other generic user callable targets
+#
+
+clean::  ${MAKE.clean.target}
+clobber:: clean ${MAKE.clobber.target}
+	@if [ -d ${DIR.targetarch} ]; then ${RMRECURSE} ${DIR.targetarch}; fi
+
+checkmakefile::
+	@echo "TOOL=        ${TOOL}"
+	@echo "DELIVERABLE= ${DELIVERABLE}"
+	@echo "Deliverable:"
+	@echo "  STATIC=      ${STATIC}"
+	@echo "    DB lookup= ${MAKE.METHOD.STATIC:sh}"
+	@echo "  SHARED=      ${SHARED}"
+	@echo "    DB lookup= ${MAKE.METHOD.SHARED}"
+	@echo "  Lint         ${LIBRARY.installed.lint}"
+	@echo "Tool:"
+	@echo "  Building"
+	@echo "    DB lookup= ${TOOL.METHOD:sh}"
+	@echo "  Installing"
+	@echo "    DB lookup= ${INSTALLTOOL.METHOD}"
+
+Imakefile: Makefile
+	@if [ -f Imakefile ] ; then \
+	    if [ -f Imakefile- ] ; then \
+		${RM} Imakefile-; \
+	    fi; \
+	    ${MV} Imakefile Imakefile- ;\
+	fi
+	@( \
+	echo "#include <Library.tmpl>"; \
+	echo; \
+	echo "#include \"../../../XView.config\""; \
+	echo; \
+	echo "/**/############################" ;\
+	echo "/**/# @(#)libparent	1.15 92/06/26 ;\
+	echo "/**/############################" ;\
+	echo ;\
+	echo "MORE TO DO";\
+	echo ;\
+	echo "#include \"../Imakefile.master\"" ;\
+	echo ;\
+	) > Imakefile
+

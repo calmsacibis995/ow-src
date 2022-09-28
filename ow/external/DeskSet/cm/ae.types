@@ -1,0 +1,55 @@
+ptype Sun_Appt_Editor {
+    start "$OPENWINHOME/bin/ae -tooltalk";
+    per_session 5;
+    handle:
+	/*     
+	 *
+	 * Optional extra arguments for these requests:
+	 *            in    messageID	msgid
+	 *            in    string	title
+	 */
+
+/* content display */
+session	Display (in Sun_CM_Appointment text) => start;
+session	Display (in Sun_CM_Appointment text, in title text) => start;
+session	Display (in Sun_CM_Appointment text, in messageID text) => start;
+session	Display (in Sun_CM_Appointment text, in messageID text, in title text) => start;
+
+/* content compose */
+session	Edit (out Sun_CM_Appointment text) => start;
+session	Edit (out Sun_CM_Appointment text, in title text) => start;
+session	Edit (out Sun_CM_Appointment text, in messageID text) => start;
+session Edit (out Sun_CM_Appointment text, in messageID text, in title text) => start;
+
+/* content edits */
+session	Edit (inout Sun_CM_Appointment text) => start;
+session	Edit (inout Sun_CM_Appointment text, in title text) => start;
+session	Edit (inout Sun_CM_Appointment text, in messageID text) => start;
+session Edit (inout Sun_CM_Appointment text, in messageID text, in title text) => start;
+
+
+	/*
+	 * Optional extra arguments for these requests:
+	 *            in    messageID	msgid
+	 *            in    string      title
+	 */
+
+/* file display */
+file Display (in Sun_CM_Appointment contents) => start;
+file Display (in Sun_CM_Appointment contents, in title text) => start;
+file Display (in Sun_CM_Appointment text, in messageID text) => start;
+file Display (in Sun_CM_Appointment contents, in messageID text, in title text) => start;
+
+/* file compose */
+file Edit (out Sun_CM_Appointment contents) => start;
+file Edit (out Sun_CM_Appointment text, in title text) => start;
+file Edit (out Sun_CM_Appointment text, in messageID text) => start;
+file Edit (out Sun_CM_Appointment text, in messageID text, in title text) => start;
+
+/* file edit */
+file Edit (inout Sun_CM_Appointment contents) => start;
+file Edit (inout Sun_CM_Appointment text, in title text) => start;
+file Edit (inout Sun_CM_Appointment text, in messageID text) => start;
+file Edit (inout Sun_CM_Appointment text, in messageID text, in title text) => start;
+};
+

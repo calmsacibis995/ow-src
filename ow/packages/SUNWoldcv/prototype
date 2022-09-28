@@ -1,0 +1,43 @@
+#       Copyright (c) 1990-92 Sun Microsystems, Inc.
+#               All Rights Reserved
+#
+#	"@(#)prototype	1.5 94/11/02   Sun Microsystems" 
+#
+#  OPEN LOOK document and help viewer tools
+
+i pkginfo
+i copyright=../copyright
+i depend
+
+!HOME=../openwin
+
+#   We need to put three symlinks into /usr/lib for SCD 2.0 compliance
+d none lib 0775 root bin
+
+d none openwin 0775 root bin
+
+!search  $HOME/bin
+d none openwin/bin 0775 root bin
+f none openwin/bin/ab_admin 0775 root bin
+f none openwin/bin/ae 0775 root bin
+f none openwin/bin/answerbook 0775 root bin
+f none openwin/bin/docviewer 0775 root bin
+f none openwin/bin/helpopen 0775 root bin
+s none openwin/bin/helpviewer=./docviewer
+f none openwin/bin/navigator 0775 root bin
+f none openwin/bin/viewprint 0775 root bin
+
+
+!search  $HOME/lib/locale
+d none openwin/lib		0775 root bin
+d none openwin/lib/locale	0775 root bin
+d none openwin/lib/locale/C	0775 root bin
+
+
+!search  $HOME/lib/locale/C/help
+d none openwin/lib/locale				0775 root bin
+d none openwin/lib/locale/C				0775 root bin
+d none openwin/lib/locale/C/help			0775 root bin
+f none openwin/lib/locale/C/help/helpviewer.info	0664 root bin
+f none openwin/lib/locale/C/help/navigator.info		0664 root bin
+f none openwin/lib/locale/C/help/viewer.info		0664 root bin

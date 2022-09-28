@@ -1,0 +1,114 @@
+#
+# @(#)README.buildit	1.1 94/05/23
+#
+The work horse of the build process is done by the script, buildit.
+
+Buildit sets up the various environment variables and perform a build,
+placing the output in a log file.
+
+By default, this script will perform a full galactic build rooted at
+the current directory.  If there are any parameters, they will be used
+as the make target instead of `galactic'.  To use this script to
+perform a partial build in a subdirectory, set the BUILD_DIR
+environment variable to the base of the build tree and specify the
+target to build.
+
+In OW4-94, the build assumes that the following are availiable, 
+preferably localy installed:
+
+       The entire Solaris distribution
+       The SPARCworks or PROWworks compiler suite (c, c++, & support)
+       DevGuide
+       The XIL Developer's Kit
+
+Two environment variables have to be set: XW_HOME and GUIDEHOME.
+The default value for XW_HOME is /usr/openwin, and GUIDEHOME is
+/opt/SUNWguide/bin.  
+
+If the X11 header files and libraries are not located under
+/usr/openwin, then XW_HOME needs to point to where they are installed.
+
+If Devguide is not installed under /opt/SUNWguide then GUIDEHOME
+will have to be set to where Devguide has been installed.
+
+The build instructions follows:
+
+		OpenLook Toolkits with Deskset, Version 3.4
+
+The estimated build time for this consolidation is: 15 hours on sparc,
+and approximately 36 hours on i386.
+
+In the following instructions, $ARCH has the value of sparc or i386
+depending the build machine architecture.
+
+	1. Set XW_HOME to /usr/openwin
+
+hostname% XW_HOME=/usr/openwin
+
+	2. Create your build directory:
+
+hostname# mkdir /win/ow 
+
+	3. Change to your source file directory:
+
+hostname# cd /source/ow 
+
+	4. Use the tar command to copy the source files to your build directory:
+
+hostname# tar cf - . | (cd /win/ow; tar xpf -)
+
+	5. Change to the source directory:
+
+hostname# cd /win/ow
+
+	6. Run the buildit script to start the build. The output will
+	automatically be redirected to: log/buildit-OL-$ARCH-svr4.log.
+	Approximate time for this step: 15 hours on sparc, and 24 hours
+	on i386.
+
+hostname# ./buildit &
+
+	7. If you want to continuously view the make output, execute
+	the following step. Omit the -f option to view the make output
+	intermittently.
+
+hostname# tail -f log/buildit-OL-$ARCH-svr4.log
+
+Press Ctrl C to stop the tail.
+
+The following warning messages will appear in your logfile; they do not 
+affect your build and can be ignored:
+
+ make: Warning: Too many rules defined for target ../../proto-sun4-svr4/lib
+ "/usr/include/sys/tiuser.h", line 198: warning: macro redefined: ROUNDUP
+ "../../include/Xol/OlgxP.h", line 26: warning: macro redefined: OW_I18N
+ "FCheckBox.c", line 329: warning: argument is incompatible with prototype: arg #8
+ "Form.c", line 2046: warning: assignment type mismatch
+ "ListPane.c", line 3524: warning: improper pointer/integer combination: arg #2
+ "/usr/openwin/include/X11/Xmd.h", line 67: warning: comment is replaced by "##"
+ "/usr/openwin/include/X11/Xlibint.h", line 58: warning: macro redefined: _XBCOPYFUNC
+
+	8. Change to the /win/ow directory:
+
+hostname# cd win/ow
+
+	9. Make the packages. Approximate time for this step: 25 minutes. 
+
+hostname# ./proto-tool-Obj-sun4-svr4/
+make_release_packages   OL-3.4
+
+At the completion of this step, a logfile is created at:
+ /win/ow/proto-packages/OL-3.4/logs/package_build
+
+The completed packages will be installed under: 
+proto-packages/OL-3.4/<packagename>
+
+Note - If you're not assembling a CD for your release, you can skip the next 
+step.
+
+	10. Copy your completed packages to /pkgs. (This step populates
+	the /pkgs directory in preparation for the CD assembly process):
+
+hostname# cd /win/ow/proto-packages/OL-3.4/<packagename>
+
+hostname# find SUNW* -print -depth | cpio -pdumv /pkgs

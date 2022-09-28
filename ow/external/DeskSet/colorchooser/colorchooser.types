@@ -1,0 +1,45 @@
+ptype Sun_DeskSet_colorchooser {
+	per_session	3;
+	start		"$OPENWINHOME/bin/colorchooser -tooltalk -depth x -visual y -lc_basiclocale z";
+};
+
+otype Sun_DeskSet_Object_colorchooser {
+	handle:
+		launch(in string locale, in int depth,
+		       in int visual) => Sun_DeskSet_colorchooser session start;
+		status(in string status_string) => Sun_DeskSet_colorchooser session;
+		dispatch_data(in string sel_name) => Sun_DeskSet_colorchooser session;
+		move(in int xpos, in int ypos, in int width, in int height, 
+			in int position) => Sun_DeskSet_colorchooser session;
+		quit() => Sun_DeskSet_colorchooser session;
+		hide() => Sun_DeskSet_colorchooser session;
+		expose() => Sun_DeskSet_colorchooser session;
+		retrieve_data(in string sel_name) => Sun_DeskSet_colorchooser session;
+		departing() => Sun_DeskSet_colorchooser session;
+		get_color(in string footer,
+			  in string icon,
+			  in string iconmask,
+			  inout Xv_singlecolor fg,
+			  inout Xv_singlecolor bg) => Sun_DeskSet_colorchooser session;
+};
+
+ptype Sun_MA_colorchooser {
+	start "$OPENWINHOME/bin/colorchooser -message_alliance";
+	per_session 1;
+	handle:
+	/*     
+	 *
+	 * Optional extra arguments for these requests:
+	 *            in    string      title
+	 */
+session Prop_Edit (out Color_Set text, in byte data, in byte data) => start;
+session Prop_Edit (out Color_Set text, in byte data, in byte data, in title text) => start;
+session Prop_Edit (out Color_Set text, in byte data, in byte data, in messageID text, in title text) => start;
+
+session Prop_Edit (inout Color_Set text, in byte data, in byte data) => start;
+session Prop_Edit (inout Color_Set text, in byte data, in byte data, in title text) => start;
+session Prop_Edit (inout Color_Set text, in byte data, in byte data, in messageID text, in title text) => start;
+
+};
+
+

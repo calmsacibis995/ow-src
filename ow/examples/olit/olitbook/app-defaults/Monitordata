@@ -1,0 +1,8 @@
+Monitordata*font:                               lucidasans-bold
+Monitordata*panel.layoutType:                   fixedcols
+Monitordata*panel.measure:                      2
+Monitordata*speed.string:                       Speed:
+Monitordata*direction.string:                   Direction:
+Monitordata*altitude.string:                    Altitude:
+Monitordata*StaticText.alignment:               right
+Monitordata*StaticText.gravity:                 east

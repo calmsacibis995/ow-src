@@ -1,0 +1,43 @@
+.\" Copyright (c) 1994 - Sun Microsystems, Inc.
+.TH fixframe 1  "24 March 1992"
+.IX "fixframe" "" "\f3fixframe\f1 \(em converts FrameMaker *.ps files to PostScript" ""
+.IX "PostScript" "convert" "PostScript" "convert FrameMaker *.ps files \(em \f3fixframe\f1(1)"
+.ds Ps P\s-2OST\s+2S\s-2CRIPT\s+2
+.SH NAME
+fixframe \- convert FrameMaker 2.0 PostScript files to conform
+to the PostScript structuring conventions
+.SH SYNOPSIS
+.B fixframe\ \  
+<\ \ 
+.I frame_file\ \  
+>\ \ 
+.I output_file
+.sp .5
+.SH DESCRIPTION
+.B fixframe 
+converts FrameMaker 2.0 \*(Ps files to follow the \*(Ps Document
+Structuring Conventions described in Appendix G of the \*(Ps Language
+Reference Manual.
+.B pageview
+will not work with unaltered FrameMaker 2.0 \*(Ps files.
+.sp .5
+.B fixframe
+is automatically run by
+.B pageview
+when a user attempts to view a FrameMaker 2.0 \*(Ps file using
+.B pageview.
+.sp .5
+Specifically,
+.B fixframe
+saves font definitions that occur between pages and inserts them 
+after the %%Page: comment for each page.
+.sp .5
+.SH "SEE ALSO"
+.BR pageview (1)
+.sp .5
+.LP
+.IR "\*(Ps Language Reference Manual" ,
+Adobe Systems Inc., Addison-Wesley
+.sp .5
+.SH TRADEMARK
+\*(Ps is a registered trademark of Adobe Systems Inc

@@ -1,0 +1,283 @@
+.\" Copyright (c) 1994 - Sun Microsystems, Inc.
+.TH pageview 1  "26 February 1992"
+.ds Ps P\s-2OST\s+2S\s-2CRIPT\s+2
+.IX "pageview" "" "\f3pageview\f1(1) \(em PostScript language previewer" ""
+.SH NAME
+pageview \- PostScript language previewer for OpenWindows
+.SH SYNOPSIS
+.B pageview
+[
+.B \-mono
+]
+[
+.BI \-w " paperwidth"
+]
+[
+.BI \-h " paperheight"
+]
+[
+.BI \-dpi " dots/inch"
+]
+.br
+	[
+.BI \-mcd " colordensity"
+]
+[
+.BI \-page " pagenumber"
+]
+[
+.BI \-dir " directory"
+]
+.br
+	[
+.B \-left|right|upsidedown
+]
+[
+.BI \-timeout " job_timeout (sec)"
+]
+[
+.B \-aa
+]
+.br
+	[
+.B \-low_memory
+]
+[
+.B \-usage
+]
+[
+.B \-v
+]
+[
+.B \-verbose
+]
+[
+.I psfile
+|
+\-
+]
+.SH DESCRIPTION
+.B pageview
+is an interactive \*(Ps previewer. 
+.B pageview
+renders a document, a page at a time, onto an offscreen bitmap
+of arbitrary size, resolution and orientation.
+You can then adjust the viewing window's size to see as much of the
+page as desired.
+The mouse buttons are used to position the page under the window in two
+different modes.
+.LP
+The left button moves the page in "relative mode".
+This allows you to move the page in a physically intuitive way.
+You press the left button on the page and while you drag the mouse around,
+the spot on the page that was under the mouse cursor when you pressed the
+button remains stationary relative to the cursor.
+.LP
+The middle button moves the page in "absolute mode".
+This allows you to easily get to the edges of the document, especially when
+the DPI is large and/or the window is small.  When you press the middle
+button on a point in the window, the page is adjusted so that the same
+relative point on the page is under the mouse.
+For example, if you press the middle button at the top right corner of the
+window, you will see the top right corner of the page.
+A little experimentation with a page at 300 dpi and you will find this
+mode indispensable.
+.LP
+The three menu buttons across the top of the main window are
+described below:
+.TP 9
+.B File
+The File menu is used to bring up the Load... or Print... dialogs.
+.TP 9
+.B Load...
+brings up a dialog which prompts for a directory and filename to load a
+new \*(Ps file.
+.TP 9
+.B Print...
+brings up a dialog which prompts for the name of the printer to send the
+\*(Ps  document to.
+You can print the whole document or only the current page.
+You may also write the \*(Ps to a named file.
+.TP 9
+.B View
+The View menu allows you to move to the Next, Previous, First and Last
+pages of multipage documents.
+.TP 9
+.B Edit
+The edit menu has two choices, \*(Ps and Properties.
+.TP 9
+.B PostScript...
+brings up a text editor with the \*(Ps document in it and a window
+which contains all of the errors and other output from the document.
+You may make changes to the document and press the run button to
+re-render the page.
+.TP 9
+.B Properties...
+brings up the property sheet for page size, orientation and resolution.
+.TP 9
+.B DPI:
+This lets you change the "resolution" of the retained bitmap which the page
+is being rendered onto.
+72 dpi will make a US Letter sized page be 612x792 pixels, where 300 dpi
+would be 2550x3300 pixels.
+This has the effect of making 72 dpi images appear smaller and 300 dpi pages
+appear larger due to the static resolution of the display.
+.B pageview
+starts out at 85 dpi, unless you have the environment variable 
+.SB $DPI 
+set to some other default, or you use the \fB-dpi\fP command line argument.
+.TP 9
+.B Size:
+This lets you change the size of the retained bitmap which the page is
+rendered onto.
+USLetter is 8.5x11", Legal is 8.5x14", and the European page sizes are,
+A3 29.7 x 42.0 cm, A4 21.0 X 29.7 cm, A5 14.8 x 21.0 cm, and B5 17.6 x 25.0 cm.
+These values can be set to custom values by the
+.B \-height
+and
+.B \-width
+command line arguments.
+.TP 9
+.B Orientation:
+This menu lets you choose which way to rotate the paper in 90 degree increments.
+This is useful for viewing slides which are commonly rendered in "Landscape
+left" orientation.
+.TP 9
+.B Timeout:
+This option allows you to select the job timeout value.
+This value is used by
+.B pageview
+as the amount of time in which a page of a document must be rendered onto
+the screen.
+If the page cannot be rendered in this time,
+.B pageview
+assumes that there is some sort of \*(Ps error on the page which
+is causing this problem (such as a string or procedure that does not end)
+and stops trying to display the page.
+However, often times, documents that contain complex graphics may
+take a longer than average amount of time to display.
+In this case, you should increase the job timeout value and attempt
+to display the page again.
+.TP 9
+.B Ignore PostScript Structuring Comments:
+.B pageview
+is designed to scan a \*(Ps file and determine the
+different sections of it based on \*(Ps Structuring Comments.
+For example, from reading these comments,
+.B pageview
+determines where each page of the document starts and ends.
+However, as there are many \*(Ps documents that do not use
+the comments,
+.B pageview
+often gets confused as to the number of pages in a document and/or where
+they began and end.
+Therefore, if you attempt to view a document, but feel that the
+resulting displayed document does not look as you expected, you may
+want to turn on this option.
+This option will assume that there are no \*(Ps Structuring
+comments, and interpret the file differently.
+Be aware though, this method of interpreting the \*(Ps file may be
+slower than the default method, especially if the file is very big.
+.SH OPTIONS
+.TP 5
+.B \-mono
+is used to force
+.B pageview
+to use a monochrome retained canvas on color systems.
+This saves memory and is faster on some framebuffers.
+.TP 9
+.BI \-w \ paperwidth
+sets the width of the "paper" to
+.I paperwidth
+inches, the default is 8.5.
+.TP 9
+.BI \-h \ paperheight
+sets the height of the "paper" to
+.I paperheight
+inches, the default is 11.
+.TP 9
+.BI \-dpi \ dots/inch
+sets the "dpi" of the "paper" to
+.IR dots/inch .
+The environment variable 
+.SB $DPI 
+is used if this option is not present, and the
+default is 85 if this variable is not in the environment.
+Caution must be used in setting this argument as well as the paper size
+args above, so you do not exhaust memory resources.
+For example a USLetter sized page previewed at 300 dpi, takes up
+300*8.5/8*300*11 or a little over a Megabyte.
+The same page at 1500 dpi takes over 26 Megabytes.
+.TP 9
+.BI \-mcd \ colordensity
+Sets the maximum color density.
+The default maximum color density is 100.
+However, if an image is to be viewed with a DPI greater than 100, it will not
+be displayed in color unless the maximum color density is set greater
+than 100.
+.TP 9
+.BI \-page \ pagenumber
+Sets the page number of the document that is to be displayed when
+.B pageview
+starts.
+.TP 9
+.BI \-dir \ directory
+Sets the current working directory to
+.I directory
+so that you can type filenames at the "Load File: " prompt relative to
+.IR directory .
+.TP 9
+.B \-left|right|upsidedown
+Sets the rotation of the page.
+.TP 9
+.BI \-timeout " job_timeout (sec)"
+Sets the job timeout value.
+The default job timeout value is 30 seconds.
+.TP 9
+.B \-aa
+Turns on antialiasing.
+.TP 9
+.B \-low_memory
+Runs a low memory version of 
+.B pageview.
+This version does not create the offscreen bitmap, and rather
+renders the document directly onto the viewing canvas.
+This uses less memory, but performance may suffer especially
+when the
+.B pageview
+window is hidden and then exposed, as the entire page must
+be rendered again.
+If the user attempts to move the page in "relative mode"
+(pan), the offscreen bitmap is automatically created as this
+function is not possible without it.
+Also, this option cannot be used if antialiasing is turned on.
+.TP 9
+.B \-usage
+Prints out all valid command line options.
+.TP 9
+.B \-v
+Prints out the current version of
+.B pageview.
+.TP 9
+.B \-verbose
+Prints lots of debugging information (not useful to the user)
+.TP 0
+If \fBpsfile\fP is specified, the \*(Ps code is taken from that file.
+If no argument is given,
+.B pageview
+comes up with no document in it and if
+a `\-' is given as the argument,
+.B pageview
+reads the \*(Ps program from standard input.
+.sp .5
+.SH "SEE ALSO"
+\".BR psh (1),
+.BR lp (1)
+.br
+OpenWindows user documentation
+.br
+.IR "\*(Ps Language Reference Manual" ,
+Adobe Systems Inc., Addison-Wesley
+.sp .5
+.SH TRADEMARK
+\*(Ps is a registered trademark of Adobe Systems Inc

@@ -1,0 +1,110 @@
+DESCRIPTION
+
+	The FooterPanel widget is a simple composite widget that provides a consistent 
+	interface for attaching a footer message to the bottom of a base window.
+	
+	The FooterPanel widget is comprised of 3 widget components:
+		footerpanel		(created automatically)
+		topchild		(created by application as child of footerpanel)
+		footerchild		(created by application as child of footerpanel)
+
+	The first widget created as a child of the footerpanel is the topchild, the
+	second becomes the footerchild.
+
+	The FooterPanel widget attempts to let its children grow/shrink to any
+	size.  However, if the FooterPanel is resized smaller, it sets both children
+	to its width but imposes all height restriction on the topchild (thus, the
+	bottom child remains the same height).  If the FooterPanel is resized larger,
+	it sets both children to its width and gives all height increase to the topchild
+	(again the bottomchild remains the same height). The intent is to essentially
+	allow the footerchild to float at the bottom of the base window.
+
+ 	For more detailed information on the FooterPanel Widget, see the following
+	Sections in the OPEN LOOK Intrinsics Toolkit Widget Set Reference Manual:
+		. FooterPanel
+
+
+EXAMPLE CODE
+
+The following function could be used to Create the example FooterPanel Widget shown 
+in the Table (All color specific code has been removed for simplification):
+	
+/***********************************************************************************/
+#include <X11/Intrinsic.h>
+#include <X11/StringDefs.h>
+#include <Xol/OpenLook.h>
+#include <Xol/FooterPane.h>
+
+#include <Xol/Form.h>
+#include <Xol/StaticText.h>
+
+			
+/*****************************************************************/	
+
+main(argc, argv)
+int argc;
+char **argv;
+{
+	Widget toplevel, footerpanel, topform, errortext;
+	XtAppContext app;
+
+	OlToolkitInitialize(NULL);
+	toplevel = XtAppInitialize(&app, "Test", 
+				(XrmOptionDescRec *)NULL,
+				(Cardinal)0, (int *)&argc, argv,
+				(String *)NULL, (ArgList)NULL, 0);
+
+	footerpanel = XtVaCreateManagedWidget("footer", 
+				footerPanelWidgetClass, 
+				toplevel, 
+				NULL);
+
+	/*
+	 * Create Topchild (first child): form 
+	 */
+	topform = XtVaCreateManagedWidget("topform", 
+				formWidgetClass,
+				footerpanel,
+				XtNborderWidth, (XtArgVal)1,
+				XtNwidth,  	(XtArgVal)100,
+				XtNheight, 	(XtArgVal)80,
+				NULL);
+
+	/* Here I could add other widgets to the "form"...*/
+
+
+	/*
+	 * Create FooterChild (second child): staticText 
+	 */
+	errortext = XtVaCreateManagedWidget("errortext", 
+				staticTextWidgetClass,
+				footerpanel,
+				XtNstring,	(XtArgVal)"errors:",
+				XtNgravity,	(XtArgVal)WestGravity,
+				NULL);
+
+	XtRealizeWidget(toplevel);
+	XtAppMainLoop(app);
+
+}
+/*******************************END EXAMPLE******************************/
+
+
+RESOURCES
+
+________________________________________________________________________________________________
+Resource Name		Type		Default		Brief Description
+________________________________________________________________________________________________
+
+XtNancestorSensitive	Boolean		TRUE		Will immediate parent receive events?
+XtNconsumeEvent		XtCallbackList	NULL		called when event occurs
+XtNdepth		int		(parent's)	number of bits used for each pixel
+XtNdestroyCallback	XtCallbackList	NULL		routines called when widget is destroyed 
+XtNheight		Dimension	(calculated)	height of widget's window in pixels
+XtNmappedWhenManaged	Boolean		TRUE		will widget be mapped when managed?
+XtNsensitive		Boolean		TRUE		will widget receive input events?
+XtNuserData		XtPointer	NULL		storage for user defined data
+XtNwidth		Dimension	(calculated)	width of widget's window in pixels
+XtNx			Position	0		x coord of widget's upper left corner
+XtNy			Position	0		y coord of widget's uuper left corner
+

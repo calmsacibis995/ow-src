@@ -1,0 +1,4 @@
+This is a sample help file for the form widget.
+
+The Form widget is a Constraint Widget which manages an arbitrary number
+of child widgets with the help of guidelines through contraint resources.

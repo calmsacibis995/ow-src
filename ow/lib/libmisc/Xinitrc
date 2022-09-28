@@ -1,0 +1,29 @@
+# @(#)Xinitrc	1.22 93/05/14	OpenWindows startup script.
+
+xrdb $OPENWINHOME/lib/Xdefaults		# Load Default X11 resource database
+if [ -f $HOME/.Xdefaults ]; then
+    xrdb -merge $HOME/.Xdefaults	# Load Users X11 resource database
+fi
+
+$OPENWINHOME/lib/openwin-sys 		# OpenWindows system initialization
+
+eval `locale_env -env`			# Set Locale Environment
+
+if [ "$OW_WINDOW_MANAGER" ]; then	# Alternate Window Manager
+    xsetroot -def			    # Clear root window
+    $OW_WINDOW_MANAGER & wmpid=$!	    # Start Alt Window Manager
+    dsdm &				    # OpenLook Drop Site Database
+    unset OW_WINDOW_MANAGER
+else
+    sleep 15 & pid=$!			# OpenLook Window Manager
+    olwm -syncpid $pid & wmpid=$!
+    wait $pid				# Pause until olwm inits
+fi
+
+if [ -x $HOME/.openwin-init ]; then
+    $HOME/.openwin-init			# Custom OpenWindows tools
+else
+    $OPENWINHOME/lib/openwin-init   	# Default OpenWindows tools
+fi
+
+wait $wmpid				# Wait for wm (key client) to exit

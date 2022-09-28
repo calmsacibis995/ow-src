@@ -1,0 +1,42 @@
+# SUNWowrqd (OpenWindows required package) post install/remove script.
+
+FONTINSTDIR=$BASEDIR/openwin/lib/X11/fonts
+export FONTINSTDIR
+
+for dir in 100dpi 75dpi F3 F3bitmaps Speedo Type1 Type1/outline misc Xt+
+do
+	if [ -d $FONTINSTDIR/$dir ]; then
+	  (
+		cd $FONTINSTDIR/$dir
+		rm -f fonts.dir
+		rm -f fonts.alias
+	  )
+	fi
+done
+
+if [ `/bin/uname -p` = "$ARCH" ] ; then
+    EXEC_BASE=$BASEDIR
+else
+    EXEC_BASE=/usr
+fi
+
+if [ $EXEC_BASE != "/usr" ]; then
+    LD_LIBRARY_PATH=$EXEC_BASE/openwin/server/lib:$EXEC_BASE/openwin/lib
+    export LD_LIBRARY_PATH
+fi
+
+if [ -x $EXEC_BASE/openwin/bin/mkfontdir ]; then
+    for dir in 100dpi 75dpi F3 F3bitmaps Speedo Type1 Type1/outline misc Xt+
+    do
+        if [ -d $FONTINSTDIR/$dir ]; then
+          (
+                cd $FONTINSTDIR/$dir
+                $EXEC_BASE/openwin/bin/mkfontdir . || exit 2
+                $EXEC_BASE/openwin/lib/installalias fonts.alias.req .
+          )
+        fi
+    done
+fi
+
+exit 0
+

@@ -1,0 +1,7 @@
+*st.string: If the text is too long to fit in the width provided by the StaticText widget, the text may be \"wrapped\" if the application requests it.
+*rt.st.height:                   120
+*rt.st.width:                    300
+statictext*rt.st.gravity:        south
+statictext2*rt.st.gravity:       north
+statictext2*rt.st.lineSpace:     50
+statictext2*rt.st.alignment:     right

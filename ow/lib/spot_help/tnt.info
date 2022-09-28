@@ -1,0 +1,585 @@
+#
+#
+#	tnt.info
+#
+#
+
+#
+#	WINDOWS
+#
+
+#
+:Frame
+Window Border
+
+This is the header, footer, or side of a window 
+that contains an application program.
+
+The border thickens when the window is selected.
+
+To select a window, point to the border and
+click SELECT.
+
+From the border, you can display a Window menu 
+with options for closing, moving the window back 
+or front, and quitting the window.
+
+To display the Window menu, point to the border
+and press the MENU mouse button. 
+
+#
+:Icon
+Icon
+
+This is a closed window for an application.
+
+The picture on this icon indicates what type
+of application it is.  For example, a mailbox 
+is on the Mail Tool icon.
+
+To open the application window, double-click
+SELECT on the icon.
+
+#
+:CloseButton
+Close Button
+
+Closes the selected window to an icon.  
+
+When you close an application's base window,
+its associated pop-up windows are also closed.
+
+#
+:PushPin
+Pushpin
+
+Pins up a pop-up window for continued access.  
+
+When the pin is lying on its side, the pop-up 
+window is unpinned.  The window is dismissed the 
+next time a command is successfully completed.
+
+To pin up the window, click SELECT on the pushpin.  The window is pinned when the pin pops into the 
+hole.
+
+To unpin the window, click SELECT on the pinned 
+pushpin to pop it out of the hole.  This 
+dismisses the window.
+
+#
+:ResizeCorner
+Resize Corner
+
+Expands or contracts the size of a window.
+
+To change the size of a window: 
+ 
+1. Move the pointer to any resize corner.  The
+   pointer changes from an arrow to a circle. 
+
+2. Press SELECT and drag the pointer. The resize
+   corner highlights. A bounding box shows you 
+   the location of the new window border.  
+
+3. Release SELECT.  The window is redisplayed 
+   in the new size, and the contents adjust to 
+   fit within the borders of the window.
+
+To constrain the move to horizontal or vertical, 
+press Control and SELECT.  The movement is 
+constrained in the direction you drag the resize
+corner.  For example, the window gets taller but
+not wider.
+
+#
+#	BASE WINDOW MENU
+#
+
+#
+:baseWindowMenuOpen
+Open
+
+Use the Open item to open the icon at the pointer location. When an application
+ is started up as an icon, the first time you open it, the application base 
+window is displayed in a location specified by the application. Subsequently, 
+each time you open an icon, the base window is displayed in the same location 
+and state that it had when you closed it to an icon.
+You can open an icon without displaying the Window menu by moving the pointer 
+onto an icon and double-clicking SELECT.
+
+#
+:baseWindowMenuClose
+Close
+
+Use the Close item to change the visual representation of the base window at
+the pointer location to an icon. When an application base window is closed,
+its associated pop-up windows are also closed whether or not the pop-up 
+windows are selected.
+Drag MENU onto the item and release MENU to close the window.
+
+#
+:baseWindowMenuFull
+Full Size
+
+Use the Full Size item to expand the dimensions of the window or icon at the
+pointer location to a larger format (specified by the application). An icon is
+opened and displayed in the full-size format when you choose Full Size from the
+icon Window menu.
+Drag MENU onto the item and release MENU to increase the size of the window or
+icon at the pointer location.
+You can use the Full Size command without displaying the Window menu by moving
+the pointer onto the window background and double-clicking SELECT.
+
+#
+:baseWindowMenuRestore
+
+Use the Restore Size item to return the dimensions of the window at the
+pointer location to the default window size. The Restore Size command does not
+return windows to an iconic state.
+Drag MENU onto the item and release MENU to restore the size of the window at 
+the pointer location to the default size.
+You can use the Restore Size command without displaying the Window menu by
+moving the pointer onto the window background and double-clicking SELECT.
+
+#
+:baseWindowMenuBack
+Use the Back item to move the window or icon at the pointer location to the
+back of the workspace and tuck it behind any overlapping windows or icons.
+Drag MENU onto the item and release MENU to move the window or icon at the
+pointer location to the back of the workspace.
+You can bring a window or icon to the front of the screen by selecting it. To
+select a window, move the pointer to the window background and click SELECT. 
+To select an icon, move the pointer onto an icon and click SELECT.
+
+#
+:baseWindowMenuRefresh
+Use the Refresh item to redisplay the window or icon at the pointer location.
+Drag MENU onto the item and release MENU to refresh the window or icon.
+
+#
+:baseWindowMenuQuit
+
+Use the Quit item to exit the application and remove the window or icon from
+the workspace. If you have made changes to the application that have not been
+saved, a Notice is displayed asking you if you want to save the changes.
+Drag MENU onto the item and release MENU to quit the application.
+
+#
+:baseWindowMenuProps
+
+No help is available for this item.
+
+#
+#	POPUP WINDOW MENU
+#
+
+#
+:popupWindowMenuDismiss
+When you remove pop-up windows from the workspace, they do not close to an 
+icon. The label on the top menu item of the pop-up Window menu is Dismiss to
+show this distinction.
+The Dismiss submenu has two choices: This Window, and All Pop-ups. 
+When you use This Window, the pop-up window at the pointer location is 
+dismissed.
+When you use All Pop-ups, all the pop-up windows for the application are
+dismissed.
+You can choose the default setting from the Dismiss submenu without displaying
+it by dragging MENU onto the Dismiss item and releasing MENU. To display the
+Dismiss submenu, drag MENU to the right in the Dismiss item. To choose an item
+from the Dismiss submenu, drag the pointer onto an item and release MENU.
+
+#
+:popupWindowMenuDismissThis
+The Dismiss submenu has two choices: This Window, and All Pop-ups. 
+When you use This Window, the pop-up window at the pointer location is 
+dismissed.
+Drag MENU onto the item and release MENU to dismiss the window at the pointer
+location.
+
+#
+:popupWindowMenuDismissAll
+The Dismiss submenu has two choices: This Window, and All Pop-ups. 
+When you use All Pop-ups, all the pop-up windows for the application are
+dismissed.
+Drag MENU onto the item and release MENU to dismiss the window at the pointer
+location.
+
+#
+:popupWindowMenuBack
+Use the Back item to move the window or icon at the pointer location to the
+back of the workspace and tuck it behind any overlapping windows or icons.
+Drag MENU onto the item and release MENU to move the window or icon at the
+pointer location to the back of the workspace.
+You can bring a window or icon to the front of the screen by selecting it. To
+select a window, move the pointer to the window background and click SELECT. 
+To select an icon, move the pointer onto an icon and click SELECT.
+
+#
+:popupWindowMenuRefresh
+Use the Refresh item to redisplay the pop-up window at the pointer location.
+Drag MENU onto the item and release MENU to refresh the window or icon.
+
+#
+:popupWindowMenuOwner
+Use the Owner? item to identify the base window that originated the pop-up
+widow. The title bar of the originating base window flashes and comes to the
+front of the screen.
+Drag MENU onto the item and release MENU to locate the owner of the pop-up
+window at the pointer location.
+
+#
+#	MENUS
+#
+
+#
+:menuBackground
+You can view and choose from any menu in three ways using the MENU button:
+Press-drag-release
+Click-move-click
+Pin the menu
+	Using Press-Drag-Release
+To use press-drag-release, press MENU, drag the pointer to the control you
+want, and release MENU. If you do not want to choose an item, move the pointer
+off the menu and release MENU
+	Using Click-Move-Click
+to use click-move-click, click MENU. The menu is displayed and stays on the
+screen. Move the pointer to the control you want and click SELECT or MENU.
+The control is executed and the menu is dismissed. If you do not want to 
+choose a control, move the pointer off the menu and click SELECT or MENU to
+dismiss the menu.
+	Using the Pushpin
+To pin up any menu that has a pushpin, press MENU, and drag the pointer to the
+pushpin. When the pin pops into the hole, release MENU. The menu becomes a 
+pop-up window, and you choose from it in the same way that you use controls
+in the control area of a window: Click SELECT to choose a control. The pinned
+menu remains on the screen until you dismiss it. To dismiss a pinned menu,
+move the pointer to the pushpin and click SELECT.
+
+#
+:menuPushpin
+Pushpin
+	Using the Pushpin
+To pin up any menu that has a pushpin, press MENU, and drag the pointer to the
+pushpin. When the pin pops into the hole, release MENU. The menu becomes a 
+pop-up window, and you choose from it in the same way that you use controls
+in the control area of a window: Click SELECT to choose a control. The pinned
+menu remains on the screen until you dismiss it. To dismiss a pinned menu,
+move the pointer to the pushpin and click SELECT.
+
+#
+#  SCROLLBARS
+#
+
+#
+:scrollbarBottom
+Scrollbar Bottom Cable Anchor
+
+Click SELECT on the cable anchor to scroll to the 
+end of the data displayed in the pane.
+
+#
+:scrollbarTop
+Scrollbar Top Cable Anchor
+
+Click SELECT on the cable anchor to scroll to the 
+beginning of the data displayed in the pane.
+
+Press or click MENU anywhere in the scrollbar to
+display the scrollbar menu.
+
+#
+:scrollbarLineForward
+Scrollbar Down arrow
+
+Use the down arrow button on the scrollbar
+elevator to change the view on the data that is
+displayed in the pane. 
+
+Click SELECT to scroll the contents of the pane 
+forward in the document one unit.  Press and 
+hold SELECT to repeatedly scroll the contents 
+of the pane.
+
+Press or click MENU anywhere in the scrollbar 
+to display the scrollbar menu.
+
+#
+:scrollbarLineBackward
+Scrollbar Up Arrow
+
+Use the up arrow button on the scrollbar
+elevator to change the view on the data that is
+displayed in the pane. 
+
+Click SELECT to scroll the contents of the pane 
+backward in the document one unit.  Press and 
+hold SELECT to repeatedly scroll the contents 
+of the pane.
+
+Press or click MENU anywhere in the scrollbar to
+display the scrollbar menu.
+
+#
+:scrollbarDrag
+Scrollbar Drag Area
+
+The drag area is the box between the two arrows.
+
+Use the drag area of the scrollbar elevator to
+move to an arbitrary location in the data.  Move
+the pointer to the drag area and press SELECT.
+The drag area highlights.  
+
+Drag the pointer to move the view in the pane 
+forward or backward in the data.  The pointer 
+can be moved anywhere, but remains constrained to
+the drag area until you release SELECT.  
+
+Press or click MENU anywhere in the scrollbar to
+display the scrollbar menu.
+
+#
+:scrollbarPageForward
+Scrollbar Cable
+
+Click SELECT in this part of the cable to page
+forward - scroll the pane forward an amount equal
+to its size.
+
+The length of the scrollbar cable represents the
+total size of the data from the application.  The
+position of the elevator on the cable shows the
+location of the pane contents in the total data.
+
+The dark area of the scrollbar cable shows the
+portion of the total application data that is
+currently visible in the pane.  If the cable is
+mostly dark, most of the file is visible.  If the
+dark area of the cable is small, the file is
+large relative to the size of the pane.
+
+Press or click MENU anywhere in the scrollbar to
+display the scrollbar menu.
+
+#
+:scrollbarPageBackward
+Scrollbar Cable
+
+Click SELECT in this part of the cable to page
+backwards - scroll the pane forward an amount
+equal to its size.
+
+The length of the scrollbar cable represents the
+total size of the data from the application.  The
+position of the elevator on the cable shows the
+location of the pane contents in the total data.
+
+The dark area of the scrollbar cable shows the
+portion of the total application data that is
+currently visible in the pane.  If the cable is
+mostly dark, most of the file is visible.  If the
+dark area of the cable is small, the file is
+large relative to the size of the pane.
+
+Press or click MENU anywhere in the scrollbar to
+display the scrollbar menu.
+
+#
+:scrollbarMenu
+Scrollbar Menu
+	
+Changes the view on the data that is displayed in
+a scrollable pane.  You can move the text at the
+top or left of the pane to the pointer location,
+move the text at the pointer location to the top
+or left of the pane, or return to the previous
+scrolling position.
+
+
+#
+:scrollbarHereToTop
+Scrollbar Here to Top menu item
+	
+Scrolls the line at the pointer location to the 
+top of the pane.
+
+#
+:scrollbarHereToLeft
+Scrollbar Here to Left menu item
+	
+Scrolls the line at the pointer location to the
+left of the pane.
+
+#
+:scrollbarTopToHere
+Scrollbar Top to Here menu item
+	
+Scrolls the line at the top of the pane to the
+pointer location.
+
+#
+:scrollbarLeftToHere
+Scrollbar Left to Here menu item
+	
+Scrolls the line at the left of the pane to the 
+pointer location.
+
+#
+:scrollbarPrevious
+Scrollbar Previous menu item
+	
+Undoes the last scrolling action and restores the 
+view in the pane to its condition before you did the last scrolling action.
+
+#
+:scrollbarSplitView
+Split View 
+
+Creates two separately scrollable views of the 
+same document. 
+
+You may select this option more than once 
+to create additional views.
+
+#
+:scrollbarJoinViews
+Join Views 
+
+Rejoins two parts of a text window
+split by Split View.
+
+
+#
+#	SCROLLING LIST
+#
+
+#
+:scrollListMenu
+Scrolling List Menu
+
+This menu is the default menu displayed when MENU is pressed over the body of a scrolling list.
+
+#
+:scrollListMenuLocateChoice
+Scrolling List Menu item: Locate Choice
+
+Scrolls an Exclusive scrolling list so that the chosen item is at the top of the list.
+
+#
+:scrollListMenuLocateNextChoice
+Scrolling List Menu item: Locate Next Choice
+
+Choosing Locate Choice from the Scrolling List Menu scrolls an exclusive scrolling list so that the next chosen item is displayed at the top of the list.
+
+#
+:scrollListMenuClearAll
+Scrolling List Menu item: Clear All Choices
+
+Deselects all chosen items in a non-exclusive scrolling list.
+
+#
+#	HELP WINDOW
+#
+
+:helpMagnifyingGlass
+Help Magnifying Glass
+	
+The magnifying glass shows the object at the
+pointer position when you pressed the Help key.  
+
+To change the view in the magnifying glass,
+and display help for a new object, move the 
+pointer to another object and press the Help key 
+again.
+
+#
+:helpWindow
+Help Window
+	
+The Help window for each application displays
+help for the object under the pointer.  To see
+more help text for the same application, move 
+the pointer to another object and press the 
+Help key again.  
+
+The view in the magnifying glass changes and 
+appropriate help text appears in the Help 
+window.
+
+When you move the pointer to a different
+application window and press the Help key 
+another Help window is displayed. 
+ 
+
+To dismiss a Help window:
+
+Move the pointer to the pushpin and
+click SELECT. This unpins the pin and
+dismisses the window.
+
+
+#
+#	NOTICES
+#
+
+#
+:notice
+Notice Window
+
+Appears when the system needs your 
+immediate attention.  A notice requires
+you to respond to its message.  
+
+Blocks input to the application 
+until you click on one of the notice's 
+buttons.   The button with the double
+outline is the default.
+
+Keyboard Accelerator: Return
+
+
+#
+#
+#	DEFAULT MESSAGES FOR CLASSCANVAS DESCENDANTS
+#
+#
+
+:canvas
+This is a TNT canvas
+#
+
+:bag
+This is a TNT bag
+#
+
+:borderbag
+This is a TNT borderbag
+#
+
+:panel
+This is a TNT panel
+#
+
+:Hslider
+This is a TNT horizontal slider
+#
+
+:Vslider
+This is a TNT vertical slider
+
+:textcanvas
+This is a TNT text canvas
+
+:jotcanvas
+This is a TNT Jot canvas
+
+:textfield
+This is a TNT textfield
+
+:numericfield
+This is a TNT numeric field
+
+:scrolllist
+This is a TNT scrolling list
+
+

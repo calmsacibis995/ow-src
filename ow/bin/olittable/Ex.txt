@@ -1,0 +1,136 @@
+.cDESCRIPTION
+
+	The Exclusives widget provides a simple way to build a one-of-many button 
+	selection widget.  This widget manages a set of child RectButton widgets
+	as well as their layout.
+
+	There are two types of components in the Exclusives widget:
+		the Exclusives widget 		(created automatically)
+		the RectButton choices		(created by application as children of 
+						Exclusives widget)
+
+	The Exclusives widget lays out its RectButton choices in a grid in the order they
+	are added as children (the number of rows, columns can be controlled by the
+	application).
+
+	The exclusives widget can be used by itself or it can be added as a single
+	child to a menu pane to implement a one-of-many choice menu.
+
+ 	For more detailed information on the Exclusives Widget, see the following
+	Sections in the OPEN LOOK Intrinsics Toolkit Widget Set Reference Manual:
+		. Exclusives
+		. RectButton
+
+
+
+EXAMPLE CODE
+
+/****************************************************************************************/
+#include <X11/Intrinsic.h>
+#include <X11/StringDefs.h>
+#include <Xol/OpenLook.h>
+#include <Xol/Exclusives.h>
+
+#include <Xol/ControlAre.h>
+#include <Xol/RectButton.h>
+
+/*******************************************************************
+ *choiceCB:  Callback is called when one of the items in the
+ *	   exclusive is selected.
+ *******************************************************************/
+void
+choiceCB(w, clientData, callData)
+Widget w;
+XtPointer clientData, callData;
+{
+	char *choicestring;
+
+	XtVaGetValues(w,
+			XtNlabel, &choicestring,
+			NULL);
+
+	printf("Selected Item:  %s\n", choicestring);
+
+}
+/*******************************************************************/
+
+
+static char * choices[] = {"Pick Me", "Or Me"};
+
+main(argc, argv)
+int argc;
+char **argv;
+{
+	Widget toplevel, exclusive, choice_item[XtNumber(choices)];
+	XtAppContext app;
+	int i;
+
+	OlToolkitInitialize(NULL);
+	toplevel = XtAppInitialize(&app, "Test", 
+				(XrmOptionDescRec *)NULL,
+				(Cardinal)0, (int *)&argc, argv,
+				(String *)NULL, (ArgList)NULL, 0);
+
+	/*
+	 * First, create Exclusive Widget to hold choices...
+	 */
+	exclusive = XtVaCreateManagedWidget("exclusive", 
+			    exclusivesWidgetClass, 
+			    toplevel,
+			    /* Layout choices in columns */
+			    XtNlayoutType, (XtArgVal) OL_FIXEDCOLS,
+			    /* specify number columns = 1 */
+			    XtNmeasure, 	(XtArgVal) 1,
+			    NULL);
+
+	/*
+	 * Create RectButton choice items as children of
+	 * exclusive widget.
+	 */
+	for (i = 0; i < XtNumber(choices); i++){
+	       choice_item[i] =XtVaCreateManagedWidget(choices[i],
+			    rectButtonWidgetClass,
+			    exclusive,
+			    NULL);
+	       XtAddCallback(choice_item[i], XtNselect, choiceCB, NULL);
+	}
+
+	XtRealizeWidget(toplevel);
+	XtAppMainLoop(app);
+
+}
+/******************************END EXAMPLE****************************/
+
+
+
+
+
+RESOURCES
+_______________________________________________________________________________________________
+Resource Name		Type		Default		Brief Description
+_______________________________________________________________________________________________
+
+XtNancestorSensitive	Boolean		TRUE		Will immediate parent receive events?
+XtNconsumeEvent		XtCallbackList	NULL		called when event occurs
+XtNdepth		int		(parent's)	number of bits used for each pixel
+XtNdestroyCallback	XtCallbackList	NULL		routines called when widget is destroyed 
+XtNheight		Dimension	(calculated)	height of widget's window in pixels
+XtNlayoutType		OlDefine	OL_FIXEDROWS	layout policy of child widgets
+XtNmappedWhenManaged	Boolean		TRUE		will widget be mapped when managed?
+XtNmeasure		int		1		* number of rows/cols or fixed hgt/wth
+XtNreferenceName	String		NULL		see manpage		
+XtNreferenceWidget	Widget		NULL		see manpage
+XtNnoneSet		Boolean		FALSE		can all choice buttons be unset at once?
+XtNsensitive		Boolean		TRUE		will widget receive input events?
+XtNtraversalOn		Boolean		TRUE		is mouseless turned "on" for widget?
+XtNuserData		XtPointer	NULL		storage for user defined data
+XtNwidth		Dimension	(calculated)	width of widget's window in pixels
+XtNx			Position	0		x coord of widget's upper left corner
+XtNy			Position	0		y coord of widget's uuper left corner
+
+
+
+
+
+	
+	

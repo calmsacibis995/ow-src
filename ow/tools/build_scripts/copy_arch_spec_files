@@ -1,0 +1,115 @@
+#!/bin/sh
+# 
+# @(#)copy_arch_spec_files	1.1 95/12/22
+#
+#   Copy the specified architecture specific files from the build-tree to:
+#   <dest_dir>/SOURCE+SCCS_S596_<release-name> and
+#   <dest_dir>/SOURCE_TEST_S596_<release-name>
+#
+# Usage:
+#       cd build-tree
+#       copy_arch_spec_files <dest-dir> <release-name>
+
+
+DestDir=$1
+Release=$2
+
+CurDir=`pwd`
+HandOffDir=$DestDir/SOURCE+SCCS_S596_$Release
+BuildTestDir=$DestDir/SOURCE_TEST_S596_$Release
+
+echo ... CurDir is $CurDir ...
+echo ... HandOffDir is $HandOffDir ...
+echo ... BuildTestDir is $BuildTestDir ...
+
+#
+#  Copy i386 specific SCCS files to HandOffDir
+#
+find . -name s.s494-i386-galactic-gprof.cfg -print |cpio -pdvm $HandOffDir
+find . -name s.s494-i386-galactic.cfg -print |cpio -pdvm $HandOffDir
+find . -name s.s494-i386-galactic.db -print |cpio -pdvm $HandOffDir
+find . -name s.cps.exe-i386 -print |cpio -pdvm $HandOffDir 
+find . -name s.libcps.a-i386.Z -print |cpio -pdvm $HandOffDir 
+find . -name s.libft.a-i386.Z -print |cpio -pdvm $HandOffDir 
+find . -name s.openwin-menu-utilities-i386-svr4 -print |cpio -pdvm $HandOffDir
+find . -name s.uisschema-i386 -print |cpio -pdvm $HandOffDir
+
+#
+#  Copy ppc specific SCCS files to HandOffDir
+#
+find . -name s.s494-ppc-galactic-gprof.cfg -print |cpio -pdvm $HandOffDir
+find . -name s.s494-ppc-galactic.cfg -print |cpio -pdvm $HandOffDir
+find . -name s.s494-ppc-galactic.db -print |cpio -pdvm $HandOffDir
+find . -name s.cps.exe-ppc -print |cpio -pdvm $HandOffDir 
+find . -name s.libcps.a-ppc.Z -print |cpio -pdvm $HandOffDir 
+find . -name s.libft.a-ppc.Z -print |cpio -pdvm $HandOffDir 
+find . -name s.openwin-menu-utilities-ppc-svr4 -print |cpio -pdvm $HandOffDir
+find . -name s.uisschema-ppc -print |cpio -pdvm $HandOffDir
+
+#
+#  Copy over documentation files and sccs get them out
+#
+find . -name s.README.buildit -print |cpio -pdvm $HandOffDir 
+find . -name s.README.make_release_packages -print |cpio -pdvm $HandOffDir
+cd $HandOffDir/doc
+sccs get README.buildit
+sccs get README.make_release_packages
+
+#
+#  SCCS get the architecture specific files out 
+# 
+cd $HandOffDir/lib/libmisc
+sccs get openwin-menu-utilities-i386-svr4
+sccs get openwin-menu-utilities-ppc-svr4
+
+cd $HandOffDir/config/Templates
+sccs get s494-i386-galactic-gprof.cfg
+sccs get s494-i386-galactic.cfg
+sccs get s494-i386-galactic.db
+sccs get s494-ppc-galactic-gprof.cfg
+sccs get s494-ppc-galactic.cfg
+sccs get s494-ppc-galactic.db
+
+
+cd $HandOffDir/external/Docviewer/usr.lib/libft
+sccs get libft.a-i386.Z
+sccs get libft.a-ppc.Z
+
+cd $HandOffDir/external/Docviewer/usr.lib/libcps
+sccs get libcps.a-i386.Z
+sccs get libcps.a-ppc.Z
+
+cd $HandOffDir/external/Docviewer/build_tools
+sccs get uisschema-i386
+sccs get cps.exe-i386
+sccs get uisschema-ppc
+sccs get cps.exe-ppc
+
+#
+#  Copy architecture specific files and docs to BuildTestDir
+#
+cd $HandOffDir
+
+find . -name openwin-menu-utilities-i386-svr4 -print |cpio -pdvm $BuildTestDir
+find . -name s494-i386-galactic-gprof.cfg -print |cpio -pdvm $BuildTestDir
+find . -name s494-i386-galactic.cfg -print |cpio -pdvm $BuildTestDir
+find . -name s494-i386-galactic.db -print |cpio -pdvm $BuildTestDir
+find . -name libft.a-i386.Z -print |cpio -pdvm $BuildTestDir
+find . -name libcps.a-i386.Z -print |cpio -pdvm $BuildTestDir
+find . -name uisschema-i386 -print |cpio -pdvm $BuildTestDir
+find . -name cps.exe-i386 -print |cpio -pdvm $BuildTestDir
+
+find . -name openwin-menu-utilities-ppc-svr4 -print |cpio -pdvm $BuildTestDir
+find . -name s494-ppc-galactic-gprof.cfg -print |cpio -pdvm $BuildTestDir
+find . -name s494-ppc-galactic.cfg -print |cpio -pdvm $BuildTestDir
+find . -name s494-ppc-galactic.db -print |cpio -pdvm $BuildTestDir
+find . -name libft.a-ppc.Z -print |cpio -pdvm $BuildTestDir
+find . -name libcps.a-ppc.Z -print |cpio -pdvm $BuildTestDir
+find . -name uisschema-ppc -print |cpio -pdvm $BuildTestDir
+find . -name cps.exe-ppc -print |cpio -pdvm $BuildTestDir
+
+find . -name README.buildit -print |cpio -pdvm $BuildTestDir 
+find . -name README.make_release_packages -print |cpio -pdvm $BuildTestDir
+
+exit
+

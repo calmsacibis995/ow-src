@@ -1,0 +1,26 @@
+#! /bin/sh 
+#
+#     .OWcommands_wrapper 3/24/91
+#
+progname=`basename $0`; export progname
+arch=`/bin/uname -r 2>&- | egrep "^5\..|SVR4" 1>&- && echo svr4||/bin/arch 2>&-`
+prog=$OPENWINHOME/bin/$progname
+export PATH OPENWINHOME LD_LIBRARY_PATH
+
+if [ "$arch" = svr4 ]
+then
+	dist_arch=" $arch"
+	arch=sun4
+else
+	dist_arch=""
+fi
+
+if [ ! -f $prog ]
+then
+	PATH=../build_tools
+	prog=$progname.exe
+fi
+
+
+    eval exec $prog $opts '"$@"'
+

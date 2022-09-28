@@ -1,0 +1,18 @@
+This directory contains sample programs for the Desktop Integration Guide.
+
+The program directories are,
+   
+DnD		 ---> Drag & Drop example using state information
+Tooltalk	 ---> Tooltalk example of the Message Alliance protocol
+ce1		 ---> Classing Engine example #1
+ce2		 ---> Classing Engine example #2
+dnd_olit	 ---> olit example for Drag&Drop
+dnd_xview1	 ---> xview example for Drag&Drop
+dnd_xview2	 ---> Shows atoms converted in a Drag&Drop operation
+selection_olit	 ---> olit example for Selection Services
+selection_xview	 ---> xview example for Selection Services
+tooltalk_simple	 ---> a simple ToolTalk example
+
+
+Use the Makefile.customer to build the sample programs.
+    > make -f Makefile.customer 

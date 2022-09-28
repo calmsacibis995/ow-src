@@ -1,0 +1,159 @@
+DESCRIPTION
+
+	The ControlArea Widget is a composite widget which arranges its child widgets
+	as a group of "controls".  It lays out its children as specified by the 
+	application in one of four layout schemes:
+
+		Fixed Columns 		-  fixed number of rows and enough columns to
+					   hold children
+		Fixed Rows		-  fixed number of columns and enough rows to
+					   hold children
+		Fixed OverAll Width 	-  fixed width, but tall enough to hold all
+					   children
+		Fixed Overall Height	-  fixed height, but wide enough to hold all
+					   children
+
+	The children in each row align to the top of the row.  The distance between
+	the top of one row and the next is the height of the tallest row plus the
+	application specified inter-row spacing.
+
+	If a ControlArea is resized, it does not propogate the resize to its
+	children, therefore it should be used for laying out widgets which should
+	not resize when the overall window is resized (like buttons, choicesitems, etc).
+	
+	For more detailed information on the ControlArea Widget, see the following
+	Section in the OPEN LOOK Intrinsics Toolkit Widget Set Reference Manual:
+		. ControlArea
+
+
+EXAMPLE CODE
+/************************************************************************/
+#include <X11/Intrinsic.h>
+#include <X11/StringDefs.h>
+#include <Xol/OpenLook.h>
+#include <Xol/ControlAre.h>
+
+#include <Xol/Caption.h>
+#include <Xol/TextField.h>
+
+/************************************************************************
+ * CreateEntryField: Function used to create Captioned TextField.  
+ * This function returns the handle of the created Caption widget.
+ ************************************************************************/
+Widget
+CreateEntryField(name, parent, labelfont, label, txtfont, inputlen) 
+char *name;
+Widget parent;
+XFontStruct *labelfont;
+char *label;
+XFontStruct *txtfont;
+int inputlen;
+{
+	Widget caption, field;
+
+	/*
+	 * Create Caption 
+	 */  		
+	caption = XtVaCreateManagedWidget(name, 
+				captionWidgetClass,
+				parent, 
+				XtNlabel,(XtArgVal)label,
+				NULL);
+	if (labelfont != NULL)
+		XtVaSetValues(caption,
+				XtNfont, (XtArgVal)labelfont,
+				NULL);
+
+
+	/*
+	 * Create TextField as child of caption
+	 */
+	field = XtVaCreateManagedWidget("textentry",
+				textFieldWidgetClass, 
+				caption,
+				XtNmaximumSize, (XtArgVal)inputlen,
+				NULL);
+
+	if (txtfont != NULL)
+		XtVaSetValues(field,
+				XtNfont, (XtArgVal)txtfont,
+				NULL);
+
+	return(caption);
+
+}
+/************************************************************************/
+
+main(argc, argv)
+int argc;
+char **argv;
+{
+	XtAppContext app;
+	Widget toplevel, controlarea, field1, field2;
+	XFontStruct *smallfont;
+
+	OlToolkitInitialize(NULL);
+	toplevel = XtAppInitialize(&app, "Test", 
+				(XrmOptionDescRec *)NULL,
+				(Cardinal)0, (int *)&argc, argv,
+				(String *)NULL, (ArgList)NULL, 0);
+
+	/*
+	 * Create ControlArea with 2 text entry fields.
+	 */
+	controlarea = XtVaCreateManagedWidget("controlarea",
+				controlAreaWidgetClass, 
+				toplevel,
+				XtNborderWidth,	(XtArgVal) 1,
+				XtNlayoutType,	(XtArgVal)OL_FIXEDCOLS,
+				XtNalignCaptions,(XtArgVal)True,
+				NULL);
+
+	smallfont = XLoadQueryFont(XtDisplay(toplevel), "times-roman-10");
+
+	field1 = CreateEntryField("field1", controlarea, 
+						smallfont, "Product: ",
+						smallfont, 12);
+	field2 = CreateEntryField("field2", controlarea, 
+						smallfont, "UI-Type: ",
+						smallfont, 12);
+
+	XtRealizeWidget(toplevel);
+	XtAppMainLoop(app);
+
+}
+/**********************************END EXAMPLE******************************/
+
+
+
+
+RESOURCES
+_______________________________________________________________________________________________
+Resource Name		Type		Default		Brief Description
+_______________________________________________________________________________________________
+
+XtNalignCaptions	Boolean		FALSE		align all captions (right justified)?
+XtNancestorSensitive	Boolean		TRUE		Will immediate parent receive events?
+XtNbackground		Pixel		White		background color of widget
+XtNbackgroundPixmap	Pixmap		(none)		pixmap used for tiling the background
+XtNborderColor		Pixel		Black		border color of widget
+XtNborderPixmap		Pixmap		(none)		pixmap used for tiling the border
+XtNborderWidth		Dimension	0		width of widget's border in pixels
+XtNcenter		Boolean		FALSE		center each child widget in column?
+XtNconsumeEvent		XtCallbackList	NULL		called when event occurs
+XtNdepth		int		(parent's)	number of bits used for each pixel
+XtNdestroyCallback	XtCallbackList	NULL		routines called when widget is destroyed
+XtNhPad			Dimension	4		size in pixels of margin on sides 
+XtNhSpace		Dimension	4		space in pixels between columns
+XtNheight		Dimension	(calculated)	height of widget's window in pixels
+XtNlayoutType		OlDefine	OL_FIXEDROWS	layout policy of child widgets
+XtNmappedWhenManaged	Boolean		TRUE		will widget be mapped when managed?
+XtNmeasure		int		1		* number of rows/cols or fixed hgt/wth
+XtNsameSize		OlDefine	OL_COLUMNS	which children are forced to same width
+XtNsensitive		Boolean		TRUE		will widget receive input events?
+XtNuserData		XtPointer	NULL		storage for user defined data
+XtNvPad			Dimension	4		size in pixels of top/bottom margins
+XtNvSpace		Dimension	4		space in pixels between rows
+XtNwidth		Dimension	(calculated)	width of widget's window in pixels
+XtNx			Position	0		x coord of widget's upper left corner
+XtNy			Position	0		y coord of widget's uuper left corner

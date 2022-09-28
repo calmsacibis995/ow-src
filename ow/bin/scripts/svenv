@@ -1,0 +1,9 @@
+#!/usr/bin/sh
+#
+# Copyright (c) 1994, by Sun Microsystems, Inc.
+# All rights reserved.
+#
+# This command has been removed.  It has been replaced by this no-op
+# script to insure existing $HOME/.xinitrc and $HOME/.openwin-init files
+# continue to execute without error during window system startup.
+exit 0

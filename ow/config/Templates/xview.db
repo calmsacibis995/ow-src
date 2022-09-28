@@ -1,0 +1,11 @@
+#
+#	@(#)xview.db	1.4 91/06/24
+#
+
+olgx          lib    opt
+xview         lib    opt
+xview/imcb      lib    nobuild
+xvps	      lib    opt
+
+include <${SOURCEDIR}/config/Templates/opt.db>
+

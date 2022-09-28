@@ -1,0 +1,55 @@
+#
+
+# Copyright
+
+#
+#	@(#)Simple	1.4 90/12/04
+#
+
+#
+#	Preconditions:
+#		INCLUDE
+#
+#	Exports:
+#		AR
+#		AROPT
+#		AS
+#		CC
+#		CFLAGS
+#		CPPFLAGS
+#		FILES.junk
+#		LDFLAGS
+#		LINT
+#		LINTFLAGS
+#		LINTOPTS
+#		RANLIB
+#
+
+AR		= ar
+AROPT		= qv
+RANLIB		= ranlib
+LINT		= lint
+LINTOPTS	= -bnux
+CC		= cc
+AS              = as
+
+# --- Flags ---
+# Generate Postion-Independant-code
+#	-pic = 64k of entrypoints (16 bit offsets)
+#	-PIC = lots of entrypoints (32 bit offsets)
+LITTLEPIC	=
+BIGPIC		=
+PIC		= ${LITTLEPIC}
+
+
+CPPFLAGS= ${DEFINES} ${INCLUDE}
+CFLAGS	= -O 
+LDFLAGS	=
+LINTFLAGS= ${INCLUDE}
+
+
+#
+# Files that get removed when doing a   make clobber
+#
+FILES.junk	= core .make.state gmon.out
+

@@ -1,0 +1,31 @@
+#
+#"@(#)i.fontsalias	35.1 94/09/01   Sun Microsystems" 
+#
+# SUNWxwoft (X Windows optional fonts package) class action script for
+# fontsalias class. 
+
+if [ `/bin/uname -p` = "$ARCH" ] ; then
+	EXEC_BASE=$BASEDIR
+else
+	EXEC_BASE=/usr
+fi
+
+if [ $EXEC_BASE != "/usr" ]; then 
+	LD_LIBRARY_PATH=$EXEC_BASE/openwin/server/lib:$EXEC_BASE/openwin/lib 
+	export LD_LIBRARY_PATH 
+fi
+
+if [ ! -x $EXEC_BASE/openwin/lib/installalias ]
+then
+    # if installalias doesn't exist we cannot proceed
+    exit 2
+fi
+
+while   read src dst
+do
+	    cp $src $dst
+	    cd `dirname $dst`
+	    $EXEC_BASE/openwin/lib/installalias `basename $dst` . || exit 2
+done
+
+exit 0

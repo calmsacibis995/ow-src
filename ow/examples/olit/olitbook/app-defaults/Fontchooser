@@ -1,0 +1,95 @@
+*st.borderWidth:				4
+*Caption.font:					lucidasans-bold
+*bold.label:					Bold
+*italic.label:					Italic
+*font.label:					Font: 
+*style.label:					Style: 
+*fontcolor.label:				Font Color: 
+*backgroundcolor.label:				Background Color: 
+*scale.label:					Scale: 
+!
+! Resources for Fontchooser
+!
+fontchooser*font1.label:			times
+fontchooser*font2.label:			new century schoolbook
+fontchooser*font3.label:			palatino
+!
+! Set font color resources
+!
+fontchooser*fontcolor_ex.white.label:		Cyan
+fontchooser*fontcolor_ex.black.label:		Azure
+fontchooser*fontcolor_ex.red.label:		Coral
+fontchooser*fontcolor_ex.blue.label:		Plum
+fontchooser*fontcolor_ex.green.label:		Salmon
+fontchooser*fontcolor_ex.yellow.label:		Beige
+!
+! Set user data variables
+!
+fontchooser*fontcolor_ex.white.userData:	cyan
+fontchooser*fontcolor_ex.black.userData:	azure
+fontchooser*fontcolor_ex.red.userData:		coral
+fontchooser*fontcolor_ex.blue.userData:		plum
+fontchooser*fontcolor_ex.green.userData:	salmon
+fontchooser*fontcolor_ex.yellow.userData:	beige
+!
+! Set background color resources
+!
+fontchooser*backgroundcolor_ex.white.label:	Navy
+fontchooser*backgroundcolor_ex.black.label:	Red
+fontchooser*backgroundcolor_ex.red.label:	Pink
+fontchooser*backgroundcolor_ex.blue.label:	Gold
+fontchooser*backgroundcolor_ex.green.label:	Green
+fontchooser*backgroundcolor_ex.yellow.label:	Gray
+!
+! Set user data variables
+!
+fontchooser*backgroundcolor_ex.white.userData:	navy
+fontchooser*backgroundcolor_ex.black.userData:	red
+fontchooser*backgroundcolor_ex.red.userData:	pink
+fontchooser*backgroundcolor_ex.blue.userData:	gold
+fontchooser*backgroundcolor_ex.green.userData:	green
+fontchooser*backgroundcolor_ex.yellow.userData:	gray
+!
+!
+! Resources for Fontchooser2
+!
+!
+fontchooser2*font1.label:			rockwell
+fontchooser2*font2.label:			bembo
+fontchooser2*font3.label:			lucida sans
+!
+! Set font color resources
+!
+fontchooser2*fontcolor_ex.white.label:		Pink
+fontchooser2*fontcolor_ex.black.label:		Red
+fontchooser2*fontcolor_ex.red.label:		Orange
+fontchooser2*fontcolor_ex.blue.label:		Purple
+fontchooser2*fontcolor_ex.green.label:		Salmon
+fontchooser2*fontcolor_ex.yellow.label:		Violet
+!
+! Set user data variables
+!
+fontchooser2*fontcolor_ex.white.userData:	pink
+fontchooser2*fontcolor_ex.black.userData:	red
+fontchooser2*fontcolor_ex.red.userData:		orange
+fontchooser2*fontcolor_ex.blue.userData:	purple
+fontchooser2*fontcolor_ex.green.userData:	salmon
+fontchooser2*fontcolor_ex.yellow.userData:	violet
+!
+! Set background color resources
+!
+fontchooser2*backgroundcolor_ex.white.label:	Navy
+fontchooser2*backgroundcolor_ex.black.label:	Red
+fontchooser2*backgroundcolor_ex.red.label:	Pink
+fontchooser2*backgroundcolor_ex.blue.label:	Gold
+fontchooser2*backgroundcolor_ex.green.label:	Green
+fontchooser2*backgroundcolor_ex.yellow.label:	Gray
+!
+! Set user data variables
+!
+fontchooser2*backgroundcolor_ex.white.userData:	navy
+fontchooser2*backgroundcolor_ex.black.userData:	red
+fontchooser2*backgroundcolor_ex.red.userData:	pink
+fontchooser2*backgroundcolor_ex.blue.userData:	gold
+fontchooser2*backgroundcolor_ex.green.userData:	green
+fontchooser2*backgroundcolor_ex.yellow.userData:gray

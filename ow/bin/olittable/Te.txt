@@ -1,0 +1,182 @@
+DESCRIPTION
+
+	The TextEdit widget provides an n-line editing facility which has
+	both a customizable user interface AND a programmatic interface.  It
+	can be used for single line string entry and full-window editing.
+
+	The TextEdit widgets provides many distinct callback lists to handle:
+		. monitoring the state of the data
+		. monitoring the input in the TextEdit widget
+		. widget redisplay (so the application can add routines to
+		  display information in the margins)
+
+	There are 3 modes the TextEdit widget can use for wrapping:
+		. OL_WRAP_ANY - fit maximum characters on line, then wrap
+		. OL_WRAP_WHITESPACE - fit maximum number of words on line, then wrap
+		. OL_WRAP_OFF - crop lines, don't wrap
+
+	The TextEdit uses a TextBuffer to store and manipulate the contents of the
+	widget.  The application can get a handle to this TextBuffer and use
+	the TextBuffer utility functions to manipulate the text data directly.
+
+	The TextEdit widget can be used alone or within a ScrolledWindow to
+	get automatic scrolled text functionality.
+
+	For more complete and detailed information on the Text Widget, see the following
+	Section in the OPEN LOOK Intrinsics Toolkit Widget Set Reference Manual:
+		. TextEdit
+		. TextEdit Functions
+		. TextBuffer Functions
+
+
+EXAMPLE CODE
+
+The following code creates a scrollable, user-editable text area.
+
+/*****************************************************************************/
+#include <stdio.h>
+#include <X11/Intrinsic.h>
+#include <X11/StringDefs.h>
+#include <Xol/OpenLook.h>
+
+#include <Xol/TextEdit.h>
+#include <Xol/ControlAre.h>
+#include <Xol/ScrolledWi.h>
+#include <Xol/Form.h>
+
+
+/**********************************************************************
+ * modifyCB: Callback called whenever the TextEdit buffer is modified.
+ *********************************************************************/
+void
+modifyCB(w, clientData, callData)
+Widget w;
+XtPointer clientData, callData;
+{
+	OlTextModifyCallData *modified = (OlTextModifyCallData*)callData;
+
+	/*
+	 * This is brain-dead example, but it just shows when this
+	 * callback gets called...
+	 */		 
+	printf("cursor position= %d\n", modified->new_cursor);
+	printf("character typed = %s\n", modified->text);
+}
+
+/************************************************************************/	 
+main(argc, argv)
+int argc;
+char **argv;
+{
+	Widget toplevel, form, scrolledwin, textedit;
+	XtAppContext app;
+
+	OlToolkitInitialize(NULL);
+	toplevel = XtAppInitialize(&app, "Test", 
+				(XrmOptionDescRec *)NULL,
+				(Cardinal)0, (int *)&argc, argv,
+				(String *)NULL, (ArgList)NULL, 0);
+
+	/*
+	 * Create Scrolling Text window which resizes in response
+	 * to user resizes.
+	 */
+	form = XtVaCreateManagedWidget("form",
+				formWidgetClass,
+				toplevel,
+				NULL);
+	
+
+	scrolledwin = XtVaCreateManagedWidget("scrolledwin", 
+				scrolledWindowWidgetClass,
+				form,
+				XtNviewWidth,	(XtArgVal) 220,
+				XtNviewHeight,	(XtArgVal) 180,
+				XtNforceHorizontalSB,(XtArgVal)True,
+				XtNforceVerticalSB,(XtArgVal)True,
+				/* Set Form constraint resources */
+				XtNxAttachRight,(XtArgVal)True,
+				XtNxVaryOffset, (XtArgVal)False,
+				XtNxResizable,  (XtArgVal)True,
+				XtNyAttachBottom,(XtArgVal)True,
+				XtNyVaryOffset, (XtArgVal)False,
+				XtNyResizable,  (XtArgVal)True,
+				NULL);
+
+
+	textedit = XtVaCreateManagedWidget("textedit", 
+				textEditWidgetClass,
+				scrolledwin,
+				XtNeditType,	(XtArgVal)OL_TEXT_EDIT,
+				XtNwrapMode,	(XtArgVal)OL_WRAP_OFF,
+				XtNheight,	(XtArgVal)300,
+				XtNwidth,	(XtArgVal)350,
+				XtNtopMargin,	(XtArgVal)12,
+				XtNbottomMargin,(XtArgVal)12,
+				XtNleftMargin,	(XtArgVal) 8,
+				XtNrightMargin,	(XtArgVal) 8,
+				NULL);
+
+	XtAddCallback(textedit, XtNmodifyVerification, modifyCB, NULL);
+
+	XtRealizeWidget(toplevel);
+	XtAppMainLoop(app);
+
+}
+/**********************************END EXAMPLE******************************/
+
+
+	
+
+RESOURCES
+_______________________________________________________________________________________________
+Resource Name		Type		Default		Brief Description
+_______________________________________________________________________________________________
+
+XtNaccelerator		String		NULL		String which defines accelerator key
+XtNacceleratorText	String		Dynamic		string to be displayed as accelerator
+XtNancestorSensitive	Boolean		TRUE		Will immediate parent receive events?
+XtNbackground		Pixel		White		background color of widget
+XtNbackgroundPixmap	Pixmap		(none)		pixmap used for tiling the background
+XtNblinkRate		int		1000		rate of active input caret blinks in ms
+XtNborderColor		Pixel		Black		border color of widget
+XtNborderPixmap		Pixmap		(none)		pixmap used for tiling the border
+XtNborderWidth		Dimension	0		width of widget's border in pixels
+XtNbottomMargin		Dimension	0		number of pixels used for bottom margin
+XtNcharsVisible		int		50		number of characters visible on a line
+XtNcolormap		Pointer		DYNAMIC
+XtNconsumeEvent		XtCallbackList	NULL		called when event occur		
+XtNcursorPosition	OlTextPosition	0		position in text of insert cursor
+XtNdepth		int		(parent's)	number of bits used for each pixel
+XtNdisplayPosition	OlTextPosition	0		position of text displayed @ top of screen
+XtNeditType		OlDefine	OL_TEXT_EDIT	edit state of source(read-only/read-write)
+XtNfont			XFontStruct*	(OPENLOOK font)	pointer to font used to display text
+XtNfontColor		Pixel		Black		text font's color
+XtNheight		Dimension	0		height of widget in pixels
+XtNinputFocusColor	Pixel		Red		color of input focus caret
+XtNinsertTab		Boolean		TRUE		should the <Tab> key be insertable?
+XtNleftMargin		Dimension	0		number of pixels used for left margin
+XtNlinesVisible		int		16		number of lines visible in widget
+XtNmappedWhenManaged	Boolean		TRUE		will widget be mapped when managed?
+XtNmargin		Callback	NULL		proc called when pane is redisplayed
+XtNmnemonic		Usigned char	NULL		key used to activate widget
+XtNmodifyVerification	Callback	NULL		proc called on attempt to modify textbuffer
+XtNmotionVerification	Callback	NULL		Proc called when input cursor moves
+XtNpostModifyVerification Callback	NULL		proc called after text update completed
+XtNreferenceName	String		NULL		*see OLIT Widget Set Reference Manual
+XtNreferenceWidget	Widget		(Widget)0	*see OLIT Widget Set Reference Manual
+XtNrightMargin		Dimension	0		number of pixels used for right margin
+XtNscreen		Pointer		DYNAMIC
+XtNselectEnd		int		0		specifies last char position selected
+XtNselectStart		int		0		specifies 1st char position selected
+XtNsensitive		Boolean		TRUE		will widget receive input events?
+XtNsource		String		NULL		*see OLIT Widget Set Reference Manual
+XtNsourceType		OlDefine	OL_STRING_SOURCE defines type of text(string/disk/buffer)
+XtNtabTable		Pointer		NUL		ptr to array of tab positions
+XtNtopMargin		Dimension	0		number of pixels used for top margin
+XtNtraversalOn		Boolean		TRUE		is widget selectable during traversal?
+XtNuserData		XtPointer	NULL		storage for user defined data
+XtNwidth		Dimension	(calculated)	width of widget's window in pixels
+XtNwrapMode		OlWrapMode	OL_WRAP_WHITE_SPACE mode used to determine wrapping scheme
+XtNx			Position	0		x coord of widget's upper left corner
+XtNy			Position	0		y coord of widget's uuper left corner

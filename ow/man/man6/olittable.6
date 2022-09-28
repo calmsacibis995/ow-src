@@ -1,0 +1,34 @@
+.\" Copyright (c) 1994 - Sun Microsystems, Inc.
+.TH olittable 6 "19 July 91"
+.IX "olittable" "" "\f3olittable\f1(6) \(em periodic table demo" ""
+.SH NAME
+olittable \- OLIT widget demo program
+.SH SYNOPSIS
+.B olittable
+.SH DESCRIPTION
+.B Olittable
+is a simple application program that demonstrates
+OLIT widgets laid out in an imitation periodic table.
+.PP
+This splendid program will execute standalone, but to display additional
+information about each widget, the program requires a number of auxiliary
+files, named \f3*.txt\f1.
+These files contain additional information about widget resources and usage.
+.LP
+By default,
+.B olittable
+looks in the directory
+.BI $OPENWINHOME/lib/help/olittable ,
+then in the user's current working directory.
+.SH ENVIRONMENT
+.SM TABLEINFO
+\- overrides the location of the 
+.B "*.txt"
+files containing the auxiliary widget information.
+.SH FILES
+.IP \f3*.txt\f1
+each widget has a file whose base filename is the abbreviated
+symbol used in the periodic table ( "Rb" for \f3RectButton\f1,
+or "Cp" for \f3Caption\f1.)
+.SH SEE ALSO
+.I "OLIT Reference Manual"

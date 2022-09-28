@@ -1,0 +1,24 @@
+#	SUNWoldem (OPEN LOOK demo package) postremove script
+#
+# Link $OPENWINHOME/lib/openwin-menu-demo link to the correct menu file. This
+# link is included by the openwin-menu-program menu. If the demos are not
+# installed then it points to openwin-menu-demo-nodemo, which contains a short
+# message saying that the demos are not installed.  If the demos are installed
+# then it points to openwin-menu-demo-fulldemo which contains a list of the
+# OpenWindows demos.
+#
+# See also the SUNxwrqd (X Windows required package) postinstall script.
+
+(   # Run in a subshell to isolate any directory changes if we later expand this
+    # script.
+
+	DEMO_MENU="openwin-menu-demo-nodemo"
+	if [ -f "$BASEDIR/openwin/lib/$DEMO_MENU" ]; then
+		cd    $BASEDIR/openwin/lib
+		rm -f $BASEDIR/openwin/lib/openwin-menu-demo
+		ln -s $DEMO_MENU openwin-menu-demo
+	        installf $PKGINST $BASEDIR/openwin/lib/openwin-menu-demo s
+	fi
+)
+
+exit 0

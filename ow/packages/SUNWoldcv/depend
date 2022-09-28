@@ -1,0 +1,15 @@
+#	Copyright (c) 1990-92 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)depend	1.9	96/01/17 (c) Sun Microsystems, Inc.
+
+P SUNWcsr	Core Solaris, (Root)
+P SUNWcsu	Core Solaris, (Usr)
+P SUNWcar	Core Archictecture, (Root)
+P SUNWkvm	Core Architecture, (Usr)
+P SUNWesu	Extended System Utilities
+P SUNWaudio	Audio applications
+P SUNWlibms	Solaris Bundled shared libm
+P SUNWtltk      ToolTalk runtime
+P SUNWxwplt	X Windows platform software
+P SUNWolrte	OPEN LOOK toolkits runtime environment

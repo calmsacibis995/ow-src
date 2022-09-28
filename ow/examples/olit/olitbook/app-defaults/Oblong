@@ -1,0 +1,7 @@
+oblong*button.label:      OblongButton
+oblong2*background:       gray80
+oblong2*button.background:gray60
+oblong2*button.fontColor: white
+oblong2*scale:            19
+oblong2*button.font:      -b&h-lucida sans-bold-r-normal-sans-18-180-72-72-p-120-iso8859-1
+oblong2*button.label:     Big Button

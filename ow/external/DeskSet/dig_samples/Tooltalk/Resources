@@ -1,0 +1,19 @@
+AsciiEdit.base.orientation: vertical
+AsciiEdit.base.control.orientation: horizontal
+AsciiEdit.base.control.weight: 0
+
+AsciiEdit.base.control.save.weight: 0
+AsciiEdit.base.control.blank.weight: 1
+AsciiEdit.base.control.quit.weight: 0
+
+AsciiEdit.base.scrolledwin.weight: 1
+
+AsciiEdit.base.scrolledwin.forceHorizontalSB: False
+AsciiEdit.base.scrolledwin.forceVerticalSB: True
+AsciiEdit.base.scrolledwin.textedit.charsVisible: 80
+AsciiEdit.base.scrolledwin.textedit.linesVisible: 60
+AsciiEdit.title: Simple Text Editor
+AsciiEdit*font: lucidasans
+!-----------------------------------------------
+AsciiEdit.base.control.save.label: Save
+AsciiEdit.base.control.quit.label: Quit

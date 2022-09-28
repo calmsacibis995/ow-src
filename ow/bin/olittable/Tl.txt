@@ -1,0 +1,153 @@
+DESCRIPTION
+
+        The TextLine widget is a one-line input field for text data. Once the 
+	input-focus is moved into the widget, keyboard entry is allowed. If the
+	input value exceeds the length of the input field, the ScrollButtons appear.
+	Hidden text can then be scrolled into view, by pressing the ScrollButtons.
+	Pressing the buttons continously, scrolls the text repeatedly with a
+	user-adjustable delay.
+
+	The TextLine widget replaces the TextField widget for one-line text entry
+	fields.  
+
+        The TextLine contains the following graphical elements:
+        .  Right justified Bold label at the left of the TextLine.
+        .  Input field
+        .  Input Caret (Not present in ReadOnly mode)
+        .  1 point (for Mono) or chiseled underline (Not present in ReadOnly mode)
+        .  Optional ScrollButtons
+
+	For more detailed information on the TextLine Widget, see the following
+	Sections in the OPEN LOOK Intrinsics Toolkit Widget Set Reference Manual:
+		. TextLine
+		. TextLine Functions
+
+EXAMPLE CODE
+
+The following code was written to Create the example TextLine Widget shown 
+in the Table :
+/***************************************************************************/
+#include <X11/Intrinsic.h>
+#include <X11/StringDefs.h>
+#include <Xol/OpenLook.h>
+#include <Xol/TextLine.h>
+#include <Xol/ControlAre.h>
+
+
+static void
+commitCB(Widget w, XtPointer clientData, OlTLCommitCallbackStruct *commit)
+{
+   printf("committed string: %s\n", commit->buffer);
+}
+
+main(argc, argv)
+int argc;
+char **argv;
+{
+	XtAppContext app;
+	Widget toplevel, panel, textline;
+
+	OlToolkitInitialize(NULL);
+	toplevel = XtAppInitialize(&app, "Test", 
+				(XrmOptionDescRec *)NULL,
+				(Cardinal)0, (int *)&argc, argv,
+				(String *)NULL, (ArgList)NULL, 0);
+
+	panel = XtVaCreateManagedWidget("panel",
+				controlAreaWidgetClass,
+				toplevel,
+				NULL);
+
+	textline = XtVaCreateManagedWidget("textline",
+				textLineWidgetClass, 
+				panel, 
+				XtNborderWidth, 	(XtArgVal) 1,
+				XtNcaptionLabel, 	(XtArgVal) "TextLine: ",
+				XtNstring,		(XtArgVal)"   any text...",
+				XtNcharsVisible, 	(XtArgVal) 6,	
+				NULL);
+
+	XtAddCallback(textline, XtNcommitCallback,  commitCB, NULL);
+
+	XtRealizeWidget(toplevel);
+
+	XtAppMainLoop(app);
+
+}
+/**********************************END Example********************************/
+
+RESOURCES
+
+Core Resources
+--------------
+Name            		Type            Default         	Access
+----            		----            -------         	-------
+ XtNx               		Position        0               	SGI
+ XtNy               		Position        0               	SGI
+ XtNwidth           		Dimension       <Calculated>    	SG
+ XtNheight          		Dimension       <Calculated>    	SG
+ XtNborderWidth     		Dimension       0               	SGI
+ XtNsensitive       		Boolean         True            	GIO
+ XtNancestorSensitive		Boolean         True            	G
+ XtNscreen          		Screen *        parent's        	GI
+ XtNdepth           		Cardinal        parent's        	GI
+ XtNcolormap        		Colormap        parent's        	GI
+ XtNbackground      		Pixel           parent's        	SGID
+ XtNbackgroundPixmap		Pixmap          XtUnspecifiedPixmap     SGI
+ XtNborderColor     		Pixel           XtDefaultForeground     SGI
+ XtNborderPixmap    		Pixmap          XtUnspecifiedPixmap     SGI
+ XtNmappedWhenMananaged		Boolean         True            	SGI
+ XtNdestroyCallback 		XtCallbackList  NULL            	SGIO
+
+Primitive Resources
+-------------------        
+ XtNaccelerator     		String          NULL            	Unused
+ XtNacceleratorText 		String          NULL            	Unused
+ XtNconsumeEvent    		Callback        NULL            	SGIO
+ XtNfont            		OlFont          XtDefaultFont   	SGI
+ XtNfontColor       		Pixel   XtDefaultForeground     	SGI
+ XtNforeground      		Pixel   XtDefaultForeground     	SGI
+ XtNinputFocusColor 		Pixel           "Red"           	SGI
+ XtNmnemonic        		OlRChar         NULL            	SGI
+ XtNreferenceName   		String          NULL            	SGI
+ XtNreferenceWidget 		Widget          NULL            	SGI
+ XtNtextFormat      		OlStrRep        OL_SB_STR_REP   	GI
+ XtNtraversalOn     		Boolean         True            	SGI
+ XtNuserData        		XtPointer       NULL            	SGI
+
+TextLine Resources
+------------------
+XtNblinkRate			int		1000			SGI
+XtNcaptionFont			OlFont		OlDefaultBoldFont	SI
+XtNcaptionLabel			OlStr		NULL			SGI
+XtNcharsVisible			Int		0			GI
+XtNcommitCallback		XtCallbackList	NULL			SGIO
+XtNcursorPosition		int		0			SGI
+XtNeditType			OlDefine	OL_TEXT_EDIT		SGI
+XtNinitialDelay			int		500			SGI
+XtNinsertTab			Boolean		FALSE			SGI
+XtNmaximumChars			int		0			GI
+XtNmenu				Widget		NULL			GI
+XtNmotionCallback		XtCallbackList	NULL			SGIO
+XtNpostModifyCallback		XtCallbackList	NULL			SGIO
+XtNpreModifyCallback		XtCallbackList	NULL			SGIO
+XtNrepeatRate			int		100			SGI
+XtNstring			OlStr		NULL			SGI
+XtNunderline			Boolean		TRUE			SGI
+XtNupdateDisplay		Boolean		TRUE			SGI
+
+
+
+CONVENIENCE FUNCTIONS
+
+int	OlTLGetPosition(Widget w, int pos),
+OlStr 	OlTLGetSubString(Widget w, int start, int length),
+Boolean OlTLSetSubString(Widget w, int start, int length, OlStr buffer),
+Boolean OlTLSetSelection(Widget w, int start, int length)
+OlStr 	OlTLGetSelection(Widget w, int *start, int *length )
+Boolean OlTLOperateOnSelection(Widget w, int mode)
+
+See Reference Manual for descriptions of these routines.
+
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------

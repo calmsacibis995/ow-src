@@ -1,0 +1,149 @@
+#       Copyright (c) 1990-92 Sun Microsystems, Inc.
+#               All Rights Reserved
+#
+#	" @(#)prototype	1.16 96/09/24   Sun Microsystems" 
+#
+# OPEN LOOK deskset tools 
+
+i pkginfo
+#i postinstall
+#i preremove
+#i postremove
+i copyright=../copyright
+i i.renamenew=../i.renamenew
+i depend
+
+!HOME=../openwin
+
+#   We need to put three symlinks into /usr/lib for SCD 2.0 compliance
+d none lib 0775 root bin
+
+d none openwin 0775 root bin
+
+!search  $HOME/bin
+d none openwin/bin 		0775 root bin
+f none openwin/bin/24to8	0775 root bin
+f none openwin/bin/align_equals 0775 root bin
+f none openwin/bin/binder	0775 root bin
+f none openwin/bin/calctool 0775 root bin
+f none openwin/bin/capitalize 0775 root bin
+f none openwin/bin/ce_db_build 0775 root bin
+f none openwin/bin/ce_db_merge 0775 root bin
+f none openwin/bin/clock 0775 root bin
+f none openwin/bin/cm 0775 root bin
+f none openwin/bin/cm_delete 0775 root bin
+f none openwin/bin/cm_insert 0775 root bin
+f none openwin/bin/cm_lookup 0775 root bin
+f none openwin/bin/cmdtool 0775 root bin
+f none openwin/bin/colorchooser 0775 root bin
+s none openwin/bin/digestp=./mailp
+f none openwin/bin/ds_server_init 0775 root bin
+f none openwin/bin/dsdm 0775 root bin
+f none openwin/bin/ff.core 6555 root bin
+f none openwin/bin/filemgr 0775 root bin
+s none openwin/bin/filep=./mailp
+s none openwin/bin/filofaxp=./mailp
+f none openwin/bin/fixframe 0775 root bin
+f none openwin/bin/fixinterleaf 0775 root bin
+f none openwin/bin/fmgc 0775 root bin
+f none openwin/bin/format_floppy 0775 root bin
+s none openwin/bin/franklinp=mailp
+f none openwin/bin/iconedit 0775 root bin
+f none openwin/bin/insert_brackets 0775 root bin
+f none openwin/bin/mailp 0775 root bin
+f none openwin/bin/mailprint 0775 root bin
+f none openwin/bin/mailtool 02555 root mail
+f none openwin/bin/mp 0775 root bin
+s none openwin/bin/newsp=./mailp
+f none openwin/bin/pageview 0775 root bin
+f none openwin/bin/pagecounter 0775 root bin
+f none openwin/bin/perfmeter 0775 root bin
+f none openwin/bin/printtool 0775 root bin
+f none openwin/bin/remove_brackets 0775 root bin
+f none openwin/bin/reservecolors 0775 root bin
+s none openwin/bin/rpc.cmsd=../../dt/bin/rpc.cmsd
+s none openwin/bin/shelltool=./cmdtool
+f none openwin/bin/shift_lines 0775 root bin
+f none openwin/bin/snapshot 0775 root bin
+f none openwin/bin/tapetool 0775 root bin
+f none openwin/bin/textedit 0775 root bin
+s none openwin/bin/timemanp=./mailp
+s none openwin/bin/timesysp=./mailp
+f none openwin/bin/vkbd 0775 root bin
+s none openwin/bin/xview=.
+
+!search  $HOME/lib/app-defaults
+d none openwin/lib 		0775 root bin
+d none openwin/lib/app-defaults 0775 root bin
+f none openwin/lib/app-defaults/Olbiff 0664 root bin
+f none openwin/lib/app-defaults/Olitsampler 0664 root bin
+f none openwin/lib/app-defaults/Olmh 0664 root bin
+
+
+!search  $HOME/lib/cetables
+d none openwin/lib/cetables 0775 root bin
+f none openwin/lib/cetables/fns_mgr.so 0664 root bin
+f none openwin/lib/cetables/tns_mgr.so 0664 root bin
+
+
+!search  $HOME/lib/locale
+d none openwin/lib/locale 0775 root bin
+d none openwin/lib/locale/C 0775 root bin
+
+!search  $HOME/lib/locale/C/help
+d none openwin/lib/locale/C/help 0775 root bin
+f none openwin/lib/locale/C/help/attr_names 0664 root bin
+f none openwin/lib/locale/C/help/binder.info 0664 root bin
+f none openwin/lib/locale/C/help/calctool.info 0664 root bin
+f none openwin/lib/locale/C/help/clock.info 0664 root bin
+f none openwin/lib/locale/C/help/cm.info 0664 root bin
+f none openwin/lib/locale/C/help/colorchooser.info 0664 root bin
+f none openwin/lib/locale/C/help/filemgr.info 0664 root bin
+f none openwin/lib/locale/C/help/format_floppy.info 0664 root bin
+f none openwin/lib/locale/C/help/iconedit.info 0664 root bin
+f none openwin/lib/locale/C/help/mailtool.info 0664 root bin
+f none openwin/lib/locale/C/help/pageview.info 0664 root bin
+f none openwin/lib/locale/C/help/perfmeter.info 0664 root bin
+f none openwin/lib/locale/C/help/printtool.info 0664 root bin
+f none openwin/lib/locale/C/help/snapshot.info 0664 root bin
+f none openwin/lib/locale/C/help/tapetool.info 0664 root bin
+f none openwin/lib/locale/C/help/textedit.info 0664 root bin
+f none openwin/lib/locale/C/help/textsw.info 0664 root bin
+f none openwin/lib/locale/C/help/ttysw.info 0664 root bin
+f none openwin/lib/locale/C/help/vkbd.info 0664 root bin
+f none openwin/lib/locale/C/help/window.info 0664 root bin
+f none openwin/lib/locale/C/help/workspace.info 0664 root bin
+f none openwin/lib/locale/C/help/xview.info 0664 root bin
+
+!search  $HOME/share/xnews
+d none openwin/share 	   0775 root bin
+d none openwin/share/xnews 0775 root bin
+
+!search  $HOME/share/xnews/client
+d none openwin/share/xnews/client 0775 root bin
+
+!search  $HOME/share/xnews/client/ds_server_init
+d none openwin/share/xnews/client/ds_server_init 0775 root bin
+f none openwin/share/xnews/client/ds_server_init/ds_colors.txt 0664 root bin
+
+!search  $HOME/share/xnews/client/mp
+d none openwin/share/xnews/client/mp 0775 root bin
+f none openwin/share/xnews/client/mp/mp.common.ps 0664 root bin
+f none openwin/share/xnews/client/mp/mp.pro.alt.ps 0664 root bin
+f none openwin/share/xnews/client/mp/mp.pro.altl.ps 0664 root bin
+f none openwin/share/xnews/client/mp/mp.pro.ff.ps 0664 root bin
+f none openwin/share/xnews/client/mp/mp.pro.fp.ps 0664 root bin
+f none openwin/share/xnews/client/mp/mp.pro.l.ps 0664 root bin
+f none openwin/share/xnews/client/mp/mp.pro.ps 0664 root bin
+f none openwin/share/xnews/client/mp/mp.pro.tm.ps 0664 root bin
+f none openwin/share/xnews/client/mp/mp.pro.ts.ps 0664 root bin
+
+!search  $HOME/share/xnews/client/snapshot
+d none openwin/share/xnews/client/snapshot 0775 root bin
+f none openwin/share/xnews/client/snapshot/default.rash 0664 root bin
+f none openwin/share/xnews/client/snapshot/epsf.rash 0664 root bin
+
+!search  $HOME/share/xnews/client/templates
+d none openwin/share/xnews/client/templates 0775 root bin
+f none openwin/share/xnews/client/templates/calendar.tpl 0664 root bin
+

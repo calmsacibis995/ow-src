@@ -1,0 +1,20 @@
+ptype Sun_DeskSet_pageview {
+	per_session	1;
+	start		"$OPENWINHOME/bin/pageview -tooltalk -depth x -visual y -lc_basiclocale z";
+};
+
+otype Sun_DeskSet_Object_pageview {
+      handle:
+	launch (in string locale, in int depth,
+		in int visual) => Sun_DeskSet_pageview session start ;
+	status (in string status_string) => Sun_DeskSet_pageview session ;
+	dispatch_data (in string sel_name) => Sun_DeskSet_pageview session ;
+	move (in int xpos, in int ypos, in int width,
+	      in int height, in int placement) => Sun_DeskSet_pageview session ;
+	quit () => Sun_DeskSet_pageview session ;
+	hide () => Sun_DeskSet_pageview session ;
+	expose () => Sun_DeskSet_pageview session ;
+	retrieve_data (in string sel_name) => Sun_DeskSet_pageview session ;
+	departing () => Sun_DeskSet_pageview session ;
+};
+

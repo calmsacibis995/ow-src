@@ -1,0 +1,12 @@
+menu*st.string:               Press MENU here
+menu*MenuShell*pushpin:       out
+!
+menu*New.label:               New
+menu*Save.label:              Save
+menu*Print.label:             Print
+menu*Open.label:              Open
+menu*New.mnemonic:            n
+menu*Save.mnemonic:           s
+menu*Print.mnemonic:          p
+menu*Open.mnemonic:           o
+menu*MenuShell.title:         Title

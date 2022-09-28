@@ -1,0 +1,164 @@
+  OVERVIEW
+
+  Since Motif and OLIT are both Intrinsics-based toolkits, they share many common
+  widget types.  However, because each toolkit uses slightly different widget naming
+  conventions it is not always obvious which widgets are similar in each of the toolkits.
+
+  The table below shows which OPEN LOOK widget (or set of widgets) can be used in place
+  of each Motif widget.  In some cases where there does not exist a 1 to 1 mapping, it
+  is necessary to build the equivalent widget using multiple OPEN LOOK widgets.  In
+  this case, the list of OPEN LOOK widgets is nested to show the widget heirarchy:
+
+	i.e.  to build the Motif "Command" widget, the equivalent OPEN LOOK widget tree
+		would look like the following:
+				      Form
+					|
+			--------------------------------
+		      /           |           |         \
+		StaticText  ScrollingList  TextField  ControlArea
+							  \
+						     OblongButton(s)
+
+
+  IMPORTANT NOTE:  This table does NOT imply that the Widget Resource Sets and the
+  exact widget functionality are the same between the Motif widgets and their
+  equivalent OPEN LOOK widgets.   This table shows the CLOSEST match.  In order to
+  get specific information on particular OPEN LOOK widget Resource Sets and widget
+  behavior, see the Information Windows (brought up by pressing the Widget Buttons in
+  the Periodic Table) AND consult the OPEN LOOK Intrinsics Toolkit Widget Set Reference
+  Manual.  
+
+________________________________________________________________________________________
+
+  MOTIF WIDGET/GADGET	= OPEN LOOK WIDGET(S)/GADGET	FORMULA NOTES
+________________________________________________________________________________________
+
+  ArrowButton		=  OblongButton + Pixmap  	Create Pixmap image of arrow and
+  ArrowButtonGadget	=  OblongButtonGadget + Pixmap  attach as XtNlabelImage resource.
+							Will need to monitor expose,
+							configure events to adapt pixmap
+							image to size changes, etc.
+----------------------------------------------------------------------------------------
+  BulletinBoard		=  BulletinBoard
+
+----------------------------------------------------------------------------------------
+  CascadeButton		=  MenuButton
+  CascadeButtonGadget	=  MenuButtonGadget
+
+----------------------------------------------------------------------------------------
+  Command		=  Form
+			      + StaticText		(command label)
+			      + ScrollingList		(previous commands)  
+			      + TextField		(command)
+			      + ControlArea		(button box)
+				  +OblongButtons	(selection buttons)
+
+----------------------------------------------------------------------------------------
+  DialogShell		=  PopupWindowShell
+
+----------------------------------------------------------------------------------------
+  DrawingArea		=  Stub				Set Expose handler as XtNexpose
+							resource.
+
+----------------------------------------------------------------------------------------
+  DrawnButton		=  OblongButton + Pixmap 	Create Pixmap image and attach  
+							as XtNlabelImage resource.
+							Will need to monitor expose,
+							configure events to adapt pixmap
+							image to size changes, etc.
+----------------------------------------------------------------------------------------
+  FileSelectionBox	= Form
+			     + StaticText 		(filter label) 
+			     + TextField		(filter)
+			     + StaticText		(item label)
+			     + ScrollingList		(items)  
+			     + StaticText		(selection label)  
+			     + TextField		(selection)
+			     + ControlArea		(button box)
+				 +OblongButtons		(selection buttons)
+
+----------------------------------------------------------------------------------------
+  Form			=  Form
+
+----------------------------------------------------------------------------------------
+  Frame			=  *no equivalent*
+
+----------------------------------------------------------------------------------------
+  Label			=  StaticText
+  LabelGadget		=  *no equivalent*
+
+----------------------------------------------------------------------------------------
+  List/ScrolledList	=  ScrollingList
+
+----------------------------------------------------------------------------------------
+  MainWindow		= Form					
+			     + ControlArea		(MenuBar)	 
+			         + MenuButton(s)	(cascadeButtons)
+			     + BulletinBoard OR
+			       Form 			(WorkArea)
+
+----------------------------------------------------------------------------------------
+  MenuShell		=  MenuShell
+
+----------------------------------------------------------------------------------------
+  MessageBox		=  Notice
+
+----------------------------------------------------------------------------------------
+  OptionsMenu		=  ControlArea
+			      + Caption		 	(label)
+			          + AbbrevMenuButton	(menu) 
+			      + StaticText	 	(current selection)
+
+----------------------------------------------------------------------------------------
+  PanedWindow		=  *no equivalent*
+
+----------------------------------------------------------------------------------------
+  PushButton		=  OblongButton
+  PushButtonGadget	=  OblongButtonGadget
+
+----------------------------------------------------------------------------------------
+(*)RadioBox		=  Exclusives
+
+----------------------------------------------------------------------------------------
+  RowColumn		=  ControlArea
+
+----------------------------------------------------------------------------------------
+  Scale			=  Slider
+
+----------------------------------------------------------------------------------------
+  Scrollbar		=  Scrollbar
+
+----------------------------------------------------------------------------------------
+  ScrolledWindow	=  ScrolledWindow
+
+----------------------------------------------------------------------------------------
+  SelectionBox		=  Form
+			      + StaticText 		(item label) 
+			      + ScrollingList		(items)  
+			      + StaticText		(selection label)  
+			      + TextField		(selection)
+			      + ControlArea		(button box)
+				  +OblongButtons	(selection buttons)
+
+----------------------------------------------------------------------------------------
+  Separator		=  Stub				
+  SeparatorGadget	=  *no equivalent*
+							
+----------------------------------------------------------------------------------------
+  Text/ScrolledText	=  Text 			(full-scale texteditor)
+			   TextEdit  			(multi line input texteditor)
+			   TextField 			(single line input texteditor)
+
+----------------------------------------------------------------------------------------
+  ToggleButton		=  CheckBox
+  ToggleButtonGadget	=  *no equivalent*
+
+----------------------------------------------------------------------------------------
+
+
+(*) Not a Motif widget Class - is built with a RowColumn Widget			  
+
+
+CREDITS
+Most of This Table information was contributed by Mark Eglin (eglin@baryon),
+a consultant experienced in both Motif and OLIT programming.

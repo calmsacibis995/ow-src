@@ -1,0 +1,131 @@
+# SunOS.cmds
+
+# Copyright
+
+#
+#	@(#)SunOS41	1.20 92/03/25
+#
+
+# Definitions for SunOS commands used by the X11/NeWS Makefiles
+# Does not include and Compiler-related commands
+
+
+# --- Commands common to Unix systems (In your NATIVE environment)
+ARCH		= arch
+AROPTS		= ruvl
+AWK             = awk
+CB              = cb
+CBOPTS          = -l60 -j -s
+CD		= cd
+CHMOD           = chmod
+CMP             = cmp -s
+CP              = cp
+CPP		= /lib/cpp
+CTAGS           = ctags
+ECHO		= echo
+LN		= ln -s
+MKDIR           = mkdir -p
+MV              = mv
+PWD		= pwd
+RM              = rm -f
+RMDIR		= rmdir
+RMRECURSE	= rm -rf
+SCCSCLEAN	= sccs clean	# used in Rulesets/SunPro/common#depopulate:
+SED             = sed
+TOUCH           = touch
+
+CPPFLAGS.OS	= -DSUNOS41
+CFLAGS.OS	=
+
+# override any existing LD_LIBRARY_PATH in the environment
+LD_LIBRARY_PATH=	# /dev/null
+
+# --- Select dbm library:  SunOS="-ldbm", SVR4="" (ndbm function in libc).
+LIBDBM          =-ldbm
+ 
+# --- Portability and option #defines for Xlib et al.   This is done because 
+#       we don't want #include <portable/portable.h> in X Consortium code.
+XLIBDEFINES     = -DDNETCONN \
+		  -DUNIXCONN \
+		  -DSUN_SECURE_RPC \
+		  -DTCPCONN \
+		  -DSUNOS41
+# --- Portability #defines for X clients
+XCLIENTDEFINES	= -DSUNOS41
+# --- The minimum libraries required by ANY X client on a given platform.
+XCLIENTLIBS     = -lX11
+# --- The elf object file access library, if appropriate
+ELFLIB		=
+# --- Internationalization support: OS41="-lI18N", SVR4="-lintl"
+I18NLIBS	= -lI18N
+INTLLIB		=
+# --- The minimum libraries required by ANY cps client on a given platform.
+CPSCLIENTLIBS   = -lcps -Bdynamic ${I18NLIBS}
+
+# --- Internationalization support: 
+#	SVr4 comes with xgettext, msgfmt, and gettext.o in libintl.*
+
+XGETTEXT        = ${SOURCEDIR}/proto-tool-Obj-sun4/xgettext -d -n \
+			-p${SOURCEDIR}/locale/templates/LC_MESSAGES
+MSGFMT          = ${SOURCEDIR}/proto-tool-Obj-sun4/msgfmt
+I18N_COMMANDS   = msgfmt \
+		  xgettext
+
+I18N_LIBS       = libI18N
+
+I18N_MANPAGES   = msgfmt.1 \
+		  xgettext.1
+
+I18N_CFILES.misc= gettext.c
+I18N_HFILES.misc= gettext.h
+
+# --- Install macros ---
+# Generic install command
+local.INSTALL	= install
+BINSTALL	= ${local.INSTALL} -m 755	# Executable files
+TINSTALL	= ${local.INSTALL} -m 644	# Non-executable files
+DINSTALL	= ${local.INSTALL} -d -m 755	# Directories
+
+
+#
+#
+#	Start of Swet/Hindsight
+#
+
+#
+#	Preconditions:
+#		HINDSIGHT		# ... from ${OWCONFIG}.cfg or shell
+#		HINDSIGHT_lm_host
+#	Exports:
+#		HINDSIGHT_bin
+#		HINDSIGHT_environ_lm
+#		HINDSIGHT_environ
+#
+
+# --- Hindsight Location ---
+HINDSIGHT_home		= ${HINDSIGHT}/openlook
+HINDSIGHT_bin		= ${HINDSIGHT_home}
+HINDSIGHT_fontdir	= ${HINDSIGHT_home}
+HINDSIGHT_gksdir	= ${HINDSIGHT_home}/SunGKS3.0
+
+# --- Hindsight Environment ---
+HINDSIGHT_environ_lm	= ASA_LM_HOST=${HINDSIGHT_lm_host}; export ASA_LM_HOST
+HINDSIGHT_environ	= ${HINDSIGHT_environ_lm}
+local_OPATH=.:${OPENWINHOME}/bin:${OPENWINHOME}/bin/xview:/usr/bin:/usr/ucb
+
+HINDSIGHT_environ="${HINDSIGHT_environ_lm};  \
+	PATH=${HINDSIGHT_bin}:${local_OPATH}; \
+	LD_LIBRARY_PATH=${OPENWINHOME}/lib; \
+	GKSDIR=${HINDSIGHT_gksdir}; \
+	case $${FONTPATH} in *${HINDSIGHT_fontdir}*);; \
+		*) FONTPATH=${FONTPATH}:${HINDSIGHT_fontdir};; esac; \
+	case \"\`LD_LIBRARY_PATH=${OPENWINHOME}/lib xset q\`\" in \
+		*${HINDSIGHT_fontdir}*);; \
+		*)LD_LIBRARY_PATH=${OPENWINHOME}/lib xset fp+ \
+			${HINDSIGHT_fontdir};; esac; \
+	export PATH LD_LIBRARY_PATH GKSDIR FONTPATH"
+
+#
+#	End of Swet/Hindsight
+#
+

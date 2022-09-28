@@ -1,0 +1,52 @@
+#ifndef	_XOL_BITMAPS_FCDOC_XBM
+#define	_XOL_BITMAPS_FCDOC_XBM
+
+#pragma ident	"@(#)fcdoc.xbm	1.3    92/10/14 include/Xolbitmaps SMI"    /* OLIT	493	*/
+
+/*
+ *	Copyright (C) 1992  Sun Microsystems, Inc
+ *			All rights reserved.
+ *		Notice of copyright on this source code
+ *		product does not indicate publication.
+ *
+ * RESTRICTED RIGHTS LEGEND: Use, duplication, or disclosure by
+ * the U.S. Government is subject to restrictions as set forth
+ * in subparagraph (c)(1)(ii) of the Rights in Technical Data
+ * and Computer Software Clause at DFARS 252.227-7013 (Oct. 1988)
+ * and FAR 52.227-19 (c) (June 1987).
+ *
+ *	Sun Microsystems, Inc., 2550 Garcia Avenue,
+ *	Mountain View, California 94043.
+ *
+ */
+
+
+/**************************************************************************
+ *
+ *	File chooser panel scrolling list document glyph
+ *		
+ **************************************************************************/
+
+
+#ifdef	__cplusplus
+extern "C" {
+#endif
+
+
+#define	fcdoc_width		16
+#define	fcdoc_height		16
+
+static unsigned char	fcdoc_bits[] = {
+	0xfc, 0x07, 0x04, 0x0a, 0x04, 0x12, 0x04, 0x22, 0x04, 0x3e, 0x04, 0x60,
+	0x04, 0x60, 0x04, 0x60, 0x04, 0x60, 0x04, 0x60, 0x04, 0x60, 0x04, 0x60,
+	0x04, 0x60, 0x04, 0x60, 0xfc, 0x7f, 0xf0, 0x7f
+};
+
+
+#ifdef	__cplusplus
+}
+#endif
+
+
+/* end of fcdoc.xbm */
+#endif	/* _XOL_BITMAPS_FCDOC_XBM */

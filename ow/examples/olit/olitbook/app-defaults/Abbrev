@@ -1,0 +1,13 @@
+! Need to fix font inconsistencies
+*Repeat.string:  Repeat: 
+*prev.string:    None
+*None.label:     None
+*Daily.label:    Daily
+*Weekly.label:   Weekly
+*Biweekly.label: Biweekly
+*Monthly.label:  Monthly
+*Yearly.label:   Yearly
+*font:	         -b&h-lucida sans-medium-r-normal-sans-\
+12-120-72-72-p-71-iso8859-1
+*Repeat.font:	 -b&h-lucida sans-bold-r-normal-sans-\
+12-120-72-72-p-79-iso8859-1

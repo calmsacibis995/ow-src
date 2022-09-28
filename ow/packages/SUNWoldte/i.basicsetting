@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+#ident  "@(#)i.basicsetting 1.1 94/03/02 SMI"
+#
+# Copyright (c) 1993 by Sun Microsystems, Inc.
+#
+
+PATH="/usr/bin:/usr/sbin:${PATH}"
+export PATH
+
+while read src dest
+do
+	if [ ! -f $dest ] ; then
+		cp $src $dest
+	else
+		tmp_bs=`grep '^basic_setting' $src | sed 's/basic_setting=C//'`
+		grep $tmp_bs $dest > /dev/null 2>&1 || (
+			cp $dest /tmp/$$basic_setting
+			sed -e "
+			s/^basic_setting.*/&$tmp_bs/" /tmp/$$basic_setting > $dest
+			rm /tmp/$$basic_setting
+		)
+	fi
+done
+
+exit 0

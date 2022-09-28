@@ -1,0 +1,141 @@
+.\" Copyright (c) 1994 Sun Microsystems, Inc.
+.TH docviewer 1 "02 December 1993"
+.IX " docviewer" "" "\f3docviewer\f1(1) \(em viewer for AnswerBook documentation" ""
+.IX "AnswerBook" "document" "AnswerBook" "documentation viewer \(em \f3docviewer\f1(1)"
+.SH NAME
+docviewer \- OpenWindows viewer for AnswerBook on-line documentation
+.SH SYNOPSIS
+.LP
+.B docviewer
+.B \-d
+.I document-name
+.B \-p
+.I tooltalk-procid
+[
+.B \-c
+.I card-catalog-file
+]
+.SH AVAILABILITY
+SUNWowrqd
+.SH DESCRIPTION
+.B docviewer
+and 
+.BR navigator (1)
+constitute an OpenWindows
+application for viewing and navigating
+AnswerBook on-line document collections.
+.LP
+.B docviewer
+displays PostScript files found using
+.B navigator.
+.B docviewer
+lets you page through a document, print pages, magnify or reduce pages,
+and follow hypertext links and cross-references to other documents.
+.LP
+You should not start
+.B docviewer
+directly.
+It is started automatically by
+.B navigator
+as needed.
+If you are running several navigators simultaneously,
+they will each start their own docviewers.
+.SH OPTIONS
+.LP
+.B docviewer
+accepts most of the generic tool arguments described in
+.BR xview (7),
+as well as the following options:
+.TP
+.B \-d \f2document-name\fP
+Specify the name of the document to be viewed.
+.TP
+.B \-c \f2card-catalog\fP
+Specify the name of the card catalog file used to locate AnswerBooks.  See
+.BR ab_cardcatalog (4)
+for more information.
+.TP
+.B \-p \f2tooltalk-procid\fP
+Specify the tooltalk process id of the navigator invoking this docviewer.
+.SH USAGE
+.LP
+Once a document is displayed in the
+.B docviewer
+window, you can view it as follows:
+.TP
+.B Page Turning
+Click SELECT on the left and right arrow buttons at the top of the
+.B docviewer
+window to page back and forth through a document.
+The PgUp and PgDn keys on the keyboard perform the same functions.
+In addition, the Home and End keys
+let you page through a document one chapter at a time.
+.TP
+.B Page History
+.B docviewer
+keeps track of each page visited. 
+Click SELECT on the Go Back button until the window returns
+to the page you want to revisit, or use the Undo keyboard function.
+.TP
+.B Hypertext Links 
+.B docviewer
+has a simple hypertext mechanism. Hypertext links are displayed
+as rectangular outlines around words or graphics on a page.
+Double-clicking SELECT on a link causes
+.B docviewer
+to display the document and page to which the link points.
+Documents may have links to other documents within the same 
+collection.
+Certain types of hypertext links can also initiate system processes.
+Double-clicking on these links will start up a program or shell script.
+.TP
+.B Page Magnification
+Magnify or reduce the size of the document by pulling the resize corners on the
+.B docviewer
+window, or select the "View->Custom Magnification" menu item.
+Select the "View->Standard Magnification" menu item to reset the document
+to the standard size.
+For very high magnifications, select the "View->Partial Page" menu item
+so that the
+.B docviewer
+window still fits on the screen.
+.TP
+.B Printing
+Click SELECT on the Print button to show the pop-up Print Window.
+In the Print Window, select the page or document to print,
+number of copies, and printing device (or file).
+.TP
+.B Page Information
+Select the "Viewer->Page Info" menu item to show a pop-up window
+describing the chapter, book, and AnswerBook you are currently viewing.
+.SH ENVIRONMENT
+.LP
+.B AB_CARDCATALOG
+.IP 
+Specify the name of the card catalog file used to locate AnswerBooks.
+See
+.BR ab_cardcatalog (4)
+for more information.
+.SH SEE ALSO
+.LP
+.BR navigator (1),
+.BR viewprint (1),
+.BR answerbook (1),
+.BR ab_admin (1),
+.BR ab_cardcatalog (4),
+.SH DIAGNOSTICS
+.LP
+.BR docviewer (1)
+displays PostScript error messages in the console.
+.SH BUGS
+.LP
+The AnswerBook document naming syntax used by
+.B docviewer
+is not documented.
+.SH NOTES
+.LP
+.br
+PostScript is a trademark of Adobe Systems Incorporated.
+.br
+AnswerBook is a trademark of Sun Microsystems, Inc.,
+licensed to SunSoft, Inc.

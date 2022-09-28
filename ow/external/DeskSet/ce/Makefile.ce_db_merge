@@ -1,0 +1,37 @@
+#
+# @(#)Makefile.ce_db_merge	1.12 03/29/94 Copyright (c) 1992 Sun Microsystems, Inc.
+#
+
+SOURCES.c	= \
+		ce_merge.c 	\
+		merge_ascii.c 	\
+		ce_db_merge.c 	\
+		ce_utils.c	
+
+SOURCES.h	= ce.h ce_err.h fns.h ce_int.h
+
+SOURCES.man	= ce_db_merge.1
+MANSECT		= 1
+
+PROGRAM		= ce_db_merge
+PROJECTDIR	= ..
+
+YFLAGS		= -dv
+
+.KEEP_STATE:
+
+default:	all
+
+LDFLAGS		+= -L.
+include ${PROJECTDIR}/Makefile.master.new
+LDLIBS		= -lce -lcelex -ll -lintl
+
+
+all:		$(PROGRAM)
+
+clean:		master_clean
+
+TEXTDOMAIN	= SUNW_DESKSET_CE
+
+install:	install_normal_bins install_man strings_single_domain
+

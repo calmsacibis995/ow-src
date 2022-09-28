@@ -1,0 +1,36 @@
+!
+! TextEdit
+!
+Textedit*te.background:         white
+Textedit*te.borderWidth:        1
+Textedit*font: -b&h-lucida sans typewriter\
+-medium-r-normal-sans-12-120-72-72-m-70-iso8859-1
+!
+! OblongButtons
+!
+Textedit*clear.label:           Clear
+Textedit*retrieve.label:        Retrieve
+!
+! CheckBox motion
+!
+Textedit*cb.label:              Print Motion:
+Textedit*cb.font: -b&h-lucida sans typewriter\
+-bold-r-normal-sans-12-120-72-72-m-70-iso8859-1
+!
+! ControlArea and Footer
+!
+Textedit*con.weight:            0
+Textedit*footerPresent:		TRUE
+Textedit*leftFooterVisible:	TRUE
+!
+! Preedit resources
+!
+textedit*imPreeditStyle:	none
+textedit*imStatusStyle:		none
+textedit*leftFooterString:	Preedit Disabled
+textedit2*imPreeditStyle:	none
+textedit2*imStatusStyle:	none
+textedit2*leftFooterString:	Preedit Disabled
+textedit3*imPreeditStyle:	none
+textedit3*imStatusStyle:	none
+textedit3*leftFooterString:	Preedit Disabled

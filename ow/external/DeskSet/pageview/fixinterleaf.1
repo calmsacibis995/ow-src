@@ -1,0 +1,41 @@
+.\" @(#)fixinterleaf.1 3.2 93/11/04
+.TH fixinterleaf 1  "24 March 1992"
+.ds Ps P\s-2OST\s+2S\s-2CRIPT\s+2
+.SH NAME
+fixinterleaf \- convert Interleaf PostScript files to conform
+to the PostScript structuring conventions
+.SH SYNOPSIS
+.B fixinterleaf\ \ \  
+.I interleaf_file\ \ \  
+.I output_file
+.sp .5
+.SH DESCRIPTION
+.B fixinterleaf 
+converts Interleaf 2.0 \*(Ps files to follow the \*(Ps Document
+Structuring Conventions described in Appendix G of the \*(Ps Language
+Reference Manual.
+.B pageview
+will not work with unaltered Interleaf \*(Ps files.
+.sp .5
+.B fixinterleaf
+is automatically run by 
+.B pageview
+when a user attempts to view an Interleaf \*(Ps file using
+.B pageview.
+.sp .5
+Specifically,
+.B fixinterleaf
+saves glyph definitions that occur between pages and inserts them 
+into the Setup section of the document (after the Prolog).
+It also inserts the proper %%Page comments between each page,
+and it properly numbers pages from back to front.
+.sp .5
+.SH "SEE ALSO"
+.BR pageview (1)
+.sp .5
+.LP
+.IR "\*(Ps Language Reference Manual" ,
+Adobe Systems Inc., Addison-Wesley
+.sp .5
+.SH TRADEMARK
+\*(Ps is a registered trademark of Adobe Systems Inc

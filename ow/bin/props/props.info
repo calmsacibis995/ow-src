@@ -1,0 +1,621 @@
+#	@(#)props.info	1.5 92/10/07 SMI
+#
+##################################################
+# 	Workspace Properties Foundation
+#######################50#########################
+:propsPopup:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Workspace Properties
+
+Use these options to change or customize various characteristics
+of your workspace and desktop.
+
+#######################50#########################
+:categoryChoice:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Category
+ 
+The default property is displayed and the related property value options are shown in the main properties pane.
+
+Press MENU to display a list of the following workspace property categories and related options:
+
+Category and Options
+
+Color:
+	Windows 
+	Data Areas
+	Workspace
+	Pattern
+
+Fonts:
+	Choices
+	Typeface
+	Scale
+	Preview
+
+Keyboard:
+	Keyboard Mouse Equivalents
+	Keyboard Menu Equivalents
+	Key Click
+	Key Repeat
+
+Mouse:
+	Mouse Acceleration
+	Mouse Threshold
+	Multi-click Interval
+	Mouse Button Order
+	Pointer Jumping
+
+Menus:
+	Drag-right Distance
+	Left Mouse Press
+
+Programs Menu:
+	Menu Contents
+	Label
+	Command
+
+Miscellaneous:
+	Screen Saver
+	Beep
+	Beep Duration
+	Set Active Window
+	Icon Location
+	Scrollbar Placement
+
+Locale:
+	Basic Locale
+	Display Locale
+	Input Locale
+	Time Format
+	Numeric Format
+ 
+#######################50#########################
+:applyButton:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Apply Button
+
+Click SELECT to apply changed property values to the current session.
+
+#######################50#########################
+:standButton:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Reset to Standard Button
+
+Click SELECT to return to the default property values.
+
+#######################50#########################
+:resetButton:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Reset Button
+
+Click SELECT to reset the properties back to the last applied values.
+
+##################################################
+# 	Color Category
+#######################50#########################
+:colorCategory:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Color Category
+
+Use the Color options to define colors for windows, data areas, and the workspace. You can also choose a workspace background pattern that displays in the same color as the workspace.
+
+#######################50#########################
+:palette:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Palette Color
+
+Select a color from a predefined palette of colors. 
+
+To blend custom colors, click SELECT on the Custom button.
+
+#######################50#########################
+:custom:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Custom Color 
+
+Use Custom color to create colors for your desktop. 
+
+There is limited space in the colormap. If you define too many custom colors you will experience colormap flashing. To avoid this, keep the number of custom colors to a minimum.
+
+#######################50#########################
+:customChoice:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Color Switch
+
+Use the color switch to toggle between a predefined palette of colors and custom color selection.
+
+#######################50#########################
+:colorPatch:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Color Patch
+
+This color square displays the current color.
+
+#######################50#########################
+:patternPatch:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Pattern Patch
+
+This square displays the current pattern or color for the workspace background. 
+
+Press MENU on the Pattern abbreviated menu button to display and choose from a selection of patterns and solid colors.
+
+#######################50#########################
+:hue:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Hue Slider
+
+Use the Hue slider to determine the hue of a custom color. 
+
+The hue is the essence, or true value, of a color. For example, red and blue are hues.
+
+#######################50#########################
+:saturation:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Saturation Slider
+
+Use the Saturation slider to adjust the saturation of a color. 
+
+The saturation is the richness of a color.
+
+#######################50#########################
+:brightness:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Brightness Slider
+
+Use the Brightness slider to adjust the brightness of a color. 
+
+The brightness refers to how light or dark the color is.
+
+#######################50#########################
+:colorChooser00:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Windows Foreground Color
+
+Use this option to choose the window foreground color.
+
+#######################50#########################
+:colorChooser01:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Windows Background Color
+
+Use this option to choose the window background color.
+
+#######################50#########################
+:colorChooser02:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Data Foreground Color
+
+Use this option to choose the color of the text in the data areas.
+
+#######################50#########################
+:colorChooser03:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Data Background Color
+
+Use this option to choose the color of the background in the data areas.
+
+#######################50#########################
+:colorChooser04:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Selection Color
+
+Use this option to choose the color for highlighting text.
+
+To highlight text, SELECT the text using the mouse.
+
+#######################50#########################
+:colorChooser05:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Workspace Foreground Color
+
+Use this option to choose the color for the foreground of a pattern used on the workspace background. You can also use this option to choose a solid color for the workspace background.
+
+#######################50#########################
+:colorChooser06:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Workspace Background Color 
+
+Use this option to choose the color for the background of a pattern used on the workspace background. You can also use this option for choosing a solid color for the workspace background.
+
+#######################50#########################
+:previewDraw:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Preview Window
+ 
+Provides a preview of your current workspace color and font selections. 
+ 
+#######################50#########################
+:colorWindows:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Coloring Windows
+
+Use these options to define colors for the foreground and background of windows. 
+The window background is the color of the window frame and the control area. The window foreground is the color of the text printed on buttons, as well as captions on the window background.
+
+#######################50#########################
+:colorDataAreas:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Coloring Data Areas
+
+Use these options to define colors for the foreground and background of data areas, as well as a text highlight.
+ 
+The data area foreground is the text used in data areas. The data area background is the area on which the text is printed. The selection color is the highlight when you select text.
+
+#######################50#########################
+:colorWorkspace:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Coloring the Workspace
+
+Use these options to specify the foreground and background colors for the workspace. You can also define a pattern for the background, if desired. 
+
+Press MENU to display the Pattern abbreviated menu and choose a pattern or color. Solid color options are provided on the first two tiles of the abbreviated menu. 
+
+#######################50#########################
+:colorFg:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Foreground Color
+
+Use this option to choose the color for the foreground.
+ 
+Click SELECT on the button to display a palette of predefined colors.
+
+#######################50#########################
+:colorBg:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Background Color
+
+Use this option to choose the color for the background.
+
+Click SELECT on the button to display a palette of predefined colors.
+
+#######################50#########################
+:selection:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Selection Color
+
+Use this option to choose the color of a text selection, or highlight.
+
+
+#######################50#########################
+:chooserButton:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Palette display button
+
+Displays a palette from which you can select a predefined color. 
+
+To create a custom color, click SELECT on Custom. When the custom palette is displayed, define the hue, saturation and brightness for the color.
+
+#######################50#########################
+:pattern:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Patterns
+
+Use this option to choose a pattern or solid color for the workspace background. 
+Press MENU on the Pattern abbreviated menu button and choose from the selections.
+
+##################################################
+# 	Fonts Category
+#######################50#########################
+:fontsCategory: $OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Fonts Category
+
+Use the options in this category to change the characteristics of the fonts on your system.
+
+#######################50#########################
+:fontChoices: $OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Font Choices
+
+Standard - A set of type faces that meet OPEN LOOK requirements for system fonts. These fonts are sans serif.
+ 
+Custom - All the available fonts installed on your system.
+
+#######################50#########################
+:fontTypefaces: $OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Font Typefaces
+
+Displays a list of available typefaces.
+
+To choose a font family for your system, click SELECT on the family name in the list.
+
+#######################50#########################
+:fontScale: $OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Font And Window Scale
+
+Use this option to choose the scale of the OPEN LOOK glyph font and the chosen typeface.
+ 
+The corresponding point sizes are:
+
+Small	10 pt
+Medium	12 pt
+Large	14 pt
+Extra Large  19 pt
+
+#######################50#########################
+:fontPreview: $OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Font Preview
+ 
+Displays a preview window with your current font selections. 
+
+##################################################
+# 	Keyboard Category
+#######################50#########################
+:keyboardCategory: $OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Keyboard Category
+
+Use the options in this category to change the behavior of your keyboard.
+
+#######################50#########################
+:mouseless: $OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Keyboard Mouse Equivalents
+
+Use this option for access to the keyboard equivalents for mouse operations. You have the following choices:
+
+- Basic Functions
+- All Functions
+ 
+#######################50#########################
+:keyClick: $OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Key Click
+
+Use this option to turn key clicking off and on.
+
+#######################50#########################
+:repeatKeys: $OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Repeat Keys
+
+Use this option to turn key repeating off and on.
+
+##################################################
+# 	Menus Category
+#######################50#########################
+:menuCategory: $OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Menus Category
+
+Use the options in this category to change the settings that affect menu selection.
+
+#######################50#########################
+:dragRightDistance: $OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Drag-Right Distance
+
+Specifies how far you must drag the pointer before displaying a submenu. The smaller the number, the sooner the submenu appears.
+ 
+Adjust the slider to specify the number of pixels to drag the pointer before displaying the submenu.
+ 
+#######################50#########################
+:selectMousePress:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Left Mouse Press
+ 
+Determines what happens when you click SELECT on a menu button. You have the following choices:
+ 
+Selects Default Item- Shows the default setting for the menu when you press SELECT. The default is executed when you release SELECT.
+ 
+Displays Menu- Displays the menu when you press SELECT.
+ 
+#######################50#########################
+:menuAccel:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Keyboard Menu Equivalents
+
+Use this option to activate the menu accelerators. You have the following choices:
+
+- Application and window
+- Application only
+- None
+ 
+##################################################
+#	Programs Menu Category
+#######################50#########################
+:wkspMenuControlArea:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Programs Menu Category
+
+Use the options in this category to customize the workspace programs submenu.
+
+You can add, delete, and edit entries.
+ 
+#######################50#########################
+:scrollingListCaption:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Menu Contents
+
+Displays a list of programs shown in the workspace programs submenu.
+
+#######################50#########################
+:labelTextLine:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Label:___
+
+Use this field to enter the name of the program you want to appear in the workspace programs submenu.
+
+#######################50#########################
+:commandTextLine:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Command:___
+
+Use this field to enter the command that will execute when you select the program name from the workspace programs submenu.
+
+#######################50#########################
+:wkspMenuChange:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Change Button
+
+Accepts changes made in the Label or Command fields for the currently set item in the Menu Contents list. 
+
+Your changes will be lost if you set another item in the list without first clicking SELECT on the Change button.
+
+#######################50#########################
+:wkspMenuAdd:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Add Button
+
+Adds a program name to the workspace programs submenu and associates a command with it. 
+
+Entries can only be added to the end of the list.
+
+#######################50#########################
+:wkspMenuCut:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Cut Button
+
+Removes the current selection. The selection is saved so it can be moved somewhere else in the list.
+
+#######################50#########################
+:wkspMenuCopy:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Copy Button
+
+Saves a copy of the current selection so it can be added somewhere else in the list.
+
+#######################50#########################
+:wkspMenuPasteBefore:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Paste Before Button
+
+When an entry has been cut or copied, click SELECT on this button to add the entry "before" the currently selected entry in the list.
+
+
+#######################50#########################
+:wkspMenuPasteAfter:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Paste After Button
+
+When an entry has been cut or copied, click SELECT on this button to add the entry "after" the currently selected entry in the list.
+
+#######################50#########################
+:wkspMenuDelete:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Delete Button
+
+Deletes the currently selected entry from the list.
+
+#######################50#########################
+:wkspMenuDefault:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Make Default Button
+
+Sets the current item in the list as the default selection when you access the Programs menu.
+
+##################################################
+#	Miscellaneous Category
+#######################50#########################
+:miscCategory:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Miscellaneous Category
+ 
+Use the options in this category to set miscellaneous characteristics for your desktop.
+
+#######################50#########################
+:screenSaver:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Screen Saver
+
+Use this option to easily enable or disable the screen saver device.
+
+When set to "Auto", the screen saver will automatically blank your screen after the number of specified minutes. 
+
+To define the number of minutes, click SELECT on Auto and type the desired number of minutes in the minutes field.
+ 
+#######################50#########################
+:beep:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Beep
+ 
+Use this option to define one of the following audible (beep) notification signals:
+ 
+Always- Beeps for all applications
+ 
+Notices Only- Only beeps when a notice is displayed
+ 
+Never- Never beeps
+ 
+#######################50#########################
+:beepDuration:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Beep Duration
+
+Specifies the duration of the keyboard beep in milliseconds.
+
+#######################50#########################
+:setInputArea:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Set Active Window
+ 
+Use this option to set the method for activating the input caret when typing into a window or text field. You have the following choices:
+ 
+Click Mouse- Move the pointer into a window and click SELECT.
+ 
+Move Pointer- Move the pointer into a window.
+ 
+With either setting, you can set a new insert point by clicking SELECT in a text field or pane.
+ 
+#######################50#########################
+:iconLocation:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Icon Location
+
+Specifies where the window manager places icons of newly started applications. 
+
+#######################50#########################
+:scrollbarPlacement:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Scrollbar Placement
+
+Use this option to specify whether scrollbars are placed to the right or left of panes.
+
+##################################################
+#	Mouse Category
+#######################50#########################
+
+:mouseCategory:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Mouse Category
+ 
+Use the options in this category to change the behavior of the mouse.
+ 
+#######################50#########################
+:scrollbarJumping:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Scrollbar Pointer Jumping
+ 
+Sets the pointer so it follows the moves of the scrollbar elevator.
+ 
+Click SELECT on the check box to set the pointer. To undo the setting, click SELECT on the check box again.
+ 
+#######################50#########################
+:popupJumping:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Pop-up Windows Pointer Jumping
+ 
+Sets the pointer so it jumps into pop-up windows when they are displayed.
+ 
+Click SELECT on the check box to set the pointer. To undo the setting, click SELECT on the check box again.
+ 
+#######################50#########################
+:multiClickInterval:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Multi-Click Interval
+ 
+Specifies the time, in tenths of a second, that differentiates a double-click from two single clicks.
+ 
+If the time between clicks is longer than the setting, each click is treated as a separate event.
+ 
+#######################50#########################
+:acceleration:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Mouse Acceleration
+
+Specifies the speed of the pointer when moved further than the specified threshold.
+
+You can set the acceleration rate using the slider.
+
+#######################50#########################
+:threshold:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Mouse Threshold
+
+Specifies how far the pointer must be moved before it is accelerated.
+
+You can set the threshold in pixels by adjusting the slider.
+ 
+#######################50#########################
+:buttonMapping:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Mouse Button Order
+
+Specifies whether the mouse buttons are set for left or right handed use.
+
+##################################################
+#	Locale Category
+#######################50#########################
+:localeCategory:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Locale Category
+ 
+Use the options in this category to change language and culture related settings.
+
+#######################50#########################
+:basicCaption:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Basic Locale
+
+Specifies a language or culture area.
+
+Press MENU on the abbreviated menu button to choose the language or culture area you want to use in your Workspace.
+ 
+The Basic Locale setting determines the choices and defaults available for Specific Setting entries.
+
+#######################50#########################
+:displayCaption:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Display Locale
+
+Specifies the language in which messages, labels, menu items, titles, and help text are shown.
+ 
+Press MENU on the abbreviated menu button to choose a new setting.
+ 
+#######################50#########################
+:inputCaption:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Input Locale
+
+Specifies the language used for input.
+ 
+Press MENU on the abbreviated menu button to choose a new setting.
+
+#######################50#########################
+:timeCaption:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Time Format
+
+Specifies the format for time and date display.
+ 
+Press MENU on the abbreviated menu button to choose a new setting.
+ 
+#######################50#########################
+:numericCaption:$OPENWINHOME/bin/helpopen handbooks/workspace.handbook
+Numeric Format
+
+Specifies the format for numeric display.
+ 
+Press MENU on the abbreviated menu button to choose a new setting.
+ 

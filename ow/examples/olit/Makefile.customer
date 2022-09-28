@@ -1,0 +1,25 @@
+#
+# @(#)Makefile.customer	1.17 91/07/26  SMI
+#
+# Makefile for the Olit example programs
+#
+ 
+SUBDIRS =	oldials \
+		olitbook \
+		olitsampler
+ 
+all:
+		-@for i in ${SUBDIRS}; do \
+		(       echo "<<< Descending into directory: $$i >>>"; \
+			cd $$i; \
+			${MAKE} ${MFLAGS} all; \
+			cd ..; \
+		); done
+ 
+clean:
+		-@for i in ${SUBDIRS}; do \
+		(       echo "<<< Descending into directory: $$i >>>"; \
+			cd $$i; \
+			${MAKE} ${MFLAGS} clean; \
+			cd ..; \
+		); done

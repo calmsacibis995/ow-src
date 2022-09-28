@@ -1,0 +1,137 @@
+.\" @(#)audiofile.4	1.1	94/01/18 SMI
+.TH audiofile 4 "03 May 1993"
+.SH NAME
+audiofile \- file format for audio data
+.SH SYNOPSIS
+.\" XXX - reference to unsupported sw
+.B #include <multimedia/libaudio.h>
+.IX "audiofile"
+.SH DESCRIPTION
+.LP
+An audio file is composed of three parts:
+a 24-byte header, a variable-length annotation block,
+and a contiguous segment of audio data.
+Audio header and data fields are stored in network (big-endian) byte order,
+regardless of the native byte-order of the machine architecture on which
+an application may be running.
+Therefore, multi-byte audio data may require byte reversal in order
+to operate on it by the arithmetic unit of certain processors.
+.LP
+The header is defined by the following structure:
+.LP
+.RS
+.nf
+.ft B
+typedef unsigned long	u_32;		/* unsigned 32-bit integer */
+
+typedef struct {
+	u_32		magic;		/* magic number */
+	u_32		hdr_size;	/* byte offset to start of audio data */
+	u_32		data_size;	/* data length, in bytes (optional) */
+	u_32		encoding;	/* data encoding enumeration */
+	u_32		sample_rate;	/* samples per second */
+	u_32		channels;	/* number of interleaved channels */
+} Audio_filehdr;
+.fi
+.ft R
+.RE
+.LP
+The
+.I magic
+field always contains the following constant:
+.IP
+.SB AUDIO_FILE_MAGIC\s0		( 0x2e736e64 )	/* """.snd""" */
+.LP
+The
+.I hdr_size
+field contains the length of the fixed header plus the variable-length
+annotation field.  Consequently, it may be interpreted as an offset
+from the start of the file to the beginning of the audio data.
+.LP
+The
+.I data_size
+field contains the length, in bytes of the audio data segment.
+If this length is not known when the header is written, it should
+be set to
+.SB AUDIO_UNKNOWN_SIZE\s0,
+defined as follows:
+.IP
+.SB AUDIO_UNKNOWN_SIZE\s0	( ~0 )		/* (unsigned) \-1 */
+.LP
+When the
+.I data_size
+field contains
+.SB AUDIO_UNKNOWN_SIZE\s0,
+the length of the audio data may be determined by subtracting
+.I hdr_size
+from the total length of the file.
+.LP
+The
+.I encoding
+field contains one of the following enumerated keys:
+.IP
+.SB AUDIO_ENCODING_MULAW_8\s0		(1)	/* 8-bit ISDN \(*m-law */
+.B AUDIO_ENCODING_LINEAR_8\s0		(2)	/* 8-bit linear PCM */
+.SB AUDIO_ENCODING_LINEAR_16\s0		(3)	/* 16-bit linear PCM */
+.\" XXX - unsupported data encoding
+.\" .SB AUDIO_ENCODING_LINEAR_24\s0		(4)	/* 24-bit linear PCM */
+.B AUDIO_ENCODING_LINEAR_32\s0		(5)	/* 32-bit linear PCM */
+.SB AUDIO_ENCODING_FLOAT\s0		(6)	/* 32-bit IEEE floating point */
+.B AUDIO_ENCODING_DOUBLE\s0		(7)	/* 64-bit IEEE floating point */
+.SB AUDIO_ENCODING_ADPCM_G721\s0	(23)	/* CCITT g.721 4-bit ADPCM */
+.\" XXX - unsupported data encoding
+.\" .SB AUDIO_ENCODING_ADPCM_G722\s0	(24)	/* CCITT g.722 8-bit ADPCM */
+.B AUDIO_ENCODING_ADPCM_G723_3\s0	(25)	/* CCITT g.723 3-bit ADPCM */
+.\" XXX - unsupported data encoding
+.\" .SB AUDIO_ENCODING_ADPCM_G723_5\s0	(26)	/* CCITT g.723 5-bit ADPCM */
+.SB AUDIO_ENCODING_ALAW_8\s0		(27)	/* 8-bit ISDN A-law */
+.LP
+All of the linear formats are signed integers, centered at zero.
+.\" XXX - unsupported data encoding
+Another common linear format, 8-bit unsigned linear
+.SM PCM\s0,
+is not currently supported.
+The floating-point formats are signed, zero-centered, and normalized
+to the unit value ( \-1.0 <= x <= 1.0 ).
+.LP
+The
+.I sample_rate
+field contains the audio sampling rate, in samples per second.
+Common sample rates include 8000, 11025, 16000, 22050, 32000, 44100, and 48000
+samples per second.
+.LP
+The
+.I channels
+field contains the number of interleaved data channels.  For monaural data,
+this value is set to one.  For stereo data, this value is set to two.
+More than two data channels may be interleaved, but such formats may not
+be supported by all audio applications.
+.LP
+Following the header structure is a variable-length annotation field.
+The contents of this field are currently undefined, except that its
+length must be a non-zero multiple of eight bytes and it must be terminated
+with at least one null (zero) byte.
+.LP
+The audio data segment begins on an eight-byte boundary immediately
+following the annotation field. Audio data is encoded in the format
+identified by the file header. The current implementation supports
+only a single audio data segment per file.
+.\".SH FILES
+.\".PD 0
+.\".TP 20
+.\".B /usr/demo/SOUND/include/multimedia/audio_filehdr.h
+.\".PD
+.SH NOTES
+.LP
+Applications are encouraged
+.SB NOT
+to decode the fields of the audio file header directly.
+Instead, applications should use the routines described in
+.\" XXX - reference to unsupported sw
+.B /usr/demo/SOUND/man/man3/audio_filehdr.3
+to read, write, and decode audio file headers.
+.LP
+The variable-length annotation field is currently ignored by most
+audio applications.  It is present for interchange compatibility.
+In the future, applications may use this field to store structured
+data annotation, such as markers and edit points.

@@ -1,0 +1,54 @@
+.\" Copyright (c) 1994 - Sun Microsystems, Inc. 
+.TH vkbd 1 "24 March 1992"
+.IX "vkbd" "" "\f3vkbd\f1(1) \(em virtual keys & functions displayer" ""
+.IX "keyboard" "virtual" "keyboard" "virtual keys & function displayer \(em \f3vkbd\f1(1)"
+.SH NAME
+vkbd 
+\- virtual keyboard/soft function keys display manager
+.SH SYNOPSIS
+.B vkbd
+[
+.B -nopopup
+] [ 
+.I generic-tool-arguments 
+]
+.SH DESCRIPTION
+.B vkbd
+provides functionality to label the function keys specific to the
+individual application.
+When the "Function Keys" item is selected
+from the Workspace Utilities submenu, a panel containing the same
+number of function keys as your keyboard is displayed at the bottom of
+the screen.
+You can also use the keys in the Function Keys panel
+to activate the functions (assuming you have the Workspace property
+"Set Input Area" set to "Click SELECT"): just click SELECT on a key.
+The labels are automatically updated if you change the
+input area to another window.
+If the input area is changed to a 
+window which does not use the function keys, the panel is updated
+to clear the labels.
+.PP 
+.B vkbd
+also provides a mechanism to switch between multiple languages
+by pressing and holding the LANG key.
+The LANG key is labeled PrSc or Print Screen
+by default. The LANG key can be remapped by adding the following
+to your \fB$HOME/.Xdefaults\fP file:
+.PP 
+   OpenWindows.KeyboardCommand.Translate: key
+.PP
+.B vkbd
+is usually started from openwin-sys and is not intended to
+be used directly.  
+.SH OPTIONS
+.TP 8
+.B \-nopopup
+This option indicates that Function Keys popup panel is not mapped
+at startup time.
+.SH FILES
+.B $OPENWINHOME/lib/openwin-sys
+.SH SEE ALSO
+.nf
+.BR xview (7)
+.I OPENLOOK Graphical User Interface Functional Specification

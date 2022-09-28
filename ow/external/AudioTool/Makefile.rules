@@ -1,0 +1,836 @@
+# Makefile - generic rules file
+#
+#
+# @(#)Makefile.rules	1.42	93/05/17 SMI
+#
+
+# Makefile rules. This is included at the bottom of all
+# Makefiles and includes all rules for building the various
+# possible targets. Inputs include:
+#
+#	TARGETS		a list of targets to build. can be any or all of:
+#
+#			    subdirs	- build contents of sub dirs
+#			    library	- build library (.a) target
+#			    objlib	- build library (.o) target
+#			    program	- build program target
+#			    auxfiles	- check out auxilliary files
+#			    sources	- check out source files
+#			    files	- check out/install files 
+#			    scripts	- check out/install shell scripts 
+#			    gensources	- generate sources from guide files
+#			    genccsources- generate C++ sources from guide files
+#			    strings     - generate I18N strings
+#
+#			targets will be built in order specified. targets
+#			that exist in the Makefile may also be specified
+#			in addition to these.
+#
+#	TARGETS.install	additional install targets (to install sources,
+#			info files, etc.). use your own targets or
+#			some of the pre-defined install targets
+#			(e.g. instfiles - while setting FILES properly)
+#
+#	STRIP		define as the string "strip" to strip the
+#			installed executables
+#
+#	SUBDIRS		any sub directories to make first
+#
+#	LIBRARY		name of library .a target
+#	OBJLIB		name of library .o target
+# 	LIBSRCS		sources for building a library target 
+#	LIBHDRS		library headers
+#	LIBOBJS		library object files
+#
+#	PROGRAM		program target
+#	PROGSRCS	sources for building a program target
+#	PROGHDRS	program headers
+#	PROGOBJS	program object files
+#
+#	INSTALL_HELP	name of the target .info file
+#	HELP_FILES	names of files to concatenate to build INSTALL_HELP
+#	HELP_HANDBOOK	name of handbook file to reference in .info file
+#
+#       Devguide stuff:
+#
+#	GSRCS		list of guide source files
+#	GFLAGS		guide flags (override from those set in Makefile.cfg)
+#	GHELP		name of help file (sed is run on _ui.c file to
+#			change it from the default)
+#	DOMAIN		I18N domain for message file (also needed for 
+#			string extraction)
+#
+#	TT_TYPES	tooltalk types file
+#	SOURCES		sources to check out & install (prog and lib rules)
+#	AUXFILES	auxiliarry files to check out
+#	MAN		manuals to install (prog and lib rules)
+#	INFO		info files to install (prog rules)
+#	FILES		files to check out & install (in lib dir)
+#	SCRIPTS		shell scripts to check out & install (in bin dir)
+#
+#	DIR.install.files   directory to install files (if not lib dir)
+#	DIR.install.scripts directory to install scripts (if not bin dir)
+#	DIR.install.program directory to install prog's (if not bin dir)
+#	DIR.install.library directory to install scripts (if not lib dir)
+#	DIR.install.info    directory to install info (help) files
+#	DIR.install.man	    directory to install man pages
+#
+#	DEFINES		any -D args
+#	INCLUDE		any -I args
+#	DEPENDLIBS	lib's that program depends on (path to .a files)
+#	LDLIBS		other (system) lib's (any -L and -l args)
+#
+
+.KEEP_STATE:
+.INIT:	$(OBJDIR) $(OBJDIR)/debug $(OBJDIR)/gprof $(OBJDIR)/opt ${PROGHDRS} ${LIBHDRS}
+
+# Try to figure out the build type (variant). Makefile.cfg will have
+# the default build type. However, each development tree may want its
+# own w/o the need to edit Makefile.cfg or specify on the command line.
+# To accomodate, we'll check for the file called ${BASEDIR}/.variant.
+# If it exists, use that....
+
+BUILDTYPE.METHOD = if [ -f ${BASEDIR}/.variant ] ; then \
+		      echo `cat ${BASEDIR}/.variant`; \
+		   else \
+		      echo ${VARIANT}; \
+		   fi
+
+BUILDTYPE	= ${BUILDTYPE.METHOD:sh}
+
+#
+# Get the version of OpenWindows we are building with
+#
+OWVERSION:sh = \
+        if [ -f ../../../config/OWversion ]; then \
+                grep OpenWindows ../../../config/OWversion; \
+        fi
+
+#
+# By default binaries have huge .comment sections.  We replace this with
+# the following line to save disk space. (see mcs)
+# OWVERSION is defined in Makefile and passed to us on the command line
+#
+COMMENT_STRING  = ${OWVERSION} `date +'%e %B %Y'`
+
+
+all::		all_${BUILDTYPE}
+
+all_debug:	debug
+all_gprof:	gprof
+all_opt:	opt
+
+all_:		${TARGETS}
+debug:		${TARGETS}
+gprof:		${TARGETS}
+opt:		${TARGETS}
+
+# where objects files are actually stored
+DIR.obj		= $(OBJDIR)
+
+# variant stuff
+
+debug	  	:= DIR.obj	= $(OBJDIR)/debug
+debug		:= CFLAGS	= -g -DDEBUG
+debug		:= LDFLAGS	= -g
+debug		:= MAKETARGET	= debug
+debug		:= DEBUGLIBS	= ${MPROF}
+debug		:= PRELD	= ${PURIFY}
+
+installdebug	:= DIR.obj	= $(OBJDIR)/debug
+installdebug	:= CFLAGS	= -g -DDEBUG
+installdebug	:= LDFLAGS	= -g
+installdebug	:= DEBUGLIBS	= ${MPROF}
+installdebug	:= PRELD	= ${PURIFY}
+
+opt		:= CFLAGS	= -O
+opt		:= DIR.obj	= $(OBJDIR)/opt
+opt		:= MAKETARGET	= opt
+
+installopt	:= CFLAGS	= -O
+installopt	:= DIR.obj	= $(OBJDIR)/opt
+
+gprof		:= CFLAGS	= -pg
+gprof		:= LDFLAGS	= -pg
+#gprof		:= LDFLAGS	= -Bstatic -pg
+gprof		:= DIR.obj	= $(OBJDIR)/gprof
+gprof		:= MAKETARGET	= gprof
+
+installgprof	:= CFLAGS	= -pg
+installgprof	:= LDFLAGS	= -pg
+#installgprof	:= LDFLAGS	= -Bstatic -pg
+installgprof	:= DIR.obj	= $(OBJDIR)/gprof
+
+clean		:= MAKETARGET	= clean
+clobber		:= MAKETARGET	= clobber
+install		:= MAKETARGET	= install
+installdebug	:= MAKETARGET	= installdebug
+installopt	:= MAKETARGET	= installopt
+installgprof	:= MAKETARGET	= installgprof
+tags		:= MAKETARGET	= tags
+apply		:= MAKETARGET	= apply
+files		:= MAKETARGET	= files
+scripts		:= MAKETARGET	= scripts
+sources		:= MAKETARGET	= sources
+auxfiles	:= MAKETARGET	= auxfiles
+gensources	:= MAKETARGET	= gensources
+genccsources	:= MAKETARGET	= genccsources
+geninfo		:= MAKETARGET	= geninfo
+strings		:= MAKETARGET	= strings
+install_strings	:= MAKETARGET	= install_strings
+help		:= MAKETARGET	= help
+install_help	:= MAKETARGET	= install_help
+
+
+${OBJDIR} ${OBJDIR}/debug ${OBJDIR}/gprof ${OBJDIR}/opt:
+	@if [ ! -d $@ ]; then echo Creating $@ ; \
+	    mkdir -p $@ ; \
+	fi
+
+#
+# yes, this looks confusing. ${TARGETS.install} are additional
+# install targets that the user wants to include
+#
+
+# install will always try to make strings, install_strings
+
+INSTALL_always	= strings install_strings
+INSTALL_targets	= ${TARGETS:%=inst%} ${INSTALL_always} ${TARGETS.install}
+
+install:	install_${BUILDTYPE}
+
+install_debug: installdebug
+install_opt:	installopt
+install_gprof: installgprof
+
+install_:     	${INSTALL_targets}
+installdebug:	${INSTALL_targets}
+installgprof:	${INSTALL_targets}
+installopt:	${INSTALL_targets}
+
+CLEAN.targets = ${TARGETS:%=clean%}
+clean::		${CLEAN.targets}
+
+CLOBBER.targets = ${TARGETS:%=clobber%}
+clobber::	${CLOBBER.targets}
+
+TAGS.targets = ${TARGETS:%=tags%}
+tags::		${TAGS.targets}
+
+APPLY.targets = ${TARGETS:%=apply%}
+apply::		${APPLY.targets}
+
+#----------------------------------------------------------------------------
+# Library (.a) and Object-library (.o) Rules
+#----------------------------------------------------------------------------
+
+TARGET.library		= ${LIBRARY:%=${DIR.obj}/lib%.a}
+TARGET.objlib		= ${OBJLIB:%=${DIR.obj}/lib%.o}
+
+library: $${TARGET.library}
+objlib: $${TARGET.objlib}
+
+OBJECTS.library		= ${LIBOBJS:%=${DIR.obj}/%}
+OBJECTS.objlib		= ${LIBOBJS:%=${DIR.obj}/%}
+
+VARIANTS.library	= ${LIBRARY:%=${OBJDIR}/lib%.a} ${LIBRARY:%=${OBJDIR}/debug/lib%.a} ${LIBRARY:%=${OBJDIR}/gprof/lib%.a} ${LIBRARY:%=${OBJDIR}/opt/lib%.a} 
+VARIANTS.objlib		= ${OBJLIB:%=${OBJDIR}/lib%.o} ${OBJLIB:%=${OBJDIR}/debug/lib%.o} ${OBJLIB:%=${OBJDIR}/gprof/lib%.o} ${OBJLIB:%=${OBJDIR}/opt/lib%.o} 
+
+# hack to make sure we don't have null targets
+library-target ${VARIANTS.library}: $${OBJECTS.library}
+	${RM} $@
+	${AR} qv $@ ${OBJECTS.library}
+	@echo ranlib $@
+	@${RANLIB} $@
+
+objlib-target ${VARIANTS.objlib}: $${OBJECTS.objlib}
+	${RM} $@
+	${LD} -r -o $@ ${OBJECTS.objlib}
+
+library-objects $${OBJECTS.library} : ${LIBSRCS}
+objlib-objects $${OBJECTS.objlib} : ${LIBSRCS}
+
+# don't install any library targets (by default)
+instlibrary: # $${TARGET.library}
+#	@echo installing library ${TARGET.library}
+instobjlib: # $${TARGET.objlib}
+#	@echo installing objlib ${TARGET.objlib}
+
+inst-library: $${TARGET.library} ${DIR.install.library}
+	@rm -f $(DIR.install.library)/lib${LIBRARY}.a-
+	@if [ -f $(DIR.install.library)/lib${LIBRARY}.a ] ; then \
+		echo "${DIR.install.library}/lib${PROGRAM}.a -> ${DIR.install.library}/lib${LIBRARY}.a-"; \
+		mv -f ${DIR.install.library}/lib${LIBRARY}.a ${DIR.install.library}/lib${LIBRARY}.a- ; \
+	fi
+	@echo "${TARGET.library} -> ${DIR.install.library}/lib${LIBRARY}.a
+	@${CP} -p ${TARGET.library} ${DIR.install.library}/lib${LIBRARY}.a
+	@${CHMOD} 644 ${DIR.install.library}/lib${LIBRARY}.a
+	@${RANLIB} -t ${DIR.install.library}/lib${LIBRARY}.a
+	@ls -l ${DIR.install.library}/lib${LIBRARY}.a
+
+#----------------------------------------------------------------------------
+# Program Rules
+#----------------------------------------------------------------------------
+
+TARGET.program		= ${PROGRAM:%=${DIR.obj}/%}
+TARGET.cplusplusprog	= ${CPLUSPLUSPROG:%=${DIR.obj}/%}
+
+program: $${TARGET.program}
+cplusplusprog: $${TARGET.cplusplusprog}
+
+OBJECTS.program		= ${PROGOBJS:%=${DIR.obj}/%}
+OBJECTS.cplusplusprog	= ${PROGOBJS:%=${DIR.obj}/%}
+
+VARIANTS.program	= ${PROGRAM:%=${OBJDIR}/%} ${PROGRAM:%=${OBJDIR}/debug/%} ${PROGRAM:%=${OBJDIR}/gprof/%} ${PROGRAM:%=${OBJDIR}/opt/%} 
+VARIANTS.cplusplusprog	= ${CPLUSPLUSPROG:%=${OBJDIR}/%} ${CPLUSPLUSPROG:%=${OBJDIR}/debug/%} ${CPLUSPLUSPROG:%=${OBJDIR}/gprof/%} ${CPLUSPLUSPROG:%=${OBJDIR}/opt/%} 
+
+# hack to make sure we don't have null targets
+program-target ${VARIANTS.program}: $${OBJECTS.program} $${DEPENDLIBS}
+	@echo Linking $@ ...
+	@LD_RUN_PATH=${LD_RUN_PATH} ${PRELD} ${CC} -o $@ \
+		${LDFLAGS} ${OBJECTS.program} \
+		${DEPENDLIBS} ${LDLIBS} ${DEBUGLIBS}
+	@ls -l $@
+	@size $@
+
+# 
+cplusplusprog-target ${VARIANTS.cplusplusprog}: $${OBJECTS.cplusplusprog} $${DEPENDLIBS}
+	@echo Linking $@ ...
+	@LD_RUN_PATH=${LD_RUN_PATH} ${PRELD} ${CCC} -o $@ \
+		${LDFLAGS} ${OBJECTS.cplusplusprog} \
+		${DEPENDLIBS} ${LDLIBS} ${DEBUGLIBS} ${SYSLIBS}
+	@ls -l $@
+	@size $@
+
+# should this depend on ${PROGHDRS}? probably not ...
+program-objects $${OBJECTS.program} : ${PROGSRCS}
+cplusplus-objects $${OBJECTS.program} : ${PROGSRCS}
+
+# Install a normal program
+# Disabled:  if already installed, move the current program to program-
+#
+#	@rm -f $(DIR.install.program)/${PROGRAM}-
+#	@if [ -f $(DIR.install.program)/${PROGRAM} ] ; then \
+#		echo "${DIR.install.program}/${PROGRAM} -> ${DIR.install.program}/${PROGRAM}-"; \
+#		mv -f ${DIR.install.program}/${PROGRAM} ${DIR.install.program}/${PROGRAM}- ; \
+#	fi
+#
+instprogram: $${TARGET.program} ${DIR.install.program}
+	@echo "${TARGET.program} -> ${DIR.install.program}/${PROGRAM}
+	@echo "$(TARGET.program): Replacing .comment section"; \
+        mcs -d $(TARGET.program); \
+        mcs -a "$(PROGRAM) $(COMMENT_STRING)" $(TARGET.program);
+	@${CP} -p ${TARGET.program} ${DIR.install.program}/${PROGRAM}
+	@if [ -n "$(STRIP)" ] ; then \
+		echo "Stripping ${DIR.install.program}/${PROGRAM}" ; \
+		$(STRIP) ${DIR.install.program}/${PROGRAM} ; \
+	fi
+	@-${CHGRP} bin ${DIR.install.program}/${PROGRAM}
+	@${CHMOD} 755 ${DIR.install.program}/${PROGRAM}
+	@ls -l ${DIR.install.program}/${PROGRAM}
+
+# Install a C++ program
+# Disabled:  if already installed, move the current program to program-
+#
+#	@rm -f $(DIR.install.program)/${CPLUSPLUSPROG}-
+#	@if [ -f $(DIR.install.program)/${CPLUSPLUSPROG} ] ; then \
+#		echo "${DIR.install.program}/${CPLUSPLUSPROG} -> ${DIR.install.program}/${CPLUSPLUSPROG}-"; \
+#		mv -f ${DIR.install.program}/${CPLUSPLUSPROG} ${DIR.install.program}/${CPLUSPLUSPROG}- ; \
+#	fi
+#
+instcplusplusprog: $${TARGET.cplusplusprog} ${DIR.install.program}
+	@echo "${TARGET.cplusplusprog} -> ${DIR.install.program}/${CPLUSPLUSPROG}
+	@echo "$(TARGET.cplusplusprog): Replacing .comment section"; \
+        mcs -d $(TARGET.cplusplusprog); \
+        mcs -a "$(PROGRAM) $(COMMENT_STRING)" $(TARGET.cplusplusprog);
+	@${CP} -p ${TARGET.cplusplusprog} ${DIR.install.program}/${CPLUSPLUSPROG}
+	@if [ -n "$(STRIP)" ] ; then \
+		echo "Stripping ${DIR.install.program}/${CPLUSPLUSPROG}" ; \
+		$(STRIP) ${DIR.install.program}/${CPLUSPLUSPROG} ; \
+	fi
+	@-${CHGRP} bin ${DIR.install.program}/${CPLUSPLUSPROG}
+	@${CHMOD} 755 ${DIR.install.program}/${CPLUSPLUSPROG}
+	@ls -l ${DIR.install.program}/${CPLUSPLUSPROG}
+
+#----------------------------------------------------------------------------
+# Subdir Rules
+#----------------------------------------------------------------------------
+
+instsubdirs: subdirs
+
+subdirs:
+	@for i in . ${SUBDIRS} ; do \
+	(if [ "x$$i" != "x." ] ; then \
+	    if [ -d "$$i" ]; then \
+		cd $$i; \
+		echo "----["`pwd`"]----"; \
+		${MAKE} "OWVERSION=${OWVERSION}" ${MAKETARGET} ; \
+	    else \
+		echo "** WARNING: directory $$i does not exist, skipping ...";\
+	    fi \
+	 fi \
+	) done
+
+#----------------------------------------------------------------------------
+# Object Rules
+#----------------------------------------------------------------------------
+
+# should these rules depend on header macros? probably not
+# since we have .KEEP_STATE active ...
+# - also: re-extracts strings for a given file everytime it's re-compiled
+#   (SVR4 only). 
+$${DIR.obj}/%.o: %.c
+	${CC} -o $@ ${CC_SBFLAGS} ${CC_CGFLAGS} ${DEFINES} \
+		${INCLUDE} \
+	        ${CFLAGS} ${DEFS} ${SYSDEFS} -c $<
+
+$${DIR.obj}/%.o: %.cc
+	${CCC} -o $@ ${CCC_SBFLAGS} ${CCC_CGFLAGS} ${DEFINES} \
+		${INCLUDE} \
+	        ${CFLAGS} ${DEFS} ${SYSDEFS} -c $<
+
+saber-libsrc: ${LIBSRCS}
+	#load ${DEFINES} ${INCLUDE} ${CFLAGS} ${DEFS} ${LIBSRCS}
+
+saber-progsrc: ${PROGSRCS}
+	#load ${DEFINES} ${INCLUDE} ${CFLAGS} ${DEFS} ${PROGSRCS}
+
+
+#
+# this hack allows a sed script called "fix.sed" in the current directory
+# to be applied to a source file before compiling. this is useful for
+# doing some hacking on generated files (e.g. devguide _ui.c files). to use,
+# just set the FIXEDSRCS macro to those files that you wish to "fix".
+
+FIXEDOBJS	= ${OBJDIR}/_dummy_.o \
+		${FIXEDSRCS:%.c=${OBJDIR}/%.o} \
+		${FIXEDSRCS:%.c=${OBJDIR}/opt/%.o} \
+		${FIXEDSRCS:%.c=${OBJDIR}/debug/%.o} \
+		${FIXEDSRCS:%.c=${OBJDIR}/profile/%.o}
+
+${FIXEDOBJS}: fix.sed
+	-@rm -f $(@:${DIR.obj}/%.o=%_fixed.c)
+	sed -f fix.sed < $(@:${DIR.obj}/%.o=%.c) > $(@:${DIR.obj}/%.o=%_fixed.c)
+	${CC} -o $@ ${DEFINES} ${INCLUDE} ${CFLAGS} ${DEFS} -c $(@:${DIR.obj}/%.o=%_fixed.c)
+
+#----------------------------------------------------------------------------
+# Devguide Rules
+#----------------------------------------------------------------------------
+
+# XXX - got to make this work ...
+# Uncomment this if you want to automatically re-gen _ui.[ch] files from
+# guide .G files
+#
+# %_ui.cc %_ui.h: %.G
+#	$(GXVCC) $<
+#
+# %_ui.c %_ui.h: %.G
+#	$(GXV) $<
+
+# XXX - the following ulgyness is to get around some 
+rungxv gensources: ${GSRCS}
+	@if [ ! -f Makefile ]; then touch Makefile; fi ; \
+	for i in . ${GSRCS} ; do \
+	(if [ "x$$i" != "x." ] ; then \
+	     ui=`basename $$i .G`; \
+	     if [ -f $${ui}_ui.c -a ! -w $${ui}_ui.c \
+		  -a -f SCCS/s.$${ui}_ui.c ] ; then \
+	         sccs edit $${ui}_ui.c ; \
+	     fi ;\
+	     if [ -f $${ui}_ui.h -a ! -w $${ui}_ui.h \
+		  -a -f SCCS/s.$${ui}_ui.h ] ; then \
+	         sccs edit $${ui}_ui.h ; \
+	     fi ;\
+	     if [ -f $${ui}.info -a ! -w $${ui}.info \
+		  -a -f SCCS/s.$${ui}.info ] ; then \
+	         sccs edit $${ui}.info ; \
+	     fi ;\
+	     echo "Running ${GXV} ${GFLAGS} $$i ..."; \
+	     ${GXV} -s ${GFLAGS} $$i ; \
+	     echo "Fixing $${ui}_ui.c ..."; \
+	     rm -f ,$${ui}_ui.c; \
+	     mv -f $${ui}_ui.c ,$${ui}_ui.c ; \
+	     echo '#include "audio_i18n.h"' > $${ui}_ui.c; \
+	     if [ ! -z "${GHELP}" ] ; then \
+		sed "s/XV_HELP_DATA, \"$${ui}:/XV_HELP_DATA, \"$(GHELP):$${ui}-/" < ,$${ui}_ui.c >> $${ui}_ui.c ; \
+	     else \
+		cat ,$${ui}_ui.c >> $${ui}_ui.c ; \
+	     fi ;\
+	     echo "Fixing $${ui}_ui.h ..."; \
+	     rm -f ,$${ui}_ui.h; \
+	     mv -f $${ui}_ui.h ,$${ui}_ui.h ; \
+	     sed -e "/^#ifndef SVR4/,/^#endif$$/d" \
+		< ,$${ui}_ui.h > $${ui}_ui.h ; \
+	     if [ ! -z "${GHELP}" ] ; then \
+		echo "Fixing $${ui}.info ..."; \
+		rm -f ,$${ui}.info; \
+		mv -f $${ui}.info ,$${ui}.info ; \
+		echo '# %'Z'%%'M'% %'I'%	%'E'% SMI' > $${ui}.info ; \
+		sed -e "s/^:/:$${ui}-/" -e "s/^# ..*/# /" < ,$${ui}.info \
+		  ${FMTINFO} >> $${ui}.info ; \
+	     fi ; \
+	     echo "Done with $${ui}.G"; \
+	 fi \
+	) done ; \
+	if [ ! -s Makefile ]; then rm -f Makefile ; fi
+
+
+rungxvcc genccsources: ${GSRCS}
+	@if [ ! -f Makefile ]; then touch Makefile; fi ; \
+	for i in . ${GSRCS} ; do \
+	(if [ "x$$i" != "x." ] ; then \
+	     ui=`basename $$i .G`; \
+	     if [ -f $${ui}_ui.cc -a ! -w $${ui}_ui.cc \
+		  -a -f SCCS/s.$${ui}_ui.cc ] ; then \
+	         sccs edit $${ui}_ui.cc ; \
+	     fi ;\
+	     if [ -f $${ui}_ui.h -a ! -w $${ui}_ui.h \
+		  -a -f SCCS/s.$${ui}_ui.h ] ; then \
+	         sccs edit $${ui}_ui.h ; \
+	     fi ;\
+	     if [ -f $${ui}.info -a ! -w $${ui}.info \
+		  -a -f SCCS/s.$${ui}.info ] ; then \
+	         sccs edit $${ui}.info ; \
+	     fi ;\
+	     echo "Running ${GXVCC} ${GFLAGS} $$i ..."; \
+	     ${GXVCC} -s ${GFLAGS} $$i ; \
+	     echo "Fixing $${ui}_ui.cc ..."; \
+	     rm -f ,$${ui}_ui.cc; \
+	     mv -f $${ui}_ui.cc ,$${ui}_ui.cc ; \
+	     echo '#include "audio_i18n.h"' > $${ui}_ui.cc ; \
+	     if [ ! -z "${GHELP}" ] ; then \
+		sed "s/XV_HELP_DATA, \"$${ui}:/XV_HELP_DATA, \"$(GHELP):$${ui}-/" < ,$${ui}_ui.cc >> $${ui}_ui.cc ; \
+	     else \
+		cat ,$${ui}_ui.cc >> $${ui}_ui.cc ; \
+	     fi ;\
+	     echo "Fixing $${ui}_ui.h ..."; \
+	     rm -f ,$${ui}_ui.h; \
+	     mv -f $${ui}_ui.h ,$${ui}_ui.h ; \
+	     sed -e "/^#ifndef SVR4/,/^#endif$$/d" \
+		< ,$${ui}_ui.h > $${ui}_ui.h ; \
+	     if [ ! -z "${GHELP}" ] ; then \
+		echo "Fixing $${ui}.info ..."; \
+		rm -f ,$${ui}.info; \
+		mv -f $${ui}.info ,$${ui}.info ; \
+		echo '# %'Z'%%'M'% %'I'%	%'E'% SMI' > $${ui}.info ; \
+		sed -e "s/^:/:$${ui}-/" -e "s/^# ..*/# /" < ,$${ui}.info \
+		  ${FMTINFO} >> $${ui}.info ; \
+	     fi ; \
+	     echo "Done with $${ui}.G"; \
+	 fi \
+	) done ; \
+	if [ ! -s Makefile ]; then rm -f Makefile ; fi
+
+geninfo: ${GSRCS}
+	@if [ ! -f Makefile ]; then touch Makefile; fi ; \
+	for i in . ${GSRCS} ; do \
+	(if [ "x$$i" != "x." ] ; then \
+	     ui=`basename $$i .G`; \
+	     if [ -f $${ui}.info -a ! -w $${ui}.info \
+		  -a -f SCCS/s.$${ui}.info ] ; then \
+	         sccs edit $${ui}.info ; \
+	     fi ;\
+	     echo "Running ${GXVCC} -h $$i ..."; \
+	     ${GXVCC} -h $$i ; \
+	     if [ ! -z "${GHELP}" ] ; then \
+		echo "Fixing $${ui}.info ..."; \
+		rm -f ,$${ui}.info; \
+		mv -f $${ui}.info ,$${ui}.info ; \
+		echo '# %'Z'%%'M'% %'I'%	%'E'% SMI' > $${ui}.info ; \
+		sed -e "s/^:/:$${ui}-/" -e "s/^# ..*/# /" < ,$${ui}.info \
+		  ${FMTINFO} >> $${ui}.info ; \
+		rm -f ,$${ui}.info ; \
+	     fi ; \
+	     echo "Done with $${ui}.G"; \
+	 fi \
+	) done ; \
+	if [ ! -s Makefile ]; then rm -f Makefile ; fi
+
+#----------------------------------------------------------------------------
+# Source and File Rules
+#----------------------------------------------------------------------------
+
+files: ${FILES}
+
+instfiles: ${FILES} ${DIR.install.files}
+	@for i in ${FILES} ; do \
+	  x=`basename $$i`; \
+	  if cmp -s $$i "${DIR.install.files}/$$x" ; \
+	    then \
+	     echo "$$i and ${DIR.install.files}/$$x are the same, skipping."; \
+	    else \
+	     echo "$$i => ${DIR.install.files}/$$x" ; \
+	     ${CP} -p $$i "${DIR.install.files}/$$x" ; \
+	     ${CHMOD} 644 "${DIR.install.files}/$$x" ; \
+	   fi \
+	done
+
+
+scripts: ${SCRIPTS}
+
+instscripts: ${SCRIPTS} ${DIR.install.scripts}
+	@for i in ${SCRIPTS} ; do \
+	  x=`basename $$i`; \
+	  if cmp -s $$i "${DIR.install.scripts}/$$x" ; \
+	    then \
+	     echo "$$i and ${DIR.install.scripts}/$$x are the same, skipping."; \
+	    else \
+	     echo "$$i -> ${DIR.install.scripts}/$$x" ; \
+	     ${CP} -p $$i ${DIR.install.scripts}/$$x ; \
+	     ${CHMOD} 755 ${DIR.install.scripts}/$$x ; \
+	  fi \
+	done
+
+sources: ${SOURCES}
+
+instsources: ${SOURCES} ${DIR.install.sources}
+	@for i in ${SOURCES} ; do \
+	  x=`basename $$i`; \
+	  if cmp -s $$i ${DIR.install.sources}/$$x ; \
+	    then \
+	     echo "$$i and ${DIR.install.sources}/$$x are the same, skipping."; \
+	    else \
+	     echo "$$i -> ${DIR.install.sources}/$$x" ; \
+	     ${CP} -p $$i ${DIR.install.sources}/$$x ; \
+	     ${CHMOD} 644 ${DIR.install.sources}/$$x ; \
+	  fi \
+	done
+
+# for installing info files associated with a program
+info: ${INFO}
+
+instinfo: ${INFO} ${DIR.install.info}
+	@for i in ${INFO} ; do \
+	  x=`basename $$i`; \
+	  if cmp -s $$i ${DIR.install.info}/$$x ; \
+	    then \
+	     echo "$$i and ${DIR.install.info}/$$x are the same, skipping."; \
+	    else \
+	     echo "$$i -> ${DIR.install.info}/$$x" ; \
+	     ${CP} -p $$i ${DIR.install.info}/$$x ; \
+	     ${CHMOD} 644 ${DIR.install.info}/$$x ; \
+	  fi \
+	done
+
+# for installing man pages associated with a program or library
+man: ${MAN}
+
+instman: ${MAN} ${DIR.install.man}
+	@for i in ${MAN} ; do \
+	  x=`basename $$i`; \
+	  if cmp -s $$i ${DIR.install.man}/$$x ; \
+	    then \
+	     echo "$$i and ${DIR.install.man}/$$x are the same, skipping."; \
+	    else \
+	     echo "$$i -> ${DIR.install.man}/$$x" ; \
+	     ${CP} -p $$i ${DIR.install.man}/$$x ; \
+	     ${CHMOD} 644 ${DIR.install.man}/$$x ; \
+	  fi \
+	done
+
+instcustmakefile: Makefile.customer ${DIR.install.sources}
+	@if cmp -s Makefile.customer ${DIR.install.sources}/Makefile ; \
+	    then \
+	     echo "Makefile.customer and ${DIR.install.sources}/Makefile are the same, skipping."; \
+	    else \
+	     echo "Makefile.customer -> ${DIR.install.sources}/Makefile" ; \
+	     ${CP} -p Makefile.customer ${DIR.install.sources}/Makefile ; \
+	     ${CHMOD} 644 ${DIR.install.sources}/Makefile ; \
+	fi
+
+#----------------------------------------------------------------------------
+# Tooltalk Types stuff
+#----------------------------------------------------------------------------
+
+tt_types: ${TT_TYPES}
+# this should really compile 'em, then install them....
+insttt_types: ${TT_TYPES} ${DIR.install.types}
+	@echo "Merging ToolTalk types into ${DIR.install.types}/types.xdr"; \
+	OPENWINHOME=${DEST.audio}; export OPENWINHOME; \
+	if [ ! -f $$OPENWINHOME/etc/tt/types.xdr ]; then \
+	touch $$OPENWINHOME/etc/tt/types.xdr; fi ; \
+	for i in ${TT_TYPES} ; do \
+	  ${TT_TYPE_COMP} -d network $$i ; \
+	done
+
+#----------------------------------------------------------------------------
+# I18N and Help file install rules
+#----------------------------------------------------------------------------
+
+# try to update the message strings file if any of the source or header
+# files have changed.
+
+TARGET.strings		= ${DOMAIN:%=${DIR.obj}/%.po}
+
+strings: $${TARGET.strings}
+
+VARIANTS.strings = ${DOMAIN:%=${OBJDIR}/%.po} ${DOMAIN:%=${OBJDIR}/debug/%.po} ${DOMAIN:%=${OBJDIR}/gprof/%.po} ${DOMAIN:%=${OBJDIR}/opt/%.po} 
+
+strings-tgt ${VARIANTS.strings}: ${LIBSRCS} ${LIBHDRS} ${PROGSRCS} ${PROGHDRS}
+	-?@if [ "$(TARGET_SYS)" != "SUNOS" -a ! -z "$(DOMAIN)" ] ; then	\
+	     for i in xxx $? ; do 					\
+		 case "$$i" in 						\
+		      *.cc) 						\
+			    echo "Extracting strings for $$i ..."; 	\
+			    ${CCC} -w -E ${DEFINES} ${INCLUDE} ${CFLAGS} \
+			        ${DEFS} ${SYSDEFS} $$i 			\
+				| ${XGETTEXT} -d $(DOMAIN) -j -p 	\
+				  ${DIR.obj} - 2>&1 			\
+				  | grep -v "^Warning: default domain"; \
+			    ;; 						\
+		      *.c) 						\
+			    echo "Extracting strings for $$i ..."; 	\
+			    ${CC} -w -E ${DEFINES} ${INCLUDE} ${CFLAGS} \
+			        ${DEFS} ${SYSDEFS} $$i			\
+				| ${XGETTEXT} -d $(DOMAIN) -j -p 	\
+				  ${DIR.obj} - 2>&1			\
+				  | grep -v "^Warning: default domain"; \
+			    ;; 						\
+			*)  ;;						\
+		  esac							\
+	      done							\
+	fi
+
+# This rule depends on MESSAGE_FILE_DIRS being set.
+# Msg files from all subdirs are concatenated, converted to gettext() calls,
+# and re-run through xgettext to regenerate a concatenated message file.
+#
+install_strings: ${DIR.install.messages}
+	@if [ ! -z "$(MESSAGE_FILE_DIRS)" -a "$(TARGET_SYS)" != "SUNOS" -a \
+	      ! -z "$(DOMAIN)" ] ; then					\
+	    rm -f ${DIR.install.messages}/$(DOMAIN).po ;		\
+	    echo "Creating ${DIR.install.messages}/$(DOMAIN).po ..." ;	\
+	    cat ${MESSAGE_FILE_DIRS:%=%/${DIR.obj}/$(DOMAIN).po} | sed	\
+	    -e '/^domain/d' -e 's/^msgid/gettext(/' -e 's/^msgstr/);/'	\
+	    | ${XGETTEXT} -d $(DOMAIN) -j -p ${DIR.install.messages} -;	\
+	fi
+
+
+# Rules for building Spot Help files
+#
+GHELP_HANDBOOK = ${HELP_HANDBOOK:%=:'$$'OPENWINHOME/bin/helpopen %}
+
+INSTALL_HELP.all = ${INSTALL_HELP:%=%.all}
+
+help: ${INSTALL_HELP.all}
+
+help-target ${INSTALL_HELP.all}: ${HELP_FILES}
+	@if [ ! -z "${HELP_FILES}" -a ! -z "${INSTALL_HELP}" ] ; then \
+	    rm -f ${INSTALL_HELP.all} ;				      \
+	    echo "Creating ${INSTALL_HELP.all} ..." ;		      \
+	    for i in _xxx ${HELP_FILES}; do			      \
+		if [ "$$i" != "_xxx" ] ; then			      \
+		   if [ -f $$i ] ; then				      \
+		      echo "Appending $$i ...";			      \
+		      sed -e 's|^\(:.*\)$$|\1${GHELP_HANDBOOK}|' $$i  \
+			      >> ${INSTALL_HELP.all};		      \
+		   else						      \
+		      echo "Can't find $$i.";			      \
+		   fi ;						      \
+		fi ;						      \
+	    done ;						      \
+	fi
+
+install_help insthelp: ${HELP_FILES} ${INSTALL_HELP.all} ${DIR.install.help}
+	@if [ ! -z "${INSTALL_HELP}" ] ; then \
+	  if cmp -s ${INSTALL_HELP.all} ${DIR.install.help}/${INSTALL_HELP} ; \
+	    then \
+	     echo "${INSTALL_HELP.all} and ${DIR.install.help}/${INSTALL_HELP} are the same, skipping."; \
+	    else \
+	     echo "${INSTALL_HELP.all} -> ${DIR.install.help}/${INSTALL_HELP}" ; \
+	     ${CP} -p ${INSTALL_HELP.all} ${DIR.install.help}/${INSTALL_HELP} ; \
+	     ${CHMOD} 644 ${DIR.install.help}/${INSTALL_HELP} ; \
+	  fi \
+	fi
+
+#----------------------------------------------------------------------------
+# Misc Rules
+#----------------------------------------------------------------------------
+
+auxfiles: ${AUXFILES}
+instauxfiles:
+
+# just blow away the object dir and all it's subdir's
+cleanlibrary:
+cleanobjlib:
+cleanprogram:
+cleancplusplusprog:
+cleansources:
+cleanfiles:
+cleanscripts:
+cleansubdirs: subdirs
+cleantt_types:
+cleanauxfiles:
+cleanhelp:
+cleanman:
+
+clobberlibrary:
+clobberobjlib:
+clobberprogram:
+clobbercplusplusprog:
+clobbersources:
+clobberfiles:
+clobberscripts:
+clobbersubdirs: subdirs
+clobbertt_types:
+clobberauxfiles:
+clobberhelp:
+clobberman:
+
+clean::
+	-rm -rf $(OBJDIR)
+	-rm -f core *~ #* ,* .make.state .nse_depinfo
+
+clobber:: clean
+	@if [ "x" != "x$(GENSRCS)" ] ; then -rm -rf $(GENSRCS) ; fi
+
+tagslibrary: dotags
+tagsobjlib: dotags
+tagsprogram: dotags
+tagscplusplusprog: dotags
+tagssources: dotags
+tagssubdirs: subdirs
+tagsscripts:
+tagsfiles:
+tagstt_types:
+tagsauxfiles:
+tagshelp:
+tagsman:
+
+dotags:: ${LIBSRCS} ${PROGSRCS} ${LIBHDRS} ${PROGHDRS}
+	etags ${LIBSRCS} ${PROGSRCS} ${LIBHDRS} ${PROGHDRS}
+
+
+#
+# this rule is to run a prog in all the package dir's. set the APPLYCMD
+# in your environment (e.g. setenv APPLYCMD "sccs info") an
+# "make apply" will run 'sccs info' in each dir in the source tree.
+
+applylibrary:
+applyobjlib:
+applyprogram:
+applycplusplusprog:
+applysources:
+applyfiles:
+applyscripts:
+applysubdirs: subdirs
+applytt_types:
+applyauxfiles:
+applyhelp:
+applyman:
+
+APPLYCMD:sh   = echo ${APPLYCMD:-"sccs info"}
+apply::
+	@eval $(APPLYCMD)
+
+# make sure directories exist
+install-directories ${DIR.install.program} ${DIR.install.library} ${DIR.install.scripts} ${DIR.install.files} ${DIR.install.headers} ${DIR.install.sources} ${DIR.install.info} ${DIR.install.man} ${DIR.install.types} ${DIR.install.messages} ${DIR.install.help}::
+	@if [ ! -d $@ ] ; then \
+	    echo "[creating directory $@ ...]" ; \
+	    ${MKDIR} -p $@; \
+	fi; \
+	if [ ! -h ${DIR.install.etc} -a ! -d ${DIR.install.etc} ] ; then \
+	    echo "[creating sym link from ${DEST.audio.etc} to ${DEST.audio.share.etc}" ; \
+	    cd ${DEST.audio}; \
+	    ln -s share/etc etc; \
+	fi

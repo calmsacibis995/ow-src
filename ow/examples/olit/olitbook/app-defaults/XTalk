@@ -1,0 +1,5 @@
+XTalk*TextEdit.background:                     white
+XTalk*panel.TextEdit.height:                   80
+XTalk*panel.TextEdit.borderWidth:              1
+XTalk*listen.space:                            10
+XTalk*command.weight:                          0

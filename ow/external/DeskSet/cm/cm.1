@@ -1,0 +1,400 @@
+.\" Copyright (c) 1994 - Sun Microsystems, Inc.
+.TH cm 1 "9 Mar 1992"
+.IX "cm" "" "\f3cm\f1(1) \(em desktop calendar tool" ""
+.IX "calendar" "desktop" "Calendar Manager" "general information \(em \f3cm\f1(1)" PAGE START
+.SH NAME
+cm \- calendar manager, appointment and resource scheduling tool
+.SH SYNOPSIS
+\fBcm\fP [\fIgeneric-tool-arguments\fP ] [ \fB-c\fP \fIcalendar\fP ] [ \fB-i\fP [\fB2-3\fP] 
+.SH AVAILABILITY
+.LP
+The man page you are currently viewing refers to the \fBcm\fP 
+that is available with OpenWindows.  All OpenWindows standard tools use the
+.SM OPEN LOOK 
+Graphical User Interface (\s-1GUI\s0). 
+.SH DESCRIPTION
+.LP
+.B cm
+is an appointment and resource scheduling tool 
+that allows you to do the following:
+.RS
+.PD 0
+- Display day, week, month, year views
+.br
+- Schedule single or repeating appointments and todo items
+.br
+- Browse and edit calendars of other users
+.br
+- Set beeping, flashing, or pop-up reminders
+.br
+- Integrate with mail
+.br
+- Restrict access to your own calendar
+.br
+- Print high-quality hardcopy
+.br
+- View and Schedule appointments on other calendars
+.br
+- Change the time zone context
+.PD
+.RE
+.LP
+A full appointment editor is available for 
+inserting and editing appointments.  
+Most settings on the appointment editor can 
+be preloaded through a Properties window 
+available from the main panel.
+.LP
+Menu accelerators exist for some commonly used menu options:
+View:Find, Edit:Appointment, Edit:Properties, and Print:Current
+View.
+.LP
+A holiday list can be loaded by creating a file with a name ending in .cal 
+in the user's home directory containing lines of the following form:
+.LP
+month/day holiday-name
+.SH OPTIONS
+.TP 10
+.BI \-c " calendar" 
+The name of the default calendar. The calendar specified 
+overrides the default user-name or the Default Calendar
+specified in the properties of Calendar Manager.
+.TP
+.BI generic-tool-arguments
+.B cm
+accepts the generic tool arguments described in
+.BR xview (7).
+.TP 10
+\fB-i\fP [\fB2\fP-\fB3\fP]
+You have the option of using the OWv2 or OWv3 icon.
+The OWv2 icon has the current calendar month displayed.
+The OWv3 icon has the current date displayed.
+The default is the OWv3 icon,  so unless \fB-i 2\fP is used,
+the OWv3 icon will be used.
+.SH USAGE
+.LP
+.B cm
+operates via a set of pulldown menus from 
+button stacks in a control panel. 
+The menu commands are described below.
+.sp .5
+.B The Control Area
+.sp .5
+.LP
+.B View Menu
+.RS
+.TP 10
+.B Day
+Displays the Day View. Also displays the 
+Appointments and Todo items in a window for
+the selected day.
+.TP
+.B Week
+Displays the Week View. Also displays the 
+Appointments and Todo items in a window for
+the selected week.  A chart is also displayed 
+with the times for the appointments shaded.
+.TP
+.B Month 
+Displays the Month View. Also displays the 
+Appointments and Todo items in a window for
+the month.
+.TP
+.B Year 
+Displays a year calendar and the appointments
+and Todo items for a year.
+.TP
+.B Time Zone 
+Sets time zones.  The current times are changed to
+reflect the new time zone.
+.TP
+.B Find... 
+Searches for an appointment string. A time range
+can be specified for the search. It is case 
+insensitive and will match any part of the
+appointment 'what:' fields.
+.TP
+.B Go To... 
+Displays the calendar at the date requested.
+.RE
+.LP
+.B Edit Menu
+.RS 
+.TP 10
+.B Appointment
+Schedule appointments by either selecting the day
+and choosing Appointment from the Edit menu or
+by double-clicking on day (in the month or week view)
+or on an hour (in the day view).
+Inserts, deletes and changes appointments.
+.RS
+.TP	
+.B Date:
+The date is automatically set by the tool when a day 
+is selected.  You may change the date format through 
+the property settings.
+.TP
+.BR Start: " and "Stop:
+Sets the time of the appointment.
+A choice of times is found on the pulldown menus.
+The choices are determined by the Day Bounds 
+settings from the Properties window.
+You may set the time format through the
+Property settings to be on a 12 or 24 hour clock.
+.TP
+.B What:
+Filled in with information about the appointment.  
+This information will be displayed on
+the various views.
+.TP
+.B Alarm:
+Determines what action will be taken in advance 
+of the appointment.
+.RS 5
+.TP 10
+.B Beep 
+Produces an audible sound.
+.TP
+.B Flash
+Inverts the frame of the tool or the icon 
+if the tool is closed. 
+.TP
+.B Popup 
+Pops up a reminder window with the text of 
+the appointment showing.
+.TP
+.B Mail
+Composes a message with the text of the appointment 
+and sends it to recipients in the 
+.TP
+.B Mail To 
+field.
+.RE
+.TP
+.B Appointmentt | Todo
+Specifies whether the event is an appointment or todo
+item. Can later be displayed via the View menu.
+.TP
+.B DND Drop Target
+Allows the user to drag appointments onto the appointment
+editor.
+.TP		
+.B Appointments Scrolling List
+Automatically set with the current appointments 
+for that day.
+It will be updated as appointments are added 
+and deleted.
+.\" .bp
+.TP
+.B Insert Access Scrolling List
+Displays a list of people with insert access
+.\" .bp
+.TP
+.B Repeat:
+Indicates whether the appointment is a repeating 
+event of the specified interval.
+The number of times the appointment repeats 
+is controlled by the For panel item.
+.TP
+.B Privacy:
+Detemines whether others who view the calendar
+will see both the time and text of the appointment,
+the time only,  or nothing at all.
+.TP
+.B Insert
+Inserts the appointment into the calendar.
+.TP
+.B Delete
+Deletes the appointment selected in 
+the scrolling list from the calendar.
+.TP
+.B Change
+Changes the appointment selected in
+the scrolling list to the edited values from the 
+appointment editor.
+.TP
+.B 
+For Insert, Delete, and Change, a Forward feature has
+been added that allows the user to delete only occurences
+of the appointment in the future.
+.TP
+.B Reset 
+Clears the appointment editor of context and 
+sets default values from the Properties
+window.
+.RE 
+.TP 10
+.B Properties 
+.RS 
+Sets default values for this tool.  These values are 
+used for setting default values in the Appointment 
+Editor, setting display characteristics of the views, 
+granting access to the calendar, setting printer options
+and date formats.
+.TP
+.B Editor Defaults
+Sets default reminder values and advance times 
+for appointments. Also sets the default names
+for which mail will be sent when a mail reminder
+is set. Sets the default privacy for appointments.
+.TP
+.B Display Settings
+Sets default begin and end times for the day 
+that are used in drawing the chart on the 
+week view and the grid on the day view.  
+The User calendar Location allows the user
+to set the location of the callog file.
+Sets a 12 or 24 hour clock. Sets the default
+view that will appear on start up. Sets the
+calendar to the Default Calendar specified
+on start up.
+.TP
+.B Access List and Permissions
+Sets permissions for a list of remote 
+calendars. The default is 'World Browse'.
+These entries will be available using the 
+.B Browse 
+pulldown menu after they are added to the
+list and the changes are applied.	
+Access can be Browse (Read), Insert, 
+and/or Delete.  
+The keyword
+.BR world , 
+opens up the calendar to everyone. 
+The entries have the format
+.BR name@host .  
+At this time, \s-1UNIX\s0 
+aliases are not supported.
+.TP
+.B Printer Settings
+Sets the default printer settings
+The Privacy Type allows the user to
+decide the default Privacy Type to
+be printed.
+.TP
+.B Date Format
+Sets the default date format including
+the ordering of the month, day and year
+and the date separator.
+.TP
+.B Apply
+Adds any changes made.
+.TP
+.B Reset
+Reestablishes the values before you
+started editing.
+.TP
+.B Defaults
+Reestablishes the tool default values.  
+.RE
+.RE
+.LP
+.B Browse Menu
+.RS 
+The default menu item is the user name.
+.RS 
+.TP 10 
+.B Show Multiple Calendars
+Allows easy method for finding common open time
+slots among a group of users. Highlighting the names 
+in the scrolling list will cause the time slots in 
+each user's calendar to be highlighted if an 
+appointment is scheduled at that time.  
+The browser chart represents the degree of 'busy-ness'
+with the darker shades representing a larger
+number of conflicts.
+The Schedule button brings up the appointment
+editor.  The Mail button brings up a mail compose
+window with the highlighted names in the To: field.
+It includes as an attachment an appointment icon
+which makes it easy to schedule an appointment.
+The Go To: button allows easy navigation through
+the calendars.  The Setup Menu button brings up
+the Setup Menu popup.
+.TP 
+.B Show Calendar 
+Brings up a popup which allows the user to type in
+the user name of a calendar to browse.
+.TP 
+.B Setup Menu 
+Allows the user to add,  change,  remove,  or sort
+names in the Browse Menu.  
+Any changes made to this list are also made to
+the browse menu pulldown and the Multiple Calendars
+scrolling list after the user has pressed Apply.
+.TP
+.B Add
+Adds a name to the list.
+.TP
+.B Change
+Changes the selected item in the list to the value
+in the User Name: text field.
+.TP
+.B Remove
+Removes a name from the list.
+.TP
+.B Sort List
+Sorts the list.
+.TP
+.B Apply
+Permanently incorporates any changes made to this list,
+the browse menu pulldown,  and the Multiple Calendars
+scrolling list.
+.TP
+.B Reset
+Reestablishes the values before you
+started editing, provided you have not yet 
+pressed Apply.
+.RE
+.LP
+.B Print Menu
+.RS
+.TP
+Displays the choices for printing hardcopy output:
+Current View, Day, Week, Month or Year.  You can also 
+get a hard copy list of the appointments and the Todo 
+list for a Day, Week, Month or Year. For v3,  multiple
+pages will be used to print appointments that do not 
+fit on one page,  and a * will be used to signify that
+further appointments follow on subsequent pages.
+with not enough 
+You may set the printer settings in the Properties.
+.RE 
+.TP
+.B Prev 
+Changes the display to the previous 
+logical unit of calendar data.
+.TP
+.B Today
+Changes the display to today's 
+logical unit of calendar data.
+.TP
+.B Next
+Changes the display to the following 
+logical unit of calendar data.
+.SH FILES
+.TP 10
+.PD 0
+.B /usr/spool/calendar/callog.$USER
+.TP
+.B $HOME/.desksetdefaults (for v3)
+.TP
+.B $HOME/.cm.rc (for v2)
+.TP
+.B $HOME/*.cal
+.TP
+.B /usr/openwin/bin/rpc.cmsd
+.sp
+.SH SEE ALSO
+.BR rpc.cmsd (1),
+.BR cm_lookup (1), 
+.BR cm_insert (1),
+and
+.BR cm_delete (1)
+which are simple tty versions of \fBcm\fP.
+.br
+.TZ SSUG
+.br
+"\fIAbout Calendar Manager\fP" in the Help Handbook available through the
+Help option on the Workspace menu.
+.IX "calendar" "desktop" "Calendar Manager" "general information \(em \f3cm\f1(1)" PAGE  END

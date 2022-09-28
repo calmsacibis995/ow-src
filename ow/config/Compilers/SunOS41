@@ -1,0 +1,47 @@
+#
+
+# Copyright
+
+#
+# @(#)SunOS41	1.24 91/05/07
+#
+
+CC		= /bin/cc
+AS              = /bin/as
+RANLIB		= ranlib
+
+# Generate Postion-Independant-code
+#	-pic = 64k of entrypoints (16 bit offsets)
+#	-PIC = lots of entrypoints (32 bit offsets)
+LITTLEPIC	= -pic
+BIGPIC		= -PIC
+PIC		= ${LITTLEPIC}
+
+#  Shared library commands and options. 
+SHLIBCMD        = /bin/ld
+PURETEXT        = -assert pure-text 
+HNAME           = 
+LIBVER          = ${LIBMAJORVER}.${LIBMINORVER} 
+SHAREDLIBFILES  = ${LIBRARY.shared} ${LIBRARY.shared.sa}
+
+# Control usage of libg.a hack.  This is a convenience measure for
+# SunOS adb users.  Not an issue on SVR4.
+LIBG		= -lg
+
+#
+# REMIND - JMP
+# This should migrate to the Shapes level Makefile
+#
+# local.FRACT.INLINE	= ${INCLUDE.graphics}/fr${TARGET_ARCH}.il
+local.FRACT.INLINE	=
+
+##############################################################################
+ 
+f.GPROF         = -pg
+f.DEBUG         = -g
+f.OPT           = -O2
+f.SHARED        = -O2
+f.OPTGPROF      = -O2 -pg
+ 
+include ${CONFIGDIR}/Compilers/SunCCgeneric
+

@@ -1,0 +1,411 @@
+
+#%Zn%tapetool.info 2.6 91/02/15 Copyr 1991 Sun Micro
+##################################################
+#   tapetool.info    June 18, 1991    helpopen path changed 11 July
+##################################################
+#	Open Windows Version 3.0.1 Revised by Mary Hamilton
+#################################################
+########################50########################
+:DROP_SITE_ITEM:$OPENWINHOME/bin/helpopen handbooks/tape.handbook
+Drag and Drop Target
+
+This box is the site to drop a file icon 
+when you want to write the file to a tape.
+
+Use the SELECT mouse button to drag the file 
+icon from File Manager or the drag box icon from
+Text Editor to Tape Tool. 
+
+Use Tape Tool in conjunction with File Manager
+to drag and drop files and directories that you 
+want to back up. Tape Tool keeps those files 
+in a list and sends them to tape when you click 
+SELECT on Write.
+
+
+#------------------------------------------------- 
+:LIST_ITEM:$OPENWINHOME/bin/helpopen handbooks/tape.handbook
+List
+
+Lists the contents of the tape.  
+
+When you click SELECT on List, the tape contents 
+are listed in a pop-up window.
+
+#-------------------------------------------------
+:FILE_TO_READ:$OPENWINHOME/bin/helpopen handbooks/tape.handbook
+File To Read
+
+Specify a filename to add to the list window for 
+reading files from tape. 
+
+#-------------------------------------------------
+:READ_SCROLL_LIST:$OPENWINHOME/bin/helpopen handbooks/tape.handbook
+Read List
+
+The Read List contains filenames to read from 
+tape.
+
+Add filenames by using the File To Read button.
+
+From the popup menu you can select all, deselect 
+all, or delete selected filenames from the Read 
+List. 
+
+#-------------------------------------------------
+:READ_MENU_INFO:$OPENWINHOME/bin/helpopen handbooks/tape.handbook
+Read Functions
+
+Provides these functions:
+
+- Selecting all items in the list
+- Deselecting all selected items 
+- Deleting items that are selected
+
+#-------------------------------------------------
+:READ_PANEL:$OPENWINHOME/bin/helpopen handbooks/tape.handbook
+Read Control Area
+
+This is the control area for reading files from
+tape.
+
+#-------------------------------------------------
+:READ_ITEM:$OPENWINHOME/bin/helpopen handbooks/tape.handbook
+Read
+
+The options for reading from a tape are:
+
+Selected	If an item is selected in 
+		the Read List, this option
+		reads the file into the path 
+		specified by the Destination 
+		field.
+
+		If a Read List is not showing, 
+		one will pop up when you choose 
+		this item.
+
+Entire List 	Reads in the entire list of 
+		filenames from the Read List.
+
+		If a Read List is not showing, 
+		one will pop up when you choose
+		this item.
+
+Entire Tape	Reads the entire contents of 
+		the tape. 
+
+
+#######################50#########################
+#-------------------------------------------------
+:WRITE_ITEM:$OPENWINHOME/bin/helpopen handbooks/tape.handbook
+Write
+
+Writes the items in the Write List to the tape.
+
+To write a file to tape:
+
+1. Enter a file name in the File to Write field or
+  drag a file icon from File Manager and drop it
+  on Tape Tool's drag and drop target.
+
+2. Click SELECT on Write.
+
+#-------------------------------------------------
+:PROPS_ITEM:$OPENWINHOME/bin/helpopen handbooks/tape.handbook
+Props
+
+Displays options for customizing Tape Tool.
+
+#-------------------------------------------------
+:DEVICE_ITEM:$OPENWINHOME/bin/helpopen handbooks/tape.handbook
+Device:
+
+Enter the name of the tape device to use.
+
+#--------------------------------------------------
+:HOST_ITEM:$OPENWINHOME/bin/helpopen handbooks/tape.handbook
+Host Name:
+
+Identifies the workstation where the reading or
+archiving of files is to take place.
+
+The default host name is the name of your workstation.
+
+#-------------------------------------------------
+#######################50#########################
+:METHOD_OPTIONS_ITEM:$OPENWINHOME/bin/helpopen handbooks/tape.handbook
+Tar (tape archive) Options
+ 
+Tar is a method for looking at a tape.
+
+The options to tar, which you choose by clicking
+SELECT on the settings, control parameters for
+reading, writing, or listing the contents of a
+tape.  
+
+As examples, you can control the block size of 
+data written to a tape, whether the tape contains 
+full or relative file path names, and what 
+behavior you want if tar detects an error on 
+the tape. 
+
+We recommend using the default settings, except 
+when you are unsure of the tape format and need 
+to experiment to discover what the correct 
+settings are.
+
+Click SELECT on Apply when you finish changing
+the options.
+
+#-------------------------------------------------
+:TAR_WRITE_ITEM:$OPENWINHOME/bin/helpopen handbooks/tape.handbook
+Write:
+
+Select options for writing to a tape:
+
+No SCCS      Exclude all SCCS directories.
+
+No SCCS+     Exclude all SCCS directories, 
+             *.o files, and files 
+	     named errs, core, and a.out.
+
+Block I/O    Use another blocking factor
+	     for better throughput. When you
+             select Block I/O, a Block Size
+             line appears, on which you can
+             type the new blocking factor.
+
+Sym Links    Follow symbolic links as if they
+	     were normal files.
+
+Show Errs    Display error messages if all
+	     links to archived files cannot be
+             resolved.
+  
+Suppress     Suppress information showing
+	     owner and file modes for 
+	     portability.
+
+Click SELECT on Apply when you finish selecting 
+options.
+
+#######################50#########################
+#-------------------------------------------------
+:TAR_BLOCK_ITEM:$OPENWINHOME/bin/helpopen handbooks/tape.handbook
+Block Size:
+
+Blocking factor for tape records.  
+
+The default is 20 blocks.
+
+Click SELECT on Apply when you finish selecting 
+options.
+
+#-------------------------------------------------
+:TAR_DELETEDIR_ITEM:$OPENWINHOME/bin/helpopen handbooks/tape.handbook
+Strip Path: 
+
+Tape Tool can strip the path name from files in 
+the Write List. The options are:
+
+None	 Does not strip the pathname. Enters the 
+	 filename as it appears in the File To 
+	 Write field. This is the default option.
+
+All	 Strips the entire path. Just the 
+	 filename will appear in the list. 
+
+Pattern	 Enters a partial pathname in the Dir 
+         Pattern field that appears when you 
+         select this option. Click Apply for the 
+         changes to take effect. Tape Tool strips 
+         that path from the filenames you add 
+	 with File To Write.
+
+	 If the file is a directory, and the 
+	 directory pattern to strip is the entire
+	 directory, then Tape Tool strips all but
+	 the last level of the directory. 
+
+Example:
+
+1. For File To Write, enter:
+   /home/sun/smith/.login
+
+2. For Strip Path Dir Pattern, enter:
+   /home/sun
+
+Tape Tool adds smith/.login (home/sun) to the list.
+
+#-------------------------------------------------
+:TAR_PATTERN_ITEM:$OPENWINHOME/bin/helpopen handbooks/tape.handbook
+Dir Pattern:
+
+Enter the name of the directory that you want 
+stripped from a pathname when you add files 
+to the Write List.
+
+#-------------------------------------------------
+:TAR_READ_ITEM:$OPENWINHOME/bin/helpopen handbooks/tape.handbook
+Read:
+
+Select options for reading from a tape:
+
+No Check	Ignore directory checksum errors.
+
+Mod Time	Do not restore modification 
+		times of extracted files.
+
+Orig Mode	Restore the named files to their
+		original modes, ignoring the 
+		the present umask(2).
+
+Click SELECT on Apply when you finish selecting 
+options.
+
+#-------------------------------------------------
+:TAR_OTHER_ITEM:$OPENWINHOME/bin/helpopen handbooks/tape.handbook
+Other:
+
+Err Exit	Exit on error immediately.
+
+Exclude		Allows you to specify, on a line 
+                that appears when you select this 
+                option, files or directories that 
+                you want to exclude when reading 
+		from tape, writing to tape, or 
+		listing the contents of a tape.  
+
+Click SELECT on Apply when you finish selecting 
+options.
+
+#-------------------------------------------------
+:TAR_EXCLUDE_ITEM:$OPENWINHOME/bin/helpopen handbooks/tape.handbook
+Exclude File
+
+Used for specifying a filename that contains a 
+list of files or directories to be excluded when 
+reading from tape. 
+
+Only one file can be specified in the text field.
+
+#-------------------------------------------------
+:APPLY_ITEM:$OPENWINHOME/bin/helpopen handbooks/tape.handbook
+Apply
+
+Click SELECT on Apply to apply changes you have
+made.
+
+If you do not click on Apply after changing 
+options, those changes will not take effect.  
+
+#-------------------------------------------------
+:RESET_ITEM:$OPENWINHOME/bin/helpopen handbooks/tape.handbook
+Reset
+
+Click SELECT on Reset to reset the options to the 
+settings they had when you started Tape Tool.
+
+#-------------------------------------------------
+:FILE_TO_WRITE:$OPENWINHOME/bin/helpopen handbooks/tape.handbook
+File To Write:
+
+Enter a filename to add to the list of files to
+write to tape. 
+
+Click SELECT on File To Write to add the name 
+to the list.
+
+#-------------------------------------------------
+:DEST_ITEM:$OPENWINHOME/bin/helpopen handbooks/tape.handbook
+Destination:
+
+Specifies which directory to place the files in
+when they are read from tape.
+
+#-------------------------------------------------
+:METHOD_ITEM:$OPENWINHOME/bin/helpopen handbooks/tape.handbook
+Method:
+
+The methods of looking at a tape.  The default 
+is TAR. 
+
+#-------------------------------------------------
+:WRITE_PANEL:$OPENWINHOME/bin/helpopen handbooks/tape.handbook
+Write Control Area
+
+This is the control area for writing files to
+tape.
+
+#-------------------------------------------------
+:WRITE_SCROLL_LIST:$OPENWINHOME/bin/helpopen handbooks/tape.handbook
+Write List
+
+This list contains filenames to write to tape.
+
+Add filenames by using the File To Write 
+button or by dragging and dropping files 
+from File Manager.
+
+From the pop-up menu, you can delete all
+filenames in the list or delete selected
+filenames.
+
+#-------------------------------------------------
+:WRITE_MENU_INFO:$OPENWINHOME/bin/helpopen handbooks/tape.handbook
+Write Functions
+
+This pop-up menu lets you delete all the files in 
+the list or delete only selected files. 
+
+If you add files to the list by mistake, this
+pop-up menu makes it easy to delete them.
+
+################################################
+# For a later release
+################################################
+#-------------------------------------------------
+#:CPIO_WRITE_ITEM:$OPENWINHOME/bin/helpopen handbooks/tape.handbook
+
+Reset Time	- Reset the access times of input
+	   after they have been copied
+Block I/O	- input/output blocked at 5120
+	   bytes to the record
+
+Click SELECT on Apply when you are finished 
+changing the options.
+#-------------------------------------------------
+#:CPIO_READ_ITEM:$OPENWINHOME/bin/helpopen handbooks/tape.handbook
+
+Make Dirs	- Create directories as needed
+Except    	- Copy in all files except those 
+	   matching EXCEPTIONS line
+Retain	- Retain previous file
+	   modification time
+Swap Bytes	- Swap bytes after reading data
+Swap Words	- Swap halfwords " " "
+Clobber	- Overwrite newer files
+Version 6	- Process UNIX Version-6 files
+Recursive	- NOT IMPLEMENTED
+
+Click SELECT on Apply when you are finished 
+changing the options.
+#-------------------------------------------------
+#:CPIO_OTHER_ITEM:$OPENWINHOME/bin/helpopen handbooks/tape.handbook
+
+ASCII	- Write header text in ASCII
+   	for portability
+Verbose	- Display more info about files
+
+Click SELECT on Apply when you are finished 
+changing the options.
+#-------------------------------------------------
+#:CPIO_EXCEPT_ITEM:$OPENWINHOME/bin/helpopen handbooks/tape.handbook
+
+Copy in all files except those listed on this line.  Regular expressions are allowed.
+
+Click SELECT on Apply when you are finished 
+changing the options.
+#-------------------------------------------------
+

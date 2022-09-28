@@ -1,0 +1,17 @@
+# SUNWoldem (OPEN LOOK demo package) post install/remove script.
+
+(   # Run in a subshell to isolate any directory changes if we later expand this
+    # script.
+
+	DEMO_MENU="openwin-menu-demo-nodemo"
+	if [ -f "$BASEDIR/openwin/lib/$DEMO_MENU" ]; then
+		cd    $BASEDIR/openwin/lib
+		rm -f $BASEDIR/openwin/lib/openwin-menu-demo
+		ln -s $DEMO_MENU openwin-menu-demo
+        else
+		rm -f $BASEDIR/openwin/lib/openwin-menu-demo
+	fi
+)
+
+exit 0
+

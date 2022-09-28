@@ -1,0 +1,13 @@
+#	Copyright (c) 1990-92 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#	@(#)depend	1.1 97/05/09	(c) Sun Microsystems, Inc.
+
+P SUNWcsr	Core Sparc, (Root)
+P SUNWcsu	Core Sparc, (Usr)
+P SUNWcar	Core Archictecture, (Root)
+P SUNWkvm	Core Architecture, (Usr)
+P SUNWcsd       Core Sparc Devices
+P SUNWxwplt	X Windows platform software
+P SUNWoldte     OPEN LOOK Desktop Environment
+P SUNWolrte	OPEN LOOK toolkits runtime environment

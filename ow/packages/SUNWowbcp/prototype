@@ -1,0 +1,35 @@
+#       Copyright (c) 1990-92 Sun Microsystems, Inc.
+#               All Rights Reserved
+#
+#       @(#)prototype	1.14 97/01/09 (c) Sun Microsystems, Inc.
+#
+#  OpenWindows binary compatibility
+
+i copyright=../copyright
+i pkginfo
+i depend
+
+d none usr						0775 root sys
+
+
+
+# Use 4.1.3 version which has mp support.
+#!search ./
+d none usr/4lib						0775 root bin
+
+# Use a version of the OW V3 Xlib that has a fix for bug 1103673.
+!search .
+s none usr/4lib/libX.so.1.0=./libX11.so.4.3
+f none usr/4lib/libX11.so.4.3				0755 root bin
+f none usr/4lib/libXaw.so.4.0				0755 root bin
+f none usr/4lib/libXmu.so.4.0				0755 root bin
+f none usr/4lib/libXol.so.3.1				0755 root bin
+f none usr/4lib/libXt.so.4.1				0755 root bin
+f none usr/4lib/libce.so.0.0				0755 root bin
+f none usr/4lib/libdeskset.so.0.1			0755 root bin
+f none usr/4lib/libdga.so.1.0				0755 root bin
+f none usr/4lib/libhelp.so.1.0				0755 root bin
+f none usr/4lib/libolgx.so.3.1				0755 root bin
+f none usr/4lib/libtt.so.1.1				0755 root bin
+f none usr/4lib/libttstub.so.1.1			0755 root bin
+f none usr/4lib/libxview.so.3.73			0755 root bin

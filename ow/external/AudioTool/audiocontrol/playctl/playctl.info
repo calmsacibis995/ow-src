@@ -1,0 +1,81 @@
+# @(#)playctl.info 1.10	93/02/25 SMI
+#
+#
+#
+#
+#
+:playctl-PlayctlPanel_menu
+To control parameters for audio input, select
+Record... from this menu.
+
+To examine the status of the audio device, select
+Status... from this menu.
+#
+:playctl-PlayctlCanvas
+The Play panel contains controls for desktop audio
+output.  Changes made to settings on the Play
+panel affect the audio output parameters for all
+applications.
+
+To control parameters for audio input, press the
+Record... button or select Record... from the Play
+panel.
+
+To examine the status of the audio device, select
+Status... from the Play panel.
+
+More help is available for the individual
+controls.
+#
+:playctl-Outport0
+These buttons allow you to select the audio output
+port.  The available ports and combinations that
+may be enabled depend on the particular audio
+configuration of your system.
+#
+:playctl-Outport1
+These buttons allow you to select the audio output
+port.  The available ports and combinations that
+may be enabled depend on the particular audio
+configuration of your system.
+#
+:playctl-Outport2
+These buttons allow you to select the audio output
+port.  The available ports and combinations that
+may be enabled depend on the particular audio
+configuration of your system.
+#
+:playctl-RecpanelButton
+The Record... button invokes the Record panel.
+
+The Record panel may also be invoked by selecting
+Record... from the Play panel.
+#
+:playctl-MuteButton
+While Mute is selected, audio output is disabled.
+Any sounds played while muting is selected will
+not be heard on any audio output port.
+#
+:playctl-PlayVolumeMsg
+The Play Volume slider controls the volume for all
+audio output.
+#
+:playctl-PlayVolumeSlider
+The Play Volume slider controls the volume for all
+audio output.
+#
+:playctl-PlayBalanceMsg
+The Play Balance slider controls the left-right
+balance for all audio output.
+#
+:playctl-PlayBalanceLeftMsg
+The Play Balance slider controls the left-right
+balance for all audio output.
+#
+:playctl-PlayBalanceSlider
+The Play Balance slider controls the left-right
+balance for all audio output.
+#
+:playctl-PlayBalanceRightMsg
+The Play Balance slider controls the left-right
+balance for all audio output.

@@ -1,0 +1,93 @@
+
+Use the following text to practice scrolling
+a window.
+ 
+
+Utilisez le texte suivant pour mettre en
+pratique la fonction défilement.
+ 
+ 
+Benutzen Sie den folgenden Text um zu
+üben, den Fensterinhalt zu rollen.
+ 
+ 
+ 
+**********************************************************
+
+
+Use mail aliases to send messages
+to groups of people whom you e-mail
+regularly.  For example, an alias called
+"workgroup" could include all the people
+in your group.  This way, you do not need
+to type in each person's name every time
+you send e-mail to your group.
+ 
+You can create mail aliases either by
+modifying the file /etc/aliases, or by
+adding them to the file .mailrc in your
+home directory.  (You can modify .mailrc
+from Mail Tool.)  Aliases in /etc/aliases
+can be used by anyone; aliases in .mailrc
+can be used only by you.  But you must
+have superuser privileges to change
+/etc/aliases.
+
+
+---------------------------------------------------
+
+
+Utilisez les alias de courrier 
+électronique pour envoyer des messages
+aux groupes de personnes avec lesquels
+vous communiquez régulièrement. Par
+exemple, l'alias "groupe" peut englober 
+toutes les personnes de votre groupe de
+travail. Cela vous évite d'indiquer le 
+nom de chaque personne lorsque vous 
+devez envoyer un message à votre groupe. 
+
+Vous pouvez créer des alias de courrier
+électronique en modifiant le fichier
+/etc/aliases ou en ajoutant ces alias
+au fichier .mailrc dans votre répertoire
+utilisateur. (Vous pouvez modifier
+.mailrc à partir de la Messagerie.) Les
+alias se trouvant dans le fichier 
+/etc/aliases peuvent être utilisés par
+tous ; les alias du fichier .mailrc
+ne peuvent être utilisés que par vous.
+Vous devez cependant avoir les privilèges 
+de superutilisateur pour modifier le
+fichier /etc/aliases.
+
+
+---------------------------------------------------
+
+
+Verwenden Sie Alias-Namen, um Nachrichten
+an mehrere Empfänger bzw. Gruppen von
+Empfängern zu schicken, denen Sie regel-
+mäßig Post senden. So könnte z.B. der
+Alias-Name "workgroup" die Namen aller
+Mitarbeiter Ihrer Arbeitsgruppe enthalten.
+Auf diese Weise vermeiden Sie, jedesmal
+die Namen aller Empfänger eingeben zu
+müssen, wenn Sie Post an alle Mitarbeiter
+Ihrer Arbeitsgruppe schicken wollen. 
+
+Alias-Namen können Sie erzeugen, indem 
+Sie entweder in der Datei /etc/aliases 
+oder in der Datei .mailrc in Ihrem Home-
+Verzeichnis entsprechende Einträge hinzu-
+fügen. (Die Datei .mailrc wird automa-
+tisch geändert, wenn Sie die Eigen-
+schaften der Anwendung "Post" ändern. 
+Die in /etc/aliases gespeicherten Alias-
+Namen können alle Benutzer verwenden; 
+die in .mailrc definierten Alias-Namen 
+können nur Sie benutzen. Um die Datei 
+/etc/aliases bearbeiten zu können, 
+müssen Sie sich als Superuser anmelden. 
+
+

@@ -1,0 +1,34 @@
+#
+# @(#)Makefile.customer	1.4 93/01/26  SMI
+#
+# Makefile for the Olit Programmer's Guide's Examples
+#
+ 
+SUBDIRS =	ch2 \
+		ch3 \
+		ch4 \
+		ch5 \
+		ch6 \
+		ch7 \
+		ch9 \
+		ch10 \
+		ch11 \
+		ch12 \
+		ch13 \
+		ch14
+ 
+all:
+		-@for i in ${SUBDIRS}; do \
+		(       echo "<<< Descending into directory: $$i >>>"; \
+			cd $$i; \
+			${MAKE} ${MFLAGS} all; \
+			cd ..; \
+		); done
+ 
+clean:
+		-@for i in ${SUBDIRS}; do \
+		(       echo "<<< Descending into directory: $$i >>>"; \
+			cd $$i; \
+			${MAKE} ${MFLAGS} clean; \
+			cd ..; \
+		); done

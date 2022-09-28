@@ -1,0 +1,355 @@
+# @(#)status.info 1.12	93/03/02 SMI
+#
+#
+#
+#
+#
+:status-StatusPanel_menu
+To make the audio output control panel visible,
+select Play... from this menu.
+
+To control parameters for audio input, select
+Record... from this menu.
+#
+:status-PlayStatusCanvas
+The Play Status panel displays the current state
+of the audio device output stream.
+
+If Update is set to "Status Change", the `Active'
+and `Samples' fields are only updated when other
+audio device status changes.
+
+If Update is set to "Continuous", then the
+`Active' and `Samples' fields are updated several
+times per second.
+
+Spot Help is available for each status indicator.
+For additional information on audio device state,
+please refer to the audio(7) manual page.
+#
+:status-Ppanel_label
+The Play Status panel displays the current state
+of the audio device output stream.
+
+If Update is set to "Status Change", the `Active'
+and `Samples' fields are only updated when other
+audio device status changes.
+
+If Update is set to "Continuous", then the
+`Active' and `Samples' fields are updated several
+times per second.
+
+Spot Help is available for each status indicator.
+For additional information on audio device state,
+please refer to the audio(7) manual page.
+#
+:status-Popen_flag
+Play Status `Open' is set whenever a process has
+opened the audio device with write access.  Since
+the audio driver enforces exclusive use of the
+device, processes that want to perform audio
+output must wait until the audio device is closed
+before they can gain access to the device.
+
+If a process cannot open the audio device for
+writing, the Play Status `Open' flag can help
+identify some other process that is holding the
+device open.
+#
+:status-Ppaused_flag
+Play Status `Paused' indicates that output to the
+audio device is temporarily suspended.
+#
+:status-Pactive_flag
+Play Status `Active' is set while output to the
+audio device is in progress.  Changes to this
+indicator are not signalled by a Status Change.
+Therefore, this indicator may be inconsistent with
+the actual device state unless Update is set to
+`Continuous'.
+#
+:status-Perror_flag
+Play Status `Underflow' is set when an audio
+application has failed to provide the audio device
+with data in a timely manner.  It may indicate
+that the application cannot keep up with the
+demands of supplying audio data at the current
+sample rate.
+#
+:status-Pwaiting_flag
+Play Status `Open-Waiting' indicates that a
+process is trying to open the audio device to play
+audio data, but must wait for the current audio
+output process to relinquish the device.
+#
+:status-Peof_label
+Play Status `EOF Count' displays the number of
+end-of-file marks that have been processed by the
+audio device driver.  End-of-file marks are used
+by applications for synchronization purposes.
+#
+:status-Peof_value
+Play Status `EOF Count' displays the number of
+end-of-file marks that have been processed by the
+audio device driver.  End-of-file marks are used
+by applications for synchronization purposes.
+#
+:status-Psam_label
+Play Status `Samples' indicates the number of
+audio samples that have been processed by the
+audio device.  This value is reset every time the
+device is closed and may be reset at any time by
+audio applications.
+
+Most changes to this indicator are not signalled
+by a Status Change.  Therefore, this indicator may
+be inconsistent with the actual device state
+unless Update is set to `Continuous'.
+#
+:status-Psam_value
+Play Status `Samples' indicates the number of
+audio samples that have been processed by the
+audio device.  This value is reset every time the
+device is closed and may be reset at any time by
+audio applications.
+
+Most changes to this indicator are not signalled
+by a Status Change.  Therefore, this indicator may
+be inconsistent with the actual device state
+unless Update is set to `Continuous'.
+#
+:status-Pbuf_label
+Play Status `Granularity' indicates the expected
+accuracy of the Play Status `Samples' counter.
+
+If Play Status `Granularity' is not displayed,
+this indicates that the audio device driver does
+not yet support this option.
+#
+:status-Pbuf_value
+Play Status `Granularity' indicates the expected
+accuracy of the Play Status `Samples' counter.
+
+If Play Status `Granularity' is not displayed,
+this indicates that the audio device driver does
+not yet support this option.
+#
+:status-Pencode_label
+Play Status `Encoding' indicates the audio data
+stream sample format.  8-bit u-law and A-law
+encodings are used for most voice-quality
+applications.  16-bit linear encoding is used for
+high-quality recording.
+#
+:status-Pencode_value
+Play Status `Encoding' indicates the audio data
+stream sample format.  8-bit u-law and A-law
+encodings are used for most voice-quality
+applications.  16-bit linear encoding is used for
+high-quality recording.
+#
+:status-Prate_label
+Play Status `Sample Rate' indicates the number of
+digitized audio samples per second.
+#
+:status-Prate_value
+Play Status `Sample Rate' indicates the number of
+digitized audio samples per second.
+#
+:status-Pchan_label
+Play Status `Channels' indicates the number of
+audio channels interleaved in the data stream.  If
+the data stream has a single channel, this
+indicator will display 'mono'.  If the data stream
+has two channels, this indicator will display
+'stereo'.
+#
+:status-Pchan_value
+Play Status `Channels' indicates the number of
+audio channels interleaved in the data stream.  If
+the data stream has a single channel, this
+indicator will display 'mono'.  If the data stream
+has two channels, this indicator will display
+'stereo'.
+#
+:status-RecordStatusCanvas
+The Record Status panel displays the current state
+of the audio device input stream.
+
+If Update is set to "Status Change", the `Active'
+and `Samples' fields are only updated when other
+audio device status changes.
+
+If Update is set to "Continuous", then the
+`Active' and `Samples' fields are updated several
+times per second.
+
+Spot Help is available for each status indicator.
+For additional information on audio device state,
+please refer to the audio(7) manual page.
+#
+:status-Rpanel_label
+The Record Status panel displays the current state
+of the audio device input stream.
+
+If Update is set to "Status Change", the `Active'
+and `Samples' fields are only updated when other
+audio device status changes.
+
+If Update is set to "Continuous", then the
+`Active' and `Samples' fields are updated several
+times per second.
+
+Spot Help is available for each status indicator.
+For additional information on audio device state,
+please refer to the audio(7) manual page.
+#
+:status-Ropen_flag
+Record Status `Open' is set whenever a process has
+opened the audio device with read access.  Since
+the audio driver enforces exclusive use of the
+device, processes that want to record audio input
+must wait until the audio device is closed before
+they can gain access to the device.
+
+If a process cannot open the audio device for
+reading, the Record Status `Open' flag can help
+identify some other process that is holding the
+device open.
+#
+:status-Rpaused_flag
+Record Status `Paused' indicates that input from
+the audio device is temporarily suspended.
+#
+:status-Ractive_flag
+Record Status `Active' is set while input from the
+audio device is in progress.  Changes to this
+indicator are not signalled by a Status Change.
+Therefore, this indicator may be inconsistent with
+the actual device state unless Update is set to
+`Continuous'.
+#
+:status-Rerror_flag
+The Record Status `Overflow' indicator is set when
+an audio application has failed to read audio data
+from the system buffers at a sufficient rate.  It
+usually indicates that the recording in progress
+will have one or more audio drop-outs.
+#
+:status-Rwaiting_flag
+Record Status `Open-Waiting' indicates that a
+process is trying to open the audio device to
+record audio data, but must wait for the current
+audio input process to relinquish the device.
+#
+:status-Rsam_label
+Record Status `Samples' indicates the number of
+audio samples that have been input by the audio
+device.  This value is reset every time the device
+is closed and may be reset at any time by audio
+applications.
+
+Most changes to this indicator are not signalled
+by a Status Change.  Therefore, this indicator may
+be inconsistent with the actual device state
+unless Update is set to `Continuous'.
+#
+:status-Rsam_value
+Record Status `Samples' indicates the number of
+audio samples that have been input by the audio
+device.  This value is reset every time the device
+is closed and may be reset at any time by audio
+applications.
+
+Most changes to this indicator are not signalled
+by a Status Change.  Therefore, this indicator may
+be inconsistent with the actual device state
+unless Update is set to `Continuous'.
+#
+:status-Rbuf_label
+Input Delay gives an indication of the amount of
+input data that is buffered by the audio driver
+during a record operation.  This value represents
+the minimum delay that can be expected between
+audio input events and any real-time display or
+output of the data being recorded.
+
+If Input Delay is not displayed, this indicates
+that the audio device driver does not yet support
+this option.
+#
+:status-Rbuf_value
+Input Delay gives an indication of the amount of
+input data that is buffered by the audio driver
+during a record operation.  This value represents
+the minimum delay that can be expected between
+audio input events and any real-time display or
+output of the data being recorded.
+
+If Input Delay is not displayed, this indicates
+that the audio device driver does not yet support
+this option.
+#
+:status-Rencode_label
+Record Status `Encoding' indicates the audio data
+stream sample format.  8-bit u-law and A-law
+encodings are used for most voice-quality
+applications.  16-bit linear encoding is used for
+high-quality recording.
+#
+:status-Rencode_value
+Record Status `Encoding' indicates the audio data
+stream sample format.  8-bit u-law and A-law
+encodings are used for most voice-quality
+applications.  16-bit linear encoding is used for
+high-quality recording.
+#
+:status-Rrate_label
+Record Status `Sample Rate' indicates the number
+of digitized audio samples per second.
+#
+:status-Rrate_value
+Record Status `Sample Rate' indicates the number
+of digitized audio samples per second.
+#
+:status-Rchan_label
+Record Status `Channels' indicates the number of
+audio channels interleaved in the data stream.  If
+the data stream has a single channel, this
+indicator will display 'mono'.  If the data stream
+has two channels, this indicator will display
+'stereo'.
+#
+:status-Rchan_value
+Record Status `Channels' indicates the number of
+audio channels interleaved in the data stream.  If
+the data stream has a single channel, this
+indicator will display 'mono'.  If the data stream
+has two channels, this indicator will display
+'stereo'.
+#
+:status-StatusControlCanvas
+When Update is set to "Status Change", the status
+panel is updated whenever a change in the state of
+the audio device results in the transmission of a
+SIGPOLL signal to registered applications.
+
+When Update is set to "Continuous", the audio
+device status is updated several times per
+second.
+
+For additional information on audio device state,
+please refer to the audio(7) manual page.
+#
+:status-Update_switch
+When Update is set to "Status Change", the status
+panel is updated whenever a change in the state of
+the audio device results in the transmission of a
+SIGPOLL signal to registered applications.
+
+When Update is set to "Continuous", the audio
+device status is updated several times per
+second.
+
+For additional information on audio device state,
+please refer to the audio(7) manual page.

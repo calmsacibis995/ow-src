@@ -1,0 +1,131 @@
+# SunOS.cmds
+
+# Copyright
+
+#
+#	@(#)SunOSSVR4	1.31 93/03/02
+#
+
+# Definitions for SunOS commands used by the X11/NeWS Makefiles
+# Does not include and Compiler-related commands
+
+
+# --- Commands common to Unix systems (In your NATIVE environment)
+AWK             = awk
+AROPTS		= ruv
+CB              = cb
+CBOPTS          = -l60 -j -s
+CTAGS           = ctags
+MV              = mv
+CP              = cp
+CPP		= /usr/ccs/lib/cpp
+CHMOD           = chmod
+CMP             = cmp -s
+MAKEsequential	= /usr/ccs/bin/make
+MKDIR           = mkdir -p
+RM              = rm -f
+RMRECURSE	= rm -rf
+RMDIR		= rmdir
+SED             = sed
+SCCSCLEAN	= sccs clean	# used in Rulesets/SunPro/common#depopulate:
+TOUCH           = touch
+#ECHO		= /usr/ucb/echo
+ECHO		= /usr/bin/echo
+LN		= ln -s
+CD		= cd
+
+# -Dsparc is added because some clients and libraries use -Xc option to compile,
+# which will turn off preprocessor defines, like -Dsparc and -Dsun.
+CPPFLAGS.OS-sparc	= -Dsparc -DSUN4SVR4 -DSVR4 -DSYSV -DDNETSVR4
+CPPFLAGS.OS-sun4-svr4	= -Dsparc -DSUN4SVR4 -DSVR4 -DSYSV -DDNETSVR4
+
+# i386: Turn off -Dsun. If some client needs it then turn it on
+#       locally. Excludes SUN4SVR4 since it causes BIGENDIN to be
+#       defined in owin/include/config/generic.h.
+# CPPFLAGS.OS.COMMON is added so we can exclude -Usun when needed, 
+# lik libXol.
+# -Di386 is added because some clients use -Xc option to compile,
+# which will turn off preprocessor defines, like -Di386 and -Dsun.
+CPPFLAGS.OS.COMMON-i386-svr4	= -Di386 -DSVR4 -DSYSV -DDNETSVR4
+CPPFLAGS.OS.COMMON-ppc-svr4	= -Dppc -D__ppc -DSVR4 -DSYSV -DDNETSVR4
+CPPFLAGS.OS-i386-svr4	= ${CPPFLAGS.OS.COMMON-i386-svr4} 
+CPPFLAGS.OS-ppc-svr4	= ${CPPFLAGS.OS.COMMON-ppc-svr4} 
+CPPFLAGS.OS	= ${CPPFLAGS.OS${TARGET_ARCH}}
+CFLAGS.OS	=
+
+# override any existing LD_LIBRARY_PATH in the environment
+LD_LIBRARY_PATH=	# /dev/null
+
+# Make sure that the default place to look for shared libraries is
+# set for the target environment.
+LD_RUN_PATH	= /usr/openwin/lib/X11:/usr/openwin/lib
+
+# --- Select dbm library:  SunOS="-ldbm", SVR4="" (ndbm function in libc).
+LIBDBM		=
+
+# --- Portability and option #defines for Xlib et al.   This is done because 
+#	we don't want #include <portable/portable.h> in X Consortium code.
+XLIBDEFINES	= -DSYSV -DSVR4 \
+		  -DBSD_COMP \
+		  -DUNIXCONN \
+		  -DSUN_SECURE_RPC \
+		  -DTCPCONN
+# --- Portability #defines for X clients
+XCLIENTDEFINES  = -DSYSV -DSVR4
+# --- The minimum libraries required by ANY X client on a given platform.
+XCLIENTLIBS	= -lX11 -Bdynamic -lsocket -lnsl -ldl
+# --- The elf object file access library, if appropriate
+ELFLIB		= -lelf
+# --- Internationalization support: OS41="-lI18N", SVR4="-lintl"
+I18NLIBS	=
+INTLLIB		= -lintl
+# --- The minimum libraries required by ANY cps client on a given platform.
+CPSCLIENTLIBS	= -lcps -Bdynamic ${INTLLIB} -lsocket -lnsl
+# --- Internationalization support: 
+#       SVr4 comes with xgettext, msgfmt, and gettext.o in libintl.*
+ 
+#XGETTEXT        = /usr/bin/xgettext -j -n -m "" \
+#                	-p${SOURCEDIR}/locale/templates/LC_MESSAGES
+XGETTEXT        = /usr/bin/xgettext -j -n -m "" \
+                	-p${DEST.locale.msg_templates}
+MSGFMT          = /usr/bin/msgfmt
+
+I18N_COMMANDS    = locale_env
+						      
+I18N_LIBS        =
+						       
+I18N_MANPAGES    =
+
+I18N_CFILES.misc =
+I18N_HFILES.misc =
+
+# --- Install macros ---
+# Generic install command
+#local.INSTALL	= /usr/ucb/install
+local.INSTALL	= /usr/sbin/install
+
+DINSTALL	= ${local.INSTALL} -d -m 775	# Directories
+
+BINSTALL.mode	= -m 775
+TINSTALL.mode	= -m 664
+
+# The following bit of ugliness is due to the incompatability
+# between posix (Solaris2) and BSD versions of the `install'
+# program.  For a bsd-based system the .posix macros would
+# evaluate to `:' (sh no-op), and the .bsd macros would be
+# the full form.
+#
+#   Usage example:
+#
+#	${BINSTALL.posix} -f ${INSTALL.script.dir} $@
+#	${BINSTALL.bsd} $@ ${INSTALL.script.dir}
+#
+BINSTALL.posix	= ${local.INSTALL} ${BINSTALL.mode}	# Executable files
+TINSTALL.posix	= ${local.INSTALL} ${TINSTALL.mode}	# Non-executable files
+ 
+BINSTALL.bsd	= :
+TINSTALL.bsd	= :
+
+BINSTALL	= No_portable_install_available
+TINSTALL	= No_portable_install_available
+

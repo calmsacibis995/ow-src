@@ -1,0 +1,167 @@
+#!/bin/sh
+#
+#	
+#	"@(#)strip_binaries	1.9 94/12/13   Sun Microsystems" 
+#	Strips certain binaries. Run from proto-sun4-svr4/bin
+#	Saves unstripped versions to proto-sun4-svr4/unstripped
+#	If unstripped directory exists, exits 
+#
+#	This is the list of binaries which we want to strip
+#
+    STRIP="\
+	24to8 \
+	ab_admin \
+	ae \
+	align_equals \
+	atktopbm \
+	audiocontrol \
+	audiotool \
+	binder \
+	brushtopbm \
+	calctool \
+	capitalize \
+	ce_db_build \
+	ce_db_merge \
+	clock \
+	cm \
+	cm_delete \
+	cm_insert \
+	cm_lookup \
+	cmdtool \
+	cmuwmtopbm \
+	colorchooser \
+	docviewer \
+	ds_server_init \
+	dsdm \
+	ff.core \
+	filemgr \
+	fitstopgm \
+	fixframe \
+	fixinterleaf \
+	fmgc \
+	format_floppy \
+	fstopgm \
+	g3topbm \
+	gemtopbm \
+	gouldtoppm \
+	helpopen \
+	hipstopgm \
+	iconedit \
+	icontopbm \
+	ilbmtoppm \
+	imagetool \
+	imgtoppm \
+	insert_brackets \
+	lispmtopgm \
+	locale_env \
+	macptopbm \
+	mailprint \
+	mgrtopbm \
+	mp \
+	mtvtoppm \
+	navigator \
+	olwm \
+	olwmslave \
+	owplaces \
+	pagecounter \
+	pageview \
+	pcxtoppm \
+	perfmeter \
+	pgmtoppm \
+	pi1toppm \
+	pi3topbm \
+	picttoppm \
+	pjtoppm \
+	printtool \
+	props \
+	psidtopgm \
+	qrttoppm \
+	ras2ps \
+	rash \
+	rawtopgm \
+	rawtoppm \
+	reservecolors \
+	remove_brackets \
+	rgb3toppm \
+	rpc.cmsd \
+	shift_lines \
+	sldtoppm \
+	snapshot \
+	spctoppm \
+	sputoppm \
+	tapetool \
+	textedit \
+	tgatoppm \
+	toolwait \
+	viewprint \
+	vkbd \
+	wsinfo \
+	xbmtopbm \
+	ximtoppm \
+	xpmtoppm \
+	xv_get_sel \
+	xwdtopnm \
+	ybmtopbm \
+	yuvtoppm \
+	"
+# These are shell scripts or links
+     NOTSPARC=" \
+#	X \
+	answerbook \
+	convert_to_Xdefaults \
+	convert_to_xview \
+	digestp \
+	filep \
+	filofaxp \
+	franklinp \
+	helpviewer \
+	mailp \
+#	mkdirhier \
+	newsp \
+	openwin \
+	shelltool \
+	svenv \
+	timemanp \
+	timesysp \
+#	xdpr \
+#	xmakemap \
+#	xmkmf \
+	xview \
+	"
+# These are binaries which we aren't going to strip
+    NOTSTRIP="\
+#	Xsun \
+	mailtool \
+	"
+
+DEST=../unstripped
+
+if [ ! -d $DEST ]
+then
+    echo making $DEST
+    mkdir $DEST
+else
+    echo $DEST already exists, binaries are probably already stripped
+    exit 0
+fi
+
+# make ff.core writable
+chmod 775 ff.core
+
+for i in $STRIP
+do
+	echo copying $i to $DEST and stripping
+	cp $i $DEST
+	/usr/ccs/bin/strip $i
+	
+done
+ 
+# reset ff.core sticky bits
+chmod 6555 ff.core
+chmod 6555 $DEST/ff.core
+
+exit
+
+# Local Variables:
+# mode: ksh
+# End:

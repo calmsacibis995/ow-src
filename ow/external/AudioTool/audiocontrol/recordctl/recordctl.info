@@ -1,0 +1,193 @@
+# @(#)recordctl.info 1.8	93/02/25 SMI
+#
+#
+#
+#
+#
+:recordctl-RecordctlPanel_menu
+To make the audio output control panel visible,
+select Play... from this menu.
+
+To examine the status of the audio device, select
+Status... from this menu.
+#
+:recordctl-RecordctlCanvas
+The Record Control panel contains controls for
+desktop audio input.  Changes made to settings on
+the Record panel affect the audio input parameters
+for all applications.
+
+More help is available for the individual
+controls.
+#
+:recordctl-Inport0
+These buttons allow you to select the audio input
+port.  Only one input may be enabled at a time.
+The input ports that are available depend on the
+particular audio configuration of your system.
+#
+:recordctl-Inport1
+These buttons allow you to select the audio input
+port.  Only one input may be enabled at a time.
+The input ports that are available depend on the
+particular audio configuration of your system.
+#
+:recordctl-Inport2
+These buttons allow you to select the audio input
+port.  Only one input may be enabled at a time.
+The input ports that are available depend on the
+particular audio configuration of your system.
+#
+:recordctl-AutoAdjustMsg
+The Record Control panel contains controls for
+desktop audio input.  Changes made to settings on
+the Record panel affect the audio input parameters
+for all applications.
+
+More help is available for the individual
+controls.
+#
+:recordctl-AutoAdjustButton
+The Auto-Adjust feature attempts to set the audio
+record volume level to a value that ensures a
+sufficient signal strength without audio
+distortion.
+
+Press the Auto-Adjust button to begin automatic
+adjustment of the record volume level.  Speak
+clearly into your microphone using your normal
+speaking voice (try reading this text message, if
+that helps).
+
+The record volume adjustment will continue until a
+reasonable input level has been maintained for 5
+seconds.  Be sure to continue speaking until the
+adaptation is complete.
+
+If you have directly connected an audio source
+(such as a CD player) to the input port, be sure
+to play a loud section while the Auto-Adjust
+operation is in progress.  Adjust the Monitor
+Volume slider to be able to hear a directly
+connected audio source before and during the
+Auto-Adjust.
+
+The Record Volume slider may be adjusted manually
+at any time during the Auto-Adjust operation.
+#
+:recordctl-RecordVolumeMsg
+The Record Volume slider controls the volume for
+audio recording.  You can adjust the record volume
+manually by using the mouse.  Alternatively, the
+Auto-Adjust feature may be used to set the record
+volume level automatically.
+#
+:recordctl-RecordVolumeSlider
+The Record Volume slider controls the volume for
+audio recording.  You can adjust the record volume
+manually by using the mouse.  Alternatively, the
+Auto-Adjust feature may be used to set the record
+volume level automatically.
+#
+:recordctl-RecordBalanceMsg
+The Record Balance slider controls the left-right
+balance for all audio input.
+#
+:recordctl-RecordBalanceLeftMsg
+The Record Balance slider controls the left-right
+balance for all audio input.
+#
+:recordctl-RecordBalanceSlider
+The Record Balance slider controls the left-right
+balance for all audio input.
+#
+:recordctl-RecordBalanceRightMsg
+The Record Balance slider controls the left-right
+balance for all audio input.
+#
+:recordctl-RecordMonitorMsg
+The Monitor Volume slider allows input signals to
+be fed back directly to the audio output port.  If
+you have directly connected an audio source (such
+as a CD player) to the input port, then this
+feature allows you to listen to the audio signal
+without actually recording it.
+
+Be careful not to turn the monitor volume up too
+quickly if your input source is a microphone, as
+this may cause feedback.
+#
+:recordctl-MonitorVolumeSlider
+The Monitor Volume slider allows input signals to
+be fed back directly to the audio output port.  If
+you have directly connected an audio source (such
+as a CD player) to the input port, then this
+feature allows you to listen to the audio signal
+without actually recording it.
+
+Be careful not to turn the monitor volume up too
+quickly if your input source is a microphone, as
+this may cause feedback.
+#
+:recordctl-MeterLowCanvas
+The Record panel may be used to set the audio
+record gain level to a value that ensures a
+reasonable saturation without audio distortion.
+
+More help is available for the individual controls
+and meters.
+#
+:recordctl-NosignalMsg
+The Record Control panel contains controls for
+desktop audio input.  Changes made to settings on
+the Record panel affect the audio input parameters
+for all applications.
+
+More help is available for the individual
+controls.
+#
+:recordctl-LowsignalMsg
+The Record Control panel contains controls for
+desktop audio input.  Changes made to settings on
+the Record panel affect the audio input parameters
+for all applications.
+
+More help is available for the individual
+controls.
+#
+:recordctl-MeterCanvas
+The input level meter monitors the overall audio
+recording level.  It is active during the
+Auto-Adjust operation.
+
+If the input signal is too low or undetectable, a
+warning is displayed.  If the input level is too
+high, a Peak indicator will flash and the record
+volume will be reduced.
+#
+:recordctl-MeterGauge
+The input level meter monitors the overall audio
+recording level.  It is active during the
+Auto-Adjust operation.
+
+If the input signal is too low or undetectable, a
+warning is displayed.  If the input level is too
+high, a Peak indicator will flash and the record
+volume will be reduced.
+#
+:recordctl-MeterHighCanvas
+The Record panel may be used to set the audio
+record gain level to a value that ensures a
+reasonable saturation without audio distortion.
+
+More help is available for the individual controls
+and meters.
+#
+:recordctl-PeakMsg
+The Record Control panel contains controls for
+desktop audio input.  Changes made to settings on
+the Record panel affect the audio input parameters
+for all applications.
+
+More help is available for the individual
+controls.

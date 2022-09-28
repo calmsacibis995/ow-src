@@ -1,0 +1,444 @@
+#
+# @(#)libchild	1.19 93/11/18
+#
+
+#
+# Copyright (c) 1987 by Sun Microsystems, Inc.
+#
+
+#
+#	Preconditions
+#		LIBPART
+#		SOURCES
+#		HEADERS
+#		OBJECTS
+#		HOLDING.directory
+#
+#		DIR.optimized
+#		DIR.debug
+#		DIR.gprof
+
+LIBPART.lint		= ${DIR.targetarch}/l${LIBPREFIX}-l${LIBPART}.ln
+SOURCES.lint		= ${SOURCES:%.c=${DIR.lint}/%.ln}
+
+OBJECTS.tool.optimized	= ${OBJECTS:%=${DIR.tool.optimized}/%} \
+			  ${OBJECTS.sa:%=${DIR.tool.optimized}/%}
+LIBPART.tool.optimized	= ${DIR.targetarch}/${LIBPREFIX}${LIBPARENT}.${LIBPART}_t.a
+
+OBJECTS.tool.debug	= ${OBJECTS:%=${DIR.tool.debug}/%} \
+			  ${OBJECTS.sa:%=${DIR.tool.debug}/%}
+LIBPART.tool.debug	= ${DIR.targetarch}/${LIBPREFIX}${LIBPARENT}.${LIBPART}_td.a
+
+OBJECTS.tool.gprof	= ${OBJECTS:%=${DIR.tool.gprof}/%} \
+			  ${OBJECTS.sa:%=${DIR.tool.gprof}/%}
+LIBPART.tool.gprof	= ${DIR.targetarch}/${LIBPREFIX}${LIBPARENT}.${LIBPART}_tg.a
+
+OBJECTS.optimized	= ${OBJECTS:%=${DIR.optimized}/%} \
+			  ${OBJECTS.sa:%=${DIR.optimized}/%}
+LIBPART.optimized	= ${DIR.targetarch}/${LIBPREFIX}${LIBPARENT}.${LIBPART}.a
+
+OBJECTS.debug		= ${OBJECTS:%=${DIR.debug}/%} \
+			  ${OBJECTS.sa:%=${DIR.debug}/%}
+LIBPART.debug		= ${DIR.targetarch}/${LIBPREFIX}${LIBPARENT}.${LIBPART}_d.a
+
+OBJECTS.gprof		= ${OBJECTS:%=${DIR.gprof}/%} \
+			  ${OBJECTS.sa:%=${DIR.gprof}/%}
+LIBPART.gprof		= ${DIR.targetarch}/${LIBPREFIX}${LIBPARENT}.${LIBPART}_p.a
+
+OBJECTS.shared		= ${OBJECTS:%=${DIR.shared}/%}  ${OBJECTS.sa:%=${DIR.shared}/%}
+LIBPART.shared		= ${DIR.targetarch}/${LIBPREFIX}${LIBPARENT}.${LIBPART}.so
+
+OBJECTS.shared.sa	= ${OBJECTS.sa:%=${DIR.shared.sa}/%}
+LIBPART.shared.sa	= ${DIR.targetarch}/${LIBPREFIX}${LIBPARENT}.${LIBPART}.sa
+
+DIR.reordered         = ${DIR.targetarch}/reordered
+DIR.reordered.sa      = ${DIR.targetarch}/reordered.sa
+
+${DIR.reordered} ${DIR.reordered.sa}:
+	@if [ \! -d $@ ] ; then \
+		${DINSTALL} $@ ; \
+	fi
+
+
+OBJECTS.reordered	= ${OBJECTS:%=${DIR.reordered}/%}
+LIBPART.reordered	= ${DIR.targetarch}/${LIBPREFIX}${LIBPARENT}.${LIBPART}.so
+
+OBJECTS.reordered.sa  = ${OBJECTS.sa:%=${DIR.reordered.sa}/%}
+LIBPART.reordered.sa  = ${DIR.targetarch}/${LIBPREFIX}${LIBPARENT}.${LIBPART}.sa
+
+
+
+GENERIC_GBT_ARGS	= -S ${SOURCEDIR} -f ${CONFIG.DB} -n ${LIBPARENT}/${LIBPART}
+
+MAKE.METHOD.STATIC	= ${GETBUILDTYPE} ${GENERIC_GBT_ARGS} \
+				      -P build${DELIVERABLE}${STATIC}
+MAKE.METHOD.SHARED	= ${GETBUILDTYPE} ${GENERIC_GBT_ARGS} \
+				      -P build${DELIVERABLE}${SHARED}
+INSTALL.METHOD.STATIC	= ${GETBUILDTYPE} ${GENERIC_GBT_ARGS} \
+				      -P inst${DELIVERABLE}${STATIC}
+INSTALL.METHOD.SHARED	= ${GETBUILDTYPE} ${GENERIC_GBT_ARGS} \
+				      -P inst${DELIVERABLE}${SHARED}
+TOOL.METHOD		= ${GETBUILDTYPE} ${GENERIC_GBT_ARGS} \
+				      -P build${TOOL}
+
+#
+# User callable entry points
+#     need to consult the signs to see if we are to do anything
+#
+all:: installtool .WAIT ${DELIVERABLE} .WAIT ${MAKE.all.target}
+
+deliverable::	${MAKE.METHOD.STATIC:sh} ${MAKE.METHOD.SHARED:sh} 
+tool::		install_headers .WAIT ${TOOL.METHOD:sh}	# returns buildtool*
+
+galactic::	gprof optimized shared
+
+optimized::	build${DELIVERABLE}${STATIC}optimized
+debug::		build${DELIVERABLE}${STATIC}debug
+gprof::		build${DELIVERABLE}${STATIC}gprof
+static::	${MAKE.METHOD.STATIC:sh}
+shared::	build${DELIVERABLE}${SHARED}optimized
+reordered::   buildreorderedoptimized
+#
+# Qualified entry points - either DELIVERABLE, TOOL, SHARED, or STATIC was def'd
+#
+
+.NO_PARALLEL::	buildtooloptimized buildtooldebug buildtoolgprof
+buildtooloptimized:   ${DIR.tool.optimized} ${OBJECTS.tool.optimized} ${MAKE.tool.target}
+buildtooldebug:       ${DIR.tool.debug}     ${OBJECTS.tool.debug}     ${MAKE.tool.target}
+buildtoolgprof:       ${DIR.tool.gprof}     ${OBJECTS.tool.gprof}     ${MAKE.tool.target}
+buildtoolvariants:    buildtooloptimized buildtooldebug buildtoolgprof
+ 
+builddeliverablesharedoptimized:${DIR.shared} ${DIR.shared.sa}		.WAIT \
+        			${OBJECTS.shared} ${OBJECTS.shared.sa}	.WAIT \
+				${MAKE.all.target}
+builddeliverableshareddebug:	warning.not.supported \
+				${DIR.shared} ${DIR.shared.sa}		.WAIT \
+                                ${OBJECTS.shared} ${OBJECTS.shared.sa}	.WAIT \
+                                ${MAKE.all.target}
+builddeliverablesharedgprof:	warning.not.supported	\
+                                ${DIR.shared} ${DIR.shared.sa}		.WAIT \
+                                ${OBJECTS.shared} ${OBJECTS.shared.sa}	.WAIT \
+                                ${MAKE.all.target}
+builddeliverablesharedvariants: builddeliverablesharedoptimized
+
+.NO_PARALLEL::	builddeliverablestaticoptimized	\
+		builddeliverablestaticdebug	\
+		builddeliverablestaticgprof
+builddeliverablestaticoptimized:${DIR.optimized} ${OBJECTS.optimized}   ${MAKE.all.target}
+builddeliverablestaticdebug:	${DIR.debug}     ${OBJECTS.debug} ${MAKE.all.target}
+builddeliverablestaticgprof:	${DIR.gprof}     ${OBJECTS.gprof} ${MAKE.all.target}
+builddeliverablestaticvariants: builddeliverablestaticoptimized \
+				builddeliverablestaticdebug \
+				builddeliverablestaticgprof
+
+buildreorderedoptimized:${DIR.reordered} ${DIR.reordered.sa} .WAIT \
+					${OBJECTS.reordered} ${OBJECTS.reordered.sa} .WAIT \
+					${MAKE.all.target}
+
+
+#	Warning: Only optimized shared libraries can be built
+warning.not.supported:
+
+#
+#	The following targets are the "nop" permutations generated
+#	by expanding
+#	  build${DELIVERABLE}
+#	  build${TOOL}
+#	  build${DELIVERABLE}${STATIC}
+#	  build${DELIVERABLE}${SHARED}
+#	& appending {optimized,debug,gprof,variants} to the degenerate cases
+#
+build \
+	builddeliverable buildtool \
+	buildstatic buildshared \
+	builddeliverablestatic builddeliverableshared \
+	builddeliverableoptimized builddeliverabledebug \
+	builddeliverablegprof builddeliverablevariants \
+	buildoptimized builddebug buildgprof buildvariants: # nothing to do
+
+#
+# Implementation
+#
+
+MYAROPTS	= rcv
+
+${LIBPART.tool.optimized}:	${OBJECTS.tool.optimized}
+	@if [ -f $@ ] ; then ${RM} $@ ; fi
+	${AR} ${MYAROPTS}  $@ ${OBJECTS.tool.optimized}
+
+${LIBPART.tool.debug}:	${OBJECTS.tool.debug}
+	@if [ -f $@ ] ; then ${RM} $@ ; fi
+	${AR} ${MYAROPTS} $@ ${OBJECTS.tool.debug}
+
+${LIBPART.tool.gprof}:	${OBJECTS.tool.gprof}
+	@if [ -f $@ ] ; then ${RM} $@ ; fi
+	${AR} ${MYAROPTS} $@ ${OBJECTS.tool.gprof}
+
+${LIBPART.optimized}:	${OBJECTS.optimized}
+	@if [ -f $@ ] ; then ${RM} $@ ; fi
+	${AR} ${MYAROPTS} $@ ${OBJECTS.optimized}
+
+${LIBPART.debug}:	${OBJECTS.debug}
+	@if [ -f $@ ] ; then ${RM} $@ ; fi
+	${AR} ${MYAROPTS} $@ ${OBJECTS.debug}
+
+${LIBPART.gprof}:	${OBJECTS.gprof}
+	@if [ -f $@ ] ; then ${RM} $@ ; fi
+	${AR} ${MYAROPTS} $@ ${OBJECTS.gprof}
+
+${LIBPART.shared}:	${OBJECTS.shared}
+	@if [ -f $@ ] ; then ${RM} $@ ; fi
+	${SHLIBCMD} ${PURETEXT} -r -o $@ ${OBJECTS.shared}
+
+${LIBPART.shared.sa}:	${OBJECTS.shared.sa}
+	@if [ "x${OBJECTS.shared.sa}" != "x" ] ; then \
+		if [ -f $@ ] ; then ${RM} $@ ; fi ;  \
+		echo ${AR} ${MYAROPTS} $@ ${OBJECTS.shared.sa} ; \
+		${AR} ${MYAROPTS} $@ ${OBJECTS.shared.sa} ; \
+	fi
+
+
+${DIR.tool.optimized}/%.o: ${DIR.tool.optimized} %.c ${HEADERS}
+	${COMPILE.c} ${CFLAGS.tool.optimized} -o $@ $<
+
+${DIR.tool.debug}/%.o: ${DIR.tool.debug} %.c ${HEADERS}
+	${COMPILE.c} ${CFLAGS.tool.debug} -o $@ $<
+
+${DIR.tool.gprof}/%.o: ${DIR.tool.gprof} %.c ${HEADERS}
+	${COMPILE.c} ${CFLAGS.tool.gprof} -o $@ $<
+
+${DIR.optimized}/%.o: ${DIR.optimized} %.c ${HEADERS}
+	${COMPILE.c} ${STRINGCONST} ${CONSTDATA} ${CFLAGS.optimized} -o $@ $<
+
+${DIR.debug}/%.o: ${DIR.debug} %.c ${HEADERS}
+	${COMPILE.c} ${CFLAGS.debug} -o $@ $<
+
+${DIR.gprof}/%.o: ${DIR.gprof} %.c ${HEADERS}
+	${COMPILE.c} ${CFLAGS.gprof} -o $@ $<
+
+${DIR.shared}/%.o: ${DIR.shared} %.c ${HEADERS}
+	${COMPILE.c} ${STRINGCONST} ${CONSTDATA} ${CFLAGS.shared} -o $@ $<
+
+${DIR.shared.sa}/%.o: ${DIR.shared.sa} %.c ${HEADERS}
+	${COMPILE.c} ${STRINGCONST} ${CFLAGS.shared.sa} -o $@ $<
+
+${DIR.reordered}/%.o: ${DIR.reordered} %.c ${HEADERS}
+	${COMPILE.c} ${STRINGCONST} ${CONSTDATA} ${CFLAGS.reordered} -o $@ $<
+
+${DIR.reordered.sa}/%.o: ${DIR.reordered.sa} %.c ${HEADERS}
+	${COMPILE.c} ${STRINGCONST} ${CFLAGS.shared.sa} -o $@ $<
+
+
+#
+# User callable entry points
+#     need to consult the signs to see if we are to do anything
+#
+install:: ${INSTALL.METHOD.STATIC:sh} ${INSTALL.METHOD.SHARED:sh} \
+	${MAKE.install.target} ${MAKE.source.target}
+
+installtool::		install_headers \
+			inst${TOOL}optimized
+installoptimized::	inst${DELIVERABLE}${STATIC}optimized
+installdebug::		inst${DELIVERABLE}${STATIC}debug
+installgprof::		inst${DELIVERABLE}${STATIC}gprof
+installshared::		inst${DELIVERABLE}${SHARED}optimized
+installvariants:	installoptimized installdebug installgprof installshared
+
+#
+# Qualified entry points - either DELIVERABLE, TOOL, SHARED, or STATIC was def'd
+#
+
+insttooloptimized:
+insttooldebug:
+insttoolgprof:
+
+instdeliverablestaticoptimized:
+instdeliverablestaticdebug:
+instdeliverablestaticgprof:
+
+instdeliverablesharedoptimized:
+instdeliverableshareddebug:	warning.not.supported
+instdeliverablesharedgprof:	warning.not.supported
+
+insttoolvariants:
+instdeliverablesharedvariants:
+instdeliverablestaticvariants:
+
+inst \
+	instdeliverable insttool \
+	inststatic instshared \
+	instdeliverablestatic instdeliverableshared \
+	instdeliverableoptimized instdeliverabledebug \
+	instdeliverablegprof instdeliverablevariants \
+	instoptimized instdebug instgprof instvariants: # nothing to do
+
+#
+# Implementation
+#
+
+install_headers: ${HEADERS.public} ${HEADERS.private}
+	@if [ "x${HEADERS.public}" != "x" ] ; then \
+		for file in . ${HEADERS.public} ; do \
+		  if [ "x$$file" != "x." ];then \
+		    if [ ! -h ${SOURCEDIR}/include/xview/$$file ] ; then \
+			echo "$$file	=> ${SOURCEDIR}/include/xview"; \
+			${LN} ../../lib/libxview/${LIBPART}/$$file \
+			${SOURCEDIR}/include/xview/$$file;\
+		    fi; \
+		  fi; \
+		done;\
+	fi
+	@if [ "x${HEADERS.private}" != "x" ] ; then \
+		for file in . ${HEADERS.private} ; do \
+		  if [ "x$$file" != "x." ];then \
+		    if [ ! -h ${SOURCEDIR}/include/xview_private/$$file ];then \
+			echo "$$file	=> ${SOURCEDIR}/include/xview_private"; \
+			${LN} ../../lib/libxview/${LIBPART}/$$file \
+			${SOURCEDIR}/include/xview_private/$$file;\
+		    fi; \
+		  fi; \
+		done;\
+	fi
+
+
+# Child lib-parts don't get installed #
+
+#
+# Lint rules
+#
+
+lint::			${SOURCES.lint}
+
+%.ln:			${DIR.lint}/%.ln
+
+${DIR.lint}/%.ln:	${DIR.lint} %.c ${HEADERS}
+	-@${LINT.c} -u ${ln.flag} $< -o $@ > ${@:.ln=.lo} 2>&1
+	@if [ -s ${@:.ln=.lo} ] ; then \
+	    ${ECHO} "Warning: lint problems: $<" ; \
+	    ${ECHO} "         See `pwd`/${@:.ln=.lo} for the lint output" ; \
+	else \
+		${RM} ${@:.ln=.lo} ; \
+	fi
+
+lintlib::		${LIBPART.lint}
+
+${LIBPART.lint}:	${SOURCES}
+	-@${LINT.c} -nu -C${LIBPART} ${SOURCES} -o ${LIBPART.lint} > ${DIR.lint}/l${LIBPREFIX}-l${LIBPART}.lo 2>&1
+
+# Reordering utility target
+
+CFiles:
+	@echo `${PWDCMD}`
+	@for i in ${SOURCES} ${SOURCES.sa} ; do \
+		echo $$i >> ${CFiles.SOURCE} ; \
+	done
+
+
+#
+# Other generic user callable targets
+#
+
+clean::  ${MAKE.clean.target}
+	@if [ -d ${DIR.tool.optimized} ]; \
+				     then ${RMRECURSE} ${DIR.tool.optimized}; fi
+	@if [ -d ${DIR.tool.debug} ];then ${RMRECURSE} ${DIR.tool.debug}; fi
+	@if [ -d ${DIR.tool.gprof} ];then ${RMRECURSE} ${DIR.tool.gprof}; fi
+	@if [ -d ${DIR.optimized} ]; then ${RMRECURSE} ${DIR.optimized}; fi
+	@if [ -d ${DIR.debug} ];     then ${RMRECURSE} ${DIR.debug};     fi
+	@if [ -d ${DIR.gprof} ];     then ${RMRECURSE} ${DIR.gprof};     fi
+	@if [ -d ${DIR.shared} ];    then ${RMRECURSE} ${DIR.shared};    fi
+	@if [ -d ${DIR.shared.sa} ]; then ${RMRECURSE} ${DIR.shared.sa}; fi
+	@if [ -d ${DIR.lint} ];      then ${RMRECURSE} ${DIR.lint};      fi
+
+clobber:: clean ${MAKE.clobber.target}
+	@if [ -d ${DIR.targetarch} ]; then ${RMRECURSE} ${DIR.targetarch}; fi
+
+checkmakefile::
+	@echo "TOOL=        ${TOOL}"
+	@echo "DELIVERABLE= ${DELIVERABLE}"
+	@echo "Deliverable:"
+	@echo "  STATIC=      ${STATIC}"
+	@echo "    DB lookup= ${MAKE.METHOD.STATIC:sh}"
+	@echo "  SHARED=      ${SHARED}"
+	@echo "    DB lookup= ${MAKE.METHOD.SHARED:sh}"
+	@echo "Tool:"
+	@echo "  Building"
+	@echo "    DB lookup= ${TOOL.METHOD:sh}"
+	@echo "  Installing"
+	@echo "    DB lookup= ${INSTALLTOOL.METHOD:sh}"
+
+Imakefile: Makefile
+	@if [ -f Imakefile ] ; then \
+	    if [ -f Imakefile- ] ; then \
+		${RM} Imakefile-; \
+	    fi; \
+	    ${MV} Imakefile Imakefile- ;\
+	fi
+	@( \
+	echo "#include <Library.tmpl>"; \
+	echo; \
+	echo "#include \"../../../XView.config\""; \
+	echo; \
+	echo "/**/############################" ;\
+	echo "/**/# @(#)libchild	1.19 93/11/18 ;\
+	echo "/**/############################" ;\
+	echo ;\
+	echo "#ifndef SubdirHasTextObjs ;\
+	if [ "x${OBJECTS}" != "x" ] ; then \
+	 echo "#define SubdirHasTextObjs YES" ; \
+	else \
+	 echo "#define SubdirHasTextObjs NO" ; \
+	fi ;\
+	echo "#endif ;\
+	echo "#ifndef SubdirHasDataObjs  ;\
+	if [ "x${OBJECTS.sa}" != "x" ] ; then \
+	 echo "#define SubdirHasDataObjs YES" ; \
+	else \
+	 echo "#define SubdirHasDataObjs NO" ; \
+	fi ;\
+	echo "#endif ;\
+	echo "#ifndef SubdirHasPublicHeaders ;\
+	if [ "x${HEADERS.public}" != "x" ] ; then \
+	 echo "#define SubdirHasPublicHeaders YES" ; \
+	else \
+	 echo "#define SubdirHasPublicHeaders NO" ; \
+	fi ;\
+	echo "#endif ;\
+	echo "#ifndef SubdirHasPrivateHeaders  ;\
+	if [ "x${HEADERS.private}" != "x" ] ; then \
+	 echo "#define SubdirHasPrivateHeaders YES" ; \
+	else \
+	 echo "#define SubdirHasPrivateHeaders NO" ; \
+	fi ;\
+	echo "#endif ;\
+	echo ;\
+	echo "HDRSPUBLIC	= ${HEADERS.public}" ;\
+	echo "HDRSPRIVATE	= ${HEADERS.private}" ;\
+	echo ;\
+	echo "DATA_OBJS	= ${OBJECTS.sa}" ;\
+	echo ;\
+	echo "TEXT_OBJS	= ${OBJECTS}" ;\
+	echo ;\
+	echo "SRCS		= ${SOURCES} ${SOURCES.sa}" ;\
+	echo ;\
+	echo "#include \"../Imakefile.master\"" ;\
+	echo ;\
+	) > Imakefile
+
+strings: ${SOURCES} ${SOURCES.sa}
+	-@for i in ${SOURCES} ${SOURCES.sa}; do \
+	    echo "$$i"; \
+	    ${CC} ${DEFINES} ${local.OPTIONS} ${CONFIG.XNeWS} \
+		${INCLUDE} -E -DXGETTEXT -C $$i | \
+		${XGETTEXT} -; \
+	done
+
+# We can't prevent unnecessary re-building of the strings target
+# because the extracted strings are directly appended to a temporary
+# file controled by the parent's Makefile.  If we `touch strings'
+# here, then change something in a sibling directory, the strings
+# from this directory won't be put in the joint .po file.  A proper
+# fix for this is too complicated to justify at this point in the
+# life of the only library which uses this config file (libxview)...
+#
+#touch strings

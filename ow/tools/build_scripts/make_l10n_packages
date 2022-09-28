@@ -1,0 +1,157 @@
+#! /bin/sh
+#
+# @(#)make_l10n_packages	1.4 96/10/10
+#
+#
+#	Create and fill a package staging area on threebits
+#
+#	This script should be run from the base of the build tree.
+#	It takes one parameter.  The full pathname of the directory to put
+#	the packages in.
+#
+#	Example:
+#           %cd /export/build0/WS_OL297_SPARC
+#           %tools/build_scripts/make_l10n_packages /export/build0/packages/L10N/OL_sparc-27Sep96
+#
+#   Make sure that we aren't affected by the personal environment of
+#   whoever is running this script
+PATH=/opt/SUNWspro/bin:/opt/SUNWguide/bin:/usr/bin:/usr/ccs/bin:/usr/sbin:.
+SHELL=/bin/sh
+
+
+# What kind of machine is this?
+: PROCESSOR=${PROCESSOR=`uname -p`}
+MACH=$PROCESSOR
+if  [ "$MACH" = "sparc" ] ; then
+    MACH=sun4
+    M=sparc
+else
+    M=$MACH
+fi
+echo "PROCESSOR=<$PROCESSOR>"
+
+
+L10N_PACKAGES="SUNW0oaud SUNW0odcv SUNW0odem SUNW0odst SUNW0odte SUNW0oimt SUNW0orte SUNW0oumn SUNW0wbk"
+
+: ${PACKAGE_DIR:=$1}
+SOURCEDIR=`pwd`
+
+#
+#   First, prep the proto-$MACH-svr4 directories to put things
+#   in the location L10N group wants
+#
+
+echo " Copying files to where L10N group wants them ..."
+echo " "
+
+DESTDIR=$SOURCEDIR/proto-$MACH-svr4
+
+mkdir $DESTDIR/share/locale/C/olwm
+cp $DESTDIR/lib/openwin-menu* $DESTDIR/share/locale/C/olwm
+sccs get -p lib/libmisc/openwin-menu-utilities-sun4-svr4 \
+	> $DESTDIR/share/locale/C/olwm/openwin-menu-utilities-sun4-svr4
+sccs get -p lib/libmisc/openwin-menu-utilities-i386-svr4 \
+	> $DESTDIR/share/locale/C/olwm/openwin-menu-utilities-i386-svr4
+sccs get -p lib/libmisc/openwin-menu-utilities-ppc-svr4 \
+	> $DESTDIR/share/locale/C/olwm/openwin-menu-utilities-ppc-svr4
+
+cp -r $DESTDIR/lib/app-defaults $DESTDIR/lib/locale/C
+cp $DESTDIR/lib/openwin-init $DESTDIR/lib/locale/C/openwin-init
+
+mkdir $DESTDIR/share/man/C
+cp -r $DESTDIR/share/man/man1 $DESTDIR/share/man/C
+cp -r $DESTDIR/share/man/man4 $DESTDIR/share/man/C
+cp -r $DESTDIR/share/man/man7 $DESTDIR/share/man/C
+
+#   Second, create the staging area.  Make sure that the logs directory
+#   is writeable by everyone because it is likely that we will need to
+#   write into it as root across an NFS link...
+#
+/bin/mkdir -p $PACKAGE_DIR/logs
+/bin/chmod a+w $PACKAGE_DIR/logs
+
+#  Now copy the package description info
+cd $SOURCEDIR/packages
+echo 'Copying package descriptions'
+
+#   We can't just use `sccs get SCCS' because it will punt if it hits
+#   a file which is being edited (writeable).
+#   
+for F in SCCS/s.*
+do
+    /usr/ccs/bin/get -s $F
+done
+/bin/cp admin_file copyright depend i.* $PACKAGE_DIR >/dev/null 2>&1
+
+for package in  $L10N_PACKAGES
+do
+    cd $package
+
+    #   See above about sccs usage
+    for F in SCCS/s.*
+    do
+	/usr/ccs/bin/get $F >/dev/null 2>&1
+    done
+
+    /bin/mkdir $PACKAGE_DIR/$package
+    /bin/cp p* d* lib* i.* $PACKAGE_DIR/$package >/dev/null 2>&1
+    cd ..
+done
+
+
+#   Now move into the package staging area and build the packages.
+cd $PACKAGE_DIR
+
+/bin/ln -s $DESTDIR openwin
+
+LOGfile=logs/package_build
+if  [ -f $LOGfile ] ; then rm -f $LOGfile ; fi
+
+echo '---Building packages'
+for package in $L10N_PACKAGES
+do
+    cd $package
+#
+# Right now, only SUNW0odte have different files for i386 and sparc
+# all other packages have 'all' for ARCH
+#
+    if [ $package = "SUNW0odte" ] ; then
+	for processor in i386 sun4 ppc
+	do
+	    echo "Making architecture-specific version of pkginfo for $PROCESSOR"
+	    if [ $processor = 'sun4' ] ; then
+		sed -e '/ARCH/s/ISA/'sparc'/' pkginfo.tmpl > pkginfo
+	    else
+	        if [ $processor = 'i386' ] ; then
+		   sed -e '/ARCH/s/ISA/'i386'/' pkginfo.tmpl > pkginfo
+		else
+		   sed -e '/ARCH/s/ISA/'ppc'/' pkginfo.tmpl > pkginfo
+		fi
+	    fi
+	    cd $SOURCEDIR/proto-$MACH-svr4/share/locale/C/olwm
+	    rm -f openwin-menu-utilities
+	    ln -s openwin-menu-utilities-$processor-svr4 \
+		openwin-menu-utilities
+	    cd $PACKAGE_DIR/$package
+	    echo "******** Making the $package package ********"
+
+		/usr/bin/pkgmk -d $PACKAGE_DIR/$package -o
+		mv $package $package.$processor
+        done
+    else
+
+	echo "******** Making the $package package ********"
+
+	    /usr/bin/pkgmk -d $PACKAGE_DIR/$package -o
+	
+    fi
+    cd ..
+done >$LOGfile 2>&1
+
+/bin/rm -f openwin
+
+# Create an installdir with symlinks to SUNW* pkgs
+cd $PACKAGE_DIR
+mkdir installdir
+cd installdir
+ln -s ../SUNW*/SUNW* .

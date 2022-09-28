@@ -1,0 +1,99 @@
+
+The following shows the procedure/steps for performing source product 
+build:
+
+(All throughout the documentation, directory path and release names 
+used here are examples)
+
+
+FOR TESTING:
+==============
+
+- On sparc, create the sparc source trees
+
+  # 	cd <sparc-build-dir>
+  #	proto-tool-Obj-*-svr4/buildSourceTrees.prl <dest-dir> <release-name>
+
+- On x86, create the x86 source trees
+
+  # 	cd <x86-build-dir>
+  #	proto-tool-Obj-*-svr4/buildSourceTrees.prl <dest-dir> <release-name>
+
+
+- On ppc, create the ppc source trees
+
+  # 	cd <ppc-build-dir>
+  #	proto-tool-Obj-*-svr4/buildSourceTrees.prl <dest-dir> <release-name>
+
+On all platforms, do the following steps:
+
+- Set the /usr/openwin as a symbolic link to the new build
+  s<XXX>{s,x,p}-<release-name>
+
+
+- start building on all platforms
+
+  #	cd <dest-dir>/SOURCE_TEST_S<XXX>_<release-name>
+  #	./buildit &
+
+  NOTE: This version of buildit is slightly different than the one
+	used by internal RE because this version is tailored for customer's 
+	environment.
+
+- if build completes cleanly, make the packages by:
+
+  #	cd <dest-dir>/SOURCE_TEST_S<XXX>_<release-name>
+  #	proto-tool-Obj-*-svr4/make_release_packages <package-name>
+
+  NOTE: This version of make_release_packages is slightly different than the one
+	used by internal RE because this version is tailored for customer's 
+	environment.
+
+- Install and test builds
+
+- Check Documentation
+
+
+FOR SHIPPING:
+==============
+
+On sparc machine:
+
+- Create clean source trees AGAIN using buildSourceTrees.prl:
+  
+  # 	cd <sparc-build-dir>
+  #	proto-tool-Obj-*-svr4/buildSourceTrees.prl <dest-dir> <release-name>
+
+
+- Copy over from the x86 and ppc specific files:
+
+  #	cd <sparc-build-dir>
+  #	proto-tool-Obj-*-svr4/copy_arch_spec_files <dest-dir> <release-name>
+
+
+- Copy over the build log file for the customer from the test source 
+  tree that you just performed test build into this directory in the 
+  clean source trees:
+
+  /SOURCE+SCCS_S<XXX>_<release-name>/doc/buildit-OL-$ARCH-svr4.log 
+
+  /SOURCE_TEST_S<XXX>_<release-name>/doc/buildit-OL-$ARCH-svr4.log 
+
+
+- Compress the clean source trees:
+
+(commands for SCCS History Source Tree, includes charon deliver)
+% cd SOURCE+SCCS_S<XXX>_<release-name>
+% find . -depth -print | cpio -oc > sccs_<consolidation>
+% compress sccs_<consolidation>
+% deliver -s -h rat -r s<XXX>_source_beta sccs_<consolidation>.Z
+
+(commands for Clear Text Source Tree, includes charon deliver)
+% cd SOURCE_TEST_S<XXX>_<release-name>
+% find . -depth -print | cpio -oc > clear_<consolidation>
+% compress clear_<consolidation>
+% deliver -s -h rat -r s<XXX>_source_beta clear_<consolidation>.Z
+
+
+
+

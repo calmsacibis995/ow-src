@@ -1,0 +1,550 @@
+.\" Copyright (c) 1994 - Sun Microsystems, Inc. 
+.TH props 1 "23 February 1994"
+.IX "props" "" "\f3props\f1(1) \(em OpenWindows property setting utility" ""
+.IX "OpenWindows" "property" "OpenWindows" "property setting utility \(em \f3props\f1(1)"
+.IX "window" "changing" "windows" "changing fonts or colors \(em \f3props\f1(1)"
+.SH NAME
+props \- graphical interface to set OpenWindows properties
+.SH SYNOPSIS
+.B props
+[ -toolkitoption ... ] [ -init ]
+.SH DESCRIPTION
+.PP
+The
+.B props
+program provides a graphical interface to many properties of OpenWindows which
+are controlled via X resources. The resources
+.B props
+manipulates are stored in the file called \f3.OWdefaults\f1 in the user's home
+directory. This enables
+.B props
+to ensure properties persist across window sessions.
+.LP
+Upon window system startup, the \f3.OWdefaults\f1 file is merged into the X resource
+manager as specified in the \fIopenwin-sys\f1 file. This occurs after 
+.BR xinit (1) 
+loads \f3$OPENWINHOME/lib/Xdefaults\f1 or \f3.Xdefaults\f1 in the user's 
+home directory if it
+exists. Thus, the settings in \f3.OWdefaults\f1 take precidence over the settings
+in a user's \f3.Xdefaults\f1 file which in turn take precidence over the system
+defaults set in \f3$OPENWINHOME/lib/Xdefaults\f1. When properties are changed via
+\f3 props\f1,
+.B props
+updates \f3.OWdefaults\f1 and the X resource manager.
+.LP
+The resources handled by
+.B props
+consist of two resource components. The first component is \f3OpenWindows\f1.
+The second resource component is the name of the particular property being set.
+For example, the mouse acceleration is controlled by the resource
+\f3OpenWindows.MouseAcceleration\f1. The OpenWindows toolkits and window manager
+are designed to respond to the resources manipulated by
+.B props.
+Systems without the OpenWindows toolkits and window manager are not likely
+to be aware of the OpenWindows resources. Thus, if
+.B props
+is used in a non-OpenWindows environment, the system will probably
+ignore the settings made via
+.B props.
+.LP
+Below is an explaination of the resources handled by
+.B props.
+The second component of each resource name is listed. For example, the name
+"WorkspaceColor" refers to the complete resource name
+\f3OpenWindows.WorkspaceColor\f1.
+.TP
+.BI BasicLocale " (locale name) "
+Specifies the basic locale in which the system is running. Permissible locale
+names are "C" (USA), "ja" (Japan), "ko" (Korea), "zh" (PRC), "zh_TW" (ROC),
+"de" (Germany), "it" (Italy), "fr" (France), and "sv" (Sweden).
+.nf
+.B Default value: C
+.B Properties category: Locale
+.B Category control: Basic Locale
+.fi
+The default specifies the U.S. locale and the English language.
+.TP
+.BI Beep " (enumeration) "
+Specifies the circumstances under which
+.BR olwm (1)
+should beep.  Permissible values are the strings "always", "never", and
+"notices".  The string "never" means that
+.B olwm
+should never beep, "notices" means that
+.B olwm
+should beep only when a notice appears, and "always" means that
+.B olwm
+will beep whenever it is appropriate.
+.nf
+.B Default value: always
+.B Properties category: Miscellaneous
+.B Category control: Beep
+.fi
+.TP
+.BI BeepDuration " (integer) "
+Specifies how long the keyboard beep should last in milliseconds.
+.nf
+.B Default value: 100
+.B Properties category: Miscellaneous
+.B Category control: Beep Duration
+.fi
+.TP
+.BI BoldFont " (font name) "
+Specifies the default bold font used for captions and window titles.
+.nf
+.B Default value: -*-lucida sans-bold-r-*-*-*-120-*-*-*-*-*-*
+.B Properties category: Fonts
+.B Category control: Typeface
+.fi
+The default specifies a bold weight, 12-point, regular Lucida Sans font.
+.TP
+.BI DataBackground " (color) "
+Specifies the color for the background of text windows such as those in
+mailtool, textedit, and the help window.
+.nf
+.B Default value: #ffffff
+.B Properties category: Color
+.B Category control: DATA AREAS Background
+.fi
+The default value specifies white.
+.TP
+.BI DataForeground " (color) "
+Specifies the color for the text in text windows such as those in mailtool,
+textedit, and the help window.
+.nf
+.B Default value: #000000
+.B Properties category: Color
+.B Category control: DATA AREAS Foreground
+.fi
+The default value specifies black.
+.TP
+.BI DisplayLang " (locale name) "
+Specifies the locale for the language used when displaying text.
+See the description of the 
+.B BasicLocale
+resource for a list of permissible locale names.
+.nf
+.B Default value: C
+.B Properties category: Locale
+.B Category control: Display Locale
+.fi
+The default specifies the U.S. locale and the English language.
+.TP
+.BI DragRightDistance " (integer) "
+The number of pixels you must drag the mouse to the right in a menu item to
+bring up a sub-menu.  The sub-menu always comes up when you move over the menu
+mark (the right-pointing triangle), regardless of the drag-right distance.
+.nf
+.B Default value: 100
+.B Properties category: Menus
+.B Category control: Drag-Right Distance
+.fi
+.TP
+.BI IconLocation " (enumeration) "
+One of the words "top-lr", "top-rl", "bottom-lr", "bottom-rl", "left-tb",
+"left-bt", "right-tb", or "right-bt".  These specify that icons should be
+arranged along a particular edge of the screen, ordered from left to right
+or top to bottom as appropriate.  The words "top", "bottom", "left", and
+"right" are synonyms for "top-lr", "bottom-lr", "left-tb", and "right-tb",
+respectively. These synonyms are used by
+.B props.
+.nf
+.B Default value: bottom
+.B Properties category: Miscellaneous
+.B Category control: Icon Location
+.fi
+.TP
+.BI InputLang " (locale name) "
+Specifies the language expected to be typed from the keyboard.
+See the description of the
+.B BasicLocale
+resource for a list of permissible locale names.
+.nf
+.B Default value: C
+.B Properties category: Locale
+.B Category control: Input Locale
+.fi
+The default specifies the U.S. locale and the English language.
+.TP
+.BI KeyboardCommands " (enumeration) "
+Permissible values for this resource are "Basic" and "Full".  In
+.B Full
+mode, all OPEN LOOK Mouseless commands implemented by the window manager are
+active.  See the section on Key Binding in the
+.BR olwm (1)
+man page for further information.  In
+.B Basic
+mode, the keys active are Open, Front, Help, and the colormap keys.
+.nf
+.B Default value: Basic
+.B Properties category: Keyboard
+.B Category control: Keyboard Mouse Equivalents
+.fi
+.TP
+.BI KeyClick " (boolean) "
+Specifies whether keys click when pressed.
+.nf
+.B Default value: false
+.B Properties category: Keyboard
+.B Category control: Other Options, Key Click
+.fi
+.TP
+.BI KeyRepeat " (boolean) "
+Specifies whether repeating keys repeat when held down.
+.nf
+.B Default value: true
+.B Properties category: Keyboard
+.B Category control: Other Options, Key Repeat
+.fi
+.TP
+.BI MenuAccelerators " (boolean) "
+Specifies whether menu accelerators are enabled for menus in applications.
+.nf
+.B Default value: true
+.B Properties category: Keyboard
+.B Category control: Keyboard Menu Equivalents
+.fi
+.TP
+.BI MonospaceFont " (font name) "
+Specifies the default monospace font used for text editors and other
+applications which require a monospace font.
+.nf
+.B Default value: -*-lucida sans typewriter-medium-r-*-*-*-120-*-*-*-*-*-*
+.B Properties category: Fonts
+.B Category control: Typeface
+.fi
+The default specifies a medium weight, 12-point, regular Lucida Sans Typewriter font.
+.TP
+.BI MouseAcceleration " (integer) "
+Specifies a multiplier. The mouse pointer will go this many times faster when
+it moves more than the number of pixels specified by the
+.B MouseThreshold
+resource in a short time.
+.nf
+.B Default value: 2
+.B Properties category: Mouse
+.B Category control: Mouse Acceleration
+.fi
+.TP
+.BI MouseThreshold " (integer) "
+Specifies the number of pixels which the mouse must move in a short time for
+the mouse acceleration to be applied.
+.nf
+.B Default value: 15
+.B Properties category: Mouse
+.B Category control: Mouse Threshold
+.fi
+.TP
+.BI MultiClickTimeout " (integer) "
+The time, in tenths of a second, that differentiates a double-click
+from two single clicks.
+.nf
+.B Default value: 5
+.B Properties category: Mouse
+.B Category control: Multi-Click Interval
+.fi
+.TP
+.BI NumericFormat
+Specifies how commas and periods are used in numbers.
+See the description of the
+.B BasicLocale
+resource for a list of permissible locale names.
+.nf
+.B Default value: C
+.B Properties category: Locale
+.B Category control: Numeric Format
+.fi
+The default specifies the U.S. locale, a numeric format where commas are used to 
+indicate thousands and a period is used to indicate where the fractional
+part of the number begins. For example, one thousand and a half is "1,000.5".
+.TP
+.BI PointerMapping " (enumeration) "
+Specifies a "left" or "right" handed mapping of the mouse buttons. For a
+3-button mouse, "right" means button 1 is SELECT, button 2 is ADJUST, and
+button 3 is MENU. A value of "left" means button 1 is MENU, button2 is 
+ADJUST, and button 3 is SELECT. For mice with more or less than 3 buttons,
+the sense of the buttons is reversed as for the 3-button mouse.
+.nf
+.B Default value: right
+.B Properties category: Mouse
+.B Category control: Mouse Button Order
+.fi
+.TP
+.BI PopupJumpCursor " (boolean) "
+Specifies whether to warp the cursor to popup windows.
+.nf
+.B Default value: true
+.B Properties category: Mouse
+.B Category control: Pointer Jumping, Pop-Up Windows
+.fi
+.TP
+.BI RegularFont " (font name) "
+Specifies the default font used by the system in general. This font is used
+for such text as that in buttons and non-bold labels.
+.nf
+.B Default value: -*-lucida sans-medium-r-*-*-*-120-*-*-*-*-*-*
+.B Properties category: Fonts
+.B Category control: Typeface
+.fi
+The default specifies a medium weight, 12-point, regular Lucida Sans font.
+.TP
+.BI Scale " (enumeration) "
+Specifies the desktop scale. The scale value indicates the point size of the
+OPEN LOOK Glyph font and the text fonts used by OpenWindows. Permissible values
+are "small", "medium", "large", and "extra_large". These correspond to 10, 12,
+14, and 19 point fonts, respectively.
+.nf
+.B Default value: medium
+.B Properties category: Fonts
+.B Category control: Scale
+.fi
+The default value specifies 12 point fonts.
+.TP
+.BI ScreenSaver.IdleTime " (integer) "
+Specifies the number of minutes of idle time required before the screen saver
+comes on. The
+.B ScreenSaver.OnOff
+resource must be set to "auto" for the screensaver to activate.
+.I
+Default value: 10.
+.TP
+.BI ScreenSaver.OnOff " (enumeration) "
+Specifies whether the screensaver is off or come on automatically. The 
+permissible values are "off" and "auto", respectively.
+.nf
+.B Default value: off
+.B Properties category: Miscellaneous
+.B Category control: Screen Saver
+.fi
+.TP
+.BI ScrollbarJumpCursor " (boolean) "
+Specifies whether to warp the cursor to follow the scrollbar elevator.
+.nf
+.B Default value: true
+.B Properties category: Mouse
+.B Category control: Pointer Jumping, Scrollbars
+.fi
+.TP
+.BI ScrollbarPlacement " (enumeration) "
+Specifies on which side of windows to place verticle scrollbars. Permissible
+values are "left" and "right".
+.nf
+.B Default value: right
+.B Properties category: Miscellaneous
+.B Category control Scrollbar Placement
+.fi
+.TP
+.BI SelectDisplaysMenu " (boolean) "
+If true, pressing the SELECT mouse button will bring up a menu item's
+sub-menu (if any) instead of executing the sub-menu's default action.
+.nf
+.B Default value: true
+.B Properties category: Menus
+.B Category control: Left Mouse Press
+.fi
+.TP
+.BI SetInput " (enumeration) "
+This controls the input focus mode.  If the value is "select", it
+means click-to-focus.  If the value is "followmouse", it means
+focus-follows-mouse.
+.nf
+.B Default value: select
+.B Properties category: Miscellaneous
+.B Category control: Set Active Window
+.fi
+.TP
+.BI TimeFormat
+Specifies the locale for the date and time format. Date format is mm/dd/yy
+or dd/mm/yy and the time format is 12- or 24-hour clock.
+See the description of the
+.B BasicLocale
+resource for a list of permissible locale names.
+.nf
+.B Default value: C
+.B Properties category: Locale
+.B Category control: Time Format
+.fi
+The default specifies the U.S. locale which has date format mm/dd/yy and 12-hour
+clock time format.
+.TP
+.BI WindowColor " (color) "
+Specifies the color of windows.  This is the "BG1" color for 3D OPEN LOOK.
+It is used for the backgrounds of windows, menus, and notices.  The 3D
+effect is achieved by using highlight and shadow colors derived from this
+color.
+.nf
+.B Default value: #cccccc
+.B Properties category: Color
+.B Category control: WINDOWS Background
+.fi
+The default specifies a 20% gray value.
+.TP
+.BI WindowForeground " (color) "
+Specifies the color for foreground components of windows such as captions and
+text in buttons and footers.
+.nf
+.B Default value: #000000
+.B Properties category: Color
+.B Category control: WINDOWS Foreground
+.fi
+The default value specifies black.
+.TP
+.BI WindowMenuAccelerators " (boolean) "
+Specifies whether menu accelerators are enabled for window menus.
+.nf
+.B Default value: true
+.B Properties category: Keyboard
+.B Category control: Keyboard Menu Equivalents
+.fi
+.TP
+.BI WorkspaceBitmapBg " (color) "
+Specifies the color for the background of the workspace bitmap which 
+.B olwm
+tiles on the root window if the 
+.B WorkspaceStyle
+resource is set to "tilebitmap".
+.nf
+.B Default value: #ffffff
+.B Properties category: Color
+.B Category control: DATA AREAS Background
+.fi
+The default value specifies white.
+.TP
+.BI WorkspaceBitmapFg " (color) "
+Specifies the color for the foreground of the workspace bitmap which 
+.B olwm
+tiles on the root window if the 
+.B WorkspaceStyle
+resource is set to "tilebitmap".
+.nf
+.B Default value: #000000
+.B Properties category: Color
+.B Category control: DATA AREAS Foreground
+.fi
+The default value specifies black.
+.TP 
+.BI WorkspaceColor " (color) "
+Specifies the color for the workspace (root window).  On startup,
+.B olwm
+will set the root window's background color to the color specified by this
+resource if the
+.B WorkspaceStyle
+resource is set to "paintcolor", and it will restore the default background
+on shutdown.
+.nf
+.B Default value: #40a0c0
+.B Properties category: Color
+.B Category control: WORKSPACE Background
+.fi
+The default value specifies a light blue color.
+.TP
+.BI WorkspaceStyle " (enumeration) "
+Specifies how
+.B olwm
+decorates the workspace (root window).
+Permissible values are "paintcolor" and "tilebitmap". If the value is
+"paintcolor",
+.B olwm
+paints the workspace with the color indicated by the
+.B WorkspaceColor
+resource. If the value is "tilebitmap",
+.B olwm
+tiles the bitmap indicated by the
+.B WorkspaceBitmapFile
+resource using the colors specified by the
+.B WorkspaceBitmapFg
+and
+.B WorkspaceBitmapBg
+resources.
+.nf
+.B Default value: paintcolor
+.B Properties category: Color
+.B Category control: Pattern
+.fi
+The default specifies to use the color selected by WorkspaceColor.
+.SH OPTIONS
+.LP 
+The
+.B props
+program accepts all standard command line options accepted by the OLIT toolkit.
+In addition, it accepts the following.
+.TP
+.B \-init
+This is the way
+.B props
+is started by
+.B xinit
+upon window system initialization. This is done to ensure the state of the
+following window server attributes are set in accordance with the resources
+in the \f3.OWdefaults\f1 file in the user's home directory: key click, key repeat,
+beep duration, screen saver activation and timeout. When
+.B props
+is started with this option, it checks and resets the server state for these
+settings if necessary and exits. This option is only meant to be used upon
+system startup.
+.SH FILES
+.PD 0
+.TP 20
+.B $HOME/.OWdefaults
+Contains the resource name-value pairs written by the
+.B props
+program.
+.PD
+.TP 20
+.B $HOME/.openwin-menu-programs
+Contains the user's custom programs menu.
+.PD
+.TP 20
+.B $HOME/.openwin-menu-programs.BAK
+Contains a backup version of \f3$HOME/.openwin-menu-programs\f1.
+.PD
+.TP 20
+.B $HOME/.Xdefaults
+Contains the user's resource name-value pairs as set outside of
+.B props.
+.PD
+.TP 20
+.B /usr /openwin/lib/Xdefaults
+Contains the system's default resource name-value pairs.
+.PD
+.TP 20
+.B /usr/openwin/lib/app-defaults/Props
+Contains strings and layout information for
+.B props.
+.PD
+.TP 20
+.B /usr openwin/lib/help/props.info
+Contains help text for
+.B props.
+.PD
+.TP 20
+.B /usr openwin/lib/openwin-sys
+Starts
+.B props
+in initialization mode upon window system startup.
+.PD
+.TP 20
+.B /usr openwin/bin/props
+The executable
+.B props
+program.
+.PD
+.TP 20
+.B /usr openwin/etc/workspace/patterns/*.xbm
+Workspace bitmap files.
+.PD
+.TP 20
+.B /usr openwin/etc/workspace/patterns/attributes
+Workspace bitmap colors.
+.PD
+.TP 20
+.B /tmp/OWtemp
+Temporary resource storage file.
+.PD
+.SH SEE ALSO
+.BR olwm (1)
+.BR xinit (1)
+.BR xmodmap (1)
+.BR xrdb (1)
+.BR xset (1)
+.BR xview (7)

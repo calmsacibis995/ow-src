@@ -1,0 +1,14 @@
+#
+#"@(#)r.fontsdir	1.1 93/08/06   Sun Microsystems" 
+#
+# SUNWowoft class action remove script for the fontsdir class
+
+# Remove the fonts.dir files. (If mkfondir exists they'll be updated by the
+# postremove script
+
+while   read dst
+do
+    rm -f $dst
+done
+
+exit 0

@@ -1,0 +1,27 @@
+#
+# @(#)Makefile.fns_mgr.so	1.5 05/27/93 Copyright (c) 1992 Sun Microsystems, Inc.
+#
+
+SOURCES.c	= fns_lookup.c
+
+SOURCES.h	= ce.h ce_err.h fns.h ce_int.h
+
+LIBRARY		= fns_mgr
+PROJECTDIR	= ..
+
+.KEEP_STATE:
+
+default:	all
+
+include ${PROJECTDIR}/Makefile.master.new
+
+# Libraries needed by fns_mgr.so
+SVR4_LIB_LDFLAGS      += -L. -lc -lnsl -lce
+
+all:		$(LIBRARY.so)
+
+clean:		master_clean
+
+install:	install_libs
+
+

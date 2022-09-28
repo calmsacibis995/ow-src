@@ -1,0 +1,145 @@
+DESCRIPTION
+
+        NOTE: The TextField widget is being replaced by the new TextLine widget
+        which is a more efficient implementation of a one-line text entry field. 
+        It is recommended that the TextLine be used in place of the TextField. 
+
+	The TextField widget provides a one-line input field for text data.
+	
+	The TextField consists of an input caret, an input field, and Left
+	and right arrows which are conditional on handling the overflow of
+	text which does not fit in the input field length (the arrows scroll
+	the text). 
+
+	Validation of TextField input is left up to the application.
+
+	Note that the TextField widget does not itself provide labeling capability;
+	For an example of creating a labeled TextField, see the Caption Widget
+	"EXAMPLE CODE" section.
+
+	For more detailed information on the TextField Widget, see the following
+	Sections in the OPEN LOOK Intrinsics Toolkit Widget Set Reference Manual:
+		. TextField
+		. TextEdit
+		. TextField Functions
+
+EXAMPLE CODE
+
+The following code could be used to Create a TextField Widget similar to that shown 
+in the Table (All color specific code has been removed for simplification):
+
+/****************************************************************************/
+#include <X11/Intrinsic.h>
+#include <X11/StringDefs.h>
+#include <Xol/OpenLook.h>
+#include <Xol/TextField.h>
+
+#include <Xol/ControlAre.h>
+
+/**************************************************************
+ * verifyCB:  Callback called when a string has been
+ *		entered in the textfield (either <return> or
+ *		<tab>(next) or <Shift><tab>(previous) has been
+ *		typed to trigger verfication.
+ **************************************************************/
+void
+verifyCB(w, clientData, callData)
+Widget w;
+XtPointer clientData, callData;
+{
+	OlTextFieldVerify* verify = (OlTextFieldVerify*)callData;
+	
+	switch(verify->reason){
+		case OlTextFieldReturn:{ 
+				printf("String entered: %s\n",verify->string);
+				OlMoveFocus(w, OL_NEXTFIELD, CurrentTime);
+				break;
+				}
+		case OlTextFieldPrevious:{ 
+				printf("Moving to Previous field\n");
+				break;
+				}
+		case OlTextFieldNext:{ 
+				printf("Moving to Next Field\n");
+				break;
+				}
+	}		
+
+}
+/*****************************************************************/	
+	
+main(argc, argv)
+int argc;
+char **argv;
+{
+	Widget toplevel, controlarea, textfield[3];
+	XtAppContext app;
+	int i;
+
+	OlToolkitInitialize(NULL);
+	toplevel = XtAppInitialize(&app, "Test", 
+				(XrmOptionDescRec *)NULL,
+				(Cardinal)0, (int *)&argc, argv,
+				(String *)NULL, (ArgList)NULL, 0);
+
+	controlarea = XtVaCreateManagedWidget("controls", 
+				controlAreaWidgetClass,
+				toplevel,
+				XtNlayoutType,	(XtArgVal)OL_FIXEDCOLS, 
+				NULL);
+
+	for (i = 0; i < 3; i++){	
+		textfield[i] = XtVaCreateManagedWidget("textfield", 
+				textFieldWidgetClass,
+				controlarea,
+				XtNmaximumSize,	(XtArgVal)20,
+				NULL);
+
+		XtAddCallback(textfield[i], XtNverification, verifyCB, NULL);
+	}
+
+	XtRealizeWidget(toplevel);
+	XtAppMainLoop(app);
+
+}
+/***************************END EXAMPLE***************************/
+
+
+	
+	
+RESOURCES
+_______________________________________________________________________________________________
+Resource Name		Type		Default		Brief Description
+_______________________________________________________________________________________________
+
+XtNancestorSensitive	Boolean		TRUE		Will immediate parent receive events?
+XtNbackground		Pixel		White		background color of widget
+XtNbackgroundPixmap	Pixmap		(none)		pixmap used for tiling the background
+XtNcharsVisible		int		0		number of characters visible in field
+XtNconsumeEvent		XtCallbackList	NULL		called when event occur
+XtNdepth		int		(parent's)	number of bits used for each pixel
+XtNdestroyCallback	XtCallbackList	NULL		routines called when widget is destroyed
+XtNfont			XFontStruct*	(OPENLOOK font)	pointer to font used to display text
+XtNfontColor		Pixel		Black		text font's color
+XtNforeground		Pixel		Black		foreground color of widget
+XtNheight		Dimension	(calculated)	height of widget's window in pixels
+XtNinputFocusColor	Pixel		Red		color of input focus indicator
+XtNinitialDelay		int		500		initial repeat delay when arrows pressed
+XtNinsertTab		Boolean		FALSE		can <Tab> keys be inserted?
+XtNmappedWhenManaged	Boolean		TRUE		will widget be mapped when managed?
+XtNmaximumSize		int		(none)		max number of chars in internal buffer
+XtNreferenceName	String		NULL		*see OLIT Widget Set Reference Manual	
+XtNreferenceWidget	Widget		(Widget)0	*see OLIT Widget Set Reference Manual
+XtNsensitive		Boolean		TRUE		will widget receive input events?
+XtNstring		String		NULL		ptr to current TextField value string
+XtNtextEditWidget	Widget				handle to TextEdit piece of TextField
+XtNtraversalOn		Boolean		TRUE		is widget selectable during traversal?
+XtNuserData		XtPointer	NULL		storage for user defined data
+XtNverification		XtCallbackList	NULL		proc called on RETURN,TAB or focus leaves
+XtNwidth		Dimension	(calculated)	width of widget's window in pixels
+XtNx			Position	0		x coord of widget's upper left corner
+XtNy			Position	0		y coord of widget's uuper left corner
+
+
+
+	
